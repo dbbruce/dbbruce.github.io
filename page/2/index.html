@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>董迟钝 | blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="笨鸟先飞">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董迟钝 | blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董迟钝 | blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">好学若饥，谦卑若愚. |  Stay hungry，Stay foolish.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml"><i class="fa fa-rss"></i> 订阅</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  <article id="post-爬虫UA防爬" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%ABUA%E9%98%B2%E7%88%AC/">爬虫UA防爬</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+      
+      
+<a href="/2023/08/10/%E7%88%AC%E8%99%ABUA%E9%98%B2%E7%88%AC/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-header-头信息"><a href="#1-header-头信息" class="headerlink" title="1.header 头信息"></a>1.header 头信息</h4><ul>
+<li>header</li>
+<li>header2</li>
+</ul>
+<h4 id="2、body"><a href="#2、body" class="headerlink" title="2、body"></a>2、body</h4><ul>
+<li><strong>12123</strong><blockquote>
+<p><em>123123</em></p>
+</blockquote>
+</li>
+</ul>
+<p>前面的几篇我们了解了爬虫的大致过程</p>
+<p>源码下载 + 数据解析 + 数据保存</p>
+<p>对应粘贴了 requests、BeautifulSoup、re 的介绍连接、演示了利用 pymysql 模块连接并保存到 MySQL 的过程</p>
+<p>但在下载源码中会遇到各种问题，这次来讲最简单的反爬策略：UA禁止 </p>
+<p>UA（User-Agent）是什么？<br>User-Agent：翻译是用户代理，其实就是用户的身份</p>
+<p>当用浏览器随便访问一个网站时（chrome为例）</p>
+<p>通过开发者工具–&gt;network，选择一个请求的Headers，查看 Request Headers 的 User-Agent</p>
+<p>可以看出后面跟了些浏览器的名字</p>
+<p>这就代表了 用户的身份是浏览器</p>
+<p>爬虫的UA有什么问题？<br>先说一个工具网站：<a target="_blank" rel="noopener" href="http://httpbin.org/get">http://httpbin.org/get</a></p>
+<p>这个网站直接返回请求头信息</p>
+<p>用浏览器打开时User-Agent是这样的，后面是浏览器信息</p>
+<p>下面我们用爬虫来访问</p>
+<h1 id="导入requests请求模块"><a href="#导入requests请求模块" class="headerlink" title="导入requests请求模块"></a>导入requests请求模块</h1><p>import requests# 要访问的网站的链接</p>
+<h1 id="http-httpbin-org-get是个工具网站，直接返回请求头的信息"><a href="#http-httpbin-org-get是个工具网站，直接返回请求头的信息" class="headerlink" title="http://httpbin.org/get是个工具网站，直接返回请求头的信息"></a><a target="_blank" rel="noopener" href="http://httpbin.org/get%E6%98%AF%E4%B8%AA%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%EF%BC%8C%E7%9B%B4%E6%8E%A5%E8%BF%94%E5%9B%9E%E8%AF%B7%E6%B1%82%E5%A4%B4%E7%9A%84%E4%BF%A1%E6%81%AF">http://httpbin.org/get是个工具网站，直接返回请求头的信息</a></h1><p>url &#x3D; ‘<a target="_blank" rel="noopener" href="http://httpbin.org/get">http://httpbin.org/get</a>‘</p>
+<h1 id="用get-方法访问得到一个Response对象"><a href="#用get-方法访问得到一个Response对象" class="headerlink" title="用get()方法访问得到一个Response对象"></a>用get()方法访问得到一个Response对象</h1><p>response &#x3D; requests.get(url)</p>
+<h1 id="打印返回内容"><a href="#打印返回内容" class="headerlink" title="打印返回内容"></a>打印返回内容</h1><p>print(response.text)<br>结果是这样：</p>
+<p>发现了吗？python代码特别 傻，直接告诉人家 自己是个爬虫</p>
+<p>很多网站监测到是个爬虫在访问，就会禁止<br>比如 知乎</p>
+<p>我们尝试用爬虫访问</p>
+<h1 id="导入requests请求模块-1"><a href="#导入requests请求模块-1" class="headerlink" title="导入requests请求模块"></a>导入requests请求模块</h1><p>import requests# 要访问的网站的链接<br>url &#x3D; ‘<a target="_blank" rel="noopener" href="https://www.zhihu.com/">https://www.zhihu.com/</a>‘</p>
+<h1 id="用get-方法访问得到一个Response对象-1"><a href="#用get-方法访问得到一个Response对象-1" class="headerlink" title="用get()方法访问得到一个Response对象"></a>用get()方法访问得到一个Response对象</h1><p>response &#x3D; requests.get(url)</p>
+<h1 id="打印返回内容-1"><a href="#打印返回内容-1" class="headerlink" title="打印返回内容"></a>打印返回内容</h1><p>print(response.text)<br>结果如下：</p>
+<p>很明显这不是我们想要的源码，还直接给错误码 400</p>
+<p>所以遇到 400 就要考虑是不是爬虫被禁了</p>
+<p>怎么解决？<br>既然网站是通过 User-Agent 辨认身份的，那我们将 User-Agent 改成浏览器就行了</p>
+<p>通过修改 UA 把爬虫伪装成浏览器，就是 UA 伪装了</p>
+<p>我们通过编写请求头headers，将浏览器的 User-Agent 粘贴过来</p>
+<h1 id="导入requests请求模块-2"><a href="#导入requests请求模块-2" class="headerlink" title="导入requests请求模块"></a>导入requests请求模块</h1><p>import requests# 要访问的网站的链接<br>url &#x3D; ‘<a target="_blank" rel="noopener" href="https://www.zhihu.com/">https://www.zhihu.com/</a>‘</p>
+<h1 id="自己编写请求头"><a href="#自己编写请求头" class="headerlink" title="自己编写请求头"></a>自己编写请求头</h1><p>headers &#x3D; {‘User-Agent’: ‘“Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;67.0.3396.99 Safari&#x2F;537.36’<br>}</p>
+<h1 id="用get-方法，headers参数是请求头"><a href="#用get-方法，headers参数是请求头" class="headerlink" title="用get()方法，headers参数是请求头"></a>用get()方法，headers参数是请求头</h1><p>response &#x3D; requests.get(url, headers&#x3D;headers)</p>
+<h1 id="打印返回内容-2"><a href="#打印返回内容-2" class="headerlink" title="打印返回内容"></a>打印返回内容</h1><p>print(response.text)<br>结果就没有 400 了</p>
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="http://example.com/page/2/index.html">http://example.com/page/2/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test1/" rel="tag">test1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test2/" rel="tag">test2</a></li></ul>
+
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-234234" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/10/234234/">爬虫UA防爬</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+      
+      
+<a href="/2023/08/10/234234/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-header-头信息"><a href="#1-header-头信息" class="headerlink" title="1.header 头信息"></a>1.header 头信息</h4><ul>
+<li>header</li>
+<li>header2</li>
+</ul>
+<h4 id="2、body"><a href="#2、body" class="headerlink" title="2、body"></a>2、body</h4><ul>
+<li><strong>12123</strong><blockquote>
+<p><em>123123</em></p>
+</blockquote>
+</li>
+</ul>
+<p>前面的几篇我们了解了爬虫的大致过程</p>
+<p>源码下载 + 数据解析 + 数据保存</p>
+<p>对应粘贴了 requests、BeautifulSoup、re 的介绍连接、演示了利用 pymysql 模块连接并保存到 MySQL 的过程</p>
+<p>但在下载源码中会遇到各种问题，这次来讲最简单的反爬策略：UA禁止 </p>
+<p>UA（User-Agent）是什么？<br>User-Agent：翻译是用户代理，其实就是用户的身份</p>
+<p>当用浏览器随便访问一个网站时（chrome为例）</p>
+<p>通过开发者工具–&gt;network，选择一个请求的Headers，查看 Request Headers 的 User-Agent</p>
+<p>可以看出后面跟了些浏览器的名字</p>
+<p>这就代表了 用户的身份是浏览器</p>
+<p>爬虫的UA有什么问题？<br>先说一个工具网站：<a target="_blank" rel="noopener" href="http://httpbin.org/get">http://httpbin.org/get</a></p>
+<p>这个网站直接返回请求头信息</p>
+<p>用浏览器打开时User-Agent是这样的，后面是浏览器信息</p>
+<p>下面我们用爬虫来访问</p>
+<h1 id="导入requests请求模块"><a href="#导入requests请求模块" class="headerlink" title="导入requests请求模块"></a>导入requests请求模块</h1><p>import requests# 要访问的网站的链接</p>
+<h1 id="http-httpbin-org-get是个工具网站，直接返回请求头的信息"><a href="#http-httpbin-org-get是个工具网站，直接返回请求头的信息" class="headerlink" title="http://httpbin.org/get是个工具网站，直接返回请求头的信息"></a><a target="_blank" rel="noopener" href="http://httpbin.org/get%E6%98%AF%E4%B8%AA%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%EF%BC%8C%E7%9B%B4%E6%8E%A5%E8%BF%94%E5%9B%9E%E8%AF%B7%E6%B1%82%E5%A4%B4%E7%9A%84%E4%BF%A1%E6%81%AF">http://httpbin.org/get是个工具网站，直接返回请求头的信息</a></h1><p>url &#x3D; ‘<a target="_blank" rel="noopener" href="http://httpbin.org/get">http://httpbin.org/get</a>‘</p>
+<h1 id="用get-方法访问得到一个Response对象"><a href="#用get-方法访问得到一个Response对象" class="headerlink" title="用get()方法访问得到一个Response对象"></a>用get()方法访问得到一个Response对象</h1><p>response &#x3D; requests.get(url)</p>
+<h1 id="打印返回内容"><a href="#打印返回内容" class="headerlink" title="打印返回内容"></a>打印返回内容</h1><p>print(response.text)<br>结果是这样：</p>
+<p>发现了吗？python代码特别 傻，直接告诉人家 自己是个爬虫</p>
+<p>很多网站监测到是个爬虫在访问，就会禁止<br>比如 知乎</p>
+<p>我们尝试用爬虫访问</p>
+<h1 id="导入requests请求模块-1"><a href="#导入requests请求模块-1" class="headerlink" title="导入requests请求模块"></a>导入requests请求模块</h1><p>import requests# 要访问的网站的链接<br>url &#x3D; ‘<a target="_blank" rel="noopener" href="https://www.zhihu.com/">https://www.zhihu.com/</a>‘</p>
+<h1 id="用get-方法访问得到一个Response对象-1"><a href="#用get-方法访问得到一个Response对象-1" class="headerlink" title="用get()方法访问得到一个Response对象"></a>用get()方法访问得到一个Response对象</h1><p>response &#x3D; requests.get(url)</p>
+<h1 id="打印返回内容-1"><a href="#打印返回内容-1" class="headerlink" title="打印返回内容"></a>打印返回内容</h1><p>print(response.text)<br>结果如下：</p>
+<p>很明显这不是我们想要的源码，还直接给错误码 400</p>
+<p>所以遇到 400 就要考虑是不是爬虫被禁了</p>
+<p>怎么解决？<br>既然网站是通过 User-Agent 辨认身份的，那我们将 User-Agent 改成浏览器就行了</p>
+<p>通过修改 UA 把爬虫伪装成浏览器，就是 UA 伪装了</p>
+<p>我们通过编写请求头headers，将浏览器的 User-Agent 粘贴过来</p>
+<h1 id="导入requests请求模块-2"><a href="#导入requests请求模块-2" class="headerlink" title="导入requests请求模块"></a>导入requests请求模块</h1><p>import requests# 要访问的网站的链接<br>url &#x3D; ‘<a target="_blank" rel="noopener" href="https://www.zhihu.com/">https://www.zhihu.com/</a>‘</p>
+<h1 id="自己编写请求头"><a href="#自己编写请求头" class="headerlink" title="自己编写请求头"></a>自己编写请求头</h1><p>headers &#x3D; {‘User-Agent’: ‘“Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;67.0.3396.99 Safari&#x2F;537.36’<br>}</p>
+<h1 id="用get-方法，headers参数是请求头"><a href="#用get-方法，headers参数是请求头" class="headerlink" title="用get()方法，headers参数是请求头"></a>用get()方法，headers参数是请求头</h1><p>response &#x3D; requests.get(url, headers&#x3D;headers)</p>
+<h1 id="打印返回内容-2"><a href="#打印返回内容-2" class="headerlink" title="打印返回内容"></a>打印返回内容</h1><p>print(response.text)<br>结果就没有 400 了</p>
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="http://example.com/page/2/index.html">http://example.com/page/2/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test1/" rel="tag">test1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test2/" rel="tag">test2</a></li></ul>
+
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-IMAPOST" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/10/IMAPOST/">IMAPOST</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-09T16:26:33.000Z" itemprop="datePublished">2023年08月10日</time>
+</span>
+      
+      
+      
+<a href="/2023/08/10/IMAPOST/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="http://example.com/page/2/index.html">http://example.com/page/2/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-8" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/10/8/">IMAPOST</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-09T16:26:33.000Z" itemprop="datePublished">2023年08月10日</time>
+</span>
+      
+      
+      
+<a href="/2023/08/10/8/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="http://example.com/page/2/index.html">http://example.com/page/2/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/09/hello-world/">Hello World</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-09T13:50:49.931Z" itemprop="datePublished">2023年08月09日</time>
+</span>
+      
+      
+      
+<a href="/2023/08/09/hello-world/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="http://example.com/page/2/index.html">http://example.com/page/2/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+
+    <nav id="page-nav">
+
+<a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+</nav>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/08/10/%E7%88%AC%E8%99%ABUA%E9%98%B2%E7%88%AC222/">爬虫UA防爬2222</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/10/%E7%88%AC%E8%99%ABUA%E9%98%B2%E7%88%AC2221/">爬虫UA防爬2222</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/10/%E7%88%AC%E8%99%ABUA%E9%98%B2%E7%88%AC2223/">爬虫UA防爬2222</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/10/%E7%88%AC%E8%99%ABUA%E9%98%B2%E7%88%AC2225/">爬虫UA防爬2222</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/10/3324/">爬虫UA防爬2222</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test1/" style="font-size: 10px;">test1</a> <a href="/tags/test2/" style="font-size: 10px;">test2</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test1/" rel="tag">test1</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test2/" rel="tag">test2</a><span class="tag-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a href="/sitemap.xml">网站地图</a>
+        <span> | </span><a href="/atom.xml">订阅本站</a>
+        <span> | </span><a href="/about/">联系博主</a>
+      </p>
+      
+        <p>
+          <i class="fa fa-visitors"></i>
+          <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>
+          ，
+          <i class="fa fa-views"></i>
+          <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>
+        </p>
+      
+      <p>
+        <span>Copyright &copy; 2023 Mr.迟钝.</span>
+        <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span>
+        <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+
+
+</body>
+</html>
