@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <title>策略与防盗链-Referrer | 董迟钝 | blog</title>
+  <title>category: 网络 | 董迟钝 | blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
     <meta name="description" content="笨鸟先飞">
@@ -88,142 +88,35 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-策略与防盗链-Referrer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
+
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      策略与防盗链-Referrer
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a>
-  </div>
-
-      
-        <span class="article-views">
-  <i class="fa fa-views"></i>
-  <i id="busuanzi_container_page_pv">
-      <i id="busuanzi_value_page_pv"></i>
-  </i>
-</span>
-
-      
-      
-<a href="/2023/08/10/%E7%AD%96%E7%95%A5%E4%B8%8E%E9%98%B2%E7%9B%97%E9%93%BE-Referrer/#comments" class="article-comment-link">
   
     
     
-    
-    
-    
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Referrer策略"><a href="#1-Referrer策略" class="headerlink" title="1.Referrer策略"></a>1.Referrer策略</h4><p>Referrer策略用于控制浏览器在何种情况下发送referrer信息。该策略可以保护用户的隐私，但也可以使得目前绝大多数站点的防盗链机制失效。</p>
-<span id="more"></span>
-
-<h4 id="2-代码"><a href="#2-代码" class="headerlink" title="2.代码"></a>2.代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">headers =&#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Referrer&#x27;</span>:<span class="string">&#x27;https://www.baidu.com&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://v3.158868.com/laocz/play/ffzy/id/aHR0cHM6Ly92aXAuZmZ6eS1vbmxpbmUyLmNvbS8yMDIzMDEwMi81MjI2X2NjOTlkMWRlL2luZGV4Lm0zdTgsZmZ6eV8zMTM2&#x27;</span></span><br><span class="line"></span><br><span class="line">return_obj = requests.get(url, headers=headers)</span><br><span class="line"><span class="built_in">print</span>(return_obj.content)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+    <section class="archives-wrap">
+      <div class="archive-title">
         
-            <div id="toc-article">
-                
-  <div class="widget-wrap" id="toc-wrap">
-    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
-    <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Referrer%E7%AD%96%E7%95%A5"><span class="toc-text">1.Referrer策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BB%A3%E7%A0%81"><span class="toc-text">2.代码</span></a></li></ol>
-    </div>
-  </div>
-
-
-            </div>
-        
-        
-          <blockquote id="copyright">
-              <p>原文链接: <a href="https://dbbruce.github.io/2023/08/10/策略与防盗链-Referrer/">https://dbbruce.github.io/2023/08/10/策略与防盗链-Referrer/</a></p>
-              <p>版权声明: 转载请注明出处.</p>
-          </blockquote>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E7%88%AC/" rel="tag">反爬</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a></li></ul>
-
-          
-    <div class="social-share">
-      <span>分享到:</span>
-    </div>
-
-
-
-        </div>
-      
-      
-        
-<nav id="article-nav">
-  
-    <a href="/2023/08/10/%E8%AE%BE%E7%BD%AE%E7%88%AC%E5%8F%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">older</strong>
-      <div class="article-nav-title">
-        
-          设置爬取页面的编码格式
+          <i class="fa fa-classify"></i>
+          网络
         
       </div>
+      <div class="archives">
+  
+  <ul class="archive-article archive-type-post">
+  <li class="archive-article-inner">
+    <a href="/2023/08/10/%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%82%E5%B8%B8/">
+      <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
+      | <span class="archive-article-title">客户端访问服务器异常</span>
     </a>
-  
-  
-    <a href="/2023/08/10/%E6%90%9C%E7%8B%97-UA%E4%BC%AA%E8%A3%85/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">newer</strong>
-      <div class="article-nav-title">
-        
-          搜狗-UA伪装
-        
-      </div>
-    </a>
-  
-</nav>
-
-      
-      
-        
+  </li>
+</ul>
 
 
 
+  </div></section>
 
 
-
-
-
-      
-    </footer>
-  </div>
-</article>
 </section>
         
           <aside id="sidebar">
@@ -373,16 +266,6 @@
 
 
 
-
-  
-    
-<script src="/localshare/js/social-share.js"></script>
-
-    
-<script src="/localshare/js/qrcode.js"></script>
-
-  
-  
 
 
 
