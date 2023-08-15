@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <title>董迟钝 | blog</title>
+  <title>02-基础命令 | 董迟钝 | blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
     <meta name="description" content="笨鸟先飞">
@@ -88,16 +88,15 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  <article id="post-爬虫/反爬/策略与防盗链-Referrer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-运维/Linux云计算教程/02-基础命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%AD%96%E7%95%A5%E4%B8%8E%E9%98%B2%E7%9B%97%E9%93%BE-Referrer/">策略与防盗链-Referrer</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      02-基础命令
     </h1>
   
 
@@ -108,17 +107,31 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
+  <time class="dt-published" datetime="2024-08-10T03:14:52.000Z" itemprop="datePublished">2024年08月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%E6%95%99%E7%A8%8B/">linux云计算基础教程教程</a>
   </div>
 
       
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
       
-<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%AD%96%E7%95%A5%E4%B8%8E%E9%98%B2%E7%9B%97%E9%93%BE-Referrer/#comments" class="article-comment-link">
+      
+<a href="/2024/08/10/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
   
   <i class="fa fa-commt"></i>
   留言
@@ -128,32 +141,104 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-Referrer策略"><a href="#1-Referrer策略" class="headerlink" title="1.Referrer策略"></a>1.Referrer策略</h4><p>Referrer策略用于控制浏览器在何种情况下发送referrer信息。该策略可以保护用户的隐私，但也可以使得目前绝大多数站点的防盗链机制失效。</p>
+        <h4 id="1-磁盘"><a href="#1-磁盘" class="headerlink" title="1.磁盘"></a>1.磁盘</h4><p>&#x2F;dev&#x2F;sda  sd代表磁盘类型，a代表第几块磁盘<br>&#x2F;dev&#x2F;hda<br>hd表示IDE设备，老设备，传输慢<br>sd表示scsi设备，新设备，传输快</p>
+<span id="more"></span>
+
+<h4 id="2-命令行表示"><a href="#2-命令行表示" class="headerlink" title="2.命令行表示"></a>2.命令行表示</h4><p>[用户@主机名 工作目录]$</p>
+<h4 id="3-cat"><a href="#3-cat" class="headerlink" title="3.cat"></a>3.cat</h4><p>查看系统版本<br>cat &#x2F;etc&#x2F;redhat-release<br>CentOS Linux release 7.9.2009 (Core)</p>
+<h4 id="4-CPU"><a href="#4-CPU" class="headerlink" title="4.CPU"></a>4.CPU</h4><p>lscpu</p>
+<h4 id="5-内存"><a href="#5-内存" class="headerlink" title="5.内存"></a>5.内存</h4><p>[root@localhost ~]# cat &#x2F;proc&#x2F;meminfo</p>
+<h4 id="6-hostname"><a href="#6-hostname" class="headerlink" title="6.hostname"></a>6.hostname</h4><p>临时修改<br>[root@localhost ~]# hostname master<br>永久修改<br>[root@localhost ~]# vim &#x2F;etc&#x2F;hostname</p>
+<h4 id="7-ifconfig"><a href="#7-ifconfig" class="headerlink" title="7.ifconfig"></a>7.ifconfig</h4><p>网卡信息<br>enp0s3: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500<br>        inet 192.168.1.12  netmask 255.255.255.0  broadcast 192.168.1.255<br>        inet6 2409:8a00:6037:3410:a579:ef16:4b1f:3b31  prefixlen 64  scopeid 0x0<global><br>        inet6 fe80::f1a3:a1af:6006:3ae6  prefixlen 64  scopeid 0x20<link><br>        ether 08:00:27:79:a3:b8  txqueuelen 1000  (Ethernet)<br>        RX packets 1114  bytes 81591 (79.6 KiB)<br>        RX errors 0  dropped 0  overruns 0  frame 0<br>        TX packets 406  bytes 73419 (71.6 KiB)<br>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</p>
+<p>lo: 回环测试接口，ip用于为：127.0.0.1 ，代表自己，用于访问自己</p>
+<h4 id="8-touch"><a href="#8-touch" class="headerlink" title="8.touch"></a>8.touch</h4><p>创建空文件<br>touch 1.txt</p>
+<h4 id="9-分屏阅读-less"><a href="#9-分屏阅读-less" class="headerlink" title="9.分屏阅读 less"></a>9.分屏阅读 less</h4><p>less &#x2F;etc&#x2F;passwd<br>翻页 ：b 前&#x2F;f 后<br>搜索 ： &#x2F;root<br>搜索前后匹配： n 后&#x2F;N 前<br>退出：q</p>
+<h4 id="10-head-tail"><a href="#10-head-tail" class="headerlink" title="10.head &#x2F; tail"></a>10.head &#x2F; tail</h4><p>查看头5行<br>head -n 5  anaconda-ks.cfg 简写 head -5  anaconda-ks.cfg<br>尾部5行<br>tail -n 5  anaconda-ks.cfg 简写 tail -5  anaconda-ks.cfg<br>tail -f anaconda-ks.cfg</p>
+<h4 id="11-grep-输出包含指定字符串的内容"><a href="#11-grep-输出包含指定字符串的内容" class="headerlink" title="11.grep 输出包含指定字符串的内容"></a>11.grep 输出包含指定字符串的内容</h4><p>[root@localhost ~]# grep ‘root’ &#x2F;etc&#x2F;passwd<br>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash<br>operator:x:11:0:operator:&#x2F;root:&#x2F;sbin&#x2F;nologin</p>
+<h4 id="12-nmtui图形配置网络"><a href="#12-nmtui图形配置网络" class="headerlink" title="12.nmtui图形配置网络"></a>12.nmtui图形配置网络</h4><p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img.png" alt="img.png"></p>
+<h4 id="13-vim"><a href="#13-vim" class="headerlink" title="13.vim"></a>13.vim</h4><p>命名模式，插入模式，末行模式</p>
+<p>命 — i — 插入模式 — ESC 退出<br>令<br>模<br>式 — : — 末行模式 — wq&#x2F;!wq — ESC 退出</p>
+<h4 id="14-关机、重启"><a href="#14-关机、重启" class="headerlink" title="14.关机、重启"></a>14.关机、重启</h4><p>poweroff &#x2F; reboot</p>
+<h4 id="15-常用快捷键"><a href="#15-常用快捷键" class="headerlink" title="15.常用快捷键"></a>15.常用快捷键</h4><p>清屏 crtl + l<br>粘贴上一个命令的参数： alt + .（点） 或者 crtl + .（点）<br>清空到行首：ctrl + u<br>往回删除一个单词，空格分隔：ctrl + w</p>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%A3%81%E7%9B%98"><span class="toc-text">1.磁盘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A1%A8%E7%A4%BA"><span class="toc-text">2.命令行表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-cat"><span class="toc-text">3.cat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-CPU"><span class="toc-text">4.CPU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%86%85%E5%AD%98"><span class="toc-text">5.内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-hostname"><span class="toc-text">6.hostname</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-ifconfig"><span class="toc-text">7.ifconfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-touch"><span class="toc-text">8.touch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E5%88%86%E5%B1%8F%E9%98%85%E8%AF%BB-less"><span class="toc-text">9.分屏阅读 less</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-head-tail"><span class="toc-text">10.head &#x2F; tail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-grep-%E8%BE%93%E5%87%BA%E5%8C%85%E5%90%AB%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">11.grep 输出包含指定字符串的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-nmtui%E5%9B%BE%E5%BD%A2%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C"><span class="toc-text">12.nmtui图形配置网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-vim"><span class="toc-text">13.vim</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E5%85%B3%E6%9C%BA%E3%80%81%E9%87%8D%E5%90%AF"><span class="toc-text">14.关机、重启</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">15.常用快捷键</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://dbbruce.github.io/2024/08/10/运维/Linux云计算教程/02-基础命令/">https://dbbruce.github.io/2024/08/10/运维/Linux云计算教程/02-基础命令/</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
       
     </div>
     <footer class="article-footer">
       
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E7%88%AC/" rel="tag">反爬</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a></li></ul>
+        <div class="article-tag-wrap">
+          
 
-        <p class="article-more-link">
-          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%AD%96%E7%95%A5%E4%B8%8E%E9%98%B2%E7%9B%97%E9%93%BE-Referrer/#more">阅读全文</a>
-        </p>
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程教程</a></li></ul>
+
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
       
       
+        
+<nav id="article-nav">
+  
+    <a href="/2023/08/10/python/%E5%8C%85/protobuf%E5%8C%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">
+        
+          protobuf包
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/08/10/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/01-tcp%E3%80%81ip%E5%8D%8F%E8%AE%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          01-tcp、ip协议
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
       
     </footer>
   </div>
 </article>
-
-
-
-    <nav id="page-nav">
-
-<a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-</nav>
-
-
 </section>
         
           <aside id="sidebar">
@@ -304,11 +389,36 @@
 
 
 
+  
+    
+<script src="/localshare/js/social-share.js"></script>
 
+    
+<script src="/localshare/js/qrcode.js"></script>
+
+  
+  
 
 
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
 
 
 
