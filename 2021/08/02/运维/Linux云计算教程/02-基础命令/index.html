@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>02-基础命令 | 董勉[桑弧蓬矢] | blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉[桑弧蓬矢] | blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉[桑弧蓬矢] | blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如切如磋，如琢如磨. | 好学若饥，谦卑若愚. |  Stay hungry，Stay foolish.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml"><i class="fa fa-rss"></i> 订阅</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/Linux云计算教程/02-基础命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      02-基础命令
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-02T03:00:52.000Z" itemprop="datePublished">2021年08月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2021/08/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-磁盘"><a href="#1-磁盘" class="headerlink" title="1.磁盘"></a>1.磁盘</h4><p>&#x2F;dev&#x2F;sda  sd代表磁盘类型，a代表第几块磁盘<br>&#x2F;dev&#x2F;hda<br>hd表示IDE设备，老设备，传输慢<br>sd表示scsi设备，新设备，传输快</p>
+<span id="more"></span>
+
+<h4 id="2-命令行表示"><a href="#2-命令行表示" class="headerlink" title="2.命令行表示"></a>2.命令行表示</h4><p>[用户@主机名 工作目录]$</p>
+<h4 id="3-cat"><a href="#3-cat" class="headerlink" title="3.cat"></a>3.cat</h4><p>查看系统版本<br>cat &#x2F;etc&#x2F;redhat-release<br>CentOS Linux release 7.9.2009 (Core)</p>
+<h4 id="4-CPU"><a href="#4-CPU" class="headerlink" title="4.CPU"></a>4.CPU</h4><p>lscpu</p>
+<h4 id="5-内存"><a href="#5-内存" class="headerlink" title="5.内存"></a>5.内存</h4><p>[root@localhost ~]# cat &#x2F;proc&#x2F;meminfo</p>
+<h4 id="6-hostname"><a href="#6-hostname" class="headerlink" title="6.hostname"></a>6.hostname</h4><p>临时修改<br>[root@localhost ~]# hostname master<br>永久修改<br>[root@localhost ~]# vim &#x2F;etc&#x2F;hostname</p>
+<h4 id="7-ifconfig"><a href="#7-ifconfig" class="headerlink" title="7.ifconfig"></a>7.ifconfig</h4><p>网卡信息<br>enp0s3: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500<br>        inet 192.168.1.12  netmask 255.255.255.0  broadcast 192.168.1.255<br>        inet6 2409:8a00:6037:3410:a579:ef16:4b1f:3b31  prefixlen 64  scopeid 0x0<global><br>        inet6 fe80::f1a3:a1af:6006:3ae6  prefixlen 64  scopeid 0x20<link><br>        ether 08:00:27:79:a3:b8  txqueuelen 1000  (Ethernet)<br>        RX packets 1114  bytes 81591 (79.6 KiB)<br>        RX errors 0  dropped 0  overruns 0  frame 0<br>        TX packets 406  bytes 73419 (71.6 KiB)<br>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</p>
+<p>lo: 回环测试接口，ip用于为：127.0.0.1 ，代表自己，用于访问自己</p>
+<h4 id="8-touch"><a href="#8-touch" class="headerlink" title="8.touch"></a>8.touch</h4><p>创建空文件<br>touch 1.txt</p>
+<h4 id="9-分屏阅读-less"><a href="#9-分屏阅读-less" class="headerlink" title="9.分屏阅读 less"></a>9.分屏阅读 less</h4><p>less &#x2F;etc&#x2F;passwd<br>翻页 ：b 前&#x2F;f 后<br>搜索 ： &#x2F;root<br>搜索前后匹配： n 后&#x2F;N 前<br>退出：q</p>
+<h4 id="10-head-tail"><a href="#10-head-tail" class="headerlink" title="10.head &#x2F; tail"></a>10.head &#x2F; tail</h4><p>查看头5行<br>head -n 5  anaconda-ks.cfg 简写 head -5  anaconda-ks.cfg<br>尾部5行<br>tail -n 5  anaconda-ks.cfg 简写 tail -5  anaconda-ks.cfg<br>tail -f anaconda-ks.cfg</p>
+<h4 id="11-grep-输出包含指定字符串的内容"><a href="#11-grep-输出包含指定字符串的内容" class="headerlink" title="11.grep 输出包含指定字符串的内容"></a>11.grep 输出包含指定字符串的内容</h4><p>[root@localhost ~]# grep ‘root’ &#x2F;etc&#x2F;passwd<br>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash<br>operator:x:11:0:operator:&#x2F;root:&#x2F;sbin&#x2F;nologin</p>
+<h4 id="12-nmtui图形配置网络"><a href="#12-nmtui图形配置网络" class="headerlink" title="12.nmtui图形配置网络"></a>12.nmtui图形配置网络</h4><p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img.png" alt="img.png"></p>
+<h4 id="13-vim"><a href="#13-vim" class="headerlink" title="13.vim"></a>13.vim</h4><p>命名模式，插入模式，末行模式</p>
+<p>命 — i — 插入模式 — ESC 退出<br>令<br>模<br>式 — : — 末行模式 — wq&#x2F;!wq — ESC 退出</p>
+<h4 id="14-关机、重启"><a href="#14-关机、重启" class="headerlink" title="14.关机、重启"></a>14.关机、重启</h4><p>poweroff &#x2F; reboot</p>
+<h4 id="15-“家目录”"><a href="#15-“家目录”" class="headerlink" title="15. “家目录”"></a>15. “家目录”</h4><p>~ 表示 “家目录”<br>&#x2F;root 表示 管理员”家目录”<br>&#x2F;home 表示 普通”家目录”</p>
+<h4 id="16-添加用户"><a href="#16-添加用户" class="headerlink" title="16. 添加用户"></a>16. 添加用户</h4><p>useradd  tom1</p>
+<h4 id="17-ls"><a href="#17-ls" class="headerlink" title="17. ls"></a>17. ls</h4><p>ls -h 显示单位<br>ls -a 显示隐藏文件<br>ls -l 长格式，显示全部信息</p>
+<h4 id="18-匹配符"><a href="#18-匹配符" class="headerlink" title="18.匹配符"></a>18.匹配符</h4><p>*：任意个<br>？：一个</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /dev/tty??</span><br></pre></td></tr></table></figure>
+<p>[a-z]:多个字符中的一个，若无忽略， 注意：不识别9以上</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dong@master /]$ ls /dev/tty[1-3]</span><br><span class="line">/dev/tty1  /dev/tty2  /dev/tty3</span><br></pre></td></tr></table></figure>
+<p>{a, min, xy}: 多组不同的字符串，全匹配</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[dong@master /]$ ls /dev/tty&#123;2,4,6,8&#125;</span><br><span class="line">/dev/tty2  /dev/tty4  /dev/tty6  /dev/tty8</span><br></pre></td></tr></table></figure>
+
+<h4 id="19-mkdir-p-test-test2-test3"><a href="#19-mkdir-p-test-test2-test3" class="headerlink" title="19.mkdir -p &#x2F;test&#x2F;test2&#x2F;test3"></a>19.mkdir -p &#x2F;test&#x2F;test2&#x2F;test3</h4><p>创建父目录和子目录</p>
+<h4 id="20-R-递归，显示所有子目录和子目录下的所有"><a href="#20-R-递归，显示所有子目录和子目录下的所有" class="headerlink" title="20. -R 递归，显示所有子目录和子目录下的所有"></a>20. -R 递归，显示所有子目录和子目录下的所有</h4><p>ls -R &#x2F;home</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[dong@master /]$ ls -R /home</span><br><span class="line">/home:</span><br><span class="line">dong</span><br><span class="line"></span><br><span class="line">/home/dong:</span><br></pre></td></tr></table></figure>
+<h4 id="21-删除-危险命令"><a href="#21-删除-危险命令" class="headerlink" title="21. 删除 (危险命令)"></a>21. 删除 (危险命令)</h4><p>rm<br>-r 递归删除<br>-f 强制删除<br>-i 提示是否删除<br>删除文件一定加i</p>
+<h4 id="22-grep-过滤"><a href="#22-grep-过滤" class="headerlink" title="22.grep 过滤"></a>22.grep 过滤</h4><p>-i : 忽略大小写<br>-v : 取反<br>^root :以什么开头<br>root$ :以什么结尾</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -i root /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h4 id="23-cp-复制"><a href="#23-cp-复制" class="headerlink" title="23.cp 复制"></a>23.cp 复制</h4><p>复制目录，-r 递归<br>cp -r &#x2F;1 &#x2F;2</p>
+<h4 id="24-内核版本"><a href="#24-内核版本" class="headerlink" title="24.内核版本"></a>24.内核版本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[dong@master t1]$ uname -r</span><br><span class="line">3.10.0-1160.el7.x86_64</span><br></pre></td></tr></table></figure>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%A3%81%E7%9B%98"><span class="toc-text">1.磁盘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A1%A8%E7%A4%BA"><span class="toc-text">2.命令行表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-cat"><span class="toc-text">3.cat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-CPU"><span class="toc-text">4.CPU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%86%85%E5%AD%98"><span class="toc-text">5.内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-hostname"><span class="toc-text">6.hostname</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-ifconfig"><span class="toc-text">7.ifconfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-touch"><span class="toc-text">8.touch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E5%88%86%E5%B1%8F%E9%98%85%E8%AF%BB-less"><span class="toc-text">9.分屏阅读 less</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-head-tail"><span class="toc-text">10.head &#x2F; tail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-grep-%E8%BE%93%E5%87%BA%E5%8C%85%E5%90%AB%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">11.grep 输出包含指定字符串的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-nmtui%E5%9B%BE%E5%BD%A2%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C"><span class="toc-text">12.nmtui图形配置网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-vim"><span class="toc-text">13.vim</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E5%85%B3%E6%9C%BA%E3%80%81%E9%87%8D%E5%90%AF"><span class="toc-text">14.关机、重启</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E2%80%9C%E5%AE%B6%E7%9B%AE%E5%BD%95%E2%80%9D"><span class="toc-text">15. “家目录”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-text">16. 添加用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-ls"><span class="toc-text">17. ls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-%E5%8C%B9%E9%85%8D%E7%AC%A6"><span class="toc-text">18.匹配符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-mkdir-p-test-test2-test3"><span class="toc-text">19.mkdir -p &#x2F;test&#x2F;test2&#x2F;test3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-R-%E9%80%92%E5%BD%92%EF%BC%8C%E6%98%BE%E7%A4%BA%E6%89%80%E6%9C%89%E5%AD%90%E7%9B%AE%E5%BD%95%E5%92%8C%E5%AD%90%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89"><span class="toc-text">20. -R 递归，显示所有子目录和子目录下的所有</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-%E5%88%A0%E9%99%A4-%E5%8D%B1%E9%99%A9%E5%91%BD%E4%BB%A4"><span class="toc-text">21. 删除 (危险命令)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-grep-%E8%BF%87%E6%BB%A4"><span class="toc-text">22.grep 过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-cp-%E5%A4%8D%E5%88%B6"><span class="toc-text">23.cp 复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC"><span class="toc-text">24.内核版本</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://dbbruce.github.io/2021/08/02/运维/Linux云计算教程/02-基础命令/">https://dbbruce.github.io/2021/08/02/运维/Linux云计算教程/02-基础命令/</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
+
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/01-tcp%E3%80%81ip%E5%8D%8F%E8%AE%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">
+        
+          01-tcp、ip协议
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/08/03/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/03-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          03-常用快捷键
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/08/10/%E9%9D%A2%E8%AF%95/%E9%A2%98/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/">获取二叉树右侧视图</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/10/%E4%B8%AA%E4%BA%BA/%E7%A7%81%E5%AF%86/">私密</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E7%88%AC%E8%99%AB/">爬虫</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5mysql/">异步mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/">异步redis</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" style="font-size: 20px;">Linux云计算基础教程</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/asyncio/" style="font-size: 10px;">asyncio</a> <a href="/tags/await/" style="font-size: 10px;">await</a> <a href="/tags/greenlet/" style="font-size: 10px;">greenlet</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python%E5%8C%85/" style="font-size: 10px;">python包</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/uvloop/" style="font-size: 10px;">uvloop</a> <a href="/tags/yield/" style="font-size: 10px;">yield</a> <a href="/tags/%E5%8D%8F%E7%A8%8B/" style="font-size: 10px;">协程</a> <a href="/tags/%E5%8F%8D%E7%88%AC/" style="font-size: 14px;">反爬</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 18px;">异步</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" style="font-size: 16px;">爬虫类</a> <a href="/tags/%E7%A7%81%E5%AF%86/" style="font-size: 10px;">私密</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 12px;">编码</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/" style="font-size: 10px;">获取二叉树右侧视图</a> <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" style="font-size: 10px;">迭代器</a> <a href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" style="font-size: 10px;">魔术方法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E5%8A%A0%E5%AF%86/">个人加密</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">14</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">14</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/async/" rel="tag">async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/asyncio/" rel="tag">asyncio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/await/" rel="tag">await</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greenlet/" rel="tag">greenlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%8C%85/" rel="tag">python包</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uvloop/" rel="tag">uvloop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yield/" rel="tag">yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%8F%E7%A8%8B/" rel="tag">协程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E7%88%AC/" rel="tag">反爬</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%81%E5%AF%86/" rel="tag">私密</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A0%81/" rel="tag">编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/" rel="tag">获取二叉树右侧视图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="tag">迭代器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" rel="tag">魔术方法</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a href="/sitemap.xml">网站地图</a>
+        <span> | </span><a href="/atom.xml">订阅本站</a>
+        <span> | </span><a href="/about/">联系博主</a>
+      </p>
+      
+        <p>
+          <i class="fa fa-visitors"></i>
+          <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>
+          ，
+          <i class="fa fa-views"></i>
+          <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>
+        </p>
+      
+      <p>
+        <span>Copyright &copy; 2023 Mr.dong.</span>
+        <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span>
+        <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+    
+<script src="/localshare/js/social-share.js"></script>
+
+    
+<script src="/localshare/js/qrcode.js"></script>
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>
