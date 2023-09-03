@@ -141,15 +141,98 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h4><span id="more"></span>
-<h4 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h4>
+        <h4 id="1-基本正则列表-grep"><a href="#1-基本正则列表-grep" class="headerlink" title="1.基本正则列表 (grep)"></a>1.基本正则列表 (grep)</h4><table>
+<thead>
+<tr>
+<th>正则符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>匹配行首</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配行尾</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>集台，匹配集合中的任意单个字符</td>
+</tr>
+<tr>
+<td>[^]</td>
+<td>对集台取反</td>
+</tr>
+<tr>
+<td>. 点</td>
+<td>匹配任意单个字符</td>
+</tr>
+<tr>
+<td>*米号</td>
+<td>匹配前一个字符任意次数 [不允许单独使用]</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配前一个字符n到m次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>匹配前一个字符 n 次</td>
+</tr>
+<tr>
+<td>{n, }</td>
+<td>匹配前一个字符 n 次及以上</td>
+</tr>
+<tr>
+<td>()</td>
+<td>保留</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+<h4 id="2-扩展正则列表-grep-E-或者-egrep"><a href="#2-扩展正则列表-grep-E-或者-egrep" class="headerlink" title="2.扩展正则列表 (grep -E 或者 egrep)"></a>2.扩展正则列表 (grep -E 或者 egrep)</h4><table>
+<thead>
+<tr>
+<th>正则符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+ 加号</td>
+<td>最少匹配一次</td>
+</tr>
+<tr>
+<td>？ 问号</td>
+<td>最多匹配一次  或者0次</td>
+</tr>
+<tr>
+<td>{n, m}</td>
+<td>匹配n到m次</td>
+</tr>
+<tr>
+<td>()</td>
+<td>组合为整体， 保留</td>
+</tr>
+<tr>
+<td>| 竖号</td>
+<td>或</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>单词边界:空,空格,tab,特殊符号; 不能是字母，数字，下划线</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cat txt</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">_sbin_</span><br><span class="line">-sbin-</span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">sbin*</span></span><br><span class="line">asbina</span><br><span class="line">12sbin21</span><br><span class="line">[root@master ~]# egrep &quot;\bsbin\b&quot; txt     #\bsbin\b 等于 \sbin\ 这里\b等于字符串里\</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">-sbin-</span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">sbin*</span></span><br></pre></td></tr></table></figure>
+
+
+
         
             <div id="toc-article">
                 
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1"><span class="toc-text">1.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2"><span class="toc-text">2.</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%AD%A3%E5%88%99%E5%88%97%E8%A1%A8-grep"><span class="toc-text">1.基本正则列表 (grep)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%89%A9%E5%B1%95%E6%AD%A3%E5%88%99%E5%88%97%E8%A1%A8-grep-E-%E6%88%96%E8%80%85-egrep"><span class="toc-text">2.扩展正则列表 (grep -E 或者 egrep)</span></a></li></ol>
     </div>
   </div>
 
