@@ -611,7 +611,7 @@
 </article>
 
 
-  <article id="post-运维/nginx/02-平滑升级" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/00-错误集锦-nginx1.22 配置证书报错" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -619,7 +619,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/">02-平滑升级</a>
+      <a class="p-name article-title" href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx1.22%20%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%E6%8A%A5%E9%94%99/">00-错误集锦-nginx1.22 配置证书报错</a>
     </h1>
   
 
@@ -630,7 +630,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-10-02T03:00:52.000Z" itemprop="datePublished">2021年10月02日</time>
+  <time class="dt-published" datetime="2021-10-01T03:00:52.000Z" itemprop="datePublished">2021年10月01日</time>
 </span>
       
   <div class="article-category">
@@ -640,7 +640,7 @@
 
       
       
-<a href="/2021/10/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#comments" class="article-comment-link">
+<a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx1.22%20%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%E6%8A%A5%E9%94%99/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -650,8 +650,9 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-平滑升级nginx"><a href="#1-平滑升级nginx" class="headerlink" title="1.平滑升级nginx"></a>1.平滑升级nginx</h4><p>可以跨版本升级，不要跨太多；<br>注意：conf，html，log文件不需要升级，升级需要的文件是sbin<br>0) 升级前，版本1.0.15</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master sbin]# ./nginx -V</span><br><span class="line">    nginx version: nginx/1.0.15</span><br><span class="line">    TLS SNI support enabled</span><br><span class="line">    configure arguments: --prefix=/usr/local/nginx1.0.15 --user=nginx --group=nginx --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+        <h4 id="1-nginx1-22-配置证书报错"><a href="#1-nginx1-22-配置证书报错" class="headerlink" title="1.nginx1.22 配置证书报错"></a>1.nginx1.22 配置证书报错</h4><h5 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# /usr/local/nginx/sbin/nginx -s reload</span><br><span class="line">nginx: [emerg] cannot load certificate &quot;/usr/local/nginx/conf/cert.pem&quot;: </span><br><span class="line">PEM_read_bio_X509_AUX() failed (SSL: error:0906D06C:PEM routines:PEM_read_bio:no start line:Expecting: TRUSTED CERTIFICATE)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# /usr/local/nginx/sbin/nginx -v</span><br><span class="line">nginx version: nginx/1.22.1</span><br></pre></td></tr></table></figure>
+<h5 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">未指定证书格式 -x509</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -660,7 +661,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/10/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#more">阅读全文</a>
+          <a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx1.22%20%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%E6%8A%A5%E9%94%99/#more">阅读全文</a>
         </p>
       
       
