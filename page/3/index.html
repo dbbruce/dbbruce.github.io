@@ -89,7 +89,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/java生态/01-安装与配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/java生态/02-tomcat部署" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -97,7 +97,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">01-java生态</a>
+      <a class="p-name article-title" href="/2022/08/02/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/02-tomcat%E9%83%A8%E7%BD%B2/">02-tomcat部署</a>
     </h1>
   
 
@@ -108,7 +108,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-01T03:00:52.000Z" itemprop="datePublished">2022年08月01日</time>
+  <time class="dt-published" datetime="2022-08-02T03:00:52.000Z" itemprop="datePublished">2022年08月02日</time>
 </span>
       
   <div class="article-category">
@@ -118,7 +118,7 @@
 
       
       
-<a href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/#comments" class="article-comment-link">
+<a href="/2022/08/02/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/02-tomcat%E9%83%A8%E7%BD%B2/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -128,22 +128,40 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-Java-Servlet"><a href="#1-Java-Servlet" class="headerlink" title="1.Java Servlet"></a>1.Java Servlet</h4><p>Servlet是java扩展Web服务器功能的组件规范<br>常见Servlet容器</p>
-<ul>
-<li>IBM             websphere  </li>
-<li>Oracle          weblogic</li>
-<li>Apache          tomcat</li>
-<li>RedHat          jboss
+        <h4 id="1-安装tomcat"><a href="#1-安装tomcat" class="headerlink" title="1.安装tomcat"></a>1.安装tomcat</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.93/bin/apache-tomcat-8.5.93.tar.gz --no-check-certificate</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# tar xvf apache-tomcat-8.5.93.tar.gz</span><br><span class="line">[root@master ~]# mv apache-tomcat-8.5.93 /usr/local/tomcat</span><br><span class="line">[root@master ~]# cd /usr/local/tomcat/</span><br><span class="line">[root@master tomcat]# ll</span><br><span class="line">总用量 128</span><br><span class="line">drwxr-x---. 2 root root  4096 9月   6 23:39 bin               //主程序目录</span><br><span class="line">-rw-r-----. 1 root root 19992 8月  24 06:43 BUILDING.txt</span><br><span class="line">drwx------. 2 root root   238 8月  24 06:43 conf   //配置文件目录</span><br><span class="line">-rw-r-----. 1 root root  6210 8月  24 06:43 CONTRIBUTING.md</span><br><span class="line">drwxr-x---. 2 root root  4096 9月   6 23:39 lib             //库文件目录</span><br><span class="line">-rw-r-----. 1 root root 57011 8月  24 06:43 LICENSE</span><br><span class="line">drwxr-x---. 2 root root     6 8月  24 06:43 logs  //日志目录</span><br><span class="line">-rw-r-----. 1 root root  1726 8月  24 06:43 NOTICE</span><br><span class="line">-rw-r-----. 1 root root  3398 8月  24 06:43 README.md</span><br><span class="line">-rw-r-----. 1 root root  7139 8月  24 06:43 RELEASE-NOTES</span><br><span class="line">-rw-r-----. 1 root root 16505 8月  24 06:43 RUNNING.txt</span><br><span class="line">drwxr-x---. 2 root root    30 9月   6 23:39 temp  //临时目录</span><br><span class="line">drwxr-x---. 7 root root    81 8月  24 06:43 webapps   //页面目录</span><br><span class="line">drwxr-x---. 2 root root     6 8月  24 06:43 work   //自动编译目录isp代码转换servlet</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://dbbruce.github.io/page/3/index.html">https://dbbruce.github.io/page/3/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
       
     </div>
     <footer class="article-footer">
       
-        
+        <div class="article-tag-wrap">
+          
+
+          
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
-        <p class="article-more-link">
-          <a href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/#more">阅读全文</a>
-        </p>
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
       
       
       
@@ -204,6 +222,69 @@
 
         <p class="article-more-link">
           <a href="/2022/08/01/%E8%BF%90%E7%BB%B4/memcached/01-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/java生态/01-java生态" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-java%E7%94%9F%E6%80%81/">01-java生态</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2022-08-01T03:00:52.000Z" itemprop="datePublished">2022年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/Java/">Java</a>
+  </div>
+
+      
+      
+<a href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-java%E7%94%9F%E6%80%81/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-Java-Servlet-（服务器）"><a href="#1-Java-Servlet-（服务器）" class="headerlink" title="1.Java Servlet （服务器）"></a>1.Java Servlet （服务器）</h4><p>Servlet是java扩展Web服务器功能的组件规范<br>常见Servlet容器</p>
+<ul>
+<li>IBM             websphere  </li>
+<li>Oracle          weblogic</li>
+<li>Apache          tomcat</li>
+<li>RedHat          jboss
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-java%E7%94%9F%E6%80%81/#more">阅读全文</a>
         </p>
       
       
@@ -624,111 +705,6 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/46-正则表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/46-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">46-正则表达式</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-16T03:00:52.000Z" itemprop="datePublished">2021年09月16日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/46-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-基本正则列表-grep"><a href="#1-基本正则列表-grep" class="headerlink" title="1.基本正则列表 (grep)"></a>1.基本正则列表 (grep)</h4><table>
-<thead>
-<tr>
-<th>正则符号</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>^</td>
-<td>匹配行首</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配行尾</td>
-</tr>
-<tr>
-<td>[]</td>
-<td>集台，匹配集合中的任意单个字符</td>
-</tr>
-<tr>
-<td>[^]</td>
-<td>对集台取反</td>
-</tr>
-<tr>
-<td>. 点</td>
-<td>匹配任意单个字符</td>
-</tr>
-<tr>
-<td>*米号</td>
-<td>匹配前一个字符任意次数 [不允许单独使用]</td>
-</tr>
-<tr>
-<td>{n,m}</td>
-<td>匹配前一个字符n到m次</td>
-</tr>
-<tr>
-<td>{n}</td>
-<td>匹配前一个字符 n 次</td>
-</tr>
-<tr>
-<td>{n, }</td>
-<td>匹配前一个字符 n 次及以上</td>
-</tr>
-<tr>
-<td>()</td>
-<td>保留</td>
-</tr>
-</tbody></table>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/46-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
@@ -776,7 +752,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" style="font-size: 20px;">Linux云计算基础教程</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/asyncio/" style="font-size: 10px;">asyncio</a> <a href="/tags/await/" style="font-size: 10px;">await</a> <a href="/tags/greenlet/" style="font-size: 10px;">greenlet</a> <a href="/tags/memcached/" style="font-size: 11.43px;">memcached</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 18.57px;">nginx</a> <a href="/tags/python%E5%8C%85/" style="font-size: 10px;">python包</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/uvloop/" style="font-size: 10px;">uvloop</a> <a href="/tags/yield/" style="font-size: 10px;">yield</a> <a href="/tags/%E5%8D%8F%E7%A8%8B/" style="font-size: 10px;">协程</a> <a href="/tags/%E5%8F%8D%E7%88%AC/" style="font-size: 12.86px;">反爬</a> <a href="/tags/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/" style="font-size: 17.14px;">天涯高赞帖子</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">常用工具</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 15.71px;">异步</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 12.86px;">文章</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" style="font-size: 14.29px;">爬虫类</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 11.43px;">编码</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/" style="font-size: 10px;">获取二叉树右侧视图</a> <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" style="font-size: 10px;">迭代器</a> <a href="/tags/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" style="font-size: 10px;">问题处理</a> <a href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" style="font-size: 10px;">魔术方法</a>
+      <a href="/tags/Java/" style="font-size: 11.43px;">Java</a> <a href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" style="font-size: 20px;">Linux云计算基础教程</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/asyncio/" style="font-size: 10px;">asyncio</a> <a href="/tags/await/" style="font-size: 10px;">await</a> <a href="/tags/greenlet/" style="font-size: 10px;">greenlet</a> <a href="/tags/memcached/" style="font-size: 11.43px;">memcached</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 18.57px;">nginx</a> <a href="/tags/python%E5%8C%85/" style="font-size: 10px;">python包</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/uvloop/" style="font-size: 10px;">uvloop</a> <a href="/tags/yield/" style="font-size: 10px;">yield</a> <a href="/tags/%E5%8D%8F%E7%A8%8B/" style="font-size: 10px;">协程</a> <a href="/tags/%E5%8F%8D%E7%88%AC/" style="font-size: 12.86px;">反爬</a> <a href="/tags/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/" style="font-size: 17.14px;">天涯高赞帖子</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">常用工具</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 15.71px;">异步</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 12.86px;">文章</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" style="font-size: 14.29px;">爬虫类</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 11.43px;">编码</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/" style="font-size: 10px;">获取二叉树右侧视图</a> <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" style="font-size: 10px;">迭代器</a> <a href="/tags/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" style="font-size: 10px;">问题处理</a> <a href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" style="font-size: 10px;">魔术方法</a>
     </div>
   </div>
 
@@ -785,7 +761,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/">天涯高赞帖子</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E7%AB%A0/">文章</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">75</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">49</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/">天涯高赞帖子</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E7%AB%A0/">文章</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">49</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -795,7 +771,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">70</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">17</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">70</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">17</span></li></ul>
     </div>
   </div>
 
@@ -805,7 +781,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a><span class="tag-list-count">49</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/async/" rel="tag">async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/asyncio/" rel="tag">asyncio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/await/" rel="tag">await</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greenlet/" rel="tag">greenlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/" rel="tag">memcached</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%8C%85/" rel="tag">python包</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uvloop/" rel="tag">uvloop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yield/" rel="tag">yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%8F%E7%A8%8B/" rel="tag">协程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E7%88%AC/" rel="tag">反爬</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/" rel="tag">天涯高赞帖子</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag">常用工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A0%81/" rel="tag">编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/" rel="tag">获取二叉树右侧视图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="tag">迭代器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" rel="tag">问题处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" rel="tag">魔术方法</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a><span class="tag-list-count">49</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/async/" rel="tag">async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/asyncio/" rel="tag">asyncio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/await/" rel="tag">await</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greenlet/" rel="tag">greenlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/" rel="tag">memcached</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%8C%85/" rel="tag">python包</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uvloop/" rel="tag">uvloop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yield/" rel="tag">yield</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%8F%E7%A8%8B/" rel="tag">协程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E7%88%AC/" rel="tag">反爬</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/" rel="tag">天涯高赞帖子</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag">常用工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A0%81/" rel="tag">编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/" rel="tag">获取二叉树右侧视图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="tag">迭代器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" rel="tag">问题处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" rel="tag">魔术方法</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
