@@ -148,16 +148,16 @@
 <h4 id="4-解决不同网段通信的问题"><a href="#4-解决不同网段通信的问题" class="headerlink" title="4.解决不同网段通信的问题"></a>4.解决不同网段通信的问题</h4><ul>
 <li>路由器配置不同网段的IP<br>192.168.1.254<br>192.168.2.254</li>
 </ul>
-<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_18.png" alt="img_18.png"></p>
+<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_18.png" alt="img_18.png"></p>
 <ul>
 <li>主机网关配置路由器的地址</li>
 </ul>
-<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_19.png" alt="img_19.png"></p>
+<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_19.png" alt="img_19.png"></p>
 <h4 id="5-静态路由"><a href="#5-静态路由" class="headerlink" title="5.静态路由"></a>5.静态路由</h4><p>多路由，不同IP段通信<br>ip route-static 目标网段 子网掩码 下一跳地址<br>AR1</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route-static  192.168.3.0 24 192.168.2.2</span><br></pre></td></tr></table></figure>
 <p>AR2</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 192.168.1.0 24 192.168.2.1</span><br></pre></td></tr></table></figure>
-<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_20.png" alt="img_20.png"></p>
+<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_20.png" alt="img_20.png"></p>
 <h4 id="6-路由表"><a href="#6-路由表" class="headerlink" title="6.路由表"></a>6.路由表</h4><p>查看路由表</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display ip routing-table </span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 192.168.4.0 24 192.168.2.2</span><br></pre></td></tr></table></figure>

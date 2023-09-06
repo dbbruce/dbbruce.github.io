@@ -148,7 +148,7 @@
 <h4 id="2-权限适用对象"><a href="#2-权限适用对象" class="headerlink" title="2. 权限适用对象"></a>2. 权限适用对象</h4><ul>
 <li>rw-  —  —.             1 root root 1455 8月  14 15:10 anaconda-ks.cfg</li>
 </ul>
-<p>文件 所有者， 所属组， 其他用户<br>      u,   g,  o<br><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/%E6%9D%83%E9%99%90.png" alt="权限.png"></p>
+<p>文件 所有者， 所属组， 其他用户<br>      u,   g,  o<br><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/%E6%9D%83%E9%99%90.png" alt="权限.png"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod u=rwx,g=rwx,o=rw /home/dong1</span><br><span class="line">chmod ugo=rwx /home/dong1</span><br><span class="line">chmod o-w /home/dong1</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-chown"><a href="#2-chown" class="headerlink" title="2. chown"></a>2. chown</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown work.work /etc/1.txt</span><br></pre></td></tr></table></figure>
@@ -159,7 +159,7 @@
 <h4 id="3-特殊权限"><a href="#3-特殊权限" class="headerlink" title="3. 特殊权限"></a>3. 特殊权限</h4><ul>
 <li><p>set GID：设置目录下，新增的文件自动设置与父目录相同的所属组</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[dong@master t1]$ chmod g+s 1.txt</span><br><span class="line">[dong@master t1]$ ll</span><br><span class="line">总用量 0</span><br><span class="line">-rw-rwsr--. 1 dong dong 0 8月  17 18:53 1.txt</span><br><span class="line">[dong@master t1]$ chmod g-s 1.txt</span><br><span class="line">[dong@master t1]$ ll</span><br><span class="line">总用量 0</span><br><span class="line">-rw-rwxr--. 1 dong dong 0 8月  17 18:53 1.txt</span><br></pre></td></tr></table></figure>
-<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/WX20230820-164415@2x.png" alt="WX20230820-164415@2x.png"></p>
+<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/WX20230820-164415@2x.png" alt="WX20230820-164415@2x.png"></p>
 </li>
 <li><p>set UID :可以让使用者具有属主的身份和部分权限</p>
 </li>

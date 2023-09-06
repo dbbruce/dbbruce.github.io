@@ -144,7 +144,7 @@
         <h4 id="0-Internet-SCSI-网际SCSI接口-（默认端口3260）"><a href="#0-Internet-SCSI-网际SCSI接口-（默认端口3260）" class="headerlink" title="0.Internet SCSI,网际SCSI接口 （默认端口3260）"></a>0.Internet SCSI,网际SCSI接口 （默认端口3260）</h4><p>一种基于C&#x2F;S架构的虚拟磁盘技术<br>服务器提供磁盘空间,客户机连接并当成本地磁盘使用</p>
 <span id="more"></span>
 
-<h4 id="1-iSCSI磁盘的工作模式"><a href="#1-iSCSI磁盘的工作模式" class="headerlink" title="1.iSCSI磁盘的工作模式"></a>1.iSCSI磁盘的工作模式</h4><p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_3.png" alt="img_3.png"></p>
+<h4 id="1-iSCSI磁盘的工作模式"><a href="#1-iSCSI磁盘的工作模式" class="headerlink" title="1.iSCSI磁盘的工作模式"></a>1.iSCSI磁盘的工作模式</h4><p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_3.png" alt="img_3.png"></p>
 <h4 id="2-iSCSI磁盘的构成"><a href="#2-iSCSI磁盘的构成" class="headerlink" title="2.iSCSI磁盘的构成"></a>2.iSCSI磁盘的构成</h4><p>backstore，后端存储<br>    对应到服务端提供实际存储空间的设备，需要起一个管理名称<br>target，磁盘组<br>    是客户端的访问目标，作为一个框架，由多个lun组成<br>lun，逻辑单元<br>    每一个lun需要关联到某一个后端存储设备，在客户端会视为一块虚拟硬盘</p>
 <h4 id="3-ISCSI-Qualified-Name-名称规范"><a href="#3-ISCSI-Qualified-Name-名称规范" class="headerlink" title="3.ISCSI Qualified Name 名称规范"></a>3.ISCSI Qualified Name 名称规范</h4><pre><code>- iqn.yyyy-mm.倒序域名:自定义标识用来识别 target 磁盘组，也用来识别客户机身份
 名称示例
