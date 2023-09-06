@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <title>07-LNMP | 董勉[桑弧蓬矢] | blog</title>
+  <title>一切历史都是当代史[转载] | 董勉[桑弧蓬矢] | blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
     <meta name="description" content="桑弧蓬矢">
@@ -88,7 +88,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-运维/nginx/07-lnmp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-个人/天涯高赞帖子/一切历史都是当代史" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -96,7 +96,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      07-LNMP
+      一切历史都是当代史[转载]
     </h1>
   
 
@@ -107,12 +107,12 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-07T03:00:52.000Z" itemprop="datePublished">2021年09月07日</time>
+  <time class="dt-published" datetime="2000-08-10T03:14:52.000Z" itemprop="datePublished">2000年08月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+    <a class="article-category-link" href="/categories/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/">天涯高赞帖子</a>
   </div>
 
       
@@ -125,7 +125,7 @@
 
       
       
-<a href="/2021/09/07/%E8%BF%90%E7%BB%B4/nginx/07-lnmp/#comments" class="article-comment-link">
+<a href="/2000/08/10/%E4%B8%AA%E4%BA%BA/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/%E4%B8%80%E5%88%87%E5%8E%86%E5%8F%B2%E9%83%BD%E6%98%AF%E5%BD%93%E4%BB%A3%E5%8F%B2/#comments" class="article-comment-link">
   
     
     
@@ -141,28 +141,25 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-LNMP"><a href="#1-LNMP" class="headerlink" title="1.LNMP"></a>1.LNMP</h4><p>l linux<br>N nginx<br>M mariadb<br>P php</p>
-<span id="more"></span>
-<h4 id="3-安装PHP"><a href="#3-安装PHP" class="headerlink" title="3.安装PHP"></a>3.安装PHP</h4><p>php 编译器<br>php-fpm：进程管理服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php php-mysql php-fpm</span><br></pre></td></tr></table></figure>
-<p>启动</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start php-fpm    //启动服务</span><br><span class="line">systemctl status php-fpm   //查看服务状态</span><br><span class="line">systemctl enable php-fpm   //设置开机启动</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# netstat -antpu |grep php</span><br><span class="line">tcp        0      0 127.0.0.1:9000          0.0.0.0:*               LISTEN      19508/php-fpm: mast</span><br></pre></td></tr></table></figure>
-<p>php-fpm配置文件</p>
-<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/nginx/img_7.png" alt="img_7.png"></p>
-<h4 id="4-安装mariadb"><a href="#4-安装mariadb" class="headerlink" title="4.安装mariadb"></a>4.安装mariadb</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mariadb mariadb-server mariadb-devel</span><br></pre></td></tr></table></figure>
-<p>启动</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mariadb  //启动服务器</span><br><span class="line">systemctl status mariadb  //查看服务状态</span><br><span class="line">systemctl enable mariadb  //设置开机启动</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# netstat -antpu |grep mysql  # 这里叫mysql</span><br><span class="line">tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      19775/mysqld</span><br></pre></td></tr></table></figure>
-<h4 id="5-PHP默认错误日志文件为-var-log-php-fpm-www-error-log"><a href="#5-PHP默认错误日志文件为-var-log-php-fpm-www-error-log" class="headerlink" title="5.PHP默认错误日志文件为&#x2F;var&#x2F;log&#x2F;php-fpm&#x2F;www-error.log"></a>5.PHP默认错误日志文件为&#x2F;var&#x2F;log&#x2F;php-fpm&#x2F;www-error.log</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# tail -10f /var/log/php-fpm/error.log</span><br><span class="line">[05-Sep-2023 04:30:02] NOTICE: fpm is running, pid 19508</span><br><span class="line">[05-Sep-2023 04:30:02] NOTICE: ready to handle connections</span><br><span class="line">[05-Sep-2023 04:30:02] NOTICE: systemd monitor interval set to 10000ms</span><br></pre></td></tr></table></figure>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="5856348fcef008c545f113077527b921ba607b24a1a668912cc4903cda5d715e">c85774877773b3cc4e31750c5dc8755096261094e111c4f5f01d07f81b20dd387d32cb3303d2329dff689bbc1f97211f95cd8d046ea9389d9a01c838173773c6c6331bc0e107e396bae55de561e86c34e6c2d473f5149599ec71402c0122d4465f7c321f2ae29354479565bb9040d5c34d647c454bb4d57b8cb044a4083f5eb8bcec083d7342c9d89a9e602886ef85023c0f8bdd3c12ce5980e48ff44d2a63f409feb28d8e620d17b8ea0244e2ceb1d7719e83d7ddec83088588c137620a1a4aa62d7af8ed0324a855f6143000eaca3968594858bf7852be75694456175b487cbfa4600664c54c4481dcaa90848a8c6494cf235193514ba71c792cc5003bf7fc238f819ec5c842176c7f8399ae3ff2ce40960a7c267deef4d9c190a5374e0532002d9cf8b480d08dc803797d5d8cac9b98d830f019b28550deb853874ee597aa4d7598bcb27336e1adcda2e373471b07eaa740617a66cf94aed8cf2b5c47c9a3b92e70a583a44d670df77029ae98a51840ae39f761013b4db45c174dbd3332efb4397b879366dfd486bf23867829ec3338e1e2b232d9aeadbe8c3e35c3f280c8cd468a490aea0673162fae8d0272f23a6202a5fba6dd1b37601d5fd7971bd6c61d31414e438f64221731e5a509f218a86ea161d71aee8f780aa6b1e4a3dab11bac428517c9432f596711cbdb19d1bc00bc94e07af8a0e791e180841f2bf2470d2b2a8e39399b76f0e5832fd3a797a645c8f42a4d9491267e9028b9a3fcad6c154a3d31e32eb93b5e2ac9732a1f8639f52ee6d2d00c591c594854778e92d412c4f8422cc9969eaaf0589a11c3603b829cdee8a217348ae62c1992813b95836e4b1f6b11cde66484838c07215a1a69a7359df012a9ede9908b212bd44413f9c3c69ffa3e65d46288d1490143f24b29f7e920937b620066a6fed6b4a873f5475105c4a590452f2e0e7adf7540bb592689f5808dd549ccc0ca2a663603a2cfed9902f8d1060cb60971358df5d8df6c89c7c35027e603878819173a49fffc9391182fc86bd42ca3fced56ae29760e5dccdea199de446c00932793f65a47b0b487420fde91fe944cc757d22763f180a6e42b83f2594d6cb27bb60aefae1b89b937597d06312ab1246b82c3212eaf96b95a95ada742e84c31e1c1add16d3fc797b54f8dc1122692de6e691a18dbe915b73e7c854079146b844a4346e3573cea07dd961ef4fdea90156b23d19ab2b6c37a224d4a275445b41a384e92a446730ed5390353c7476a3519428947088008a01c7fe5401fe333979c5a94c601f775bf393a6ee4fe66c99fc83f1139b35396120f4a4bd4277b85bfc3d16723dc2da5ecd378257b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
         
             <div id="toc-article">
                 
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-LNMP"><span class="toc-text">1.LNMP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85PHP"><span class="toc-text">3.安装PHP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%89%E8%A3%85mariadb"><span class="toc-text">4.安装mariadb</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-PHP%E9%BB%98%E8%AE%A4%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E4%B8%BA-var-log-php-fpm-www-error-log"><span class="toc-text">5.PHP默认错误日志文件为&#x2F;var&#x2F;log&#x2F;php-fpm&#x2F;www-error.log</span></a></li></ol>
+      
     </div>
   </div>
 
@@ -171,7 +168,7 @@
         
         
           <blockquote id="copyright">
-              <p>原文链接: <a href="https://dbbruce.github.io/2021/09/07/运维/nginx/07-lnmp/">https://dbbruce.github.io/2021/09/07/运维/nginx/07-lnmp/</a></p>
+              <p>原文链接: <a href="https://dbbruce.github.io/2000/08/10/个人/天涯高赞帖子/一切历史都是当代史/">https://dbbruce.github.io/2000/08/10/个人/天涯高赞帖子/一切历史都是当代史/</a></p>
               <p>版权声明: 转载请注明出处.</p>
           </blockquote>
         
@@ -183,7 +180,7 @@
           
 
           
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/" rel="tag">天涯高赞帖子</a></li></ul>
 
           
     <div class="social-share">
@@ -198,21 +195,12 @@
         
 <nav id="article-nav">
   
-    <a href="/2021/09/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/36-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%BA%A4%E6%8D%A2%E6%9C%BA/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">older</strong>
-      <div class="article-nav-title">
-        
-          36-网络管理-交换机
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/09/07/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/37-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E8%B7%AF%E7%94%B1%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2000/08/10/%E4%B8%AA%E4%BA%BA/%E5%A4%A9%E6%B6%AF%E9%AB%98%E8%B5%9E%E5%B8%96%E5%AD%90/%E8%80%81%E7%A5%96%E5%AE%97%E7%95%99%E4%B8%8B%E7%9A%84%E7%94%9F%E6%84%8F%E7%BB%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">newer</strong>
       <div class="article-nav-title">
         
-          37-网络管理-路由器
+          老祖宗留下的生意经[转载]
         
       </div>
     </a>
