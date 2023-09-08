@@ -363,7 +363,7 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="vim常用快捷键"><a href="#vim常用快捷键" class="headerlink" title="vim常用快捷键"></a>vim常用快捷键</h2><h4 id="第一步：检查本机是否已经存在密钥对"><a href="#第一步：检查本机是否已经存在密钥对" class="headerlink" title="第一步：检查本机是否已经存在密钥对"></a>第一步：检查本机是否已经存在密钥对</h4><p>为了实现免密码登录，我们需要在本机上生成一对密钥，如果你已经有了密钥对的话，可以跳过这一步。如果没有，可以通过以下命令进行检查：</p>
+        <h2 id="Linux下实现免密码登录"><a href="#Linux下实现免密码登录" class="headerlink" title="Linux下实现免密码登录"></a>Linux下实现免密码登录</h2><h4 id="第一步：检查本机是否已经存在密钥对"><a href="#第一步：检查本机是否已经存在密钥对" class="headerlink" title="第一步：检查本机是否已经存在密钥对"></a>第一步：检查本机是否已经存在密钥对</h4><p>为了实现免密码登录，我们需要在本机上生成一对密钥，如果你已经有了密钥对的话，可以跳过这一步。如果没有，可以通过以下命令进行检查：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> ~/.ssh/id_*</span></span><br></pre></td></tr></table></figure>
 <p>如果返回以下错误信息，说明你还没有生成密钥对：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls: /home/user/.ssh/id_*: No such file or directory</span><br></pre></td></tr></table></figure>
