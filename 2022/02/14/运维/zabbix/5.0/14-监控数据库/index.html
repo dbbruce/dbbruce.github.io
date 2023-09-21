@@ -154,6 +154,11 @@
 <h4 id="3-重启agent"><a href="#3-重启agent" class="headerlink" title="3.重启agent"></a>3.重启agent</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart zabbix-agent2</span><br></pre></td></tr></table></figure>
 <h4 id="4-测试下，zabbix-server-执行下面命令"><a href="#4-测试下，zabbix-server-执行下面命令" class="headerlink" title="4.测试下，zabbix server 执行下面命令"></a>4.测试下，zabbix server 执行下面命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zabbix_get -s &#x27;192.168.1.22&#x27; -p 10050 -k &#x27;login.user&#x27;</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
 <h4 id="5-web页面导入Percona模板"><a href="#5-web页面导入Percona模板" class="headerlink" title="5.web页面导入Percona模板"></a>5.web页面导入Percona模板</h4><p>导入 1.8的模板报错了，后来使用的1.6模板正常；</p>
+<blockquote>
+<p>1.6模板，放在了百度云盘</p>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1KRCKiPpKySXFDnzc4QkM-w?pwd=dong">https://pan.baidu.com/s/1KRCKiPpKySXFDnzc4QkM-w?pwd=dong</a> </p>
+<p>提取码: dong </p>
+</blockquote>
 <p><img src="/../../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/zabbix/5.0/img_43.png" alt="img_43.png"></p>
 <h4 id="6-mysql主机关联模板"><a href="#6-mysql主机关联模板" class="headerlink" title="6.mysql主机关联模板"></a>6.mysql主机关联模板</h4>
         
