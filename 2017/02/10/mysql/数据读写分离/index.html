@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   
   
-  <title>数据读写分离 | 永远乐观的董勉[桑弧蓬矢] | blog</title>
+  <title>数据读写分离 | 董勉[桑弧蓬矢] | blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
     <meta name="description" content="桑弧蓬矢">
   
   
   
-    <link rel="alternate" href="/atom.xml" title="永远乐观的董勉[桑弧蓬矢] | blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="董勉[桑弧蓬矢] | blog" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/favicon.png">
@@ -45,7 +45,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">永远乐观的董勉[桑弧蓬矢] | blog</a>
+        <a href="/" id="logo">董勉[桑弧蓬矢] | blog</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -163,7 +163,7 @@
 <li>启动maxscale服务<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxscale -f /etc/maxscale.cnf -U root</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-32 ~]# ps -axf|grep maxscale</span><br><span class="line"> 1985 pts/0    S+     0:00          \_ grep --color=auto maxscale</span><br><span class="line"> 1971 ?        Ssl    0:01 maxscale -f /etc/maxscale.cnf -U root</span><br><span class="line"> </span><br><span class="line">[root@centos07-32 ~]# netstat -anput |grep maxscale</span><br><span class="line">tcp        0      0 127.0.0.1:8989          0.0.0.0:*               LISTEN      1971/maxscale</span><br><span class="line">tcp        0      0 192.168.1.32:60156      192.168.1.22:3306       ESTABLISHED 1971/maxscale</span><br><span class="line">tcp        0      0 192.168.1.32:58652      192.168.1.12:3306       ESTABLISHED 1971/maxscale</span><br><span class="line">tcp6       0      0 :::4006                 :::*                    LISTEN      1971/maxscale</span><br></pre></td></tr></table></figure></li>
 <li>maxscale 日志文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-32 ~]# tailf -1000 /var/log/maxscale/maxscale.log</span><br></pre></td></tr></table></figure></li>
-<li>验证<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>验证<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-32 ~]# maxctrl list servers</span><br><span class="line">┌─────────┬──────────────┬──────┬─────────────┬─────────────────┬──────┐</span><br><span class="line">│ Server  │ Address      │ Port │ Connections │ State           │ GTID │</span><br><span class="line">├─────────┼──────────────┼──────┼─────────────┼─────────────────┼──────┤</span><br><span class="line">│ server1 │ 192.168.1.12 │ 3306 │ 0           │ Master, Running │      │</span><br><span class="line">├─────────┼──────────────┼──────┼─────────────┼─────────────────┼──────┤</span><br><span class="line">│ server2 │ 192.168.1.22 │ 3306 │ 0           │ Slave, Running  │      │</span><br><span class="line">└─────────┴──────────────┴──────┴─────────────┴─────────────────┴──────┘</span><br></pre></td></tr></table></figure></li>
 </ul>
 
         
