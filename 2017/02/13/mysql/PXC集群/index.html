@@ -141,14 +141,52 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-PXC"><a href="#1-PXC" class="headerlink" title="1.PXC"></a>1.PXC</h4><span id="more"></span>
+        <h4 id="PXC-不太稳定"><a href="#PXC-不太稳定" class="headerlink" title="PXC(不太稳定)"></a>PXC(不太稳定)</h4><p>Percona XtraDB Cluster ( 简称PXC )<br><br>-是基于Galera的mysql高可用集群解决方案<br><br>-Galera Cluster是Codership公司开发的一套免费开源的高可用方案<br><br>-PXC集群主要由两部分组成: Percona Server withXtraDB和Write Set Replication patches ( 同步、多主复制插件 )<br><br>-官网<a target="_blank" rel="noopener" href="http://galeracluster.com/">http://galeracluster.com</a><br></p>
+<h4 id="PXC特点"><a href="#PXC特点" class="headerlink" title="PXC特点"></a>PXC特点</h4><p>数据强一致性、无同步延迟<br><br>没有主从切换操作，无需使用虚拟IP<br><br>支持InnoDB存储引擎<br><br>多线程复制<br><br>部署使用简单<br><br>支持节点自动加入，无需手动拷贝数据<br></p>
+<span id="more"></span>
+<h4 id="服务端口"><a href="#服务端口" class="headerlink" title="服务端口"></a>服务端口</h4><table>
+<thead>
+<tr>
+<th>端口</th>
+<th>服务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3306</td>
+<td>数据库服务端口</td>
+</tr>
+<tr>
+<td>4444</td>
+<td>SST端口</td>
+</tr>
+<tr>
+<td>4567</td>
+<td>集群通信端口</td>
+</tr>
+<tr>
+<td>4568</td>
+<td>IST端口</td>
+</tr>
+<tr>
+<td>SST</td>
+<td>State Snapshot Transfer 全量同步</td>
+</tr>
+<tr>
+<td>IST</td>
+<td>Incremental State Transfer 增量同步</td>
+</tr>
+</tbody></table>
+<h4 id="试验配置，不做主从，都是单独的3台服务"><a href="#试验配置，不做主从，都是单独的3台服务" class="headerlink" title="试验配置，不做主从，都是单独的3台服务"></a>试验配置，不做主从，都是单独的3台服务</h4><p>192.168.1.12 mysql<br>192.168.1.22 mysql<br>192.168.1.32 mysql  </p>
+<h4 id="pxc使用主机名，先配置主机名解析"><a href="#pxc使用主机名，先配置主机名解析" class="headerlink" title="pxc使用主机名，先配置主机名解析"></a>pxc使用主机名，先配置主机名解析</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line"></span><br><span class="line">192.168.1.12 centos07-12   </span><br><span class="line">192.168.1.22 centos07-22   </span><br><span class="line">192.168.1.32 centos07-32 </span><br></pre></td></tr></table></figure>
+
+
         
             <div id="toc-article">
                 
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-PXC"><span class="toc-text">1.PXC</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#PXC-%E4%B8%8D%E5%A4%AA%E7%A8%B3%E5%AE%9A"><span class="toc-text">PXC(不太稳定)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PXC%E7%89%B9%E7%82%B9"><span class="toc-text">PXC特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%A3"><span class="toc-text">服务端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%95%E9%AA%8C%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%B8%8D%E5%81%9A%E4%B8%BB%E4%BB%8E%EF%BC%8C%E9%83%BD%E6%98%AF%E5%8D%95%E7%8B%AC%E7%9A%843%E5%8F%B0%E6%9C%8D%E5%8A%A1"><span class="toc-text">试验配置，不做主从，都是单独的3台服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pxc%E4%BD%BF%E7%94%A8%E4%B8%BB%E6%9C%BA%E5%90%8D%EF%BC%8C%E5%85%88%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D%E8%A7%A3%E6%9E%90"><span class="toc-text">pxc使用主机名，先配置主机名解析</span></a></li></ol>
     </div>
   </div>
 
