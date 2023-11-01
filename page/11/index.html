@@ -89,7 +89,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/Linux云计算教程/31-日志管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/54-NTP服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -97,7 +97,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/31/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/31-%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/">31-日志管理</a>
+      <a class="p-name article-title" href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">54-NTP服务器</a>
     </h1>
   
 
@@ -108,7 +108,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-31T03:00:52.000Z" itemprop="datePublished">2021年08月31日</time>
+  <time class="dt-published" datetime="2021-09-24T03:00:52.000Z" itemprop="datePublished">2021年09月24日</time>
 </span>
       
   <div class="article-category">
@@ -118,7 +118,7 @@
 
       
       
-<a href="/2021/08/31/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/31-%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/#comments" class="article-comment-link">
+<a href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -128,9 +128,7 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="0-系统日志"><a href="#0-系统日志" class="headerlink" title="0.系统日志"></a>0.系统日志</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. /var/log/messages：这个文件包含了系统各种服务的日志信息，可以通过tail命令来实时检查日志的变化，如`tail -f /var/log/messages`</span><br><span class="line">2. /var/log/syslog：这个文件主要是记录系统的运行信息，比如内存映像文件的反转、系统守护进程的信息等等。</span><br><span class="line">3. /var/log/auth.log：这个日志记录的是用户登录和身份验证信息，可以查看谁登录了系统，以及登录操作是否成功等等。</span><br><span class="line">4. /var/log/dmesg：这个文件记录的是系统启动时的信息，比如硬件检测、驱动加载等等。</span><br><span class="line">5. /var/log/kern.log：这个文件记录了内核的信息，包括内核错误、警告信息以及调试信息等等。</span><br><span class="line">6. /var/log/cron.log：这个文件记录了定时任务的执行情况，可以查看定时任务是否执行成功等等。</span><br><span class="line">7. /var/log/lastlog：这个文件记录了所有用户最后一次登录的时间和信息。</span><br><span class="line">8. /var/log/secure         系统登录日志</span><br><span class="line">9. /var/log/cron            定时任务日志</span><br><span class="line">10. /var/log/maillog         邮件日志</span><br><span class="line">11. /var/log/boot.log       系统启动日志</span><br></pre></td></tr></table></figure>
-<h4 id="1-内核及系统日志"><a href="#1-内核及系统日志" class="headerlink" title="1.内核及系统日志"></a>1.内核及系统日志</h4><p>由系统服务rsyslog统一记录&#x2F;管理日志消息采用文本格式<br>主要记录事件发生的时间、主机、进程、内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# tail -f /var/log/messages</span><br><span class="line">Aug 25 19:13:45 master dhclient[916]: DHCPREQUEST on team0 to 192.168.1.1 port 67 (xid=0x62cb920a)</span><br><span class="line">Aug 25 19:13:53 master dhclient[916]: DHCPREQUEST on team0 to 192.168.1.1 port 67 (xid=0x62cb920a)</span><br></pre></td></tr></table></figure>
+        <h2 id="NTP"><a href="#NTP" class="headerlink" title="NTP"></a>NTP</h2><p>Network Time Protocol (网络时间协议)采用的是分层设计，最多不能超过15层</p>
       
     </div>
     <footer class="article-footer">
@@ -139,7 +137,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/31/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/31-%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/#more">阅读全文</a>
+          <a href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/#more">阅读全文</a>
         </p>
       
       
@@ -149,7 +147,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/30-进程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/53-VPN(待续)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -157,7 +155,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/30/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/30-%E8%BF%9B%E7%A8%8B/">30-进程</a>
+      <a class="p-name article-title" href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/">53-VPN</a>
     </h1>
   
 
@@ -168,7 +166,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-30T03:00:52.000Z" itemprop="datePublished">2021年08月30日</time>
+  <time class="dt-published" datetime="2021-09-23T03:00:52.000Z" itemprop="datePublished">2021年09月23日</time>
 </span>
       
   <div class="article-category">
@@ -178,7 +176,7 @@
 
       
       
-<a href="/2021/08/30/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/30-%E8%BF%9B%E7%A8%8B/#comments" class="article-comment-link">
+<a href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -188,12 +186,7 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-唯一标识"><a href="#1-唯一标识" class="headerlink" title="1.唯一标识"></a>1.唯一标识</h4><ul>
-<li><p>PID</p>
-</li>
-<li><p>父进程、子进程</p>
-</li>
-<li><p>pstree命令<br>-a:显示完整的命令行<br>-p:列出对应PID编号</p>
+        <h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p>Virtual Private Network ( 虚拟专用网络)<br>在公用网络上建立专用私有网络，进行加密通讯<br>多用于为集团公司的各地子公司建立连接<br>连接完成后，各个地区的子公司可以像局域网一样通讯<br>在企业网络中有广泛应用<br>偶尔可以用于翻墙<br>目前主流的VPN技术( GRE，PPTP，L2TP+IPSec，SSL )<br>gre &gt; pptp &gt; l2tp+ipsec   (安装, 易 -&gt; 难)<br>l2tcp+ipsec &gt; pptp &gt; gre  (安全, 高 -&gt; 底)</p>
       
     </div>
     <footer class="article-footer">
@@ -202,7 +195,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/30/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/30-%E8%BF%9B%E7%A8%8B/#more">阅读全文</a>
+          <a href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/#more">阅读全文</a>
         </p>
       
       
@@ -212,7 +205,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/29-dns概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/52-rpm打包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -220,7 +213,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/29-dns%E6%A6%82%E8%BF%B0/">29-DNS概述（待完善）</a>
+      <a class="p-name article-title" href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/">52-RPM打包</a>
     </h1>
   
 
@@ -231,7 +224,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-29T03:00:52.000Z" itemprop="datePublished">2021年08月29日</time>
+  <time class="dt-published" datetime="2021-09-22T03:00:52.000Z" itemprop="datePublished">2021年09月22日</time>
 </span>
       
   <div class="article-category">
@@ -241,7 +234,7 @@
 
       
       
-<a href="/2021/08/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/29-dns%E6%A6%82%E8%BF%B0/#comments" class="article-comment-link">
+<a href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -251,10 +244,9 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-DNS服务器的功能"><a href="#1-DNS服务器的功能" class="headerlink" title="1.DNS服务器的功能"></a>1.DNS服务器的功能</h4><ul>
-<li>正向解析: 根据注册的域名查找其对应的IP地址</li>
-<li>反向解析: 根据IP地址查找对应的注册域名，不常用</li>
-</ul>
+        <h2 id="RPM打包"><a href="#RPM打包" class="headerlink" title="RPM打包"></a>RPM打包</h2><p>原理：先把源码安装一遍，对安装好的结果打包，包的扩展名为rpm，rpm就是一个压缩包</p>
+<h4 id="1-将源码包转为RPM包"><a href="#1-将源码包转为RPM包" class="headerlink" title="1.将源码包转为RPM包"></a>1.将源码包转为RPM包</h4><ol>
+<li>安装rpm-build软件包<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# yum -y install rpm-build</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -263,7 +255,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/29-dns%E6%A6%82%E8%BF%B0/#more">阅读全文</a>
+          <a href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/#more">阅读全文</a>
         </p>
       
       
@@ -273,7 +265,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/28-源码编译安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/51-Linux下实现免密码登录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -281,7 +273,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/28-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">28-源码编译安装</a>
+      <a class="p-name article-title" href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/">51-Linux下实现免密码登录</a>
     </h1>
   
 
@@ -292,7 +284,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-28T03:00:52.000Z" itemprop="datePublished">2021年08月28日</time>
+  <time class="dt-published" datetime="2021-09-21T03:00:52.000Z" itemprop="datePublished">2021年09月21日</time>
 </span>
       
   <div class="article-category">
@@ -302,7 +294,7 @@
 
       
       
-<a href="/2021/08/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/28-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
+<a href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -312,7 +304,10 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="源码包安装步骤"><a href="#源码包安装步骤" class="headerlink" title="源码包安装步骤"></a>源码包安装步骤</h3><h4 id="1-安装make与gcc-开发工具"><a href="#1-安装make与gcc-开发工具" class="headerlink" title="1:安装make与gcc,开发工具"></a>1:安装make与gcc,开发工具</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@svr7 ~]# yum -y install make</span><br><span class="line">[rootasvr7 ~]# yum -y install gcc</span><br></pre></td></tr></table></figure>
+        <h2 id="Linux下实现免密码登录"><a href="#Linux下实现免密码登录" class="headerlink" title="Linux下实现免密码登录"></a>Linux下实现免密码登录</h2><h4 id="第一步：检查本机是否已经存在密钥对"><a href="#第一步：检查本机是否已经存在密钥对" class="headerlink" title="第一步：检查本机是否已经存在密钥对"></a>第一步：检查本机是否已经存在密钥对</h4><p>为了实现免密码登录，我们需要在本机上生成一对密钥，如果你已经有了密钥对的话，可以跳过这一步。如果没有，可以通过以下命令进行检查：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> ~/.ssh/id_*</span></span><br></pre></td></tr></table></figure>
+<p>如果返回以下错误信息，说明你还没有生成密钥对：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls: /home/user/.ssh/id_*: No such file or directory</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -321,7 +316,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/28-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/#more">阅读全文</a>
+          <a href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/#more">阅读全文</a>
         </p>
       
       
@@ -331,7 +326,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/27-vim技巧" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/50-vim常用快捷键" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -339,7 +334,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/27-vim%E6%8A%80%E5%B7%A7/">27-vim技巧</a>
+      <a class="p-name article-title" href="/2021/09/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/50-vim%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">50-vim常用快捷键</a>
     </h1>
   
 
@@ -350,7 +345,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-27T03:00:52.000Z" itemprop="datePublished">2021年08月27日</time>
+  <time class="dt-published" datetime="2021-09-20T03:00:52.000Z" itemprop="datePublished">2021年09月20日</time>
 </span>
       
   <div class="article-category">
@@ -360,7 +355,7 @@
 
       
       
-<a href="/2021/08/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/27-vim%E6%8A%80%E5%B7%A7/#comments" class="article-comment-link">
+<a href="/2021/09/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/50-vim%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -370,7 +365,8 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-光标跳转"><a href="#1-光标跳转" class="headerlink" title="1.光标跳转"></a>1.光标跳转</h4><p>Home 键 或^、数字 0 跳转到行首<br>End 键 或“$”键 跳转到行尾<br>PgUp 键、PgDn 键 向上翻页、向下翻页<br>1G 或 gg 跳转到文件的首行<br>G跳转到文件的末尾行</p>
+        <h2 id="vim常用快捷键"><a href="#vim常用快捷键" class="headerlink" title="vim常用快捷键"></a>vim常用快捷键</h2><h4 id="vim编辑器的三种模式转换"><a href="#vim编辑器的三种模式转换" class="headerlink" title="vim编辑器的三种模式转换"></a>vim编辑器的三种模式转换</h4><p>插入模式&lt;&#x3D;&gt;命令模式&lt;&#x3D;&gt;末行模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">插入模式  =&gt; 命令模式       按Esc键</span><br><span class="line">命令模式  =&gt; 末行模式       按冒号键</span><br><span class="line">末行模式  =&gt; 命令模式       输入末行命令之后回车键</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -379,7 +375,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/27-vim%E6%8A%80%E5%B7%A7/#more">阅读全文</a>
+          <a href="/2021/09/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/50-vim%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#more">阅读全文</a>
         </p>
       
       
@@ -389,7 +385,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/26-parted分区工具" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/49-Linux中的虚拟设备[转载]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -397,7 +393,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/26-parted%E5%88%86%E5%8C%BA%E5%B7%A5%E5%85%B7/">26-parted分区工具</a>
+      <a class="p-name article-title" href="/2021/09/19/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/49-Linux%E4%B8%AD%E7%9A%84%E8%99%9A%E6%8B%9F%E8%AE%BE%E5%A4%87%5B%E8%BD%AC%E8%BD%BD%5D/">49-Linux中的虚拟设备/dev/null、/dev/zero、/dev/random和/dev/urandom[转载]</a>
     </h1>
   
 
@@ -408,7 +404,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-26T03:00:52.000Z" itemprop="datePublished">2021年08月26日</time>
+  <time class="dt-published" datetime="2021-09-19T03:00:52.000Z" itemprop="datePublished">2021年09月19日</time>
 </span>
       
   <div class="article-category">
@@ -418,7 +414,7 @@
 
       
       
-<a href="/2021/08/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/26-parted%E5%88%86%E5%8C%BA%E5%B7%A5%E5%85%B7/#comments" class="article-comment-link">
+<a href="/2021/09/19/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/49-Linux%E4%B8%AD%E7%9A%84%E8%99%9A%E6%8B%9F%E8%AE%BE%E5%A4%87%5B%E8%BD%AC%E8%BD%BD%5D/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -428,7 +424,11 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-parted分区工具-适用于GPT分区模式"><a href="#1-parted分区工具-适用于GPT分区模式" class="headerlink" title="1.parted分区工具,适用于GPT分区模式"></a>1.parted分区工具,适用于GPT分区模式</h4><p>GPT分区模式:最多可以划分128个主分区</p>
+        <p>Unix&#x2F;Linux将每一个设备都当成一个文件，放在&#x2F;dev目录下。这些文件有的对应着一个真实存在的物理设备；有的则代表一个虚拟设备，提供一些特定的功能。<br>下面介绍三个常用的虚拟设备：</p>
+<h4 id="dev-null"><a href="#dev-null" class="headerlink" title="&#x2F;dev&#x2F;null"></a>&#x2F;dev&#x2F;null</h4><p>“空”设备，也有人称它为黑洞。任何输入到这个“设备”的数据都将被直接丢弃。最常用的用法是把不需要的输出重定向到这个文件。例如：</p>
+<blockquote>
+<p>$ run.sh 1&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1  #将标准输出和错误输出重定向到&#x2F;dev&#x2F;null，运行这个脚本不会输出任何信息到终端</p>
+</blockquote>
       
     </div>
     <footer class="article-footer">
@@ -437,243 +437,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/26-parted%E5%88%86%E5%8C%BA%E5%B7%A5%E5%85%B7/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/25-链路聚合" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/25-%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/">25-链路聚合</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-25T03:00:52.000Z" itemprop="datePublished">2021年08月25日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/25-%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-链路聚合的优势"><a href="#1-链路聚合的优势" class="headerlink" title="1.链路聚合的优势"></a>1.链路聚合的优势</h4><p>team,聚合连接(也称为链路聚合 网卡绑定 网卡组队)<br>备份网卡设备,提高可靠性</p>
-<p>eth0 和 eth1组成一个  虚拟网卡: team0: 192.168.1.1</p>
-<p>作用1:轮询式(roundrobin)的流量负载均衡<br>作用2:热备份(activebackup)连接几余</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/08/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/25-%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/24-网络配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/24-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/">24-网络配置</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-24T03:00:52.000Z" itemprop="datePublished">2021年08月24日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/24-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-查看网卡名称"><a href="#1-查看网卡名称" class="headerlink" title="1.查看网卡名称"></a>1.查看网卡名称</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection show</span><br><span class="line">NAME    UUID                                  TYPE      DEVICE</span><br><span class="line">enp0s3  7418e7f8-60e3-41cd-a265-f24c5ef8cd48  ethernet  enp0s3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意这个名称可能和我们用ifconfig看到的不一样</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/08/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/24-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/23-安全web服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/23-%E5%AE%89%E5%85%A8web%E6%9C%8D%E5%8A%A1/">23-安全web服务</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-23T03:00:52.000Z" itemprop="datePublished">2021年08月23日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/23-%E5%AE%89%E5%85%A8web%E6%9C%8D%E5%8A%A1/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Public-Key-Infrastruc"><a href="#1-Public-Key-Infrastruc" class="headerlink" title="1.Public Key Infrastruc"></a>1.Public Key Infrastruc</h4><p>公钥:主要用来加密数据<br>私钥:主要用来解密数据(与相的公钥匹配)<br>数字证书:证明拥有者的合法&#x2F;权威性(单位名称、有效期、公钥、颁发机 构及签名、……)<br>Certificate Authority 数字证书授权中心:负责证书的申请&#x2F;审核&#x2F;颁发&#x2F;鉴定&#x2F;撤销等管理工作</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/08/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/23-%E5%AE%89%E5%85%A8web%E6%9C%8D%E5%8A%A1/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/22-nfs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/22-nfs/">22-nfs</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-22T03:00:52.000Z" itemprop="datePublished">2021年08月22日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/22-nfs/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-NFS共享概述"><a href="#1-NFS共享概述" class="headerlink" title="1.NFS共享概述"></a>1.NFS共享概述</h4><p>Network File System，网络文件系统<br>用途:为客户机提供共享使用的文件夹</p>
-<ul>
-<li>协议: NFS (TCP&#x2F;UDP 2049) 、RPC (TCP&#x2F;UDP 111)<br>所需软件包: nfs-utils<br>系统服务: nfs-server<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -q nfs-utilsnfs-utils-1.3.0-0.el7.x86 64</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/08/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/22-nfs/#more">阅读全文</a>
+          <a href="/2021/09/19/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/49-Linux%E4%B8%AD%E7%9A%84%E8%99%9A%E6%8B%9F%E8%AE%BE%E5%A4%87%5B%E8%BD%AC%E8%BD%BD%5D/#more">阅读全文</a>
         </p>
       
       
@@ -686,7 +450,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/10/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/12/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/10/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/12/">下一页</a>
 </nav>
 
 

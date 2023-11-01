@@ -89,7 +89,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/Linux云计算教程/21-数据库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/48-awk" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -97,7 +97,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/21-%E6%95%B0%E6%8D%AE%E5%BA%93/">21-数据库</a>
+      <a class="p-name article-title" href="/2021/09/18/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/48-awk/">48-awk</a>
     </h1>
   
 
@@ -108,7 +108,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-21T03:00:52.000Z" itemprop="datePublished">2021年08月21日</time>
+  <time class="dt-published" datetime="2021-09-18T03:00:52.000Z" itemprop="datePublished">2021年09月18日</time>
 </span>
       
   <div class="article-category">
@@ -118,7 +118,7 @@
 
       
       
-<a href="/2021/08/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/21-%E6%95%B0%E6%8D%AE%E5%BA%93/#comments" class="article-comment-link">
+<a href="/2021/09/18/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/48-awk/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -128,11 +128,7 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-虚拟机Server0-部署数据库"><a href="#1-虚拟机Server0-部署数据库" class="headerlink" title="1.虚拟机Server0:部署数据库"></a>1.虚拟机Server0:部署数据库</h4><p>1安装mariadb-server软件包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[rootaserver0 ~]# yum -y install mariadb-server</span><br></pre></td></tr></table></figure>
-
-<p>2.重启mariadb服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@server0 ~]# systemctl restart mariadb</span><br><span class="line">[rootaserver0 ~]# systemctl enable mariadb</span><br><span class="line">ln -s&#x27;/usr/lib/systemd/system/mariadb.service&#x27;/etcsystemd/system/multi-user.target.wants/mariadb.service</span><br></pre></td></tr></table></figure>
+        <h4 id="1-awk"><a href="#1-awk" class="headerlink" title="1.awk"></a>1.awk</h4><p>awk编程语言&#x2F;数据处理引擎<br>基于模式匹配检查输入文本，逐行处理并输出<br>通常用在Shell脚本中，获取指定的数据<br>单独用时，可对文本数据做统计</p>
       
     </div>
     <footer class="article-footer">
@@ -141,7 +137,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/21-%E6%95%B0%E6%8D%AE%E5%BA%93/#more">阅读全文</a>
+          <a href="/2021/09/18/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/48-awk/#more">阅读全文</a>
         </p>
       
       
@@ -151,7 +147,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/20-iSCSI磁盘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/47-sed" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -159,7 +155,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/20-iSCSI%E7%A3%81%E7%9B%98/">20-iSCSI磁盘</a>
+      <a class="p-name article-title" href="/2021/09/17/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/47-sed/">47-sed</a>
     </h1>
   
 
@@ -170,7 +166,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-20T03:00:52.000Z" itemprop="datePublished">2021年08月20日</time>
+  <time class="dt-published" datetime="2021-09-17T03:00:52.000Z" itemprop="datePublished">2021年09月17日</time>
 </span>
       
   <div class="article-category">
@@ -180,7 +176,7 @@
 
       
       
-<a href="/2021/08/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/20-iSCSI%E7%A3%81%E7%9B%98/#comments" class="article-comment-link">
+<a href="/2021/09/17/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/47-sed/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -190,241 +186,9 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="0-Internet-SCSI-网际SCSI接口-（默认端口3260）"><a href="#0-Internet-SCSI-网际SCSI接口-（默认端口3260）" class="headerlink" title="0.Internet SCSI,网际SCSI接口 （默认端口3260）"></a>0.Internet SCSI,网际SCSI接口 （默认端口3260）</h4><p>一种基于C&#x2F;S架构的虚拟磁盘技术<br>服务器提供磁盘空间,客户机连接并当成本地磁盘使用</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/08/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/20-iSCSI%E7%A3%81%E7%9B%98/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/19-交换分区" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/19/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/19-%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA/">19-交换分区</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-19T03:00:52.000Z" itemprop="datePublished">2021年08月19日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/19/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/19-%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-交换空间-虚拟内存"><a href="#1-交换空间-虚拟内存" class="headerlink" title="1.交换空间(虚拟内存)"></a>1.交换空间(虚拟内存)</h4><p>当真实物理内存不够用时,会启用交换空间,将不常用的内存数据暂时放入到,交换空间中,缓解内存不足<br>利用硬盘的空间来充当交换空间(虚拟内存)</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/08/19/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/19-%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/18-防火墙" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/18/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/18-%E9%98%B2%E7%81%AB%E5%A2%99/">18-防火墙</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-18T03:00:52.000Z" itemprop="datePublished">2021年08月18日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/18/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/18-%E9%98%B2%E7%81%AB%E5%A2%99/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-firewalld服务基础"><a href="#1-firewalld服务基础" class="headerlink" title="1.firewalld服务基础"></a>1.firewalld服务基础</h4><p>系统服务:firewalld<br>管理工具:firewall-cmd、firewall-config</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/08/18/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/18-%E9%98%B2%E7%81%AB%E5%A2%99/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/17-shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/17/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/17-shell/">17-shell</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-17T03:00:52.000Z" itemprop="datePublished">2021年08月17日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/17/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/17-shell/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-shell头部内容"><a href="#1-shell头部内容" class="headerlink" title="1.shell头部内容"></a>1.shell头部内容</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">! /bin/bash</span></span><br><span class="line">ifconfig | head -2</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/08/17/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/17-shell/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/16-NTP时间同步" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/16-NTP%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/">16-NTP时间同步</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-16T03:00:52.000Z" itemprop="datePublished">2021年08月16日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/16-NTP%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-NTP网络时间协议"><a href="#1-NTP网络时间协议" class="headerlink" title="1.NTP网络时间协议"></a>1.NTP网络时间协议</h4><p>Network Time Protocol</p>
+        <h4 id="1-sed"><a href="#1-sed" class="headerlink" title="1.sed"></a>1.sed</h4><p>流式编辑器,可以非交互式修改文本,逐行操作</p>
 <ul>
-<li>NTP服务器为客户机提供标准时间- NTP客户机需要与NTP服务器保持沟通RHEL7客户端的校时服务<br>软件包: chrony<br>配置文件: &#x2F;etc&#x2F;chrony.conf<br>系统服务: chronyd
+<li>使用方法<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">前置命令 | sed 选项 (定址符)指令</span><br><span class="line">sed | 选项 (定址符)指令 文本</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -433,7 +197,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/16-NTP%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/#more">阅读全文</a>
+          <a href="/2021/09/17/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/47-sed/#more">阅读全文</a>
         </p>
       
       
@@ -443,7 +207,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/15-find命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/17-静态文件缓存" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -451,7 +215,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/15-find%E5%91%BD%E4%BB%A4/">15-find命令</a>
+      <a class="p-name article-title" href="/2021/09/17/%E8%BF%90%E7%BB%B4/nginx/17-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E7%BC%93%E5%AD%98/">17-静态文件缓存</a>
     </h1>
   
 
@@ -462,17 +226,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-15T03:00:52.000Z" itemprop="datePublished">2021年08月15日</time>
+  <time class="dt-published" datetime="2021-09-17T03:00:52.000Z" itemprop="datePublished">2021年09月17日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
   </div>
 
       
       
-<a href="/2021/08/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/15-find%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+<a href="/2021/09/17/%E8%BF%90%E7%BB%B4/nginx/17-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E7%BC%93%E5%AD%98/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -482,19 +246,16 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-查找文件"><a href="#1-查找文件" class="headerlink" title="1.查找文件"></a>1.查找文件</h4><p>根据预设的条件递归查找对应的文件</p>
-<ul>
-<li>find [目录] [条件1] [-a and |-o or] [条件2] </li>
-<li>常用条件表示<br>  -type 类型 (f文件、d目录、f快捷方式)”<br>  -name 文档名称<br>  -size +(大于)|-(小于) 文件大小 (k小写、M大写、G大写)<br>  -user 用户名<br>  -mtime 根据文件修改时间
+        <h4 id="1-如果需要处理大量静态文件，可以将文件缓存在内存，下次访问会更快。"><a href="#1-如果需要处理大量静态文件，可以将文件缓存在内存，下次访问会更快。" class="headerlink" title="1.如果需要处理大量静态文件，可以将文件缓存在内存，下次访问会更快。"></a>1.如果需要处理大量静态文件，可以将文件缓存在内存，下次访问会更快。</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">      open_file_cache max=2000 inactive=20s;  //设置服务器最大缓存2000个文件句柄，关闭20秒内无请求的文件句柄</span><br><span class="line">      open_file_cache_valid 60s;           //文件句柄的有效时间是60秒，60秒后过期</span><br><span class="line">      open_file_cache_min_uses 5;           //只有访问次数超过5次会被缓存</span><br><span class="line">      open_file_cache_errors off;          //关闭无缓存报错</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/15-find%E5%91%BD%E4%BB%A4/#more">阅读全文</a>
+          <a href="/2021/09/17/%E8%BF%90%E7%BB%B4/nginx/17-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E7%BC%93%E5%AD%98/#more">阅读全文</a>
         </p>
       
       
@@ -504,7 +265,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/14-逻辑卷管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/46-正则表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -512,7 +273,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/14/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/14-%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86/">14-逻辑卷管理</a>
+      <a class="p-name article-title" href="/2021/09/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/46-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">46-正则表达式</a>
     </h1>
   
 
@@ -523,7 +284,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-14T03:00:52.000Z" itemprop="datePublished">2021年08月14日</time>
+  <time class="dt-published" datetime="2021-09-16T03:00:52.000Z" itemprop="datePublished">2021年09月16日</time>
 </span>
       
   <div class="article-category">
@@ -533,7 +294,7 @@
 
       
       
-<a href="/2021/08/14/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/14-%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86/#comments" class="article-comment-link">
+<a href="/2021/09/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/46-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -543,7 +304,54 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-逻辑卷"><a href="#1-逻辑卷" class="headerlink" title="1.逻辑卷"></a>1.逻辑卷</h4><p>1.整合分散的空间，可以是一个磁盘上的空间，也可以是几个磁盘上的空间<br>2.空间可以扩大，不影响原数据<br><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_2.png" alt="img_2.png"></p>
+        <h4 id="1-基本正则列表-grep"><a href="#1-基本正则列表-grep" class="headerlink" title="1.基本正则列表 (grep)"></a>1.基本正则列表 (grep)</h4><table>
+<thead>
+<tr>
+<th>正则符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>匹配行首</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配行尾</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>集台，匹配集合中的任意单个字符</td>
+</tr>
+<tr>
+<td>[^]</td>
+<td>对集台取反</td>
+</tr>
+<tr>
+<td>. 点</td>
+<td>匹配任意单个字符</td>
+</tr>
+<tr>
+<td>*米号</td>
+<td>匹配前一个字符任意次数 [不允许单独使用]</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配前一个字符n到m次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>匹配前一个字符 n 次</td>
+</tr>
+<tr>
+<td>{n, }</td>
+<td>匹配前一个字符 n 次及以上</td>
+</tr>
+<tr>
+<td>()</td>
+<td>保留</td>
+</tr>
+</tbody></table>
       
     </div>
     <footer class="article-footer">
@@ -552,7 +360,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/14/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/14-%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86/#more">阅读全文</a>
+          <a href="/2021/09/16/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/46-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">阅读全文</a>
         </p>
       
       
@@ -562,7 +370,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/13-磁盘分区" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/16-对页面进行压缩处理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -570,7 +378,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/13/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/13-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/">13-磁盘分区</a>
+      <a class="p-name article-title" href="/2021/09/16/%E8%BF%90%E7%BB%B4/nginx/16-%E5%AF%B9%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9%E5%A4%84%E7%90%86/">16-对页面进行压缩处理</a>
     </h1>
   
 
@@ -581,17 +389,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-13T03:00:52.000Z" itemprop="datePublished">2021年08月13日</time>
+  <time class="dt-published" datetime="2021-09-16T03:00:52.000Z" itemprop="datePublished">2021年09月16日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
   </div>
 
       
       
-<a href="/2021/08/13/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/13-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/#comments" class="article-comment-link">
+<a href="/2021/09/16/%E8%BF%90%E7%BB%B4/nginx/16-%E5%AF%B9%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9%E5%A4%84%E7%90%86/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -601,16 +409,16 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-显示磁盘信息"><a href="#1-显示磁盘信息" class="headerlink" title="1.显示磁盘信息"></a>1.显示磁盘信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[dong@master t1]$ lsblk</span><br><span class="line">NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda               8:0    0   30G  0 disk</span><br><span class="line">├─sda1            8:1    0    1G  0 part /boot</span><br><span class="line">└─sda2            8:2    0   29G  0 part</span><br><span class="line">  ├─centos-root 253:0    0   26G  0 lvm  /</span><br><span class="line">  └─centos-swap 253:1    0    3G  0 lvm  [SWAP]</span><br><span class="line">sr0              11:0    1  4.4G  0 rom</span><br></pre></td></tr></table></figure>
+        <h4 id="1-修改Nginx配置文件"><a href="#1-修改Nginx配置文件" class="headerlink" title="1.修改Nginx配置文件"></a>1.修改Nginx配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">      </span><br><span class="line">      gzip on;  //开启压缩</span><br><span class="line">      gzip_min length 1000; //小文件不压缩</span><br><span class="line">      gzip_comp_level 4;   //压缩比率 1~9,越高压缩力度越强，压缩时间也越长；</span><br><span class="line">      gzip_types text/plain text/css ; //对特定文件压缩，类型参考下面 ，媒体文件不要压缩</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/13/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/13-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/#more">阅读全文</a>
+          <a href="/2021/09/16/%E8%BF%90%E7%BB%B4/nginx/16-%E5%AF%B9%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9%E5%A4%84%E7%90%86/#more">阅读全文</a>
         </p>
       
       
@@ -620,7 +428,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/12-软件包管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/45-shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -628,7 +436,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/12/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/12-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/">12-软件包管理</a>
+      <a class="p-name article-title" href="/2021/09/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/45-shell/">45-shell</a>
     </h1>
   
 
@@ -639,7 +447,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-12T03:00:52.000Z" itemprop="datePublished">2021年08月12日</time>
+  <time class="dt-published" datetime="2021-09-15T03:00:52.000Z" itemprop="datePublished">2021年09月15日</time>
 </span>
       
   <div class="article-category">
@@ -649,7 +457,7 @@
 
       
       
-<a href="/2021/08/12/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/12-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/#comments" class="article-comment-link">
+<a href="/2021/09/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/45-shell/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -659,7 +467,62 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-wget"><a href="#1-wget" class="headerlink" title="1.wget"></a>1.wget</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 软件路径 -O /目录/新文件名</span><br></pre></td></tr></table></figure>
+        <h4 id="1-快捷键"><a href="#1-快捷键" class="headerlink" title="1.快捷键"></a>1.快捷键</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl+A</td>
+<td>将光标移至行首</td>
+</tr>
+<tr>
+<td>Ctr+E</td>
+<td>将光标移至行尾</td>
+</tr>
+<tr>
+<td>Ctrl+C</td>
+<td>终止提作</td>
+</tr>
+<tr>
+<td>Ctn+D</td>
+<td>一般为结束输入</td>
+</tr>
+<tr>
+<td>Ctrl+M</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>Ctr+U</td>
+<td>删除光标至行首的所有内容</td>
+</tr>
+<tr>
+<td>Ctrl+W</td>
+<td>删除光标前面的一个单词( 空格分隔)</td>
+</tr>
+<tr>
+<td>Ctr+S</td>
+<td>挂起，冻结终端</td>
+</tr>
+<tr>
+<td>Ctrl+Q</td>
+<td>解除东结终端</td>
+</tr>
+<tr>
+<td>Alt+.</td>
+<td>使用前一个命令的最后一个词</td>
+</tr>
+<tr>
+<td>方向键( 上下键 )</td>
+<td>历史命令</td>
+</tr>
+<tr>
+<td>Tab键</td>
+<td>补齐命令、选项、路径与文件名</td>
+</tr>
+</tbody></table>
       
     </div>
     <footer class="article-footer">
@@ -668,7 +531,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/08/12/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/12-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86/#more">阅读全文</a>
+          <a href="/2021/09/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/45-shell/#more">阅读全文</a>
         </p>
       
       
@@ -681,7 +544,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
 </nav>
 
 

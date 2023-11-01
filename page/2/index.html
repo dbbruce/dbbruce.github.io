@@ -89,6 +89,238 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-python/异步编程/异步迭代器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/">异步迭代器</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-14T13:25:10.000Z" itemprop="datePublished">2023年08月14日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+  </div>
+
+      
+      
+<a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-异步迭代器"><a href="#1-异步迭代器" class="headerlink" title="1.异步迭代器"></a>1.异步迭代器</h4><p>实现了__aiter__()和__anext__()方法的对象。<br><strong>anext</strong>()必须返回一个awaitable 对象。<br>async for 会处理异步选代器的__anext__()方法所返回的可等待对象，直到其引发一个 StopAsyncIteration 异常。<br>什么是异步可迭代对象?<br>可在 async for 语句中被使用的对象。必须通过它的 <strong>aiter</strong>()方法返回一个asynchronous_iterator。</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="tag">迭代器</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-python/异步编程/async&amp;await实现协程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/13/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/async&await%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/">async&amp;await实现协程</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-13T14:25:10.000Z" itemprop="datePublished">2023年08月13日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+  </div>
+
+      
+      
+<a href="/2023/08/13/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/async&await%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-注意"><a href="#1-注意" class="headerlink" title="1.注意"></a>1.注意</h4><p>async, await只能用于python3.5及之后的版本</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/async/" rel="tag">async</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/await/" rel="tag">await</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2023/08/13/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/async&await%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-python/异步编程/asyncio实现协程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/12/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/asyncio%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/">asyncio实现协程</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-12T14:25:10.000Z" itemprop="datePublished">2023年08月12日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+  </div>
+
+      
+      
+<a href="/2023/08/12/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/asyncio%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-注意"><a href="#1-注意" class="headerlink" title="1.注意"></a>1.注意</h4><p>asyncio只有在python3.4及之后的版本才能使用</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/asyncio/" rel="tag">asyncio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2023/08/12/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/asyncio%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-python/异步编程/yield实现协程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/11/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/yield%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/">yield实现协程</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-11T15:15:10.000Z" itemprop="datePublished">2023年08月11日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+  </div>
+
+      
+      
+<a href="/2023/08/11/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/yield%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-实现"><a href="#1-实现" class="headerlink" title="1.实现"></a>1.实现</h4>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yield/" rel="tag">yield</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2023/08/11/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/yield%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-python/异步编程/协程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -205,474 +437,10 @@
 </article>
 
 
-  <article id="post-python/基础/python __call__基础知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/10/python/%E5%9F%BA%E7%A1%80/python%20__call__%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">__call__方法</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/08/10/python/%E5%9F%BA%E7%A1%80/python%20__call__%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h6 id="Python-类中一个非常特殊的实例方法，即-call-。该方法的功能类似于在类中重载-运算符，使得类实例对象可以像调用普通函数那样，以“对象名-”的形式使用。"><a href="#Python-类中一个非常特殊的实例方法，即-call-。该方法的功能类似于在类中重载-运算符，使得类实例对象可以像调用普通函数那样，以“对象名-”的形式使用。" class="headerlink" title="Python 类中一个非常特殊的实例方法，即 call()。该方法的功能类似于在类中重载 () 运算符，使得类实例对象可以像调用普通函数那样，以“对象名()”的形式使用。"></a>Python 类中一个非常特殊的实例方法，即 <strong>call</strong>()。该方法的功能类似于在类中重载 () 运算符，使得类实例对象可以像调用普通函数那样，以“对象名()”的形式使用。</h6>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" rel="tag">魔术方法</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/08/10/python/%E5%9F%BA%E7%A1%80/python%20__call__%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-爬虫/编码/百度翻译-中文乱码问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/">百度翻译-中文乱码问题</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a>
-  </div>
-
-      
-      
-<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="解决百度时乱码的问题"><a href="#解决百度时乱码的问题" class="headerlink" title="解决百度时乱码的问题"></a>解决百度时乱码的问题</h4>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A0%81/" rel="tag">编码</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-爬虫/编码/设置爬取页面的编码格式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E8%AE%BE%E7%BD%AE%E7%88%AC%E5%8F%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">设置爬取页面的编码格式</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a>
-  </div>
-
-      
-      
-<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E8%AE%BE%E7%BD%AE%E7%88%AC%E5%8F%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnicodeDecodeError： &#x27;utf-8&#x27; codec can&#x27;t decode byte 0xcd in position 956: invalid continuation byte</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A0%81/" rel="tag">编码</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E8%AE%BE%E7%BD%AE%E7%88%AC%E5%8F%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-爬虫/反爬/搜狗-UA伪装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E6%90%9C%E7%8B%97-UA%E4%BC%AA%E8%A3%85/">搜狗-UA伪装</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a>
-  </div>
-
-      
-      
-<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E6%90%9C%E7%8B%97-UA%E4%BC%AA%E8%A3%85/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-何为反爬虫机制"><a href="#1-何为反爬虫机制" class="headerlink" title="1.何为反爬虫机制"></a>1.何为反爬虫机制</h4><p>反爬虫机制是指网站为了限制爬虫工具的使用，而采取的各种技术手段。这些技术手段可以有效防止爬虫获取网站数据，维护网站的正常运营和安全。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E7%88%AC/" rel="tag">反爬</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E6%90%9C%E7%8B%97-UA%E4%BC%AA%E8%A3%85/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-爬虫/反爬/爬虫-接口验证方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%88%AC%E8%99%AB-%E6%8E%A5%E5%8F%A3%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95/">爬虫-接口验证方法</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a>
-  </div>
-
-      
-      
-<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%88%AC%E8%99%AB-%E6%8E%A5%E5%8F%A3%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1、接口验证，也叫xhr方法"><a href="#1、接口验证，也叫xhr方法" class="headerlink" title="1、接口验证，也叫xhr方法"></a>1、接口验证，也叫xhr方法</h4><h4 id="2、步骤"><a href="#2、步骤" class="headerlink" title="2、步骤"></a>2、步骤</h4><h5 id="1-打开chrome，打开network，找到接口"><a href="#1-打开chrome，打开network，找到接口" class="headerlink" title="1.打开chrome，打开network，找到接口"></a>1.打开chrome，打开network，找到接口</h5>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E7%88%AC/" rel="tag">反爬</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%88%AC%E8%99%AB-%E6%8E%A5%E5%8F%A3%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-爬虫/反爬/策略与防盗链-Referrer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%AD%96%E7%95%A5%E4%B8%8E%E9%98%B2%E7%9B%97%E9%93%BE-Referrer/">策略与防盗链-Referrer</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a>
-  </div>
-
-      
-      
-<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%AD%96%E7%95%A5%E4%B8%8E%E9%98%B2%E7%9B%97%E9%93%BE-Referrer/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Referrer策略"><a href="#1-Referrer策略" class="headerlink" title="1.Referrer策略"></a>1.Referrer策略</h4><p>Referrer策略用于控制浏览器在何种情况下发送referrer信息。该策略可以保护用户的隐私，但也可以使得目前绝大多数站点的防盗链机制失效。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E7%88%AC/" rel="tag">反爬</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB%E7%B1%BB/" rel="tag">爬虫类</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%8F%8D%E7%88%AC/%E7%AD%96%E7%95%A5%E4%B8%8E%E9%98%B2%E7%9B%97%E9%93%BE-Referrer/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-网络/客户端访问服务器异常" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/10/%E7%BD%91%E7%BB%9C/%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%82%E5%B8%B8/">客户端访问服务器异常</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a> > <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a>
-  </div>
-
-      
-      
-<a href="/2023/08/10/%E7%BD%91%E7%BB%9C/%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%82%E5%B8%B8/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/network/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A51.png" alt="服务器异常排查1.png"></p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/08/10/%E7%BD%91%E7%BB%9C/%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%82%E5%B8%B8/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-python/异步编程/greenlet实现协程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/09/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/greenlet%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/">greenlet实现协程</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-09T12:15:10.000Z" itemprop="datePublished">2023年08月09日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
-  </div>
-
-      
-      
-<a href="/2023/08/09/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/greenlet%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-包安装"><a href="#1-包安装" class="headerlink" title="1.包安装"></a>1.包安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install greenlet</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/greenlet/" rel="tag">greenlet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/08/09/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/greenlet%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+<a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
 </nav>
 
 

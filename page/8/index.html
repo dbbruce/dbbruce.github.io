@@ -89,7 +89,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/nginx/16-对页面进行压缩处理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/zabbix/5.0/06-企业微信告警" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -97,7 +97,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/16/%E8%BF%90%E7%BB%B4/nginx/16-%E5%AF%B9%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9%E5%A4%84%E7%90%86/">16-对页面进行压缩处理</a>
+      <a class="p-name article-title" href="/2022/02/06/%E8%BF%90%E7%BB%B4/zabbix/5.0/06-%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6/">06-企业微信告警</a>
     </h1>
   
 
@@ -108,17 +108,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-16T03:00:52.000Z" itemprop="datePublished">2021年09月16日</time>
+  <time class="dt-published" datetime="2022-02-06T12:00:00.000Z" itemprop="datePublished">2022年02月06日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
   </div>
 
       
       
-<a href="/2021/09/16/%E8%BF%90%E7%BB%B4/nginx/16-%E5%AF%B9%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9%E5%A4%84%E7%90%86/#comments" class="article-comment-link">
+<a href="/2022/02/06/%E8%BF%90%E7%BB%B4/zabbix/5.0/06-%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -128,16 +128,16 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-修改Nginx配置文件"><a href="#1-修改Nginx配置文件" class="headerlink" title="1.修改Nginx配置文件"></a>1.修改Nginx配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">      </span><br><span class="line">      gzip on;  //开启压缩</span><br><span class="line">      gzip_min length 1000; //小文件不压缩</span><br><span class="line">      gzip_comp_level 4;   //压缩比率 1~9,越高压缩力度越强，压缩时间也越长；</span><br><span class="line">      gzip_types text/plain text/css ; //对特定文件压缩，类型参考下面 ，媒体文件不要压缩</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h4 id="1-查看脚本的路径"><a href="#1-查看脚本的路径" class="headerlink" title="1.查看脚本的路径"></a>1.查看脚本的路径</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# rpm -ql zabbix-server-mysql |grep alert</span><br><span class="line">/usr/lib/zabbix/alertscripts</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix5-0/" rel="tag">zabbix5.0</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/16/%E8%BF%90%E7%BB%B4/nginx/16-%E5%AF%B9%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9%E5%A4%84%E7%90%86/#more">阅读全文</a>
+          <a href="/2022/02/06/%E8%BF%90%E7%BB%B4/zabbix/5.0/06-%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6/#more">阅读全文</a>
         </p>
       
       
@@ -147,7 +147,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/45-shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/zabbix/5.0/05-邮件报警" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -155,7 +155,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/45-shell/">45-shell</a>
+      <a class="p-name article-title" href="/2022/02/05/%E8%BF%90%E7%BB%B4/zabbix/5.0/05-%E9%82%AE%E4%BB%B6%E6%8A%A5%E8%AD%A6/">05-邮件报警</a>
     </h1>
   
 
@@ -166,17 +166,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-15T03:00:52.000Z" itemprop="datePublished">2021年09月15日</time>
+  <time class="dt-published" datetime="2022-02-05T12:00:00.000Z" itemprop="datePublished">2022年02月05日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
   </div>
 
       
       
-<a href="/2021/09/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/45-shell/#comments" class="article-comment-link">
+<a href="/2022/02/05/%E8%BF%90%E7%BB%B4/zabbix/5.0/05-%E9%82%AE%E4%BB%B6%E6%8A%A5%E8%AD%A6/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -186,71 +186,16 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-快捷键"><a href="#1-快捷键" class="headerlink" title="1.快捷键"></a>1.快捷键</h4><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Ctrl+A</td>
-<td>将光标移至行首</td>
-</tr>
-<tr>
-<td>Ctr+E</td>
-<td>将光标移至行尾</td>
-</tr>
-<tr>
-<td>Ctrl+C</td>
-<td>终止提作</td>
-</tr>
-<tr>
-<td>Ctn+D</td>
-<td>一般为结束输入</td>
-</tr>
-<tr>
-<td>Ctrl+M</td>
-<td>回车</td>
-</tr>
-<tr>
-<td>Ctr+U</td>
-<td>删除光标至行首的所有内容</td>
-</tr>
-<tr>
-<td>Ctrl+W</td>
-<td>删除光标前面的一个单词( 空格分隔)</td>
-</tr>
-<tr>
-<td>Ctr+S</td>
-<td>挂起，冻结终端</td>
-</tr>
-<tr>
-<td>Ctrl+Q</td>
-<td>解除东结终端</td>
-</tr>
-<tr>
-<td>Alt+.</td>
-<td>使用前一个命令的最后一个词</td>
-</tr>
-<tr>
-<td>方向键( 上下键 )</td>
-<td>历史命令</td>
-</tr>
-<tr>
-<td>Tab键</td>
-<td>补齐命令、选项、路径与文件名</td>
-</tr>
-</tbody></table>
+        <h4 id="1-配置发件人"><a href="#1-配置发件人" class="headerlink" title="1.配置发件人"></a>1.配置发件人</h4><p><img src="/../../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/zabbix/5.0/img_29.png" alt="img_29.png"></p>
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix5-0/" rel="tag">zabbix5.0</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/45-shell/#more">阅读全文</a>
+          <a href="/2022/02/05/%E8%BF%90%E7%BB%B4/zabbix/5.0/05-%E9%82%AE%E4%BB%B6%E6%8A%A5%E8%AD%A6/#more">阅读全文</a>
         </p>
       
       
@@ -260,7 +205,7 @@
 </article>
 
 
-  <article id="post-运维/nginx/15-日志切分" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/zabbix/5.0/03-自定义key" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -268,7 +213,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/15/%E8%BF%90%E7%BB%B4/nginx/15-%E6%97%A5%E5%BF%97%E5%88%87%E5%88%86/">15-日志切分</a>
+      <a class="p-name article-title" href="/2022/02/04/%E8%BF%90%E7%BB%B4/zabbix/5.0/03-%E8%87%AA%E5%AE%9A%E4%B9%89key/">03-自定义key</a>
     </h1>
   
 
@@ -279,17 +224,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-15T03:00:52.000Z" itemprop="datePublished">2021年09月15日</time>
+  <time class="dt-published" datetime="2022-02-04T12:00:00.000Z" itemprop="datePublished">2022年02月04日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
   </div>
 
       
       
-<a href="/2021/09/15/%E8%BF%90%E7%BB%B4/nginx/15-%E6%97%A5%E5%BF%97%E5%88%87%E5%88%86/#comments" class="article-comment-link">
+<a href="/2022/02/04/%E8%BF%90%E7%BB%B4/zabbix/5.0/03-%E8%87%AA%E5%AE%9A%E4%B9%89key/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -299,16 +244,18 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="手动切分"><a href="#手动切分" class="headerlink" title="手动切分"></a>手动切分</h4><h5 id="1-重命名旧日志文件"><a href="#1-重命名旧日志文件" class="headerlink" title="1. 重命名旧日志文件"></a>1. 重命名旧日志文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# mv /usr/local/nginx/logs/access.log /usr/local/nginx/logs/access.log.2</span><br><span class="line">[root@master ~]# mv /usr/local/nginx/logs/error.log  /usr/local/nginx/logs/error.log.2</span><br></pre></td></tr></table></figure>
+        <h4 id="1-使用key获取信息"><a href="#1-使用key获取信息" class="headerlink" title="1.使用key获取信息"></a>1.使用key获取信息</h4><ul>
+<li>系统自带的key<br><img src="/../../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/zabbix/5.0/img_2.png" alt="img_2.png"></li>
+<li>key的使用<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# zabbix_get -s &#x27;192.168.1.22&#x27; -p 10050 -k &#x27;vm.memory.size[available]&#x27;</span><br><span class="line">1554325504</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix5-0/" rel="tag">zabbix5.0</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/15/%E8%BF%90%E7%BB%B4/nginx/15-%E6%97%A5%E5%BF%97%E5%88%87%E5%88%86/#more">阅读全文</a>
+          <a href="/2022/02/04/%E8%BF%90%E7%BB%B4/zabbix/5.0/03-%E8%87%AA%E5%AE%9A%E4%B9%89key/#more">阅读全文</a>
         </p>
       
       
@@ -318,7 +265,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/44-网络管理-vrrp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/zabbix/5.0/04-自动发现自动注册" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -326,7 +273,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/14/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/44-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-vrrp/">44-网络管理-vrrp</a>
+      <a class="p-name article-title" href="/2022/02/04/%E8%BF%90%E7%BB%B4/zabbix/5.0/04-%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8C/">04-自动发现与自动注册</a>
     </h1>
   
 
@@ -337,17 +284,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-14T03:00:52.000Z" itemprop="datePublished">2021年09月14日</time>
+  <time class="dt-published" datetime="2022-02-04T12:00:00.000Z" itemprop="datePublished">2022年02月04日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
   </div>
 
       
       
-<a href="/2021/09/14/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/44-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-vrrp/#comments" class="article-comment-link">
+<a href="/2022/02/04/%E8%BF%90%E7%BB%B4/zabbix/5.0/04-%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8C/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -357,16 +304,17 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-vrrp"><a href="#1-vrrp" class="headerlink" title="1.vrrp"></a>1.vrrp</h4><p>虚拟路由几余协议，用来做网关备份,增加网络可靠<br>个人理解就是：使用2个路由，创建一个虚拟路由，相互做备份</p>
+        <h4 id="1-自动发现，自动注册"><a href="#1-自动发现，自动注册" class="headerlink" title="1.自动发现，自动注册"></a>1.自动发现，自动注册</h4><ul>
+<li>准备好一台客户端机器  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# systemctl is-active zabbix-agent2</span><br><span class="line">active</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix5-0/" rel="tag">zabbix5.0</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/14/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/44-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-vrrp/#more">阅读全文</a>
+          <a href="/2022/02/04/%E8%BF%90%E7%BB%B4/zabbix/5.0/04-%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8C/#more">阅读全文</a>
         </p>
       
       
@@ -376,7 +324,7 @@
 </article>
 
 
-  <article id="post-运维/nginx/14-图片加缓冲" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/zabbix/5.0/02-修改图形乱码问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -384,7 +332,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/14/%E8%BF%90%E7%BB%B4/nginx/14-%E5%9B%BE%E7%89%87%E5%8A%A0%E7%BC%93%E5%86%B2/">14-图片加缓冲</a>
+      <a class="p-name article-title" href="/2022/02/02/%E8%BF%90%E7%BB%B4/zabbix/5.0/02-%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/">02-修改图形乱码问题</a>
     </h1>
   
 
@@ -395,17 +343,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-14T03:00:52.000Z" itemprop="datePublished">2021年09月14日</time>
+  <time class="dt-published" datetime="2022-02-02T12:00:00.000Z" itemprop="datePublished">2022年02月02日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
   </div>
 
       
       
-<a href="/2021/09/14/%E8%BF%90%E7%BB%B4/nginx/14-%E5%9B%BE%E7%89%87%E5%8A%A0%E7%BC%93%E5%86%B2/#comments" class="article-comment-link">
+<a href="/2022/02/02/%E8%BF%90%E7%BB%B4/zabbix/5.0/02-%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -415,17 +363,16 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-图片加缓存"><a href="#1-图片加缓存" class="headerlink" title="1.图片加缓存"></a>1.图片加缓存</h4><h5 id="1-修改nginx"><a href="#1-修改nginx" class="headerlink" title="1. 修改nginx"></a>1. 修改nginx</h5><p>在server里新增</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location ~* \.(jpg|jpeg|gif)&#123;  #~*  正则忽略大小写</span><br><span class="line"></span><br><span class="line">        expires 30d;  # 30天</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p><img src="/../../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/zabbix/5.0/img.png" alt="img.png"></p>
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix5-0/" rel="tag">zabbix5.0</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/14/%E8%BF%90%E7%BB%B4/nginx/14-%E5%9B%BE%E7%89%87%E5%8A%A0%E7%BC%93%E5%86%B2/#more">阅读全文</a>
+          <a href="/2022/02/02/%E8%BF%90%E7%BB%B4/zabbix/5.0/02-%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/#more">阅读全文</a>
         </p>
       
       
@@ -435,7 +382,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/43-网络管理-stp生成树协议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/zabbix/5.0/01-zabbix5.0-阿里源安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -443,7 +390,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/13/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/43-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-stp%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AE/">43-网络管理-stp生成树协议</a>
+      <a class="p-name article-title" href="/2022/02/01/%E8%BF%90%E7%BB%B4/zabbix/5.0/01-zabbix5.0-%E9%98%BF%E9%87%8C%E6%BA%90%E5%AE%89%E8%A3%85/">01-zabbix5.0-阿里源安装</a>
     </h1>
   
 
@@ -454,17 +401,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-13T03:00:52.000Z" itemprop="datePublished">2021年09月13日</time>
+  <time class="dt-published" datetime="2022-02-01T12:00:00.000Z" itemprop="datePublished">2022年02月01日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
   </div>
 
       
       
-<a href="/2021/09/13/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/43-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-stp%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AE/#comments" class="article-comment-link">
+<a href="/2022/02/01/%E8%BF%90%E7%BB%B4/zabbix/5.0/01-zabbix5.0-%E9%98%BF%E9%87%8C%E6%BA%90%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -474,251 +421,24 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-注意这个，会形成数据风暴，导致网络瘫痪"><a href="#1-注意这个，会形成数据风暴，导致网络瘫痪" class="headerlink" title="1.注意这个，会形成数据风暴，导致网络瘫痪"></a>1.注意这个，会形成数据风暴，导致网络瘫痪</h4><p>环形交换机</p>
-<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_28.png" alt="img_28.png"></p>
+        <p>阿里源地址：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/">https://developer.aliyun.com/mirror/</a></p>
+</blockquote>
+<blockquote>
+<p>测试环境信息：</p>
+<p>zabbix-server:192.168.1.12:Admin+123456</p>
+<p>mysql:root+123456，zabbix+zabbix</p>
+</blockquote>
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix5-0/" rel="tag">zabbix5.0</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/13/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/43-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-stp%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AE/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/nginx/13-指标统计" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/13/%E8%BF%90%E7%BB%B4/nginx/13-%E6%8C%87%E6%A0%87%E7%BB%9F%E8%AE%A1/">13-指标统计</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-13T03:00:52.000Z" itemprop="datePublished">2021年09月13日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/13/%E8%BF%90%E7%BB%B4/nginx/13-%E6%8C%87%E6%A0%87%E7%BB%9F%E8%AE%A1/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-nginx指标"><a href="#1-nginx指标" class="headerlink" title="1.nginx指标"></a>1.nginx指标</h4><p>并发量<br>总连接数<br>等待<br>PV page view 页面查看次数<br>UV user view 用户量</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/13/%E8%BF%90%E7%BB%B4/nginx/13-%E6%8C%87%E6%A0%87%E7%BB%9F%E8%AE%A1/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/42-网络管理-easyip" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/12/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/42-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-easyip/">42-网络管理-easy ip</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-12T03:00:52.000Z" itemprop="datePublished">2021年09月12日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/12/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/42-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-easyip/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-easy-ip"><a href="#1-easy-ip" class="headerlink" title="1.easy ip"></a>1.easy ip</h4><p>用在仅需要由内到外的访问,1对多转换</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/12/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/42-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-easyip/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/nginx/12-nginx状态码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/12/%E8%BF%90%E7%BB%B4/nginx/12-nginx%E7%8A%B6%E6%80%81%E7%A0%81/">12-nginx状态码</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-12T03:00:52.000Z" itemprop="datePublished">2021年09月12日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/12/%E8%BF%90%E7%BB%B4/nginx/12-nginx%E7%8A%B6%E6%80%81%E7%A0%81/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-404报错"><a href="#1-404报错" class="headerlink" title="1.404报错"></a>1.404报错</h4><p>自定义报错页面</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">charset utf-8; //仅需要中文时需要</span><br><span class="line">error_page 404 /404.html:   //自定义错误页面</span><br><span class="line">vim ../html/404.html</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/12/%E8%BF%90%E7%BB%B4/nginx/12-nginx%E7%8A%B6%E6%80%81%E7%A0%81/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/41-网络管理-NAT" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/11/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/41-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-NAT/">41-网络管理-NAT</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-11T03:00:52.000Z" itemprop="datePublished">2021年09月11日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/11/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/41-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-NAT/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-NAT"><a href="#1-NAT" class="headerlink" title="1.NAT"></a>1.NAT</h4><p>地址转换,将内部与外部地址进行转换,实现内外网互通</p>
-<h4 id="2-内部私有地址"><a href="#2-内部私有地址" class="headerlink" title="2.内部私有地址"></a>2.内部私有地址</h4><p>a 10.0.0. ~ 10.255.255.255<br>b 172.16.0.0<del>172.31.255.255<br>c 192.168.0.0</del>192.168.255.255</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/11/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/41-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-NAT/#more">阅读全文</a>
+          <a href="/2022/02/01/%E8%BF%90%E7%BB%B4/zabbix/5.0/01-zabbix5.0-%E9%98%BF%E9%87%8C%E6%BA%90%E5%AE%89%E8%A3%85/#more">阅读全文</a>
         </p>
       
       
@@ -731,7 +451,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
 </nav>
 
 

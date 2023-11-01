@@ -89,7 +89,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/nginx/06-配置证书" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/00-错误集锦-socket: Too many open files (24)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -97,7 +97,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/">06-配置证书</a>
+      <a class="p-name article-title" href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-socket:%20Too%20many%20open%20files%20(24)/">00-错误集锦-socket-Too many open files (24)</a>
     </h1>
   
 
@@ -108,7 +108,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-06T03:00:52.000Z" itemprop="datePublished">2021年09月06日</time>
+  <time class="dt-published" datetime="2021-10-01T03:00:52.000Z" itemprop="datePublished">2021年10月01日</time>
 </span>
       
   <div class="article-category">
@@ -118,7 +118,7 @@
 
       
       
-<a href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/#comments" class="article-comment-link">
+<a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-socket:%20Too%20many%20open%20files%20(24)/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -128,14 +128,7 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-名词解释"><a href="#1-名词解释" class="headerlink" title="1.名词解释"></a>1.名词解释</h4><ul>
-<li>私钥 自己生成</li>
-<li>CSR公钥  由私钥生成</li>
-<li>CRT证书  公钥 + 签名</li>
-<li>证书 server.crt 文件就是证书</li>
-<li>签名 使用私钥key与公钥csr进行证书crt生成的构成叫签名</li>
-</ul>
-<p>注意：证书都是买的，个人的浏览器不认同</p>
+        <h4 id="1-socket-Too-many-open-files-24"><a href="#1-socket-Too-many-open-files-24" class="headerlink" title="1.socket: Too many open files (24)"></a>1.socket: Too many open files (24)</h4><h5 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dbbruce@dbburce githubblog % ab -n 2000 -c 2000 http://www.a.com/</span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 1903618 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking www.a.com (be patient)</span><br><span class="line">socket: Too many open files (24)</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -144,7 +137,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/#more">阅读全文</a>
+          <a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-socket:%20Too%20many%20open%20files%20(24)/#more">阅读全文</a>
         </p>
       
       
@@ -154,7 +147,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/35-Cobbler部署" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/00-错误集锦-414 Request-URI Too Large" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -162,7 +155,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/35-Cobbler%E9%83%A8%E7%BD%B2/">35-Cobbler部署</a>
+      <a class="p-name article-title" href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-414%20Request-URI%20Too%20Large/">00-错误集锦-414 Request-URI Too Large</a>
     </h1>
   
 
@@ -173,17 +166,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-05T03:00:52.000Z" itemprop="datePublished">2021年09月05日</time>
+  <time class="dt-published" datetime="2021-10-01T03:00:52.000Z" itemprop="datePublished">2021年10月01日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
   </div>
 
       
       
-<a href="/2021/09/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/35-Cobbler%E9%83%A8%E7%BD%B2/#comments" class="article-comment-link">
+<a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-414%20Request-URI%20Too%20Large/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -193,13 +186,134 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-Cobbler简介"><a href="#1-Cobbler简介" class="headerlink" title="1.Cobbler简介"></a>1.Cobbler简介</h4><p>基本概念</p>
+        <h4 id="1-414-Request-URI-Too-Large"><a href="#1-414-Request-URI-Too-Large" class="headerlink" title="1.414 Request-URI Too Large"></a>1.414 Request-URI Too Large</h4><h5 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;414 Request-URI Too Large&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;center&gt;&lt;h1&gt;414 Request-URI Too Large&lt;/h1&gt;&lt;/center&gt;</span><br><span class="line">&lt;hr&gt;&lt;center&gt;nginx/1.22.1&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-414%20Request-URI%20Too%20Large/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/58-制作本地yum源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/">58-制作本地yum源</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-28T03:00:52.000Z" itemprop="datePublished">2021年09月28日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="构建本地yum源"><a href="#构建本地yum源" class="headerlink" title="构建本地yum源"></a>构建本地yum源</h2><p>构建本地yum源，然后通过yum 进行安装。</p>
+<ol>
+<li>准备rpm包<br>rpm包源建议使用对应的iso文件进行解压获得。</li>
+<li>安装 createrepo 工具
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/57-haproxy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/">57-haproxy</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-27T03:00:52.000Z" itemprop="datePublished">2021年09月27日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="haproxy"><a href="#haproxy" class="headerlink" title="haproxy"></a>haproxy</h2><p>优点</p>
 <ul>
-<li>Cobbler是一款快速的网络系统部署工具</li>
-<li>集中管理所需服务，如DHCP、DNS、TFTP、Web</li>
-<li>Cobbler内部集成了一个镜像版本仓库</li>
-<li>Cobbler内部集成了一个ks应答文件仓库</li>
-<li>Cobbler还提供了包括yum源管理、Web界面管理API接口、电源管理等功能
+<li>支持session、cookie功能</li>
+<li>可以通过url进行健康检查</li>
+<li>效率、负载均衡速度，高于Nginx，低于LVS</li>
+<li>HAProxy支持TCP，可以对MySQL进行负载均衡</li>
+<li>调度算法丰富<br>缺点</li>
+<li>正则弱于Nginx</li>
+<li>日志依赖于syslogd
       
     </div>
     <footer class="article-footer">
@@ -208,7 +322,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/35-Cobbler%E9%83%A8%E7%BD%B2/#more">阅读全文</a>
+          <a href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/#more">阅读全文</a>
         </p>
       
       
@@ -218,7 +332,7 @@
 </article>
 
 
-  <article id="post-运维/nginx/05-加密和解密" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/56-keepalived" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -226,7 +340,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/">05-加密和解密</a>
+      <a class="p-name article-title" href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/">56-keepalived</a>
     </h1>
   
 
@@ -237,65 +351,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-05T03:00:52.000Z" itemprop="datePublished">2021年09月05日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-加密算法一般分为对称算法、非对称算法、信息摘要"><a href="#1-加密算法一般分为对称算法、非对称算法、信息摘要" class="headerlink" title="1.加密算法一般分为对称算法、非对称算法、信息摘要"></a>1.加密算法一般分为对称算法、非对称算法、信息摘要</h4><p>对称算法有 : AES、DES，主要应用在单机数据加密<br>非对称算法有 : RSA、DSA，主要应用在网络数据加密<br>信息摘要:MD5、sha256，主要应用在数据完整性校验</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/34-inotify监控" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/34-inotify%E7%9B%91%E6%8E%A7/">34-inotify监控目录内容变化</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-04T03:00:52.000Z" itemprop="datePublished">2021年09月04日</time>
+  <time class="dt-published" datetime="2021-09-26T03:00:52.000Z" itemprop="datePublished">2021年09月26日</time>
 </span>
       
   <div class="article-category">
@@ -305,7 +361,7 @@
 
       
       
-<a href="/2021/09/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/34-inotify%E7%9B%91%E6%8E%A7/#comments" class="article-comment-link">
+<a href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -315,12 +371,7 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-安装inotify"><a href="#1-安装inotify" class="headerlink" title="1.安装inotify"></a>1.安装inotify</h4><ul>
-<li>步骤1:安装make与gcc,开发工具<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">]# </span><span class="language-bash">yum -y install make gcc</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>步骤2:tar解包,释放源代码至指定目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">]# </span><span class="language-bash">tar -xf /tools/inotify-tools-3.13.tar.gz -C /usr/local</span></span><br></pre></td></tr></table></figure></li>
-<li>步骤3:&#x2F;configure 配置,指定安装目录&#x2F;功能模块等选项<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">]# </span><span class="language-bash"><span class="built_in">cd</span> /usr/localinotify-tools-3.13/</span></span><br><span class="line"><span class="meta prompt_">]# </span><span class="language-bash">./confiqure</span></span><br></pre></td></tr></table></figure></li>
-<li>步骤4:make 编译,生成可执行的二进制程序文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">]# </span><span class="language-bash"><span class="built_in">cd</span> /usr/localinotify-tools-3.13]<span class="comment"># make</span></span></span><br></pre></td></tr></table></figure></li>
-<li>步骤5: make instalL 安装,将编译好的文件复制到安装目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">]# </span><span class="language-bash"><span class="built_in">cd</span> /usr/localinotify-tools-3.13</span></span><br><span class="line"><span class="meta prompt_">]# </span><span class="language-bash">make install</span></span><br></pre></td></tr></table></figure>
+        <h2 id="Keepalived概述"><a href="#Keepalived概述" class="headerlink" title="Keepalived概述"></a>Keepalived概述</h2><p>调度器出现单点故障，如何解决 ?<br>Keepalived实现了高可用集群<br>Keepalived最初是为LVS设计的，专门监控各服务器节点的状态<br>Keepalived后来加入了VRRP功能，防止单点故障</p>
       
     </div>
     <footer class="article-footer">
@@ -329,7 +380,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/34-inotify%E7%9B%91%E6%8E%A7/#more">阅读全文</a>
+          <a href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/#more">阅读全文</a>
         </p>
       
       
@@ -339,7 +390,7 @@
 </article>
 
 
-  <article id="post-运维/nginx/04-基于域名的虚拟主机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/55-LVS集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -347,7 +398,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/">04-基于域名的虚拟主机</a>
+      <a class="p-name article-title" href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/">55-LVS集群</a>
     </h1>
   
 
@@ -358,124 +409,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-04T03:00:52.000Z" itemprop="datePublished">2021年09月04日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-虚拟主机一般可用分为"><a href="#1-虚拟主机一般可用分为" class="headerlink" title="1.虚拟主机一般可用分为:"></a>1.虚拟主机一般可用分为:</h4><p>基于域名<br>基于IP<br>基于端口</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/nginx/03-用户认证" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/03/%E8%BF%90%E7%BB%B4/nginx/03-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/">03-用户认证</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-03T03:00:52.000Z" itemprop="datePublished">2021年09月03日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/03/%E8%BF%90%E7%BB%B4/nginx/03-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-nginx配置文件-（-usr-local-nginx-conf）"><a href="#1-nginx配置文件-（-usr-local-nginx-conf）" class="headerlink" title="1.nginx配置文件 （&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf）"></a>1.nginx配置文件 （&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf）</h4><p>首页</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">43         location / &#123;</span><br><span class="line">44             root   html;  # 文件目录 document</span><br><span class="line">45             index  index.html index.htm;  # 第一个找不到，找第二个</span><br><span class="line">46         &#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/03/%E8%BF%90%E7%BB%B4/nginx/03-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/33-rsync同步" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/33-rsync%E5%90%8C%E6%AD%A5/">33-rsync同步</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-02T03:00:52.000Z" itemprop="datePublished">2021年09月02日</time>
+  <time class="dt-published" datetime="2021-09-25T03:00:52.000Z" itemprop="datePublished">2021年09月25日</time>
 </span>
       
   <div class="article-category">
@@ -485,7 +419,7 @@
 
       
       
-<a href="/2021/09/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/33-rsync%E5%90%8C%E6%AD%A5/#comments" class="article-comment-link">
+<a href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -495,216 +429,21 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-内核及系统日志"><a href="#1-内核及系统日志" class="headerlink" title="1.内核及系统日志"></a>1.内核及系统日志</h4><p>由系统服务rsyslog统一记录&#x2F;管理日志消息采用文本格式<br>主要记录事件发生的时间、主机、进程、内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# tail -f /var/log/messages</span><br><span class="line">Aug 25 19:13:45 master dhclient[916]: DHCPREQUEST on team0 to 192.168.1.1 port 67 (xid=0x62cb920a)</span><br><span class="line">Aug 25 19:13:53 master dhclient[916]: DHCPREQUEST on team0 to 192.168.1.1 port 67 (xid=0x62cb920a)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/33-rsync%E5%90%8C%E6%AD%A5/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/nginx/02-平滑升级" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/">02-平滑升级</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-02T03:00:52.000Z" itemprop="datePublished">2021年09月02日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-平滑升级nginx"><a href="#1-平滑升级nginx" class="headerlink" title="1.平滑升级nginx"></a>1.平滑升级nginx</h4><p>可以跨版本升级，不要跨太多；<br>注意：conf，html，log文件不需要升级，升级需要的文件是sbin<br>0) 升级前，版本1.0.15</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master sbin]# ./nginx -V</span><br><span class="line">    nginx version: nginx/1.0.15</span><br><span class="line">    TLS SNI support enabled</span><br><span class="line">    configure arguments: --prefix=/usr/local/nginx1.0.15 --user=nginx --group=nginx --with-http_ssl_module</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/32-DHCP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/32-DHCP/">32-dncp（缺失）</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-01T03:00:52.000Z" itemprop="datePublished">2021年09月01日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/32-DHCP/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-        
-        
-          <blockquote id="copyright">
-              <p>原文链接: <a href="https://dbbruce.github.io/page/10/index.html">https://dbbruce.github.io/page/10/index.html</a></p>
-              <p>版权声明: 转载请注明出处.</p>
-          </blockquote>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
-
-          
-    <div class="social-share">
-      <span>分享到:</span>
-    </div>
-
-
-
-        </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/nginx/01-源码安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/">01-源码安装</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-01T03:00:52.000Z" itemprop="datePublished">2021年09月01日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>优点</p>
+        <h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><p>集群分类</p>
 <ul>
-<li>工作在7层，可以针对http做分流策略</li>
-<li>1.9版本开始支持4层代理</li>
-<li>正则表达式比HAProxy强大</li>
-<li>安装、配置、测试简单，通过日志可以解决多数问题</li>
-<li>并发量可以达到几万次</li>
-<li>Nginx还可以作为Web服务器使用<br>缺点</li>
-<li>仅支持http、https、mail协议，应用面小</li>
-<li>监控检查仅通过端口，无法使用url检查
+<li>高性能计算集群HPC<br>通过以集群开发的并行应用程序，解决复杂的科学问题</li>
+<li>负载均衡( LB )集群<br>客户端负载在计算机集群中尽可能平均分摊[</li>
+<li>高可用( HA)集群<br>避免单点故障，当一个系统发生故障时，可以快速迁移</li>
+<li>原理<br>LVS原理和nginx不同<br>lvs原理是路由器，转发数据包，性能高，只能做转发，功能单一；<br>nginx原始代理，需要处理下数据包，功能多，比如健康检查；
       
     </div>
     <footer class="article-footer">
       
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" rel="tag">Linux云计算基础教程</a></li></ul>
 
         <p class="article-more-link">
-          <a href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/#more">阅读全文</a>
+          <a href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
         </p>
       
       
@@ -717,7 +456,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
 </nav>
 
 
