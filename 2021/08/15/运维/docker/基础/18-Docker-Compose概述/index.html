@@ -142,14 +142,24 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h1 id="Docker-Compose概述"><a href="#Docker-Compose概述" class="headerlink" title="Docker-Compose概述"></a>Docker-Compose概述</h1><blockquote>
-<pre><code> Compose 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。使用前面介绍的Dockerfile我们很容易定义一个单独的应用容器。然而在日常开发工作中，经常会碰到需要多个容器相互配合来完成某项任务的情况。例如要实现一个 Web 项目，除了 Web 服务容器本身，往往还需要再加上后端的数据库服务容器；再比如在分布式应用一般包含若干个服务，每个服务一般都会部署多个实例。如果每个服务都要手动启停，那么效率之低、维护量之大可想而知。这时候就需要一个工具能够管理一组相关联的的应用容器，这就是Docker Compose。
-</code></pre>
+<p>Compose 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。使用前面介绍的Dockerfile我们很容易定义一个单独的应用容器。然而在日常开发工作中，经常会碰到需要多个容器相互配合来完成某项任务的情况。例如要实现一个 Web 项目，除了 Web 服务容器本身，往往还需要再加上后端的数据库服务容器；再比如在分布式应用一般包含若干个服务，每个服务一般都会部署多个实例。如果每个服务都要手动启停，那么效率之低、维护量之大可想而知。这时候就需要一个工具能够管理一组相关联的的应用容器，这就是Docker Compose。</p>
 </blockquote>
 <span id="more"></span>
 <h3 id="Compose有2个重要的概念："><a href="#Compose有2个重要的概念：" class="headerlink" title="Compose有2个重要的概念："></a>Compose有2个重要的概念：</h3><ul>
 <li>项目（Project）：由一组关联的应用容器组成的一个完整业务单元，在 docker-compose.yml 文件中定义。</li>
-<li>服务（Service）：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例。</li>
+<li>服务（Service）：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例。<blockquote>
+<p>docker-compose运行目录下的所有yml文件组成一个工程，一个工程包含多个服务，每个服务中定义了容器运行的镜像、参数、依赖。一个服务可包括多个容器实例。docker-compose就是docker容器的编排工具，主要就是解决相互有依赖关系的多个容器的管理。</p>
+</blockquote>
+</li>
 </ul>
+<h3 id="安装docker-compose"><a href="#安装docker-compose" class="headerlink" title="安装docker-compose"></a>安装docker-compose</h3><blockquote>
+<p>官方文档地址：<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a><br>最新下载地址：<a target="_blank" rel="noopener" href="https://github.com/goharbor/harbor/releases/download/v2.9.1/harbor-offline-installer-v2.9.1.tgz">https://github.com/goharbor/harbor/releases/download/v2.9.1/harbor-offline-installer-v2.9.1.tgz</a><br>官方下载地址：curl -SL <a target="_blank" rel="noopener" href="https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64">https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64</a> -o &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose</p>
+</blockquote>
+<h3 id="添加可执行权限"><a href="#添加可执行权限" class="headerlink" title="添加可执行权限"></a>添加可执行权限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@dbbruce-harbor ~]# chmod +x /usr/bin/docker-compose</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@dbbruce-harbor ~]# docker-compose version</span><br><span class="line">Docker Compose version v2.23.3</span><br></pre></td></tr></table></figure>
+
+
+
 
         
             <div id="toc-article">
@@ -157,7 +167,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose%E6%A6%82%E8%BF%B0"><span class="toc-text">Docker-Compose概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Compose%E6%9C%892%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-text">Compose有2个重要的概念：</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose%E6%A6%82%E8%BF%B0"><span class="toc-text">Docker-Compose概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Compose%E6%9C%892%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-text">Compose有2个重要的概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85docker-compose"><span class="toc-text">安装docker-compose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-text">添加可执行权限</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
@@ -343,7 +353,7 @@
         </p>
       
       <p>
-        <span>Copyright &copy; 2023 Mr.dong.</span>
+        <span>Copyright &copy; 2023 brruce DongB.</span>
 <!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
 <!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
       </p>
