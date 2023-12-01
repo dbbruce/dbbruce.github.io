@@ -147,66 +147,6 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/04-安装K8S可视化UI界面Dashboard" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/30/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/">04-安装K8S可视化UI界面Dashboard</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-11-30T11:15:52.231Z" itemprop="datePublished">2023年11月30日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/11/30/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="1、安装dashboard"><a href="#1、安装dashboard" class="headerlink" title="1、安装dashboard"></a>1、安装dashboard</h3><h4 id="安装dashboard-centos07-22-42"><a href="#安装dashboard-centos07-22-42" class="headerlink" title="安装dashboard - centos07-22&#x2F;42"></a>安装dashboard - centos07-22&#x2F;42</h4><ul>
-<li>把安装kubernetes-dashboard需要的镜像上传到工作节点centos07-22和centos07-42，手动解压：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp dashboard_2_0_0.tar.gz metrics-scrapter-1-0-1.tar.gz root@192.168.1.22:~</span><br><span class="line">scp dashboard_2_0_0.tar.gz metrics-scrapter-1-0-1.tar.gz root@192.168.1.42:~</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker load -i dashboard_2_0_0.tar.gz</span><br><span class="line">docker load -i metrics-scrapter-1-0-1.tar.gz</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/K8S/" rel="tag">K8S</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2023/11/30/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
   <article id="post-个人/文章/中年的誓言" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -456,6 +396,64 @@
 </article>
 
 
+  <article id="post-python/异步编程/uvloop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/">异步迭代器</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-14T15:00:10.000Z" itemprop="datePublished">2023年08月14日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+  </div>
+
+      
+      
+<a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-uvloop"><a href="#1-uvloop" class="headerlink" title="1.uvloop"></a>1.uvloop</h4><p>asyncio的事件循环的替代方案。事件循环—&gt;默认asyncio的事件循环</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uvloop/" rel="tag">uvloop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
 
     <nav id="page-nav">
 
@@ -478,10 +476,6 @@
           </li>
         
           <li>
-            <a href="/2023/11/30/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/">04-安装K8S可视化UI界面Dashboard</a>
-          </li>
-        
-          <li>
             <a href="/2023/10/16/%E4%B8%AA%E4%BA%BA/%E6%96%87%E7%AB%A0/%E4%B8%AD%E5%B9%B4%E7%9A%84%E8%AA%93%E8%A8%80/">中年的誓言</a>
           </li>
         
@@ -491,6 +485,10 @@
         
           <li>
             <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5mysql/">异步mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/">异步redis</a>
           </li>
         
       </ul>
@@ -522,7 +520,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">109</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">110</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
