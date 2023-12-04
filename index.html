@@ -89,64 +89,6 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-面试/题/获取二叉树右侧视图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/08/10/%E9%9D%A2%E8%AF%95/%E9%A2%98/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/">获取二叉树右侧视图</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2024-08-10T03:14:52.000Z" itemprop="datePublished">2024年08月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a> > <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a>
-  </div>
-
-      
-      
-<a href="/2024/08/10/%E9%9D%A2%E8%AF%95/%E9%A2%98/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-代码"><a href="#1-代码" class="headerlink" title="1.代码"></a>1.代码</h4>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/" rel="tag">获取二叉树右侧视图</a></li></ul>
-
-        <p class="article-more-link">
-          <a href="/2024/08/10/%E9%9D%A2%E8%AF%95/%E9%A2%98/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
   <article id="post-个人/文章/中年的誓言" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -454,6 +396,64 @@
 </article>
 
 
+  <article id="post-python/异步编程/异步迭代器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/">异步迭代器</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-14T13:25:10.000Z" itemprop="datePublished">2023年08月14日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+  </div>
+
+      
+      
+<a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-异步迭代器"><a href="#1-异步迭代器" class="headerlink" title="1.异步迭代器"></a>1.异步迭代器</h4><p>实现了__aiter__()和__anext__()方法的对象。<br><strong>anext</strong>()必须返回一个awaitable 对象。<br>async for 会处理异步选代器的__anext__()方法所返回的可等待对象，直到其引发一个 StopAsyncIteration 异常。<br>什么是异步可迭代对象?<br>可在 async for 语句中被使用的对象。必须通过它的 <strong>aiter</strong>()方法返回一个asynchronous_iterator。</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag">异步</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="tag">迭代器</a></li></ul>
+
+        <p class="article-more-link">
+          <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
 
     <nav id="page-nav">
 
@@ -472,10 +472,6 @@
       <ul>
         
           <li>
-            <a href="/2024/08/10/%E9%9D%A2%E8%AF%95/%E9%A2%98/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/">获取二叉树右侧视图</a>
-          </li>
-        
-          <li>
             <a href="/2023/10/16/%E4%B8%AA%E4%BA%BA/%E6%96%87%E7%AB%A0/%E4%B8%AD%E5%B9%B4%E7%9A%84%E8%AA%93%E8%A8%80/">中年的誓言</a>
           </li>
         
@@ -489,6 +485,10 @@
         
           <li>
             <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/">异步redis</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/">异步迭代器</a>
           </li>
         
       </ul>
@@ -520,7 +520,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
