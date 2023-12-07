@@ -201,7 +201,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/19-启动探测startupProbe" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/19-Pod容器健康探测" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -209,7 +209,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-%E5%90%AF%E5%8A%A8%E6%8E%A2%E6%B5%8BstartupProbe/">19-启动探测startupProbe</a>
+      <a class="p-name article-title" href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/">19-Pod容器健康探测</a>
     </h1>
   
 
@@ -230,7 +230,7 @@
 
       
       
-<a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-%E5%90%AF%E5%8A%A8%E6%8E%A2%E6%B5%8BstartupProbe/#comments" class="article-comment-link">
+<a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -240,14 +240,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+        <h3 id="为什么要对容器做探测？"><a href="#为什么要对容器做探测？" class="headerlink" title="为什么要对容器做探测？"></a>为什么要对容器做探测？</h3><p>在 Kubernetes 中 Pod 是最小的计算单元，而一个 Pod 又由多个容器组成，相当于每个容器就是一个应用，应用在运行期间，可能因为某些意外情况致使程序挂掉。那么如何监控这些容器状态稳定性，保证服务在运行期间不会发生问题，发生问题后进行重启等机制，就成为了重中之重的事情，考虑到这点 kubernetes 推出了活性探针机制。有了存活性探针能保证程序在运行中如果挂掉能够自动重启，但是还有个经常遇到的问题，比如说，在Kubernetes 中启动Pod，显示明明Pod已经启动成功，且能访问里面的端口，但是却返回错误信息。还有就是在执行滚动更新时候，总会出现一段时间，Pod对外提供网络访问，但是访问却发生404，这两个原因，都是因为Pod已经成功启动，但是 Pod 的的容器中应用程序还在启动中导致，考虑到这点Kubernetes推出了就绪性探针机制</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-%E5%90%AF%E5%8A%A8%E6%8E%A2%E6%B5%8BstartupProbe/#more">阅读全文</a>
+          <a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/#more">阅读全文</a>
         </p>
       
       
