@@ -62,8 +62,6 @@
         
           <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
         
-          <a class="main-nav-link" href="/atom.xml"><i class="fa fa-rss"></i> 订阅</a>
-        
       </nav>
     </div>
     <div id="search-form">
@@ -89,6 +87,69 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-运维/nginx/06-配置证书" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/">06-配置证书</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-06T03:00:52.000Z" itemprop="datePublished">2021年09月06日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-名词解释"><a href="#1-名词解释" class="headerlink" title="1.名词解释"></a>1.名词解释</h4><ul>
+<li>私钥 自己生成</li>
+<li>CSR公钥  由私钥生成</li>
+<li>CRT证书  公钥 + 签名</li>
+<li>证书 server.crt 文件就是证书</li>
+<li>签名 使用私钥key与公钥csr进行证书crt生成的构成叫签名</li>
+</ul>
+<p>注意：证书都是买的，个人的浏览器不认同</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-运维/Linux云计算教程/36-网络管理-交换机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -145,7 +206,7 @@
 </article>
 
 
-  <article id="post-运维/nginx/06-配置证书" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/05-加密和解密" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -153,7 +214,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/">06-配置证书</a>
+      <a class="p-name article-title" href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/">05-加密和解密</a>
     </h1>
   
 
@@ -164,7 +225,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-06T03:00:52.000Z" itemprop="datePublished">2021年09月06日</time>
+  <time class="dt-published" datetime="2021-09-05T03:00:52.000Z" itemprop="datePublished">2021年09月05日</time>
 </span>
       
   <div class="article-category">
@@ -174,7 +235,7 @@
 
       
       
-<a href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/#comments" class="article-comment-link">
+<a href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -184,21 +245,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-名词解释"><a href="#1-名词解释" class="headerlink" title="1.名词解释"></a>1.名词解释</h4><ul>
-<li>私钥 自己生成</li>
-<li>CSR公钥  由私钥生成</li>
-<li>CRT证书  公钥 + 签名</li>
-<li>证书 server.crt 文件就是证书</li>
-<li>签名 使用私钥key与公钥csr进行证书crt生成的构成叫签名</li>
-</ul>
-<p>注意：证书都是买的，个人的浏览器不认同</p>
+        <h4 id="1-加密算法一般分为对称算法、非对称算法、信息摘要"><a href="#1-加密算法一般分为对称算法、非对称算法、信息摘要" class="headerlink" title="1.加密算法一般分为对称算法、非对称算法、信息摘要"></a>1.加密算法一般分为对称算法、非对称算法、信息摘要</h4><p>对称算法有 : AES、DES，主要应用在单机数据加密<br>非对称算法有 : RSA、DSA，主要应用在网络数据加密<br>信息摘要:MD5、sha256，主要应用在数据完整性校验</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/#more">阅读全文</a>
+          <a href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/#more">阅读全文</a>
         </p>
       
       
@@ -270,7 +324,7 @@
 </article>
 
 
-  <article id="post-运维/nginx/05-加密和解密" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/04-基于域名的虚拟主机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -278,7 +332,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/">05-加密和解密</a>
+      <a class="p-name article-title" href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/">04-基于域名的虚拟主机</a>
     </h1>
   
 
@@ -289,7 +343,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-05T03:00:52.000Z" itemprop="datePublished">2021年09月05日</time>
+  <time class="dt-published" datetime="2021-09-04T03:00:52.000Z" itemprop="datePublished">2021年09月04日</time>
 </span>
       
   <div class="article-category">
@@ -299,7 +353,7 @@
 
       
       
-<a href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/#comments" class="article-comment-link">
+<a href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -309,14 +363,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-加密算法一般分为对称算法、非对称算法、信息摘要"><a href="#1-加密算法一般分为对称算法、非对称算法、信息摘要" class="headerlink" title="1.加密算法一般分为对称算法、非对称算法、信息摘要"></a>1.加密算法一般分为对称算法、非对称算法、信息摘要</h4><p>对称算法有 : AES、DES，主要应用在单机数据加密<br>非对称算法有 : RSA、DSA，主要应用在网络数据加密<br>信息摘要:MD5、sha256，主要应用在数据完整性校验</p>
+        <h4 id="1-虚拟主机一般可用分为"><a href="#1-虚拟主机一般可用分为" class="headerlink" title="1.虚拟主机一般可用分为:"></a>1.虚拟主机一般可用分为:</h4><p>基于域名<br>基于IP<br>基于端口</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/09/05/%E8%BF%90%E7%BB%B4/nginx/05-%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/#more">阅读全文</a>
+          <a href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/#more">阅读全文</a>
         </p>
       
       
@@ -378,62 +432,6 @@
         
         <p class="article-more-link">
           <a href="/2021/09/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/34-inotify%E7%9B%91%E6%8E%A7/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/nginx/04-基于域名的虚拟主机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/">04-基于域名的虚拟主机</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-04T03:00:52.000Z" itemprop="datePublished">2021年09月04日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-虚拟主机一般可用分为"><a href="#1-虚拟主机一般可用分为" class="headerlink" title="1.虚拟主机一般可用分为:"></a>1.虚拟主机一般可用分为:</h4><p>基于域名<br>基于IP<br>基于端口</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/04/%E8%BF%90%E7%BB%B4/nginx/04-%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/#more">阅读全文</a>
         </p>
       
       
