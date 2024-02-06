@@ -87,6 +87,63 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-运维/nginx/02-平滑升级" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/">02-平滑升级</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-02T03:00:52.000Z" itemprop="datePublished">2021年09月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-平滑升级nginx"><a href="#1-平滑升级nginx" class="headerlink" title="1.平滑升级nginx"></a>1.平滑升级nginx</h4><p>可以跨版本升级，不要跨太多；<br>注意：conf，html，log文件不需要升级，升级需要的文件是sbin<br>0) 升级前，版本1.0.15</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master sbin]# ./nginx -V</span><br><span class="line">    nginx version: nginx/1.0.15</span><br><span class="line">    TLS SNI support enabled</span><br><span class="line">    configure arguments: --prefix=/usr/local/nginx1.0.15 --user=nginx --group=nginx --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-运维/Linux云计算教程/33-rsync同步" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -144,7 +201,7 @@
 </article>
 
 
-  <article id="post-运维/nginx/02-平滑升级" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/01-源码安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -152,7 +209,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/">02-平滑升级</a>
+      <a class="p-name article-title" href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/">01-源码安装</a>
     </h1>
   
 
@@ -163,7 +220,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-02T03:00:52.000Z" itemprop="datePublished">2021年09月02日</time>
+  <time class="dt-published" datetime="2021-09-01T03:00:52.000Z" itemprop="datePublished">2021年09月01日</time>
 </span>
       
   <div class="article-category">
@@ -173,7 +230,7 @@
 
       
       
-<a href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#comments" class="article-comment-link">
+<a href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
   
   <i class="fa fa-commt"></i>
   留言
@@ -183,15 +240,23 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-平滑升级nginx"><a href="#1-平滑升级nginx" class="headerlink" title="1.平滑升级nginx"></a>1.平滑升级nginx</h4><p>可以跨版本升级，不要跨太多；<br>注意：conf，html，log文件不需要升级，升级需要的文件是sbin<br>0) 升级前，版本1.0.15</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master sbin]# ./nginx -V</span><br><span class="line">    nginx version: nginx/1.0.15</span><br><span class="line">    TLS SNI support enabled</span><br><span class="line">    configure arguments: --prefix=/usr/local/nginx1.0.15 --user=nginx --group=nginx --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+        <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>优点</p>
+<ul>
+<li>工作在7层，可以针对http做分流策略</li>
+<li>1.9版本开始支持4层代理</li>
+<li>正则表达式比HAProxy强大</li>
+<li>安装、配置、测试简单，通过日志可以解决多数问题</li>
+<li>并发量可以达到几万次</li>
+<li>Nginx还可以作为Web服务器使用<br>缺点</li>
+<li>仅支持http、https、mail协议，应用面小</li>
+<li>监控检查仅通过端口，无法使用url检查
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#more">阅读全文</a>
+          <a href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/#more">阅读全文</a>
         </p>
       
       
@@ -264,71 +329,6 @@
 
 
         </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/nginx/01-源码安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/">01-源码安装</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-01T03:00:52.000Z" itemprop="datePublished">2021年09月01日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-      
-<a href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>优点</p>
-<ul>
-<li>工作在7层，可以针对http做分流策略</li>
-<li>1.9版本开始支持4层代理</li>
-<li>正则表达式比HAProxy强大</li>
-<li>安装、配置、测试简单，通过日志可以解决多数问题</li>
-<li>并发量可以达到几万次</li>
-<li>Nginx还可以作为Web服务器使用<br>缺点</li>
-<li>仅支持http、https、mail协议，应用面小</li>
-<li>监控检查仅通过端口，无法使用url检查
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/#more">阅读全文</a>
-        </p>
       
       
       
@@ -486,7 +486,7 @@
           </li>
         
           <li>
-            <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/">异步迭代器</a>
+            <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/">uvloop</a>
           </li>
         
           <li>
