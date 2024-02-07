@@ -743,7 +743,7 @@ body {
 }
 .article-meta a {
   text-decoration: none;
-  line-height: 1.2em;
+  line-height: 1em;
   color: #40759b;
 }
 .article-meta a:hover {
@@ -925,7 +925,7 @@ a.article-title:hover {
   box-shadow: 0 -1px 4px #adc2d7 inset;
 }
 .article-footer {
-  font-size: 0.85em;
+  font-size: 1em;
   line-height: 1.6em;
   margin: 0 20px 20px;
 }
