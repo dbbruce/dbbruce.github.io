@@ -145,6 +145,65 @@
 </article>
 
 
+  <article id="post-运维/docker/基础/00-docker安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/">00-Docker安装</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-07-31T16:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h1><h4 id="镜像仓库"><a href="#镜像仓库" class="headerlink" title="镜像仓库"></a>镜像仓库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Docker Hub：https://registry.hub.docker.com/</span><br></pre></td></tr></table></figure>
+<h4 id="docker官方"><a href="#docker官方" class="headerlink" title="docker官方"></a>docker官方</h4><p>docker有社区版和企业版两个版本，社区版是免费的，企业版是收费的。其实社区版就够用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.docker.com/</span><br></pre></td></tr></table></figure>
+<h4 id="时间同步服务开启"><a href="#时间同步服务开启" class="headerlink" title="时间同步服务开启"></a>时间同步服务开启</h4><h4 id="关闭selinux"><a href="#关闭selinux" class="headerlink" title="关闭selinux"></a>关闭selinux</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 修改文件</span><br><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br><span class="line"></span><br><span class="line"># 查看</span><br><span class="line">getenforce</span><br><span class="line">Disabled</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-运维/K8S/错误/01-kubernetes注意项" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -210,65 +269,6 @@
 <!--  -->
 
         </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/docker/基础/00-docker安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/">00-Docker安装</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-07-31T16:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h1><h4 id="镜像仓库"><a href="#镜像仓库" class="headerlink" title="镜像仓库"></a>镜像仓库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Docker Hub：https://registry.hub.docker.com/</span><br></pre></td></tr></table></figure>
-<h4 id="docker官方"><a href="#docker官方" class="headerlink" title="docker官方"></a>docker官方</h4><p>docker有社区版和企业版两个版本，社区版是免费的，企业版是收费的。其实社区版就够用了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.docker.com/</span><br></pre></td></tr></table></figure>
-<h4 id="时间同步服务开启"><a href="#时间同步服务开启" class="headerlink" title="时间同步服务开启"></a>时间同步服务开启</h4><h4 id="关闭selinux"><a href="#关闭selinux" class="headerlink" title="关闭selinux"></a>关闭selinux</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 修改文件</span><br><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br><span class="line"></span><br><span class="line"># 查看</span><br><span class="line">getenforce</span><br><span class="line">Disabled</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/#more">阅读全文</a>
-        </p>
       
       
       
