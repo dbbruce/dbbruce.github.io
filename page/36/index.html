@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/常用工具/ab压力测试" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/工作问题处理/http80，443端口占用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/01/01/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/ab%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/">ab压力测试</a>
+      <a class="p-name article-title" href="/2020/01/01/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/http80%EF%BC%8C443%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/">http80，443端口占用</a>
     </h1>
   
 
@@ -111,12 +111,12 @@
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a>
   </div>
 
       
       
-<a href="/2020/01/01/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/ab%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/#comments" class="article-comment-link">
+<a href="/2020/01/01/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/http80%EF%BC%8C443%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,16 +126,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="ab-压力测试工具"><a href="#ab-压力测试工具" class="headerlink" title="ab 压力测试工具"></a>ab 压力测试工具</h4><ul>
-<li>-c 模拟人数， -c 100，100人访问</li>
-<li>-n 模拟总请求数， -c 10 -n 100 ,总请求数100，10个人，每人请求10次
+        <h4 id="场景：java的同学反馈预发机器httpd服务无法启动"><a href="#场景：java的同学反馈预发机器httpd服务无法启动" class="headerlink" title="场景：java的同学反馈预发机器httpd服务无法启动"></a>场景：java的同学反馈预发机器httpd服务无法启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# systemctl restart httpd</span><br><span class="line">Job for httpd.service failed because the control process exited with error code. See &quot;systemctl status httpd.service&quot; and &quot;journalctl -xe&quot; for details.</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2020/01/01/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/ab%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/#more">阅读全文</a>
+          <a href="/2020/01/01/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/http80%EF%BC%8C443%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/#more">阅读全文</a>
         </p>
       
       
