@@ -264,6 +264,133 @@
 </article>
 
 
+  <article id="post-爬虫/基础/002-HTTP头部信息分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/002-HTTP%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90/">002-HTTP头部信息分析</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2022-08-10T04:04:52.000Z" itemprop="datePublished">2022年08月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/002-HTTP%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="常识"><a href="#常识" class="headerlink" title="常识"></a>常识</h4><p>HTTP得头域包括通用头(Genaral headers)，请求头()，响应头()和实体(entity header)头四个部分，每个头域都由一个域名，冒号和域值三部分组成。</p>
+<ul>
+<li>通用头部：指的是可以应用于请求和响应中，但是不能应用于消息内容自身的HTTP首部，取决于应用的上下文环境，通用首部可以是响应头部或者请求头部，但是不可以是实体头部。最常见的通用首部包括：Date，Cache-Control，Connection</li>
+<li>请求头部：是请求报文特有的，并且和请求主体无关。比如客户端希望接收到什么类型的数据，像Accept头部。 并非所有出现在请求中的HTTP首部都属于请求头，例如在POST请求中经常出现的Content-Length实际上是一个代表请求主体大小的entity header，当然这也可以叫做请求头。</li>
+<li>响应头部：被用于http响应中并且和响应消息主体无关的那一类HTTP header。详细的在这像Age，Location和Server都属于响应头，他们都用于描述响应。 并非所有出现在响应中的http header都属于响应头，例如Content- Length就是一个代表响应体消息大小的entity header，当然也是可以叫他响应头的。</li>
+<li>实体头部：用来描述消息体内容。实体报头既可以用于请求也可以用于响应中，如Content-Length，Content-Language，Content-Encoding之类的报头都是实体报头。 尽管实体报头既不是请求也不是响应报头，但是它经常出现在请求头或响应头中，所以还是把他们包含在一个概念里。</li>
+</ul>
+<h5 id="通用头部"><a href="#通用头部" class="headerlink" title="通用头部"></a>通用头部</h5><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cache-Control</td>
+<td>控制缓存的行为； 详情 请求：no-cache（不要缓存的实体，要求现在从WEB服务器去取） max-age：（只接受 Age 值小于 max-age 值，并且没有过期的对象）max-stale：（可以接受过去的对象，但是过期时间必须小于max-stale 值） min-fresh：（接受其新鲜生命期大于其当前 Age 跟 min-fresh 值之和的缓存对象） 响应：public(可以用 Cached 内容回应任何用户)private（只能用缓存内容回应先前请求该内容的那个用户）no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端） max-age：（本响应包含的对象的过期时间）ALL: no-store（不允许缓存）</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>决定当前的事务完成后，是否会关闭网络连接； 详情 请求：close（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，断开连接，不要等待本次连接的后续请求了）。 keepalive（告诉WEB服务器或者代理服务器，在完成本次请求的 响应后，保持连接，等待本次连接的后续请求）。 响应：close（连接已经关闭）。 keepalive（连接保持着，在等待本次连接的后续请求）。</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>创建报文的日期时间；</td>
+</tr>
+<tr>
+<td>Keep-Alive</td>
+<td>用来设置超时时长和最大请求数；如果浏览器请求保持连接，则该头部表明希望 WEB 服务器保持连接多长时间（秒）。 例如：Keep-Alive：300</td>
+</tr>
+<tr>
+<td>Via</td>
+<td>代理服务器的相关信息；列出从客户端到 OCS 或者相反方向的响应经过了哪些代理服务器，他们用什么协议（和版本）发送的请求。当客户端请求到达第一个代理服务器时，该服务器会在自己发出的请求里面 添加 Via 头部，并填上自己的相关信息当下一个代理服务器收到第一个代理服务器的请求时，会在自己发出的请求里面复制前一个代理服务器的请求的Via头部，并把自己的相关信息加到后面，以此类推，当 OCS 收到最后一个代理服务器的请求时，检查 Via 头部，就知道该请求所经过的路由。例如：Via：1.0 236-81.D07071953.sina.com.cn:80 (squid&#x2F;2.6.STABLE13)</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>错误通知；</td>
+</tr>
+<tr>
+<td>Trailer</td>
+<td>允许发送方在分块发送的消息后面添加额外的元信息；</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>指定报文主体的传输编码方式；WEB 服务器表明自己对本响应消息体（不是消息体里面的对象）做了怎样的编码，比如是否分块（chunked）。例如：Transfer-Encoding: chunked</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>升级为其他协议；</td>
+</tr>
+</tbody></table>
+<h5 id="请求头部"><a href="#请求头部" class="headerlink" title="请求头部"></a>请求头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-137db4f39f8c0ee46a4ea5ae2def987d_1440w.png" alt="v2-137db4f39f8c0ee46a4ea5ae2def987d_1440w.png"></p>
+<h5 id="响应头部"><a href="#响应头部" class="headerlink" title="响应头部"></a>响应头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-7337c5d28b8ee17e534da96e9177a68d_1440w.png" alt="v2-7337c5d28b8ee17e534da96e9177a68d_1440w.png"></p>
+<h5 id="实体头部"><a href="#实体头部" class="headerlink" title="实体头部"></a>实体头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-d0f8817d91a80f5cc7a9c0cac93c35ac_1440w.png" alt="v2-d0f8817d91a80f5cc7a9c0cac93c35ac_1440w.png"></p>
+<h5 id="End-to-end头部和Hop-by-hop头部"><a href="#End-to-end头部和Hop-by-hop头部" class="headerlink" title="End-to-end头部和Hop-by-hop头部"></a>End-to-end头部和Hop-by-hop头部</h5><p>http首部字段将定义成缓存代理和非缓存代理的行为，分成2种类型<br>端到端首部（End-to-end Header）<br>此类别中的首部会转发给请求&#x2F;响应对应的最终接受目标，而且必须保存在由缓存生成的响应中，另外规定它必须被转发。<br>逐跳首部（Hop-by-hop Header）<br>此类别中的首部只对单次转发有效，会因通过缓存或代理而不再转发；http1.1和之后的版本，如要使用该首部，需提供Connection首部字段。</p>
+<p>下面列举下http&#x2F;1.1中的逐跳首部字段，除了这8个，其他所有字段都属于端到端首部。<br>Connection:<br>Keep-Alive<br>Proxy-Authenticate<br>Proxy-Authorization<br>Trailer<br>TE<br>Transfer-Encoding<br>Upgrade</p>
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/12/index.html">https://dbbruce.github.io/page/12/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-go/基础/00-GO 之基础命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -320,7 +447,7 @@
 </article>
 
 
-  <article id="post-爬虫/基础/基础知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-爬虫/基础/001-基础知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -328,7 +455,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a>
+      <a class="p-name article-title" href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/001-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">001-基础知识</a>
     </h1>
   
 
@@ -349,7 +476,7 @@
 
       
       
-<a href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#comments" class="article-comment-link">
+<a href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/001-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -365,7 +492,20 @@
 <li>第一步：抓取网页<br>搜索引擎网络爬虫基本工作流程：<br>1、获取一部分种子url，将这些url放入待抓取url列表；<br>2、取出待抓取url，解析dns得到主机ip，并将url对应的网页下载下来，存储进下载网页库中，并且将这些url放进已经抓取url列表<br>3、分析已抓取URL列表中url，分析其中的其他url，并且将url放入待抓取url列表，从而进入下一次循环</li>
 <li>搜索引擎如何获取一个新网站的url<br>1、新网站向搜索引擎提交网址，比如百度：zhanzhang.baidu.com&#x2F;linksubmit&#x2F;url<br>2、其他网站上设置新网站外链<br>3、搜索引擎和dns合作，新网站域名将被迅速抓取</li>
 </ul>
-<h4 id="3-聚焦爬虫"><a href="#3-聚焦爬虫" class="headerlink" title="3.聚焦爬虫"></a>3.聚焦爬虫</h4><h4 id="4-xhr断点"><a href="#4-xhr断点" class="headerlink" title="4.xhr断点"></a>4.xhr断点</h4><p>1、copy接口路径<br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.54.23.png" alt="截屏2024-03-05 10.54.23.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.43.09.png" alt="截屏2024-03-05 10.43.09.png"><br>刷新页面，会在断点停止<br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.58.37.png" alt="截屏2024-03-05 10.58.37.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.00.46.png" alt="截屏2024-03-05 11.00.46.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.09.49.png" alt="截屏2024-03-05 11.09.49.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.10.28.png" alt="截屏2024-03-05 11.10.28.png"></p>
+<h4 id="3-聚焦爬虫"><a href="#3-聚焦爬虫" class="headerlink" title="3.聚焦爬虫"></a>3.聚焦爬虫</h4><h4 id="4-http协议和URL地址"><a href="#4-http协议和URL地址" class="headerlink" title="4.http协议和URL地址"></a>4.http协议和URL地址</h4><p>url:统一资源定位符<br>协议&#x2F;服务器ip或域名&#x2F;端口&#x2F;访问资源路径&#x2F;参数</p>
+<p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/WX20240409-115502.png" alt="WX20240409-115502.png"></p>
+<p>基本格式:scheme:&#x2F;&#x2F;host[:port#]&#x2F;path&#x2F;..&#x2F;[?query-string][fanchor]</p>
+<ul>
+<li>scheme       : 协议(例如:http, https, ftp)</li>
+<li>host         : 服务器的IP地址或者域名</li>
+<li>port         : 服务器的端口(如果是走协议默认端口，缺省端口80)</li>
+<li>path         : 访问资源的路径</li>
+<li>query-string : 参数，发送给http服务器的数据</li>
+<li>anchor       : 锚(跳转到网页的指走锚点位置)</li>
+</ul>
+<h4 id="5-客户端http请求"><a href="#5-客户端http请求" class="headerlink" title="5.客户端http请求"></a>5.客户端http请求</h4><p>1、四部分：请求行，请求头，空行，请求数据 </p>
+<p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img.png" alt="img.png"></p>
+<h4 id="6-xhr断点"><a href="#6-xhr断点" class="headerlink" title="6.xhr断点"></a>6.xhr断点</h4><p>1、copy接口路径<br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.54.23.png" alt="截屏2024-03-05 10.54.23.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.43.09.png" alt="截屏2024-03-05 10.43.09.png"><br>刷新页面，会在断点停止<br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.58.37.png" alt="截屏2024-03-05 10.58.37.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.00.46.png" alt="截屏2024-03-05 11.00.46.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.09.49.png" alt="截屏2024-03-05 11.09.49.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.10.28.png" alt="截屏2024-03-05 11.10.28.png"></p>
 
         
 <!--          -->
@@ -398,68 +538,10 @@
 </article>
 
 
-  <article id="post-运维/java生态/05-varnish" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/05/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/05-varnish/">05-varnish</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-05T03:00:52.000Z" itemprop="datePublished">2022年08月05日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a>
-  </div>
-
-      
-      
-<a href="/2022/08/05/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/05-varnish/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Varnish是一款高性能的开源HTTP加速器，具有反向代理，缓存的功能。"><a href="#Varnish是一款高性能的开源HTTP加速器，具有反向代理，缓存的功能。" class="headerlink" title="Varnish是一款高性能的开源HTTP加速器，具有反向代理，缓存的功能。"></a>Varnish是一款高性能的开源HTTP加速器，具有反向代理，缓存的功能。</h2><h4 id="1-部署Varmish缓存服务器"><a href="#1-部署Varmish缓存服务器" class="headerlink" title="1.部署Varmish缓存服务器"></a>1.部署Varmish缓存服务器</h4><p>官网： <a target="_blank" rel="noopener" href="http://varnish-cache.org/">http://varnish-cache.org/</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc readline-devel</span><br><span class="line">yum -y install ncurses-devel</span><br><span class="line">yum -y install pcre-devel</span><br><span class="line">yum -y install python-docutils</span><br><span class="line">yum install python-sphinx</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//创建账户</span><br><span class="line">useradd -s /sbin/nologin varnish</span><br><span class="line"></span><br><span class="line">06[root@proxy ~]# tar -xf varnish-5.2.1.tar.gz</span><br><span class="line">07</span><br><span class="line">[root@proxy ~]# cd varnish-5.2.1</span><br><span class="line">08[root@proxy varnish-5.2.1]# ./configure</span><br><span class="line">09[root@proxy varnish-5.2.1]# make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2022/08/05/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/05-varnish/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
 </nav>
 
 
@@ -505,7 +587,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">195</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">62</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">195</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">62</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -515,7 +597,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">66</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">38</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">66</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">39</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
