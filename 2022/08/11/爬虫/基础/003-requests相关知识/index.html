@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>003-requests相关知识 | 董勉 | 技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当 克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-爬虫/基础/003-requests相关知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      003-requests相关知识
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2022-08-11T04:04:52.000Z" itemprop="datePublished">2022年08月11日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2022/08/11/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/003-requests%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>r &#x3D; requests.get(‘<a target="_blank" rel="noopener" href="https://api.github.com/events">https://api.github.com/events</a>‘)</p>
+<p>r &#x3D; requests.post(‘<a target="_blank" rel="noopener" href="http://httpbin.org/post">http://httpbin.org/post</a>‘, data &#x3D; {‘key’:’value’})</p>
+<p>r &#x3D; requests.put(‘<a target="_blank" rel="noopener" href="http://httpbin.org/put">http://httpbin.org/put</a>‘, data &#x3D; {‘key’:’value’})</p>
+<p>r &#x3D; requests.delete(‘<a target="_blank" rel="noopener" href="http://httpbin.org/delete">http://httpbin.org/delete</a>‘)</p>
+<p>r &#x3D; requests.head(‘<a target="_blank" rel="noopener" href="http://httpbin.org/get">http://httpbin.org/get</a>‘)</p>
+<p>r &#x3D; requests.options(‘<a target="_blank" rel="noopener" href="http://httpbin.org/get">http://httpbin.org/get</a>‘)</p>
+</blockquote>
+<h4 id="响应内容"><a href="#响应内容" class="headerlink" title="响应内容"></a>响应内容</h4><blockquote>
+<p>r.text<br>Requests 会自动解码来自服务器的内容。大多数 unicode 字符集都能被无缝地解码。</p>
+</blockquote>
+<p>请求发出后，Requests 会基于 HTTP 头部对响应的编码作出有根据的推测。当你访问 r.text 之时，Requests 会使用其推测的文本编码。你可以找出 Requests 使用了什么编码，并且能够使用 r.encoding 属性来改变它：</p>
+<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><blockquote>
+<p>r.encoding</p>
+</blockquote>
+<p>‘utf-8’</p>
+<blockquote>
+<p>r.encoding &#x3D; ‘ISO-8859-1’</p>
+</blockquote>
+<p>如果你改变了编码，每当你访问 r.text ，Request 都将会使用 r.encoding 的新值。你可能希望在使用特殊逻辑计算出文本的编码的情况下来修改编码。比如 HTTP 和 XML 自身可以指定编码。这样的话，你应该使用 r.content 来找到编码，然后设置 r.encoding 为相应的编码。这样就能使用正确的编码解析 r.text 了。<br>在你需要的情况下，Requests 也可以使用定制的编码。如果你创建了自己的编码，并使用 codecs 模块进行注册，你就可以轻松地使用这个解码器名称作为 r.encoding 的值， 然后由 Requests 来为你处理编码。</p>
+<h4 id="二进制响应内容"><a href="#二进制响应内容" class="headerlink" title="二进制响应内容"></a>二进制响应内容</h4><p>你也能以字节的方式访问请求响应体，对于非文本请求：</p>
+<blockquote>
+<p>r.content<br>Requests 会自动为你解码 gzip 和 deflate 传输编码的响应数据。</p>
+</blockquote>
+<p>例如，以请求返回的二进制数据创建一张图片，你可以使用如下代码：</p>
+<blockquote>
+<p>from PIL import Image</p>
+<p>from io import BytesIO</p>
+<p>i &#x3D; Image.open(BytesIO(r.content))</p>
+</blockquote>
+<h4 id="JSON-响应内容"><a href="#JSON-响应内容" class="headerlink" title="JSON 响应内容"></a>JSON 响应内容</h4><p>Requests 中也有一个内置的 JSON 解码器，助你处理 JSON 数据：</p>
+<blockquote>
+<p>import requests</p>
+<p>r &#x3D; requests.get(‘<a target="_blank" rel="noopener" href="https://api.github.com/events">https://api.github.com/events</a>‘)</p>
+<p>r.json()</p>
+</blockquote>
+<p>如果 JSON 解码失败， r.json() 就会抛出一个异常。例如，响应内容是 401 (Unauthorized)，尝试访问 r.json() 将会抛出 ValueError: No JSON object could be decoded 异常。<br>需要注意的是，成功调用 r.json() 并<strong>不</strong>意味着响应的成功。有的服务器会在失败的响应中包含一个 JSON 对象（比如 HTTP 500 的错误细节）。这种 JSON 会被解码返回。要检查请求是否成功，请使用 r.raise_for_status() 或者检查 r.status_code 是否和你的期望相同。</p>
+<h4 id="原始响应内容"><a href="#原始响应内容" class="headerlink" title="原始响应内容"></a>原始响应内容</h4><p>在罕见的情况下，你可能想获取来自服务器的原始套接字响应，那么你可以访问 r.raw。 如果你确实想这么干，那请你确保在初始请求中设置了 stream&#x3D;True。具体你可以这么做：</p>
+<blockquote>
+<p>r &#x3D; requests.get(‘<a target="_blank" rel="noopener" href="https://api.github.com/events">https://api.github.com/events</a>‘, stream&#x3D;True)</p>
+<p>r.raw</p>
+<p>&lt;requests.packages.urllib3.response.HTTPResponse object at 0x101194810&gt;</p>
+<p>r.raw.read(10)</p>
+</blockquote>
+<h4 id="定制请求头"><a href="#定制请求头" class="headerlink" title="定制请求头"></a>定制请求头</h4><blockquote>
+<p>url &#x3D; ‘<a target="_blank" rel="noopener" href="https://api.github.com/some/endpoint">https://api.github.com/some/endpoint</a>‘</p>
+<p>headers &#x3D; {‘user-agent’: ‘my-app&#x2F;0.0.1’}</p>
+<p>r &#x3D; requests.get(url, headers&#x3D;headers)</p>
+</blockquote>
+<p>如果在 .netrc 中设置了用户认证信息，使用 headers&#x3D; 设置的授权就不会生效。而如果设置了 auth&#x3D; 参数，<code>.netrc</code> 的设置就无效了。<br>如果被重定向到别的主机，授权 header 就会被删除。<br>代理授权 header 会被 URL 中提供的代理身份覆盖掉。<br>在我们能判断内容长度的情况下，header 的 Content-Length 会被改写。</p>
+<h4 id="POST一个多部分编码-Multipart-Encoded-的文件"><a href="#POST一个多部分编码-Multipart-Encoded-的文件" class="headerlink" title="POST一个多部分编码(Multipart-Encoded)的文件"></a>POST一个多部分编码(Multipart-Encoded)的文件</h4><blockquote>
+<p>url &#x3D; ‘<a target="_blank" rel="noopener" href="http://httpbin.org/post">http://httpbin.org/post</a>‘</p>
+<p>files &#x3D; {‘file’: open(‘report.xls’, ‘rb’)}</p>
+<p>r &#x3D; requests.post(url, files&#x3D;files)</p>
+<p>r.text</p>
+</blockquote>
+<blockquote>
+<p>url &#x3D; ‘<a target="_blank" rel="noopener" href="http://httpbin.org/post">http://httpbin.org/post</a>‘</p>
+<p>files &#x3D; {‘file’: (‘report.xls’, open(‘report.xls’, ‘rb’), ‘application&#x2F;vnd.ms-excel’, {‘Expires’: ‘0’})}</p>
+<p>r &#x3D; requests.post(url, files&#x3D;files)</p>
+<p>r.text</p>
+</blockquote>
+<h4 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h4><blockquote>
+<p>r &#x3D; requests.get(‘<a target="_blank" rel="noopener" href="http://httpbin.org/get">http://httpbin.org/get</a>‘)</p>
+<p>r.status_code</p>
+</blockquote>
+<h4 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h4><blockquote>
+<p>r.headers</p>
+</blockquote>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><blockquote>
+<p>url &#x3D; ‘<a target="_blank" rel="noopener" href="http://example.com/some/cookie/setting/url">http://example.com/some/cookie/setting/url</a>‘</p>
+<p>r &#x3D; requests.get(url)</p>
+<p>r.cookies[‘example_cookie_name’]</p>
+</blockquote>
+<p>要想发送你的cookies到服务器，可以使用 cookies 参数：</p>
+<blockquote>
+<p>url &#x3D; ‘<a target="_blank" rel="noopener" href="http://httpbin.org/cookies">http://httpbin.org/cookies</a>‘</p>
+<p>cookies &#x3D; dict(cookies_are&#x3D;’working’)</p>
+<p>r &#x3D; requests.get(url, cookies&#x3D;cookies)</p>
+<p>r.text</p>
+</blockquote>
+<p>Cookie 的返回对象为 RequestsCookieJar，它的行为和字典类似，但接口更为完整，适合跨域名跨路径使用。你还可以把 Cookie Jar 传到 Requests 中：</p>
+<blockquote>
+<p>jar &#x3D; requests.cookies.RequestsCookieJar()</p>
+<p>jar.set(‘tasty_cookie’, ‘yum’, domain&#x3D;’httpbin.org’, path&#x3D;’&#x2F;cookies’)</p>
+<p>jar.set(‘gross_cookie’, ‘blech’, domain&#x3D;’httpbin.org’, path&#x3D;’&#x2F;elsewhere’)</p>
+<p>url &#x3D; ‘<a target="_blank" rel="noopener" href="http://httpbin.org/cookies">http://httpbin.org/cookies</a>‘</p>
+<p>r &#x3D; requests.get(url, cookies&#x3D;jar)</p>
+<p>r.text</p>
+</blockquote>
+<h4 id="重定向与请求历史"><a href="#重定向与请求历史" class="headerlink" title="重定向与请求历史"></a>重定向与请求历史</h4><p>Response.history 是一个 Response 对象的列表，为了完成请求而创建了这些对象。这个对象列表按照从最老到最近的请求进行排序。</p>
+<blockquote>
+<p>r &#x3D; requests.get(‘<a target="_blank" rel="noopener" href="http://github.com/">http://github.com</a>‘)</p>
+<p>r.url</p>
+<p>‘<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a>‘</p>
+<p>r.status_code</p>
+<p>200</p>
+<p>r.history</p>
+<p>[&lt;Response [301]&gt;]</p>
+</blockquote>
+<h4 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h4><p>你可以告诉 requests 在经过以 timeout 参数设定的秒数时间之后停止等待响应。基本上所有的生产代码都应该使用这一参数。如果不使用，你的程序可能会永远失去响应：</p>
+<blockquote>
+<p>requests.get(‘<a target="_blank" rel="noopener" href="http://github.com/">http://github.com</a>‘, timeout&#x3D;0.001)<br>Traceback (most recent call last):<br>  File “<stdin>“, line 1, in <module><br>requests.exceptions.Timeout: HTTPConnectionPool(host&#x3D;’github.com’, port&#x3D;80): Request timed out. (timeout&#x3D;0.001)</p>
+</blockquote>
+<p>注意<br>timeout 仅对连接过程有效，与响应体的下载无关。 timeout 并不是整个下载响应的时间限制，而是如果服务器在 timeout 秒内没有应答，将会引发一个异常（更精确地说，是在 timeout 秒内没有从基础套接字上接收到任何字节的数据时）If no timeout is specified explicitly, requests do not time out.</p>
+<h4 id="错误与异常"><a href="#错误与异常" class="headerlink" title="错误与异常"></a>错误与异常</h4><p>遇到网络问题（如：DNS 查询失败、拒绝连接等）时，Requests 会抛出一个 ConnectionError 异常。</p>
+<p>如果 HTTP 请求返回了不成功的状态码， Response.raise_for_status() 会抛出一个 HTTPError 异常。</p>
+<p>若请求超时，则抛出一个 Timeout 异常。</p>
+<p>若请求超过了设定的最大重定向次数，则会抛出一个 TooManyRedirects 异常。</p>
+<p>所有Requests显式抛出的异常都继承自 requests.exceptions.RequestException 。</p>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%86%85%E5%AE%B9"><span class="toc-text">响应内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A0%81"><span class="toc-text">编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%93%8D%E5%BA%94%E5%86%85%E5%AE%B9"><span class="toc-text">二进制响应内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSON-%E5%93%8D%E5%BA%94%E5%86%85%E5%AE%B9"><span class="toc-text">JSON 响应内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E5%93%8D%E5%BA%94%E5%86%85%E5%AE%B9"><span class="toc-text">原始响应内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-text">定制请求头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST%E4%B8%80%E4%B8%AA%E5%A4%9A%E9%83%A8%E5%88%86%E7%BC%96%E7%A0%81-Multipart-Encoded-%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-text">POST一个多部分编码(Multipart-Encoded)的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">响应状态码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="toc-text">响应头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie"><span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%8E%86%E5%8F%B2"><span class="toc-text">重定向与请求历史</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E6%97%B6"><span class="toc-text">超时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%B8%8E%E5%BC%82%E5%B8%B8"><span class="toc-text">错误与异常</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2022/08/11/爬虫/基础/003-requests相关知识/">https://dbbruce.github.io/2022/08/11/爬虫/基础/003-requests相关知识/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/002-HTTP%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          002-HTTP头部信息分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/09/01/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/01-tcpdump/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          tcpdump
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E7%88%AC%E8%99%AB/">爬虫</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5mysql/">异步mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/">异步redis</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/">uvloop</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/">异步迭代器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">195</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">62</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">66</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2024 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>
