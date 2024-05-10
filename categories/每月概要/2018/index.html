@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <title>10-地址重写 | 董勉 | 技术博客</title>
+  <title>category: 2018 | 董勉 | 技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
     <meta name="description" content="桑弧蓬矢">
@@ -86,156 +86,35 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-运维/nginx/10-地址重写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
+
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      10-地址重写
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-10T03:00:52.000Z" itemprop="datePublished">2021年09月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
-  </div>
-
-      
-        <span class="article-views">
-  <i class="fa fa-views"></i>
-  <i id="busuanzi_container_page_pv">
-      <i id="busuanzi_value_page_pv"></i>
-  </i>
-</span>
-
-      
-      
-<a href="/2021/09/10/%E8%BF%90%E7%BB%B4/nginx/10-%E5%9C%B0%E5%9D%80%E9%87%8D%E5%86%99/#comments" class="article-comment-link">
   
     
     
-    
-    
-    
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-地址重写-地址栏被重写"><a href="#1-地址重写-地址栏被重写" class="headerlink" title="1.地址重写(地址栏被重写)"></a>1.地址重写(地址栏被重写)</h4><p>rewrite regex replacement flag<br>rewrite 旧地址 新地址 [选项]<br><a target="_blank" rel="noopener" href="http://www.a.com/a.html">http://www.a.com/a.html</a>  &gt;&gt;&gt;&gt; <a target="_blank" rel="noopener" href="http://www.a.com/a.html">http://www.a.com/a.html</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.a.com;  # 地址栏不变化</span><br><span class="line">    </span><br><span class="line">    rewrite  /a.html b.html;  </span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>redirect 地址栏变化<br><a target="_blank" rel="noopener" href="http://www.a.com/a.html">http://www.a.com/a.html</a>  &gt;&gt;&gt; <a target="_blank" rel="noopener" href="http://www.a.com/b.html">http://www.a.com/b.html</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.a.com;</span><br><span class="line"></span><br><span class="line">    rewrite  /a.html /b.html redirect;</span><br></pre></td></tr></table></figure>
-<p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/nginx/img_8.png" alt="img_8.png"></p>
-<h4 id="2-修改配置文件-访问www-a-com的请求重定向至-https-dbbruce-github-io"><a href="#2-修改配置文件-访问www-a-com的请求重定向至-https-dbbruce-github-io" class="headerlink" title="2. 修改配置文件 访问www.a.com的请求重定向至 https://dbbruce.github.io"></a>2. 修改配置文件 访问<a target="_blank" rel="noopener" href="http://www.a.com的请求重定向至/">www.a.com的请求重定向至</a> <a href="https://dbbruce.github.io/">https://dbbruce.github.io</a></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.a.com;</span><br><span class="line"></span><br><span class="line">    rewrite ^/  https://dbbruce.github.io;</span><br></pre></td></tr></table></figure>
-<h4 id="3-修改配置文件-访问192-168-45-下面子页面，重定向至www-tmooc-cn-下相同的页面"><a href="#3-修改配置文件-访问192-168-45-下面子页面，重定向至www-tmooc-cn-下相同的页面" class="headerlink" title="3.修改配置文件(访问192.168.45&#x2F;下面子页面，重定向至www.tmooc.cn/下相同的页面)"></a>3.修改配置文件(访问192.168.45&#x2F;下面子页面，重定向至<a target="_blank" rel="noopener" href="http://www.tmooc.cn/%E4%B8%8B%E7%9B%B8%E5%90%8C%E7%9A%84%E9%A1%B5%E9%9D%A2">www.tmooc.cn/下相同的页面</a>)</h4><p>域名修改，路径不变<br>比如访问 <a target="_blank" rel="noopener" href="http://www.a.com/home">www.a.com/home</a>  &gt;&gt;&gt; <a target="_blank" rel="noopener" href="http://www.b.com/home">www.b.com/home</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.a.com;</span><br><span class="line"></span><br><span class="line">    rewrite ^/(.*)  www.b.com/$1;  # (xxx)保留提前   $1 复制粘贴</span><br></pre></td></tr></table></figure>
-<h4 id="4-根据不同来源跳转不同页面，比如手机端和电脑端"><a href="#4-根据不同来源跳转不同页面，比如手机端和电脑端" class="headerlink" title="4.根据不同来源跳转不同页面，比如手机端和电脑端"></a>4.根据不同来源跳转不同页面，比如手机端和电脑端</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.a.com;</span><br><span class="line"></span><br><span class="line">    if ($http_user_agent ~* firefox)&#123;</span><br><span class="line">            rewrite ^/(.*)  /firefox/$1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="5-地址重写格式"><a href="#5-地址重写格式" class="headerlink" title="5.地址重写格式"></a>5.地址重写格式</h4><p>rewrite 旧地址 新地址[选项]<br>last 不再读其他rewrite</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rewrite /a.html  /b.html last;</span><br><span class="line">rewrite /b.html  /d.html ;</span><br></pre></td></tr></table></figure>
-<p>brehk 不再读其他语句，结束请求</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rewrite /a.html  /b.html break;</span><br><span class="line">rewrite /b.html  /d.html ;</span><br></pre></td></tr></table></figure>
-<p>redirect 临时重定向</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite /a.html  /b.html redirect;</span><br></pre></td></tr></table></figure>
-<p>permament 永久重定向</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite /a.html  /b.html permament;</span><br></pre></td></tr></table></figure>
-
-
-
+    <section class="archives-wrap">
+      <div class="archive-title">
         
-            <div id="toc-article">
-                
-  <div class="widget-wrap" id="toc-wrap">
-    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
-    <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9C%B0%E5%9D%80%E9%87%8D%E5%86%99-%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%A2%AB%E9%87%8D%E5%86%99"><span class="toc-text">1.地址重写(地址栏被重写)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E8%AE%BF%E9%97%AEwww-a-com%E7%9A%84%E8%AF%B7%E6%B1%82%E9%87%8D%E5%AE%9A%E5%90%91%E8%87%B3-https-dbbruce-github-io"><span class="toc-text">2. 修改配置文件 访问www.a.com的请求重定向至 https:&#x2F;&#x2F;dbbruce.github.io</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E8%AE%BF%E9%97%AE192-168-45-%E4%B8%8B%E9%9D%A2%E5%AD%90%E9%A1%B5%E9%9D%A2%EF%BC%8C%E9%87%8D%E5%AE%9A%E5%90%91%E8%87%B3www-tmooc-cn-%E4%B8%8B%E7%9B%B8%E5%90%8C%E7%9A%84%E9%A1%B5%E9%9D%A2"><span class="toc-text">3.修改配置文件(访问192.168.45&#x2F;下面子页面，重定向至www.tmooc.cn&#x2F;下相同的页面)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E6%9D%A5%E6%BA%90%E8%B7%B3%E8%BD%AC%E4%B8%8D%E5%90%8C%E9%A1%B5%E9%9D%A2%EF%BC%8C%E6%AF%94%E5%A6%82%E6%89%8B%E6%9C%BA%E7%AB%AF%E5%92%8C%E7%94%B5%E8%84%91%E7%AB%AF"><span class="toc-text">4.根据不同来源跳转不同页面，比如手机端和电脑端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%9C%B0%E5%9D%80%E9%87%8D%E5%86%99%E6%A0%BC%E5%BC%8F"><span class="toc-text">5.地址重写格式</span></a></li></ol>
-    </div>
-  </div>
-
-
-            </div>
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/2021/09/10/运维/nginx/10-地址重写/">https://dbbruce.github.io/2021/09/10/运维/nginx/10-地址重写/</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
-      
-      
-        
-<nav id="article-nav">
-  
-    <a href="/2021/09/09/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/39-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%BC%A0%E8%BE%93%E5%B1%82%E8%A7%A3%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          39-网络管理-传输层解析
+          <i class="fa fa-classify"></i>
+          2018
         
       </div>
+      <div class="archives">
+  
+  <ul class="archive-article archive-type-post">
+  <li class="archive-article-inner">
+    <a href="/2018/05/05/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/201800505/">
+      <time class="dt-published" datetime="2018-05-05T10:30:58.000Z" itemprop="datePublished">2018年05月05日</time>
+      | <span class="archive-article-title">201800505</span>
     </a>
-  
-  
-    <a href="/2021/09/10/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/40-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-ACL/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          40-网络管理-ACL
-        
-      </div>
-    </a>
-  
-</nav>
-
-      
-      
-        
+  </li>
+</ul>
 
 
 
+  </div></section>
 
 
-
-
-
-      
-    </footer>
-  </div>
-</article>
 </section>
         
           <aside id="sidebar">
@@ -371,16 +250,6 @@
 
 
 
-<!--  -->
-<!--    -->
-<!--     
-<script src="/localshare/js/social-share.js"></script>
- -->
-<!--     
-<script src="/localshare/js/qrcode.js"></script>
- -->
-<!--    -->
-<!--    -->
 <!--  -->
 
 
