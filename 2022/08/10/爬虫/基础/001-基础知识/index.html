@@ -140,6 +140,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h4 id="1-协议爬虫"><a href="#1-协议爬虫" class="headerlink" title="1.协议爬虫"></a>1.协议爬虫</h4><p>数据采集：天眼查，数据来源工商<br>监控爬虫：合理性爬虫， 灰色爬虫， 是否获取暴利<br>搜索引擎：百度，google<br>红人点集数据</p>
+<span id="more"></span>
+
 <h4 id="2-通用爬虫"><a href="#2-通用爬虫" class="headerlink" title="2.通用爬虫"></a>2.通用爬虫</h4><p>主要目的:将互联网上的网页下载到本地，形成一个互联网内容的镜像备份<br>通用搜索引擎（search engine）原理：从互联网搜集网页，采集信息，这些网页信息用于搜索引擎建立索引从而提供支持，它决定着整个引擎系统的内容是否丰富，信息是否即时，因此其性能的优劣直接影响搜索引擎的效果</p>
 <ul>
 <li>第一步：抓取网页<br>搜索引擎网络爬虫基本工作流程：<br>1、获取一部分种子url，将这些url放入待抓取url列表；<br>2、取出待抓取url，解析dns得到主机ip，并将url对应的网页下载下来，存储进下载网页库中，并且将这些url放进已经抓取url列表<br>3、分析已抓取URL列表中url，分析其中的其他url，并且将url放入待抓取url列表，从而进入下一次循环</li>

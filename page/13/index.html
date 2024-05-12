@@ -127,192 +127,14 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(<span class="string">&#x27;https://api.github.com/events&#x27;</span>)</span><br><span class="line">r = requests.post(<span class="string">&#x27;http://httpbin.org/post&#x27;</span>, data = &#123;<span class="string">&#x27;key&#x27;</span>:<span class="string">&#x27;value&#x27;</span>&#125;)</span><br><span class="line">r = requests.put(<span class="string">&#x27;http://httpbin.org/put&#x27;</span>, data = &#123;<span class="string">&#x27;key&#x27;</span>:<span class="string">&#x27;value&#x27;</span>&#125;)</span><br><span class="line">r = requests.delete(<span class="string">&#x27;http://httpbin.org/delete&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r = requests.head(<span class="string">&#x27;http://httpbin.org/get&#x27;</span>) <span class="comment"># 获得报文首部</span></span><br><span class="line"><span class="comment"># HEAD方法和GET方法一样，知识不返回豹纹的主体部分，用于确认URI的有效性及资源更新的日期时间等。</span></span><br><span class="line"><span class="comment"># 具体来说：1、判断类型； 2、查看响应中的状态码，看对象是否存在（响应：请求执行成功了，但无数据返回）； 3、测试资源是否被修改过</span></span><br><span class="line"><span class="comment"># HEAD方法和GET方法的区别： GET方法有实体，HEAD方法无实体。</span></span><br><span class="line"></span><br><span class="line">r = requests.options(<span class="string">&#x27;http://httpbin.org/get&#x27;</span>)  <span class="comment"># 询问支持的方法</span></span><br><span class="line"><span class="comment"># OPTIONS方法用来查询针对请求URI指定资源支持的方法（客户端询问服务器可以提交哪些请求方法）</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="响应内容"><a href="#响应内容" class="headerlink" title="响应内容"></a>响应内容</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.text</span><br></pre></td></tr></table></figure>
-<p>Requests 会自动解码来自服务器的内容。大多数 unicode 字符集都能被无缝地解码。</p>
-<p>请求发出后，Requests 会基于 HTTP 头部对响应的编码作出有根据的推测。当你访问 r.text 之时，Requests 会使用其推测的文本编码。你可以找出 Requests 使用了什么编码，并且能够使用 r.encoding 属性来改变它：</p>
-<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.encoding</span><br><span class="line"><span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line">r.encoding = <span class="string">&#x27;ISO-8859-1&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你改变了编码，每当你访问 r.text ，Request 都将会使用 r.encoding 的新值。你可能希望在使用特殊逻辑计算出文本的编码的情况下来修改编码。比如 HTTP 和 XML 自身可以指定编码。这样的话，你应该使用 r.content 来找到编码，然后设置 r.encoding 为相应的编码。这样就能使用正确的编码解析 r.text 了。<br>在你需要的情况下，Requests 也可以使用定制的编码。如果你创建了自己的编码，并使用 codecs 模块进行注册，你就可以轻松地使用这个解码器名称作为 r.encoding 的值， 然后由 Requests 来为你处理编码。</p>
-<h4 id="二进制响应内容"><a href="#二进制响应内容" class="headerlink" title="二进制响应内容"></a>二进制响应内容</h4><p>你也能以字节的方式访问请求响应体，对于非文本请求：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.content </span><br></pre></td></tr></table></figure>
-<p>Requests 会自动为你解码 gzip 和 deflate 传输编码的响应数据。</p>
-<p>例如，以请求返回的二进制数据创建一张图片，你可以使用如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line">i = Image.<span class="built_in">open</span>(BytesIO(r.content))</span><br></pre></td></tr></table></figure>
-
-<h4 id="JSON-响应内容"><a href="#JSON-响应内容" class="headerlink" title="JSON 响应内容"></a>JSON 响应内容</h4><p>Requests 中也有一个内置的 JSON 解码器，助你处理 JSON 数据：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r = requests.get(<span class="string">&#x27;https://api.github.com/events&#x27;</span>)</span><br><span class="line">r.json()</span><br></pre></td></tr></table></figure>
-<p>如果 JSON 解码失败， r.json() 就会抛出一个异常。例如，响应内容是 401 (Unauthorized)，尝试访问 r.json() 将会抛出 ValueError: No JSON object could be decoded 异常。<br>需要注意的是，成功调用 r.json() 并<strong>不</strong>意味着响应的成功。有的服务器会在失败的响应中包含一个 JSON 对象（比如 HTTP 500 的错误细节）。这种 JSON 会被解码返回。要检查请求是否成功，请使用 r.raise_for_status() 或者检查 r.status_code 是否和你的期望相同。</p>
-<h4 id="原始响应内容"><a href="#原始响应内容" class="headerlink" title="原始响应内容"></a>原始响应内容</h4><p>在罕见的情况下，你可能想获取来自服务器的原始套接字响应，那么你可以访问 r.raw。 如果你确实想这么干，那请你确保在初始请求中设置了 stream&#x3D;True。具体你可以这么做：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(<span class="string">&#x27;https://api.github.com/events&#x27;</span>, stream=<span class="literal">True</span>)</span><br><span class="line">r.raw</span><br><span class="line">&gt;&lt;requests.packages.urllib3.response.HTTPResponse <span class="built_in">object</span> at <span class="number">0x101194810</span>&gt;</span><br><span class="line">r.raw.read(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="定制请求头"><a href="#定制请求头" class="headerlink" title="定制请求头"></a>定制请求头</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&#x27;https://api.github.com/some/endpoint&#x27;</span></span><br><span class="line">headers = &#123;<span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;my-app/0.0.1&#x27;</span>&#125;</span><br><span class="line">r = requests.get(url, headers=headers)</span><br></pre></td></tr></table></figure>
-<p>如果在 .netrc 中设置了用户认证信息，使用 headers&#x3D; 设置的授权就不会生效。而如果设置了 auth&#x3D; 参数，<code>.netrc</code> 的设置就无效了。<br>如果被重定向到别的主机，授权 header 就会被删除。<br>代理授权 header 会被 URL 中提供的代理身份覆盖掉。<br>在我们能判断内容长度的情况下，header 的 Content-Length 会被改写。</p>
-<h4 id="POST一个多部分编码-Multipart-Encoded-的文件"><a href="#POST一个多部分编码-Multipart-Encoded-的文件" class="headerlink" title="POST一个多部分编码(Multipart-Encoded)的文件"></a>POST一个多部分编码(Multipart-Encoded)的文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&#x27;http://httpbin.org/post&#x27;</span></span><br><span class="line">files = &#123;<span class="string">&#x27;file&#x27;</span>: <span class="built_in">open</span>(<span class="string">&#x27;report.xls&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)&#125;</span><br><span class="line">r = requests.post(url, files=files)</span><br><span class="line">r.text</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://httpbin.org/post&#x27;</span></span><br><span class="line">files = &#123;<span class="string">&#x27;file&#x27;</span>: (<span class="string">&#x27;report.xls&#x27;</span>, <span class="built_in">open</span>(<span class="string">&#x27;report.xls&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>), <span class="string">&#x27;application/vnd.ms-excel&#x27;</span>, &#123;<span class="string">&#x27;Expires&#x27;</span>: <span class="string">&#x27;0&#x27;</span>&#125;)&#125;</span><br><span class="line">r = requests.post(url, files=files)</span><br><span class="line">r.text</span><br></pre></td></tr></table></figure>
-
-<h4 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(<span class="string">&#x27;http://httpbin.org/get&#x27;</span>)</span><br><span class="line">r.status_code</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.headers</span><br></pre></td></tr></table></figure>
-
-<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&#x27;http://example.com/some/cookie/setting/url&#x27;</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line">r.cookies[<span class="string">&#x27;example_cookie_name&#x27;</span>]</span><br><span class="line"></span><br><span class="line">要想发送你的cookies到服务器，可以使用 cookies 参数：</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://httpbin.org/cookies&#x27;</span></span><br><span class="line">cookies = <span class="built_in">dict</span>(cookies_are=<span class="string">&#x27;working&#x27;</span>)</span><br><span class="line">r = requests.get(url, cookies=cookies)</span><br><span class="line">r.text</span><br><span class="line"></span><br><span class="line">Cookie 的返回对象为 RequestsCookieJar，它的行为和字典类似，但接口更为完整，适合跨域名跨路径使用。你还可以把 Cookie Jar 传到 Requests 中：</span><br><span class="line">jar = requests.cookies.RequestsCookieJar()</span><br><span class="line">jar.<span class="built_in">set</span>(<span class="string">&#x27;tasty_cookie&#x27;</span>, <span class="string">&#x27;yum&#x27;</span>, domain=<span class="string">&#x27;httpbin.org&#x27;</span>, path=<span class="string">&#x27;/cookies&#x27;</span>)</span><br><span class="line">jar.<span class="built_in">set</span>(<span class="string">&#x27;gross_cookie&#x27;</span>, <span class="string">&#x27;blech&#x27;</span>, domain=<span class="string">&#x27;httpbin.org&#x27;</span>, path=<span class="string">&#x27;/elsewhere&#x27;</span>)</span><br><span class="line">url = <span class="string">&#x27;http://httpbin.org/cookies&#x27;</span></span><br><span class="line">r = requests.get(url, cookies=jar)</span><br><span class="line">r.text</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="重定向与请求历史"><a href="#重定向与请求历史" class="headerlink" title="重定向与请求历史"></a>重定向与请求历史</h4><p>Response.history 是一个 Response 对象的列表，为了完成请求而创建了这些对象。这个对象列表按照从最老到最近的请求进行排序。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(<span class="string">&#x27;http://github.com&#x27;</span>)</span><br><span class="line">r.url</span><br><span class="line"><span class="string">&#x27;https://github.com/&#x27;</span></span><br><span class="line">r.status_code</span><br><span class="line"><span class="number">200</span></span><br><span class="line">r.history</span><br><span class="line">[&lt;Response [<span class="number">301</span>]&gt;]</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h4><p>你可以告诉 requests 在经过以 timeout 参数设定的秒数时间之后停止等待响应。基本上所有的生产代码都应该使用这一参数。如果不使用，你的程序可能会永远失去响应：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">requests.get(<span class="string">&#x27;http://github.com&#x27;</span>, timeout=<span class="number">0.001</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">requests.exceptions.Timeout: HTTPConnectionPool(host=<span class="string">&#x27;github.com&#x27;</span>, port=<span class="number">80</span>): Request timed out. (timeout=<span class="number">0.001</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>注意 : timeout 仅对连接过程有效，与响应体的下载无关。 timeout 并不是整个下载响应的时间限制，而是如果服务器在 timeout 秒内没有应答，将会引发一个异常（更精确地说，是在 timeout 秒内没有从基础套接字上接收到任何字节的数据时）If no timeout is specified explicitly, requests do not time out.</p>
-<h4 id="错误与异常"><a href="#错误与异常" class="headerlink" title="错误与异常"></a>错误与异常</h4><p>遇到网络问题（如：DNS 查询失败、拒绝连接等）时，Requests 会抛出一个 ConnectionError 异常。<br>如果 HTTP 请求返回了不成功的状态码， Response.raise_for_status() 会抛出一个 HTTPError 异常。<br>若请求超时，则抛出一个 Timeout 异常。<br>若请求超过了设定的最大重定向次数，则会抛出一个 TooManyRedirects 异常。<br>所有Requests显式抛出的异常都继承自 requests.exceptions.RequestException 。</p>
-<h4 id="会话对象"><a href="#会话对象" class="headerlink" title="会话对象"></a>会话对象</h4><p>会话对象让你能够跨请求保持某些参数。它也会在同一个 Session 实例发出的所有请求之间保持 cookie， 期间使用 urllib3 的 connection pooling 功能。所以如果你向同一主机发送多个请求，底层的 TCP 连接将会被重用，从而带来显著的性能提升。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = requests.Session()</span><br><span class="line">s.get(<span class="string">&#x27;http://httpbin.org/cookies/set/sessioncookie/123456789&#x27;</span>)</span><br><span class="line">r = s.get(<span class="string">&quot;http://httpbin.org/cookies&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br><span class="line"><span class="comment"># &#x27;&#123;&quot;cookies&quot;: &#123;&quot;sessioncookie&quot;: &quot;123456789&quot;&#125;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s = requests.Session()</span><br><span class="line">r = s.get(<span class="string">&#x27;http://httpbin.org/cookies&#x27;</span>, cookies=&#123;<span class="string">&#x27;from-my&#x27;</span>: <span class="string">&#x27;browser&#x27;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br><span class="line"><span class="comment"># &#x27;&#123;&quot;cookies&quot;: &#123;&quot;from-my&quot;: &quot;browser&quot;&#125;&#125;&#x27;</span></span><br><span class="line">r = s.get(<span class="string">&#x27;http://httpbin.org/cookies&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br><span class="line"><span class="comment"># &#x27;&#123;&quot;cookies&quot;: &#123;&#125;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>前后文管理器：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> requests.Session() <span class="keyword">as</span> s:</span><br><span class="line">    s.get(<span class="string">&#x27;http://httpbin.org/cookies/set/sessioncookie/123456789&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="请求头与响应头"><a href="#请求头与响应头" class="headerlink" title="请求头与响应头"></a>请求头与响应头</h4><p>服务器返回给我们的响应头部信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">r.headers</span><br><span class="line"></span><br><span class="line">&#123;<span class="string">&#x27;content-length&#x27;</span>: <span class="string">&#x27;56170&#x27;</span>, <span class="string">&#x27;x-content-type-options&#x27;</span>: <span class="string">&#x27;nosniff&#x27;</span>, <span class="string">&#x27;x-cache&#x27;</span>:</span><br><span class="line"><span class="string">&#x27;HIT from cp1006.eqiad.wmnet, MISS from cp1010.eqiad.wmnet&#x27;</span>, <span class="string">&#x27;content-encoding&#x27;</span>:</span><br><span class="line"><span class="string">&#x27;gzip&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="string">&#x27;3080&#x27;</span>, <span class="string">&#x27;content-language&#x27;</span>: <span class="string">&#x27;en&#x27;</span>, <span class="string">&#x27;vary&#x27;</span>: <span class="string">&#x27;Accept-Encoding,Cookie&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;server&#x27;</span>: <span class="string">&#x27;Apache&#x27;</span>, <span class="string">&#x27;last-modified&#x27;</span>: <span class="string">&#x27;Wed, 13 Jun 2012 01:33:50 GMT&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;connection&#x27;</span>: <span class="string">&#x27;close&#x27;</span>, <span class="string">&#x27;cache-control&#x27;</span>: <span class="string">&#x27;private, s-maxage=0, max-age=0,</span></span><br><span class="line"><span class="string">must-revalidate&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;Thu, 14 Jun 2012 12:59:39 GMT&#x27;</span>, <span class="string">&#x27;content-type&#x27;</span>:</span><br><span class="line"><span class="string">&#x27;text/html; charset=UTF-8&#x27;</span>, <span class="string">&#x27;x-cache-lookup&#x27;</span>: <span class="string">&#x27;HIT from cp1006.eqiad.wmnet:3128,</span></span><br><span class="line"><span class="string">MISS from cp1010.eqiad.wmnet:80&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>发送到服务器的请求的头部</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.request.headers</span><br><span class="line">&#123;<span class="string">&#x27;Accept-Encoding&#x27;</span>: <span class="string">&#x27;identity, deflate, compress, gzip&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;*/*&#x27;</span>, <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;python-requests/0.13.1&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="准备的请求-（Prepared-Request）"><a href="#准备的请求-（Prepared-Request）" class="headerlink" title="准备的请求 （Prepared Request）"></a>准备的请求 （Prepared Request）</h4><p>当你从 API 或者会话调用中收到一个 Response 对象时，request 属性其实是使用了 PreparedRequest。有时在发送请求之前，你需要对 body 或者 header （或者别的什么东西）做一些额外处理，下面演示了一个简单的做法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> requests <span class="keyword">import</span> Request, Session</span><br><span class="line"></span><br><span class="line">s = Session()</span><br><span class="line">req = Request(<span class="string">&#x27;GET&#x27;</span>, url,</span><br><span class="line">    data=data,</span><br><span class="line">    headers=header</span><br><span class="line">)</span><br><span class="line">prepped = req.prepare()</span><br><span class="line"></span><br><span class="line"><span class="comment"># do something with prepped.body</span></span><br><span class="line"><span class="comment"># do something with prepped.headers</span></span><br><span class="line"></span><br><span class="line">resp = s.send(prepped,</span><br><span class="line">    stream=stream,</span><br><span class="line">    verify=verify,</span><br><span class="line">    proxies=proxies,</span><br><span class="line">    cert=cert,</span><br><span class="line">    timeout=timeout</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(resp.status_code)</span><br></pre></td></tr></table></figure>
-<p>由于你没有对 Request 对象做什么特殊事情，你立即准备和修改了 PreparedRequest 对象，然后把它和别的参数一起发送到 requests.* 或者 Session.*。</p>
-<p>然而，上述代码会失去 Requests Session 对象的一些优势， 尤其 Session 级别的状态，例如 cookie 就不会被应用到你的请求上去。要获取一个带有状态的 PreparedRequest， 请用 Session.prepare_request() 取代 Request.prepare() 的调用，如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> requests <span class="keyword">import</span> Request, Session</span><br><span class="line"></span><br><span class="line">s = Session()</span><br><span class="line">req = Request(<span class="string">&#x27;GET&#x27;</span>,  url,</span><br><span class="line">    data=data</span><br><span class="line">    headers=headers</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">prepped = s.prepare_request(req)</span><br><span class="line"></span><br><span class="line"><span class="comment"># do something with prepped.body</span></span><br><span class="line"><span class="comment"># do something with prepped.headers</span></span><br><span class="line"></span><br><span class="line">resp = s.send(prepped,</span><br><span class="line">    stream=stream,</span><br><span class="line">    verify=verify,</span><br><span class="line">    proxies=proxies,</span><br><span class="line">    cert=cert,</span><br><span class="line">    timeout=timeout</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(resp.status_code)</span><br></pre></td></tr></table></figure>
-<h4 id="SSL-证书验证"><a href="#SSL-证书验证" class="headerlink" title="SSL 证书验证"></a>SSL 证书验证</h4><p>Requests 可以为 HTTPS 请求验证 SSL 证书，就像 web 浏览器一样。SSL 验证默认是开启的，如果证书验证失败，Requests 会抛出 SSLError:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requests.get(&#x27;https://requestb.in&#x27;)</span><br><span class="line">requests.exceptions.SSLError: hostname &#x27;requestb.in&#x27; doesn&#x27;t match either of &#x27;*.herokuapp.com&#x27;, &#x27;herokuapp.com&#x27;</span><br></pre></td></tr></table></figure>
-<p>在该域名上我没有设置 SSL，所以失败了。但 Github 设置了 SSL:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requests.get(&#x27;https://github.com&#x27;, verify=True)</span><br><span class="line">&lt;Response [200]&gt;</span><br></pre></td></tr></table></figure>
-<p>你可以为 verify 传入 CA_BUNDLE 文件的路径，或者包含可信任 CA 证书文件的文件夹路径：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requests.get(&#x27;https://github.com&#x27;, verify=&#x27;/path/to/certfile&#x27;)</span><br></pre></td></tr></table></figure>
-<p>或者将其保持在会话中：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = requests.Session()</span><br><span class="line">s.verify = &#x27;/path/to/certfile&#x27;</span><br></pre></td></tr></table></figure>
-<p>注解<br>如果 verify 设为文件夹路径，文件夹必须通过 OpenSSL 提供的 c_rehash 工具处理。</p>
-<p>你还可以通过 REQUESTS_CA_BUNDLE 环境变量定义可信任 CA 列表。</p>
-<p>如果你将 verify 设置为 False，Requests 也能忽略对 SSL 证书的验证。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> requests.get(&#x27;https://kennethreitz.org&#x27;, verify=False)</span><br><span class="line">&lt;Response [200]&gt;</span><br></pre></td></tr></table></figure>
-<p>默认情况下， verify 是设置为 True 的。选项 verify 仅应用于主机证书。<br>对于私有证书，你也可以传递一个 CA_BUNDLE 文件的路径给 verify。你也可以设置 # REQUEST_CA_BUNDLE 环境变量。</p>
-<h4 id="客户端证书"><a href="#客户端证书" class="headerlink" title="客户端证书"></a>客户端证书</h4><p>你也可以指定一个本地证书用作客户端证书，可以是单个文件（包含密钥和证书）或一个包含两个文件路径的元组：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> requests.get(&#x27;https://kennethreitz.org&#x27;, cert=(&#x27;/path/client.cert&#x27;, &#x27;/path/client.key&#x27;))</span><br><span class="line">&lt;Response [200]&gt;</span><br></pre></td></tr></table></figure>
-<p>或者保持在会话中：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = requests.Session()</span><br><span class="line">s.cert = <span class="string">&#x27;/path/client.cert&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>如果你指定了一个错误路径或一个无效的证书:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> requests.get(<span class="string">&#x27;https://kennethreitz.org&#x27;</span>, cert=<span class="string">&#x27;/wrong_path/client.pem&#x27;</span>)</span><br><span class="line">SSLError: [Errno <span class="number">336265225</span>] _ssl.c:<span class="number">347</span>: error:140B0009:SSL routines:SSL_CTX_use_PrivateKey_file:PEM lib</span><br></pre></td></tr></table></figure>
-<p>警告 ：本地证书的私有 key 必须是解密状态。目前，Requests 不支持使用加密的 k</p>
-<h4 id="响应体内容工作流"><a href="#响应体内容工作流" class="headerlink" title="响应体内容工作流"></a>响应体内容工作流</h4><p>默认情况下，当你进行网络请求后，响应体会立即被下载。你可以通过 stream 参数覆盖这个行为，推迟下载响应体直到访问 Response.content 属性：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">tarball_url = <span class="string">&#x27;https://github.com/kennethreitz/requests/tarball/master&#x27;</span></span><br><span class="line">r = requests.get(tarball_url, stream=<span class="literal">True</span>)</span><br><span class="line">此时仅有响应头被下载下来了，连接保持打开状态，因此允许我们根据条件获取内容：</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">int</span>(r.headers[<span class="string">&#x27;content-length&#x27;</span>]) &lt; TOO_LONG:</span><br><span class="line">  content = r.content</span><br><span class="line">  ...</span><br><span class="line">你可以进一步使用 Response.iter_content 和 Response.iter_lines 方法来控制工作流，或者以 Response.raw 从底层 urllib3 的 urllib3.HTTPResponse &lt;urllib3.response.HTTPResponse 读取未解码的响应体。</span><br><span class="line"></span><br><span class="line">如果你在请求中把 stream 设为 <span class="literal">True</span>，Requests 无法将连接释放回连接池，除非你 消耗了所有的数据，或者调用了 Response.close。 这样会带来连接效率低下的问题。如果你发现你在使用 stream=<span class="literal">True</span> 的同时还在部分读取请求的 body（或者完全没有读取 body），那么你就应该考虑使用 <span class="keyword">with</span> 语句发送请求，这样可以保证请求一定会被关闭：</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> requests.get(<span class="string">&#x27;http://httpbin.org/get&#x27;</span>, stream=<span class="literal">True</span>) <span class="keyword">as</span> r:</span><br><span class="line">    <span class="comment"># 在此处理响应。</span></span><br></pre></td></tr></table></figure>
-<h4 id="流式上传"><a href="#流式上传" class="headerlink" title="流式上传"></a>流式上传</h4><p>Requests支持流式上传，这允许你发送大的数据流或文件而无需先把它们读入内存。要使用流式上传，仅需为你的请求体提供一个类文件对象即可：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;massive-body&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    requests.post(<span class="string">&#x27;http://some.url/streamed&#x27;</span>, data=f)</span><br></pre></td></tr></table></figure>
-<p>警告 ：我们强烈建议你用二进制模式（binary mode）打开文件。这是因为 requests 可能会为你提供 header 中的 Content-Length，在这种情况下该值会被设为文件的字节数。如果你用文本模式打开文件，就可能碰到错误。</p>
-<h4 id="块编码请求"><a href="#块编码请求" class="headerlink" title="块编码请求"></a>块编码请求</h4><p>对于出去和进来的请求，Requests 也支持分块传输编码。要发送一个块编码的请求，仅需为你的请求体提供一个生成器（或任意没有具体长度的迭代器）：</p>
-<p>对于分块的编码请求，我们最好使用 Response.iter_content() 对其数据进行迭代。在理想情况下，你的 request 会设置 stream&#x3D;True，这样你就可以通过调用 iter_content 并将分块大小参数设为 None，从而进行分块的迭代。如果你要设置分块的最大体积，你可以把分块大小参数设为任意整数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gen</span>():</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">&#x27;hi&#x27;</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="string">&#x27;there&#x27;</span></span><br><span class="line"></span><br><span class="line">requests.post(<span class="string">&#x27;http://some.url/chunked&#x27;</span>, data=gen())</span><br></pre></td></tr></table></figure>
-<h4 id="POST-多个分块编码的文件"><a href="#POST-多个分块编码的文件" class="headerlink" title="POST 多个分块编码的文件"></a>POST 多个分块编码的文件</h4><p>你可以在一个请求中发送多个文件。例如，假设你要上传多个图像文件到一个 HTML 表单，使用一个多文件 field 叫做 “images”:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;images&quot;</span> <span class="attr">multiple</span>=<span class="string">&quot;true&quot;</span> <span class="attr">required</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<p>要实现，只要把文件设到一个元组的列表中，其中元组结构为 (form_field_name, file_info):</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> url = <span class="string">&#x27;http://httpbin.org/post&#x27;</span></span><br><span class="line"> multiple_files = [</span><br><span class="line">        (<span class="string">&#x27;images&#x27;</span>, (<span class="string">&#x27;foo.png&#x27;</span>, <span class="built_in">open</span>(<span class="string">&#x27;foo.png&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>), <span class="string">&#x27;image/png&#x27;</span>)),</span><br><span class="line">        (<span class="string">&#x27;images&#x27;</span>, (<span class="string">&#x27;bar.png&#x27;</span>, <span class="built_in">open</span>(<span class="string">&#x27;bar.png&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>), <span class="string">&#x27;image/png&#x27;</span>))]</span><br><span class="line"> r = requests.post(url, files=multiple_files)</span><br><span class="line"> r.text</span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">&#x27;files&#x27;</span>: &#123;<span class="string">&#x27;images&#x27;</span>: <span class="string">&#x27;data:image/png;base64,iVBORw ....&#x27;</span>&#125;</span><br><span class="line">  <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;multipart/form-data; boundary=3131623adb2043caaeb5538cc7aa0b3a&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>警告 ：我们强烈建议你用二进制模式（binary mode）打开文件。这是因为 requests 可能会为你提供 header 中的 Content-Length，在这种情况下该值会被设为文件的字节数。如果你用文本模式打开文件，就可能碰到错误。</p>
-<h4 id="事件挂钩"><a href="#事件挂钩" class="headerlink" title="事件挂钩"></a>事件挂钩</h4><p>Requests有一个钩子系统，你可以用来操控部分请求过程，或信号事件处理。</p>
-<p>可用的钩子:</p>
-<p>response:<br>从一个请求产生的响应<br>你可以通过传递一个 {hook_name: callback_function} 字典给 hooks 请求参数为每个请求分配一个钩子函数：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hooks=dict(response=print_url)</span><br></pre></td></tr></table></figure>
-<p>callback_function 会接受一个数据块作为它的第一个参数。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def print_url(r, *args, **kwargs):</span><br><span class="line">    print(r.url)</span><br></pre></td></tr></table></figure>
-<p>若执行你的回调函数期间发生错误，系统会给出一个警告。</p>
-<p>若回调函数返回一个值，默认以该值替换传进来的数据。若函数未返回任何东西，也没有什么其他的影响。</p>
-<p>我们来在运行期间打印一些请求方法的参数：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> requests.get(&#x27;http://httpbin.org&#x27;, hooks=dict(response=print_url))</span><br><span class="line">http://httpbin.org</span><br><span class="line">&lt;Response [200]&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="自定义身份验证"><a href="#自定义身份验证" class="headerlink" title="自定义身份验证"></a>自定义身份验证</h4><p>Requests 允许你使用自己指定的身份验证机制。</p>
-<p>任何传递给请求方法的 auth 参数的可调用对象，在请求发出之前都有机会修改请求。</p>
-<p>自定义的身份验证机制是作为 requests.auth.AuthBase 的子类来实现的，也非常容易定义。Requests 在 requests.auth 中提供了两种常见的的身份验证方案： HTTPBasicAuth 和 HTTPDigestAuth 。</p>
-<p>假设我们有一个web服务，仅在 X-Pizza 头被设置为一个密码值的情况下才会有响应。虽然这不太可能，但就以它为例好了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> requests.auth <span class="keyword">import</span> AuthBase</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PizzaAuth</span>(<span class="title class_ inherited__">AuthBase</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Attaches HTTP Pizza Authentication to the given Request object.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, username</span>):</span><br><span class="line">        <span class="comment"># setup any auth-related data here</span></span><br><span class="line">        self.username = username</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, r</span>):</span><br><span class="line">        <span class="comment"># modify and return the request</span></span><br><span class="line">        r.headers[<span class="string">&#x27;X-Pizza&#x27;</span>] = self.username</span><br><span class="line">        <span class="keyword">return</span> r</span><br></pre></td></tr></table></figure>
-<p>然后就可以使用我们的PizzaAuth来进行网络请求:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> requests.get(<span class="string">&#x27;http://pizzabin.org/admin&#x27;</span>, auth=PizzaAuth(<span class="string">&#x27;kenneth&#x27;</span>))</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="流式请求"><a href="#流式请求" class="headerlink" title="流式请求"></a>流式请求</h4><p>使用 Response.iter_lines() 你可以很方便地对流式 API （例如 Twitter 的流式 API ） 进行迭代。简单地设置 stream 为 True 便可以使用 iter_lines 对相应进行迭代：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">r = requests.get(<span class="string">&#x27;http://httpbin.org/stream/20&#x27;</span>, stream=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> r.iter_lines():</span><br><span class="line"></span><br><span class="line">    <span class="comment"># filter out keep-alive new lines</span></span><br><span class="line">    <span class="keyword">if</span> line:</span><br><span class="line">        decoded_line = line.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(json.loads(decoded_line))</span><br></pre></td></tr></table></figure>
-<p>当使用 decode_unicode&#x3D;True 在 Response.iter_lines() 或 Response.iter_content() 中时，你需要提供一个回退编码方式，以防服务器没有提供默认回退编码，从而导致错误：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(<span class="string">&#x27;http://httpbin.org/stream/20&#x27;</span>, stream=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> r.encoding <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    r.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> r.iter_lines(decode_unicode=<span class="literal">True</span>):</span><br><span class="line">    <span class="keyword">if</span> line:</span><br><span class="line">        <span class="built_in">print</span>(json.loads(line))</span><br></pre></td></tr></table></figure>
-<p>警告</p>
-<p>iter_lines 不保证重进入时的安全性。多次调用该方法 会导致部分收到的数据丢失。如果你要在多处调用它，就应该使用生成的迭代器对象:</p>
-<p>lines &#x3D; r.iter_lines()<br>保存第一行以供后面使用，或者直接跳过</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">first_line = next(lines)</span><br><span class="line"></span><br><span class="line">for line in lines:</span><br><span class="line">    print(line)</span><br></pre></td></tr></table></figure>
-<h4 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h4><p>如果需要使用代理，你可以通过为任意请求方法提供 proxies 参数来配置单个请求:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">proxies = &#123;</span><br><span class="line">  <span class="string">&quot;http&quot;</span>: <span class="string">&quot;http://10.10.1.10:3128&quot;</span>,</span><br><span class="line">  <span class="string">&quot;https&quot;</span>: <span class="string">&quot;http://10.10.1.10:1080&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">requests.get(<span class="string">&quot;http://example.org&quot;</span>, proxies=proxies)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>你也可以通过环境变量 HTTP_PROXY 和 HTTPS_PROXY 来配置代理。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">export</span> HTTP_PROXY=<span class="string">&quot;http://10.10.1.10:3128&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">export</span> HTTPS_PROXY=<span class="string">&quot;http://10.10.1.10:1080&quot;</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">python</span></span><br><span class="line"> import requests</span><br><span class="line"> requests.get(&quot;http://example.org&quot;)</span><br></pre></td></tr></table></figure>
-<p>若你的代理需要使用HTTP Basic Auth，可以使用 <a target="_blank" rel="noopener" href="http://user:password@host/">http://user:password@host/</a> 语法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&quot;http&quot;</span>: <span class="string">&quot;http://user:pass@10.10.1.10:3128/&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>要为某个特定的连接方式或者主机设置代理，使用 scheme:&#x2F;&#x2F;hostname 作为 key， 它会针对指定的主机和连接方式进行匹配。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxies = &#123;<span class="string">&#x27;http://10.20.1.128&#x27;</span>: <span class="string">&#x27;http://10.10.1.10:5323&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，代理 URL 必须包含连接方式。</p>
-<h4 id="SOCKS"><a href="#SOCKS" class="headerlink" title="SOCKS"></a>SOCKS</h4><p>除了基本的 HTTP 代理，Request 还支持 SOCKS 协议的代理。这是一个可选功能，若要使用， 你需要安装第三方库。</p>
-<p>你可以用 pip 获取依赖:</p>
-<h4 id="HTTP动词"><a href="#HTTP动词" class="headerlink" title="HTTP动词"></a>HTTP动词</h4><p>Requests 提供了几乎所有HTTP动词的功能：GET、OPTIONS、HEAD、POST、PUT、PATCH、DELETE</p>
-<h4 id="定制动词"><a href="#定制动词" class="headerlink" title="定制动词"></a>定制动词</h4><p>有时候你会碰到一些服务器，处于某些原因，它们允许或者要求用户使用上述 HTTP 动词之外的定制动词。比如说 WEBDAV 服务器会要求你使用 MKCOL 方法。别担心，Requests 一样可以搞定它们。你可以使用内建的 .request 方法，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> r = requests.request(<span class="string">&#x27;MKCOL&#x27;</span>, url, data=data)</span><br><span class="line"> r.status_code</span><br><span class="line"><span class="number">200</span> <span class="comment"># Assuming your call was correct</span></span><br></pre></td></tr></table></figure>
-<p>这样你就可以使用服务器要求的任意方法动词了。</p>
-<h4 id="响应头链接字段"><a href="#响应头链接字段" class="headerlink" title="响应头链接字段"></a>响应头链接字段</h4><p>许多 HTTP API 都有响应头链接字段的特性，它们使得 API 能够更好地自我描述和自我显露。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> url = <span class="string">&#x27;https://api.github.com/users/kennethreitz/repos?page=1&amp;per_page=10&#x27;</span></span><br><span class="line"> r = requests.head(url=url)</span><br><span class="line"> r.headers[<span class="string">&#x27;link&#x27;</span>]</span><br><span class="line"><span class="string">&#x27;&lt;https://api.github.com/users/kennethreitz/repos?page=2&amp;per_page=10&gt;; rel=&quot;next&quot;, &lt;https://api.github.com/users/kennethreitz/repos?page=6&amp;per_page=10&gt;; rel=&quot;last&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>Requests 会自动解析这些响应头链接字段，并使得它们非常易于使用:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> r.links[<span class="string">&quot;next&quot;</span>]</span><br><span class="line">&#123;<span class="string">&#x27;url&#x27;</span>: <span class="string">&#x27;https://api.github.com/users/kennethreitz/repos?page=2&amp;per_page=10&#x27;</span>, <span class="string">&#x27;rel&#x27;</span>: <span class="string">&#x27;next&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"> r.links[<span class="string">&quot;last&quot;</span>]</span><br><span class="line">&#123;<span class="string">&#x27;url&#x27;</span>: <span class="string">&#x27;https://api.github.com/users/kennethreitz/repos?page=7&amp;per_page=10&#x27;</span>, <span class="string">&#x27;rel&#x27;</span>: <span class="string">&#x27;last&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="传输适配器"><a href="#传输适配器" class="headerlink" title="传输适配器"></a>传输适配器</h4><p>传输适配器提供了一个机制，让你可以为 HTTP 服务定义交互方法。尤其是它允许你应用服务前的配置。</p>
-<p>Requests 自带了一个传输适配器，也就是 HTTPAdapter。 这个适配器使用了强大的 urllib3，为 Requests 提供了默认的 HTTP 和 HTTPS 交互。每当 Session 被初始化，就会有适配器附着在 Session 上，其中一个供 HTTP 使用，另一个供 HTTPS 使用。</p>
-<p>Request 允许用户创建和使用他们自己的传输适配器，实现他们需要的特殊功能。创建好以后，传输适配器可以被加载到一个会话对象上，附带着一个说明，告诉会话适配器应该应用在哪个 web 服务上。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = requests.Session()</span><br><span class="line">s.mount(<span class="string">&#x27;http://www.github.com&#x27;</span>, MyAdapter())</span><br></pre></td></tr></table></figure>
-<p>这个 mount 调用会注册一个传输适配器的特定实例到一个前缀上面。加载以后，任何使用该会话的 HTTP 请求，只要其 URL 是以给定的前缀开头，该传输适配器就会被使用到。</p>
-<p>传输适配器的众多实现细节不在本文档的覆盖范围内，不过你可以看看接下来这个简单的 SSL 用例。更多的用法，你也许该考虑为 BaseAdapter 创建子类</p>
-<h4 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h4><p>使用默认的传输适配器，Requests 不提供任何形式的非阻塞 IO。 Response.content 属性会阻塞，直到整个响应下载完成。如果你需要更多精细控制，该库的数据流功能（见 流式请求） 允许你每次接受少量的一部分响应，不过这些调用依然是阻塞式的。</p>
-<p>如果你对于阻塞式 IO 有所顾虑，还有很多项目可以供你使用，它们结合了 Requests 和 Python 的某个异步框架。典型的优秀例子是 grequests 和 requests-futures。</p>
-<h4 id="Header-排序"><a href="#Header-排序" class="headerlink" title="Header 排序"></a>Header 排序</h4><p>在某些特殊情况下你也许需要按照次序来提供 header，如果你向 headers 关键字参数传入一个 OrderedDict，就可以向提供一个带排序的 header。然而，Requests 使用的默认 header 的次序会被优先选择，这意味着如果你在 headers 关键字参数中覆盖了默认 header，和关键字参数中别的 header 相比，它们也许看上去会是次序错误的。</p>
-<p>如果这个对你来说是个问题，那么用户应该考虑在 Session 对象上面设置默认 header，只要将 Session 设为一个定制的 OrderedDict 即可。这样就会让它成为优选的次序。</p>
-<h4 id="超时（timeout）"><a href="#超时（timeout）" class="headerlink" title="超时（timeout）"></a>超时（timeout）</h4><p>如果你制订了一个单一的值作为 timeout，如下所示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(&#x27;https://github.com&#x27;, timeout=5)</span><br></pre></td></tr></table></figure>
-<p>这一 timeout 值将会用作 connect 和 read 二者的 timeout。如果要分别制定，就传入一个元组：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(&#x27;https://github.com&#x27;, timeout=(3.05, 27))</span><br></pre></td></tr></table></figure>
-<p>如果远端服务器很慢，你可以让 Request 永远等待，传入一个 None 作为 timeout 值，然后就冲咖啡去吧。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(&#x27;https://github.com&#x27;, timeout=None)</span><br></pre></td></tr></table></figure>
-
-<h3 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h3><h4 id="基本身份认证"><a href="#基本身份认证" class="headerlink" title="基本身份认证"></a>基本身份认证</h4><p>许多要求身份认证的web服务都接受 HTTP Basic Auth。这是最简单的一种身份认证，并且 Requests 对这种认证方式的支持是直接开箱即可用。</p>
-<p>以 HTTP Basic Auth 发送请求非常简单：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> from requests.auth import HTTPBasicAuth</span><br><span class="line"> requests.get(&#x27;https://api.github.com/user&#x27;, auth=HTTPBasicAuth(&#x27;user&#x27;, &#x27;pass&#x27;))</span><br><span class="line">&lt;Response [200]&gt;</span><br></pre></td></tr></table></figure>
-<p>事实上，HTTP Basic Auth 如此常见，Requests 就提供了一种简写的使用方式：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> requests.get(&#x27;https://api.github.com/user&#x27;, auth=(&#x27;user&#x27;, &#x27;pass&#x27;))</span><br><span class="line">&lt;Response [200]&gt;</span><br></pre></td></tr></table></figure>
-<p>像这样在一个元组中提供认证信息与前一个 HTTPBasicAuth 例子是完全相同的。</p>
-<h4 id="netrc-认证"><a href="#netrc-认证" class="headerlink" title="netrc 认证"></a>netrc 认证</h4><p>如果认证方法没有收到 auth 参数，Requests 将试图从用户的 netrc 文件中获取 URL 的 hostname 需要的认证身份。The netrc file overrides raw HTTP authentication headers set with headers&#x3D;.</p>
-<p>如果找到了 hostname 对应的身份，就会以 HTTP Basic Auth 的形式发送请求。</p>
-<h4 id="摘要式身份认证"><a href="#摘要式身份认证" class="headerlink" title="摘要式身份认证"></a>摘要式身份认证</h4><p>另一种非常流行的 HTTP 身份认证形式是摘要式身份认证，Requests 对它的支持也是开箱即可用的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">from</span> requests.auth <span class="keyword">import</span> HTTPDigestAuth</span><br><span class="line"> url = <span class="string">&#x27;http://httpbin.org/digest-auth/auth/user/pass&#x27;</span></span><br><span class="line"> requests.get(url, auth=HTTPDigestAuth(<span class="string">&#x27;user&#x27;</span>, <span class="string">&#x27;pass&#x27;</span>))</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="OAuth-1-认证"><a href="#OAuth-1-认证" class="headerlink" title="OAuth 1 认证"></a>OAuth 1 认证</h4><p>Oauth 是一种常见的 Web API 认证方式。 requests-oauthlib 库可以让 Requests 用户简单地创建 OAuth 认证的请求：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> requests</span><br><span class="line"> <span class="keyword">from</span> requests_oauthlib <span class="keyword">import</span> OAuth1</span><br><span class="line"> url = <span class="string">&#x27;https://api.twitter.com/1.1/account/verify_credentials.json&#x27;</span></span><br><span class="line"> auth = OAuth1(<span class="string">&#x27;YOUR_APP_KEY&#x27;</span>, <span class="string">&#x27;YOUR_APP_SECRET&#x27;</span>,</span><br><span class="line"><span class="meta">... </span>              <span class="string">&#x27;USER_OAUTH_TOKEN&#x27;</span>, <span class="string">&#x27;USER_OAUTH_TOKEN_SECRET&#x27;</span>)</span><br><span class="line"> requests.get(url, auth=auth)</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="新的身份认证形式"><a href="#新的身份认证形式" class="headerlink" title="新的身份认证形式"></a>新的身份认证形式</h4><p>如果你找不到所需要的身份认证形式的一个良好实现，你也可以自己实现它。Requests 非常易于添加你自己的身份认证形式。</p>
-<p>要想自己实现，就从 AuthBase 继承一个子类，并实现 <strong>call</strong>() 方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> requests</span><br><span class="line"> <span class="keyword">class</span> <span class="title class_">MyAuth</span>(requests.auth.AuthBase):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, r</span>):</span><br><span class="line"><span class="meta">... </span>        <span class="comment"># Implement my authentication</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> r</span><br><span class="line">...</span><br><span class="line"> url = <span class="string">&#x27;http://httpbin.org/get&#x27;</span></span><br><span class="line"> requests.get(url, auth=MyAuth())</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure>
-<p>当一个身份认证模块被附加到一个请求上，在设置 request 期间就会调用该模块。因此 <strong>call</strong> 方法必须完成使得身份认证生效的所有事情。一些身份认证形式会额外地添加钩子来提供进一步的功能。</p>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/13/index.html">https://dbbruce.github.io/page/13/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2022/08/11/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/003-requests%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/#more">阅读全文</a>
+        </p>
       
       
       
@@ -361,191 +183,14 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h4 id="常识"><a href="#常识" class="headerlink" title="常识"></a>常识</h4><p>HTTP得头域包括通用头(Genaral headers)，请求头()，响应头()和实体(entity header)头四个部分，每个头域都由一个域名，冒号和域值三部分组成。</p>
-<ul>
-<li>通用头部：指的是可以应用于请求和响应中，但是不能应用于消息内容自身的HTTP首部，取决于应用的上下文环境，通用首部可以是响应头部或者请求头部，但是不可以是实体头部。最常见的通用首部包括：Date，Cache-Control，Connection</li>
-<li>请求头部：是请求报文特有的，并且和请求主体无关。比如客户端希望接收到什么类型的数据，像Accept头部。 并非所有出现在请求中的HTTP首部都属于请求头，例如在POST请求中经常出现的Content-Length实际上是一个代表请求主体大小的entity header，当然这也可以叫做请求头。</li>
-<li>响应头部：被用于http响应中并且和响应消息主体无关的那一类HTTP header。详细的在这像Age，Location和Server都属于响应头，他们都用于描述响应。 并非所有出现在响应中的http header都属于响应头，例如Content- Length就是一个代表响应体消息大小的entity header，当然也是可以叫他响应头的。</li>
-<li>实体头部：用来描述消息体内容。实体报头既可以用于请求也可以用于响应中，如Content-Length，Content-Language，Content-Encoding之类的报头都是实体报头。 尽管实体报头既不是请求也不是响应报头，但是它经常出现在请求头或响应头中，所以还是把他们包含在一个概念里。</li>
-</ul>
-<h5 id="通用头部"><a href="#通用头部" class="headerlink" title="通用头部"></a>通用头部</h5><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Cache-Control</td>
-<td>控制缓存的行为； 详情 请求：no-cache（不要缓存的实体，要求现在从WEB服务器去取） max-age：（只接受 Age 值小于 max-age 值，并且没有过期的对象）max-stale：（可以接受过去的对象，但是过期时间必须小于max-stale 值） min-fresh：（接受其新鲜生命期大于其当前 Age 跟 min-fresh 值之和的缓存对象） 响应：public(可以用 Cached 内容回应任何用户)private（只能用缓存内容回应先前请求该内容的那个用户）no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端） max-age：（本响应包含的对象的过期时间）ALL: no-store（不允许缓存）</td>
-</tr>
-<tr>
-<td>Connection</td>
-<td>决定当前的事务完成后，是否会关闭网络连接； 详情 请求：close（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，断开连接，不要等待本次连接的后续请求了）。 keepalive（告诉WEB服务器或者代理服务器，在完成本次请求的 响应后，保持连接，等待本次连接的后续请求）。 响应：close（连接已经关闭）。 keepalive（连接保持着，在等待本次连接的后续请求）。</td>
-</tr>
-<tr>
-<td>Date</td>
-<td>创建报文的日期时间；</td>
-</tr>
-<tr>
-<td>Keep-Alive</td>
-<td>用来设置超时时长和最大请求数；如果浏览器请求保持连接，则该头部表明希望 WEB 服务器保持连接多长时间（秒）。 例如：Keep-Alive：300</td>
-</tr>
-<tr>
-<td>Via</td>
-<td>代理服务器的相关信息；列出从客户端到 OCS 或者相反方向的响应经过了哪些代理服务器，他们用什么协议（和版本）发送的请求。当客户端请求到达第一个代理服务器时，该服务器会在自己发出的请求里面 添加 Via 头部，并填上自己的相关信息当下一个代理服务器收到第一个代理服务器的请求时，会在自己发出的请求里面复制前一个代理服务器的请求的Via头部，并把自己的相关信息加到后面，以此类推，当 OCS 收到最后一个代理服务器的请求时，检查 Via 头部，就知道该请求所经过的路由。例如：Via：1.0 236-81.D07071953.sina.com.cn:80 (squid&#x2F;2.6.STABLE13)</td>
-</tr>
-<tr>
-<td>Warning</td>
-<td>错误通知；</td>
-</tr>
-<tr>
-<td>Trailer</td>
-<td>允许发送方在分块发送的消息后面添加额外的元信息；</td>
-</tr>
-<tr>
-<td>Transfer-Encoding</td>
-<td>指定报文主体的传输编码方式；WEB 服务器表明自己对本响应消息体（不是消息体里面的对象）做了怎样的编码，比如是否分块（chunked）。例如：Transfer-Encoding: chunked</td>
-</tr>
-<tr>
-<td>Upgrade</td>
-<td>升级为其他协议；</td>
-</tr>
-</tbody></table>
-<h5 id="请求头部"><a href="#请求头部" class="headerlink" title="请求头部"></a>请求头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-137db4f39f8c0ee46a4ea5ae2def987d_1440w.png" alt="v2-137db4f39f8c0ee46a4ea5ae2def987d_1440w.png"></p>
-<h5 id="响应头部"><a href="#响应头部" class="headerlink" title="响应头部"></a>响应头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-7337c5d28b8ee17e534da96e9177a68d_1440w.png" alt="v2-7337c5d28b8ee17e534da96e9177a68d_1440w.png"></p>
-<h5 id="实体头部"><a href="#实体头部" class="headerlink" title="实体头部"></a>实体头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-d0f8817d91a80f5cc7a9c0cac93c35ac_1440w.png" alt="v2-d0f8817d91a80f5cc7a9c0cac93c35ac_1440w.png"></p>
-<h5 id="End-to-end头部和Hop-by-hop头部"><a href="#End-to-end头部和Hop-by-hop头部" class="headerlink" title="End-to-end头部和Hop-by-hop头部"></a>End-to-end头部和Hop-by-hop头部</h5><p>http首部字段将定义成缓存代理和非缓存代理的行为，分成2种类型<br>端到端首部（End-to-end Header）<br>此类别中的首部会转发给请求&#x2F;响应对应的最终接受目标，而且必须保存在由缓存生成的响应中，另外规定它必须被转发。<br>逐跳首部（Hop-by-hop Header）<br>此类别中的首部只对单次转发有效，会因通过缓存或代理而不再转发；http1.1和之后的版本，如要使用该首部，需提供Connection首部字段。</p>
-<p>下面列举下http&#x2F;1.1中的逐跳首部字段，除了这8个，其他所有字段都属于端到端首部。<br>Connection:<br>Keep-Alive<br>Proxy-Authenticate<br>Proxy-Authorization<br>Trailer<br>TE<br>Transfer-Encoding<br>Upgrade</p>
-<h4 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h4><table>
-<thead>
-<tr>
-<th>状态</th>
-<th>详情</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1xx</td>
-<td>信息，表示临时响应并需要请求者继续执行操作</td>
-</tr>
-<tr>
-<td>2xx</td>
-<td>成功，操作被成功接收并处理</td>
-</tr>
-<tr>
-<td>3xx</td>
-<td>表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向</td>
-</tr>
-<tr>
-<td>4xx</td>
-<td>客户端错误，请求包含语法错误或无法完成请求</td>
-</tr>
-<tr>
-<td>5xx</td>
-<td>这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错</td>
-</tr>
-</tbody></table>
-<h5 id="1xx"><a href="#1xx" class="headerlink" title="1xx"></a>1xx</h5><p>100：（继续） 请求者应当继续提出请求。 服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。</p>
-<p>101：（切换协议） 请求者已要求服务器切换协议，服务器已确认并准备切换。</p>
-<p>102：由WebDAV（RFC 2518）扩展的状态码，代表处理将被继续执行。</p>
-<h5 id="2XX"><a href="#2XX" class="headerlink" title="2XX"></a>2XX</h5><p>200：（成功） 服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。</p>
-<p>201：（已创建） 请求成功并且服务器创建了新的资源。</p>
-<p>202：（已接受） 服务器已接受请求，但尚未处理。</p>
-<p>203：（非授权信息） 服务器已成功处理了请求，但返回的信息可能来自另一来源。</p>
-<p>204：（无内容） 服务器成功处理了请求，但没有返回任何内容。</p>
-<p>205：（重置内容） 服务器成功处理了请求，但没有返回任何内容。</p>
-<p>206：（部分内容） 服务器成功处理了部分 GET 请求。</p>
-<p>208：（已经报告）一个DAV的绑定成员被前一个请求枚举，并且没有被再一次包括。</p>
-<p>226：（IM Used）服务器已经满足了请求所要的资源，并且响应是一个或者多个实例操作应用于当前实例的结果。</p>
-<h5 id="3XX"><a href="#3XX" class="headerlink" title="3XX"></a>3XX</h5><p>300：（多种选择） 针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</p>
-<p>301：（永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。</p>
-<p>302：（临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
-<p>303：（查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。</p>
-<p>304：（未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。</p>
-<p>305：（使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。</p>
-<p>307：（临时重定向） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
-<p>308：（永久转移）这个请求和以后的请求都应该被另一个URI地址重新发送。307、308和302、301有相同的表现，但是不允许HTTP方法改变。例如，请求表单到一个永久转移的资源将会继续顺利地执行。</p>
-<h5 id="4XX"><a href="#4XX" class="headerlink" title="4XX"></a>4XX</h5><p>400:（错误请求) 服务器不理解请求的语法。</p>
-<p>401：(未授权) 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</p>
-<p>402：该状态码是为了将来可能的需求而预留的。</p>
-<p>403：（禁止) 服务器拒绝请求。</p>
-<p>404：（未找到) 服务器找不到请求的网页。</p>
-<p>405：（方法禁用) 禁用请求中指定的方法。</p>
-<p>406：（不接受) 无法使用请求的内容特性响应请求的网页。</p>
-<p>407：（需要代理授权) 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。</p>
-<p>408：（请求超时) 服务器等候请求时发生超时。</p>
-<p>409：（冲突) 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。</p>
-<p>410：（已删除) 如果请求的资源已永久删除，服务器就会返回此响应。</p>
-<p>411：（需要有效长度) 服务器不接受不含有效内容长度标头字段的请求。</p>
-<p>412：（未满足前提条件) 服务器未满足请求者在请求中设置的其中一个前提条件。</p>
-<p>413：（请求实体过大) 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。</p>
-<p>414：（请求的 URI 过长) 请求的 URI（通常为网址）过长，服务器无法处理。</p>
-<p>415：（不支持的媒体类型) 请求的格式不受请求页面的支持。</p>
-<p>416：（请求范围不符合要求) 如果页面无法提供请求的范围，则服务器会返回此状态代码。</p>
-<p>417：（未满足期望值) 服务器未满足”期望”请求标头字段的要求。</p>
-<p>418：（我是一个茶壶）这个代码是在1998年作为传统的IETF April Fools‘ jokes被定义的在RFC2324，超文本咖啡罐控制协议，但是并没有被实际的HTTP服务器实现。RFC指定了这个代码应该是由茶罐返回给速溶咖啡。</p>
-<p>419：（认证超时）并不是HTTP标注的一部分，419认证超时表示以前的有效证明已经失效了。同时也被用于401未认证的替代选择为了从其它被拒绝访问的已认证客户端中指定服务器的资源。</p>
-<p>420：（方法失效）不是HTTP的标准，但是被Spring定义在HTTP状态类中当方法失时使用。这个状态码已经不推荐在Spring中使用。</p>
-<p>420：（提高你的耐心）也不是HTTP标准的一部分，但是被版本1的Twitter搜索和趋势APi返回当客户端的速率被限制的时候。其它的服务提供商可能会使用429太多的请求响应码来代替。</p>
-<p>421：从当前客户端所在的IP地址到服务器的连接数超过了服务器许可的最大范围。通常，这里的IP地址指的是从服务器上看到的客户端地址（比如用户的网关或者代理服务器地址）。在这种情况下，连接数的计算可能涉及到不止一个终端用户。</p>
-<p>422：请求格式正确，但是由于含有语义错误，无法响应。（RFC 4918 WebDAV）423 Locked 当前资源被锁定。（RFC 4918 WebDAV）</p>
-<p>424：由于之前的某个请求发生的错误，导致当前请求失败，例如 PROPPATCH。（RFC 4918 WebDAV）</p>
-<p>425：在WebDav Advanced Collections 草案中定义，但是未出现在《WebDAV 顺序集协议》（RFC 3658）中。</p>
-<p>426：客户端应当切换到TLS&#x2F;1.0。（RFC 2817）</p>
-<p>428：(需要前置条件)原始服务器需要有条件的请求。当客户端GET一个资源的状态的时候，同时又PUT回给服务器，与此同时第三方修改状态到服务器上的时候，为了避免丢失更新的问题发生将会导致冲突。</p>
-<p>429：（过多请求）用户已经发送了太多的请求在指定的时间里。用于限制速率。</p>
-<p>431：（请求头部字段太大）服务器由于一个单独的请求头部字段或者是全部的字段太大而不愿意处理请求。</p>
-<p>440：（登陆超时（微软））一个微软的扩展，意味着你的会话已经超时。</p>
-<p>444：（无响应）被使用在Nginx的日志中表明服务器没有返回信息给客户端并且关闭了连接（在威慑恶意软件的时候比较有用）。</p>
-<p>449：（重试（微软））一个微软的扩展。请求应该在执行适当的动作之后被重试。</p>
-<p>450：（被Windows家长控制阻塞（微软））一个微软的扩展。这个错误是当Windows家长控制打开并且阻塞指定网页的访问的时候被指定。</p>
-<p>451：（由于法律原因而无效（因特网草稿））被定义在因特网草稿“一个新的HTTP状态码用于法律限制的资源”。被用于当资源的访问由于法律原因被禁止的时候。例如检查制度或者是政府强制要求禁止访问。一个例子是1953年dystopian的小说Fahrenheit 451就是一个非法的资源。</p>
-<p>451：（重定向（微软））被用在Exchange ActiveSync中如果一个更有效的服务器能够被使用或者是服务器不能访问用户的邮箱。客户端会假定重新执行HTTP自动发现协议去寻找更适合的服务器。</p>
-<p>494：（请求头太大（Nginx））Nginx内置代码和431类似，但是是被更早地引入在版本0.9.4（在2011年1月21日）。</p>
-<p>495：（证书错误（Nginx））Nginx内置的代码，当使用SSL客户端证书的时候错误会出现为了在日志错误中区分它和4XX和一个错误页面的重定向。。</p>
-<p>496：（没有证书（Nginx））Nginx内置的代码，当客户端不能提供证书在日志中分辨4XX和一个错误页面的重定向。</p>
-<p>497：（HTTP到HTTPS（Nginx））Nginx内置的代码，被用于原始的HTTP的请求发送给HTTPS端口去分辨4XX在日志中和一个错误页面的重定向。</p>
-<p>498：（令牌超时或失效（Esri））由ArcGIS for Server返回。这个代码意味着令牌的超时或者是失效。</p>
-<p>499：（客户端关闭请求（Nginx））被用在Nginx日志去表明一个连接已经被客户端关闭当服务器仍然正在处理它的请求，是的服务器无法返货状态码。</p>
-<p>499：（需要令牌（Esri））由ArcGIS for Server返回。意味着需要一个令牌（如果没有令牌被提交）。</p>
-<h5 id="5XX"><a href="#5XX" class="headerlink" title="5XX"></a>5XX</h5><p>500：（服务器内部错误） 服务器遇到错误，无法完成请求。</p>
-<p>501：（尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。</p>
-<p>502：（错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。</p>
-<p>503：（服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。</p>
-<p>504：（网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。</p>
-<p>505：（HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p>
-<p>506：由《透明内容协商协议》（RFC 2295）扩展，代表服务器存在内部配置错误：被请求的协商变元资源被配置为在透明内容协商中使用自己，因此在一个协商处理中不是一个合适的重点。</p>
-<p>507：服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。WebDAV (RFC 4918)</p>
-<p>509：服务器达到带宽限制。这不是一个官方的状态码，但是仍被广泛使用。</p>
-<p>510：获取资源所需要的策略并没有没满足。（RFC 2774）。</p>
-<p>508：（发现环路）服务器发现了一个无限的循环档处理请求的时候。</p>
-<p>511：（需要网络授权）客户端需要授权去火的网络的访问权限。一般用于代理交互中被用来进行网络的访问控制。</p>
-<p>520：（未知错误）这个状态码也没有被指定在任何RFC中，并且只会被一些服务器返回，例如微软的Azure和CloudFlare服务器:”520错误。本质上是一个捕获全部的响应当原始服务器返回一些未知的或者一些不能被忍受或者被解释的(协议违反或者空响应)”。</p>
-<p>598：（网络读取超时异常(未知)）这个状态码也没有在任何RFC中指定，但是被用在微软的HTTP代理中去标注一个网络读取超时在一个客户端之前的代理的后面。</p>
-<p>599：（网络连接超时异常(未知)）这个状态码也没有在任何RFC中指定，但是被用在微软的HTTP代理中去标注一个网络连接超时在一个客户端之前的代理的后面。</p>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/13/index.html">https://dbbruce.github.io/page/13/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/002-HTTP%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90/#more">阅读全文</a>
+        </p>
       
       
       
@@ -650,49 +295,14 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h4 id="1-协议爬虫"><a href="#1-协议爬虫" class="headerlink" title="1.协议爬虫"></a>1.协议爬虫</h4><p>数据采集：天眼查，数据来源工商<br>监控爬虫：合理性爬虫， 灰色爬虫， 是否获取暴利<br>搜索引擎：百度，google<br>红人点集数据</p>
-<h4 id="2-通用爬虫"><a href="#2-通用爬虫" class="headerlink" title="2.通用爬虫"></a>2.通用爬虫</h4><p>主要目的:将互联网上的网页下载到本地，形成一个互联网内容的镜像备份<br>通用搜索引擎（search engine）原理：从互联网搜集网页，采集信息，这些网页信息用于搜索引擎建立索引从而提供支持，它决定着整个引擎系统的内容是否丰富，信息是否即时，因此其性能的优劣直接影响搜索引擎的效果</p>
-<ul>
-<li>第一步：抓取网页<br>搜索引擎网络爬虫基本工作流程：<br>1、获取一部分种子url，将这些url放入待抓取url列表；<br>2、取出待抓取url，解析dns得到主机ip，并将url对应的网页下载下来，存储进下载网页库中，并且将这些url放进已经抓取url列表<br>3、分析已抓取URL列表中url，分析其中的其他url，并且将url放入待抓取url列表，从而进入下一次循环</li>
-<li>搜索引擎如何获取一个新网站的url<br>1、新网站向搜索引擎提交网址，比如百度：zhanzhang.baidu.com&#x2F;linksubmit&#x2F;url<br>2、其他网站上设置新网站外链<br>3、搜索引擎和dns合作，新网站域名将被迅速抓取</li>
-</ul>
-<h4 id="3-聚焦爬虫"><a href="#3-聚焦爬虫" class="headerlink" title="3.聚焦爬虫"></a>3.聚焦爬虫</h4><h4 id="4-http协议和URL地址"><a href="#4-http协议和URL地址" class="headerlink" title="4.http协议和URL地址"></a>4.http协议和URL地址</h4><p>url:统一资源定位符<br>协议&#x2F;服务器ip或域名&#x2F;端口&#x2F;访问资源路径&#x2F;参数</p>
-<p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/WX20240409-115502.png" alt="WX20240409-115502.png"></p>
-<p>基本格式:scheme:&#x2F;&#x2F;host[:port#]&#x2F;path&#x2F;..&#x2F;[?query-string][fanchor]</p>
-<ul>
-<li>scheme       : 协议(例如:http, https, ftp)</li>
-<li>host         : 服务器的IP地址或者域名</li>
-<li>port         : 服务器的端口(如果是走协议默认端口，缺省端口80)</li>
-<li>path         : 访问资源的路径</li>
-<li>query-string : 参数，发送给http服务器的数据</li>
-<li>anchor       : 锚(跳转到网页的指走锚点位置)</li>
-</ul>
-<h4 id="5-客户端http请求"><a href="#5-客户端http请求" class="headerlink" title="5.客户端http请求"></a>5.客户端http请求</h4><p>1、四部分：请求行，请求头，空行，请求数据 </p>
-<p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img.png" alt="img.png"></p>
-<h4 id="6-xhr断点"><a href="#6-xhr断点" class="headerlink" title="6.xhr断点"></a>6.xhr断点</h4><p>1、copy接口路径<br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.54.23.png" alt="截屏2024-03-05 10.54.23.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.43.09.png" alt="截屏2024-03-05 10.43.09.png"><br>刷新页面，会在断点停止<br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2010.58.37.png" alt="截屏2024-03-05 10.58.37.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.00.46.png" alt="截屏2024-03-05 11.00.46.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.09.49.png" alt="截屏2024-03-05 11.09.49.png"><br><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/%E6%88%AA%E5%B1%8F2024-03-05%2011.10.28.png" alt="截屏2024-03-05 11.10.28.png"></p>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/13/index.html">https://dbbruce.github.io/page/13/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2022/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/001-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more">阅读全文</a>
+        </p>
       
       
       
