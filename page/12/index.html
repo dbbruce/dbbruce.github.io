@@ -143,536 +143,6 @@
 </article>
 
 
-  <article id="post-爬虫/基础/0099999-bs信息" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/12/12/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/0099999-bs%E4%BF%A1%E6%81%AF/">0099999-bs信息</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-12-12T01:04:52.000Z" itemprop="datePublished">2022年12月12日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2022/12/12/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/0099999-bs%E4%BF%A1%E6%81%AF/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ul>
-<li>结构化 ： json</li>
-<li>非结构化</li>
-</ul>
-<h3 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a>XPath</h3><h4 id="XPath使用路径表达式来获取XML文档中的节点或者节点集合"><a href="#XPath使用路径表达式来获取XML文档中的节点或者节点集合" class="headerlink" title="XPath使用路径表达式来获取XML文档中的节点或者节点集合"></a>XPath使用路径表达式来获取XML文档中的节点或者节点集合</h4><blockquote>
-<p>XPath：XML path language 一门在xml文档中查找信息的语言</p>
-</blockquote>
-<blockquote>
-<p>chrome：XPath helper<br>firefox： XPath checker</p>
-</blockquote>
-<blockquote>
-<p>这些XPath语法内容，运用到python抓取时要先转换为xml</p>
-</blockquote>
-<ul>
-<li>选取节点</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>nodename</td>
-<td>选取节点的所有子节点</td>
-</tr>
-<tr>
-<td>&#x2F;</td>
-<td>从根节点选取</td>
-</tr>
-<tr>
-<td>&#x2F;&#x2F;</td>
-<td>从匹配选择的节点选择文档的节点，不考虑他们的位置</td>
-</tr>
-<tr>
-<td>.</td>
-<td>选取当前节点</td>
-</tr>
-<tr>
-<td>..</td>
-<td>选取当前节点的父节点</td>
-</tr>
-<tr>
-<td>@</td>
-<td>选取属性</td>
-</tr>
-</tbody></table>
-<ul>
-<li>谓语（predicates）: 查找某个特定的节点或者包含某个指定的值得节点，被嵌在方括号中</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>路径表达式</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x2F;bookstore&#x2F;book[1]</td>
-<td>选取属于bookstore子元素的第一个book元素</td>
-</tr>
-<tr>
-<td>&#x2F;bookstore&#x2F;book[last()]</td>
-<td>选取属于bookstore子元素的最后一个book元素</td>
-</tr>
-<tr>
-<td>&#x2F;bookstore&#x2F;book[last()-1]</td>
-<td>选取属于bookstore子元素的倒数第二个book元素</td>
-</tr>
-<tr>
-<td>&#x2F;bookstore&#x2F;book[position()&lt;3]</td>
-<td>选取最前面2个属于bookstore子元素的book元素</td>
-</tr>
-<tr>
-<td>&#x2F;&#x2F;title[@lang]</td>
-<td>选取所有拥有名为lang的属性的title元素</td>
-</tr>
-<tr>
-<td>&#x2F;&#x2F;title[@lang&#x3D;’eng’]</td>
-<td>选取所有title元素，且这些元素拥有值为eng的lang元素</td>
-</tr>
-<tr>
-<td>&#x2F;bookstore&#x2F;book[price&gt;35.00]</td>
-<td>选取bookstore元素的book元素，且price元素的值必须大于35.00</td>
-</tr>
-<tr>
-<td>&#x2F;bookstore&#x2F;book[price&gt;35.00]&#x2F;title</td>
-<td>选取bookstore元素的book元素的所有title元素，且price元素的值必须大于35.00</td>
-</tr>
-</tbody></table>
-<ul>
-<li>选取未知节点</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>通配符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>匹配任何元素节点</td>
-</tr>
-<tr>
-<td>@*</td>
-<td>匹配任何属性节点</td>
-</tr>
-<tr>
-<td>node()</td>
-<td>匹配任何类型的节点</td>
-</tr>
-</tbody></table>
-<ul>
-<li>选取若干路径</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>路径表达式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x2F;&#x2F;book&#x2F;title|&#x2F;&#x2F;book&#x2F;price</td>
-<td>选取book元素的所有title和price元素</td>
-</tr>
-<tr>
-<td>&#x2F;&#x2F;tilte|&#x2F;&#x2F;price</td>
-<td>选取文档中所有的title和price元素</td>
-</tr>
-<tr>
-<td>&#x2F;bookstore&#x2F;book&#x2F;title|&#x2F;&#x2F;price</td>
-<td>选取属于bookstore元素的book元素所有title元素，以及文档中所有的price元素</td>
-</tr>
-</tbody></table>
-<ul>
-<li>运算符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>描述</th>
-<th>实例</th>
-<th>返回值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>|</td>
-<td>集合</td>
-<td>&#x2F;&#x2F;book|&#x2F;&#x2F;cd</td>
-<td>所有book cd的节点集合</td>
-</tr>
-<tr>
-<td>+</td>
-<td>加</td>
-<td>6+4</td>
-<td>10</td>
-</tr>
-<tr>
-<td>-</td>
-<td>减</td>
-<td>6-4</td>
-<td>2</td>
-</tr>
-<tr>
-<td>*</td>
-<td>乘</td>
-<td>6*4</td>
-<td>24</td>
-</tr>
-<tr>
-<td>div</td>
-<td>除</td>
-<td>6 div 3</td>
-<td>2</td>
-</tr>
-<tr>
-<td>&#x3D;</td>
-<td>等于</td>
-<td>price&#x3D;9.8</td>
-<td>等于返回true，不等于返回false</td>
-</tr>
-<tr>
-<td>!&#x3D;</td>
-<td>不等于</td>
-<td>price!&#x3D;9.8</td>
-<td>不等于返回true，等于返回false</td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>小于</td>
-<td>price&lt;9.8</td>
-<td>小于返回true，不小于返回false</td>
-</tr>
-<tr>
-<td>&lt;&#x3D;</td>
-<td>小于等于</td>
-<td>price&lt;&#x3D;9.8</td>
-<td>小于等于返回true，大于返回false</td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>大于</td>
-<td>price&gt;9.8</td>
-<td>大于返回true，不大于返回false</td>
-</tr>
-<tr>
-<td>&gt;&#x3D;</td>
-<td>大于等于</td>
-<td>price&gt;&#x3D;9.8</td>
-<td>大于等于返回true，小于返回false</td>
-</tr>
-<tr>
-<td>or</td>
-<td>或</td>
-<td>price&#x3D;9.80 or price&#x3D;9.90</td>
-<td>成立返回true， 不成立返回false</td>
-</tr>
-<tr>
-<td>and</td>
-<td>与</td>
-<td>price&gt;9.80 and price&lt;9.90</td>
-<td>成立返回true， 不成立返回false</td>
-</tr>
-<tr>
-<td>mode</td>
-<td>余数</td>
-<td>5 mod 2</td>
-<td>成立返回true， 不成立返回false</td>
-</tr>
-</tbody></table>
-<ul>
-<li>XPath 轴:轴可定义相对于当前节点的节点集。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>轴名称</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ancestor</td>
-<td>选取当前节点的所有先辈（父、祖父等）。</td>
-</tr>
-<tr>
-<td>ancestor-or-self</td>
-<td>选取当前节点的所有先辈（父、祖父等）以及当前节点本身。</td>
-</tr>
-<tr>
-<td>attribute</td>
-<td>选取当前节点的所有属性。</td>
-</tr>
-<tr>
-<td>child</td>
-<td>选取当前节点的所有子元素。</td>
-</tr>
-<tr>
-<td>descendant</td>
-<td>选取当前节点的所有后代元素（子、孙等）。</td>
-</tr>
-<tr>
-<td>descendant-or-self</td>
-<td>选取当前节点的所有后代元素（子、孙等）以及当前节点本身。</td>
-</tr>
-<tr>
-<td>following</td>
-<td>选取文档中当前节点的结束标签之后的所有节点。</td>
-</tr>
-<tr>
-<td>namespace</td>
-<td>选取当前节点的所有命名空间节点。</td>
-</tr>
-<tr>
-<td>parent</td>
-<td>选取当前节点的父节点。</td>
-</tr>
-<tr>
-<td>preceding</td>
-<td>选取文档中当前节点的开始标签之前的所有节点。</td>
-</tr>
-<tr>
-<td>preceding-sibling</td>
-<td>选取当前节点之前的所有同级节点。</td>
-</tr>
-<tr>
-<td>self</td>
-<td>选取当前节点。</td>
-</tr>
-</tbody></table>
-<ul>
-<li>位置路径表达式</li>
-</ul>
-<p>位置路径可以是绝对的，也可以是相对的。<br>绝对路径起始于正斜杠( &#x2F; )，而相对路径不会这样。在两种情况中，位置路径均包括一个或多个步，每个步均被斜杠分割：<br>绝对位置路径： &#x2F;step&#x2F;step&#x2F;…<br>相对位置路径： step&#x2F;step&#x2F;…</p>
-<ul>
-<li>步（step）包括：</li>
-</ul>
-<ol>
-<li>轴（axis） : 定义所选节点与当前节点之间的树关系</li>
-<li>节点测试（node-test） : 识别某个轴内部的节点</li>
-<li>零个或者更多谓语（predicate）: 更深入地提炼所选的节点集</li>
-</ol>
-<ul>
-<li>步的语法：轴名称::节点测试[谓语]</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>例子</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>child::book</td>
-<td>选取所有属于当前节点的子元素的 book 节点。</td>
-</tr>
-<tr>
-<td>attribute::lang</td>
-<td>选取当前节点的 lang 属性。</td>
-</tr>
-<tr>
-<td>child::*</td>
-<td>选取当前节点的所有子元素。</td>
-</tr>
-<tr>
-<td>attribute::*</td>
-<td>选取当前节点的所有属性。</td>
-</tr>
-<tr>
-<td>child::text()</td>
-<td>选取当前节点的所有文本子节点。</td>
-</tr>
-<tr>
-<td>child::node()</td>
-<td>选取当前节点的所有子节点。</td>
-</tr>
-<tr>
-<td>descendant::book</td>
-<td>选取当前节点的所有 book 后代。</td>
-</tr>
-<tr>
-<td>ancestor::book</td>
-<td>选择当前节点的所有 book 先辈。</td>
-</tr>
-<tr>
-<td>ancestor-or-self::book</td>
-<td>选取当前节点的所有 book 先辈以及当前节点（如果此节点是 book 节点）</td>
-</tr>
-<tr>
-<td>child::*&#x2F;child::price</td>
-<td>选取当前节点的所有 price 孙节点。</td>
-</tr>
-</tbody></table>
-<ul>
-<li>一些函数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>starts-with</td>
-<td>顾名思义，匹配一个属性开始位置的关键字</td>
-<td>&#x2F;&#x2F;a[starts-with(@name,’tj_lo’)]</td>
-</tr>
-<tr>
-<td>contains</td>
-<td>匹配一个属性值中包含的字符串</td>
-<td>&#x2F;&#x2F;a[contains(@name,’tj_lo’)]</td>
-</tr>
-<tr>
-<td>text（）</td>
-<td>匹配的是显示文本信息，此处也可以用来做定位用</td>
-<td>&#x2F;&#x2F;a[text()&#x3D;’百度搜索’]</td>
-</tr>
-</tbody></table>
-<h3 id="lxml"><a href="#lxml" class="headerlink" title="lxml"></a>lxml</h3><h4 id="安装-lxml"><a href="#安装-lxml" class="headerlink" title="安装 lxml"></a>安装 lxml</h4><blockquote>
-<p>pip install lxml</p>
-</blockquote>
-<h4 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">html_doc = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;html&gt;&lt;head&gt;&lt;title&gt;The Dormouse&#x27;s story&lt;/title&gt;&lt;/head&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string">&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister1&quot; id=&quot;link3&quot;&gt;Tillie0000000000000&lt;/a&gt;;</span></span><br><span class="line"><span class="string">&lt;p class=&quot;title&quot;&gt;&lt;b&gt;The Dormouse&#x27;s story&lt;/b&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters; and their names were</span></span><br><span class="line"><span class="string">&lt;a href=&quot;http://example.com/elsie&quot; class=&quot;sister1&quot; id=&quot;link1&quot;&gt;Elsie&lt;/a&gt;,</span></span><br><span class="line"><span class="string">&lt;a href=&quot;http://example.com/lacie&quot; class=&quot;sister2&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span></span><br><span class="line"><span class="string">&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister3&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span></span><br><span class="line"><span class="string">&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister31&quot; id=&quot;link3&quot;&gt;Tillie1&lt;/a&gt;;</span></span><br><span class="line"><span class="string">&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister32&quot; id=&quot;link3&quot;&gt;Tillie2&lt;/a&gt;;</span></span><br><span class="line"><span class="string">and they lived at the bottom of a well.&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;p class=&quot;story&quot;&gt;...&lt;/p&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line">html = etree.HTML(html_doc)</span><br><span class="line"><span class="built_in">print</span>(etree.tostring(html))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取a标签class信息</span></span><br><span class="line">result = html.xpath(<span class="string">&#x27;//a/@class&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取a class信息是sister3的元素</span></span><br><span class="line">result2 = html.xpath(<span class="string">&#x27;//a[@class=&quot;sister3&quot;]&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(result2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文本获取</span></span><br><span class="line">result3 = html.xpath(<span class="string">&#x27;//a/text()&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(result3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据文本内容获取标签</span></span><br><span class="line">result4 = html.xpath(<span class="string">&#x27;//a[text()=&quot;Elsie&quot;]&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(result4)</span><br><span class="line"></span><br><span class="line"><span class="comment"># a包含class属性包含sister3，获取多个元素</span></span><br><span class="line">result5 = html.xpath(<span class="string">&#x27;//a[contains(@class, &quot;sister3&quot;)]&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(result5)</span><br><span class="line"></span><br><span class="line"><span class="comment"># a包含文本包含Tillie，获取多个元素</span></span><br><span class="line">result6 = html.xpath(<span class="string">&#x27;//a[contains(text(), &quot;Tillie&quot;)]&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(result6)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Beautiful-Soup-是一个可以从HTML或XML文件中提取数据的Python库"><a href="#Beautiful-Soup-是一个可以从HTML或XML文件中提取数据的Python库" class="headerlink" title="Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库"></a>Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库</h3><h4 id="安装-Beautiful-Soup"><a href="#安装-Beautiful-Soup" class="headerlink" title="安装 Beautiful Soup"></a>安装 Beautiful Soup</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip install beautifulsoup4</span></span><br></pre></td></tr></table></figure>
-<h4 id="主要的解析器"><a href="#主要的解析器" class="headerlink" title="主要的解析器"></a>主要的解析器</h4><table>
-<thead>
-<tr>
-<th>解析器</th>
-<th>使用方法</th>
-<th>优势</th>
-<th>劣势</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Python标准库</td>
-<td>BeautifulSoup(markup, “html.parser”)</td>
-<td>Python的内置标准库 执行速度适中 文档容错能力强</td>
-<td>Python 2.7.3 or 3.2.2)前 的版本中文档容错能力差</td>
-</tr>
-<tr>
-<td>lxml HTML 解析器</td>
-<td>BeautifulSoup(markup, “lxml”)</td>
-<td>速度快 文档容错能力强</td>
-<td>需要安装C语言库</td>
-</tr>
-<tr>
-<td>lxml XML 解析器</td>
-<td>BeautifulSoup(markup, [“lxml-xml”]) BeautifulSoup(markup, “xml”)</td>
-<td>速度快 唯一支持XML的解析器</td>
-<td>需要安装C语言库</td>
-</tr>
-<tr>
-<td>html5lib</td>
-<td>BeautifulSoup(markup, “html5lib”)</td>
-<td>最好的容错性 以浏览器的方式解析文档 生成HTML5格式的文档</td>
-<td>速度慢 不依赖外部扩展</td>
-</tr>
-</tbody></table>
-<h4 id="对象的种类"><a href="#对象的种类" class="headerlink" title="对象的种类"></a>对象的种类</h4><p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种: Tag , NavigableString , BeautifulSoup , Comment .</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Tag 对象与XML或HTML原生文档中的tag相同</span><br><span class="line">NavigableString 字符串常被包含在tag内.Beautiful Soup用 NavigableString 类来包装tag中的字符串</span><br><span class="line">BeautifulSoup 对象表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象,它支持 遍历文档树 和 搜索文档树 中描述的大部分的方法.</span><br><span class="line">Comment 对象是一个特殊类型的 NavigableString 对象: 注释及特殊字符串</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/12/index.html">https://dbbruce.github.io/page/12/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
   <article id="post-运维/zabbix/5.0/00-zabbix5.0-报错集锦" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -850,7 +320,7 @@
 </article>
 
 
-  <article id="post-爬虫/基础/005-requests与urllib3版本报错" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-爬虫/基础/007-正则表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -858,7 +328,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/12/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/005-requests%E4%B8%8Eurllib3%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/">005-requests与urllib3版本报错</a>
+      <a class="p-name article-title" href="/2022/08/14/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/007-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">007-正则表达式</a>
     </h1>
   
 
@@ -869,7 +339,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-12T02:04:52.000Z" itemprop="datePublished">2022年08月12日</time>
+  <time class="dt-published" datetime="2022-08-14T05:04:52.000Z" itemprop="datePublished">2022年08月14日</time>
 </span>
       
   <div class="article-category">
@@ -879,7 +349,7 @@
 
       
       
-<a href="/2022/08/12/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/005-requests%E4%B8%8Eurllib3%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/#comments" class="article-comment-link">
+<a href="/2022/08/14/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/007-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -889,16 +359,185 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="NotOpenSSLWarning-urllib3-v2-only-supports-OpenSSL-1-1-1-currently-the-‘ssl’-module-is-compiled-with-‘LibreSSL-2-8-3’"><a href="#NotOpenSSLWarning-urllib3-v2-only-supports-OpenSSL-1-1-1-currently-the-‘ssl’-module-is-compiled-with-‘LibreSSL-2-8-3’" class="headerlink" title="NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the ‘ssl’ module is compiled with ‘LibreSSL 2.8.3’."></a>NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the ‘ssl’ module is compiled with ‘LibreSSL 2.8.3’.</h3><ul>
-<li>报错时环境信息：<br>Python   3.9.6<br>urllib3  2.2.1
+        <h4 id="正则表达式模式"><a href="#正则表达式模式" class="headerlink" title="正则表达式模式"></a>正则表达式模式</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">模式	描述</span><br><span class="line">^	匹配字符串的开头</span><br><span class="line">$	匹配字符串的末尾。</span><br><span class="line">.	匹配任意字符，除了换行符，当re.DOTALL标记被指定时，则可以匹配包括换行符的任意字符。</span><br><span class="line">[...]	用来表示一组字符,单独列出：[amk] 匹配 &#x27;a&#x27;，&#x27;m&#x27;或&#x27;k&#x27;</span><br><span class="line">[^...]	不在[]中的字符：[^abc] 匹配除了a,b,c之外的字符。</span><br><span class="line">re*	匹配0个或多个的表达式。</span><br><span class="line">re+	匹配1个或多个的表达式。</span><br><span class="line">re?	匹配0个或1个由前面的正则表达式定义的片段，非贪婪方式</span><br><span class="line">re&#123; n&#125;	精确匹配 n 个前面表达式。例如， o&#123;2&#125; 不能匹配 &quot;Bob&quot; 中的 &quot;o&quot;，但是能匹配 &quot;food&quot; 中的两个 o。</span><br><span class="line">re&#123; n,&#125;	匹配 n 个前面表达式。例如， o&#123;2,&#125; 不能匹配&quot;Bob&quot;中的&quot;o&quot;，但能匹配 &quot;foooood&quot;中的所有 o。&quot;o&#123;1,&#125;&quot; 等价于 &quot;o+&quot;。&quot;o&#123;0,&#125;&quot; 则等价于 &quot;o*&quot;。</span><br><span class="line">re&#123; n, m&#125;	匹配 n 到 m 次由前面的正则表达式定义的片段，贪婪方式</span><br><span class="line">a| b	匹配a或b</span><br><span class="line">(re)	对正则表达式分组并记住匹配的文本</span><br><span class="line">(?imx)	正则表达式包含三种可选标志：i, m, 或 x 。只影响括号中的区域。</span><br><span class="line">(?-imx)	正则表达式关闭 i, m, 或 x 可选标志。只影响括号中的区域。</span><br><span class="line">(?: re)	类似 (...), 但是不表示一个组</span><br><span class="line">(?imx: re)	在括号中使用i, m, 或 x 可选标志</span><br><span class="line">(?-imx: re)	在括号中不使用i, m, 或 x 可选标志</span><br><span class="line">(?#...)	注释.</span><br><span class="line">(?= re)	前向肯定界定符。如果所含正则表达式，以 ... 表示，在当前位置成功匹配时成功，否则失败。但一旦所含表达式已经尝试，匹配引擎根本没有提高；模式的剩余部分还要尝试界定符的右边。</span><br><span class="line">(?! re)	前向否定界定符。与肯定界定符相反；当所含表达式不能在字符串当前位置匹配时成功</span><br><span class="line">(?&gt; re)	匹配的独立模式，省去回溯。</span><br><span class="line">\w	匹配字母数字及下划线</span><br><span class="line">\W	匹配非字母数字及下划线</span><br><span class="line">\s	匹配任意空白字符，等价于 [ \t\n\r\f]。</span><br><span class="line">\S	匹配任意非空字符</span><br><span class="line">\d	匹配任意数字，等价于 [0-9].</span><br><span class="line">\D	匹配任意非数字</span><br><span class="line">\A	匹配字符串开始</span><br><span class="line">\Z	匹配字符串结束，如果是存在换行，只匹配到换行前的结束字符串。</span><br><span class="line">\z	匹配字符串结束</span><br><span class="line">\G	匹配最后匹配完成的位置。</span><br><span class="line">\b	匹配一个单词边界，也就是指单词和空格间的位置。例如， &#x27;er\b&#x27; 可以匹配&quot;never&quot; 中的 &#x27;er&#x27;，但不能匹配 &quot;verb&quot; 中的 &#x27;er&#x27;。</span><br><span class="line">\B	匹配非单词边界。&#x27;er\B&#x27; 能匹配 &quot;verb&quot; 中的 &#x27;er&#x27;，但不能匹配 &quot;never&quot; 中的 &#x27;er&#x27;。</span><br><span class="line">\n, \t, 等.	匹配一个换行符。匹配一个制表符。等</span><br><span class="line">\1...\9	匹配第n个分组的内容。</span><br><span class="line">\10	匹配第n个分组的内容，如果它经匹配。否则指的是八进制字符码的表达式。</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="re-match"><a href="#re-match" class="headerlink" title="re.match"></a>re.match</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">re.match 尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match() 就返回 none。</span><br><span class="line">匹配成功 re.match 方法返回一个匹配的对象，否则返回 None。</span><br><span class="line"></span><br><span class="line">re.match(pattern, string, flags=0)</span><br><span class="line">参数	描述</span><br><span class="line">pattern	匹配的正则表达式</span><br><span class="line">string	要匹配的字符串。</span><br><span class="line">flags	标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：正则表达式修饰符 - 可选标志</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">line = <span class="string">&quot;Cats are smarter than dogs&quot;</span></span><br><span class="line">matchObj = re.<span class="keyword">match</span>(<span class="string">r&#x27;(.*) are (.*?) .*&#x27;</span>, line, re.M | re.I)</span><br><span class="line"><span class="built_in">print</span>(matchObj)</span><br><span class="line"><span class="keyword">if</span> matchObj:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;matchObj.group() : &quot;</span>, matchObj.group())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;matchObj.group(1) : &quot;</span>, matchObj.group(<span class="number">1</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;matchObj.group(2) : &quot;</span>, matchObj.group(<span class="number">2</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;No match!!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &lt;re.Match object; span=(0, 26), match=&#x27;Cats are smarter than dogs&#x27;&gt;</span></span><br><span class="line"><span class="comment"># matchObj.group() :  Cats are smarter than dogs</span></span><br><span class="line"><span class="comment"># matchObj.group(1) :  Cats</span></span><br><span class="line"><span class="comment"># matchObj.group(2) :  smarter</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="re-search"><a href="#re-search" class="headerlink" title="re.search"></a>re.search</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">re.search 扫描整个字符串并返回第一个成功的匹配。</span><br><span class="line">匹配成功re.search方法返回一个匹配的对象，否则返回None。</span><br><span class="line"></span><br><span class="line">re.search(pattern, string, flags=0)</span><br><span class="line">参数	描述</span><br><span class="line">pattern	匹配的正则表达式</span><br><span class="line">string	要匹配的字符串。</span><br><span class="line">flags	标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">line = <span class="string">&quot;Cats are smarter than dogs&quot;</span></span><br><span class="line">searchObj = re.search(<span class="string">r&#x27;(.*) are (.*?) .*&#x27;</span>, line, re.M | re.I)</span><br><span class="line"><span class="built_in">print</span>(searchObj)</span><br><span class="line"><span class="keyword">if</span> searchObj:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;matchObj.group() : &quot;</span>, searchObj.group())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;matchObj.group(1) : &quot;</span>, searchObj.group(<span class="number">1</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;matchObj.group(2) : &quot;</span>, searchObj.group(<span class="number">2</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;No match!!&quot;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># &lt;re.Match object; span=(0, 26), match=&#x27;Cats are smarter than dogs&#x27;&gt;</span></span><br><span class="line"><span class="comment"># matchObj.group() :  Cats are smarter than dogs</span></span><br><span class="line"><span class="comment"># matchObj.group(1) :  Cats</span></span><br><span class="line"><span class="comment"># matchObj.group(2) :  smarter</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-match与re-search的区别"><a href="#re-match与re-search的区别" class="headerlink" title="re.match与re.search的区别"></a>re.match与re.search的区别</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">re.match只匹配字符串的开始，如果字符串开始不符合正则表达式，则匹配失败，函数返回None；而re.search匹配整个字符串，直到找到一个匹配</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="检索和替换"><a href="#检索和替换" class="headerlink" title="检索和替换"></a>检索和替换</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Python 的 re 模块提供了re.sub用于替换字符串中的匹配项。</span><br><span class="line"></span><br><span class="line">re.sub(pattern, repl, string, count=0, flags=0)</span><br><span class="line">参数：</span><br><span class="line">pattern : 正则中的模式字符串。</span><br><span class="line">repl : 替换的字符串，也可为一个函数。</span><br><span class="line">string : 要被查找替换的原始字符串。</span><br><span class="line">count : 模式匹配后替换的最大次数，默认 0 表示替换所有的匹配。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">phone = <span class="string">&quot;2004-959-559 # 这是一个国外电话号码&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除字符串中的 Python注释</span></span><br><span class="line">num = re.sub(<span class="string">r&#x27;#.*$&#x27;</span>, <span class="string">&quot;&quot;</span>, phone)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;电话号码是: &quot;</span>, num)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除非数字(-)的字符串</span></span><br><span class="line">num = re.sub(<span class="string">r&#x27;\D&#x27;</span>, <span class="string">&quot;&quot;</span>, phone)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;电话号码是 : &quot;</span>, num)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 电话号码是:  2004-959-559 </span></span><br><span class="line"><span class="comment"># 电话号码是 :  2004959559</span></span><br></pre></td></tr></table></figure>
+
+<p>repl 参数是一个函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将匹配的数字乘以 2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">double</span>(<span class="params">matched</span>):</span><br><span class="line">    value = <span class="built_in">int</span>(matched.group(<span class="string">&#x27;value&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">str</span>(value * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">s = <span class="string">&#x27;A23G4HFD567&#x27;</span></span><br><span class="line"><span class="comment"># 匹配的数字，传入double函数，</span></span><br><span class="line"><span class="built_in">print</span>(re.sub(<span class="string">&#x27;(?P&lt;value&gt;\d+)&#x27;</span>, double, s)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># A46G8HFD1134</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-compile-函数"><a href="#re-compile-函数" class="headerlink" title="re.compile 函数"></a>re.compile 函数</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">compile 函数用于编译正则表达式，生成一个正则表达式（ Pattern ）对象，供 match() 和 search() 这两个函数使用。</span><br><span class="line"></span><br><span class="line">re.compile(pattern[, flags])</span><br><span class="line">参数：</span><br><span class="line">pattern : 一个字符串形式的正则表达式</span><br><span class="line">flags : 可选，表示匹配模式，比如忽略大小写，多行模式等，具体参数为：</span><br><span class="line">    re.I 忽略大小写</span><br><span class="line">    re.L 表示特殊字符集 \w, \W, \b, \B, \s, \S 依赖于当前环境</span><br><span class="line">    re.M 多行模式</span><br><span class="line">    re.S 即为 . 并且包括换行符在内的任意字符（. 不包括换行符）</span><br><span class="line">    re.U 表示特殊字符集 \w, \W, \b, \B, \d, \D, \s, \S 依赖于 Unicode 字符属性数据库</span><br><span class="line">    re.X 为了增加可读性，忽略空格和 # 后面的注释</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;import re</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; pattern = re.compile(r<span class="string">&#x27;\d+&#x27;</span>)                    <span class="comment"># 用于匹配至少一个数字</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; m = pattern.match(<span class="string">&#x27;one12twothree34four&#x27;</span>)        <span class="comment"># 查找头部，没有匹配</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="built_in">print</span> m</span></span><br><span class="line">None</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; m = pattern.match(<span class="string">&#x27;one12twothree34four&#x27;</span>, 2, 10) <span class="comment"># 从&#x27;e&#x27;的位置开始匹配，没有匹配</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="built_in">print</span> m</span></span><br><span class="line">None</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; m = pattern.match(<span class="string">&#x27;one12twothree34four&#x27;</span>, 3, 10) <span class="comment"># 从&#x27;1&#x27;的位置开始匹配，正好匹配</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="built_in">print</span> m                                         <span class="comment"># 返回一个 Match 对象</span></span></span><br><span class="line">&lt;_sre.SRE_Match object at 0x10a42aac0&gt;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; m.group(0)   <span class="comment"># 可省略 0</span></span></span><br><span class="line">&#x27;12&#x27;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; m.start(0)   <span class="comment"># 可省略 0</span></span></span><br><span class="line">3</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; m.end(0)     <span class="comment"># 可省略 0</span></span></span><br><span class="line">5</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; m.span(0)    <span class="comment"># 可省略 0</span></span></span><br><span class="line">(3, 5)</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">group([group1, …]) 方法用于获得一个或多个分组匹配的字符串，当要获得整个匹配的子串时，可直接使用 group() 或 group(0)；</span><br><span class="line">start([group]) 方法用于获取分组匹配的子串在整个字符串中的起始位置（子串第一个字符的索引），参数默认值为 0；</span><br><span class="line">end([group]) 方法用于获取分组匹配的子串在整个字符串中的结束位置（子串最后一个字符的索引+1），参数默认值为 0；</span><br><span class="line">span([group]) 方法返回 (start(group), end(group))。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="findall"><a href="#findall" class="headerlink" title="findall"></a>findall</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在字符串中找到正则表达式所匹配的所有子串，并返回一个列表，如果有多个匹配模式，则返回元组列表，如果没有找到匹配的，则返回空列表。</span><br><span class="line">注意： match 和 search 是匹配一次 findall 匹配所有。</span><br><span class="line"></span><br><span class="line">语法格式为：</span><br><span class="line">findall(string[, pos[, endpos]])</span><br><span class="line">参数：</span><br><span class="line">string : 待匹配的字符串。</span><br><span class="line">pos : 可选参数，指定字符串的起始位置，默认为 0。</span><br><span class="line">endpos : 可选参数，指定字符串的结束位置，默认为字符串的长度。</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern = re.<span class="built_in">compile</span>(<span class="string">r&#x27;\d+&#x27;</span>)  <span class="comment"># 查找数字</span></span><br><span class="line">result1 = pattern.findall(<span class="string">&#x27;runoob 123 google 456&#x27;</span>)</span><br><span class="line">result2 = pattern.findall(<span class="string">&#x27;run88oob123google456&#x27;</span>, <span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(result1)</span><br><span class="line"><span class="built_in">print</span>(result2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># [&#x27;123&#x27;, &#x27;456&#x27;]</span></span><br><span class="line"><span class="comment"># [&#x27;88&#x27;, &#x27;12&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-finditer"><a href="#re-finditer" class="headerlink" title="re.finditer"></a>re.finditer</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">和 findall 类似，在字符串中找到正则表达式所匹配的所有子串，并把它们作为一个迭代器返回。</span><br><span class="line">re.finditer(pattern, string, flags=0)</span><br><span class="line">参数	描述</span><br><span class="line">pattern	匹配的正则表达式</span><br><span class="line">string	要匹配的字符串。</span><br><span class="line">flags	标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：正则表达式修饰符 - 可选标志</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">it = re.finditer(<span class="string">r&quot;\d+&quot;</span>, <span class="string">&quot;12a32bc43jf3&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">match</span> <span class="keyword">in</span> it:</span><br><span class="line">    <span class="built_in">print</span>(<span class="keyword">match</span>.group())</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 12</span></span><br><span class="line"><span class="comment"># 32</span></span><br><span class="line"><span class="comment"># 43</span></span><br><span class="line"><span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-split"><a href="#re-split" class="headerlink" title="re.split"></a>re.split</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">split 方法按照能够匹配的子串将字符串分割后返回列表，它的使用形式如下：</span><br><span class="line">re.split(pattern, string[, maxsplit=0, flags=0])</span><br><span class="line">参数	描述</span><br><span class="line">pattern	匹配的正则表达式</span><br><span class="line">string	要匹配的字符串。</span><br><span class="line">maxsplit	分隔次数，maxsplit=1 分隔一次，默认为 0，不限制次数。</span><br><span class="line">flags	标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：正则表达式修饰符 - 可选标志</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;import re</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; re.split(<span class="string">&#x27;\W+&#x27;</span>, <span class="string">&#x27;runoob, runoob, runoob.&#x27;</span>)</span></span><br><span class="line">[&#x27;runoob&#x27;, &#x27;runoob&#x27;, &#x27;runoob&#x27;, &#x27;&#x27;]</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; re.split(<span class="string">&#x27;(\W+)&#x27;</span>, <span class="string">&#x27; runoob, runoob, runoob.&#x27;</span>)</span> </span><br><span class="line">[&#x27;&#x27;, &#x27; &#x27;, &#x27;runoob&#x27;, &#x27;, &#x27;, &#x27;runoob&#x27;, &#x27;, &#x27;, &#x27;runoob&#x27;, &#x27;.&#x27;, &#x27;&#x27;]</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; re.split(<span class="string">&#x27;\W+&#x27;</span>, <span class="string">&#x27; runoob, runoob, runoob.&#x27;</span>, 1)</span> </span><br><span class="line">[&#x27;&#x27;, &#x27;runoob, runoob, runoob.&#x27;]</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; re.split(<span class="string">&#x27;a*&#x27;</span>, <span class="string">&#x27;hello world&#x27;</span>)   <span class="comment"># 对于一个找不到匹配的字符串而言，split 不会对其作出分割</span></span></span><br><span class="line">[&#x27;hello world&#x27;]</span><br></pre></td></tr></table></figure>
+<h4 id="正则表达式修饰符-可选标志"><a href="#正则表达式修饰符-可选标志" class="headerlink" title="正则表达式修饰符 - 可选标志"></a>正则表达式修饰符 - 可选标志</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">修饰符	描述</span><br><span class="line">re.I	使匹配对大小写不敏感</span><br><span class="line">re.L	做本地化识别（locale-aware）匹配</span><br><span class="line">re.M	多行匹配，影响 ^ 和 $</span><br><span class="line">re.S	使 . 匹配包括换行在内的所有字符</span><br><span class="line">re.U	根据Unicode字符集解析字符。这个标志影响 \w, \W, \b, \B.</span><br><span class="line">re.X	该标志通过给予你更灵活的格式以便你将正则表达式写得更易于理解</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/12/index.html">https://dbbruce.github.io/page/12/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
       
     </div>
     <footer class="article-footer">
       
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-爬虫/基础/006-BeautifullSoup数据解析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-        <p class="article-more-link">
-          <a href="/2022/08/12/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/005-requests%E4%B8%8Eurllib3%E7%89%88%E6%9C%AC%E6%8A%A5%E9%94%99/#more">阅读全文</a>
-        </p>
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/08/13/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/006-BeautifullSoup%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/">006-BeautifullSoup数据解析</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2022-08-13T02:04:52.000Z" itemprop="datePublished">2022年08月13日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2022/08/13/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/006-BeautifullSoup%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Beautiful-Soup-是一个可以从HTML或XML文件中提取数据的Python库"><a href="#Beautiful-Soup-是一个可以从HTML或XML文件中提取数据的Python库" class="headerlink" title="Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库"></a>Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库</h3><h4 id="安装-Beautiful-Soup"><a href="#安装-Beautiful-Soup" class="headerlink" title="安装 Beautiful Soup"></a>安装 Beautiful Soup</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip install beautifulsoup4</span></span><br></pre></td></tr></table></figure>
+<h4 id="主要的解析器"><a href="#主要的解析器" class="headerlink" title="主要的解析器"></a>主要的解析器</h4><table>
+<thead>
+<tr>
+<th>解析器</th>
+<th>使用方法</th>
+<th>优势</th>
+<th>劣势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Python标准库</td>
+<td>BeautifulSoup(markup, “html.parser”)</td>
+<td>Python的内置标准库 执行速度适中 文档容错能力强</td>
+<td>Python 2.7.3 or 3.2.2)前 的版本中文档容错能力差</td>
+</tr>
+<tr>
+<td>lxml HTML 解析器</td>
+<td>BeautifulSoup(markup, “lxml”)</td>
+<td>速度快 文档容错能力强</td>
+<td>需要安装C语言库</td>
+</tr>
+<tr>
+<td>lxml XML 解析器</td>
+<td>BeautifulSoup(markup, [“lxml-xml”]) BeautifulSoup(markup, “xml”)</td>
+<td>速度快 唯一支持XML的解析器</td>
+<td>需要安装C语言库</td>
+</tr>
+<tr>
+<td>html5lib</td>
+<td>BeautifulSoup(markup, “html5lib”)</td>
+<td>最好的容错性 以浏览器的方式解析文档 生成HTML5格式的文档</td>
+<td>速度慢 不依赖外部扩展</td>
+</tr>
+</tbody></table>
+<h4 id="对象的种类"><a href="#对象的种类" class="headerlink" title="对象的种类"></a>对象的种类</h4><p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种: Tag , NavigableString , BeautifulSoup , Comment .</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Tag 对象与XML或HTML原生文档中的tag相同</span><br><span class="line">NavigableString 字符串常被包含在tag内.Beautiful Soup用 NavigableString 类来包装tag中的字符串</span><br><span class="line">BeautifulSoup 对象表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象,它支持 遍历文档树 和 搜索文档树 中描述的大部分的方法.</span><br><span class="line">Comment 对象是一个特殊类型的 NavigableString 对象: 注释及特殊字符串</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">html =&#x27;&#x27;&#x27;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">  &lt;title&gt;</span><br><span class="line">   The Dormouse&#x27;s story</span><br><span class="line">  &lt;/title&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">  &lt;p class=&quot;title&quot;&gt;</span><br><span class="line">   &lt;b&gt;</span><br><span class="line">    The Dormouse&#x27;s story</span><br><span class="line">   &lt;/b&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;story&quot;&gt;</span><br><span class="line">   Once upon a time there were three little sisters; and their names were</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;</span><br><span class="line">    Elsie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   ,</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;</span><br><span class="line">    Lacie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   and</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link2&quot;&gt;</span><br><span class="line">    Tillie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   ; and they lived at the bottom of a well.</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;story&quot;&gt;</span><br><span class="line">   ...</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(html, &#x27;html.parser&#x27;)</span><br><span class="line"># soup = BeautifulSoup(html, &#x27;lxml&#x27;)</span><br><span class="line">soup.title</span><br><span class="line"># &lt;title&gt;The Dormouse&#x27;s story&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">soup.title.name</span><br><span class="line"># u&#x27;title&#x27;</span><br><span class="line"></span><br><span class="line">soup.title.string</span><br><span class="line"># u&#x27;The Dormouse&#x27;s story&#x27;</span><br><span class="line">soup.title.string</span><br><span class="line"># u&#x27;The Dormouse&#x27;s story&#x27;</span><br><span class="line"></span><br><span class="line">soup.title.parent.name</span><br><span class="line"># u&#x27;head&#x27;</span><br><span class="line"></span><br><span class="line">soup.p</span><br><span class="line"># &lt;p class=&quot;title&quot;&gt;&lt;b&gt;The Dormouse&#x27;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">soup.p[&#x27;class&#x27;]</span><br><span class="line"># u&#x27;title&#x27;</span><br><span class="line"></span><br><span class="line">soup.a</span><br><span class="line"># &lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;Elsie&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">soup.find_all(&#x27;a&#x27;)</span><br><span class="line"># [&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;Elsie&lt;/a&gt;,</span><br><span class="line">#  &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;,</span><br><span class="line">#  &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;]</span><br><span class="line"></span><br><span class="line">soup.find(id=&quot;link3&quot;)</span><br><span class="line"># &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">link_tags = soup.select(&#x27;.sister&#x27;)</span><br><span class="line">for tag in link_tags:</span><br><span class="line">    print(tag.text)</span><br><span class="line"># Elsie</span><br><span class="line"># Lacie</span><br><span class="line"># Tillie</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意文本中如果有注释"><a href="#注意文本中如果有注释" class="headerlink" title="注意文本中如果有注释"></a>注意文本中如果有注释</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br><span class="line">   The Dormouse&#x27;s story<span class="comment">&lt;!--这里是注释--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(soup.title.text)   # 可以获取到内容</span><br><span class="line">   The Dormouse&#x27;s story</span><br><span class="line"></span><br><span class="line">print(&#x27;=======&#x27;,soup.title.string) # 获取不到内容</span><br><span class="line">======= None</span><br></pre></td></tr></table></figure>
+<h4 id="find-，find-all，-返回类型标签tag"><a href="#find-，find-all，-返回类型标签tag" class="headerlink" title="find ，find_all， 返回类型标签tag"></a>find ，find_all， 返回类型标签tag</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_3.png" alt="img_3.png"></p>
+<h4 id="css选择器-返回列表，获取文本需要循环"><a href="#css选择器-返回列表，获取文本需要循环" class="headerlink" title="css选择器,返回列表，获取文本需要循环"></a>css选择器,返回列表，获取文本需要循环</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_4.png" alt="img_4.png"></p>
+<h4 id="tag对象"><a href="#tag对象" class="headerlink" title="tag对象"></a>tag对象</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_5.png" alt="img_5.png"></p>
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/12/index.html">https://dbbruce.github.io/page/12/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
       
       
       
@@ -956,7 +595,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2018/">2018</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">195</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">62</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2018/">2018</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">195</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">62</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -966,7 +605,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">67</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">67</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
