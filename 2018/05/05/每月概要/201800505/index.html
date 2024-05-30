@@ -147,7 +147,10 @@
 <li>f”{}”的用法:快速嵌入变量<br>该方法很快捷地放入我们想要的内容，很符合python语言的风格<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;早晨&quot;</span></span><br><span class="line">b = <span class="string">&quot;下午&quot;</span></span><br><span class="line">c = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;从<span class="subst">&#123;a&#125;</span>起床到<span class="subst">&#123;b&#125;</span>,我一共只吃了<span class="subst">&#123;c&#125;</span>个苹果&quot;</span>)</span><br><span class="line">从早晨起床到下午,我一共只吃了<span class="number">2</span>个苹果</span><br></pre></td></tr></table></figure></li>
 <li>requests json content 与 text 区别<br>json() 必须加括号<br>text 代表返回的数据是文字<br>content 代表返回的数据是多媒体，图片，音乐，视频</li>
 <li>小细节，list insert函数，返回none的问题<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user_info = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">ps = <span class="number">12345</span></span><br><span class="line">result = user_info.insert(<span class="number">0</span>, ps)   <span class="comment"># 错误的写法  正确的写法为： user_info.insert(0, ps) 不需要赋值就可以了</span></span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line"><span class="literal">None</span> <span class="comment"># 打印none，这个是由于列表调用insert方法后，没有返回值，result设置默认none</span></span><br></pre></td></tr></table></figure></li>
-<li></li>
+<li>小技巧，sublime快速添加双引号<blockquote>
+<p>(.<em>):(.</em>)<br>“$1”:”$2”<br><img src="/../../images/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2018/5/img.png" alt="img.png"></p>
+</blockquote>
+</li>
 </ol>
 
         
