@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/nginx/00-错误集锦-socket: Too many open files (24)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/docker/基础/09-docker端口映射" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-socket:%20Too%20many%20open%20files%20(24)/">00-错误集锦-socket-Too many open files (24)</a>
+      <a class="p-name article-title" href="/2021/08/09/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/09-docker%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84/">09-Docker端口映射</a>
     </h1>
   
 
@@ -106,17 +106,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-10-01T03:00:52.000Z" itemprop="datePublished">2021年10月01日</time>
+  <time class="dt-published" datetime="2021-08-09T05:00:52.000Z" itemprop="datePublished">2021年08月09日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
   </div>
 
       
       
-<a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-socket:%20Too%20many%20open%20files%20(24)/#comments" class="article-comment-link">
+<a href="/2021/08/09/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/09-docker%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,77 +126,13 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-socket-Too-many-open-files-24"><a href="#1-socket-Too-many-open-files-24" class="headerlink" title="1.socket: Too many open files (24)"></a>1.socket: Too many open files (24)</h4><h5 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dbbruce@dbburce githubblog % ab -n 2000 -c 2000 http://www.a.com/</span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 1903618 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking www.a.com (be patient)</span><br><span class="line">socket: Too many open files (24)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-socket:%20Too%20many%20open%20files%20(24)/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/61-Linux设置本地yum源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/30/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/61-Linux%E8%AE%BE%E7%BD%AE%E6%9C%AC%E5%9C%B0yum%E6%BA%90/">61-Linux设置本地yum源</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-30T04:00:52.000Z" itemprop="datePublished">2021年09月30日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/30/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/61-Linux%E8%AE%BE%E7%BD%AE%E6%9C%AC%E5%9C%B0yum%E6%BA%90/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Linux设置本地yum源"><a href="#Linux设置本地yum源" class="headerlink" title="Linux设置本地yum源"></a>Linux设置本地yum源</h2><h4 id="关防火墙"><a href="#关防火墙" class="headerlink" title="关防火墙"></a>关防火墙</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 ~]# systemctl stop firewalld.service</span><br><span class="line">[root@centos7-05 ~]# systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
-<h4 id="系统光盘开机自动挂载"><a href="#系统光盘开机自动挂载" class="headerlink" title="系统光盘开机自动挂载"></a>系统光盘开机自动挂载</h4><p>&#x2F;dev&#x2F;cdrom：是Linux系统中的光驱目录，只能以只读方式挂载。<br>mnt：镜像挂载点，可以自定义创建，这里以系统已有的mnt目录为挂载点。<br>&#x2F;dev&#x2F;cdrom &#x2F;mnt：就是将光驱设备挂载到系统根分区的mnt目录下。<br>iso9660：这是光盘的文件格式，这个不可修改。<br>defaults和0 0：这个是操作权限，无需修改，默认即可。         </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 ~]# vim /etc/fstab</span><br><span class="line"></span><br><span class="line">/dev/cdrom /mnt iso9660    defaults        0 0</span><br></pre></td></tr></table></figure>
-<h4 id="验证配置是否生效，会自动挂载"><a href="#验证配置是否生效，会自动挂载" class="headerlink" title="验证配置是否生效，会自动挂载"></a>验证配置是否生效，会自动挂载</h4><p>配置文件生效会出现下字样   </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 dev]# mount -a</span><br><span class="line">mount: /dev/sr0 写保护，将以只读方式挂载</span><br></pre></td></tr></table></figure>
-<h4 id="查看挂载是否正常"><a href="#查看挂载是否正常" class="headerlink" title="查看挂载是否正常"></a>查看挂载是否正常</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 dev]# ll /mnt/</span><br><span class="line">总用量 696</span><br><span class="line">-rw-r--r--.  3 root root     14 10月 29 2020 CentOS_BuildTag</span><br><span class="line">drwxr-xr-x.  3 root root   2048 10月 26 2020 EFI</span><br><span class="line">-rw-rw-r--. 21 root root    227 8月  30 2017 EULA</span><br><span class="line">-rw-rw-r--. 21 root root  18009 12月  9 2015 GPL</span><br><span class="line">drwxr-xr-x.  3 root root   2048 10月 26 2020 images</span><br><span class="line">drwxr-xr-x.  2 root root   2048 11月  2 2020 isolinux</span><br><span class="line">drwxr-xr-x.  2 root root   2048 10月 26 2020 LiveOS</span><br><span class="line">drwxr-xr-x.  2 root root 673792 11月  4 2020 Packages</span><br><span class="line">drwxr-xr-x.  2 root root   4096 11月  4 2020 repodata</span><br><span class="line">-rw-rw-r--. 21 root root   1690 12月  9 2015 RPM-GPG-KEY-CentOS-7</span><br><span class="line">-rw-rw-r--. 21 root root   1690 12月  9 2015 RPM-GPG-KEY-CentOS-Testing-7</span><br><span class="line">-r--r--r--.  1 root root   2883 11月  4 2020 TRANS.TBL</span><br></pre></td></tr></table></figure>
-<h4 id="删除其他yum源"><a href="#删除其他yum源" class="headerlink" title="删除其他yum源"></a>删除其他yum源</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 dev]# cd /etc/yum.repos.d/</span><br><span class="line"></span><br><span class="line">[root@centos7-05 yum.repos.d]# ls</span><br><span class="line">CentOS-Base.repo  CentOS-CR.repo  CentOS-Debuginfo.repo  CentOS-fasttrack.repo  CentOS-Media.repo  CentOS-Sources.repo  CentOS-Vault.repo  CentOS-x86_64-kernel.repo</span><br><span class="line"></span><br><span class="line">[root@centos7-05 yum.repos.d]# rm -fr *.repo</span><br></pre></td></tr></table></figure>
-<h4 id="创建yum源文件-CentOS7-repo"><a href="#创建yum源文件-CentOS7-repo" class="headerlink" title="创建yum源文件 CentOS7.repo"></a>创建yum源文件 CentOS7.repo</h4><p>[CentOS7]            # 这是文件id，必须和文件名一致，区分大小写；<br>name&#x3D;CentOS7Yum      # 这个是描述性信息，可以随意写，建议规范；<br>baseurl&#x3D;file:&#x2F;&#x2F;&#x2F;mnt  # mnt表示光盘挂载点，用该光驱里的文件作为我的yum；<br>enabled&#x3D;1            # 1表示启动，0表示停用；<br>gpgcheck&#x3D;0           # 0表示不效验，由于是光驱是本地的，所以这里不校验</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 ~]# vim /etc/yum.repos.d/CentOS7.repo</span><br><span class="line"></span><br><span class="line">[CentOS7]</span><br><span class="line">name=CentOS7yum</span><br><span class="line">baseurl=file:///mnt</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=file:///mnt/RPM-GPG-KEY-CentOS-7</span><br></pre></td></tr></table></figure>
-<h4 id="启用yum源"><a href="#启用yum源" class="headerlink" title="启用yum源"></a>启用yum源</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 yum.repos.d]# yum-config-manager --enable CentOS7</span><br></pre></td></tr></table></figure>
-<h4 id="清除缓存并新建缓存"><a href="#清除缓存并新建缓存" class="headerlink" title="清除缓存并新建缓存"></a>清除缓存并新建缓存</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 ~]# yum clean all</span><br><span class="line"></span><br><span class="line">[root@centos7-05 ~]# yum makecache</span><br></pre></td></tr></table></figure>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 ~]# yum list</span><br></pre></td></tr></table></figure>
-<h4 id="安装并启动httpd服务"><a href="#安装并启动httpd服务" class="headerlink" title="安装并启动httpd服务"></a>安装并启动httpd服务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 ~]# yum -y install httpd</span><br><span class="line"></span><br><span class="line">[root@centos7-05 ~]# systemctl start httpd.service</span><br></pre></td></tr></table></figure>
-<h4 id="建立centos软连接"><a href="#建立centos软连接" class="headerlink" title="建立centos软连接"></a>建立centos软连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7-05 ~]# ln -s /mnt /var/www/html/centos7</span><br></pre></td></tr></table></figure>
-<h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p><a target="_blank" rel="noopener" href="http://192.168.1.52/centos7/">http://192.168.1.52/centos7/</a><br><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/%E6%88%AA%E5%B1%8F2023-11-12%2022.50.03.png" alt="截屏2023-11-12 22.50.03.png"></p>
+        <h1 id="docker端口映射"><a href="#docker端口映射" class="headerlink" title="docker端口映射"></a>docker端口映射</h1><h4 id="客户端访问容器内的资源"><a href="#客户端访问容器内的资源" class="headerlink" title="客户端访问容器内的资源"></a>客户端访问容器内的资源</h4><ul>
+<li>默认容器可以访问外网 </li>
+<li>但外部网络的主机不可以访问容器内的资源</li>
+<li>容器的特征是可以把宿主机变成对应的服务</li>
+<li>我们可以使用 -p 参数把容器端口和宿主机端口绑定</li>
+<li>-p 宿主机端口:容器端口<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd -p 80:80  d65a9db55148</span><br></pre></td></tr></table></figure></li>
+</ul>
 
         
 <!--          -->
@@ -229,7 +165,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/60-ftp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/09-tar命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -237,7 +173,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/60-ftp/">60-ftp</a>
+      <a class="p-name article-title" href="/2021/08/09/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/09-tar%E5%91%BD%E4%BB%A4/">09-tar备份和恢复</a>
     </h1>
   
 
@@ -248,7 +184,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-29T04:00:52.000Z" itemprop="datePublished">2021年09月29日</time>
+  <time class="dt-published" datetime="2021-08-09T03:00:52.000Z" itemprop="datePublished">2021年08月09日</time>
 </span>
       
   <div class="article-category">
@@ -258,7 +194,7 @@
 
       
       
-<a href="/2021/09/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/60-ftp/#comments" class="article-comment-link">
+<a href="/2021/08/09/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/09-tar%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -268,278 +204,513 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="vsFTP"><a href="#vsFTP" class="headerlink" title="vsFTP"></a>vsFTP</h2><h4 id="安装vsftp"><a href="#安装vsftp" class="headerlink" title="安装vsftp"></a>安装vsftp</h4><ul>
-<li>yum -y install vsftpd   </li>
-<li>systemctl start vsftpd   </li>
-<li>mkdir &#x2F;var&#x2F;ftp&#x2F;share   </li>
-<li>chmod o+w &#x2F;var&#x2F;ftp&#x2F;share   </li>
-<li>vim +29 &#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf<br>anon_upload_enable&#x3D;YES   # 开启匿名上传功能更   </li>
-<li>systemctl restart vsftpd</li>
-</ul>
-<h1 id="使用，默认用户ftp，密码空"><a href="#使用，默认用户ftp，密码空" class="headerlink" title="使用，默认用户ftp，密码空"></a>使用，默认用户ftp，密码空</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# ftp 192.168.1.12 21</span><br><span class="line"></span><br><span class="line">Connected to 192.168.1.12 (192.168.1.12).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line">Name (192.168.1.12:root): ftp   # 用户名</span><br><span class="line"></span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:    # 密码空，直接回车</span><br><span class="line"></span><br><span class="line">230 Login successful.   # 看到success登录成功</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">ftp&gt; </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">227 Entering Passive Mode (192,168,1,12,111,226).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0               0 Nov 03 00:06 1.txt</span><br><span class="line">-rw-r--r--    1 0        0               0 Nov 03 00:06 2.txt</span><br><span class="line">drwxr-xr-x    2 0        0              19 Nov 03 00:10 pub</span><br><span class="line">drwxr-xrwx    2 0        0              20 Nov 03 00:39 share</span><br><span class="line">226 Directory send OK.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">ftp&gt; </span><span class="language-bash"><span class="built_in">cd</span> share/</span></span><br><span class="line">250 Directory successfully changed.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">ftp&gt; </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">227 Entering Passive Mode (192,168,1,12,162,213).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--rw-    1 0        0            1195 Nov 03 00:39 passwd</span><br><span class="line">226 Directory send OK.</span><br><span class="line"><span class="meta prompt_">ftp&gt; </span><span class="language-bash">ll</span></span><br><span class="line">?Invalid command</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">ftp&gt; </span><span class="language-bash">get passwd   <span class="comment"># 下载，默认下载目录，是执行ftp命令的目录</span></span></span><br><span class="line">local: passwd remote: passwd</span><br><span class="line">227 Entering Passive Mode (192,168,1,12,127,183).</span><br><span class="line">150 Opening BINARY mode data connection for passwd (1195 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">1195 bytes received in 4.3e-05 secs (27790.70 Kbytes/sec)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">ftp&gt; </span><span class="language-bash">put 1.txt          <span class="comment"># 上传</span></span></span><br><span class="line">local: 1.txt remote: 1.txt</span><br><span class="line">227 Entering Passive Mode (192,168,1,12,131,28).</span><br><span class="line">553 Could not create file.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">ftp&gt; </span><span class="language-bash"><span class="built_in">exit</span>    <span class="comment"># 退出</span></span></span><br><span class="line">221 Goodbye.</span><br></pre></td></tr></table></figure>
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/21/index.html">https://dbbruce.github.io/page/21/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/59-SELinux" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/59-SELinux/">59-SELinux</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-29T03:00:52.000Z" itemprop="datePublished">2021年09月29日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/59-SELinux/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h2><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
-<li>Security-Enhanced Linux<br>一套强化Linux安全的扩展模块<br>美国国家安全局主导开发     </li>
-<li>SELinux的运作机制<br>集成到Linux内核( 2.6及以上)<br>操作系统提供可定制的策略、管理工具</li>
-</ul>
-<h4 id="查看selinux状态：sestatus"><a href="#查看selinux状态：sestatus" class="headerlink" title="查看selinux状态：sestatus"></a>查看selinux状态：sestatus</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# sestatus</span><br><span class="line">SELinux status:                 enabled</span><br><span class="line">SELinuxfs mount:                /sys/fs/selinux    # 文件加载目录</span><br><span class="line">SELinux root directory:         /etc/selinux       # 工作目录</span><br><span class="line">Loaded policy name:             targeted</span><br><span class="line">Current mode:                   enforcing</span><br><span class="line">Mode from config file:          enforcing           # 配置文件模式</span><br><span class="line">Policy MLS status:              enabled</span><br><span class="line">Policy deny_unknown status:     allowed</span><br><span class="line">Max kernel policy version:      31</span><br></pre></td></tr></table></figure>
-<h4 id="配置文件-etc-selinux-config"><a href="#配置文件-etc-selinux-config" class="headerlink" title="配置文件:&#x2F;etc&#x2F;selinux&#x2F;config"></a>配置文件:&#x2F;etc&#x2F;selinux&#x2F;config</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# vim /etc/selinux/config</span><br><span class="line"></span><br><span class="line"># This file controls the state of SELinux on the system.</span><br><span class="line"># SELINUX= can take one of these three values:</span><br><span class="line">#     enforcing - SELinux security policy is enforced.</span><br><span class="line">#     permissive - SELinux prints warnings instead of enforcing.</span><br><span class="line">#     disabled - No SELinux policy is loaded.</span><br><span class="line">SELINUX=enforcing</span><br><span class="line"># SELINUXTYPE= can take one of three values:</span><br><span class="line">#     targeted - Targeted processes are protected,</span><br><span class="line">#     minimum - Modification of targeted policy. Only selected processes are protected.</span><br><span class="line">#     mls - Multi Level Security protection.</span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure>
-<h4 id="重置安全上下文，也就是开启selinux的步骤，只重启并不生效，需要创建autorelable文件"><a href="#重置安全上下文，也就是开启selinux的步骤，只重启并不生效，需要创建autorelable文件" class="headerlink" title="重置安全上下文，也就是开启selinux的步骤，只重启并不生效，需要创建autorelable文件"></a>重置安全上下文，也就是开启selinux的步骤，只重启并不生效，需要创建autorelable文件</h4><ul>
-<li>修改配置文件，开启selinux<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=enforcing</span><br></pre></td></tr></table></figure></li>
-<li>根下创建.autorelable文件, 注意不要缺失了点，创建的是隐藏文件，重启后这个文件会自动消失；          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch /.autorelable</span><br></pre></td></tr></table></figure></li>
-<li>重启    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="SELinux开关控制"><a href="#SELinux开关控制" class="headerlink" title="SELinux开关控制"></a>SELinux开关控制</h4><ul>
-<li>非Disabled状态下才可可用</li>
-<li>临时调整，setenforce 命令</li>
-<li>设为 1，对应强制模式 </li>
-<li>设为 0，对应宽松模式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# getenforce</span><br><span class="line">Enforcing</span><br><span class="line">[root@centos07-12 ~]# setenforce 0</span><br><span class="line">[root@centos07-12 ~]# setenforce 1</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="查看安全上下文-安全上下文，就是安全策略-使用大写Z"><a href="#查看安全上下文-安全上下文，就是安全策略-使用大写Z" class="headerlink" title="查看安全上下文(安全上下文，就是安全策略), 使用大写Z"></a>查看安全上下文(安全上下文，就是安全策略), 使用大写Z</h4><ul>
-<li>Security Context，安全上下文为文件<br>&#x2F;目录&#x2F;设备标记访问控制属性      </li>
-<li>属性构成，比较关注的是访问类型<br>用户:角色:访问类型:选项.      </li>
-<li>查看文件的安全上下文<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ls -Z /etc/hosts</span><br><span class="line">-rw-r--r--. root root system_u:object_r:net_conf_t:s0  /etc/hosts</span><br></pre></td></tr></table></figure></li>
-<li>查看目录的安全上下文<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ls -dZ /etc/</span><br><span class="line">drwxr-xr-x. root root system_u:object_r:etc_t:s0       /etc/</span><br></pre></td></tr></table></figure></li>
-<li>查看进程的安全上下文<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ps -aux -Z |grep python</span><br><span class="line">system_u:system_r:tuned_t:s0    root      1031  0.0  0.5 574284 19492 ?        Ssl  11月02   0:11 /usr/bin/python2 -Es /usr/sbin/tuned -l -P</span><br><span class="line">unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 root 5123 0.0  0.0 112824 988 pts/0 R+ 07:29   0:00 grep --color=auto python</span><br></pre></td></tr></table></figure></li>
-<li>修改安全上下文，一般操作规律<br>移动的文件，原有的上下文属性不变      <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 查看下原文件安全属性，net_conf_t</span><br><span class="line">[root@centos07-12 ~]# ll -Z /etc/hosts</span><br><span class="line">-rw-r--r--. root root system_u:object_r:net_conf_t:s0  /etc/hosts</span><br><span class="line"># 复制文件</span><br><span class="line">[root@centos07-12 ~]# cp /etc/hosts /root</span><br><span class="line"># 查看下复制后的文件属性，admin_home_t</span><br><span class="line">[root@centos07-12 ~]# ll -Z /root/hosts</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 /root/hosts</span><br><span class="line"># 查看目录文件属性</span><br><span class="line">[root@centos07-12 ~]# ls -dZ /root</span><br><span class="line">dr-xr-x---. root root system_u:object_r:admin_home_t:s0 /root</span><br></pre></td></tr></table></figure>
-创建或复制的文件，自动继承目标位置的上下文      <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查看下目录的访问类型， admin_home_t</span><br><span class="line">[root@centos07-12 ~]# ls -dZ /root</span><br><span class="line">dr-xr-x---. root root system_u:object_r:admin_home_t:s0 /root</span><br><span class="line"># 新创建一个文件</span><br><span class="line">[root@centos07-12 ~]# vim 1.txt</span><br><span class="line"># 查看下新文件访问类型， admin_home_t，继承目录访问类型</span><br><span class="line">[root@centos07-12 ~]# ls -dZ 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 1.txt</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="修改文件的访问类型，使用chcon工具"><a href="#修改文件的访问类型，使用chcon工具" class="headerlink" title="修改文件的访问类型，使用chcon工具"></a>修改文件的访问类型，使用chcon工具</h4><ul>
-<li>t，指定访问类型        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 原访问类型</span><br><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:public_content_t:s0 1.txt</span><br><span class="line"></span><br><span class="line"># 修改访问类型</span><br><span class="line">[root@centos07-12 ftp]# ll -dZ /var/www/html</span><br><span class="line">drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 /var/www/html</span><br><span class="line">[root@centos07-12 ftp]# chcon -t httpd_sys_content_t 1.txt</span><br><span class="line"></span><br><span class="line"># 新访问类型</span><br><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 1.txt</span><br></pre></td></tr></table></figure></li>
-<li>-R，递归修改      <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# chcon -R -t httpd_sys_content_t  /temp/files/</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="恢复访问类型，-restorecon"><a href="#恢复访问类型，-restorecon" class="headerlink" title="恢复访问类型， restorecon"></a>恢复访问类型， restorecon</h4><ul>
-<li>恢复为所在位置的默认上下文属性     <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 1.txt</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ftp]# restorecon 1.txt</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:public_content_t:s0 1.txt</span><br></pre></td></tr></table></figure></li>
-<li>-R，递归修改     <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# restorecon -R  /var/ftp/</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:public_content_t:s0 1.txt</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="调整SELinux布尔值"><a href="#调整SELinux布尔值" class="headerlink" title="调整SELinux布尔值"></a>调整SELinux布尔值</h4><ul>
-<li>使用 getsebool 查看<br>a，可列出所有布尔值，on 开启， off 关闭<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# getsebool -a |grep ftp</span><br><span class="line"></span><br><span class="line">ftpd_anon_write --&gt; off</span><br><span class="line">ftpd_connect_all_unreserved --&gt; off</span><br><span class="line">ftpd_connect_db --&gt; off</span><br><span class="line">ftpd_full_access --&gt; off</span><br><span class="line">ftpd_use_cifs --&gt; off</span><br><span class="line">ftpd_use_fusefs --&gt; off</span><br><span class="line">ftpd_use_nfs --&gt; off</span><br><span class="line">ftpd_use_passive_mode --&gt; off</span><br><span class="line">httpd_can_connect_ftp --&gt; off</span><br><span class="line">httpd_enable_ftp_server --&gt; off</span><br><span class="line">tftp_anon_write --&gt; off</span><br><span class="line">tftp_home_dir --&gt; off</span><br></pre></td></tr></table></figure></li>
-<li>使用 setsebool 设置<br>-P，永久更改，重启后仍然有效    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# setsebool -P  ftpd_anon_write on</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ftp]# setsebool -P  ftpd_anon_write off</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="查看SELinux日志排查"><a href="#查看SELinux日志排查" class="headerlink" title="查看SELinux日志排查"></a>查看SELinux日志排查</h4><ul>
-<li>开启selinux，严格模式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# setenforce 1</span><br><span class="line">[root@centos07-12 ftp]# getenforce</span><br><span class="line">Enforcing</span><br></pre></td></tr></table></figure></li>
-<li>启动httpd服务，修改为非80端口，无法启动，启动报错<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# vim /etc/httpd/conf/httpd.conf</span><br><span class="line"></span><br><span class="line">Listen 8070</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# systemctl start httpd</span><br><span class="line">Job for httpd.service failed because the control process exited with error code. See &quot;systemctl status httpd.service&quot; and &quot;journalctl -xe&quot; for details.</span><br></pre></td></tr></table></figure></li>
-<li>查看SELinux日志，排查问题，需要用到setrubleshoot<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# rpm -aq|grep shoot</span><br><span class="line">[root@centos07-12 ftp]# yum list|grep shoot</span><br><span class="line">setroubleshoot.x86_64                       3.2.30-8.el7               base</span><br><span class="line">setroubleshoot-plugins.noarch               3.0.67-4.el7               base</span><br><span class="line">setroubleshoot-server.x86_64                3.2.30-8.el7               base</span><br><span class="line">[root@centos07-12 ftp]# yum -y install setroubleshoot*</span><br><span class="line">[root@centos07-12 ftp]# reboot</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# systemctl restart httpd.service</span><br><span class="line">Job for httpd.service failed because the control process exited with error code. See &quot;systemctl status httpd.service&quot; and &quot;journalctl -xe&quot; for details.</span><br></pre></td></tr></table></figure>
-查看日志，执行下面命令，sealert -l 0f7e3663-d739-4bd1-bbca-c08c652b48cd，查看如何修改     <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# grep setroubleshoot /var/log/messages |tail -1</span><br><span class="line">Nov  6 13:59:42 centos07-12 setroubleshoot: SELinux is preventing /usr/sbin/httpd from name_bind access on the tcp_socket port 8070. For complete SELinux messages run: sealert -l 0f7e3663-d739-4bd1-bbca-c08c652b48cd</span><br></pre></td></tr></table></figure>
-执行DO里的内容，注意里面的变量，PORT_TYPE                       <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# sealert -l 0f7e3663-d739-4bd1-bbca-c08c652b48cd</span><br><span class="line">SELinux is preventing /usr/sbin/httpd from name_bind access on the tcp_socket port 8070.</span><br><span class="line"></span><br><span class="line">*****  插件 bind_ports (92.2 置信度) 建议  ******************************************</span><br><span class="line"></span><br><span class="line">如果你想允许 /usr/sbin/httpd绑定到网络端口 $PORT_数</span><br><span class="line">Then you need to modify the port type.</span><br><span class="line">Do   ####注意这里..., PORT_TYPE</span><br><span class="line"># semanage port -a -t PORT_TYPE -p tcp 8070</span><br><span class="line">    其中 PORT_TYPE 是以下之一：http_cache_port_t, http_port_t, jboss_management_port_t, jboss_messaging_port_t, ntop_port_t, puppet_port_t。</span><br><span class="line"></span><br><span class="line">*****  插件 catchall_boolean (7.83 置信度) 建议  ************************************</span><br><span class="line"></span><br><span class="line">如果你想 allow nis to enabled</span><br><span class="line">Then 必须启用 &#x27;nis_enabled&#x27; 布尔值告知 SELinux 此情况。</span><br><span class="line"></span><br><span class="line">Do</span><br><span class="line">setsebool -P nis_enabled 1</span><br><span class="line"></span><br><span class="line">*****  插件 catchall (1.41 置信度) 建议  ********************************************</span><br><span class="line"></span><br><span class="line">如果你相信 httpd应该允许_BASE_PATH name_bind 访问 port 8070 tcp_socket默认情况下。</span><br><span class="line">Then 应该将这个情况作为 bug 报告。</span><br><span class="line">可以生成本地策略模块以允许此访问。</span><br><span class="line">Do</span><br><span class="line">暂时允许此访问权限执行：</span><br><span class="line"># ausearch -c &#x27;httpd&#x27; --raw | audit2allow -M my-httpd</span><br><span class="line"># semodule -i my-httpd.pp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">更多信息:</span><br><span class="line">源环境 (Context)                 system_u:system_r:httpd_t:s0</span><br><span class="line">目标环境                          system_u:object_r:unreserved_port_t:s0</span><br><span class="line">目标对象                          port 8070 [ tcp_socket ]</span><br><span class="line">源                             httpd</span><br><span class="line">源路径                           /usr/sbin/httpd</span><br><span class="line">端口                            8070</span><br><span class="line">主机                            centos07-12</span><br><span class="line">源 RPM 软件包                     httpd-2.4.6-95.el7.centos.x86_64</span><br><span class="line">目标 RPM 软件包</span><br><span class="line">策略 RPM                        selinux-policy-3.13.1-268.el7.noarch</span><br><span class="line">Selinux 已启用                   True</span><br><span class="line">策略类型                          targeted</span><br><span class="line">强制模式                          Enforcing</span><br><span class="line">主机名                           centos07-12</span><br><span class="line">平台                            Linux centos07-12 3.10.0-1160.el7.x86_64 #1 SMP</span><br><span class="line">                              Mon Oct 19 16:18:59 UTC 2020 x86_64 x86_64</span><br><span class="line">警报计数                          1</span><br><span class="line">第一个                           2023-11-06 13:59:40 CST</span><br><span class="line">最后一个                          2023-11-06 13:59:40 CST</span><br><span class="line">本地 ID                         0f7e3663-d739-4bd1-bbca-c08c652b48cd</span><br><span class="line"></span><br><span class="line">原始核查信息</span><br><span class="line">type=AVC msg=audit(1699250380.724:118): avc:  denied  &#123; name_bind &#125; for  pid=1619 comm=&quot;httpd&quot; src=8070 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:unreserved_port_t:s0 tclass=tcp_socket permissive=0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type=SYSCALL msg=audit(1699250380.724:118): arch=x86_64 syscall=bind success=no exit=EACCES a0=3 a1=558d7078f180 a2=10 a3=7ffc7b98312c items=0 ppid=1 pid=1619 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm=httpd exe=/usr/sbin/httpd subj=system_u:system_r:httpd_t:s0 key=(null)</span><br><span class="line"></span><br><span class="line">Hash: httpd,httpd_t,unreserved_port_t,tcp_socket,name_bind</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="总结就是，开启selinux后，想使用非标准接口，那就需要使用selinux命令，允许使用其他的端口；"><a href="#总结就是，开启selinux后，想使用非标准接口，那就需要使用selinux命令，允许使用其他的端口；" class="headerlink" title="总结就是，开启selinux后，想使用非标准接口，那就需要使用selinux命令，允许使用其他的端口；"></a>总结就是，开启selinux后，想使用非标准接口，那就需要使用selinux命令，允许使用其他的端口；</h4>
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/21/index.html">https://dbbruce.github.io/page/21/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/58-制作本地yum源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/">58-制作本地yum源</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-28T03:00:52.000Z" itemprop="datePublished">2021年09月28日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="构建本地yum源"><a href="#构建本地yum源" class="headerlink" title="构建本地yum源"></a>构建本地yum源</h2><p>构建本地yum源，然后通过yum 进行安装。</p>
-<ol>
-<li>准备rpm包<br>rpm包源建议使用对应的iso文件进行解压获得。</li>
-<li>安装 createrepo 工具
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/57-haproxy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/">57-haproxy</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-27T03:00:52.000Z" itemprop="datePublished">2021年09月27日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="haproxy"><a href="#haproxy" class="headerlink" title="haproxy"></a>haproxy</h2><p>优点</p>
+        <h4 id="1-tar命令合集"><a href="#1-tar命令合集" class="headerlink" title="1. tar命令合集"></a>1. tar命令合集</h4><p>打包<br>tar 选项 压缩名 原始目录<br>解包<br>tar 选项 压缩包 释放的目录</p>
 <ul>
-<li>支持session、cookie功能</li>
-<li>可以通过url进行健康检查</li>
-<li>效率、负载均衡速度，高于Nginx，低于LVS</li>
-<li>HAProxy支持TCP，可以对MySQL进行负载均衡</li>
-<li>调度算法丰富<br>缺点</li>
-<li>正则弱于Nginx</li>
-<li>日志依赖于syslogd
+<li>c 创建归档</li>
+<li>x 释放归档</li>
+<li>f 指定归档文件名</li>
+<li>z -j -J 调用 .gz .bz2 .xz 格式的工具进行处理</li>
+<li>t 显示归档中的文件清单</li>
+<li>C 指定释放目录
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/#more">阅读全文</a>
+          <a href="/2021/08/09/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/09-tar%E5%91%BD%E4%BB%A4/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/08-docker网桥" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/08/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/08-docker%E7%BD%91%E6%A1%A5/">08-Docker网桥</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-08T05:00:52.000Z" itemprop="datePublished">2021年08月08日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/08/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/08-docker%E7%BD%91%E6%A1%A5/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker网桥"><a href="#docker网桥" class="headerlink" title="docker网桥"></a>docker网桥</h1><h4 id="docker支持网络的3中模式"><a href="#docker支持网络的3中模式" class="headerlink" title="docker支持网络的3中模式"></a>docker支持网络的3中模式</h4><p>bridge   桥接<br>host     仅主机<br>none     无网络      </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-22 busybox]# docker network ls</span><br><span class="line"></span><br><span class="line">NETWORK ID     NAME      DRIVER    SCOPE</span><br><span class="line">89bf40092a24   bridge    bridge    local</span><br><span class="line">989ab8118c88   host      host      local</span><br><span class="line">b90220e38931   none      null      local</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/08/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/08-docker%E7%BD%91%E6%A1%A5/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/08-用户管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/08/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/08-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/">08-用户管理</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-08T03:00:52.000Z" itemprop="datePublished">2021年08月08日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/08/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/08-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-唯一标识"><a href="#1-唯一标识" class="headerlink" title="1. 唯一标识"></a>1. 唯一标识</h4><p>UID 用户ID<br>GID 组ID</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/08/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/08-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/07-docker持久化存储" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/07/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/07-docker%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/">07-Docker持久化存储</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-07T05:00:52.000Z" itemprop="datePublished">2021年08月07日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/07/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/07-docker%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker持久化存储"><a href="#docker持久化存储" class="headerlink" title="docker持久化存储"></a>docker持久化存储</h1><h4 id="卷的概念"><a href="#卷的概念" class="headerlink" title="卷的概念"></a>卷的概念</h4><ul>
+<li>docker容器不保持任何数据</li>
+<li>重要数据请使用外部卷存储( 数据持久化 </li>
+<li>容器可以挂载真实机目录或共享存储为卷
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/07/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/07-docker%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/07-管道" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/07/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/07-%E7%AE%A1%E9%81%93/">07-管道</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-07T03:00:52.000Z" itemprop="datePublished">2021年08月07日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/07/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/07-%E7%AE%A1%E9%81%93/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-管道"><a href="#1-管道" class="headerlink" title="1.管道 |"></a>1.管道 |</h4><p>将前面命令的输出，交由后面命令处理，作为后面命令的参数<br>取passwd的8到12行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[dong@master ~]$ head -12 /etc/passwd | tail -5</span><br><span class="line">halt:x:7:0:halt:/sbin:/sbin/halt</span><br><span class="line">mail:x:8:12:mail:/var/spool/mail:/sbin/nologin</span><br><span class="line">operator:x:11:0:operator:/root:/sbin/nologin</span><br><span class="line">games:x:12:100:games:/usr/games:/sbin/nologin</span><br><span class="line">ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/21/index.html">https://dbbruce.github.io/page/21/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/06-docker自定义镜像仓库-简单实例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/06/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/06-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93-%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B/">06-docker自定义镜像仓库-简单实例</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-06T05:00:52.000Z" itemprop="datePublished">2021年08月06日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/06/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/06-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93-%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Docker自定义镜像仓库-简单实例"><a href="#Docker自定义镜像仓库-简单实例" class="headerlink" title="Docker自定义镜像仓库-简单实例"></a>Docker自定义镜像仓库-简单实例</h1><h4 id="安装私有仓库-服务端"><a href="#安装私有仓库-服务端" class="headerlink" title="安装私有仓库(服务端)"></a>安装私有仓库(服务端)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install docker-distribution</span><br></pre></td></tr></table></figure>
+<h4 id="启动私有仓库，并设置开机自启动"><a href="#启动私有仓库，并设置开机自启动" class="headerlink" title="启动私有仓库，并设置开机自启动"></a>启动私有仓库，并设置开机自启动</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker-distribution</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker-distribution</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/06/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/06-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93-%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/06-重定向" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/06-%E9%87%8D%E5%AE%9A%E5%90%91/">06-重定向</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-06T03:00:52.000Z" itemprop="datePublished">2021年08月06日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/06-%E9%87%8D%E5%AE%9A%E5%90%91/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-重定向输出"><a href="#1-重定向输出" class="headerlink" title="1.重定向输出"></a>1.重定向输出</h4><p>覆盖重定向 &gt;<br>追加重定向 &gt;&gt;</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls --help &gt; 1.txt</span><br><span class="line">ls --help &gt;&gt; 1.txt</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/06-%E9%87%8D%E5%AE%9A%E5%90%91/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/05-dockerfile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/05/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/05-dockerfile/">05-Dockerfile</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-05T05:00:52.000Z" itemprop="datePublished">2021年08月05日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/05/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/05-dockerfile/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p>Dockerfile 是一个用于定义 Docker 镜像的文本文件。<br>它包含了一系列的指令和参数，用于指示 Docker 在构建镜像时应该执行哪些操作，例如基于哪个基础镜像、复制哪些文件到镜像中、运行哪些命令等等。<br>通过 Dockerfile，开发人员可以将应用程序和其所有依赖项打包在一起，创建出一个可移植的 Docker 镜像，使得这个应用程序可以在任何 Docker环境中都能够快速部署和运行。</p>
+<h4 id="Dockerfile语法格式"><a href="#Dockerfile语法格式" class="headerlink" title="Dockerfile语法格式"></a>Dockerfile语法格式</h4><ul>
+<li>FROM:基础镜像       </li>
+<li>MAINTAINER:镜像创建者信息       </li>
+<li>EXPOSE:开放的端口,一个或多个       </li>
+<li>ENV:设置变量   ENV key value;ENV key&#x3D;value     </li>
+<li>ONBUILD:用于延迟命令的执行。简单的说，就是 Dockerfile 里用 ONBUILD 指定的命令，在本次构建镜像的过程中不会执行（假设镜像为 test-build）。当有新的 Dockerfile 使用了之前构建的镜像 FROM test-build ，这时执行新镜像的 Dockerfile 构建时候，会执行 test-build 的 Dockerfile 里的 ONBUILD 指定的命令。:ONBUILD &lt;其它指令&gt;， onbuild copy          </li>
+<li>USER:用于指定执行后续命令的用户和用户组，这边只是切换后续命令执行的用户（用户和用户组必须提前已经存在）:USER &lt;用户名&gt;[:&lt;用户组&gt;]</li>
+<li>VOLUME:定义匿名数据卷，存数据。容器里的一个目录会和物理机的一个目录映射，在这个目录添加文件，物理机目录也会有文件； 在启动容器时忘记挂载数据卷，会自动挂载到匿名卷：VOLUME [“&lt;路径1&gt;”, “&lt;路径2&gt;”…]，VOLUME &lt;路径&gt;：VOLUME [“&#x2F;data”]<br>  作用：<br>  1、避免重要的数据，因容器重启而丢失，这是非常致命的。<br>  2、避免容器不断变大。<br> 在启动容器 docker run 的时候，我们可以通过 -v 参数修改挂载点。  </li>
+<li>ADD:复制文件到镜像；本地文件拷贝到容器里；ADD的优点是拷贝文件为压缩文件：tar,gzip,bzip2等，会自动复制并解压文件；       </li>
+<li>COPY:复制文件到镜像；本地文件拷贝到容器里；COPY不论文件格式，原样拷贝；       </li>
+<li>RUN:制作镜像时执行的命令，可以有多个；在容器里执行的命令；<br>  包含两种模式：<br>  1、shell模式，最常用的模式：       run yum install -y wget<br>  2、exec模式，先指定shell再执行命令；run [“&#x2F;bin&#x2F;bash”, “-c”, “yum install -y wget”]        </li>
+<li>WORKDIR:定义容器默认工作目录，定义当前家目录；登录容器后默认的目录；        </li>
+<li>CMD:容器启动时执行的命令，仅可以有一条CMD ；必须是中括号+双引号，命令用逗号分隔：[“命令”,”参数1”,”参数2”]；cmd提供的命令，都是进程id：1，所有的父进程；多条cmd时，最后一条生效；<br>  包含两种模式：<br>  1、shell模式：cmd command<br>  2、exec模式：cmd [“param1”, “param2”]     </li>
+<li>ENTERYPOINT:启动服务的命令，镜像创建好后执行的命令;多条entrypoint时，最后一条生效；<br>  1、ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数。ENTRYPOINT 在运行时也可以替代，不过比 CMD 要略显繁琐，需要通过 docker run 的参数 –entrypoint 来指定。<br>  2、当指定了 ENTRYPOINT 后，CMD 的含义就发生了改变，不再是直接的运行其命令，而是将 CMD 的内容作为参数传给 ENTRYPOINT 指令，换句话说实际执行时，将变为：<ENTRYPOINT> “<CMD>“
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/05/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/05-dockerfile/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/05-别名使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/05-%E5%88%AB%E5%90%8D%E4%BD%BF%E7%94%A8/">05-命令的别名</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-05T03:00:52.000Z" itemprop="datePublished">2021年08月05日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/05-%E5%88%AB%E5%90%8D%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-别名的定义"><a href="#1-别名的定义" class="headerlink" title="1. 别名的定义"></a>1. 别名的定义</h4><p>alias hn &#x3D; ‘hostname’<br>mount 设备路径 挂载点目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[dong@master /]$ alias hn=&#x27;hostname&#x27;</span><br><span class="line">[dong@master /]$ hn</span><br><span class="line">master</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/05-%E5%88%AB%E5%90%8D%E4%BD%BF%E7%94%A8/#more">阅读全文</a>
         </p>
       
       
@@ -552,7 +723,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/20/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/22/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/20/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/22/">下一页</a>
 </nav>
 
 

@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/java生态/02-tomcat部署" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/40-网络管理-ACL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/02/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/02-tomcat%E9%83%A8%E7%BD%B2/">02-tomcat部署</a>
+      <a class="p-name article-title" href="/2021/09/10/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/40-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-ACL/">40-网络管理-ACL</a>
     </h1>
   
 
@@ -106,17 +106,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-02T03:00:52.000Z" itemprop="datePublished">2022年08月02日</time>
+  <time class="dt-published" datetime="2021-09-10T03:00:52.000Z" itemprop="datePublished">2021年09月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/08/02/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/02-tomcat%E9%83%A8%E7%BD%B2/#comments" class="article-comment-link">
+<a href="/2021/09/10/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/40-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-ACL/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,15 +126,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-安装tomcat"><a href="#1-安装tomcat" class="headerlink" title="1.安装tomcat"></a>1.安装tomcat</h4><p>简单来说，tomcat本身就是java写的一个脚本，所有不用安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.93/bin/apache-tomcat-8.5.93.tar.gz --no-check-certificate</span><br></pre></td></tr></table></figure>
+        <h4 id="1-acl-访问控制列表"><a href="#1-acl-访问控制列表" class="headerlink" title="1.acl  访问控制列表"></a>1.acl  访问控制列表</h4><h4 id="2-配置ACl"><a href="#2-配置ACl" class="headerlink" title="2.配置ACl"></a>2.配置ACl</h4><p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_27.png" alt="img_27.png"><br>禁止2.1访问</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Huawei] acl 2000 //定义基本acl,列表号是2000</span><br><span class="line">[Huawei-acl-basic-2000] rule deny source 192.168.2.1 0 //源地址是192.168.2.1的数据通过</span><br><span class="line">[Huawei] interface GigabitEthernet 0/0/1</span><br><span class="line">[Huawei-GigabitEthernet0/0/1] traffic-filter inbound acl 2000  //进入接口后,应用acl  </span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/08/02/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/02-tomcat%E9%83%A8%E7%BD%B2/#more">阅读全文</a>
+          <a href="/2021/09/10/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/40-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-ACL/#more">阅读全文</a>
         </p>
       
       
@@ -144,7 +144,7 @@
 </article>
 
 
-  <article id="post-运维/memcached/02-数据库操作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/10-地址重写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -152,7 +152,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/02/%E8%BF%90%E7%BB%B4/memcached/02-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">02-数据库操作</a>
+      <a class="p-name article-title" href="/2021/09/10/%E8%BF%90%E7%BB%B4/nginx/10-%E5%9C%B0%E5%9D%80%E9%87%8D%E5%86%99/">10-地址重写</a>
     </h1>
   
 
@@ -163,17 +163,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-02T03:00:52.000Z" itemprop="datePublished">2022年08月02日</time>
+  <time class="dt-published" datetime="2021-09-10T03:00:52.000Z" itemprop="datePublished">2021年09月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
   </div>
 
       
       
-<a href="/2022/08/02/%E8%BF%90%E7%BB%B4/memcached/02-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/#comments" class="article-comment-link">
+<a href="/2021/09/10/%E8%BF%90%E7%BB%B4/nginx/10-%E5%9C%B0%E5%9D%80%E9%87%8D%E5%86%99/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -183,15 +183,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-写入数据"><a href="#1-写入数据" class="headerlink" title="1.写入数据"></a>1.写入数据</h4><ul>
-<li>数据格式<br>set 写数据<br>dong 变量名<br>0 不压缩<br>180 缓存时间<br>3 存储几个数据字节的数据<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set dong 0 180 5</span><br><span class="line">aaaaa</span><br><span class="line">STORED  #### 存储</span><br></pre></td></tr></table></figure>
+        <h4 id="1-地址重写-地址栏被重写"><a href="#1-地址重写-地址栏被重写" class="headerlink" title="1.地址重写(地址栏被重写)"></a>1.地址重写(地址栏被重写)</h4><p>rewrite regex replacement flag<br>rewrite 旧地址 新地址 [选项]<br><a target="_blank" rel="noopener" href="http://www.a.com/a.html">http://www.a.com/a.html</a>  &gt;&gt;&gt;&gt; <a target="_blank" rel="noopener" href="http://www.a.com/a.html">http://www.a.com/a.html</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.a.com;  # 地址栏不变化</span><br><span class="line">    </span><br><span class="line">    rewrite  /a.html b.html;  </span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/08/02/%E8%BF%90%E7%BB%B4/memcached/02-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/#more">阅读全文</a>
+          <a href="/2021/09/10/%E8%BF%90%E7%BB%B4/nginx/10-%E5%9C%B0%E5%9D%80%E9%87%8D%E5%86%99/#more">阅读全文</a>
         </p>
       
       
@@ -201,7 +201,7 @@
 </article>
 
 
-  <article id="post-运维/Git/01-Git基础知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/39-网络管理-传输层解析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -209,7 +209,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/01/%E8%BF%90%E7%BB%B4/Git/01-Git%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">01-Git基础知识</a>
+      <a class="p-name article-title" href="/2021/09/09/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/39-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%BC%A0%E8%BE%93%E5%B1%82%E8%A7%A3%E6%9E%90/">39-网络管理-传输层解析</a>
     </h1>
   
 
@@ -220,17 +220,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-01T03:00:52.000Z" itemprop="datePublished">2022年08月01日</time>
+  <time class="dt-published" datetime="2021-09-09T03:00:52.000Z" itemprop="datePublished">2021年09月09日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/08/01/%E8%BF%90%E7%BB%B4/Git/01-Git%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#comments" class="article-comment-link">
+<a href="/2021/09/09/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/39-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%BC%A0%E8%BE%93%E5%B1%82%E8%A7%A3%E6%9E%90/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -240,14 +240,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Git基础知识"><a href="#Git基础知识" class="headerlink" title="Git基础知识"></a>Git基础知识</h1><h4 id="1-git提交流程"><a href="#1-git提交流程" class="headerlink" title="1.git提交流程"></a>1.git提交流程</h4><h1 id="2-安装git搭建远程服务器"><a href="#2-安装git搭建远程服务器" class="headerlink" title=" #### 2.安装git搭建远程服务器"></a> <img src="/../../../images/Git/img.png" alt="img.png"><br>
+        <h4 id="1-传输层的作用"><a href="#1-传输层的作用" class="headerlink" title="1.传输层的作用"></a>1.传输层的作用</h4><p>网络层：提供点到点的连接<br>传输层：提供端到端的连接</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/08/01/%E8%BF%90%E7%BB%B4/Git/01-Git%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more">阅读全文</a>
+          <a href="/2021/09/09/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/39-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%BC%A0%E8%BE%93%E5%B1%82%E8%A7%A3%E6%9E%90/#more">阅读全文</a>
         </p>
       
       
@@ -257,7 +257,7 @@
 </article>
 
 
-  <article id="post-运维/java生态/01-java生态概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/09-日志" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -265,7 +265,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-java%E7%94%9F%E6%80%81%E6%A6%82%E8%BF%B0/">01-java生态概述</a>
+      <a class="p-name article-title" href="/2021/09/09/%E8%BF%90%E7%BB%B4/nginx/09-%E6%97%A5%E5%BF%97/">09-日志</a>
     </h1>
   
 
@@ -276,17 +276,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-01T03:00:52.000Z" itemprop="datePublished">2022年08月01日</time>
+  <time class="dt-published" datetime="2021-09-09T03:00:52.000Z" itemprop="datePublished">2021年09月09日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
   </div>
 
       
       
-<a href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-java%E7%94%9F%E6%80%81%E6%A6%82%E8%BF%B0/#comments" class="article-comment-link">
+<a href="/2021/09/09/%E8%BF%90%E7%BB%B4/nginx/09-%E6%97%A5%E5%BF%97/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -296,19 +296,17 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-Java-Servlet-（服务器）"><a href="#1-Java-Servlet-（服务器）" class="headerlink" title="1.Java Servlet （服务器）"></a>1.Java Servlet （服务器）</h4><p>Servlet是java扩展Web服务器功能的组件规范<br>常见Servlet容器</p>
-<ul>
-<li>IBM             websphere  </li>
-<li>Oracle          weblogic</li>
-<li>Apache          tomcat</li>
-<li>RedHat          jboss
+        <h4 id="1-访问日志"><a href="#1-访问日志" class="headerlink" title="1.访问日志"></a>1.访问日志</h4><p>tailf 动态看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tailf -10 /usr/local/nginx/logs/error.log</span><br></pre></td></tr></table></figure>
+<p>Nginx的默认访问日志文件为&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;access.log</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# tail -10f /usr/local/nginx/logs/access.log</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:03:39:47 +0800] &quot;GET / HTTP/1.1&quot; 200 615 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:03:40:43 +0800] &quot;GET / HTTP/1.1&quot; 200 615 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:03:40:43 +0800] &quot;GET /favicon.ico HTTP/1.1&quot; 404 153 &quot;https://www.b.com/&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:03:42:06 +0800] &quot;GET / HTTP/1.1&quot; 200 615 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:05:16:04 +0800] &quot;GET / HTTP/1.1&quot; 304 0 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:05:16:06 +0800] &quot;GET / HTTP/1.1&quot; 200 615 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:05:16:06 +0800] &quot;GET /favicon.ico HTTP/1.1&quot; 404 153 &quot;http://www.a.com/&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:05:16:26 +0800] &quot;GET / HTTP/1.1&quot; 304 0 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:05:31:43 +0800] &quot;GET / HTTP/1.1&quot; 304 0 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br><span class="line">192.168.1.9 - - [05/Sep/2021:05:31:46 +0800] &quot;GET /test.php HTTP/1.1&quot; 200 12 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&quot;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/08/01/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/01-java%E7%94%9F%E6%80%81%E6%A6%82%E8%BF%B0/#more">阅读全文</a>
+          <a href="/2021/09/09/%E8%BF%90%E7%BB%B4/nginx/09-%E6%97%A5%E5%BF%97/#more">阅读全文</a>
         </p>
       
       
@@ -318,7 +316,7 @@
 </article>
 
 
-  <article id="post-运维/memcached/01-安装与配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/38-网络管理-三层交换机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -326,7 +324,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/01/%E8%BF%90%E7%BB%B4/memcached/01-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">01-源码安装</a>
+      <a class="p-name article-title" href="/2021/09/08/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/38-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/">38-网络管理-三层交换机</a>
     </h1>
   
 
@@ -337,17 +335,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-01T03:00:52.000Z" itemprop="datePublished">2022年08月01日</time>
+  <time class="dt-published" datetime="2021-09-08T03:00:52.000Z" itemprop="datePublished">2021年09月08日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/08/01/%E8%BF%90%E7%BB%B4/memcached/01-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/#comments" class="article-comment-link">
+<a href="/2021/09/08/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/38-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -357,17 +355,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-memcached简介"><a href="#1-memcached简介" class="headerlink" title="1.memcached简介"></a>1.memcached简介</h4><p>memcached是高性能的分布式缓存服务器用来集中缓存数据库查询结果，减少数据库访问次数以提高动态Web应用的响应速度<br>端口 11211<br>没有库，表的概念</p>
-<h4 id="2-数据存储对比"><a href="#2-数据存储对比" class="headerlink" title="2.数据存储对比"></a>2.数据存储对比</h4><ul>
-<li>性能<br>CPU缓存  &gt;  内存  &gt;  磁盘  &gt;  数据库</li>
-<li>价格<br>CPU缓存  &gt;  内存  &gt;  磁盘  &gt;  数据库
+        <h4 id="1-交换机和路由器区别"><a href="#1-交换机和路由器区别" class="headerlink" title="1.交换机和路由器区别"></a>1.交换机和路由器区别</h4><p>交换机：数据帧转发，使用IP进行数据转发<br>路由器：不同网段的路由转发，交换机不能直接配置ip，使用mac地址数据转发</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/08/01/%E8%BF%90%E7%BB%B4/memcached/01-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/#more">阅读全文</a>
+          <a href="/2021/09/08/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/38-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/#more">阅读全文</a>
         </p>
       
       
@@ -377,7 +372,7 @@
 </article>
 
 
-  <article id="post-运维/docker/错误集锦/01-Could not fetch save url" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/nginx/08-动静分离" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -385,7 +380,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/05/01/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/01-Could%20not%20fetch%20save%20url/">01-Could not fetch save url</a>
+      <a class="p-name article-title" href="/2021/09/08/%E8%BF%90%E7%BB%B4/nginx/08-%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/">08-动静分离</a>
     </h1>
   
 
@@ -396,17 +391,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-05-01T02:00:00.000Z" itemprop="datePublished">2022年05月01日</time>
+  <time class="dt-published" datetime="2021-09-08T03:00:52.000Z" itemprop="datePublished">2021年09月08日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
   </div>
 
       
       
-<a href="/2022/05/01/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/01-Could%20not%20fetch%20save%20url/#comments" class="article-comment-link">
+<a href="/2021/09/08/%E8%BF%90%E7%BB%B4/nginx/08-%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -416,31 +411,250 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Could-not-fetch-save-url-http-mirrors-aliyun-com-docker-ce-linux-centos-docker-ce-repo-to-file-etc-yum-repos-d-docker-ce-repo-Errno-12-Timeout-on-http-mirrors-aliyun-com-docker-ce-linux-centos-docker-ce-repo-28-‘Connection-timed-out-after-33442-milliseconds’"><a href="#Could-not-fetch-save-url-http-mirrors-aliyun-com-docker-ce-linux-centos-docker-ce-repo-to-file-etc-yum-repos-d-docker-ce-repo-Errno-12-Timeout-on-http-mirrors-aliyun-com-docker-ce-linux-centos-docker-ce-repo-28-‘Connection-timed-out-after-33442-milliseconds’" class="headerlink" title="Could not fetch&#x2F;save url http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo to file &#x2F;etc&#x2F;yum.repos.d&#x2F;docker-ce.repo: [Errno 12] Timeout on http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo: (28, ‘Connection timed out after 33442 milliseconds’)"></a>Could not fetch&#x2F;save url <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a> to file &#x2F;etc&#x2F;yum.repos.d&#x2F;docker-ce.repo: [Errno 12] Timeout on <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a>: (28, ‘Connection timed out after 33442 milliseconds’)</h1><h4 id="现在阿里docker-ce源报错"><a href="#现在阿里docker-ce源报错" class="headerlink" title="现在阿里docker-ce源报错"></a>现在阿里docker-ce源报错</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-42 yum.repos.d]# yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">已加载插件：fastestmirror, langpacks</span><br><span class="line">adding repo from: http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">grabbing file http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo to /etc/yum.repos.d/docker-ce.repo</span><br><span class="line">Could not fetch/save url http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo to file /etc/yum.repos.d/docker-ce.repo: [Errno 14] HTTP Error 403 - Forbidden</span><br></pre></td></tr></table></figure>
-<h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">403原因：访问该网址次数过多把你屏蔽了</span><br><span class="line"></span><br><span class="line">解决：换一下网(wifi)就好了</span><br></pre></td></tr></table></figure>
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/16/index.html">https://dbbruce.github.io/page/16/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
+        <h4 id="1-location"><a href="#1-location" class="headerlink" title="1.location"></a>1.location</h4><ul>
+<li>匹配用户的地址栏</li>
+<li>支持正则</li>
+<li>从&#x2F;开始匹配</li>
+<li>“&#x2F;“匹配级最低，最后匹配根&#x2F;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://www.baidu.com/test</span><br><span class="line"># 从/test开始匹配</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
+        
+        <p class="article-more-link">
+          <a href="/2021/09/08/%E8%BF%90%E7%BB%B4/nginx/08-%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
 
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
 
-        </div>
+  <article id="post-运维/Linux云计算教程/37-网络管理-路由器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/07/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/37-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E8%B7%AF%E7%94%B1%E5%99%A8/">37-网络管理-路由器</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-07T03:00:52.000Z" itemprop="datePublished">2021年09月07日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/07/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/37-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E8%B7%AF%E7%94%B1%E5%99%A8/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-路由器"><a href="#1-路由器" class="headerlink" title="1.路由器"></a>1.路由器</h4><p>传递不同网络的数据<br>路由器是连接两个或多个网络的硬件设备<br>解决不同IP段的通信问题</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/07/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/37-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E8%B7%AF%E7%94%B1%E5%99%A8/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/nginx/07-lnmp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/07/%E8%BF%90%E7%BB%B4/nginx/07-lnmp/">07-LNMP</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-07T03:00:52.000Z" itemprop="datePublished">2021年09月07日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/09/07/%E8%BF%90%E7%BB%B4/nginx/07-lnmp/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-LNMP"><a href="#1-LNMP" class="headerlink" title="1.LNMP"></a>1.LNMP</h4><p>l linux<br>N nginx<br>M mariadb<br>P php</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/07/%E8%BF%90%E7%BB%B4/nginx/07-lnmp/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/36-网络管理-交换机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/36-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%BA%A4%E6%8D%A2%E6%9C%BA/">36-网络管理-交换机</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-06T03:00:52.000Z" itemprop="datePublished">2021年09月06日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/36-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%BA%A4%E6%8D%A2%E6%9C%BA/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-OSI"><a href="#1-OSI" class="headerlink" title="1.OSI"></a>1.OSI</h4><p>OSI（Open System Interconnect），即开放式系统互联。是OSI组织为了互联网各层之间协作而制定的标准模型。<br>再具体点来说是为了使互联网各个基础组件厂商统一标准而制定的标准，这样就能实现互联了。<br>OSI七层模型的划分<br>OSI划分为：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/36-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86-%E4%BA%A4%E6%8D%A2%E6%9C%BA/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/nginx/06-配置证书" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/">06-配置证书</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-06T03:00:52.000Z" itemprop="datePublished">2021年09月06日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-名词解释"><a href="#1-名词解释" class="headerlink" title="1.名词解释"></a>1.名词解释</h4><ul>
+<li>私钥 自己生成</li>
+<li>CSR公钥  由私钥生成</li>
+<li>CRT证书  公钥 + 签名</li>
+<li>证书 server.crt 文件就是证书</li>
+<li>签名 使用私钥key与公钥csr进行证书crt生成的构成叫签名</li>
+</ul>
+<p>注意：证书都是买的，个人的浏览器不认同</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/06/%E8%BF%90%E7%BB%B4/nginx/06-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/#more">阅读全文</a>
+        </p>
       
       
       
@@ -452,7 +666,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
 </nav>
 
 

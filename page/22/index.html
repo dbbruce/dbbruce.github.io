@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/Linux云计算教程/56-keepalived" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/04-mount" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/">56-keepalived</a>
+      <a class="p-name article-title" href="/2021/08/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/04-mount/">04-mount命令</a>
     </h1>
   
 
@@ -106,7 +106,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-26T03:00:52.000Z" itemprop="datePublished">2021年09月26日</time>
+  <time class="dt-published" datetime="2021-08-04T03:00:52.000Z" itemprop="datePublished">2021年08月04日</time>
 </span>
       
   <div class="article-category">
@@ -116,7 +116,7 @@
 
       
       
-<a href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/#comments" class="article-comment-link">
+<a href="/2021/08/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/04-mount/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,14 +126,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="Keepalived概述"><a href="#Keepalived概述" class="headerlink" title="Keepalived概述"></a>Keepalived概述</h2><p>调度器出现单点故障，如何解决 ?<br>Keepalived实现了高可用集群<br>Keepalived最初是为LVS设计的，专门监控各服务器节点的状态<br>Keepalived后来加入了VRRP功能，防止单点故障</p>
+        <h4 id="1-mount"><a href="#1-mount" class="headerlink" title="1. mount"></a>1. mount</h4><p>mount 设备路径 挂载点目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master /]# mount /dev/cdrom /dvd</span><br><span class="line">mount: /dev/sr0 写保护，将以只读方式挂载</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/#more">阅读全文</a>
+          <a href="/2021/08/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/04-mount/#more">阅读全文</a>
         </p>
       
       
@@ -143,7 +144,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/55-LVS集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/docker/基础/04-docker自定义镜像（手工人肉）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -151,7 +152,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/">55-LVS集群</a>
+      <a class="p-name article-title" href="/2021/08/04/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/04-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%EF%BC%88%E6%89%8B%E5%B7%A5%E4%BA%BA%E8%82%89%EF%BC%89/">04-Docker自定义镜像（手工人肉）</a>
     </h1>
   
 
@@ -162,17 +163,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-25T03:00:52.000Z" itemprop="datePublished">2021年09月25日</time>
+  <time class="dt-published" datetime="2021-08-04T03:00:52.000Z" itemprop="datePublished">2021年08月04日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
   </div>
 
       
       
-<a href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
+<a href="/2021/08/04/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/04-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%EF%BC%88%E6%89%8B%E5%B7%A5%E4%BA%BA%E8%82%89%EF%BC%89/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -182,248 +183,478 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><p>集群分类</p>
+        <h1 id="docker自定义镜像"><a href="#docker自定义镜像" class="headerlink" title="docker自定义镜像"></a>docker自定义镜像</h1><h4 id="自作镜像（手工人肉）"><a href="#自作镜像（手工人肉）" class="headerlink" title="自作镜像（手工人肉）"></a>自作镜像（手工人肉）</h4><ul>
+<li>1 使用centos官方镜像，产生容器<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line"></span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED             SIZE</span><br><span class="line">mycentos7    latest    26934b5d7364   About an hour ago   533MB</span><br><span class="line">redis        latest    7f27d60cb8e0   11 days ago         138MB</span><br><span class="line">nginx        latest    c20060033e06   12 days ago         187MB</span><br><span class="line">ubuntu       latest    e4c58958181a   5 weeks ago         77.8MB</span><br><span class="line">busybox      latest    a416a98b71e2   3 months ago        4.26MB</span><br><span class="line">centos       latest    5d0da3dc9764   2 years ago         231MB</span><br><span class="line"></span><br><span class="line">docker run -itd centos</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/04/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/04-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%EF%BC%88%E6%89%8B%E5%B7%A5%E4%BA%BA%E8%82%89%EF%BC%89/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/03-docker命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/03/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/03-docker%E5%91%BD%E4%BB%A4/">03-Docker命令</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-03T03:00:52.000Z" itemprop="datePublished">2021年08月03日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/03/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/03-docker%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h1><h4 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h4><ul>
+<li><p>docker images       &#x2F;&#x2F;查看镜像列表       </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-01 /]# docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">redis        latest    7f27d60cb8e0   5 days ago     138MB</span><br><span class="line">nginx        latest    c20060033e06   6 days ago     187MB</span><br><span class="line">ubuntu       latest    e4c58958181a   4 weeks ago    77.8MB</span><br><span class="line">busybox      latest    a416a98b71e2   3 months ago   4.26MB</span><br><span class="line">centos       latest    5d0da3dc9764   2 years ago    231MB</span><br></pre></td></tr></table></figure></li>
+<li><p>docker history  镜像名:版本    &#x2F;&#x2F;查看镜像制作历史，主要看几层      </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2层，第一次添加文件，第二层 添加一个默认命名</span></span><br><span class="line">[root@centos07-01 /]# docker history busybox:latest</span><br><span class="line">IMAGE          CREATED        CREATED BY                                       SIZE      COMMENT</span><br><span class="line">a416a98b71e2   3 months ago   /bin/sh -c #(nop)  CMD [&quot;sh&quot;]                    0B</span><br><span class="line">&lt;missing&gt;      3 months ago   /bin/sh -c #(nop) ADD file:7e9002edaafd4e457…   4.26MB</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/03/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/03-docker%E5%91%BD%E4%BB%A4/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/03-常用快捷键" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/03/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/03-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">03-常用快捷键</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-03T02:02:52.000Z" itemprop="datePublished">2021年08月03日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/03/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/03-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-执行历史中匹配输入的内容"><a href="#1-执行历史中匹配输入的内容" class="headerlink" title="1. 执行历史中匹配输入的内容"></a>1. 执行历史中匹配输入的内容</h4><p>[root@master ~]# ctrl + r<br>(reverse-i-search)&#96;w’: whoami</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/03/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/03-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/02-基础命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">02-基础命令</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-02T03:00:52.000Z" itemprop="datePublished">2021年08月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-磁盘"><a href="#1-磁盘" class="headerlink" title="1.磁盘"></a>1.磁盘</h4><p>&#x2F;dev&#x2F;sda  sd代表磁盘类型，a代表第几块磁盘<br>&#x2F;dev&#x2F;hda<br>hd表示IDE设备，老设备，传输慢<br>sd表示scsi设备，新设备，传输快</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/02-docker命名空间" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/02/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/02-docker%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">02-Docker命名空间</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-02T03:00:52.000Z" itemprop="datePublished">2021年08月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/02/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/02-docker%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker命名空间"><a href="#docker命名空间" class="headerlink" title="docker命名空间"></a>docker命名空间</h1><h4 id="6大命名空间"><a href="#6大命名空间" class="headerlink" title="6大命名空间"></a>6大命名空间</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. Mount (mnt)     </span><br><span class="line">这种命名空间隔离的是挂载点。通过这个空间，我们可以在容器中挂载文件系统，而不会影响到主机系统的挂载点，实现了文件系统的隔离。</span><br><span class="line">2. Process ID (pid)      </span><br><span class="line">这种命名空间隔离了进程 ID。使用这种空间可以将容器内部的进程 ID 隔离开来，从而避免与宿主机的进程 ID 冲突。</span><br><span class="line">3. Network (net)       </span><br><span class="line">这种命名空间隔离的是网络配置。通过这个空间，我们可以自定义容器的网络配置，而不会影响到宿主机或其他容器的网络配置，实现了网络的隔离。</span><br><span class="line">4. Interprocess Communication (ipc)       </span><br><span class="line">这种命名空间隔离的是进程间通信。使用这个空间，可以将容器内部的进程间通信隔离，避免与宿主机或其他容器的进程间通信冲突。</span><br><span class="line">5. User ID (user)         </span><br><span class="line">这种命名空间隔离的是用户 ID。使用这种命名空间可以让容器内部的用户 ID 和宿主机上的用户 ID 隔离开来，从而避免权限问题。</span><br><span class="line">6. UTS Namespace (uts)      </span><br><span class="line">这种命名空间隔离的是主机的主机名和域名。使用这种空间可以让容器内部有独立的主机名和域名，而不会影响到宿主机的主机名和域名。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/02/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/02-docker%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/01-tcp、ip协议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/01-tcp%E3%80%81ip%E5%8D%8F%E8%AE%AE/">01-tcp、ip协议</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-01T03:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/01-tcp%E3%80%81ip%E5%8D%8F%E8%AE%AE/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-主机与主机通信三个要素"><a href="#1-主机与主机通信三个要素" class="headerlink" title="1.主机与主机通信三个要素"></a>1.主机与主机通信三个要素</h4><p>IP地址 ip address ，32位二进制，255.255.255.255  二进制 11111111 &#x3D;&gt; 十进制 255<br>子网掩码 subnet mask<br>IP路由  ip router  </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/01-tcp%E3%80%81ip%E5%8D%8F%E8%AE%AE/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/01-docker基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/01-docker%E5%9F%BA%E7%A1%80/">01-Docker基础</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-01T03:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/01-docker%E5%9F%BA%E7%A1%80/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker基础"><a href="#docker基础" class="headerlink" title="docker基础"></a>docker基础</h1><h4 id="什么是容器"><a href="#什么是容器" class="headerlink" title="什么是容器"></a>什么是容器</h4><ul>
+<li>容器技术已经成为应用程序封装和交付的核心技术    </li>
+<li>容器技术的核心有以下几个内核技术组成<br>Cgroups ( Control Groups )-资源管理，资源限制<br>NameSpace-进程隔离<br>SELinux-安全      </li>
+<li>由于是在物理机上实施隔离，启动一个容器，可以像启动一个进程一样快速</li>
+</ul>
+<h4 id="Docker缺点"><a href="#Docker缺点" class="headerlink" title="Docker缺点"></a>Docker缺点</h4><ul>
+<li>容器的隔离性没有虚拟化强     </li>
+<li>共用Linux内核，安全性有先天缺陷     </li>
+<li>SELinux难以驾驭    </li>
+<li>监控容器和容器排错是挑战
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/01-docker%E5%9F%BA%E7%A1%80/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/00-linux目录简介" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/00-linux%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B/">00-linux目录简介</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-01T02:00:00.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/00-linux%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-linux"><a href="#1-linux" class="headerlink" title="1.linux"></a>1.linux</h4><p>&#x2F;boot 存放系统引导必男的文件,包括内核、启动配置<br>&#x2F;bin、&#x2F;sbin 存放各种命令程序<br>&#x2F;dev 存放硬盘、键盘、鼠标、光驱等各种设备文件<br>&#x2F;etc 存放Linux系统及各种程序的配置文件</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/00-linux%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/00-docker开启包转发功能和修改内核参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%BC%80%E5%90%AF%E5%8C%85%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BF%AE%E6%94%B9%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0/">00-Docker开启包转发功能和修改内核参数</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-07-31T18:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%BC%80%E5%90%AF%E5%8C%85%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BF%AE%E6%94%B9%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker开启包转发功能和修改内核参数"><a href="#docker开启包转发功能和修改内核参数" class="headerlink" title="docker开启包转发功能和修改内核参数"></a>docker开启包转发功能和修改内核参数</h1><h4 id="内核参数修改-br-netfilter模块用于将桥接流量转发至-iptables-链，br-netfilter内核参数需要开启转发"><a href="#内核参数修改-br-netfilter模块用于将桥接流量转发至-iptables-链，br-netfilter内核参数需要开启转发" class="headerlink" title="内核参数修改: br_netfilter模块用于将桥接流量转发至 iptables 链，br_netfilter内核参数需要开启转发"></a>内核参数修改: br_netfilter模块用于将桥接流量转发至 iptables 链，br_netfilter内核参数需要开启转发</h4><p>允许 iptables检查桥接流量<br>为了让你的 Linux 节点上的 iptables 能够正确地查看桥接流量，你需要确保在你的 sysctl 配置中将 net.bridge.bridge-nf-call-iptables 设置为 1;</p>
 <ul>
-<li>高性能计算集群HPC<br>通过以集群开发的并行应用程序，解决复杂的科学问题</li>
-<li>负载均衡( LB )集群<br>客户端负载在计算机集群中尽可能平均分摊[</li>
-<li>高可用( HA)集群<br>避免单点故障，当一个系统发生故障时，可以快速迁移</li>
-<li>原理<br>LVS原理和nginx不同<br>lvs原理是路由器，转发数据包，性能高，只能做转发，功能单一；<br>nginx原始代理，需要处理下数据包，功能多，比如健康检查；
+<li>加载br-netfilter模块<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">modprobe br_netfilter</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/54-NTP服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">54-NTP服务器</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-24T03:00:52.000Z" itemprop="datePublished">2021年09月24日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="NTP"><a href="#NTP" class="headerlink" title="NTP"></a>NTP</h2><p>Network Time Protocol (网络时间协议)采用的是分层设计，最多不能超过15层</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/53-VPN(待续)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/">53-VPN</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-23T03:00:52.000Z" itemprop="datePublished">2021年09月23日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p>Virtual Private Network ( 虚拟专用网络)<br>在公用网络上建立专用私有网络，进行加密通讯<br>多用于为集团公司的各地子公司建立连接<br>连接完成后，各个地区的子公司可以像局域网一样通讯<br>在企业网络中有广泛应用<br>偶尔可以用于翻墙<br>目前主流的VPN技术( GRE，PPTP，L2TP+IPSec，SSL )<br>gre &gt; pptp &gt; l2tp+ipsec   (安装, 易 -&gt; 难)<br>l2tcp+ipsec &gt; pptp &gt; gre  (安全, 高 -&gt; 底)</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/52-rpm打包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/">52-RPM打包</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-22T03:00:52.000Z" itemprop="datePublished">2021年09月22日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="RPM打包"><a href="#RPM打包" class="headerlink" title="RPM打包"></a>RPM打包</h2><p>原理：先把源码安装一遍，对安装好的结果打包，包的扩展名为rpm，rpm就是一个压缩包</p>
-<h4 id="1-将源码包转为RPM包"><a href="#1-将源码包转为RPM包" class="headerlink" title="1.将源码包转为RPM包"></a>1.将源码包转为RPM包</h4><ol>
-<li>安装rpm-build软件包<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# yum -y install rpm-build</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/51-Linux下实现免密码登录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/">51-Linux下实现免密码登录</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-21T03:00:52.000Z" itemprop="datePublished">2021年09月21日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Linux下实现免密码登录"><a href="#Linux下实现免密码登录" class="headerlink" title="Linux下实现免密码登录"></a>Linux下实现免密码登录</h2><h4 id="第一步：检查本机是否已经存在密钥对"><a href="#第一步：检查本机是否已经存在密钥对" class="headerlink" title="第一步：检查本机是否已经存在密钥对"></a>第一步：检查本机是否已经存在密钥对</h4><p>为了实现免密码登录，我们需要在本机上生成一对密钥，如果你已经有了密钥对的话，可以跳过这一步。如果没有，可以通过以下命令进行检查：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> ~/.ssh/id_*</span></span><br></pre></td></tr></table></figure>
-<p>如果返回以下错误信息，说明你还没有生成密钥对：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls: /home/user/.ssh/id_*: No such file or directory</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/#more">阅读全文</a>
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%BC%80%E5%90%AF%E5%8C%85%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BF%AE%E6%94%B9%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0/#more">阅读全文</a>
         </p>
       
       
@@ -436,7 +667,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/21/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/23/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/21/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/23/">下一页</a>
 </nav>
 
 
