@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/K8S/基础/05-kubeadm安装k8s1.26集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/17-Pod常见的状态和重启策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/03/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/05-kubeadm%E5%AE%89%E8%A3%85k8s1.26%E9%9B%86%E7%BE%A4/">05-kubeadm安装k8s1.26集群</a>
+      <a class="p-name article-title" href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/">17-Pod常见的状态和重启策略</a>
     </h1>
   
 
@@ -106,7 +106,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-03T02:00:50.000Z" itemprop="datePublished">2023年05月03日</time>
+  <time class="dt-published" datetime="2023-05-08T12:00:50.000Z" itemprop="datePublished">2023年05月08日</time>
 </span>
       
   <div class="article-category">
@@ -116,7 +116,7 @@
 
       
       
-<a href="/2023/05/03/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/05-kubeadm%E5%AE%89%E8%A3%85k8s1.26%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
+<a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,39 +126,131 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="k8s环境规划："><a href="#k8s环境规划：" class="headerlink" title="k8s环境规划："></a>k8s环境规划：</h3><ul>
-<li>podSubnet（pod网段） 10.244.0.0&#x2F;16</li>
-<li>serviceSubnet（service网段）: 10.96.0.0&#x2F;16</li>
+        <h3 id="Pod常见的状态和重启策略"><a href="#Pod常见的状态和重启策略" class="headerlink" title="Pod常见的状态和重启策略"></a>Pod常见的状态和重启策略</h3><h4 id="常见的pod状态"><a href="#常见的pod状态" class="headerlink" title="常见的pod状态"></a>常见的pod状态</h4>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基础/16-污点和容忍度" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/">16-污点和容忍度</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-08T02:00:50.000Z" itemprop="datePublished">2023年05月08日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="污点、容忍度"><a href="#污点、容忍度" class="headerlink" title="污点、容忍度"></a>污点、容忍度</h3><p><font color=red><strong>给了节点选则的主动权，我们给节点打一个污点，不容忍的pod就运行不上来，污点就是定义在节点上的键值属性数据，可以定决定拒绝那些pod；<br>taints是键值数据，用在节点上，定义污点；<br>tolerations是键值数据，用在pod上，定义容忍度，能容忍哪些污点<br>pod亲和性是pod属性；但是污点是node节点的属性，污点定义在k8s集群的node节点上的一个字段</strong></font>    </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基础/15-node节点亲和性，pod亲和性，pod反亲和性多种调度策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/">15-node节点亲和性，pod亲和性，pod反亲和性多种调度策略</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-07T12:00:50.000Z" itemprop="datePublished">2023年05月07日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="亲和性"><a href="#亲和性" class="headerlink" title="亲和性"></a>亲和性</h3><ul>
+<li>node节点亲和性</li>
+<li>Pod节点亲和性</li>
+<li>pod节点反亲和性</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>K8S集群角色</th>
-<th>ip</th>
-<th>主机名</th>
-<th>安装组件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>控制节点master</td>
-<td>192.168.1.12</td>
-<td>centos07-12</td>
-<td>apiserver、controller-manager、schedule、kubelet、etcd、kube-proxy、容器运行时、calico</td>
-</tr>
-<tr>
-<td>工作节点-node</td>
-<td>192.168.1.22</td>
-<td>centos07-22</td>
-<td>Kube-proxy、calico、coredns、容器运行时、kubelet</td>
-</tr>
-</tbody></table>
+<h3 id="node节点亲和性"><a href="#node节点亲和性" class="headerlink" title="node节点亲和性"></a>node节点亲和性</h3><p>node节点亲和性调度：nodeAffinity</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/03/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/05-kubeadm%E5%AE%89%E8%A3%85k8s1.26%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
+          <a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/#more">阅读全文</a>
         </p>
       
       
@@ -168,7 +260,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/04-安装K8S可视化UI界面Dashboard" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/14-K8S节点选择器nodeName和nodeSelector" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -176,7 +268,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/">04-安装K8S可视化UI界面Dashboard</a>
+      <a class="p-name article-title" href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/">14-K8S节点选择器nodeName和nodeSelector</a>
     </h1>
   
 
@@ -187,7 +279,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-02T12:00:50.000Z" itemprop="datePublished">2023年05月02日</time>
+  <time class="dt-published" datetime="2023-05-07T02:00:50.000Z" itemprop="datePublished">2023年05月07日</time>
 </span>
       
   <div class="article-category">
@@ -197,7 +289,7 @@
 
       
       
-<a href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/#comments" class="article-comment-link">
+<a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -207,16 +299,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="1、安装dashboard"><a href="#1、安装dashboard" class="headerlink" title="1、安装dashboard"></a>1、安装dashboard</h3><h4 id="安装dashboard-centos07-22-42"><a href="#安装dashboard-centos07-22-42" class="headerlink" title="安装dashboard - centos07-22&#x2F;42"></a>安装dashboard - centos07-22&#x2F;42</h4><ul>
-<li>把安装kubernetes-dashboard需要的镜像上传到工作节点centos07-22和centos07-42，手动解压：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp dashboard_2_0_0.tar.gz metrics-scrapter-1-0-1.tar.gz root@192.168.1.22:~</span><br><span class="line">scp dashboard_2_0_0.tar.gz metrics-scrapter-1-0-1.tar.gz root@192.168.1.42:~</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker load -i dashboard_2_0_0.tar.gz</span><br><span class="line">docker load -i metrics-scrapter-1-0-1.tar.gz</span><br></pre></td></tr></table></figure>
+        <h3 id="node节点选择器"><a href="#node节点选择器" class="headerlink" title="node节点选择器"></a>node节点选择器</h3><p>我们在创建pod资源的时候，pod会根据schduler进行调度，那么默认会调度到随机的一个工作节点<br>如果我们想要pod调度到指定节点或者调度到一些具有相同特点的node节点，怎么办呢？<br>可以使用pod中的<font color=red><strong>nodeName</strong></font>或者<font color=red><strong>nodeSelector</strong></font>字段指定要调度到的node节点     </p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/#more">阅读全文</a>
+          <a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/#more">阅读全文</a>
         </p>
       
       
@@ -226,7 +316,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/03-kubeadm安装单master多node节点k8s-1.20.6集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/13-K8S标签labels的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -234,7 +324,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/03-kubeadm%E5%AE%89%E8%A3%85%E5%8D%95master%E5%A4%9Anode%E8%8A%82%E7%82%B9k8s-1.20.6%E9%9B%86%E7%BE%A4/">03-kubeadm安装单master多node节点k8s-1.20.6集群</a>
+      <a class="p-name article-title" href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/">13-K8S标签labels的使用</a>
     </h1>
   
 
@@ -245,7 +335,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-02T02:00:52.000Z" itemprop="datePublished">2023年05月02日</time>
+  <time class="dt-published" datetime="2023-05-06T12:00:50.000Z" itemprop="datePublished">2023年05月06日</time>
 </span>
       
   <div class="article-category">
@@ -255,7 +345,7 @@
 
       
       
-<a href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/03-kubeadm%E5%AE%89%E8%A3%85%E5%8D%95master%E5%A4%9Anode%E8%8A%82%E7%82%B9k8s-1.20.6%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
+<a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -265,44 +355,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="网段注意项，3个网段一定不能有冲突"><a href="#网段注意项，3个网段一定不能有冲突" class="headerlink" title="网段注意项，3个网段一定不能有冲突"></a>网段注意项，3个网段一定不能有冲突</h3><blockquote>
-<p>podSubnet（pod网段） 10.244.0.0&#x2F;16 <br><br>serviceSubnet（service网段）: 10.96.0.0&#x2F;16<br><br>物理机网段：192.168.40.0&#x2F;24<br></p>
-</blockquote>
-<h3 id="实验环境规划"><a href="#实验环境规划" class="headerlink" title="实验环境规划"></a>实验环境规划</h3><table>
-<thead>
-<tr>
-<th>k8s角色</th>
-<th>ip</th>
-<th>主机名</th>
-<th>安装组件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>控制节点</td>
-<td>192.168.1.12</td>
-<td>centos07-12</td>
-<td>apiserver、ontroller-manager、 scheduler、 etcd、 docker、 kubeproxy 、calico</td>
-</tr>
-<tr>
-<td>工作节点</td>
-<td>192.168.1.22</td>
-<td>centos07-22</td>
-<td>kubelet、kube-proxy、docker、calico、coredns</td>
-</tr>
-<tr>
-<td>工作节点</td>
-<td>192.168.1.42</td>
-<td>centos07-42</td>
-<td>kubelet、kube-proxy、docker、calico、coredns</td>
-</tr>
-</tbody></table>
+        <h2 id="标签-labels"><a href="#标签-labels" class="headerlink" title="标签 labels"></a>标签 labels</h2><h3 id="什么是标签？"><a href="#什么是标签？" class="headerlink" title="什么是标签？"></a>什么是标签？</h3><p>标签其实就一对 key&#x2F;value ，被关联到对象上，比如Pod,标签的使用我们倾向于能够表示对象的特殊特点，就是一眼就看出了这个Pod是干什么的，标签可以用来划分特定的对象（比如版本，服务类型等），标签可以在创建一个对象的时候直接定义，也可以在后期随时修改，每一个对象可以拥有多个标签，但是，key值必须是唯一的。创建标签之后也可以方便我们对资源进行分组管理。如果对pod打标签，之后就可以使用标签来查看、删除指定的pod。<br>在k8s中，大部分资源都可以打标签。</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/03-kubeadm%E5%AE%89%E8%A3%85%E5%8D%95master%E5%A4%9Anode%E8%8A%82%E7%82%B9k8s-1.20.6%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
+          <a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/#more">阅读全文</a>
         </p>
       
       
@@ -312,7 +372,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/02-kubeadm安装k8s如何卸载" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/12-namespace和资源配额应用场景分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -320,7 +380,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/02-kubeadm%E5%AE%89%E8%A3%85k8s%E5%A6%82%E4%BD%95%E5%8D%B8%E8%BD%BD/">02-kubeadm安装k8s如何卸载</a>
+      <a class="p-name article-title" href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/">12-namespace和资源配额应用场景分析</a>
     </h1>
   
 
@@ -331,7 +391,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-01T12:00:52.000Z" itemprop="datePublished">2023年05月01日</time>
+  <time class="dt-published" datetime="2023-05-06T02:00:50.000Z" itemprop="datePublished">2023年05月06日</time>
 </span>
       
   <div class="article-category">
@@ -341,7 +401,7 @@
 
       
       
-<a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/02-kubeadm%E5%AE%89%E8%A3%85k8s%E5%A6%82%E4%BD%95%E5%8D%B8%E8%BD%BD/#comments" class="article-comment-link">
+<a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -351,146 +411,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="kubeadm安装k8s如何卸载"><a href="#kubeadm安装k8s如何卸载" class="headerlink" title="kubeadm安装k8s如何卸载"></a>kubeadm安装k8s如何卸载</h3><ul>
-<li>kubeadm reset - 卸载k8s
+        <h3 id="命名空间-namespace-ns"><a href="#命名空间-namespace-ns" class="headerlink" title="命名空间 &#x3D;&gt; namespace &#x3D;&#x3D; ns"></a>命名空间 &#x3D;&gt; namespace &#x3D;&#x3D; ns</h3><h4 id="什么是命名空间？"><a href="#什么是命名空间？" class="headerlink" title="什么是命名空间？"></a>什么是命名空间？</h4><p>Kubernetes 支持多个虚拟集群，它们底层依赖于同一个物理集群。 这些虚拟集群被称为命名空间。<br>命名空间namespace是k8s集群级别的资源，可以给不同的用户、租户、环境或项目创建对应的命名空间，例如，可以为test、devlopment、production环境分别创建各自的命名空间。</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/02-kubeadm%E5%AE%89%E8%A3%85k8s%E5%A6%82%E4%BD%95%E5%8D%B8%E8%BD%BD/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/K8S/基础/01-kubeadm安装多master节点k8s-1.20.6高可用集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/01-kubeadm%E5%AE%89%E8%A3%85%E5%A4%9Amaster%E8%8A%82%E7%82%B9k8s-1.20.6%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/">01-kubeadm安装多master节点k8s-1.20.6高可用集群</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-01T02:00:52.000Z" itemprop="datePublished">2023年05月01日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/01-kubeadm%E5%AE%89%E8%A3%85%E5%A4%9Amaster%E8%8A%82%E7%82%B9k8s-1.20.6%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="kubeadm和二进制安装k8s适用场景分析"><a href="#kubeadm和二进制安装k8s适用场景分析" class="headerlink" title="kubeadm和二进制安装k8s适用场景分析"></a>kubeadm和二进制安装k8s适用场景分析</h3><ul>
-<li>kubeadm<blockquote>
-<p>kubeadm是官方提供的开源工具，是一个开源项目，用于快速搭建kubernetes集群，目前是比较方便和推荐使用的。kubeadm init 以及 kubeadm join 这两个命令可以快速创建 kubernetes 集群。Kubeadm初始化k8s，所有的组件都是以pod形式运行的，具备故障自恢复能力。</p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>kubeadm是工具，可以快速搭建集群，也就是相当于用程序脚本帮我们装好了集群，属于自动部署，简化部署操作，自动部署屏蔽了很多细节，使得对各个模块感知很少，如果对k8s架构组件理解不深的话，遇到问题比较难排查。</p>
-</blockquote>
-<blockquote>
-<p>kubeadm适合需要经常部署k8s，或者对自动化要求比较高的场景下使用。</p>
-</blockquote>
-<ul>
-<li>二进制<blockquote>
-<p>在官网下载相关组件的二进制包，如果手动安装，对kubernetes理解也会更全面。</p>
-</blockquote>
-</li>
-<li>总结<blockquote>
-<p>Kubeadm和二进制都适合生产环境，在生产环境运行都很稳定，具体如何选择，可以根据实际项目进行评估。</p>
-</blockquote>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/01-kubeadm%E5%AE%89%E8%A3%85%E5%A4%9Amaster%E8%8A%82%E7%82%B9k8s-1.20.6%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/K8S/基础/00-kubernetes基础知识扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95/">00-kubernetes基础知识扩展.</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-04-30T18:00:52.000Z" itemprop="datePublished">2023年05月01日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><h3 id="Containerd-常见命令操作"><a href="#Containerd-常见命令操作" class="headerlink" title="Containerd 常见命令操作"></a>Containerd 常见命令操作</h3><p>更换 Containerd 后，以往我们常用的 docker 命令也不再使用，取而代之的分别是 crictl 和 ctr 两个命令客户端。<br>crictl 是遵循 CRI 接口规范的一个命令行工具，通常用它来检查和管理kubelet节点上的容器运行时和镜像。<br>ctr 是 containerd 的一个客户端工具。<br>ctr -v 输出的是 containerd 的版本，crictl -v 输出的是当前 k8s 的版本，从结果显而易见你可以认为 crictl 是用于 k8s 的。<br>一般来说你某个主机安装了 k8s 后，命令行才会有 crictl 命令。而 ctr 是跟 k8s 无关的，你主机安装了 containerd 服务后就可以操作 ctr 命令。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95/#more">阅读全文</a>
+          <a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/#more">阅读全文</a>
         </p>
       
       
@@ -522,19 +450,19 @@
           </li>
         
           <li>
-            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E7%88%AC%E8%99%AB/">爬虫</a>
+            <a href="/2023/08/19/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/012-scrapy%E5%9F%BA%E7%A1%80/">012-scrapy基础</a>
           </li>
         
           <li>
-            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5mysql/">异步mysql</a>
+            <a href="/2023/08/18/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/011-python%E8%BF%9E%E6%8E%A5mysql/">011-python连接mysql</a>
           </li>
         
           <li>
-            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/">异步redis</a>
+            <a href="/2023/08/17/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/010-openpyxl%E5%BA%93%E5%A4%84%E7%90%86Excel%E6%96%87%E4%BB%B6/">010-openpyxl库处理Excel文件</a>
           </li>
         
           <li>
-            <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/">uvloop</a>
+            <a href="/2023/08/16/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/009-json%E5%AD%98%E5%82%A8/">009-json存储</a>
           </li>
         
       </ul>
@@ -559,7 +487,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">68</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">80</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

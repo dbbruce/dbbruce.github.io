@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/K8S/基础/17-Pod常见的状态和重启策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/29-K8S安全实战篇之RBAC认证授权" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/">17-Pod常见的状态和重启策略</a>
+      <a class="p-name article-title" href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/29-K8S%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E7%AF%87%E4%B9%8BRBAC%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83/">29-K8S安全实战篇之RBAC认证授权</a>
     </h1>
   
 
@@ -106,7 +106,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-08T12:00:50.000Z" itemprop="datePublished">2023年05月08日</time>
+  <time class="dt-published" datetime="2023-05-14T12:00:00.000Z" itemprop="datePublished">2023年05月14日</time>
 </span>
       
   <div class="article-category">
@@ -116,7 +116,7 @@
 
       
       
-<a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">
+<a href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/29-K8S%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E7%AF%87%E4%B9%8BRBAC%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,14 +126,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="Pod常见的状态和重启策略"><a href="#Pod常见的状态和重启策略" class="headerlink" title="Pod常见的状态和重启策略"></a>Pod常见的状态和重启策略</h3><h4 id="常见的pod状态"><a href="#常见的pod状态" class="headerlink" title="常见的pod状态"></a>常见的pod状态</h4>
+        <h3 id="1-k8s安全管理：认证、授权、准入控制概述"><a href="#1-k8s安全管理：认证、授权、准入控制概述" class="headerlink" title="1 k8s安全管理：认证、授权、准入控制概述"></a>1 k8s安全管理：认证、授权、准入控制概述</h3><h4 id="1-1-认证"><a href="#1-1-认证" class="headerlink" title="1.1 认证"></a>1.1 认证</h4><p>认证基本介绍<br>kubernetes主要通过APIserver对外提供服务，那么就需要对访问apiserver的用户做认证，如果任何人都能访问apiserver，那么就可以随意在k8s集群部署资源，这是非常危险的，也容易被黑客攻击渗透，所以需要我们对访问k8s系统的apiserver的用户进行认证，确保是合法的符合要求的用户。</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/#more">阅读全文</a>
+          <a href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/29-K8S%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E7%AF%87%E4%B9%8BRBAC%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83/#more">阅读全文</a>
         </p>
       
       
@@ -143,7 +143,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/16-污点和容忍度" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/28-K8S配置管理中心Secret实现加密数据配置管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -151,7 +151,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/">16-污点和容忍度</a>
+      <a class="p-name article-title" href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/28-K8S%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E4%B8%AD%E5%BF%83Secret%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">28-K8S配置管理中心Secret实现加密数据配置管理</a>
     </h1>
   
 
@@ -162,7 +162,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-08T02:00:50.000Z" itemprop="datePublished">2023年05月08日</time>
+  <time class="dt-published" datetime="2023-05-14T02:00:00.000Z" itemprop="datePublished">2023年05月14日</time>
 </span>
       
   <div class="article-category">
@@ -172,7 +172,7 @@
 
       
       
-<a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/#comments" class="article-comment-link">
+<a href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/28-K8S%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E4%B8%AD%E5%BF%83Secret%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -182,14 +182,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="污点、容忍度"><a href="#污点、容忍度" class="headerlink" title="污点、容忍度"></a>污点、容忍度</h3><p><font color=red><strong>给了节点选则的主动权，我们给节点打一个污点，不容忍的pod就运行不上来，污点就是定义在节点上的键值属性数据，可以定决定拒绝那些pod；<br>taints是键值数据，用在节点上，定义污点；<br>tolerations是键值数据，用在pod上，定义容忍度，能容忍哪些污点<br>pod亲和性是pod属性；但是污点是node节点的属性，污点定义在k8s集群的node节点上的一个字段</strong></font>    </p>
+        <h3 id="1-Secret概述"><a href="#1-Secret概述" class="headerlink" title="1.Secret概述"></a>1.Secret概述</h3><h4 id="1-1-Secret是什么？"><a href="#1-1-Secret是什么？" class="headerlink" title="1.1 Secret是什么？"></a>1.1 Secret是什么？</h4><p>上面我们学习的Configmap一般是用来存放明文数据的，如配置文件，对于一些敏感数据，如密码、私钥等数据时，要用secret类型。<br>Secret解决了密码、token、秘钥等敏感数据的配置问题，而不需要把这些敏感数据暴露到镜像或者Pod Spec中。Secret可以以Volume或者环境变量的方式使用。</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/#more">阅读全文</a>
+          <a href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/28-K8S%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E4%B8%AD%E5%BF%83Secret%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/#more">阅读全文</a>
         </p>
       
       
@@ -199,7 +199,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/15-node节点亲和性，pod亲和性，pod反亲和性多种调度策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/27-K8S配置管理中心Configmap实现微服务配置管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -207,7 +207,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/">15-node节点亲和性，pod亲和性，pod反亲和性多种调度策略</a>
+      <a class="p-name article-title" href="/2023/05/13/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/27-K8S%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E4%B8%AD%E5%BF%83Configmap%E5%AE%9E%E7%8E%B0%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">27-K8S配置管理中心Configmap实现微服务配置管理</a>
     </h1>
   
 
@@ -218,7 +218,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-07T12:00:50.000Z" itemprop="datePublished">2023年05月07日</time>
+  <time class="dt-published" datetime="2023-05-13T12:00:00.000Z" itemprop="datePublished">2023年05月13日</time>
 </span>
       
   <div class="article-category">
@@ -228,7 +228,7 @@
 
       
       
-<a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">
+<a href="/2023/05/13/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/27-K8S%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E4%B8%AD%E5%BF%83Configmap%E5%AE%9E%E7%8E%B0%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -238,19 +238,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="亲和性"><a href="#亲和性" class="headerlink" title="亲和性"></a>亲和性</h3><ul>
-<li>node节点亲和性</li>
-<li>Pod节点亲和性</li>
-<li>pod节点反亲和性</li>
-</ul>
-<h3 id="node节点亲和性"><a href="#node节点亲和性" class="headerlink" title="node节点亲和性"></a>node节点亲和性</h3><p>node节点亲和性调度：nodeAffinity</p>
+        <h3 id="1-Configmap概述"><a href="#1-Configmap概述" class="headerlink" title="1. Configmap概述"></a>1. Configmap概述</h3><h4 id="1-1-什么是Configmap？"><a href="#1-1-什么是Configmap？" class="headerlink" title="1.1 什么是Configmap？"></a>1.1 什么是Configmap？</h4><p>Configmap是k8s中的资源对象，用于保存非机密性的配置的，数据可以用key&#x2F;value键值对的形式保存，也可通过文件的形式保存。</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/#more">阅读全文</a>
+          <a href="/2023/05/13/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/27-K8S%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E4%B8%AD%E5%BF%83Configmap%E5%AE%9E%E7%8E%B0%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/#more">阅读全文</a>
         </p>
       
       
@@ -260,7 +255,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/14-K8S节点选择器nodeName和nodeSelector" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/26-K8S控制器Daemonset入门到企业实战应用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -268,7 +263,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/">14-K8S节点选择器nodeName和nodeSelector</a>
+      <a class="p-name article-title" href="/2023/05/13/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/26-K8S%E6%8E%A7%E5%88%B6%E5%99%A8Daemonset%E5%85%A5%E9%97%A8%E5%88%B0%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/">26-K8S控制器Daemonset入门到企业实战应用</a>
     </h1>
   
 
@@ -279,7 +274,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-07T02:00:50.000Z" itemprop="datePublished">2023年05月07日</time>
+  <time class="dt-published" datetime="2023-05-13T02:00:00.000Z" itemprop="datePublished">2023年05月13日</time>
 </span>
       
   <div class="article-category">
@@ -289,7 +284,7 @@
 
       
       
-<a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/#comments" class="article-comment-link">
+<a href="/2023/05/13/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/26-K8S%E6%8E%A7%E5%88%B6%E5%99%A8Daemonset%E5%85%A5%E9%97%A8%E5%88%B0%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -299,14 +294,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="node节点选择器"><a href="#node节点选择器" class="headerlink" title="node节点选择器"></a>node节点选择器</h3><p>我们在创建pod资源的时候，pod会根据schduler进行调度，那么默认会调度到随机的一个工作节点<br>如果我们想要pod调度到指定节点或者调度到一些具有相同特点的node节点，怎么办呢？<br>可以使用pod中的<font color=red><strong>nodeName</strong></font>或者<font color=red><strong>nodeSelector</strong></font>字段指定要调度到的node节点     </p>
+        <h3 id="1-DaemonSet控制器：概念、原理解读"><a href="#1-DaemonSet控制器：概念、原理解读" class="headerlink" title="1 DaemonSet控制器：概念、原理解读"></a>1 DaemonSet控制器：概念、原理解读</h3><h4 id="1-1-DaemonSet概述"><a href="#1-1-DaemonSet概述" class="headerlink" title="1.1  DaemonSet概述"></a>1.1  DaemonSet概述</h4><p>DaemonSet控制器能够确保k8s集群所有的节点都运行一个相同的pod副本，当向k8s集群中增加node节点时，这个node节点也会自动创建一个pod副本，当node节点从集群移除，这些pod也会自动删除；删除Daemonset也会删除它们创建的pod</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/#more">阅读全文</a>
+          <a href="/2023/05/13/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/26-K8S%E6%8E%A7%E5%88%B6%E5%99%A8Daemonset%E5%85%A5%E9%97%A8%E5%88%B0%E4%BC%81%E4%B8%9A%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/#more">阅读全文</a>
         </p>
       
       
@@ -316,7 +311,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/13-K8S标签labels的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/25-Statefulset控制器：概念、原理解读" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -324,7 +319,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/">13-K8S标签labels的使用</a>
+      <a class="p-name article-title" href="/2023/05/12/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/25-Statefulset%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%9A%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E8%A7%A3%E8%AF%BB/">25-Statefulset控制器：概念、原理解读</a>
     </h1>
   
 
@@ -335,7 +330,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-06T12:00:50.000Z" itemprop="datePublished">2023年05月06日</time>
+  <time class="dt-published" datetime="2023-05-12T12:00:00.000Z" itemprop="datePublished">2023年05月12日</time>
 </span>
       
   <div class="article-category">
@@ -345,7 +340,7 @@
 
       
       
-<a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">
+<a href="/2023/05/12/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/25-Statefulset%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%9A%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E8%A7%A3%E8%AF%BB/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -355,14 +350,16 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="标签-labels"><a href="#标签-labels" class="headerlink" title="标签 labels"></a>标签 labels</h2><h3 id="什么是标签？"><a href="#什么是标签？" class="headerlink" title="什么是标签？"></a>什么是标签？</h3><p>标签其实就一对 key&#x2F;value ，被关联到对象上，比如Pod,标签的使用我们倾向于能够表示对象的特殊特点，就是一眼就看出了这个Pod是干什么的，标签可以用来划分特定的对象（比如版本，服务类型等），标签可以在创建一个对象的时候直接定义，也可以在后期随时修改，每一个对象可以拥有多个标签，但是，key值必须是唯一的。创建标签之后也可以方便我们对资源进行分组管理。如果对pod打标签，之后就可以使用标签来查看、删除指定的pod。<br>在k8s中，大部分资源都可以打标签。</p>
+        <h3 id="Statefulset控制器：概念、原理解读"><a href="#Statefulset控制器：概念、原理解读" class="headerlink" title="Statefulset控制器：概念、原理解读"></a>Statefulset控制器：概念、原理解读</h3><p>StatefulSet是为了管理有状态服务的问题而设计的</p>
+<p>扩展：<br>有状态服务？<br>StatefulSet是有状态的集合，管理有状态的服务，它所管理的Pod的名称不能随意变化。数据持久化的目录也是不一样，每一个Pod都有自己独有的数据持久化存储目录。比如MySQL主从、redis集群等。</p>
+<p>无状态服务？<br>RC、Deployment、DaemonSet都是管理无状态的服务，它们所管理的Pod的IP、名字，启停顺序等都是随机的。个体对整体无影响，所有pod都是共用一个数据卷的，部署的tomcat就是无状态的服务，tomcat被删除，在启动一个新的tomcat，加入到集群即可，跟tomcat的名字无关。</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/#more">阅读全文</a>
+          <a href="/2023/05/12/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/25-Statefulset%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%9A%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E8%A7%A3%E8%AF%BB/#more">阅读全文</a>
         </p>
       
       
@@ -372,7 +369,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/12-namespace和资源配额应用场景分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/24-k8s存储类storageclass" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -380,7 +377,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/">12-namespace和资源配额应用场景分析</a>
+      <a class="p-name article-title" href="/2023/05/12/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/24-k8s%E5%AD%98%E5%82%A8%E7%B1%BBstorageclass/">24-k8s存储类storageclass</a>
     </h1>
   
 
@@ -391,7 +388,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-06T02:00:50.000Z" itemprop="datePublished">2023年05月06日</time>
+  <time class="dt-published" datetime="2023-05-12T02:00:00.000Z" itemprop="datePublished">2023年05月12日</time>
 </span>
       
   <div class="article-category">
@@ -401,7 +398,7 @@
 
       
       
-<a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/#comments" class="article-comment-link">
+<a href="/2023/05/12/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/24-k8s%E5%AD%98%E5%82%A8%E7%B1%BBstorageclass/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -411,14 +408,17 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="命名空间-namespace-ns"><a href="#命名空间-namespace-ns" class="headerlink" title="命名空间 &#x3D;&gt; namespace &#x3D;&#x3D; ns"></a>命名空间 &#x3D;&gt; namespace &#x3D;&#x3D; ns</h3><h4 id="什么是命名空间？"><a href="#什么是命名空间？" class="headerlink" title="什么是命名空间？"></a>什么是命名空间？</h4><p>Kubernetes 支持多个虚拟集群，它们底层依赖于同一个物理集群。 这些虚拟集群被称为命名空间。<br>命名空间namespace是k8s集群级别的资源，可以给不同的用户、租户、环境或项目创建对应的命名空间，例如，可以为test、devlopment、production环境分别创建各自的命名空间。</p>
+        <h3 id="k8s存储类：storageclass"><a href="#k8s存储类：storageclass" class="headerlink" title="k8s存储类：storageclass"></a>k8s存储类：storageclass</h3><p>上面介绍的PV和PVC模式都是需要先创建好PV，然后定义好PVC和pv进行一对一的Bond，但是如果PVC请求成千上万，那么就需要创建成千上万的PV，对于运维人员来说维护成本很高，Kubernetes提供一种自动创建PV的机制，叫StorageClass，它的作用就是创建PV的模板。k8s集群管理员通过创建storageclass可以动态生成一个存储卷pv供k8s pvc使用。</p>
+<p>每个StorageClass都包含字段provisioner，parameters和reclaimPolicy。 </p>
+<p>具体来说，StorageClass会定义以下两部分：<br>1、PV的属性 ，比如存储的大小、类型等；<br>2、创建这种PV需要使用到的存储插件，比如Ceph、NFS等</p>
+<p>有了这两部分信息，Kubernetes就能够根据用户提交的PVC，找到对应的StorageClass，然后Kubernetes就会调用 StorageClass声明的存储插件，创建出需要的PV。</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/#more">阅读全文</a>
+          <a href="/2023/05/12/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/24-k8s%E5%AD%98%E5%82%A8%E7%B1%BBstorageclass/#more">阅读全文</a>
         </p>
       
       
@@ -450,19 +450,19 @@
           </li>
         
           <li>
-            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E7%88%AC%E8%99%AB/">爬虫</a>
+            <a href="/2023/08/19/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/012-scrapy%E5%9F%BA%E7%A1%80/">012-scrapy基础</a>
           </li>
         
           <li>
-            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5mysql/">异步mysql</a>
+            <a href="/2023/08/18/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/011-python%E8%BF%9E%E6%8E%A5mysql/">011-python连接mysql</a>
           </li>
         
           <li>
-            <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/">异步redis</a>
+            <a href="/2023/08/17/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/010-openpyxl%E5%BA%93%E5%A4%84%E7%90%86Excel%E6%96%87%E4%BB%B6/">010-openpyxl库处理Excel文件</a>
           </li>
         
           <li>
-            <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/">uvloop</a>
+            <a href="/2023/08/16/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/009-json%E5%AD%98%E5%82%A8/">009-json存储</a>
           </li>
         
       </ul>
@@ -487,7 +487,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">68</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">80</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">105</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
