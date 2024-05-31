@@ -143,6 +143,7 @@
 <p>pip install scrapy</p>
 </blockquote>
 <h4 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h4><p>Scrapy Engin(引擎):Scrapy框架的核心部分负责在Spider和ltem Pipeline、Downloader、Scheduler中间通信、传递数据等。<br>Spider(爬虫):发送需要爬取的链接给引擎，最后引擎把其他模块请求回来的数据再发送给爬虫，爬虫就去解析想要的数据。<br>Scheduler(调度器):负责接收引擎发送过来的请求，并按照一定的方式进行排列和整理，负责调度请求的顺序等<br>Downloader(下载器):负责接收引擎过来的下载请求，然后去网络上下载对应的数据再交给引擎<br>Item Pipeline(管道):负责将爬虫传递过来的数据进行保存。<br>Downloader Middlewares(下载中间件):可以扩展下载器和引擎之间通信功能的中间件<br>Spider Middlewares(Spider中间件):可以扩展引擎和爬虫之间通信功能的中间件</p>
+<span id="more"></span>
 <p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/WX20240530-141424.png" alt="WX20240530-141424.png"></p>
 <h4 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h4><blockquote>
 <p>scrapy startproject douban</p>

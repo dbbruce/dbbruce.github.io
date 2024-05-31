@@ -183,74 +183,14 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h3 id="Beautiful-Soup-是一个可以从HTML或XML文件中提取数据的Python库"><a href="#Beautiful-Soup-是一个可以从HTML或XML文件中提取数据的Python库" class="headerlink" title="Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库"></a>Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库</h3><h4 id="安装-Beautiful-Soup"><a href="#安装-Beautiful-Soup" class="headerlink" title="安装 Beautiful Soup"></a>安装 Beautiful Soup</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip install beautifulsoup4</span></span><br></pre></td></tr></table></figure>
-<h4 id="主要的解析器"><a href="#主要的解析器" class="headerlink" title="主要的解析器"></a>主要的解析器</h4><table>
-<thead>
-<tr>
-<th>解析器</th>
-<th>使用方法</th>
-<th>优势</th>
-<th>劣势</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Python标准库</td>
-<td>BeautifulSoup(markup, “html.parser”)</td>
-<td>Python的内置标准库 执行速度适中 文档容错能力强</td>
-<td>Python 2.7.3 or 3.2.2)前 的版本中文档容错能力差</td>
-</tr>
-<tr>
-<td>lxml HTML 解析器</td>
-<td>BeautifulSoup(markup, “lxml”)</td>
-<td>速度快 文档容错能力强</td>
-<td>需要安装C语言库</td>
-</tr>
-<tr>
-<td>lxml XML 解析器</td>
-<td>BeautifulSoup(markup, [“lxml-xml”]) BeautifulSoup(markup, “xml”)</td>
-<td>速度快 唯一支持XML的解析器</td>
-<td>需要安装C语言库</td>
-</tr>
-<tr>
-<td>html5lib</td>
-<td>BeautifulSoup(markup, “html5lib”)</td>
-<td>最好的容错性 以浏览器的方式解析文档 生成HTML5格式的文档</td>
-<td>速度慢 不依赖外部扩展</td>
-</tr>
-</tbody></table>
-<h4 id="对象的种类"><a href="#对象的种类" class="headerlink" title="对象的种类"></a>对象的种类</h4><p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种: Tag , NavigableString , BeautifulSoup , Comment .</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Tag 对象与XML或HTML原生文档中的tag相同</span><br><span class="line">NavigableString 字符串常被包含在tag内.Beautiful Soup用 NavigableString 类来包装tag中的字符串</span><br><span class="line">BeautifulSoup 对象表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象,它支持 遍历文档树 和 搜索文档树 中描述的大部分的方法.</span><br><span class="line">Comment 对象是一个特殊类型的 NavigableString 对象: 注释及特殊字符串</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">html =&#x27;&#x27;&#x27;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">  &lt;title&gt;</span><br><span class="line">   The Dormouse&#x27;s story</span><br><span class="line">  &lt;/title&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">  &lt;p class=&quot;title&quot;&gt;</span><br><span class="line">   &lt;b&gt;</span><br><span class="line">    The Dormouse&#x27;s story</span><br><span class="line">   &lt;/b&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;story&quot;&gt;</span><br><span class="line">   Once upon a time there were three little sisters; and their names were</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;</span><br><span class="line">    Elsie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   ,</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;</span><br><span class="line">    Lacie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   and</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link2&quot;&gt;</span><br><span class="line">    Tillie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   ; and they lived at the bottom of a well.</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;story&quot;&gt;</span><br><span class="line">   ...</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(html, &#x27;html.parser&#x27;)</span><br><span class="line"># soup = BeautifulSoup(html, &#x27;lxml&#x27;)</span><br><span class="line">soup.title</span><br><span class="line"># &lt;title&gt;The Dormouse&#x27;s story&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">soup.title.name</span><br><span class="line"># u&#x27;title&#x27;</span><br><span class="line"></span><br><span class="line">soup.title.string</span><br><span class="line"># u&#x27;The Dormouse&#x27;s story&#x27;</span><br><span class="line">soup.title.string</span><br><span class="line"># u&#x27;The Dormouse&#x27;s story&#x27;</span><br><span class="line"></span><br><span class="line">soup.title.parent.name</span><br><span class="line"># u&#x27;head&#x27;</span><br><span class="line"></span><br><span class="line">soup.p</span><br><span class="line"># &lt;p class=&quot;title&quot;&gt;&lt;b&gt;The Dormouse&#x27;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">soup.p[&#x27;class&#x27;]</span><br><span class="line"># u&#x27;title&#x27;</span><br><span class="line"></span><br><span class="line">soup.a</span><br><span class="line"># &lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;Elsie&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">soup.find_all(&#x27;a&#x27;)</span><br><span class="line"># [&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;Elsie&lt;/a&gt;,</span><br><span class="line">#  &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;,</span><br><span class="line">#  &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;]</span><br><span class="line"></span><br><span class="line">soup.find(id=&quot;link3&quot;)</span><br><span class="line"># &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">link_tags = soup.select(&#x27;.sister&#x27;)</span><br><span class="line">for tag in link_tags:</span><br><span class="line">    print(tag.text)</span><br><span class="line"># Elsie</span><br><span class="line"># Lacie</span><br><span class="line"># Tillie</span><br></pre></td></tr></table></figure>
-
-<h4 id="注意文本中如果有注释"><a href="#注意文本中如果有注释" class="headerlink" title="注意文本中如果有注释"></a>注意文本中如果有注释</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br><span class="line">   The Dormouse&#x27;s story<span class="comment">&lt;!--这里是注释--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(soup.title.text)   # 可以获取到内容</span><br><span class="line">   The Dormouse&#x27;s story</span><br><span class="line"></span><br><span class="line">print(&#x27;=======&#x27;,soup.title.string) # 获取不到内容</span><br><span class="line">======= None</span><br></pre></td></tr></table></figure>
-<h4 id="find-，find-all，-返回类型标签tag"><a href="#find-，find-all，-返回类型标签tag" class="headerlink" title="find ，find_all， 返回类型标签tag"></a>find ，find_all， 返回类型标签tag</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_3.png" alt="img_3.png"></p>
-<h4 id="css选择器-返回列表，获取文本需要循环"><a href="#css选择器-返回列表，获取文本需要循环" class="headerlink" title="css选择器,返回列表，获取文本需要循环"></a>css选择器,返回列表，获取文本需要循环</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_4.png" alt="img_4.png"></p>
-<h4 id="tag对象"><a href="#tag对象" class="headerlink" title="tag对象"></a>tag对象</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_5.png" alt="img_5.png"></p>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/3/index.html">https://dbbruce.github.io/page/3/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2023/08/13/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/006-BeautifullSoup%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/#more">阅读全文</a>
+        </p>
       
       
       
