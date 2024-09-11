@@ -333,7 +333,7 @@
 </article>
 
 
-  <article id="post-项目/佳业/20230824-入出库成本结果表" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-项目/佳业/组装sql方法-p_get_query_sql" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -341,7 +341,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/24/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20230824-%E5%85%A5%E5%87%BA%E5%BA%93%E6%88%90%E6%9C%AC%E7%BB%93%E6%9E%9C%E8%A1%A8/">入出库成本结果表</a>
+      <a class="p-name article-title" href="/2023/08/24/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E7%BB%84%E8%A3%85sql%E6%96%B9%E6%B3%95-p_get_query_sql/">组装sql方法-p_get_query_sql</a>
     </h1>
   
 
@@ -362,7 +362,7 @@
 
       
       
-<a href="/2023/08/24/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20230824-%E5%85%A5%E5%87%BA%E5%BA%93%E6%88%90%E6%9C%AC%E7%BB%93%E6%9E%9C%E8%A1%A8/#comments" class="article-comment-link">
+<a href="/2023/08/24/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E7%BB%84%E8%A3%85sql%E6%96%B9%E6%B3%95-p_get_query_sql/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -372,17 +372,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="入出库成本结果表"><a href="#入出库成本结果表" class="headerlink" title="入出库成本结果表"></a>入出库成本结果表</h4><ul>
-<li>self.env[‘ia.in.result’]  # 入库成本结果表</li>
-<li>self.env[‘ia.out.result’]  # 出库成本结果表</li>
-</ul>
+        <h4 id="1-参数讲解"><a href="#1-参数讲解" class="headerlink" title="1.参数讲解"></a>1.参数讲解</h4><h5 id="1-1-table-list"><a href="#1-1-table-list" class="headerlink" title="1.1.table_list"></a>1.1.table_list</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据格式：[(&#x27;实际表名&#x27;, &#x27;表别名&#x27;, &#x27;表关联关系&#x27;),()]</span><br><span class="line">[(&#x27;ia_out_result&#x27;, &#x27;i1&#x27;), (&#x27;mdm_material&#x27;, &#x27;m1&#x27;, &#x27;m1.id = i1.material_id&#x27;), (&#x27;stk_delivery_line1&#x27;, &#x27;l1&#x27;, &quot;l1.id = i1.doc_line_id and i1.doc_line_model = &#x27;stk.delivery.line1&#x27;&quot;), (&#x27;stk_delivery&#x27;, &#x27;p1&#x27;, &#x27;p1.id=l1.parent_id&#x27;), (&#x27;sys_admin_orgs&#x27;, &#x27;o1&#x27;, &#x27;o1.id=p1.sal_org_id&#x27;), (&#x27;mdm_customer&#x27;, &#x27;s1&#x27;, &#x27;s1.id=p1.customer_id&#x27;), (&#x27;mdm_product_bom&#x27;, &#x27;b1&#x27;, &#x27;b1.id=l1.bom_version_id&#x27;), (&#x27;sys_admin_orgs&#x27;, &#x27;o2&#x27;, &#x27;o2.id=p1.stk_org_id&#x27;), (&#x27;mdm_warehouse&#x27;, &#x27;w1&#x27;, &#x27;w1.id=l1.warehouse_id&#x27;), (&#x27;mdm_unit&#x27;, &#x27;u1&#x27;, &#x27;u1.id=l1.uom_id&#x27;), (&#x27;ar_receivable_line1_material&#x27;, &#x27;arl&#x27;, &quot;arl.source_line1_model=&#x27;stk.delivery.line1&#x27; and arl.source_line1_id=l1.id and arl.delete_state = &#x27;normal&#x27;&quot;)]</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/08/24/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20230824-%E5%85%A5%E5%87%BA%E5%BA%93%E6%88%90%E6%9C%AC%E7%BB%93%E6%9E%9C%E8%A1%A8/#more">阅读全文</a>
+          <a href="/2023/08/24/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E7%BB%84%E8%A3%85sql%E6%96%B9%E6%B3%95-p_get_query_sql/#more">阅读全文</a>
         </p>
       
       
@@ -746,7 +743,7 @@
           </li>
         
           <li>
-            <a href="/2023/08/24/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20230824-%E5%85%A5%E5%87%BA%E5%BA%93%E6%88%90%E6%9C%AC%E7%BB%93%E6%9E%9C%E8%A1%A8/">入出库成本结果表</a>
+            <a href="/2023/08/24/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E7%BB%84%E8%A3%85sql%E6%96%B9%E6%B3%95-p_get_query_sql/">组装sql方法-p_get_query_sql</a>
           </li>
         
       </ul>
