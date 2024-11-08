@@ -151,7 +151,366 @@
 <h4 id="翻译文件"><a href="#翻译文件" class="headerlink" title="翻译文件"></a>翻译文件</h4><ul>
 <li><em>&#x2F;opt&#x2F;projects&#x2F;insuite&#x2F;biz&#x2F;scm&#x2F;ps_stk&#x2F;i18n&#x2F;zh_CN.csv</em></li>
 </ul>
-<h4 id="stk-tran-config表"><a href="#stk-tran-config表" class="headerlink" title="stk_tran_config表"></a>stk_tran_config表</h4><p>id                    | 40<br>material_id           | line.material_id<br>name                  | 门店收货单<br>model                 | med.store.receipt.line1<br>parent_model          | med.store.receipt<br>parent_o2m_field_name | line_ids1<br>child_model           | ‘’<br>direction             | 1<br>condition             |<br>sql                   | –sql<br>                                                                                                +<br>                      |             insert into stk_tran_detail(material_id,flex,auxiliary,stk_org_id,owner_type,ia_owner_type,uom_id,stk_uom_id,aux_uom_id,qty,stk_qty,aux_qty,lot,produce_date,valid_date,bom_version_id,mto_num,warehouse_id,location_id,stk_state_id,note,work_order_sequence,src_id,state,material_master_id,bom_version_master_id,number,document_type_id,biz_date,src_parent_model,src_child_model,src_model,sequence,src_parent_id,tenant_id,biz_type_id,is_stock_update_flag,close_state,qty_option,delete_state,create_uid,write_uid,create_date,write_date,origin_order_lineid,source_line1_model,source_line1_id,source_id,source_model,source_number,material_stk_uom_id,material_aux_uom_id,is_material_floating,doc_create_date,barcode,barcode_type_id,project_id,project_number,is_material_manage_piece,is_done,reservation_type,material_number,material_specification,se<br>arch_key)                                                                                       +<br>                      |             select line.material_id,line.flex,line.auxiliary,line.stk_org_id,line.owner_type,line.owner_type,line.uom_id,line.stk_uom_id,line.aux_uom_id,line.qty,line.stk_qty,line.aux_qty,line.lot,line.produce_date,line.valid_date,line.bom_version_id,line.mto_num,line.warehouse_id,line.location_id,line.stk_state_id,line.note,0,line.id,parent.state,m.master_id,bom.master_id,parent.number,parent.document_type_id,parent.biz_date,’med.store.receipt’,’’’’,’med.store.receipt.line1’,line.sequence,parent.id,line.tenant_id,parent.biz_type_id,false,’normal’,’1’,’normal’,’1’,’1’,parent.create_date,localtimestamp(6),line.origin_order_lineid,line.source_line1_model,line.source_line1_id,line.source_id,line.source_model,line.source_number,m.stk_uom_id,m.aux_uom_id,m.is_floating,parent.create_date,line.barcode,line.barcode_type_id,line.project_id,line.proj<br>ect_number,m.is_piece_manage,false,line.reservation_type,m.number,m.specification,concat_ws(‘<em>‘,+<br>                      |                 m.master_id,<br>                                                                                                +<br>                      |                 case when line.auxiliary is null or line.auxiliary&#x3D;’’ then ‘False’ else cast(line.auxiliary as text) end,<br>                                                                                                +<br>                      |                 case when line.location_id is null then ‘False’ else cast(line.location_id as text) end,<br>                                                                                                +<br>                      |                 cast(line.warehouse_id as text),<br>                                                                                                +<br>                      |                 regexp_replace(line.owner_type ,’(.*),(\d+)’,’\1(\2,)’),<br>                                                                                                +<br>                      |                 cast(line.stk_state_id as text),<br>                                                                                                +<br>                      |                 case when line.lot is null or line.lot&#x3D;’’ then ‘False’ else cast(line.lot as text) end,<br>                                                                                                +<br>                      |                 case when line.produce_date is null or cast(line.produce_date as text) &#x3D;’’ then ‘False’ else cast(line.produce_date as text) end,<br>                                                                                                +<br>                      |                 case when line.valid_date is null or cast(line.valid_date as text)&#x3D;’’ then ‘False’ else cast(line.valid_date as text) end,<br>                                                                                                +<br>                      |                 case when bom.master_id is null then ‘False’ else cast(bom.master_id as text) end,<br>                                                                                                +<br>                      |                 case when line.mto_num is null or line.mto_num&#x3D;’’ then ‘False’ else cast(line.mto_num as text) end,<br>                                                                                                +<br>                      |                 cast(line.uom_id as text),<br>                                                                                                +<br>                      |                 case when m.is_floating&#x3D;true then cast(line.stk_uom_id as text) else ‘False’ end,<br>                                                                                                +<br>                      |                 case when m.is_floating&#x3D;true and line.aux_uom_id is not null then cast(line.aux_uom_id as text) else ‘False’ end,<br>                                                                                                +<br>                      |                 cast(line.stk_org_id as text)<br>                                                                                                +<br>                      |                 )<br>                                                                                                +<br>                      |             from med_store_receipt_line1 line left join med_store_receipt parent on line.parent_id &#x3D; parent.id<br>                                                                                                +<br>                      |             left join mdm_material m on line.material_id &#x3D; m.id<br>                                                                                                +<br>                      |             left join mdm_product_bom bom on line.bom_version_id &#x3D; bom.id<br>                                                                                                +<br>                      |             where line.parent_id &#x3D; %s and parent.state not in (‘creating’,’temporary’) and (parent.is_auto_generate&#x3D;false or parent.is_auto_generate is null)<br>                                                                                                +<br>                      |             and parent.delete_state&#x3D;’normal’<br>                                                                                                +<br>                      |<br>                                                                                                +<br>                      |             ;<br>                                                                                                +<br>                      |<br>sql_batch             | –sql<br>                                                                                                +<br>                      |             insert into stk_tran_detail(material_id,flex,auxiliary,stk_org_id,owner_type,ia_owner_type,uom_id,stk_uom_id,aux_uom_id,qty,stk_qty,aux_qty,lot,produce_date,valid_date,bom_version_id,mto_num,warehouse_id,location_id,stk_state_id,note,work_order_sequence,src_id,state,material_master_id,bom_version_master_id,number,document_type_id,biz_date,src_parent_model,src_child_model,src_model,sequence,src_parent_id,tenant_id,biz_type_id,is_stock_update_flag,close_state,qty_option,delete_state,create_uid,write_uid,create_date,write_date,origin_order_lineid,source_line1_model,source_line1_id,source_id,source_model,source_number,material_stk_uom_id,material_aux_uom_id,is_material_floating,doc_create_date,barcode,barcode_type_id,project_id,project_number,is_material_manage_piece,is_done,reservation_type,material_number,material_specification,se<br>arch_key,record_rule)                                                                           +<br>                      |             select line.material_id,line.flex,line.auxiliary,line.stk_org_id,line.owner_type,line.owner_type,line.uom_id,line.stk_uom_id,line.aux_uom_id,line.qty,line.stk_qty,line.aux_qty,line.lot,line.produce_date,line.valid_date,line.bom_version_id,line.mto_num,line.warehouse_id,line.location_id,line.stk_state_id,line.note,0,line.id,parent.state,m.master_id,bom.master_id,parent.number,parent.document_type_id,parent.biz_date,’med.store.receipt’,’’’’,’med.store.receipt.line1’,line.sequence,parent.id,line.tenant_id,parent.biz_type_id,false,’normal’,’1’,’normal’,’1’,’1’,parent.create_date,localtimestamp(6),line.origin_order_lineid,line.source_line1_model,line.source_line1_id,line.source_id,line.source_model,line.source_number,m.stk_uom_id,m.aux_uom_id,m.is_floating,parent.create_date,line.barcode,line.barcode_type_id,line.project_id,line.proj<br>ect_number,m.is_piece_manage,                                                                   +<br>                      |             case when iis_rule.record_rule&#x3D;’save’ and parent.state in (‘save’,’submit’,’audit’) then true<br>                                                                                                +<br>                      |              when iis_rule.record_rule&#x3D;’save’ and parent.state not in (‘save’,’submit’,’audit’) then false<br>                                                                                                +<br>                      |              when iis_rule.record_rule&#x3D;’audit’ and parent.state  &#x3D;’audit’ then true<br>                                                                                                +<br>                      |              when iis_rule.record_rule&#x3D;’audit’ and parent.state  !&#x3D;’audit’ then false end<br>                                                                                                +<br>                      |             ,line.reservation_type,m.number,m.specification,concat_ws(‘</em>‘,<br>                                                                                                                                                                                                                                                                                                                                                                                                                                                        +<br>                      |                 m.master_id,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        +<br>                      |                 case when line.auxiliary is null or line.auxiliary&#x3D;’’ then ‘False’ else cast(line.auxiliary as text) end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           +<br>                      |                 case when line.location_id is null then ‘False’ else cast(line.location_id as text) end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            +<br>                      |                 cast(line.warehouse_id as text),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    +<br>                      |                 regexp_replace(line.owner_type ,’(.*),(\d+)’,’\1(\2,)’),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            +<br>                      |                 cast(line.stk_state_id as text),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    +<br>                      |                 case when line.lot is null or line.lot&#x3D;’’ then ‘False’ else cast(line.lot as text) end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             +<br>                      |                 case when line.produce_date is null or cast(line.produce_date as text) &#x3D;’’ then ‘False’ else cast(line.produce_date as text) end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   +<br>                      |                 case when line.valid_date is null or cast(line.valid_date as text)&#x3D;’’ then ‘False’ else cast(line.valid_date as text) end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          +<br>                      |                 case when bom.master_id is null then ‘False’ else cast(bom.master_id as text) end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  +<br>                      |                 case when line.mto_num is null or line.mto_num&#x3D;’’ then ‘False’ else cast(line.mto_num as text) end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 +<br>                      |                 cast(line.uom_id as text),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          +<br>                      |                 case when m.is_floating&#x3D;true then cast(line.stk_uom_id as text) else ‘False’ end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   +<br>                      |                 case when m.is_floating&#x3D;true and line.aux_uom_id is not null then cast(line.aux_uom_id as text) else ‘False’ end,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   +<br>                      |                 cast(line.stk_org_id as text)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       +<br>                      |                 ),iis_rule.record_rule                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              +<br>                      |             from med_store_receipt_line1 line left join med_store_receipt parent on line.parent_id &#x3D; parent.id                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      +<br>                      |             left join mdm_material m on line.material_id &#x3D; m.id                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     +<br>                      |             left join mdm_product_bom bom on line.bom_version_id &#x3D; bom.id                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           +<br>                      |             left join (select a.id as org_id,a.key as qty_option,coalesce(value,’save’) as record_rule                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              +<br>                      |             from                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    +<br>                      |             (select id,’1’ as key from sys_admin_orgs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               +<br>                      |             where state&#x3D;’audit’                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     +<br>                      |             union                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   +<br>                      |             select id,’-1’ as key from sys_admin_orgs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               +<br>                      |             where state&#x3D;’audit’) a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  +<br>                      |             left join sys_business_params b on a.id &#x3D; b.org_id and a.key&#x3D;(case when b.key&#x3D;’record_rule_in’ then ‘1’ when b.key&#x3D;’record_rule_out’ then ‘-1’ else b.key end)) iis_rule                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                +<br>                      |             on line.stk_org_id&#x3D;iis_rule.org_id and ‘1’ &#x3D; iis_rule.qty_option                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        +<br>                      |             where line.stk_org_id &#x3D; %s and parent.biz_date &gt;&#x3D; %s and parent.biz_date &lt;&#x3D; %s and parent.state not in (‘creating’,’temporary’) and (parent.is_auto_generate&#x3D;false or parent.is_auto_generate is null)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  +<br>                      |             and parent.delete_state&#x3D;’normal’                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        +<br>                      |             ;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       +<br>                      |<br>tenant_id             | 1<br>flex                  | line.flex<br>auxiliary             | line.auxiliary<br>stk_org_id            | line.stk_org_id<br>owner_type            | line.owner_type<br>ia_owner_type         | line.owner_type<br>uom_id                | line.uom_id<br>stk_uom_id            | line.stk_uom_id<br>aux_uom_id            | line.aux_uom_id<br>qty                   | line.qty<br>stk_qty               | line.stk_qty<br>aux_qty               | line.aux_qty<br>lot                   | line.lot<br>produce_date          | line.produce_date<br>valid_date            | line.valid_date<br>bom_version_id        | line.bom_version_id<br>mto_num               | line.mto_num<br>warehouse_id          | line.warehouse_id<br>location_id           | line.location_id<br>stk_state_id          | line.stk_state_id<br>note                  | line.note<br>supplier_id           |<br>customer_id           |<br>department_id         |<br>biz_org_id            |<br>work_order_number     |<br>work_order_sequence   | 0<br>create_uid            | 1<br>create_date           | 2024-07-01 03:40:00<br>write_uid             | 1<br>write_date            | 2024-11-07 07:25:03</p>
+<h4 id="stk-tran-config表"><a href="#stk-tran-config表" class="headerlink" title="stk_tran_config表"></a>stk_tran_config表</h4><table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>40</td>
+</tr>
+<tr>
+<td>material_id</td>
+<td>line.material_id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>门店收货单</td>
+</tr>
+<tr>
+<td>model</td>
+<td>med.store.receipt.line1</td>
+</tr>
+<tr>
+<td>parent_model</td>
+<td>med.store.receipt</td>
+</tr>
+<tr>
+<td>parent_o2m_field_name</td>
+<td>line_ids1</td>
+</tr>
+<tr>
+<td>child_model</td>
+<td>‘’</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>1</td>
+</tr>
+<tr>
+<td>condition</td>
+<td></td>
+</tr>
+<tr>
+<td>sql</td>
+<td>–sql</td>
+</tr>
+<tr>
+<td></td>
+<td>insert into stk_tran_detail(material_id,flex,auxiliary,stk_org_id,owner_type,ia_owner_type,uom_id,stk_uom_id,aux_uom_id,qty,stk_qty,aux_qty,lot,produce_date,valid_date,bom_version_id,mto_num,warehouse_id,location_id,stk_state_id,note,work_order_sequence,src_id,state,material_master_id,bom_version_master_id,number,document_type_id,biz_date,src_parent_model,src_child_model,src_model,sequence,src_parent_id,tenant_id,biz_type_id,is_stock_update_flag,close_state,qty_option,delete_state,create_uid,write_uid,create_date,write_date,origin_order_lineid,source_line1_model,source_line1_id,source_id,source_model,source_number,material_stk_uom_id,material_aux_uom_id,is_material_floating,doc_create_date,barcode,barcode_type_id,project_id,project_number,is_material_manage_piece,is_done,reservation_type,material_number,material_specification,search_key)</td>
+</tr>
+<tr>
+<td></td>
+<td>select line.material_id,line.flex,line.auxiliary,line.stk_org_id,line.owner_type,line.owner_type,line.uom_id,line.stk_uom_id,line.aux_uom_id,line.qty,line.stk_qty,line.aux_qty,line.lot,line.produce_date,line.valid_date,line.bom_version_id,line.mto_num,line.warehouse_id,line.location_id,line.stk_state_id,line.note,0,line.id,parent.state,m.master_id,bom.master_id,parent.number,parent.document_type_id,parent.biz_date,’med.store.receipt’,’’’’,’med.store.receipt.line1’,line.sequence,parent.id,line.tenant_id,parent.biz_type_id,false,’normal’,’1’,’normal’,’1’,’1’,parent.create_date,localtimestamp(6),line.origin_order_lineid,line.source_line1_model,line.source_line1_id,line.source_id,line.source_model,line.source_number,m.stk_uom_id,m.aux_uom_id,m.is_floating,parent.create_date,line.barcode,line.barcode_type_id,line.project_id,line.project_number,m.is_piece_manage,false,line.reservation_type,m.number,m.specification,concat_ws(‘_’,</td>
+</tr>
+<tr>
+<td></td>
+<td>m.master_id,case when line.auxiliary is null or line.auxiliary&#x3D;’’ then ‘False’ else cast(line.auxiliary as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.location_id is null then ‘False’ else cast(line.location_id as text) end, cast(line.warehouse_id as text),</td>
+</tr>
+<tr>
+<td></td>
+<td>regexp_replace(line.owner_type ,’(.*),(\d)’,’\1(\2,)’), cast(line.stk_state_id as text)</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.lot is null or line.lot&#x3D;’’ then ‘False’ else cast(line.lot as text) end</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.produce_date is null or cast(line.produce_date as text) &#x3D;’’ then ‘False’ else cast(line.produce_date as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.valid_date is null or cast(line.valid_date as text)&#x3D;’’ then ‘False’ else cast(line.valid_date as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when bom.master_id is null then ‘False’ else cast(bom.master_id as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.mto_num is null or line.mto_num&#x3D;’’ then ‘False’ else cast(line.mto_num as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>cast(line.uom_id as text), case when m.is_floating&#x3D;true then cast(line.stk_uom_id as text) else ‘False’ end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when m.is_floating&#x3D;true and line.aux_uom_id is not null then cast(line.aux_uom_id as text) else ‘False’ end,</td>
+</tr>
+<tr>
+<td></td>
+<td>cast(line.stk_org_id as text) ) from med_store_receipt_line1 line left join med_store_receipt parent on line.parent_id &#x3D; parent.id</td>
+</tr>
+<tr>
+<td></td>
+<td>left join mdm_material m on line.material_id &#x3D; m.id</td>
+</tr>
+<tr>
+<td></td>
+<td>left join mdm_product_bom bom on line.bom_version_id &#x3D; bom.id</td>
+</tr>
+<tr>
+<td></td>
+<td>where line.parent_id &#x3D; %s and parent.state not in (‘creating’,’temporary’) and (parent.is_auto_generate&#x3D;false or parent.is_auto_generate is null)</td>
+</tr>
+<tr>
+<td></td>
+<td>and parent.delete_state&#x3D;’normal’;</td>
+</tr>
+<tr>
+<td>sql_batch</td>
+<td>–sql</td>
+</tr>
+<tr>
+<td></td>
+<td>insert into stk_tran_detail(material_id,flex,auxiliary,stk_org_id,owner_type,ia_owner_type,uom_id,stk_uom_id,aux_uom_id,qty,stk_qty,aux_qty,lot,produce_date,valid_date,bom_version_id,mto_num,warehouse_id,location_id,stk_state_id,note,work_order_sequence,src_id,state,material_master_id,bom_version_master_id,number,document_type_id,biz_date,src_parent_model,src_child_model,src_model,sequence,src_parent_id,tenant_id,biz_type_id,is_stock_update_flag,close_state,qty_option,delete_state,create_uid,write_uid,create_date,write_date,origin_order_lineid,source_line1_model,source_line1_id,source_id,source_model,source_number,material_stk_uom_id,material_aux_uom_id,is_material_floating,doc_create_date,barcode,barcode_type_id,project_id,project_number,is_material_manage_piece,is_done,reservation_type,material_number,material_specification,search_key,record_rule)</td>
+</tr>
+<tr>
+<td></td>
+<td>select line.material_id,line.flex,line.auxiliary,line.stk_org_id,line.owner_type,line.owner_type,line.uom_id,line.stk_uom_id,line.aux_uom_id,line.qty,line.stk_qty,line.aux_qty,line.lot,line.produce_date,line.valid_date,line.bom_version_id,line.mto_num,line.warehouse_id,line.location_id,line.stk_state_id,line.note,0,line.id,parent.state,m.master_id,bom.master_id,parent.number,parent.document_type_id,parent.biz_date,’med.store.receipt’,’’’’,’med.store.receipt.line1’,line.sequence,parent.id,line.tenant_id,parent.biz_type_id,false,’normal’,’1’,’normal’,’1’,’1’,parent.create_date,localtimestamp(6),line.origin_order_lineid,line.source_line1_model,line.source_line1_id,line.source_id,line.source_model,line.source_number,m.stk_uom_id,m.aux_uom_id,m.is_floating,parent.create_date,line.barcode,line.barcode_type_id,line.project_id,line.project_number,m.is_piece_manage,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when iis_rule.record_rule&#x3D;’save’ and parent.state in (‘save’,’submit’,’audit’) then true</td>
+</tr>
+<tr>
+<td></td>
+<td>when iis_rule.record_rule&#x3D;’save’ and parent.state not in (‘save’,’submit’,’audit’) then false</td>
+</tr>
+<tr>
+<td></td>
+<td>when iis_rule.record_rule&#x3D;’audit’ and parent.state  &#x3D;’audit’ then true</td>
+</tr>
+<tr>
+<td></td>
+<td>when iis_rule.record_rule&#x3D;’audit’ and parent.state  !&#x3D;’audit’ then false end,line.reservation_type,m.number,m.specification,concat_ws(‘_’,m.master_id,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.auxiliary is null or line.auxiliary&#x3D;’’ then ‘False’ else cast(line.auxiliary as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.location_id is null then ‘False’ else cast(line.location_id as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>cast(line.warehouse_id as text), regexp_replace(line.owner_type ,’(.*),(\d)’,’\1(\2,)’),</td>
+</tr>
+<tr>
+<td></td>
+<td>cast(line.stk_state_id as text),</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.lot is null or line.lot&#x3D;’’ then ‘False’ else cast(line.lot as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.produce_date is null or cast(line.produce_date as text) &#x3D;’’ then ‘False’ else cast(line.produce_date as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.valid_date is null or cast(line.valid_date as text)&#x3D;’’ then ‘False’ else cast(line.valid_date as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when bom.master_id is null then ‘False’ else cast(bom.master_id as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when line.mto_num is null or line.mto_num&#x3D;’’ then ‘False’ else cast(line.mto_num as text) end,</td>
+</tr>
+<tr>
+<td></td>
+<td>cast(line.uom_id as text),</td>
+</tr>
+<tr>
+<td></td>
+<td>case when m.is_floating&#x3D;true then cast(line.stk_uom_id as text) else ‘False’ end,</td>
+</tr>
+<tr>
+<td></td>
+<td>case when m.is_floating&#x3D;true and line.aux_uom_id is not null then cast(line.aux_uom_id as text) else ‘False’ end,</td>
+</tr>
+<tr>
+<td></td>
+<td>cast(line.stk_org_id as text)),iis_rule.record_rule</td>
+</tr>
+<tr>
+<td></td>
+<td>from med_store_receipt_line1 line left join med_store_receipt parent on line.parent_id &#x3D; parent.id</td>
+</tr>
+<tr>
+<td></td>
+<td>left join mdm_material m on line.material_id &#x3D; m.id</td>
+</tr>
+<tr>
+<td></td>
+<td>left join mdm_product_bom bom on line.bom_version_id &#x3D; bom.id</td>
+</tr>
+<tr>
+<td></td>
+<td>left join (select a.id as org_id,a.key as qty_option,coalesce(value,’save’) as record_rule</td>
+</tr>
+<tr>
+<td></td>
+<td>from (select id,’1’ as key from sys_admin_orgs where state&#x3D;’audit’</td>
+</tr>
+<tr>
+<td></td>
+<td>union select id,’-1’ as key from sys_admin_orgs where state&#x3D;’audit’) a</td>
+</tr>
+<tr>
+<td></td>
+<td>left join sys_business_params b on a.id &#x3D; b.org_id and a.key&#x3D;(case when b.key&#x3D;’record_rule_in’ then ‘1’ when b.key&#x3D;’record_rule_out’ then ‘-1’ else b.key end)) iis_rule</td>
+</tr>
+<tr>
+<td></td>
+<td>on line.stk_org_id&#x3D;iis_rule.org_id and ‘1’ &#x3D; iis_rule.qty_option</td>
+</tr>
+<tr>
+<td></td>
+<td>where line.stk_org_id &#x3D; %s and parent.biz_date &gt;&#x3D; %s and parent.biz_date &lt;&#x3D; %s and parent.state not in (‘creating’,’temporary’) and (parent.is_auto_generate&#x3D;false or parent.is_auto_generate is null)</td>
+</tr>
+<tr>
+<td></td>
+<td>and parent.delete_state&#x3D;’normal’ ;</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td>1</td>
+</tr>
+<tr>
+<td>flex</td>
+<td>line.flex</td>
+</tr>
+<tr>
+<td>auxiliary</td>
+<td>line.auxiliary</td>
+</tr>
+<tr>
+<td>stk_org_id</td>
+<td>line.stk_org_id</td>
+</tr>
+<tr>
+<td>owner_type</td>
+<td>line.owner_type</td>
+</tr>
+<tr>
+<td>ia_owner_type</td>
+<td>line.owner_type</td>
+</tr>
+<tr>
+<td>uom_id</td>
+<td>line.uom_id</td>
+</tr>
+<tr>
+<td>stk_uom_id</td>
+<td>line.stk_uom_id</td>
+</tr>
+<tr>
+<td>aux_uom_id</td>
+<td>line.aux_uom_id</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>line.qty</td>
+</tr>
+<tr>
+<td>stk_qty</td>
+<td>line.stk_qty</td>
+</tr>
+<tr>
+<td>aux_qty</td>
+<td>line.aux_qty</td>
+</tr>
+<tr>
+<td>lot</td>
+<td>line.lot</td>
+</tr>
+<tr>
+<td>produce_date</td>
+<td>line.produce_date</td>
+</tr>
+<tr>
+<td>valid_date</td>
+<td>line.valid_date</td>
+</tr>
+<tr>
+<td>bom_version_id</td>
+<td>line.bom_version_id</td>
+</tr>
+<tr>
+<td>mto_num</td>
+<td>line.mto_num</td>
+</tr>
+<tr>
+<td>warehouse_id</td>
+<td>line.warehouse_id</td>
+</tr>
+<tr>
+<td>location_id</td>
+<td>line.location_id</td>
+</tr>
+<tr>
+<td>stk_state_id</td>
+<td>line.stk_state_id</td>
+</tr>
+<tr>
+<td>note</td>
+<td>line.note</td>
+</tr>
+<tr>
+<td>supplier_id</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td></td>
+</tr>
+<tr>
+<td>department_id</td>
+<td></td>
+</tr>
+<tr>
+<td>biz_org_id</td>
+<td></td>
+</tr>
+<tr>
+<td>work_order_number</td>
+<td></td>
+</tr>
+<tr>
+<td>work_order_sequence</td>
+<td>0</td>
+</tr>
+<tr>
+<td>create_uid</td>
+<td>1</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>2024-07-01 03:40:00</td>
+</tr>
+<tr>
+<td>write_uid</td>
+<td>1</td>
+</tr>
+<tr>
+<td>write_date</td>
+<td>2024-11-07 07:25:03</td>
+</tr>
+</tbody></table>
 
         
             <div id="toc-article">
