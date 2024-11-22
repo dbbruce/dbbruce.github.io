@@ -141,39 +141,53 @@
       
         <h4 id="1-进入psql"><a href="#1-进入psql" class="headerlink" title="1.进入psql"></a>1.进入psql</h4><ul>
 <li>psql  (本机数据库，直接进入)</li>
-<li>psql -h 地址 -p 端口 -U 用户名 -d 数据库名<span id="more"></span>
-<img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-171424@2x.png" alt="WX20241122-171424@2x.png"></li>
+<li>psql -h 地址 -p 端口 -U 用户名 -d 数据库名<span id="more"></span></li>
 </ul>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-171424@2x.png" alt="WX20241122-171424@2x.png"></p>
 <h4 id="2-创建角色"><a href="#2-创建角色" class="headerlink" title="2.创建角色"></a>2.创建角色</h4><ul>
 <li>查看角色： \du</li>
 <li>创建角色： CREATE USER 角色名 WITH  PASSWORD ‘密码’<blockquote>
-<p>create user odoo15 with password ‘odoo15’;<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172112@2x.png" alt="WX20241122-172112@2x.png"></p>
-</blockquote>
-</li>
-<li>超级权限： <blockquote>
-<p>alter role odoo15 with superuser;<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172327@2x.png" alt="WX20241122-172327@2x.png"></p>
-</blockquote>
-</li>
-<li>删除用户<blockquote>
-<p>drop role odoo15;<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-173953@2x.png" alt="WX20241122-173953@2x.png"></p>
+<p>create user odoo15 with password ‘odoo15’;</p>
 </blockquote>
 </li>
 </ul>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172112@2x.png" alt="WX20241122-172112@2x.png"></p>
+<ul>
+<li>超级权限： <blockquote>
+<p>alter role odoo15 with superuser;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172327@2x.png" alt="WX20241122-172327@2x.png"></p>
+<ul>
+<li>删除用户<blockquote>
+<p>drop role odoo15;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-173953@2x.png" alt="WX20241122-173953@2x.png"></p>
 <h4 id="3-创建数据库"><a href="#3-创建数据库" class="headerlink" title="3.创建数据库"></a>3.创建数据库</h4><ul>
 <li>查看数据库： \l</li>
 <li>创建数据库： CREATE DATABASE 数据库名 WITH OWNER 角色名;<blockquote>
-<p>create database odoo15_db owner odoo15;<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172548@2x.png" alt="WX20241122-172548@2x.png"></p>
-</blockquote>
-</li>
-<li>数据库权限：<blockquote>
-<p>grant all privileges on database odoo15_db to odoo15;<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172821@2x.png" alt="WX20241122-172821@2x.png"></p>
-</blockquote>
-</li>
-<li>删除数据库<blockquote>
-<p>drop database odoo15_db;<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-173929@2x.png" alt="WX20241122-173929@2x.png"></p>
+<p>create database odoo15_db owner odoo15;</p>
 </blockquote>
 </li>
 </ul>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172548@2x.png" alt="WX20241122-172548@2x.png"></p>
+<ul>
+<li>数据库权限：<blockquote>
+<p>grant all privileges on database odoo15_db to odoo15;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172821@2x.png" alt="WX20241122-172821@2x.png"></p>
+<ul>
+<li>删除数据库<blockquote>
+<p>drop database odoo15_db;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-173929@2x.png" alt="WX20241122-173929@2x.png"></p>
 <h4 id="4-修改PG配置文件"><a href="#4-修改PG配置文件" class="headerlink" title="4.修改PG配置文件"></a>4.修改PG配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(odoo16) dbbruce@dbburce var-14 % pwd</span><br><span class="line">/Users/dbbruce/Library/Application Support/Postgres/var-14</span><br><span class="line">(odoo16) dbbruce@dbburce var-14 % vim pg_hba.conf</span><br><span class="line"></span><br><span class="line"> 88 # &quot;local&quot; is for Unix domain socket connections only</span><br><span class="line"> 89 local   all             all                                     trust</span><br><span class="line"> 90 # IPv4 local connections:</span><br><span class="line"> 91 host    all             all             127.0.0.1/32            trust</span><br><span class="line"> 92 # IPv6 local connections:</span><br><span class="line"> 93 host    all             all             ::1/128                 trust</span><br></pre></td></tr></table></figure>
 
         
