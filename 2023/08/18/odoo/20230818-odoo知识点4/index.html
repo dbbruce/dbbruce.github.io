@@ -140,7 +140,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h4 id="1、查看ORM执行的原始SQL"><a href="#1、查看ORM执行的原始SQL" class="headerlink" title="1、查看ORM执行的原始SQL"></a>1、查看ORM执行的原始SQL</h4><ul>
-<li>修改配置文件，添加如下配置<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log_level = debug_sql</span><br></pre></td></tr></table></figure></li>
+<li>修改配置文件，添加如下配置<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log_level = debug_sql</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">logfile：     日志文件名。如果没有设置，请使用stdout</span><br><span class="line">logrotate：   True/False。如果为True，则创建每日日志文件并保留30个文件</span><br><span class="line">log_db：      True/False。如果是Ture，也将日志写入数据库中的&#x27;ir_logging&#x27;表</span><br><span class="line">log_level：   [&#x27;debug_rpc_answer&#x27;、&#x27;debug_rpc&#x27;、&#x27;debug&#x27;、&#x27;ddebug_sql&#x27;、&#x27;info&#x27;、&#x27;warn&#x27;、&#x27;error&#x27;、&#x27;critical&#x27;列表中的任何值]。Odoo更改了这里的log_level含义，因为此级别值映射到一组预定义的“模块：log_level”对。即使未设置此选项，也有一组预定义的设置。详细信息请参见以下实现部分。</span><br><span class="line">log_handler： 可以是“模块：log_level”对的列表。默认值为“：INFO”——这意味着所有模块的默认日志记录级别为“INFO”。</span><br><span class="line">log_handler = openerp.addons.my_addon1:DEBUG,openerp.addons.my_addon2:DEBUG</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h4 id="2、auto-join"><a href="#2、auto-join" class="headerlink" title="2、auto_join"></a>2、auto_join</h4><ul>
 <li>auto_join – 在搜索该字段时是否自动生成JOIN条件，默认False</li>
