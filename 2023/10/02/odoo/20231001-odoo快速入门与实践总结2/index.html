@@ -200,25 +200,83 @@
 </tbody></table>
 <h4 id="6-2-使用脚手架创建新模块"><a href="#6-2-使用脚手架创建新模块" class="headerlink" title="6.2.使用脚手架创建新模块"></a>6.2.使用脚手架创建新模块</h4><span id="more"></span>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">./odoo-bin scaffold bug-manage custom_addons </span><br><span class="line"></span><br><span class="line">(odoo16) dbbruce@dbburce custom_addons % tree bug-manage </span><br><span class="line">bug-manage</span><br><span class="line">├── __init__.py</span><br><span class="line">├── __manifest__.py</span><br><span class="line">├── controllers</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   └── controllers.py</span><br><span class="line">├── demo   # 演示数据</span><br><span class="line">│   └── demo.xml</span><br><span class="line">├── models</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   └── models.py</span><br><span class="line">├── security # 安全控制文件</span><br><span class="line">│   └── ir.model.access.csv</span><br><span class="line">└── views # views下面是XML文件，用于配置视图</span><br><span class="line">    ├── templates.xml</span><br><span class="line">    └── views.xml</span><br><span class="line"></span><br><span class="line">6 directories, 10 files</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
+<h4 id="6-3-安装步骤"><a href="#6-3-安装步骤" class="headerlink" title="6.3.安装步骤"></a>6.3.安装步骤</h4><ul>
+<li>1）点击设置界面右下角的激活开发者模式进入开发者模式</li>
+<li>2）在应用界面点击左侧更新应用列表按钮，在弹出的对话框中点击更新按钮</li>
+<li>3）然后在右上方的搜索框内搜索“bug”<blockquote>
+<p>安装使用的也是base模块，具体是ir.mudule.module这里可以安装和更新应用</p>
+<p>安装的时候也可以将-u转换成-i</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="6-4-不重启代码生效"><a href="#6-4-不重启代码生效" class="headerlink" title="6.4.不重启代码生效"></a>6.4.不重启代码生效</h4><blockquote>
+<p>修改了Python代码之后不重启服务器就能让修改起作用，那么可以使用Odoo的服务器开发模式，只需要再加上一个参数 -dev&#x3D;all 即可</p>
+</blockquote>
+<h4 id="6-5-添加图标"><a href="#6-5-添加图标" class="headerlink" title="6.5.添加图标"></a>6.5.添加图标</h4><blockquote>
+<p>创建路径&#x2F;static&#x2F;description，将图标命名为icon.png并且放在本路径下</p>
+</blockquote>
+<h4 id="6-6-模型"><a href="#6-6-模型" class="headerlink" title="6.6.模型"></a>6.6.模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> odoo <span class="keyword">import</span> models, fields, api</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">bug</span>(models.Model):</span><br><span class="line">    _name = <span class="string">&#x27;bm.bug&#x27;</span></span><br><span class="line">    _description = <span class="string">&#x27;bug&#x27;</span></span><br><span class="line"></span><br><span class="line">    name = fields.Char(<span class="string">&#x27;bug简述&#x27;</span>, required=<span class="literal">True</span>)</span><br><span class="line">    detail = fields.Text(size=<span class="number">150</span>)</span><br><span class="line">    is_closed = fields.Boolean(<span class="string">&#x27;是否关闭&#x27;</span>)</span><br><span class="line">    close_reason = fields.Selection([(<span class="string">&#x27;changed&#x27;</span>, <span class="string">&#x27;已修改&#x27;</span>), (<span class="string">&#x27;cannot&#x27;</span>, <span class="string">&#x27;无法修改&#x27;</span>), (<span class="string">&#x27;delay&#x27;</span>, <span class="string">&#x27;推迟&#x27;</span>)],</span><br><span class="line">                                    string=<span class="string">&#x27;关闭理由&#x27;</span>)</span><br><span class="line">    user_id = fields.Many2one(<span class="string">&#x27;res.users&#x27;</span>, string=<span class="string">&#x27;负责人&#x27;</span>)</span><br><span class="line">    follower_id = fields.Many2many(<span class="string">&#x27;res.partner&#x27;</span>, string=<span class="string">&#x27;关注者&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="6-7-模型继承"><a href="#6-7-模型继承" class="headerlink" title="6.7.模型继承"></a>6.7.模型继承</h4><ul>
+<li><p><strong>Odoo提供了两种模型的继承机制，具体如下</strong></p>
+</li>
+<li><p>传统继承机制：允许子类修改父类定义方法、字段，也允许新增字段和方法</p>
+</li>
+<li><p>委派：将子类中新增的字段与父类的字段进行关联，相当于保留了父类的字段和方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> odoo <span class="keyword">import</span> models, fields, api</span><br><span class="line"></span><br><span class="line"><span class="comment"># 传统继承</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">follower</span>(models.Model):</span><br><span class="line">    _inherit = <span class="string">&#x27;res.partner&#x27;</span></span><br><span class="line">    bug_ids = fields.Many2many(<span class="string">&#x27;bm.bug&#x27;</span>, string=<span class="string">&#x27;bug&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>数据的存储方式也是不同的，可以分为两大类</strong></p>
+</li>
+<li><p>使用_inherit指明父类的同时，若_name赋值为一个与父类不一样的名称，则存储在不同的底层表中，子类不能兼容使用父类的视图，子类复制父类的特征再加上自己扩展的特征重新建立一个对象。</p>
+</li>
+<li><p>_name赋值为一个与父类不同的名称，而且使用_inherits（注意这里多了一个“s”），则说明可以同时继承多个类，新的子类对象会关联父类的对象数据，如果父类有新增数据，那么子类对象也可以同步看到。这种方式也不能兼容使用父类的视图</p>
+</li>
+</ul>
+<blockquote>
+<p>在models&#x2F;<strong>init</strong>.py文件中引入这两个新文件</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> bugs</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> follower</span><br></pre></td></tr></table></figure>
+<h4 id="6-8-新增菜单"><a href="#6-8-新增菜单" class="headerlink" title="6.8.新增菜单"></a>6.8.新增菜单</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">odoo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- actions opening views on models --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">record</span> <span class="attr">model</span>=<span class="string">&quot;ir.actions.act_window&quot;</span> <span class="attr">id</span>=<span class="string">&quot;bug-manage.action_window&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span>bug-manage window<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;res_model&quot;</span>&gt;</span>bm.bug<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;view_mode&quot;</span>&gt;</span>tree,form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- Top menu item --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">menuitem</span> <span class="attr">name</span>=<span class="string">&quot;bug管理系统&quot;</span> <span class="attr">id</span>=<span class="string">&quot;bug-manage.menu_root&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- menu categories --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">menuitem</span> <span class="attr">name</span>=<span class="string">&quot;bug管理&quot;</span> <span class="attr">id</span>=<span class="string">&quot;bug-manage.menu_1&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;bug-manage.menu_root&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- actions --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">menuitem</span> <span class="attr">name</span>=<span class="string">&quot;bug列表&quot;</span> <span class="attr">id</span>=<span class="string">&quot;bug-manage.menu_1_list&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;bug-manage.menu_1&quot;</span> <span class="attr">action</span>=<span class="string">&quot;bug-manage.action_window&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">odoo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>窗口动作（window action</p>
+<ul>
+<li>用于将模型的数据显示出来，所有的窗口动作都存储在数据库的 “ir.actions.act_window”模型中</li>
+<li>这里使用<record>向该模型中新增我们定义的窗口动作记录。其中主要的属性有如下几个</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>model属性</td>
+<td>标示该元素为窗口动作，标明本记录要插入的模型</td>
+</tr>
+<tr>
+<td>id属性</td>
+<td>必须在整个Odoo应用中唯一，如果不唯一则会在安装时报错，即便与之发生冲突的id所在的模块还没有安装也会报错。而且id的命名规则是最多只能有一个点（.）</td>
+</tr>
+<tr>
+<td>res_model</td>
+<td>代表视图取数的模型</td>
+</tr>
+<tr>
+<td>view_mode</td>
+<td>代表按顺序展示的视图类型</td>
+</tr>
+<tr>
+<td><menuitem></td>
+<td>可用于定义一个ir.ui.menu，不使用parent属性的时候则为顶级菜单</td>
+</tr>
+</tbody></table>
+<h4 id="6-9-使用超级管理员查看应用，否则看不到应用"><a href="#6-9-使用超级管理员查看应用，否则看不到应用" class="headerlink" title="6.9.使用超级管理员查看应用，否则看不到应用"></a>6.9.使用超级管理员查看应用，否则看不到应用</h4>
         
             <div id="toc-article">
                 
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E8%87%AA%E5%BB%BA%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8"><span class="toc-text">第6章 自建应用入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E6%96%87%E4%BB%B6-manifest-py"><span class="toc-text">6.1.文件__manifest__.py</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%9B%E5%BB%BA%E6%96%B0%E6%A8%A1%E5%9D%97"><span class="toc-text">6.2.使用脚手架创建新模块</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E8%87%AA%E5%BB%BA%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8"><span class="toc-text">第6章 自建应用入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E6%96%87%E4%BB%B6-manifest-py"><span class="toc-text">6.1.文件__manifest__.py</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%9B%E5%BB%BA%E6%96%B0%E6%A8%A1%E5%9D%97"><span class="toc-text">6.2.使用脚手架创建新模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-text">6.3.安装步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-%E4%B8%8D%E9%87%8D%E5%90%AF%E4%BB%A3%E7%A0%81%E7%94%9F%E6%95%88"><span class="toc-text">6.4.不重启代码生效</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87"><span class="toc-text">6.5.添加图标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-6-%E6%A8%A1%E5%9E%8B"><span class="toc-text">6.6.模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-7-%E6%A8%A1%E5%9E%8B%E7%BB%A7%E6%89%BF"><span class="toc-text">6.7.模型继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-8-%E6%96%B0%E5%A2%9E%E8%8F%9C%E5%8D%95"><span class="toc-text">6.8.新增菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-9-%E4%BD%BF%E7%94%A8%E8%B6%85%E7%BA%A7%E7%AE%A1%E7%90%86%E5%91%98%E6%9F%A5%E7%9C%8B%E5%BA%94%E7%94%A8%EF%BC%8C%E5%90%A6%E5%88%99%E7%9C%8B%E4%B8%8D%E5%88%B0%E5%BA%94%E7%94%A8"><span class="toc-text">6.9.使用超级管理员查看应用，否则看不到应用</span></a></li></ol></li></ol>
     </div>
   </div>
 
