@@ -453,7 +453,66 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+        <h3 id="第6章-自建应用入门"><a href="#第6章-自建应用入门" class="headerlink" title="第6章 自建应用入门"></a>第6章 自建应用入门</h3><h4 id="6-1-文件-manifest-py"><a href="#6-1-文件-manifest-py" class="headerlink" title="6.1.文件__manifest__.py"></a>6.1.文件__manifest__.py</h4><blockquote>
+<p>该文件中列出了包含哪些视图、模型和演示数据，并且还可以配置本模块说明等基本信息，每个模块都必须包含这个文件</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>代表该模块（或应用）的名字</td>
+</tr>
+<tr>
+<td>summary</td>
+<td>该模块的简介。因为用的是三引号，文字描述是可以换行的。</td>
+</tr>
+<tr>
+<td>description</td>
+<td>模块描述，也是可以换行的</td>
+</tr>
+<tr>
+<td>author</td>
+<td>作者</td>
+</tr>
+<tr>
+<td>website</td>
+<td>可以写上本模块相关的网址</td>
+</tr>
+<tr>
+<td>category</td>
+<td>默认为Uncategorized。可以选择已有的分类，在前端页面设置，群组内打开一个群组，然后点开应用程序下拉框，使用里面 列举的分类</td>
+</tr>
+<tr>
+<td>version</td>
+<td>默认是0.1，可以辅助进行模块的版本管理</td>
+</tr>
+<tr>
+<td>depends</td>
+<td>默认是base模块，可以在后面继续添加依赖的其他模块，当本模块被安装时，Odoo也会自动安装此处的依赖，如果依赖安装报错则本模块也将无法安装，所以要仔细检查写在此处的模块是否已经准备好安装包</td>
+</tr>
+<tr>
+<td>data</td>
+<td>我们需要用到的views文件夹下的视图文件可以在这里配置</td>
+</tr>
+<tr>
+<td>demo</td>
+<td>如果选择了加载演示数据，则这部分配置将会起作用</td>
+</tr>
+<tr>
+<td>installable</td>
+<td>默认是True，如果不想从前端搜到，则可以设置为False</td>
+</tr>
+<tr>
+<td>auto_install</td>
+<td>如果设置为True，则在depends参数的模块都安装完成之后，自动安装本模块，这种方式一般用于处理两个模块需要配合使用的情况</td>
+</tr>
+</tbody></table>
+<h4 id="6-2-使用脚手架创建新模块"><a href="#6-2-使用脚手架创建新模块" class="headerlink" title="6.2.使用脚手架创建新模块"></a>6.2.使用脚手架创建新模块</h4>
       
     </div>
     <footer class="article-footer">
