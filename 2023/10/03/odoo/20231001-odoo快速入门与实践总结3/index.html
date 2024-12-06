@@ -139,13 +139,69 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id=""><a href="#" class="headerlink" title=""></a></h3><span id="more"></span>
+        <h3 id="第七章-自建应用进阶"><a href="#第七章-自建应用进阶" class="headerlink" title="第七章 自建应用进阶"></a>第七章 自建应用进阶</h3><h4 id="7-1-模型属性"><a href="#7-1-模型属性" class="headerlink" title="7.1 模型属性"></a>7.1 模型属性</h4><p>以下划线（_）开头的属性不是普通的属性，我们称之为模型属性。也就是说这些属性的作用不是用于描述记录，而是描述整个模型。</p>
+<ul>
+<li>_name：这是Odoo内模型的内部标示，如果我们创建的是一个新模型，则必须填写该属性</li>
+<li>_description：是展示给用户看时该模型的一个标题，不是必需的，但推荐最好是使用该模型属性</li>
+<li>_order：该属性设置的是该模型的记录集展示时默认的排序字段<span id="more"></span></li>
+<li>_rec_name：该模型属性是record name的缩写，可用来指定一个字段作为该记录的描述。一般来讲，Odoo默认使用name字段作为一条记录的描述，我们可以通过这个字段指定其他的字段</li>
+<li>_table：是在模型里面制定后台存储数据的数据库表名，该数据库表名是更改模型的名称，把点（.）换成下划线，但是通过这个模型属性制定后，Odoo会根据该属性创建数据库表</li>
+</ul>
+<h4 id="7-1-2-self-env-‘x’-返回模型x的引用"><a href="#7-1-2-self-env-‘x’-返回模型x的引用" class="headerlink" title="7.1.2 self.env[‘x’] - 返回模型x的引用"></a>7.1.2 self.env[‘x’] - 返回模型x的引用</h4><h4 id="7-1-3-瞬态和抽象模型"><a href="#7-1-3-瞬态和抽象模型" class="headerlink" title="7.1.3 瞬态和抽象模型"></a>7.1.3 瞬态和抽象模型</h4><ul>
+<li>瞬态模型：该类模型是基于models.TransientModel类的，一般可用于向导式用户交互，其数据也是存储于数据库表的，只不过是临时存储，会有作业定期从这些表中删除老数据</li>
+<li>抽象模型：该类模型是基于models.AbstractModel类的，没有数据库表为其存储数据。抽象模型往往仅仅是为了方便子类复用其字段或方法，自己本身并不需要存储数据</li>
+</ul>
+<h4 id="7-1-4-前端页面查看模型结构的方法"><a href="#7-1-4-前端页面查看模型结构的方法" class="headerlink" title="7.1.4　前端页面查看模型结构的方法"></a>7.1.4　前端页面查看模型结构的方法</h4><ul>
+<li>设置|模型</li>
+</ul>
+<p><img src="/../../images/odoo/WX20241206-102334@2x.png" alt="WX20241206-102334@2x.png"><br><img src="/../../images/odoo/WX20241206-102403@2x.png" alt="WX20241206-102403@2x.png"><br><img src="/../../images/odoo/WX20241206-102459@2x.png" alt="WX20241206-102459@2x.png"></p>
+<ul>
+<li><strong>如何查找模型的外部ID(或称为XML ID)</strong><br>在开发者模式中，点击debug图标然后选择“查看元数据”<br><img src="/../../images/odoo/WX20241206-102915@2x.png" alt="WX20241206-102915@2x.png"><br><img src="/../../images/odoo/WX20241206-102933@2x.png" alt="WX20241206-102933@2x.png"></li>
+</ul>
+<h4 id="7-1-5-字段属性关键字。"><a href="#7-1-5-字段属性关键字。" class="headerlink" title="7.1.5　字段属性关键字。"></a>7.1.5　字段属性关键字。</h4><ul>
+<li>string：前端展现时的字段描述属性，除了Selection和关系字段之外，该属性都是出现在字段内的第一个位置，所以最常见的通过位置使用的属性就是该属性</li>
+<li>default：字段的默认值属性，可以是静态值也可以是匿名函数等。上例中的create_on字段就是使用lambda函数给出默认值</li>
+<li>size：仅在Char字段中有效，可用于限制最大字符数，比如身份证号的最大长度</li>
+<li>translate：在Char、Text和Html字段中起作用，使本字段可翻译</li>
+<li>help：进行前端展示时，发送给用户的提示信息</li>
+<li>readonly：默认为False，如果设置为True则在前端不可编辑，在模型层通过函数更改数据不会受到影响</li>
+<li>required：设置为True则表示在前端使用时本字段不可为空，此项设置对模型层也是有作用的，相当于是在数据库表的字段上进行了非空设置，使用函数在模型里面写入该字段为空的记录也会受到限制</li>
+<li>index：如果设置为True则会在对应的数据库字段上添加索引，会提升按该字段进行查询时的效率，同时降低写数据库表的速度。</li>
+<li>copy：默认非关系字段是True，如果设置为False则在复制记录时，该字段不被复制。</li>
+<li>groups：该字段属性用于限定该字段的访问安全组，通过外部ID进行指定即可访问的安全组，多个外部id之间可以用逗号隔开，比如，groups&#x3D;’base.group_portal，base.group_user’。</li>
+<li>states：该属性是通过字典来设置UI的相关属性，readonly、required和invisible三个属性都可以通过该属性进行设置，比如将字段设置为只读states&#x3D;{‘done’：[‘readonly’，True]}。视图中的attr属性与该属性类似，不过attr主要用于根据不同情况切换可见性等应用。</li>
+<li>deprecated：如果设置为True，则一旦使用该字段，就会在日志中记录警告信息。</li>
+<li>oldname：如果一个字段在新版本中更改了名字，则可以使用该属性记录老版本的名字，这种设置可以在复制记录时使得老版本的数据字段自动复制到对应的新名字字段。</li>
+</ul>
+<h4 id="7-2-3-特殊字段"><a href="#7-2-3-特殊字段" class="headerlink" title="7.2.3　特殊字段"></a>7.2.3　特殊字段</h4><ul>
+<li>active：是一个布尔类型字段，允许通过该字段将记录设置为非激活状态，如果设置了active&#x3D;False，则在前端查询时该记录会被自动排除在外，这一点类似于逻辑删除。当然也可以通过域（domain）设置查询active&#x3D;True的记录。</li>
+<li>sequence：是Integer类型的字段，如果出现在列表视图则允许我们手动拖动记录来定义记录的顺序。如果要使用该字段，那么不要忘记在模型属性_order中引入该字段。</li>
+<li>state：Selection类型，其代表了记录生命周期的基本状态，并且可以通过该属性来动态修改视图；一些表单视图字段可以在特定记录状态指定readonly、required和invisible的具体值。</li>
+<li>parent_id、parent_left、parent_right：Integer类型，在层级关系中具有特殊的意义</li>
+</ul>
+<h4 id="7-2-4-many2one的关系"><a href="#7-2-4-many2one的关系" class="headerlink" title="7.2.4 many2one的关系"></a>7.2.4 many2one的关系</h4><p>真正的数据还是记录在多（many）一方的底层表中</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bug_ids = fields.One2many(&#x27;bm.bug&#x27;, &#x27;stage_id&#x27;, sting=&#x27;bug&#x27;)</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
+<ul>
+<li>ondelete：该参数定义了删除关联记录时本字段的动作，默认是set null，也就是说当关联记录被删除时本字段将被赋值为空。第二个可以赋予的值是restricted，若设置该值则关联记录被删除时会报错进而阻止关联字段被删除。还有一个可选值是cascade，使用本值时关联字段若被删除则本记录也将被删除。</li>
+<li>context：该参数是对前端使用具有实际意义的数据字典，用于在进行关系导航时携带信息，比如设置默认值。本参数在后续的章节中会有详细介绍domain：这是一个域表达式，在一个队列中可以使用元组设定查询条件以用于限定查询的数据，具体使用会在后续章节详细介绍。</li>
+<li>auto_join：该参数可用于帮助ORM引擎在执行查询时进行一个SQL关联。如果使用，则其将会绕过访问安全规则，用户可以访问权限以外的数据，这将造成很大的风险，不过这样做可以让数据查询更加灵活</li>
+</ul>
+<h4 id="7-2-5-many2many关系"><a href="#7-2-5-many2many关系" class="headerlink" title="7.2.5 many2many关系"></a>7.2.5 many2many关系</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tag_ids = fields.many2many(</span><br><span class="line">&#x27;bm.bug.tag&#x27;, # 关联模型名</span><br><span class="line">&#x27;bug_tag_rel&#x27;,  # 关联表名</span><br><span class="line">&#x27;bug_id&#x27;,   # 存储本模型关联字段的字段名称</span><br><span class="line">&#x27;tag_id&#x27;,   # 存储本模型关联字段的字段名称</span><br><span class="line">&#x27;标示&#x27;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>两个多对多关系的模型都不会增加字段。Odoo是通过自动增加第三个关系表来专门维护两个模型的关系。这个关系表中就包含了两个字段，分别存放两个模型里面记录的ID字段中。默认情况下，这个关系表的名称是两个模型表的名称用下划线连接并且在后面加上“_rel”的后缀</p>
+<h4 id="7-3-4-层级结构关系"><a href="#7-3-4-层级结构关系" class="headerlink" title="7.3.4　层级结构关系"></a>7.3.4　层级结构关系</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> odoo <span class="keyword">import</span> models, fields, api</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">bugTagHierarchy</span>(models.Model):</span><br><span class="line">    _name = <span class="string">&#x27;bm.bug.tag_hierar&#x27;</span></span><br><span class="line">    _description = <span class="string">&#x27;bug层级标示&#x27;</span></span><br><span class="line">    _parent_store = <span class="literal">True</span></span><br><span class="line">    _parent_name = <span class="string">&#x27;parent_id&#x27;</span></span><br><span class="line"></span><br><span class="line">    name = fields.Char(<span class="string">&#x27;名称&#x27;</span>)</span><br><span class="line">    parent_id = fields.Many2one(<span class="string">&#x27;bm.bug.tag_hierar&#x27;</span>, <span class="string">&#x27;父标示&#x27;</span>, ondelete=<span class="string">&#x27;restrict&#x27;</span>)</span><br><span class="line">    parent_left = fields.Integer(<span class="string">&#x27;父节点左侧&#x27;</span>, index=<span class="literal">True</span>)</span><br><span class="line">    parent_right = fields.Integer(<span class="string">&#x27;父节点右侧&#x27;</span>, index=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="7-3-5-使用引用字段的动态关系"><a href="#7-3-5-使用引用字段的动态关系" class="headerlink" title="7.3.5　使用引用字段的动态关系"></a>7.3.5　使用引用字段的动态关系</h4><p>在前端的使用上，用户首先选择bug发现者是用户还是合作伙伴，然后再从对应的模型里面选择记录</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">discovers = fields.Reference([(<span class="string">&#x27;res.user&#x27;</span>, <span class="string">&#x27;用户&#x27;</span>), (<span class="string">&#x27;res.partner&#x27;</span>, <span class="string">&#x27;合作伙伴&#x27;</span>)], <span class="string">&#x27;bug发现者&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="7-3-6-计算字段"><a href="#7-3-6-计算字段" class="headerlink" title="7.3.6 计算字段"></a>7.3.6 计算字段</h4><p>字段中可以使用根据函数自动计算所得的类型，计算字段的声明方式与常规字段是一样的，只是使用了compute参数，参数被赋值为一个函数的名称。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">name = fields.Char(compute=<span class="string">&#x27;_compute_name&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@api.multi![ffc3c.png](<span class="params">..%2F..%2Fimages%2Fodoo%2Fffc3c.png</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_compute_name</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="keyword">for</span> record <span class="keyword">in</span> self:</span><br><span class="line">        record.name = <span class="built_in">str</span>(random.randint(<span class="number">1</span>,<span class="number">1e6</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="7-4-更多模型继承机制"><a href="#7-4-更多模型继承机制" class="headerlink" title="7.4 更多模型继承机制"></a>7.4 更多模型继承机制</h4><ul>
+<li><p>混合类（mixin classes）<br><img src="/../../images/odoo/img.png" alt="img.png"></p>
+</li>
+<li><p>原型继承<br>_name 是模型标识符，修改会创建所继承模型的拷贝，成为一个新模型。这叫作原型继承。<br><img src="/../../images/odoo/bbd9.png" alt="bbd9.png"></p>
+</li>
+<li><p>委托继承：这种继承方式使用模型属性_inherits来完成<br>使用代理继承时，原模型的方法并不能被继承。只能继承字段，可以读写子模型的字段<br><img src="/../../images/odoo/b0968.png" alt="b0968.png"><br><img src="/../../images/odoo/5286be4.png" alt="5286be4.png"></p>
+</li>
+</ul>
 
         
             <div id="toc-article">
@@ -153,7 +209,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E8%87%AA%E5%BB%BA%E5%BA%94%E7%94%A8%E8%BF%9B%E9%98%B6"><span class="toc-text">第七章 自建应用进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-%E6%A8%A1%E5%9E%8B%E5%B1%9E%E6%80%A7"><span class="toc-text">7.1 模型属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-2-self-env-%E2%80%98x%E2%80%99-%E8%BF%94%E5%9B%9E%E6%A8%A1%E5%9E%8Bx%E7%9A%84%E5%BC%95%E7%94%A8"><span class="toc-text">7.1.2 self.env[‘x’] - 返回模型x的引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-3-%E7%9E%AC%E6%80%81%E5%92%8C%E6%8A%BD%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">7.1.3 瞬态和抽象模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-4-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E6%9F%A5%E7%9C%8B%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">7.1.4　前端页面查看模型结构的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-5-%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%82"><span class="toc-text">7.1.5　字段属性关键字。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-3-%E7%89%B9%E6%AE%8A%E5%AD%97%E6%AE%B5"><span class="toc-text">7.2.3　特殊字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-4-many2one%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">7.2.4 many2one的关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-5-many2many%E5%85%B3%E7%B3%BB"><span class="toc-text">7.2.5 many2many关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-4-%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84%E5%85%B3%E7%B3%BB"><span class="toc-text">7.3.4　层级结构关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-5-%E4%BD%BF%E7%94%A8%E5%BC%95%E7%94%A8%E5%AD%97%E6%AE%B5%E7%9A%84%E5%8A%A8%E6%80%81%E5%85%B3%E7%B3%BB"><span class="toc-text">7.3.5　使用引用字段的动态关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-6-%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5"><span class="toc-text">7.3.6 计算字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-%E6%9B%B4%E5%A4%9A%E6%A8%A1%E5%9E%8B%E7%BB%A7%E6%89%BF%E6%9C%BA%E5%88%B6"><span class="toc-text">7.4 更多模型继承机制</span></a></li></ol></li></ol>
     </div>
   </div>
 
