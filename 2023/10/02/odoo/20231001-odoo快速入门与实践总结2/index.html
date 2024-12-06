@@ -301,6 +301,62 @@
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">odoo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">record</span> <span class="attr">model</span>=<span class="string">&quot;ir.ui.view&quot;</span> <span class="attr">id</span>=<span class="string">&quot;bug-manage.follower_form&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span>关注者<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;model&quot;</span>&gt;</span>res.partner<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;inherit_id&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;base.view_partner_form&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;arch&quot;</span> <span class="attr">type</span>=<span class="string">&quot;xml&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;mobile&quot;</span> <span class="attr">position</span>=<span class="string">&quot;after&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;bug_ids&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">odoo</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
+<h4 id="6-14-访问控制"><a href="#6-14-访问控制" class="headerlink" title="6.14.访问控制"></a>6.14.访问控制</h4><ul>
+<li>存储的数据表：ir.model.access</li>
+<li>ir.model.access.csv，文件名与模型名是一样的，名称不可以更改，Odoo会将文件的数据写入对应的模型中。</li>
+<li>不要忘记到__manifest__.py文件中引入该csv文件</li>
+</ul>
+<p><img src="/../../images/odoo/img_28.png" alt="img_28.png"></p>
+<p>,,,,1,1,1,1</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>是该记录的唯一标示，在模块内具有唯一性</td>
+<td>access_bm_bug</td>
+</tr>
+<tr>
+<td>name</td>
+<td>该记录的名称，也具有唯一性，一般的命名方法是用点 （.）连接模块名和安全组名</td>
+<td>bm.bug</td>
+</tr>
+<tr>
+<td>model_id:id</td>
+<td>是设置访问权限的模块_name，model_id的命名规则比较固定，比如我们的bug管理模型的_name是bm.bug，那么model_id就是model_bm_bug</td>
+<td>model_bm_bug</td>
+</tr>
+<tr>
+<td>group_id:id</td>
+<td>这就是我们要授予权限的安全组的id，本处我们为员工组授权，其id是base.group_user</td>
+<td>base.group_user</td>
+</tr>
+<tr>
+<td>perm_read</td>
+<td>读</td>
+<td>1</td>
+</tr>
+<tr>
+<td>perm_write</td>
+<td>写</td>
+<td>1</td>
+</tr>
+<tr>
+<td>perm_create</td>
+<td>新建</td>
+<td>1</td>
+</tr>
+<tr>
+<td>perm_unlink</td>
+<td>删除</td>
+<td>1</td>
+</tr>
+</tbody></table>
 
         
             <div id="toc-article">
@@ -308,7 +364,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E8%87%AA%E5%BB%BA%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8"><span class="toc-text">第6章 自建应用入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E6%96%87%E4%BB%B6-manifest-py"><span class="toc-text">6.1.文件__manifest__.py</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%9B%E5%BB%BA%E6%96%B0%E6%A8%A1%E5%9D%97"><span class="toc-text">6.2.使用脚手架创建新模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-text">6.3.安装步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-%E4%B8%8D%E9%87%8D%E5%90%AF%E4%BB%A3%E7%A0%81%E7%94%9F%E6%95%88"><span class="toc-text">6.4.不重启代码生效</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87"><span class="toc-text">6.5.添加图标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-6-%E6%A8%A1%E5%9E%8B"><span class="toc-text">6.6.模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-7-%E6%A8%A1%E5%9E%8B%E7%BB%A7%E6%89%BF"><span class="toc-text">6.7.模型继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-8-%E6%96%B0%E5%A2%9E%E8%8F%9C%E5%8D%95"><span class="toc-text">6.8.新增菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-9-%E4%BD%BF%E7%94%A8%E8%B6%85%E7%BA%A7%E7%AE%A1%E7%90%86%E5%91%98%E6%9F%A5%E7%9C%8B%E5%BA%94%E7%94%A8%EF%BC%8C%E5%90%A6%E5%88%99%E7%9C%8B%E4%B8%8D%E5%88%B0%E5%BA%94%E7%94%A8"><span class="toc-text">6.9.使用超级管理员查看应用，否则看不到应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-10-%E5%88%97%E8%A1%A8%E8%A7%86%E5%9B%BE-Tree"><span class="toc-text">6.10.列表视图 Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-11-%E5%88%97%E8%A1%A8%E8%A7%86%E5%9B%BE-Form"><span class="toc-text">6.11.列表视图 Form</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-12-%E6%90%9C%E7%B4%A2%E8%A7%86%E5%9B%BE-Search"><span class="toc-text">6.12.搜索视图 Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-13-%E8%A7%86%E5%9B%BE%E7%BB%A7%E6%89%BF"><span class="toc-text">6.13.视图继承</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E8%87%AA%E5%BB%BA%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8"><span class="toc-text">第6章 自建应用入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E6%96%87%E4%BB%B6-manifest-py"><span class="toc-text">6.1.文件__manifest__.py</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%9B%E5%BB%BA%E6%96%B0%E6%A8%A1%E5%9D%97"><span class="toc-text">6.2.使用脚手架创建新模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-text">6.3.安装步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-%E4%B8%8D%E9%87%8D%E5%90%AF%E4%BB%A3%E7%A0%81%E7%94%9F%E6%95%88"><span class="toc-text">6.4.不重启代码生效</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87"><span class="toc-text">6.5.添加图标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-6-%E6%A8%A1%E5%9E%8B"><span class="toc-text">6.6.模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-7-%E6%A8%A1%E5%9E%8B%E7%BB%A7%E6%89%BF"><span class="toc-text">6.7.模型继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-8-%E6%96%B0%E5%A2%9E%E8%8F%9C%E5%8D%95"><span class="toc-text">6.8.新增菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-9-%E4%BD%BF%E7%94%A8%E8%B6%85%E7%BA%A7%E7%AE%A1%E7%90%86%E5%91%98%E6%9F%A5%E7%9C%8B%E5%BA%94%E7%94%A8%EF%BC%8C%E5%90%A6%E5%88%99%E7%9C%8B%E4%B8%8D%E5%88%B0%E5%BA%94%E7%94%A8"><span class="toc-text">6.9.使用超级管理员查看应用，否则看不到应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-10-%E5%88%97%E8%A1%A8%E8%A7%86%E5%9B%BE-Tree"><span class="toc-text">6.10.列表视图 Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-11-%E5%88%97%E8%A1%A8%E8%A7%86%E5%9B%BE-Form"><span class="toc-text">6.11.列表视图 Form</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-12-%E6%90%9C%E7%B4%A2%E8%A7%86%E5%9B%BE-Search"><span class="toc-text">6.12.搜索视图 Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-13-%E8%A7%86%E5%9B%BE%E7%BB%A7%E6%89%BF"><span class="toc-text">6.13.视图继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-14-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-text">6.14.访问控制</span></a></li></ol></li></ol>
     </div>
   </div>
 
