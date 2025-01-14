@@ -152,25 +152,25 @@
 </thead>
 <tbody><tr>
 <td>Python标准库</td>
-<td>BeautifulSoup(markup, “html.parser”)</td>
+<td>BeautifulSoup(html, “html.parser”)</td>
 <td>Python的内置标准库 执行速度适中 文档容错能力强</td>
 <td>Python 2.7.3 or 3.2.2)前 的版本中文档容错能力差</td>
 </tr>
 <tr>
 <td>lxml HTML 解析器</td>
-<td>BeautifulSoup(markup, “lxml”)</td>
+<td>BeautifulSoup(html, “lxml”)</td>
 <td>速度快 文档容错能力强</td>
 <td>需要安装C语言库</td>
 </tr>
 <tr>
 <td>lxml XML 解析器</td>
-<td>BeautifulSoup(markup, [“lxml-xml”]) BeautifulSoup(markup, “xml”)</td>
+<td>BeautifulSoup(html, [“lxml-xml”]) BeautifulSoup(markup, “xml”)</td>
 <td>速度快 唯一支持XML的解析器</td>
 <td>需要安装C语言库</td>
 </tr>
 <tr>
 <td>html5lib</td>
-<td>BeautifulSoup(markup, “html5lib”)</td>
+<td>BeautifulSoup(html, “html5lib”)</td>
 <td>最好的容错性 以浏览器的方式解析文档 生成HTML5格式的文档</td>
 <td>速度慢 不依赖外部扩展</td>
 </tr>
@@ -185,23 +185,18 @@
 <h4 id="find-，find-all，-返回类型标签tag"><a href="#find-，find-all，-返回类型标签tag" class="headerlink" title="find ，find_all， 返回类型标签tag"></a>find ，find_all， 返回类型标签tag</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_3.png" alt="img_3.png"></p>
 <h4 id="css选择器-返回列表，获取文本需要循环"><a href="#css选择器-返回列表，获取文本需要循环" class="headerlink" title="css选择器,返回列表，获取文本需要循环"></a>css选择器,返回列表，获取文本需要循环</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_4.png" alt="img_4.png"></p>
 <h4 id="tag对象"><a href="#tag对象" class="headerlink" title="tag对象"></a>tag对象</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_5.png" alt="img_5.png"></p>
-<h4 id="1、BeautifulSoup-是一个用于从网页中提取数据的-Python-库，特别适用于解析-HTML-和-XML-文件。"><a href="#1、BeautifulSoup-是一个用于从网页中提取数据的-Python-库，特别适用于解析-HTML-和-XML-文件。" class="headerlink" title="1、BeautifulSoup 是一个用于从网页中提取数据的 Python 库，特别适用于解析 HTML 和 XML 文件。"></a>1、BeautifulSoup 是一个用于从网页中提取数据的 Python 库，特别适用于解析 HTML 和 XML 文件。</h4><h4 id="2、BeautifulSoup-依赖解析器"><a href="#2、BeautifulSoup-依赖解析器" class="headerlink" title="2、BeautifulSoup 依赖解析器"></a>2、BeautifulSoup 依赖解析器</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">	2.1、lxml # 推荐使用 lxml 作为解析器（速度更快）</span><br><span class="line">	2.2、html.parser ==  Python内置的解析器</span><br><span class="line">	</span><br><span class="line">pip install beautifulsoup4</span><br><span class="line">pip install lxml </span><br></pre></td></tr></table></figure>
+<h4 id="1、BeautifulSoup-是一个用于从网页中提取数据的-Python-库，特别适用于解析-HTML-和-XML-文件。"><a href="#1、BeautifulSoup-是一个用于从网页中提取数据的-Python-库，特别适用于解析-HTML-和-XML-文件。" class="headerlink" title="1、BeautifulSoup 是一个用于从网页中提取数据的 Python 库，特别适用于解析 HTML 和 XML 文件。"></a>1、BeautifulSoup 是一个用于从网页中提取数据的 Python 库，特别适用于解析 HTML 和 XML 文件。</h4><h4 id="2、BeautifulSoup-依赖解析器"><a href="#2、BeautifulSoup-依赖解析器" class="headerlink" title="2、BeautifulSoup 依赖解析器"></a>2、BeautifulSoup 依赖解析器</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	2.1、lxml # 推荐使用 lxml 作为解析器（速度更快）</span><br><span class="line">	2.2、html.parser ==  Python内置的解析器</span><br><span class="line">	</span><br><span class="line">pip install lxml </span><br></pre></td></tr></table></figure>
 <h4 id="3、代码"><a href="#3、代码" class="headerlink" title="3、代码"></a>3、代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;https://cn.bing.com/&#x27;</span></span><br><span class="line">response = requests.get(url)</span><br><span class="line">soup = BeautifulSoup(response.text, <span class="string">&#x27;lxml&#x27;</span>)  <span class="comment"># 注意这里：B和S大写，刚刚就写错了</span></span><br><span class="line"><span class="built_in">print</span>(soup)</span><br></pre></td></tr></table></figure>
 <h4 id="4、获取网页编码"><a href="#4、获取网页编码" class="headerlink" title="4、获取网页编码"></a>4、获取网页编码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装 chardet : pip install chardet</span><br></pre></td></tr></table></figure>
 <ul>
 <li>使用 chardet 自动检测编码<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> chardet</span><br><span class="line">encoding = chardet.detect(response.content)[<span class="string">&#x27;encoding&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(encoding)</span><br><span class="line">response.encoding = encoding</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h4 id="5、查找元素"><a href="#5、查找元素" class="headerlink" title="5、查找元素"></a>5、查找元素</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">first_links = soup.find_all(&#x27;link&#x27;)</span><br><span class="line">first_links = soup.find(&#x27;link&#x27;)</span><br></pre></td></tr></table></figure>
-<h4 id="6、获取标签的文本"><a href="#6、获取标签的文本" class="headerlink" title="6、获取标签的文本"></a>6、获取标签的文本</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">first_link_url = first_link.get_text()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="6、获取标签的文本"><a href="#6、获取标签的文本" class="headerlink" title="6、获取标签的文本"></a>6、获取标签的文本</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">first_link_url = first_link.get_text()</span><br></pre></td></tr></table></figure>
 <h4 id="7、查找父标签和子标签"><a href="#7、查找父标签和子标签" class="headerlink" title="7、查找父标签和子标签"></a>7、查找父标签和子标签</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">first_link_url = first_link.parent</span><br><span class="line">first_link_url = first_link.children</span><br></pre></td></tr></table></figure>
-
-
 <h4 id="8、特定属性标签"><a href="#8、特定属性标签" class="headerlink" title="8、特定属性标签"></a>8、特定属性标签</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查找所有 class=&quot;example-class&quot; 的 &lt;div&gt; 标签</span><br><span class="line">divs_with_class = soup.find_all(&#x27;div&#x27;, class_=&#x27;example-class&#x27;)</span><br><span class="line"># 查找具有 id=&quot;unique-id&quot; 的 &lt;p&gt; 标签</span><br><span class="line">unique_paragraph = soup.find(&#x27;p&#x27;, id=&#x27;unique-id&#x27;)</span><br></pre></td></tr></table></figure>
-
 <h4 id="9、css选择器"><a href="#9、css选择器" class="headerlink" title="9、css选择器"></a>9、css选择器</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 使用 CSS 选择器查找所有 class 为 &#x27;example&#x27; 的 &lt;div&gt; 标签</span><br><span class="line">example_divs = soup.select(&#x27;div.example&#x27;)</span><br><span class="line"></span><br><span class="line"># 查找所有 &lt;a&gt; 标签中的 href 属性</span><br><span class="line">links = soup.select(&#x27;a[href]&#x27;)</span><br></pre></td></tr></table></figure>
-
 <h4 id="10、转为字符串"><a href="#10、转为字符串" class="headerlink" title="10、转为字符串"></a>10、转为字符串</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 转换为字符串</span><br><span class="line">html_str = str(soup)</span><br></pre></td></tr></table></figure>
-
 <h4 id="11、BeautifulSoup-属性与方法"><a href="#11、BeautifulSoup-属性与方法" class="headerlink" title="11、BeautifulSoup 属性与方法"></a>11、BeautifulSoup 属性与方法</h4><table>
 <thead>
 <tr>
