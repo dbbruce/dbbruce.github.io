@@ -246,6 +246,37 @@
 <h4 id="利特尔法则"><a href="#利特尔法则" class="headerlink" title="利特尔法则"></a>利特尔法则</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">队列系统的基本法则是利特尔法则，该法则认为在稳定状态下，队列系统中的元素数量（N）等于系统吞吐量（T）乘以总排队/服务时间（S），即N = T · S</span><br></pre></td></tr></table></figure>
 <h4 id="scrapy-telnet"><a href="#scrapy-telnet" class="headerlink" title="scrapy telnet"></a>scrapy telnet</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">telnet localhost 6023</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">username scrapy</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">password 终端随机生成的密码</span></span><br></pre></td></tr></table></figure>
 <p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_16.png" alt="img_16.png"></p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len(engine.slot.scheduler.mqs)</td>
+<td>目前在调度器中还有很多等待（12个请求）</td>
+</tr>
+<tr>
+<td>len(engine.downloader.active)</td>
+<td>目前有9个请求正在下载器中被下载。settings.py文件中设置CONCURRENT_REQUESTS值，默认16</td>
+</tr>
+<tr>
+<td>len(engine.scraper.slot.active)</td>
+<td>正在进行抓取处理的响应有9个</td>
+</tr>
+<tr>
+<td>engine.scraper.slot.active_size</td>
+<td>这些响应大小总计为3011708kb。</td>
+</tr>
+<tr>
+<td>engine.scraper.slot.itemproc_size</td>
+<td>在这些响应中，有 0个Item此时正在通过管道处理</td>
+</tr>
+</tbody></table>
+<ul>
+<li>主要监控一下五个指标：<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. engine.downloader.active：下载器中等待下载的请求，对应最大并发数。设置中为16，这里也是16，说明下载器已经满了，其他请求进不来了。</span><br><span class="line">2. engine.slot.scheduler.mqs：内存调度队列。进不去下载器的请求就只能在调度器中等待了，这里有12个请求在等待。</span><br><span class="line">3. engine.slot.scheduler.dqs：磁盘调度队列，可以设置，将请求放于磁盘之中。</span><br><span class="line">4. engine.scraper.slot.active：正在被处理的响应数量</span><br><span class="line">5. engine.scraper.slot.itemproc_size：pipeline处理的Item数量</span><br></pre></td></tr></table></figure></li>
+</ul>
 
         
             <div id="toc-article">
