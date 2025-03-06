@@ -275,7 +275,15 @@
 </tr>
 </tbody></table>
 <ul>
-<li>主要监控一下五个指标：<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. engine.downloader.active：下载器中等待下载的请求，对应最大并发数。设置中为16，这里也是16，说明下载器已经满了，其他请求进不来了。</span><br><span class="line">2. engine.slot.scheduler.mqs：内存调度队列。进不去下载器的请求就只能在调度器中等待了，这里有12个请求在等待。</span><br><span class="line">3. engine.slot.scheduler.dqs：磁盘调度队列，可以设置，将请求放于磁盘之中。</span><br><span class="line">4. engine.scraper.slot.active：正在被处理的响应数量</span><br><span class="line">5. engine.scraper.slot.itemproc_size：pipeline处理的Item数量</span><br></pre></td></tr></table></figure></li>
+<li><p>主要监控一下五个指标：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. engine.downloader.active：下载器中等待下载的请求，对应最大并发数。设置中为16，这里也是16，说明下载器已经满了，其他请求进不来了。</span><br><span class="line">2. engine.slot.scheduler.mqs：内存调度队列。进不去下载器的请求就只能在调度器中等待了，这里有12个请求在等待。</span><br><span class="line">3. engine.slot.scheduler.dqs：磁盘调度队列，可以设置，将请求放于磁盘之中。</span><br><span class="line">4. engine.scraper.slot.active：正在被处理的响应数量</span><br><span class="line">5. engine.scraper.slot.itemproc_size：pipeline处理的Item数量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另一个信息元是stats对象，即通常在爬取完成后打印的信息 </p>
+<blockquote>
+<p>我们可以在Telnet中，通过stats.get_stats()，以字典的形式在任何时间访问它，并且可以通过p()函数打印更优雅的格式。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">p(stats.get_stats())</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">&#123;<span class="string">&#x27;downloader/request_bytes&#x27;</span>: 558330,</span> </span><br><span class="line">        ...</span><br><span class="line">        &#x27;item_scraped_count&#x27;: 2485,</span><br><span class="line">        ...</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对我们来说，目前最感兴趣的度量是item_scraped_count，它可以通过stats.get_value(&#x27;item_scraped_count&#x27;)直接访问。该度量告知我们到目前为止有多少item已经被抓取，它应当以系统吞吐量（Item/秒）的速率增长。</span><br></pre></td></tr></table></figure></li>
 </ul>
 
         
