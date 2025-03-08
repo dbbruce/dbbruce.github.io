@@ -316,8 +316,79 @@
 <td>Accept</td>
 <td>请求 HTTP 标头表示客户端能够理解的内容类型，以 MIME 类型的形式表达。借助内容协商机制, 服务器可以从诸多备选项中选择一项进行应用，并使用 Content-Type 响应标头通知客户端它的选择。浏览器会基于请求的上下文来为这个请求标头设置合适的值，比如，获取一个 CSS 层叠样式表时的值与获取图片、视频或脚本文件时的值是不同的</td>
 </tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>请求 HTTP 标头表示客户端能够理解的内容编码（通常是某种压缩算法）。服务器使用内容协商从中选择一个提议，并通过 Content-Encoding 响应标头告知客户端这一选择</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>请求 HTTP 标头表示客户端所偏好的自然语言和区域设置。服务器利用内容协商机制从这些提议中选出一项，并通过 Content-Language 响应标头将这一选择告知客户端。浏览器会根据其当前活跃的用户界面语言为该标头设定所需的值。用户很少更改此设置，而且也不建议这样做，因为这可能导致指纹识别。</td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td>通用消息头字段，被用于在 http 请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>标头表示发送给接收方的消息体的大小（以字节为单位）。</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>表示标头用于指示资源的原始媒体类型（在发送时应用任何内容编码之前）。</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>是一个 HTTP 请求标头，其中含有先前由服务器通过 Set-Cookie 标头投放或通过 JavaScript 的 Document.cookie 方法设置，然后存储到客户端的 HTTP cookie 。</td>
+</tr>
+<tr>
+<td>Origin</td>
+<td>表示了请求的来源（协议、主机、端口）。例如，如果一个用户代理需要请求一个页面中包含的资源，或者执行脚本中的 HTTP 请求（fetch），那么该页面的来源（origin）就可能被包含在这次请求中。</td>
+</tr>
+<tr>
+<td>Pragma</td>
+<td>是一个在 HTTP&#x2F;1.0 中规定的通用首部，这个首部的效果依赖于不同的实现，所以在“请求 - 响应”链中可能会有不同的效果。它用来向后兼容只支持 HTTP&#x2F;1.0 协议的缓存服务器，那时候 HTTP&#x2F;1.1 协议中的 Cache-Control 还没有出来。</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>提示特定资源请求在特定连接上的优先级。该值可以在请求中发送，以指示客户端的优先级，或者在响应中发送，如果服务器选择重新调整请求的优先级。</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>请求头包含了当前请求页面的来源页面的地址，即表示当前页面是通过此来源页面里的链接进入的。服务端一般使用 Referer 请求头识别访问来源，可能会以此进行统计分析、日志记录以及缓存优化等。</td>
+</tr>
+<tr>
+<td>Sec-CH-UA</td>
+<td>用户代理客户端提示请求标头（header）提供用户代理的品牌（brand）和重要的版本信息。</td>
+</tr>
+<tr>
+<td>Sec-CH-UA-Mobile</td>
+<td>是否是移动端用户，请求标头是一个用户代理客户端提示，用于指示浏览器是否在移动设备上。 桌面浏览器也可以使用它来指示对 “移动” 用户体验的偏好</td>
+</tr>
+<tr>
+<td>Sec-CH-UA-Platform</td>
+<td>请求标头是一个用户代理客户端提示，它提供运行用户代理的平台或作系统。 例如：“Windows”或“Android”。</td>
+</tr>
+<tr>
+<td>Sec-Fetch-Dest</td>
+<td>fetch 元数据请求标头指示请求的目的地。 这是原始 fetch 请求的发起者，即 fetch 数据将在哪里 （以及如何） 使用。</td>
+</tr>
+<tr>
+<td>Sec-Fetch-Mode</td>
+<td>fetch 元数据请求标头指示请求的模式。</td>
+</tr>
+<tr>
+<td>Sec-Fetch-Site</td>
+<td>fetch 元数据请求标头指示请求发起方的源与所请求资源的源之间的关系。</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>请求标头是一个特征字符串，它允许服务器和网络对等体识别请求用户代理的应用程序、作系统、供应商和&#x2F;或版本</td>
+</tr>
+<tr>
+<td>X-Requested-With</td>
+<td>请求头用于在服务器端判断request来自Ajax请求还是传统请求。 如果 requestedWith 为 null，则为同步请求。如果 requestedWith 为 XMLHttpRequest 则为 Ajax 请求</td>
+</tr>
 </tbody></table>
-<p>Accept-Encoding| 请求 HTTP 标头表示客户端能够理解的内容编码（通常是某种压缩算法）。服务器使用内容协商从中选择一个提议，并通过 Content-Encoding 响应标头告知客户端这一选择<br>Accept-Language| 请求 HTTP 标头表示客户端所偏好的自然语言和区域设置。服务器利用内容协商机制从这些提议中选出一项，并通过 Content-Language 响应标头将这一选择告知客户端。浏览器会根据其当前活跃的用户界面语言为该标头设定所需的值。用户很少更改此设置，而且也不建议这样做，因为这可能导致指纹识别。<br>Cache-Control| 通用消息头字段，被用于在 http 请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。<br>Content-Length| 标头表示发送给接收方的消息体的大小（以字节为单位）。<br>Content-Type| 表示标头用于指示资源的原始媒体类型（在发送时应用任何内容编码之前）。<br>Cookie| 是一个 HTTP 请求标头，其中含有先前由服务器通过 Set-Cookie 标头投放或通过 JavaScript 的 Document.cookie 方法设置，然后存储到客户端的 HTTP cookie 。<br>Origin| 表示了请求的来源（协议、主机、端口）。例如，如果一个用户代理需要请求一个页面中包含的资源，或者执行脚本中的 HTTP 请求（fetch），那么该页面的来源（origin）就可能被包含在这次请求中。<br>Pragma| 是一个在 HTTP&#x2F;1.0 中规定的通用首部，这个首部的效果依赖于不同的实现，所以在“请求 - 响应”链中可能会有不同的效果。它用来向后兼容只支持 HTTP&#x2F;1.0 协议的缓存服务器，那时候 HTTP&#x2F;1.1 协议中的 Cache-Control 还没有出来。<br>priority| 提示特定资源请求在特定连接上的优先级。该值可以在请求中发送，以指示客户端的优先级，或者在响应中发送，如果服务器选择重新调整请求的优先级。<br>Referer| 请求头包含了当前请求页面的来源页面的地址，即表示当前页面是通过此来源页面里的链接进入的。服务端一般使用 Referer 请求头识别访问来源，可能会以此进行统计分析、日志记录以及缓存优化等。<br>Sec-CH-UA| 用户代理客户端提示请求标头（header）提供用户代理的品牌（brand）和重要的版本信息。<br>Sec-CH-UA-Mobile| 是否是移动端用户，请求标头是一个用户代理客户端提示，用于指示浏览器是否在移动设备上。 桌面浏览器也可以使用它来指示对 “移动” 用户体验的偏好<br>Sec-CH-UA-Platform |请求标头是一个用户代理客户端提示，它提供运行用户代理的平台或作系统。 例如：“Windows”或“Android”。<br>Sec-Fetch-Dest| fetch 元数据请求标头指示请求的目的地。 这是原始 fetch 请求的发起者，即 fetch 数据将在哪里 （以及如何） 使用。<br>Sec-Fetch-Mode| fetch 元数据请求标头指示请求的模式。<br>Sec-Fetch-Site |fetch 元数据请求标头指示请求发起方的源与所请求资源的源之间的关系。<br>User-Agent| 请求标头是一个特征字符串，它允许服务器和网络对等体识别请求用户代理的应用程序、作系统、供应商和&#x2F;或版本<br>X-Requested-With| 请求头用于在服务器端判断request来自Ajax请求还是传统请求。 如果 requestedWith 为 null，则为同步请求。如果 requestedWith 为 XMLHttpRequest 则为 Ajax 请求</p>
 <ul>
 <li>4.444</li>
 </ul>
