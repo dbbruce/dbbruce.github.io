@@ -105,7 +105,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2025-05-15T12:50:25.000Z" itemprop="datePublished">2025年05月15日</time>
+  <time class="dt-published" datetime="2025-05-15T12:44:25.000Z" itemprop="datePublished">2025年05月15日</time>
 </span>
       
   <div class="article-category">
@@ -139,10 +139,55 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="页面配置"><a href="#页面配置" class="headerlink" title="页面配置"></a>页面配置</h4><p><a target="_blank" rel="noopener" href="https://wiki.hcmcloud.cn/spaces/DOC/pages/149723225/0208.%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E5%92%8C%E5%88%97%E8%A1%A8%E6%8F%92%E4%BB%B6%E8%AE%B2%E8%A7%A3">https://wiki.hcmcloud.cn/spaces/DOC/pages/149723225/0208.%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E5%92%8C%E5%88%97%E8%A1%A8%E6%8F%92%E4%BB%B6%E8%AE%B2%E8%A7%A3</a></p>
+        <h4 id="页面配置"><a href="#页面配置" class="headerlink" title="页面配置"></a>页面配置</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://wiki.hcmcloud.cn/spaces/DOC/pages/149723225/0208.%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E5%92%8C%E5%88%97%E8%A1%A8%E6%8F%92%E4%BB%B6%E8%AE%B2%E8%A7%A3</span><br></pre></td></tr></table></figure>
+
 <span id="more"></span>
+<ul>
+<li>1、打开元数据配置<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B61.png" alt="模型插件1.png"></li>
+<li>2、切换到元数据<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B62.png" alt="模型插件2.png"><br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B63.png" alt="模型插件3.png"></li>
+<li>3、plugin写入代码<br>在Model元数据中配置：Model元数据</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>配置key</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>是</td>
+<td>插件key值，唯一</td>
+</tr>
+<tr>
+<td>type</td>
+<td>是</td>
+<td>插入点类型，格式：{pre&#x2F;post操作}_{增删改操作} pre，post  create_data,edit_data,remove_data,remove_datas</td>
+</tr>
+<tr>
+<td>name</td>
+<td>是</td>
+<td>插件名称，标准产品插件写入插件路径，云函数填入云函数名称</td>
+</tr>
+<tr>
+<td>plugin_type</td>
+<td>否</td>
+<td>插件类型，值为standard为标准代码 其他为云函数</td>
+</tr>
+<tr>
+<td>meta_disabled</td>
+<td>否</td>
+<td>是否禁用，为true则禁用</td>
+</tr>
+</tbody></table>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;plugins&quot;: [&#123;</span><br><span class="line">        &quot;key&quot;: &quot;OrgDepartment_pre_number_generator&quot;,</span><br><span class="line">        &quot;type&quot;: &quot;pre_create_data&quot;,</span><br><span class="line">        &quot;name&quot;: &quot;apps.org.org_model_plugin.ModelPlugInOrgNumberGenerator&quot;,</span><br><span class="line">        &quot;plugin_type&quot;: &quot;standard&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">	&#123;</span><br><span class="line">        &quot;key&quot;: &quot;pre_create_dept_plugin&quot;,</span><br><span class="line">        &quot;type&quot;: &quot;pre_create_data&quot;,</span><br><span class="line">        &quot;name&quot;: &quot;prepost_create_dept_plugin&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]   </span><br></pre></td></tr></table></figure>
 
-
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;plugins&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;key&quot;: &quot;post_create_addlvStddtl_plugin&quot;,</span><br><span class="line">        &quot;type&quot;: &quot;pre_create_data&quot;,</span><br><span class="line">        &quot;name&quot;: &quot;PostPluginAddLeaveStandardDetail&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B64.png" alt="模型插件4.png"></p>
+<ul>
+<li>4、云函数 - 类型：模型插件<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B65.png" alt="模型插件5.png"></li>
+</ul>
 
         
             <div id="toc-article">
