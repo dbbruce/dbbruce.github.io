@@ -139,8 +139,11 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="分析报表分页"><a href="#分析报表分页" class="headerlink" title="分析报表分页"></a>分析报表分页</h3><h4 id="1、数据源设置，选择-【分页】"><a href="#1、数据源设置，选择-【分页】" class="headerlink" title="1、数据源设置，选择 【分页】"></a>1、数据源设置，选择 【分页】</h4><span id="more"></span>
-<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E5%88%86%E9%A1%B51.png" alt="分析报表分页1.png"></p>
+        <h3 id="分析报表分页"><a href="#分析报表分页" class="headerlink" title="分析报表分页"></a>分析报表分页</h3><h4 id="1、数据源设置，选择-【分页】"><a href="#1、数据源设置，选择-【分页】" class="headerlink" title="1、数据源设置，选择 【分页】"></a>1、数据源设置，选择 【分页】</h4><ul>
+<li>page_index&#x3D;PAGE_INDEX, page_size&#x3D;PAGE_SIZE 这2个分页参数一定要传<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DYNAMIC(&#x27;EmployeeCosts&#x27;,department_id=CURR_DEPARTMENT, start_month=START_MONTH, end_month=END_MONTH, page_index=PAGE_INDEX, page_size=PAGE_SIZE)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E5%88%86%E9%A1%B51.png" alt="分析报表分页1.png"></li>
+</ul>
 <p>设置分页后，查看下【设置】 中 【paging:true】</p>
 <p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E5%88%86%E9%A1%B52.png" alt="分析报表分页2.png"></p>
 <p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E5%88%86%E9%A1%B53.png" alt="分析报表分页3.png"></p>

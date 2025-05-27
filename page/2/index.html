@@ -295,7 +295,8 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="分析报表分页"><a href="#分析报表分页" class="headerlink" title="分析报表分页"></a>分析报表分页</h3><h4 id="1、数据源设置，选择-【分页】"><a href="#1、数据源设置，选择-【分页】" class="headerlink" title="1、数据源设置，选择 【分页】"></a>1、数据源设置，选择 【分页】</h4>
+        <h3 id="分析报表分页"><a href="#分析报表分页" class="headerlink" title="分析报表分页"></a>分析报表分页</h3><h4 id="1、数据源设置，选择-【分页】"><a href="#1、数据源设置，选择-【分页】" class="headerlink" title="1、数据源设置，选择 【分页】"></a>1、数据源设置，选择 【分页】</h4><ul>
+<li>page_index&#x3D;PAGE_INDEX, page_size&#x3D;PAGE_SIZE 这2个分页参数一定要传<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DYNAMIC(&#x27;EmployeeCosts&#x27;,department_id=CURR_DEPARTMENT, start_month=START_MONTH, end_month=END_MONTH, page_index=PAGE_INDEX, page_size=PAGE_SIZE)</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
