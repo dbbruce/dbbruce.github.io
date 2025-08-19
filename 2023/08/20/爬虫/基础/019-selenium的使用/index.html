@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>019-selenium的使用 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-爬虫/基础/019-selenium的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      019-selenium的使用
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-20T13:50:52.000Z" itemprop="datePublished">2023年08月20日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/08/20/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/019-selenium%E7%9A%84%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="mac安装selenium"><a href="#mac安装selenium" class="headerlink" title="mac安装selenium"></a>mac安装selenium</h4><blockquote>
+<p>pip install selenium</p>
+</blockquote>
+<span id="more"></span>
+<h4 id="安装chromedriver"><a href="#安装chromedriver" class="headerlink" title="安装chromedriver"></a>安装chromedriver</h4><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/img_13.png" alt="img_13.png"><br>注意ChromeDriver版本号：</p>
+<blockquote>
+<p>webdriver下载地址： <a target="_blank" rel="noopener" href="https://getwebdriver.com/chromedriver">https://getwebdriver.com/chromedriver</a></p>
+<p>添加环境变量</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">selenium webdirver</span></span><br><span class="line">export PATH=$&#123;PATH&#125;:/Users/dbbruce/workspace/seleniumdriver</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo $path</span><br><span class="line"></span><br><span class="line">/usr/local/opt/protobuf@3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/go/bin:/usr/local/aria2/bin:/Library/Apple/usr/bin:/Users/dbbruce/workspace/seleniumdriver:/usr/local/mysql/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"></span><br><span class="line">options = webdriver.ChromeOptions()</span><br><span class="line">options.add_experimental_option(<span class="string">&quot;detach&quot;</span>, <span class="literal">True</span>)</span><br><span class="line">driver = webdriver.Chrome(options=options)</span><br><span class="line">driver.get(<span class="string">&quot;http://baidu.com&quot;</span>)</span><br><span class="line"><span class="comment"># 截图</span></span><br><span class="line">driver.save_screenshot(<span class="string">&#x27;baidu.png&#x27;</span>)</span><br><span class="line"><span class="comment"># 获取html源码</span></span><br><span class="line">html = driver.page_source</span><br><span class="line"><span class="built_in">print</span>(html)</span><br><span class="line"><span class="comment"># id查找，输入内容</span></span><br><span class="line">input_tag = driver.find_element(By.ID, <span class="string">&quot;kw&quot;</span>)</span><br><span class="line">input_tag.send_keys(<span class="string">&#x27;python&#x27;</span>)</span><br><span class="line"></span><br><span class="line">time.sleep(<span class="number">5000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭当前页</span></span><br><span class="line">driver.close()</span><br><span class="line"><span class="comment"># 退出浏览器</span></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
+<h4 id="selenium的基本使用-定位元素"><a href="#selenium的基本使用-定位元素" class="headerlink" title="selenium的基本使用-定位元素"></a>selenium的基本使用-定位元素</h4><ul>
+<li>find_element()获取满足条件的第一个元素</li>
+<li>find_elements()获取满足条件的所有元素</li>
+</ul>
+<h4 id="浏览器选项"><a href="#浏览器选项" class="headerlink" title="浏览器选项"></a>浏览器选项</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">options = webdriver.ChromeOptions()</span><br><span class="line">driver = webdriver.Chrome(options=options)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>页面加载策略(pageLoadStrategy)<blockquote>
+<p>如果由于下载对自动化不重要的资源(例如, 图像、css、js) 而需要很长时间才能加载页面, 您可以将默认参数normal更改为 eager 或 none 以加快会话加载速度. 此值适用于整个会话, 因此请确保您的 等待策略 足够普适.</p>
+</blockquote>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>就绪状态</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>normal</td>
+<td>complete</td>
+<td>默认值, 等待所有资源下载</td>
+</tr>
+<tr>
+<td>eager</td>
+<td>interactive</td>
+<td>DOM 访问已准备就绪, 但诸如图像的其他资源可能仍在加载</td>
+</tr>
+<tr>
+<td>none</td>
+<td>Any</td>
+<td>完全不会阻塞 WebDriver</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">options.page_load_strategy = <span class="string">&#x27;normal&#x27;</span></span><br><span class="line">driver = webdriver.Chrome(options=options)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>platformName</p>
+<blockquote>
+<p>这标识了远端的操作系统, 获取 platformName 将返回操作系统的名称.</p>
+</blockquote>
+</li>
+<li><p>acceptInsecureCerts</p>
+<blockquote>
+<p>此功能检查在会话期间导航时 是否使用了过期的 (或) 无效的 TLS Certificate .<br>如果将功能设置为 false, 则页面浏览遇到任何域证书问题时, 将返回insecure certificate error . 如果设置为 true, 则浏览器将信任无效证书.</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options.accept_insecure_certs = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>timeouts<br>指定在当前浏览上下文中, 中断正在执行脚本的时机. WebDriver创建新会话时, 将设置默认的超时时间为 30,000 .</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options.timeouts = <span class="number">3000000</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>add_argument<blockquote>
+<p>args参数用于启动浏览器时要使用的命令行开关列表<br>Chromium命令行开关列表: <a target="_blank" rel="noopener" href="https://peter.sh/experiments/chromium-command-line-switches/">https://peter.sh/experiments/chromium-command-line-switches/</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options.add_argument(<span class="string">&quot;--start-maximized&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>binary_location<blockquote>
+<p>从指定位置启动浏览器</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options.binary_location = chrome_bin</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file_input = driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;input[type=&#x27;file&#x27;]&quot;</span>)</span><br><span class="line">file_input.send_keys(upload_file)</span><br><span class="line">driver.find_element(By.ID, <span class="string">&quot;file-submit&quot;</span>).click()</span><br></pre></td></tr></table></figure>
+<h4 id="查询网络元素"><a href="#查询网络元素" class="headerlink" title="查询网络元素"></a>查询网络元素</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">id</span>=<span class="string">&quot;vegetables&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;potatoes&quot;</span>&gt;</span>…</span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;onions&quot;</span>&gt;</span>…</span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;tomatoes&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Tomato is a Vegetable<span class="tag">&lt;/<span class="name">span</span>&gt;</span>…</span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;fruits&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;bananas&quot;</span>&gt;</span>…</span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;apples&quot;</span>&gt;</span>…</span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;tomatoes&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Tomato is a Fruit<span class="tag">&lt;/<span class="name">span</span>&gt;</span>…</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"></span><br><span class="line">fruits = driver.find_element(By.ID, <span class="string">&quot;fruits&quot;</span>)</span><br><span class="line">fruit = fruits.find_element(By.CLASS_NAME,<span class="string">&quot;tomatoes&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找fruits元素下的tomatoes</span></span><br><span class="line">fruit = driver.find_element(By.CSS_SELECTOR,<span class="string">&quot;#fruits .tomatoes&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plants = driver.find_elements(By.TAG_NAME, <span class="string">&quot;li&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fruit = driver.find_element(By.CSS_SELECTOR,<span class="string">&quot;#fruits .tomatoes&quot;</span>)</span><br><span class="line"></span><br><span class="line">elements = element.find_elements(By.TAG_NAME, <span class="string">&#x27;p&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> e <span class="keyword">in</span> elements:</span><br><span class="line">    <span class="built_in">print</span>(e.text)</span><br><span class="line"></span><br><span class="line">attr = driver.switch_to.active_element.get_attribute(<span class="string">&quot;title&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(attr)</span><br></pre></td></tr></table></figure>
+
+<h4 id="点击"><a href="#点击" class="headerlink" title="点击"></a>点击</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element(By.NAME, <span class="string">&quot;color_input&quot;</span>).click()</span><br></pre></td></tr></table></figure>
+<h4 id="发送键位"><a href="#发送键位" class="headerlink" title="发送键位"></a>发送键位</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element(By.NAME, <span class="string">&quot;email_input&quot;</span>).send_keys(<span class="string">&quot;admin@localhost.dev&quot;</span> )</span><br></pre></td></tr></table></figure>
+<h4 id="清除"><a href="#清除" class="headerlink" title="清除"></a>清除</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element(By.NAME, <span class="string">&quot;email_input&quot;</span>).clear()</span><br></pre></td></tr></table></figure>
+<h4 id="定位策略"><a href="#定位策略" class="headerlink" title="定位策略"></a>定位策略</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.information</span> &#123;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">background-color</span>: white;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">color</span>: black;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Contact Selenium<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/action_page.php&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;m&quot;</span> /&gt;</span>Male <span class="symbol">&amp;nbsp;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;f&quot;</span> /&gt;</span>Female <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;fname&quot;</span>&gt;</span>First name:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;information&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;fname&quot;</span> <span class="attr">name</span>=<span class="string">&quot;fname&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Jane&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;lname&quot;</span>&gt;</span>Last name:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;information&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;lname&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lname&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Doe&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;newsletter&quot;</span>&gt;</span>Newsletter:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;newsletter&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>To know more about Selenium, visit the official page </span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span> =<span class="string">&quot;www.selenium.dev&quot;</span>&gt;</span>Selenium Official Page<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"></span><br><span class="line"><span class="comment"># class name</span></span><br><span class="line">driver.find_element(By.CLASS_NAME, <span class="string">&quot;information&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># css selector #代表id .代表class</span></span><br><span class="line">driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;#fname&quot;</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># id</span></span><br><span class="line">driver.find_element(By.ID, <span class="string">&quot;lname&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># name</span></span><br><span class="line">driver.find_element(By.NAME, <span class="string">&quot;newsletter&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># link text</span></span><br><span class="line">driver.find_element(By.LINK_TEXT, <span class="string">&quot;Selenium Official Page&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># partial部分 link text</span></span><br><span class="line">driver.find_element(By.PARTIAL_LINK_TEXT, <span class="string">&quot;Official Page&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># tag name</span></span><br><span class="line">driver.find_element(By.TAG_NAME, <span class="string">&quot;a&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># xpath</span></span><br><span class="line">driver.find_element(By.XPATH, <span class="string">&quot;//input[@value=&#x27;f&#x27;]&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h4><ul>
+<li>是否显示<blockquote>
+<p>此方法用于检查连接的元素是否正确显示在网页上. 返回一个 Boolean 值， 如果连接的元素显示在当前的浏览器上下文中，则为True，否则返回false。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value = driver.find_element(By.NAME, <span class="string">&#x27;button_input&#x27;</span>).is_enabled()</span><br></pre></td></tr></table></figure></li>
+<li>是否启用<blockquote>
+<p>此方法用于检查所连接的元素在网页上是启用还是禁用状态。 返回一个布尔值，如果在当前浏览上下文中是 启用 状态，则返回 true，否则返回 false。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value = driver.find_element(By.NAME, <span class="string">&#x27;button_input&#x27;</span>).is_enabled()</span><br></pre></td></tr></table></figure></li>
+<li>是否被选定<blockquote>
+<p>此方法确认相关的元素是否 已选定，常用于复选框、单选框、输入框和选择元素中。 该方法返回一个布尔值，如果在当前浏览上下文中 选择了 引用的元素，则返回 True，否则返回 False。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value = driver.find_element(By.NAME, <span class="string">&quot;checkbox_input&quot;</span>).is_selected()</span><br></pre></td></tr></table></figure></li>
+<li>获取元素标签名<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attr = driver.find_element(By.NAME, <span class="string">&quot;email_input&quot;</span>).tag_name</span><br></pre></td></tr></table></figure></li>
+<li>位置和大小<blockquote>
+<p>用于获取参照元素的尺寸和坐标。<br>元素左上角的X轴位置<br>元素左上角的y轴位置<br>元素的高度<br>元素的宽度</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = driver.find_element(By.NAME, <span class="string">&quot;range_input&quot;</span>).rect</span><br></pre></td></tr></table></figure></li>
+<li>获取元素CSS值<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cssValue = driver.find_element(By.ID, <span class="string">&quot;namedColor&quot;</span>).value_of_css_property(<span class="string">&#x27;background-color&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>文本内容<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text = driver.find_element(By.ID, <span class="string">&quot;justanotherlink&quot;</span>).text</span><br></pre></td></tr></table></figure></li>
+<li>获取特性或属性<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">email_txt = driver.find_element(By.NAME, <span class="string">&quot;email_input&quot;</span>)</span><br><span class="line">value_info = email_txt.get_attribute(<span class="string">&quot;value&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="浏览器交互"><a href="#浏览器交互" class="headerlink" title="浏览器交互"></a>浏览器交互</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title = driver.title</span><br><span class="line">url = driver.current_url</span><br><span class="line"><span class="comment"># 按下浏览器的后退按钮</span></span><br><span class="line">driver.back()</span><br><span class="line"><span class="comment"># 按下浏览器的前进键</span></span><br><span class="line">driver.forward()</span><br><span class="line"><span class="comment"># 刷新当前页面</span></span><br><span class="line">driver.refresh()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Alerts 警告框<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">element = driver.find_element(By.LINK_TEXT, <span class="string">&quot;See an example alert&quot;</span>)</span><br><span class="line">element.click()</span><br><span class="line"></span><br><span class="line">wait = WebDriverWait(driver, timeout=<span class="number">2</span>)</span><br><span class="line">alert = wait.until(<span class="keyword">lambda</span> d : d.switch_to.alert)</span><br><span class="line">text = alert.text</span><br><span class="line">alert.accept()</span><br></pre></td></tr></table></figure></li>
+<li>Confirm 确认框<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">element = driver.find_element(By.LINK_TEXT, <span class="string">&quot;See a sample confirm&quot;</span>)</span><br><span class="line">driver.execute_script(<span class="string">&quot;arguments[0].click();&quot;</span>, element)</span><br><span class="line"></span><br><span class="line">wait = WebDriverWait(driver, timeout=<span class="number">2</span>)</span><br><span class="line">alert = wait.until(<span class="keyword">lambda</span> d : d.switch_to.alert)</span><br><span class="line">text = alert.text</span><br><span class="line">alert.dismiss()</span><br></pre></td></tr></table></figure></li>
+<li>Prompt 提示框<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">element = driver.find_element(By.LINK_TEXT, <span class="string">&quot;See a sample prompt&quot;</span>)</span><br><span class="line">driver.execute_script(<span class="string">&quot;arguments[0].click();&quot;</span>, element)</span><br><span class="line"></span><br><span class="line">wait = WebDriverWait(driver, timeout=<span class="number">2</span>)</span><br><span class="line">alert = wait.until(<span class="keyword">lambda</span> d : d.switch_to.alert)</span><br><span class="line">alert.send_keys(<span class="string">&quot;Selenium&quot;</span>)</span><br><span class="line">text = alert.text</span><br><span class="line">alert.accept()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h4><p>Cookie是从网站发送并存储在您的计算机中的一小段数据. Cookies主要用于识别用户并加载存储的信息.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加 Cookie</span></span><br><span class="line">driver.add_cookie(&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>: <span class="string">&quot;value&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取命名的 Cookie</span></span><br><span class="line"><span class="built_in">print</span>(driver.get_cookie(<span class="string">&quot;foo&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取全部 Cookies</span></span><br><span class="line"></span><br><span class="line">driver.add_cookie(&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;test1&quot;</span>, <span class="string">&quot;value&quot;</span>: <span class="string">&quot;cookie1&quot;</span>&#125;)</span><br><span class="line">driver.add_cookie(&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;test2&quot;</span>, <span class="string">&quot;value&quot;</span>: <span class="string">&quot;cookie2&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get all available cookies</span></span><br><span class="line"><span class="built_in">print</span>(driver.get_cookies())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 Cookie</span></span><br><span class="line">driver.add_cookie(&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;test1&quot;</span>, <span class="string">&quot;value&quot;</span>: <span class="string">&quot;cookie1&quot;</span>&#125;)</span><br><span class="line">driver.add_cookie(&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;test2&quot;</span>, <span class="string">&quot;value&quot;</span>: <span class="string">&quot;cookie2&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Delete a cookie with name &#x27;test1&#x27;</span></span><br><span class="line">driver.delete_cookie(<span class="string">&quot;test1&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除所有 Cookies</span></span><br><span class="line">driver.delete_all_cookies()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="同窗口和标签一起工作"><a href="#同窗口和标签一起工作" class="headerlink" title="同窗口和标签一起工作"></a>同窗口和标签一起工作</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以使用以下方法获得当前窗口的窗口句柄</span></span><br><span class="line">driver.current_window_handle</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切换窗口或标签页<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动驱动程序</span></span><br><span class="line"><span class="keyword">with</span> webdriver.Firefox() <span class="keyword">as</span> driver:</span><br><span class="line">    <span class="comment"># 打开网址</span></span><br><span class="line">driver.get(<span class="string">&quot;https://seleniumhq.github.io&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置等待</span></span><br><span class="line">    wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 存储原始窗口的 ID</span></span><br><span class="line">    original_window = driver.current_window_handle</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查一下，我们还没有打开其他的窗口</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">len</span>(driver.window_handles) == <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 单击在新窗口中打开的链接</span></span><br><span class="line">    driver.find_element(By.LINK_TEXT, <span class="string">&quot;new window&quot;</span>).click()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待新窗口或标签页</span></span><br><span class="line">    wait.until(EC.number_of_windows_to_be(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 循环执行，直到找到一个新的窗口句柄</span></span><br><span class="line">    <span class="keyword">for</span> window_handle <span class="keyword">in</span> driver.window_handles:</span><br><span class="line">        <span class="keyword">if</span> window_handle != original_window:</span><br><span class="line">            driver.switch_to.window(window_handle)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待新标签页完成加载内容</span></span><br><span class="line">    wait.until(EC.title_is(<span class="string">&quot;SeleniumHQ Browser Automation&quot;</span>))</span><br></pre></td></tr></table></figure></li>
+<li>创建新窗口(或)新标签页并且切换<blockquote>
+<p>创建一个新窗口 (或) 标签页，屏幕焦点将聚焦在新窗口或标签在上。您不需要切换到新窗口 (或) 标签页。如果除了新窗口之外， 您打开了两个以上的窗口 (或) 标签页，您可以通过遍历 WebDriver 看到两个窗口或选项卡，并切换到非原始窗口。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>注意: 该特性适用于 Selenium 4 及其后续版本。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 打开新标签页并切换到新标签页</span></span><br><span class="line">driver.switch_to.new_window(<span class="string">&#x27;tab&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开一个新窗口并切换到新窗口</span></span><br><span class="line">driver.switch_to.new_window(<span class="string">&#x27;window&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭窗口或标签页<blockquote>
+<p>当你完成了一个窗口或标签页的工作时，_并且_它不是浏览器中最后一个打开的窗口或标签页时，你应该关闭它并切换回你之前使用的窗口</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#关闭标签页或窗口</span></span><br><span class="line">driver.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#切回到之前的标签页或窗口</span></span><br><span class="line">driver.switch_to.window(original_window)</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果在关闭一个窗口后忘记切换回另一个窗口句柄，WebDriver 将在当前关闭的页面上执行，并触发一个 No Such Window Exception 无此窗口异常。必须切换回有效的窗口句柄才能继续执行。</span><br></pre></td></tr></table></figure></li>
+<li>退出<blockquote>
+<p>Python 的 WebDriver 现在支持 Python 上下文管理器，当使用 with 关键字时，可以在执行结束时自动退出驱动程序。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> webdriver.Firefox() <span class="keyword">as</span> driver:</span><br><span class="line">    <span class="comment"># WebDriver 代码…</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在此缩进位置后 WebDriver 会自动退出</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="窗口管理"><a href="#窗口管理" class="headerlink" title="窗口管理"></a>窗口管理</h4><ul>
+<li>获取窗口大小<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">width = driver.get_window_size().get(<span class="string">&quot;width&quot;</span>)</span><br><span class="line">height = driver.get_window_size().get(<span class="string">&quot;height&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者存储尺寸并在以后查询它们</span></span><br><span class="line">size = driver.get_window_size()</span><br><span class="line">width1 = size.get(<span class="string">&quot;width&quot;</span>)</span><br><span class="line">height1 = size.get(<span class="string">&quot;height&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>设置窗口大小<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.set_window_size(<span class="number">1024</span>, <span class="number">768</span>)</span><br></pre></td></tr></table></figure></li>
+<li>得到窗口的位置<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment"># 分别获取每个尺寸</span></span><br><span class="line">x = driver.get_window_position().get(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = driver.get_window_position().get(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 或者存储尺寸并在以后查询它们</span></span><br><span class="line">position = driver.get_window_position()</span><br><span class="line">x1 = position.get(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y1 = position.get(<span class="string">&#x27;y&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>设置窗口位置<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.set_window_position(<span class="number">0</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure></li>
+<li>最大化窗口<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.maximize_window()</span><br></pre></td></tr></table></figure></li>
+<li>最小化窗口<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.minimize_window()</span><br></pre></td></tr></table></figure></li>
+<li>全屏窗口<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.fullscreen_window()</span><br></pre></td></tr></table></figure></li>
+<li>屏幕截图<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.save_screenshot(<span class="string">&#x27;./image.png&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>元素屏幕截图<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ele = driver.find_element(By.CSS_SELECTOR, <span class="string">&#x27;h1&#x27;</span>)</span><br><span class="line"><span class="comment"># Returns and base64 encoded string into image</span></span><br><span class="line">ele.screenshot(<span class="string">&#x27;./image.png&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>执行脚本<blockquote>
+<p>在当前frame或者窗口的上下文中，执行JavaScript代码片段.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment"># Stores the header element</span></span><br><span class="line">header = driver.find_element(By.CSS_SELECTOR, <span class="string">&quot;h1&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Executing JavaScript to capture innerText of header element</span></span><br><span class="line">driver.execute_script(<span class="string">&#x27;return arguments[0].innerText&#x27;</span>, header)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="Actions接口"><a href="#Actions接口" class="headerlink" title="Actions接口"></a>Actions接口</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">除了高级元素交互之外, Actions 接口 还提供了对指定输入设备 可以执行的确切操作的精细控制. Selenium为3种输入源提供了接口： 键盘设备的键输入, 鼠标, 笔或触摸设备的输入, 以及滚轮设备的滚轮输入 (在Selenium 4.2中引入). Selenium允许您构建分配给特定输入的独立操作命令, 会将他们链接在一起, 并调用关联的执行方法以一次执行它们.</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>暂停</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">clickable = driver.find_element(By.ID, <span class="string">&quot;clickable&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .move_to_element(clickable)\</span><br><span class="line">    .pause(<span class="number">1</span>)\</span><br><span class="line">    .click_and_hold()\</span><br><span class="line">    .pause(<span class="number">1</span>)\</span><br><span class="line">    .send_keys(<span class="string">&quot;abc&quot;</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li><p>释放所有Actions</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ActionBuilder(driver).clear_actions()</span><br></pre></td></tr></table></figure></li>
+<li><p>按下按键</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ActionChains(driver)\</span><br><span class="line">    .key_down(Keys.SHIFT)\</span><br><span class="line">    .send_keys(<span class="string">&quot;abc&quot;</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li><p>释放按键</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ActionChains(driver)\</span><br><span class="line">    .key_down(Keys.SHIFT)\</span><br><span class="line">    .send_keys(<span class="string">&quot;a&quot;</span>)\</span><br><span class="line">    .key_up(Keys.SHIFT)\</span><br><span class="line">    .send_keys(<span class="string">&quot;b&quot;</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li><p>键入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ActionChains(driver)\</span><br><span class="line">    .send_keys(<span class="string">&quot;abc&quot;</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li><p>指定元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">text_input = driver.find_element(By.ID, <span class="string">&quot;textInput&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .send_keys_to_element(text_input, <span class="string">&quot;abc&quot;</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li><p>复制粘贴</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cmd_ctrl = Keys.COMMAND <span class="keyword">if</span> sys.platform == <span class="string">&#x27;darwin&#x27;</span> <span class="keyword">else</span> Keys.CONTROL</span><br><span class="line"></span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .send_keys(<span class="string">&quot;Selenium!&quot;</span>)\</span><br><span class="line">    .send_keys(Keys.ARROW_LEFT)\</span><br><span class="line">    .key_down(Keys.SHIFT)\</span><br><span class="line">    .send_keys(Keys.ARROW_UP)\</span><br><span class="line">    .key_up(Keys.SHIFT)\</span><br><span class="line">    .key_down(cmd_ctrl)\</span><br><span class="line">    .send_keys(<span class="string">&quot;xvv&quot;</span>)\</span><br><span class="line">    .key_up(cmd_ctrl)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>按住鼠标左键<br>这个方法包含2个操作，首先将光标移动到被操作元素的正中心，然后按下鼠标左键不松开。 这对于聚焦一个特殊元素很有用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clickable = driver.find_element(By.ID, <span class="string">&quot;clickable&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .click_and_hold(clickable)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li><p>点击鼠标左键<br>这个方法包含2个操作，首先将光标移动到被操作元素的正中心，然后按下鼠标左键后再松开。 另一种叫法“点击”：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clickable = driver.find_element(By.ID, <span class="string">&quot;click&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .click(clickable)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li><p>点击鼠标备用按钮<br>鼠标一共有5个定义好的按钮:</p>
+</li>
+</ul>
+<p>0 — 左键 (默认值)<br>1 — 中间键 (当前不支持)<br>2 — 右键<br>3 — X1 (返回) 按钮<br>4 — X2 (前进) 按钮<br>点击鼠标右键<br>这个方法包含2个操作，首先将光标移动到被操作元素的正中心，然后点击鼠标右键。 另一种叫法“点击右键”：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clickable = driver.find_element(By.ID, <span class="string">&quot;clickable&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .context_click(clickable)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>点击鼠标回退键<br>除了这个没有更方便的方法，只是点击鼠标回退按<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">action = ActionBuilder(driver)</span><br><span class="line">action.pointer_action.pointer_down(MouseButton.BACK)</span><br><span class="line">action.pointer_action.pointer_up(MouseButton.BACK)</span><br><span class="line">action.perform()</span><br></pre></td></tr></table></figure></li>
+<li>点击鼠标前进键<br>除了这个没有更方便的方法，只是点击鼠标前进按钮<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">action = ActionBuilder(driver)</span><br><span class="line">action.pointer_action.pointer_down(MouseButton.FORWARD)</span><br><span class="line">action.pointer_action.pointer_up(MouseButton.FORWARD)</span><br><span class="line">action.perform()</span><br></pre></td></tr></table></figure></li>
+<li>双击鼠标左键<br>这个方法包含2个操作，首先将光标移动到被操作元素的正中心，然后双击鼠标左键。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clickable = driver.find_element(By.ID, <span class="string">&quot;clickable&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .double_click(clickable)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>移动光标到元素上<br>这个方法是将光标移动到元素的中心点。 另一种叫法“悬停”。 元素必须在可视窗口范围内否则这条命令将会报错。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hoverable = driver.find_element(By.ID, <span class="string">&quot;hover&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .move_to_element(hoverable)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>通过偏移量移动动光标<br>这些方法让光标先移动到指定的坐标原点，然后通过单位为px的偏移量进行光标相对原点的偏移移动。 注意光标位置必须在可视窗口区域否则会报错。<br>从元素中心点（原点）偏移<br>这个方法是指先将光标移动到元素中心点（原点），然后通过偏移量进行光标相对原点的偏移。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mouse_tracker = driver.find_element(By.ID, <span class="string">&quot;mouse-tracker&quot;</span>)</span><br><span class="line">    ActionChains(driver)\</span><br><span class="line">        .move_to_element_with_offset(mouse_tracker, <span class="number">8</span>, <span class="number">0</span>)\</span><br><span class="line">        .perform()</span><br><span class="line">```    </span><br><span class="line">- 从视窗左上角（原点）偏移</span><br><span class="line">这个方法是指先将光标移动到视窗左上角（原点），然后通过偏移量进行光标相对原点的偏移。</span><br><span class="line">```python</span><br><span class="line">    action = ActionBuilder(driver)</span><br><span class="line">    action.pointer_action.move_to_location(<span class="number">8</span>, <span class="number">0</span>)</span><br><span class="line">    action.perform()</span><br></pre></td></tr></table></figure></li>
+<li>从当前光标位置（原点）偏移<br>这个方法是指光标位于当前位置（原点），然后通过偏移量进行光标相对原点的偏移。 如果之前没有移动过光标位置，则这个位置是视窗左上角（原点）。 注意当页面发生滚动后光标位置不会发生变化。<br>注意第一个参数指定为正数时向右移动，第二个参数指定为正数时向下移动。所以 moveByOffset(30, -10) 是指从当前光标位置向右移动30个像素位置和向上移动10个像素位置。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ActionChains(driver)\</span><br><span class="line">    .move_by_offset( <span class="number">13</span>, <span class="number">15</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>拖放元素<br>这个方法首先在原元素上提交执行按下鼠标左键，移动到目标元素位置后是释放鼠标左键。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">draggable = driver.find_element(By.ID, <span class="string">&quot;draggable&quot;</span>)</span><br><span class="line">droppable = driver.find_element(By.ID, <span class="string">&quot;droppable&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .drag_and_drop(draggable, droppable)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>通过偏移量拖放元素<br>这个方法首先在原元素上提交执行按下鼠标左键，通过给出的偏移量移动元素后释放鼠标左键。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">draggable = driver.find_element(By.ID, <span class="string">&quot;draggable&quot;</span>)</span><br><span class="line">start = draggable.location</span><br><span class="line">finish = driver.find_element(By.ID, <span class="string">&quot;droppable&quot;</span>).location</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .drag_and_drop_by_offset(draggable, finish[<span class="string">&#x27;x&#x27;</span>] - start[<span class="string">&#x27;x&#x27;</span>], finish[<span class="string">&#x27;y&#x27;</span>] - start[<span class="string">&#x27;y&#x27;</span>])\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>滚动到元素<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iframe = driver.find_element(By.TAG_NAME, <span class="string">&quot;iframe&quot;</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .scroll_to_element(iframe)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>按给定数量滚动<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">footer = driver.find_element(By.TAG_NAME, <span class="string">&quot;footer&quot;</span>)</span><br><span class="line">delta_y = footer.rect[<span class="string">&#x27;y&#x27;</span>]</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .scroll_by_amount(<span class="number">0</span>, delta_y)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>从一个元素滚动给定的量<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iframe = driver.find_element(By.TAG_NAME, <span class="string">&quot;iframe&quot;</span>)</span><br><span class="line">scroll_origin = ScrollOrigin.from_element(iframe)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .scroll_from_origin(scroll_origin, <span class="number">0</span>, <span class="number">200</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>从具有偏移的元素滚动<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">footer = driver.find_element(By.TAG_NAME, <span class="string">&quot;footer&quot;</span>)</span><br><span class="line">scroll_origin = ScrollOrigin.from_element(footer, <span class="number">0</span>, -<span class="number">50</span>)</span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .scroll_from_origin(scroll_origin, <span class="number">0</span>, <span class="number">200</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+<li>从原点（元素）的偏移量滚动给定的量<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scroll_origin = ScrollOrigin.from_viewport(<span class="number">10</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">ActionChains(driver)\</span><br><span class="line">    .scroll_from_origin(scroll_origin, <span class="number">0</span>, <span class="number">200</span>)\</span><br><span class="line">    .perform()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="操作Cookie"><a href="#操作Cookie" class="headerlink" title="操作Cookie"></a>操作Cookie</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">获取所有cookie信息</span><br><span class="line">driver.get_cookies()</span><br><span class="line"></span><br><span class="line">获取指定cookie信息</span><br><span class="line">driver.get_cookie(&#x27;BAIDUID&#x27;)·添加cookie</span><br><span class="line">driver.add_cookie(&#123;&#x27;name&#x27;:&#x27;zhangsan&#x27;,&#x27;value&#x27;:&#x27;88888&#x27;&#125;)</span><br><span class="line"></span><br><span class="line">删除cookie</span><br><span class="line">driver.delete_cookie(&#x27;zhangsan&#x27;)</span><br><span class="line">driver.delete_all_cookies()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.get(<span class="string">&quot;https://www.zhipin.com/web/geek/job?query=python&amp;city=101010100&amp;page=1&quot;</span>)</span><br><span class="line"></span><br><span class="line">driver.add_cookie(&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;zhangshan&#x27;</span>,<span class="string">&#x27;value&#x27;</span>:<span class="string">&#x27;8888&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line">cookies = driver.get_cookies()</span><br><span class="line"><span class="keyword">for</span> cookie <span class="keyword">in</span> cookies:</span><br><span class="line">    <span class="built_in">print</span>(cookie)</span><br><span class="line"></span><br><span class="line">driver.delete_cookie(<span class="string">&#x27;zhangshan&#x27;</span>)</span><br><span class="line">driver.delete_all_cookies()</span><br><span class="line">driver.close()</span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
+<h4 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h4><p>隐式等待:调用 driver.implicitly_wait.那么在获取不可用的元素之前，会先等待N秒钟的时间<br>显示等待:显示等待是表明某个条件成立后才执行获取元素的操作。也可以在等待的时候指定一个最大的时间，如果超过这个时间那么就会抛出一个异常<br>显示等待应用<br>selenmm.webdriver.support.excepted_conditions 期望的条件<br>selenium.welJebDriverWait</p>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#mac%E5%AE%89%E8%A3%85selenium"><span class="toc-text">mac安装selenium</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85chromedriver"><span class="toc-text">安装chromedriver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#selenium%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0"><span class="toc-text">selenium的基本使用-定位元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E9%80%89%E9%A1%B9"><span class="toc-text">浏览器选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E7%BD%91%E7%BB%9C%E5%85%83%E7%B4%A0"><span class="toc-text">查询网络元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E5%87%BB"><span class="toc-text">点击</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E9%94%AE%E4%BD%8D"><span class="toc-text">发送键位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%85%E9%99%A4"><span class="toc-text">清除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E7%AD%96%E7%95%A5"><span class="toc-text">定位策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA"><span class="toc-text">显示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%A4%E4%BA%92"><span class="toc-text">浏览器交互</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cookies"><span class="toc-text">cookies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E7%AA%97%E5%8F%A3%E5%92%8C%E6%A0%87%E7%AD%BE%E4%B8%80%E8%B5%B7%E5%B7%A5%E4%BD%9C"><span class="toc-text">同窗口和标签一起工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86"><span class="toc-text">窗口管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Actions%E6%8E%A5%E5%8F%A3"><span class="toc-text">Actions接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9CCookie"><span class="toc-text">操作Cookie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AD%89%E5%BE%85"><span class="toc-text">等待</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/08/20/爬虫/基础/019-selenium的使用/">https://dbbruce.github.io/2023/08/20/爬虫/基础/019-selenium的使用/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/08/20/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/018-%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%E7%88%AC%E8%99%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          018-动态网页爬虫
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/20/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/020-scrapy%E4%B8%8Eselenium%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          020-scrapy与selenium的使用
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

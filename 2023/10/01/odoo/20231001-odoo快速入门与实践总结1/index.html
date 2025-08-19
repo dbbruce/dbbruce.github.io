@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>odoo知识点(七)-odoo快速入门与实践总结-第一篇 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-odoo/20231001-odoo快速入门与实践总结1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      odoo知识点(七)-odoo快速入门与实践总结-第一篇
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-10-01T15:50:52.000Z" itemprop="datePublished">2023年10月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/odoo/">odoo</a> > <a class="article-category-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/10/01/odoo/20231001-odoo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%931/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><ul>
+<li><strong>参考mac安装odoo16</strong></li>
+</ul>
+<h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><h4 id="2-1-odoo-shell"><a href="#2-1-odoo-shell" class="headerlink" title="2.1.odoo shell"></a>2.1.odoo shell</h4><ul>
+<li>需要指定数据库：-d 数据库名<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./odoo-bin shell -d odoo16_db</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+</ul>
+<h4 id="2-2-配置文件中的参数"><a href="#2-2-配置文件中的参数" class="headerlink" title="2.2.配置文件中的参数"></a>2.2.配置文件中的参数</h4><ul>
+<li>参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>addons_path</td>
+<td>使用逗号（，）分隔扩展路径，会在路径中寻找模块，从左至右阅读，最左侧拥有最高的优先级</td>
+</tr>
+<tr>
+<td>admin_passwd</td>
+<td>数据库管理页面操作的密码，访问时不需要密码，操作数据库备份，复制，删除时会用的这个密码</td>
+</tr>
+<tr>
+<td>db_user</td>
+<td>数据库实例，在服务器启动序列期间进行初始化</td>
+</tr>
+<tr>
+<td>dbfilter</td>
+<td>用于筛选可访问的数据库，它是Python interpreted正则表达式，用于不让用户选择数据库，以及使未验证的URL能够正常工作，它应该以^dbname$格式进行设置，例如dbfilter&#x3D;^odoo-prod$。它支持%h和%d占位符，可用来作为HTTP请求的主机名和子域名</td>
+</tr>
+<tr>
+<td>logfile</td>
+<td>日志文件，通常位于&#x2F;var&#x2F;log中，若留空，或者设置为False，则日志会以标准方式进行输出</td>
+</tr>
+<tr>
+<td>logrotate&#x3D;True</td>
+<td>表示按天存放日志</td>
+</tr>
+<tr>
+<td>proxy_mode</td>
+<td>当使用反向代理时，应将其设为True</td>
+</tr>
+<tr>
+<td>without_demo</td>
+<td>在生产环境中应将其设为True，这样新的数据库中就不会再有演示数据</td>
+</tr>
+<tr>
+<td>workers</td>
+<td>其值为启用的处理器数量</td>
+</tr>
+<tr>
+<td>xmlrpc_port</td>
+<td>服务监听的端口号。默认使用8069</td>
+</tr>
+<tr>
+<td>data_dir</td>
+<td>会话数据和附件存储的位置，应记得备份它</td>
+</tr>
+<tr>
+<td>xmlrpc-interface</td>
+<td>设置监听的地址。默认值会监听所有端口0.0.0.0，在使用反向代理时，可以设置为127.0.0.1，目的是只对本地请求响应</td>
+</tr>
+</tbody></table>
+<ul>
+<li>日志格式<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[options]</span><br><span class="line">is_upgrade = False</span><br><span class="line">admin_passwd = xxxxxx</span><br><span class="line">db_host = xxxxxx</span><br><span class="line">db_port = 5432</span><br><span class="line">db_user = odoo </span><br><span class="line">db_password = xxxxxxxxxx</span><br><span class="line">logfile = .db.log</span><br><span class="line"># log_level = debug_sql</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-3-pycharm支持远程开发"><a href="#2-3-pycharm支持远程开发" class="headerlink" title="2.3.pycharm支持远程开发"></a>2.3.pycharm支持远程开发</h4><blockquote>
+<p>菜单Tools → Deployment → Configuration</p>
+</blockquote>
+<h4 id="2-4-odoo16-debug"><a href="#2-4-odoo16-debug" class="headerlink" title="2.4.odoo16 debug"></a>2.4.odoo16 debug</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="http://192.168.30.60:8069/web?debug=1#id=2&cids=1&menu_id=4&action=70&model=res.users&view_type=form">http://192.168.30.60:8069/web?debug=1#id=2&amp;cids=1&amp;menu_id=4&amp;action=70&amp;model=res.users&amp;view_type=form</a><br><img src="/../../images/odoo/debug_type.png" alt="debug_type.png"></p>
+</blockquote>
+<h3 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h3><h4 id="3-1-激活开发者模式-tests-和激活开发者模式-assets"><a href="#3-1-激活开发者模式-tests-和激活开发者模式-assets" class="headerlink" title="3.1.激活开发者模式(tests)和激活开发者模式(assets)"></a>3.1.激活开发者模式(tests)和激活开发者模式(assets)</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">激活开发者模式(assets): 会加载页面需要的JS和CSS资源，但这会导致页面的浏览速度有所下降</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-res-parter"><a href="#3-2-res-parter" class="headerlink" title="3.2.res.parter"></a>3.2.res.parter</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统内人员相关的常用模型就是res.parter, Odoo系统内的客户、供应商、联系人等都继承使用了这个模型</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-安装-contacts-联系人-app步骤"><a href="#3-3-安装-contacts-联系人-app步骤" class="headerlink" title="3.3.安装 contacts(联系人) app步骤"></a>3.3.安装 contacts(联系人) app步骤</h4><ul>
+<li>1.搜索 → 安装 activate</li>
+</ul>
+<p><img src="/../../images/odoo/odooksrm-33.png" alt="odooksrm-33.png"></p>
+<ul>
+<li>2.update apps list</li>
+</ul>
+<p><img src="/../../images/odoo/odooksrm-33-2.png" alt="odooksrm-33-2.png"></p>
+<ul>
+<li>3.查看</li>
+</ul>
+<p><img src="/../../images/odoo/img.png" alt="img.png"></p>
+<h4 id="3-4-model-添加字段"><a href="#3-4-model-添加字段" class="headerlink" title="3.4.model 添加字段"></a>3.4.model 添加字段</h4><ul>
+<li>设置|技术|数据库结构|模型</li>
+<li>前端创建的字段必须 x_ 开通，后端创建的字段没有这个限制<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">字段名称：x_is_teacher</span><br><span class="line">字段类型：boolean</span><br><span class="line">字段标签：是否教师</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="/../../images/odoo/2024-11-27%2014.32.30.png" alt="2024-11-27 14.32.30.png"><br><img src="/../../images/odoo/img_1.png" alt="img_1.png"><br><img src="/../../images/odoo/img_2.png" alt="img_2.png"><br><img src="/../../images/odoo/img_3.png" alt="img_3.png"></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此时，我们的字段就已被添加到字段列表中，但在第一个页面我们还无法看到，需要点击右上方的切换箭头来查看最后一页的信息</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/odoo/img_4.png" alt="img_4.png"></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改了模型，但用户在前端却是看不到这个字段的，我们需要通过单独的视图修改步骤来让用户看到这个新增的字段</span><br></pre></td></tr></table></figure>
+<h4 id="3-5-view-添加字段"><a href="#3-5-view-添加字段" class="headerlink" title="3.5.view 添加字段"></a>3.5.view 添加字段</h4><ul>
+<li>view继承需要用到外部ID（External ID），本例的外部ID是base.view_partner_form，外部ID第一个点之前的字符代表模块插件的名称，可以看出，当前的视图属于base模块</li>
+</ul>
+<p><img src="/../../images/odoo/img_7.png" alt="img_7.png"></p>
+<ul>
+<li>切换tab到views</li>
+<li>视图有多种类型，包括表单、树形&#x2F;列表、搜索（search）或看板</li>
+<li>搜索视图实际上就是对顶部可用的过滤器的定义</li>
+<li>树形&#x2F;列表的显示形式其实都是列表，在具体使用的时候可以用tree也可以用list，之所以这样是因为列表用的是tree。</li>
+<li>视图可以继承基本视图进行扩展，一个扩展视图可以继承多个视图</li>
+<li>编辑视图方法<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">首先，点击上方的联系人按钮（前面已经安装过），这时可以看到页面显示出了一些联系人的图标。</span><br><span class="line">然后，我们随便选择一个联系人，点击打开进入详细界面。</span><br><span class="line">第三步，点开右上角的调试按钮，并选择编辑表单视图按钮</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="/../../images/odoo/img_5.png" alt="img_5.png"></p>
+<p><img src="/../../images/odoo/img_6.png" alt="img_6.png"></p>
+<ul>
+<li>加一个field<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">group</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;function&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;e.g. Sales Director&quot;</span> <span class="attr">attrs</span>=<span class="string">&quot;&#123;&#x27;invisible&#x27;: [(&#x27;is_company&#x27;,&#x27;=&#x27;, True)]&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;phone&quot;</span> <span class="attr">widget</span>=<span class="string">&quot;phone&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;mobile&quot;</span> <span class="attr">widget</span>=<span class="string">&quot;phone&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;user_ids&quot;</span> <span class="attr">invisible</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">widget</span>=<span class="string">&quot;email&quot;</span> <span class="attr">context</span>=<span class="string">&quot;&#123;&#x27;gravatar_image&#x27;: True&#125;&quot;</span> <span class="attr">attrs</span>=<span class="string">&quot;&#123;&#x27;required&#x27;: [(&#x27;user_ids&#x27;,&#x27;!=&#x27;, [])]&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;website&quot;</span> <span class="attr">string</span>=<span class="string">&quot;Website&quot;</span> <span class="attr">widget</span>=<span class="string">&quot;url&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;e.g. https://www.odoo.com&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;title&quot;</span> <span class="attr">options</span>=<span class="string">&quot;&#123;<span class="symbol">&amp;quot;</span>no_open<span class="symbol">&amp;quot;</span>: True&#125;&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;e.g. Mister&quot;</span> <span class="attr">attrs</span>=<span class="string">&quot;&#123;&#x27;invisible&#x27;: [(&#x27;is_company&#x27;, &#x27;=&#x27;, True)]&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;active_lang_count&quot;</span> <span class="attr">invisible</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;lang&quot;</span> <span class="attr">attrs</span>=<span class="string">&quot;&#123;&#x27;invisible&#x27;: [(&#x27;active_lang_count&#x27;, &#x27;<span class="symbol">&amp;lt;</span>=&#x27;, 1)]&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;category_id&quot;</span> <span class="attr">widget</span>=<span class="string">&quot;many2many_tags&quot;</span> <span class="attr">options</span>=<span class="string">&quot;&#123;&#x27;color_field&#x27;: &#x27;color&#x27;, &#x27;no_create_edit&#x27;: True&#125;&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;e.g. <span class="symbol">&amp;quot;</span>B2B<span class="symbol">&amp;quot;</span>, <span class="symbol">&amp;quot;</span>VIP<span class="symbol">&amp;quot;</span>, <span class="symbol">&amp;quot;</span>Consulting<span class="symbol">&amp;quot;</span>, ...&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;x_is_teacher&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-6-新建菜单"><a href="#3-6-新建菜单" class="headerlink" title="3.6.新建菜单"></a>3.6.新建菜单</h4><ul>
+<li>设置|用户界面|菜单项目</li>
+</ul>
+<p><img src="/../../images/odoo/img_8.png" alt="img_8.png"></p>
+<p><img src="/../../images/odoo/img_9.png" alt="img_9.png"></p>
+<p><img src="/../../images/odoo/img_10.png" alt="img_10.png"></p>
+<p><img src="/../../images/odoo/img_11.png" alt="img_11.png"></p>
+<h4 id="3-7-动作"><a href="#3-7-动作" class="headerlink" title="3.7.动作"></a>3.7.动作</h4><ul>
+<li>动作可分为多种类型，最重要的有Window Actions、Reports Actions和Server <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Window Actions用于处理在前端展示的视图</span><br><span class="line">Reports Actions用于运行报表</span><br><span class="line">Server Actions则用于定义自动执行的任务</span><br></pre></td></tr></table></figure></li>
+<li>windows action加domain</li>
+<li>域值（domain）字段，该字段的值可以是一个表达式<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(&#x27;x_is_teacher&#x27;,&#x27;=&#x27;,True)]</span><br></pre></td></tr></table></figure></li>
+<li>复选框是默认选中的。可以使用上下文值（context）字段来完成该功能。context是Odoo传递会话消息的方式，包括默认值的处理。{‘default_x_is_teacher’:True}<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#x27;default_x_is_teacher&#x27;:True&#125;</span><br></pre></td></tr></table></figure>
+<img src="/../../images/odoo/img_12.png" alt="img_12.png"><br><img src="/../../images/odoo/img_13.png" alt="img_13.png"></li>
+</ul>
+<h4 id="3-8-新建自定义模型"><a href="#3-8-新建自定义模型" class="headerlink" title="3.8.新建自定义模型"></a>3.8.新建自定义模型</h4><ul>
+<li>设置|数据库结构|模型<br><img src="/../../images/odoo/img_14.png" alt="img_14.png"><blockquote>
+<p>保存这个模型，然后再编辑，可以看到在保存后系统自动为这个模型增加了多个字段，它们是ORM引擎为每个模型都会增加的字段</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../../images/odoo/img_15.png" alt="img_15.png"></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(&#x27;x_is_teacher&#x27;, &#x27;=&#x27;, True)]</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/odoo/img_16.png" alt="img_16.png"></p>
+<h4 id="3-9-新建课程前端界面"><a href="#3-9-新建课程前端界面" class="headerlink" title="3.9.新建课程前端界面"></a>3.9.新建课程前端界面</h4><ul>
+<li>设置|用户界面|菜单项目<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">菜单：课程</span><br><span class="line">上级菜单：教师授课（搜索找到）</span><br><span class="line">动作：下拉列表选择ir.actions.act_window，然后在右侧新出现的下拉框中选择创建并编辑按钮，在弹出的窗口中输入以下字段信息：</span><br><span class="line">　　动作名称：课程</span><br><span class="line">　　对象：x_course</span><br></pre></td></tr></table></figure>
+<img src="/../../images/odoo/img_17.png" alt="img_17.png"></li>
+</ul>
+<h4 id="3-7-新建视图"><a href="#3-7-新建视图" class="headerlink" title="3.7.新建视图"></a>3.7.新建视图</h4><ul>
+<li>设置|用户界面|视图</li>
+<li>Tree视图<br><img src="/../../images/odoo/img_18.png" alt="img_18.png"><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;tree&gt;</span><br><span class="line">  &lt;field name=&quot;x_name&quot;/&gt;</span><br><span class="line">  &lt;field name=&quot;x_teacher_ids&quot; widget=&quot;many2many_tags&quot;/&gt;</span><br><span class="line">&lt;/tree&gt;</span><br></pre></td></tr></table></figure>
+<img src="/../../images/odoo/img_19.png" alt="img_19.png"></li>
+<li>Form视图<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">	&lt;group&gt;</span><br><span class="line">	    &lt;field name=&quot;x_name&quot;/&gt;</span><br><span class="line">		&lt;field name=&quot;x_teacher_ids&quot; widget=&quot;many2many_tags&quot; context=&quot;&#123;&#x27;default_x_is_teacher&#x27;:True&#125;&quot;/&gt;</span><br><span class="line">	&lt;/group&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<img src="/../../images/odoo/img_20.png" alt="img_20.png"></li>
+</ul>
+<h4 id="3-8-安全性配置"><a href="#3-8-安全性配置" class="headerlink" title="3.8.安全性配置"></a>3.8.安全性配置</h4><ul>
+<li>Odoo有其内置的访问控制机制，可以通过这个机制来对用户进行授权管理，以确保用户只能访问被授权的应用。不过，admin用户是个例外，为了开发的方便，此用户不受该控制机制的限制。</li>
+<li>访问控制机制是基于组的，对于该组授权的模型、菜单等可以被该组内的用户访问。</li>
+<li>对于控制的粒度，这种机制可以支持的粒度细到字段甚至数据记录（具有记录规则）。 </li>
+<li>这种安全组也被用于应用插件访问的控制，并且每个应用插件一般至少会提供两个组：处理日常事务的用户组和管理该应用插件所有配置的管理组并且每个应用插件一般至少会提供两个组：处理日常事务的用户组和管理该应用插件所有配置的管理组。</li>
+<li>设置|群组</li>
+</ul>
+<p><img src="/../../images/odoo/img_21.png" alt="img_21.png"></p>
+<p><img src="/../../images/odoo/img_22.png" alt="img_22.png"></p>
+<p><img src="/../../images/odoo/img_23.png" alt="img_23.png"></p>
+<ul>
+<li>选择权限tab<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对象：选择x_course应用</span><br><span class="line">读访问：选中</span><br><span class="line">写访问：选中</span><br><span class="line">创建访问：选中</span><br><span class="line">删除访问：选中</span><br></pre></td></tr></table></figure>
+<img src="/../../images/odoo/img_24.png" alt="img_24.png"></li>
+</ul>
+<h4 id="3-9-用户授权"><a href="#3-9-用户授权" class="headerlink" title="3.9.用户授权"></a>3.9.用户授权</h4><p><img src="/../../images/odoo/img_25.png" alt="img_25.png"></p>
+<h4 id="3-10-base模块"><a href="#3-10-base模块" class="headerlink" title="3.10.base模块"></a>3.10.base模块</h4><p>base模块中的模型主要可分为两种，具体如下：</p>
+<ul>
+<li>信息资源库（Information Repository）：其模块的外部ID一般是以 “ir.” 开头<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">信息资源库可用于存储一些基础功能，Odoo使用这些基础功能来识别菜单、视图、模型和动作等</span><br><span class="line"></span><br><span class="line">.ir.action.act_window，作用是帮助设置窗口的动作。</span><br><span class="line">·ir.ui.menu，设置菜单。</span><br><span class="line">·ir.ui.view，用于处理视图。</span><br><span class="line">·ir.model，用于模型。</span><br><span class="line">·ir.model.fields，用于处理模型的字段。</span><br></pre></td></tr></table></figure></li>
+<li>资源（Resource）：其模块的外部ID一般是以 “res.” 开头<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">资源模块包含了与国际化相关的一些模型，所有的模型都提供了底层的服务，里面包含的主要模型具体如下</span><br><span class="line"></span><br><span class="line">·res.partner，诸如客户、供应商或联系人等都是基于这个模型。</span><br><span class="line">·res.company，设置与公司相关的信息。</span><br><span class="line">·res.currency，处理与货币相关的功能。</span><br><span class="line">·res.country，处理与国家相关的设置信息。</span><br><span class="line">·res.users，用于处理与用户相关的功能。</span><br><span class="line">·res.groups，与安全组相关的功能都是基于这个模型。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="第4章"><a href="#第4章" class="headerlink" title="第4章"></a>第4章</h3><h4 id="4-1-self的运行机制"><a href="#4-1-self的运行机制" class="headerlink" title="4.1.self的运行机制"></a>4.1.self的运行机制</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">假如我们有一个类其名称为MyClass，该类有一个实例为MyObject，当我们通过对象调用方法的时候可使用如下示例方法：</span><br><span class="line"></span><br><span class="line">MyObject.method(arg1,arg2)</span><br><span class="line"></span><br><span class="line">Python在执行的时候会将该方法自动转换为:</span><br><span class="line"></span><br><span class="line">MyClass.method(MyObject,arg1,arg2)</span><br><span class="line"></span><br><span class="line">上面的MyObject可以转换成我们最常用的self，所以这也解释了为什么Python里面所有的方法都至少有一个self参数。哪怕不需要参数，也需要定义一个self参数</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-init"><a href="#4-2-init" class="headerlink" title="4.2.init"></a>4.2.init</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当类的一个对象被创建时，__init__方法马上就会运行，所以初始化需要做的事情都可以写在这个方法内。</span><br><span class="line">这里需要注意的是，init前后都是双下划线</span><br></pre></td></tr></table></figure>
+<h4 id="4-3-基础重载方法"><a href="#4-3-基础重载方法" class="headerlink" title="4.3.基础重载方法"></a>4.3.基础重载方法</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.__init__（self[，args…]）：构造函数；简单的调用方法：obj=className（args）</span><br><span class="line">·__del__（self）：析构方法，删除一个对象；简单的调用方法：del obj</span><br><span class="line">·__repr__（self）：转化为供解释器读取的形式；简单的调用方法：repr（obj）</span><br><span class="line">·__str__（self）：用于将值转化为适合人阅读的形式；简单的调用方法：str（obj）</span><br><span class="line">·__cmp__（self，x）：对象比较；简单的调用方法：cmp（obj，x）</span><br></pre></td></tr></table></figure>
+<h3 id="第5章"><a href="#第5章" class="headerlink" title="第5章"></a>第5章</h3><h4 id="5-1-查询同时保存"><a href="#5-1-查询同时保存" class="headerlink" title="5.1.查询同时保存"></a>5.1.查询同时保存</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">into</span> new_table <span class="keyword">from</span> old_table <span class="keyword">where</span> ...</span><br></pre></td></tr></table></figure>
+<h4 id="5-2-更新"><a href="#5-2-更新" class="headerlink" title="5.2.更新"></a>5.2.更新</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> table_name <span class="keyword">set</span> column1<span class="operator">=</span>value1 或者 column1<span class="operator">=</span>column2（用字段<span class="number">2</span>的内容给字段<span class="number">1</span>赋值） <span class="keyword">where</span> ...</span><br></pre></td></tr></table></figure>
+<h4 id="5-3-删除"><a href="#5-3-删除" class="headerlink" title="5.3.删除"></a>5.3.删除</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> [<span class="keyword">condition</span>];</span><br></pre></td></tr></table></figure>
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-text">第一章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-text">第二章</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-odoo-shell"><span class="toc-text">2.1.odoo shell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">2.2.配置文件中的参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-pycharm%E6%94%AF%E6%8C%81%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91"><span class="toc-text">2.3.pycharm支持远程开发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-odoo16-debug"><span class="toc-text">2.4.odoo16 debug</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-text">第三章</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%BF%80%E6%B4%BB%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F-tests-%E5%92%8C%E6%BF%80%E6%B4%BB%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F-assets"><span class="toc-text">3.1.激活开发者模式(tests)和激活开发者模式(assets)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-res-parter"><span class="toc-text">3.2.res.parter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E5%AE%89%E8%A3%85-contacts-%E8%81%94%E7%B3%BB%E4%BA%BA-app%E6%AD%A5%E9%AA%A4"><span class="toc-text">3.3.安装 contacts(联系人) app步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-model-%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%AE%B5"><span class="toc-text">3.4.model 添加字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-view-%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%AE%B5"><span class="toc-text">3.5.view 添加字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-%E6%96%B0%E5%BB%BA%E8%8F%9C%E5%8D%95"><span class="toc-text">3.6.新建菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-%E5%8A%A8%E4%BD%9C"><span class="toc-text">3.7.动作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-%E6%96%B0%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.8.新建自定义模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-9-%E6%96%B0%E5%BB%BA%E8%AF%BE%E7%A8%8B%E5%89%8D%E7%AB%AF%E7%95%8C%E9%9D%A2"><span class="toc-text">3.9.新建课程前端界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-%E6%96%B0%E5%BB%BA%E8%A7%86%E5%9B%BE"><span class="toc-text">3.7.新建视图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-%E5%AE%89%E5%85%A8%E6%80%A7%E9%85%8D%E7%BD%AE"><span class="toc-text">3.8.安全性配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-9-%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83"><span class="toc-text">3.9.用户授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-10-base%E6%A8%A1%E5%9D%97"><span class="toc-text">3.10.base模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0"><span class="toc-text">第4章</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-self%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-text">4.1.self的运行机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-init"><span class="toc-text">4.2.init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E5%9F%BA%E7%A1%80%E9%87%8D%E8%BD%BD%E6%96%B9%E6%B3%95"><span class="toc-text">4.3.基础重载方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0"><span class="toc-text">第5章</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E6%9F%A5%E8%AF%A2%E5%90%8C%E6%97%B6%E4%BF%9D%E5%AD%98"><span class="toc-text">5.1.查询同时保存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E6%9B%B4%E6%96%B0"><span class="toc-text">5.2.更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E5%88%A0%E9%99%A4"><span class="toc-text">5.3.删除</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/10/01/odoo/20231001-odoo快速入门与实践总结1/">https://dbbruce.github.io/2023/10/01/odoo/20231001-odoo快速入门与实践总结1/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/09/28/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/202309/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          9月份
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/02/odoo/20231001-odoo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%932/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          odoo知识点(八)-odoo快速入门与实践总结-第二篇
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

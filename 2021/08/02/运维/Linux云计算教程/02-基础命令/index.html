@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>02-基础命令 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/Linux云计算教程/02-基础命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      02-基础命令
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-02T03:00:52.000Z" itemprop="datePublished">2021年08月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2021/08/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-磁盘"><a href="#1-磁盘" class="headerlink" title="1.磁盘"></a>1.磁盘</h4><p>&#x2F;dev&#x2F;sda  sd代表磁盘类型，a代表第几块磁盘<br>&#x2F;dev&#x2F;hda<br>hd表示IDE设备，老设备，传输慢<br>sd表示scsi设备，新设备，传输快</p>
+<span id="more"></span>
+
+<h4 id="2-命令行表示"><a href="#2-命令行表示" class="headerlink" title="2.命令行表示"></a>2.命令行表示</h4><p>[用户@主机名 工作目录]$</p>
+<h4 id="3-cat"><a href="#3-cat" class="headerlink" title="3.cat"></a>3.cat</h4><p>查看系统版本<br>cat &#x2F;etc&#x2F;redhat-release<br>CentOS Linux release 7.9.2009 (Core)</p>
+<h4 id="4-CPU"><a href="#4-CPU" class="headerlink" title="4.CPU"></a>4.CPU</h4><p>lscpu</p>
+<h4 id="5-内存"><a href="#5-内存" class="headerlink" title="5.内存"></a>5.内存</h4><p>[root@localhost ~]# cat &#x2F;proc&#x2F;meminfo</p>
+<h4 id="6-hostname"><a href="#6-hostname" class="headerlink" title="6.hostname"></a>6.hostname</h4><p>临时修改<br>[root@localhost ~]# hostname master<br>永久修改<br>[root@localhost ~]# vim &#x2F;etc&#x2F;hostname</p>
+<h4 id="7-ifconfig"><a href="#7-ifconfig" class="headerlink" title="7.ifconfig"></a>7.ifconfig</h4><p>网卡信息<br>enp0s3: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500<br>        inet 192.168.1.12  netmask 255.255.255.0  broadcast 192.168.1.255<br>        inet6 2409:8a00:6037:3410:a579:ef16:4b1f:3b31  prefixlen 64  scopeid 0x0<global><br>        inet6 fe80::f1a3:a1af:6006:3ae6  prefixlen 64  scopeid 0x20<link><br>        ether 08:00:27:79:a3:b8  txqueuelen 1000  (Ethernet)<br>        RX packets 1114  bytes 81591 (79.6 KiB)<br>        RX errors 0  dropped 0  overruns 0  frame 0<br>        TX packets 406  bytes 73419 (71.6 KiB)<br>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</p>
+<p>lo: 回环测试接口，ip用于为：127.0.0.1 ，代表自己，用于访问自己</p>
+<h4 id="8-touch"><a href="#8-touch" class="headerlink" title="8.touch"></a>8.touch</h4><p>创建空文件<br>touch 1.txt</p>
+<h4 id="9-分屏阅读-less"><a href="#9-分屏阅读-less" class="headerlink" title="9.分屏阅读 less"></a>9.分屏阅读 less</h4><p>less &#x2F;etc&#x2F;passwd<br>翻页 ：b 前&#x2F;f 后<br>搜索 ： &#x2F;root<br>搜索前后匹配： n 后&#x2F;N 前<br>退出：q</p>
+<h4 id="10-head-tail"><a href="#10-head-tail" class="headerlink" title="10.head &#x2F; tail"></a>10.head &#x2F; tail</h4><p>查看头5行<br>head -n 5  anaconda-ks.cfg 简写 head -5  anaconda-ks.cfg<br>尾部5行<br>tail -n 5  anaconda-ks.cfg 简写 tail -5  anaconda-ks.cfg<br>tail -f anaconda-ks.cfg</p>
+<h4 id="11-grep-输出包含指定字符串的内容"><a href="#11-grep-输出包含指定字符串的内容" class="headerlink" title="11.grep 输出包含指定字符串的内容"></a>11.grep 输出包含指定字符串的内容</h4><p>[root@localhost ~]# grep ‘root’ &#x2F;etc&#x2F;passwd<br>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash<br>operator:x:11:0:operator:&#x2F;root:&#x2F;sbin&#x2F;nologin</p>
+<h4 id="12-nmtui图形配置网络"><a href="#12-nmtui图形配置网络" class="headerlink" title="12.nmtui图形配置网络"></a>12.nmtui图形配置网络</h4><p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img.png" alt="img.png"></p>
+<h4 id="13-vim"><a href="#13-vim" class="headerlink" title="13.vim"></a>13.vim</h4><p>命名模式，插入模式，末行模式</p>
+<p>命 — i — 插入模式 — ESC 退出<br>令<br>模<br>式 — : — 末行模式 — wq&#x2F;!wq — ESC 退出</p>
+<h4 id="14-关机、重启"><a href="#14-关机、重启" class="headerlink" title="14.关机、重启"></a>14.关机、重启</h4><p>poweroff &#x2F; reboot</p>
+<h4 id="15-“家目录”"><a href="#15-“家目录”" class="headerlink" title="15. “家目录”"></a>15. “家目录”</h4><p>~ 表示 “家目录”<br>&#x2F;root 表示 管理员”家目录”<br>&#x2F;home 表示 普通”家目录”</p>
+<h4 id="16-添加用户"><a href="#16-添加用户" class="headerlink" title="16. 添加用户"></a>16. 添加用户</h4><p>useradd  tom1</p>
+<h4 id="17-ls"><a href="#17-ls" class="headerlink" title="17. ls"></a>17. ls</h4><p>ls -h 显示单位<br>ls -a 显示隐藏文件<br>ls -l 长格式，显示全部信息</p>
+<h4 id="18-匹配符"><a href="#18-匹配符" class="headerlink" title="18.匹配符"></a>18.匹配符</h4><p>*：任意个<br>？：一个</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /dev/tty??</span><br></pre></td></tr></table></figure>
+<p>[a-z]:多个字符中的一个，若无忽略， 注意：不识别9以上</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dong@master /]$ ls /dev/tty[1-3]</span><br><span class="line">/dev/tty1  /dev/tty2  /dev/tty3</span><br></pre></td></tr></table></figure>
+<p>{a, min, xy}: 多组不同的字符串，全匹配</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[dong@master /]$ ls /dev/tty&#123;2,4,6,8&#125;</span><br><span class="line">/dev/tty2  /dev/tty4  /dev/tty6  /dev/tty8</span><br></pre></td></tr></table></figure>
+
+<h4 id="19-mkdir-p-test-test2-test3"><a href="#19-mkdir-p-test-test2-test3" class="headerlink" title="19.mkdir -p &#x2F;test&#x2F;test2&#x2F;test3"></a>19.mkdir -p &#x2F;test&#x2F;test2&#x2F;test3</h4><p>创建父目录和子目录</p>
+<h4 id="20-R-递归，显示所有子目录和子目录下的所有"><a href="#20-R-递归，显示所有子目录和子目录下的所有" class="headerlink" title="20. -R 递归，显示所有子目录和子目录下的所有"></a>20. -R 递归，显示所有子目录和子目录下的所有</h4><p>ls -R &#x2F;home</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[dong@master /]$ ls -R /home</span><br><span class="line">/home:</span><br><span class="line">dong</span><br><span class="line"></span><br><span class="line">/home/dong:</span><br></pre></td></tr></table></figure>
+<h4 id="21-删除-危险命令"><a href="#21-删除-危险命令" class="headerlink" title="21. 删除 (危险命令)"></a>21. 删除 (危险命令)</h4><p>rm<br>-r 递归删除<br>-f 强制删除<br>-i 提示是否删除<br>删除文件一定加i</p>
+<h4 id="22-grep-过滤"><a href="#22-grep-过滤" class="headerlink" title="22.grep 过滤"></a>22.grep 过滤</h4><p>-i : 忽略大小写<br>-v : 取反<br>^root :以什么开头<br>root$ :以什么结尾</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -i root /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h4 id="23-cp-复制"><a href="#23-cp-复制" class="headerlink" title="23.cp 复制"></a>23.cp 复制</h4><p>复制目录，-r 递归<br>cp -r &#x2F;1 &#x2F;2</p>
+<h4 id="24-内核版本"><a href="#24-内核版本" class="headerlink" title="24.内核版本"></a>24.内核版本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[dong@master t1]$ uname -r</span><br><span class="line">3.10.0-1160.el7.x86_64</span><br></pre></td></tr></table></figure>
+
+<h4 id="25-黑洞设备：-dev-null"><a href="#25-黑洞设备：-dev-null" class="headerlink" title="25.黑洞设备：&#x2F;dev&#x2F;null"></a>25.黑洞设备：&#x2F;dev&#x2F;null</h4><p>不想收集的信息直接给黑洞设备，直接丢弃信息，不占用磁盘和内存；</p>
+<h4 id="26-创建多个文件"><a href="#26-创建多个文件" class="headerlink" title="26.创建多个文件"></a>26.创建多个文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch test&#123;20..30&#125;.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="27-selinun管理内部安全"><a href="#27-selinun管理内部安全" class="headerlink" title="27.selinun管理内部安全"></a>27.selinun管理内部安全</h4><p>SELinux的运行模式<br>        enforcing(强制)、<br>        permissive(宽松)<br>        disabled(彻底禁用)<br>任何模式切换到disabled(彻底禁用)都必须经历重启系统<br>查看</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[dong@master ~]$ getenforce</span><br><span class="line">Enforcing</span><br></pre></td></tr></table></figure>
+
+<h4 id="28-调整历史命令的数量"><a href="#28-调整历史命令的数量" class="headerlink" title="28.调整历史命令的数量"></a>28.调整历史命令的数量</h4><p>[rootasvr7 ~]# vim &#x2F;etc&#x2F;profile<br>HISTSIZE&#x3D;1000#默认记录1000条</p>
+<h4 id="29-管理-调用曾经执行过的命令"><a href="#29-管理-调用曾经执行过的命令" class="headerlink" title="29.管理&#x2F;调用曾经执行过的命令"></a>29.管理&#x2F;调用曾经执行过的命令</h4><p>history:查看历史命令列表<br>history -c:清空历史命令<br>!n:执行命令历史中的第n条命令<br>!str:执行最近一次以str开头的历史命令</p>
+<h4 id="30-du-统计文件的占用空间"><a href="#30-du-统计文件的占用空间" class="headerlink" title="30.du,统计文件的占用空间"></a>30.du,统计文件的占用空间</h4><p>du [选项]…[目录或文件]…<br>-s:只统计每个参数所占用的总空间大小<br>-h:提供易读容量单位(K、M等)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# du -sh /root</span><br><span class="line">304K	/root</span><br></pre></td></tr></table></figure>
+
+<h4 id="31-date-查看-调整系统日期时间"><a href="#31-date-查看-调整系统日期时间" class="headerlink" title="31.date,查看&#x2F;调整系统日期时间"></a>31.date,查看&#x2F;调整系统日期时间</h4><p>date +%F、date +%R<br>date +”%Y-%m-%d %H:%M:%S<br>date -s “yyyy-mm-dd HH:MM:SS’<br>date +%F    #显示年-月-日<br>date +%Y    #显示年<br>date +%m    #显示月<br>date +%d    #显示日期<br>date +%H    #显示时<br>date +%M    #显示分<br>date +%S    #显示秒</p>
+<h4 id="32-制作快捷方式"><a href="#32-制作快捷方式" class="headerlink" title="32.制作快捷方式"></a>32.制作快捷方式</h4><p>ln -s   &#x2F;路径&#x2F;源数据路径   &#x2F;快捷方式名a字</p>
+<p>创建软连接ln -s 原始文件或目录 软连接文件<br>若原始文件或目录被删除，连接文件将失效软<br>连接可存放在不同分区&#x2F;文件系统</p>
+<p>ln 原始文件 硬连接文件<br>若原始文件被删除，连接文件仍可用<br>硬连接与原始文件必须在同一分区&#x2F;文件系统</p>
+<h4 id="33-具备很多的软件包-将toolstar-gz上传到虚拟机A的-root下"><a href="#33-具备很多的软件包-将toolstar-gz上传到虚拟机A的-root下" class="headerlink" title="33.具备很多的软件包,将toolstar.gz上传到虚拟机A的&#x2F;root下"></a>33.具备很多的软件包,将toolstar.gz上传到虚拟机A的&#x2F;root下</h4><p>]$ scp&#x3D;ssh+cp<br>真机:<br>]$ scp&#x2F;本地路径&#x2F;源数据 root@对方IP地址:&#x2F;对方的路径<br>]$ ls &#x2F;linux-soft&#x2F;01<br>]$ scp &#x2F;linux-soft&#x2F;01&#x2F;tools.tar.gz  <a href="mailto:&#114;&#111;&#111;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#46;&#52;&#46;&#x37;">&#114;&#111;&#111;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#46;&#52;&#46;&#x37;</a>:root&#x2F;</p>
+<h4 id="34-域名的解析"><a href="#34-域名的解析" class="headerlink" title="34.域名的解析"></a>34.域名的解析</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# nslookup www.baidu.com</span><br><span class="line">Server:		fe80::1%2</span><br><span class="line">Address:	fe80::1%2#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">www.baidu.com	canonical name = www.a.shifen.com.</span><br><span class="line">Name:	www.a.shifen.com</span><br><span class="line">Address: 39.156.66.18</span><br><span class="line">Name:	www.a.shifen.com</span><br><span class="line">Address: 39.156.66.14</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="35-umask值-权限掩码与用户创建的目录默认权限有关"><a href="#35-umask值-权限掩码与用户创建的目录默认权限有关" class="headerlink" title="35.umask值:权限掩码与用户创建的目录默认权限有关"></a>35.umask值:权限掩码与用户创建的目录默认权限有关</h4><p>7777-022 &#x3D; 755,创建的文件默认权限就是755</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dbbruce@dbburce ~ % umask</span><br><span class="line">022</span><br></pre></td></tr></table></figure>
+<h4 id="36-过滤已经安装的包"><a href="#36-过滤已经安装的包" class="headerlink" title="36.过滤已经安装的包"></a>36.过滤已经安装的包</h4><p>yum list installed | grep vsftpd</p>
+<h4 id="37-查看进程的启动端口"><a href="#37-查看进程的启动端口" class="headerlink" title="37.查看进程的启动端口"></a>37.查看进程的启动端口</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat - ntulp | grep nginx</span><br></pre></td></tr></table></figure>
+<h4 id="38。netstat命令可以查看系统中启动的端口信息，该命令常用选项如下"><a href="#38。netstat命令可以查看系统中启动的端口信息，该命令常用选项如下" class="headerlink" title="38。netstat命令可以查看系统中启动的端口信息，该命令常用选项如下"></a>38。netstat命令可以查看系统中启动的端口信息，该命令常用选项如下</h4><p>-n 以数字格式显示端口号<br>-t 显示TCP连接的端口<br>-u 显示UDP连接的端口<br>-l 显示服务正在监听的端口信息，如httpd启动后，会一直监听80端口<br>-p 显示监听端口的服务名称是什么 (也就是程序名称)</p>
+<h4 id="39-o-w"><a href="#39-o-w" class="headerlink" title="39.o+w"></a>39.o+w</h4><p>chmod 修改文件或目录的访问权限。<br>o表示other 其他组<br>w表示写，+表示增加权限。<br>整个命令的意思是给其他组的成员增加写权限</p>
+<h4 id="40-vim"><a href="#40-vim" class="headerlink" title="40.vim"></a>40.vim</h4><p>a 在光标后插入<br>i 在光标前插入<br>c 替换行，整行删除，在行头插入</p>
+<h4 id="41-yum查看包名"><a href="#41-yum查看包名" class="headerlink" title="41.yum查看包名"></a>41.yum查看包名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.查询仓库中所有的rpm包</span></span><br><span class="line">yum list</span><br><span class="line">可以配合|grep过滤出想要的rpm包</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.查看仓库中所有安装包的详细信息</span></span><br><span class="line">yum infoyum </span><br><span class="line">info tree</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.根据命令或文件查找该命令属于哪个rpm包</span></span><br><span class="line">yum provides 命令</span><br></pre></td></tr></table></figure>
+<h4 id="42-密码错误日志"><a href="#42-密码错误日志" class="headerlink" title="42.密码错误日志"></a>42.密码错误日志</h4><p>&#x2F;var&#x2F;log&#x2F;secure</p>
+<h4 id="43-sort-文本排序"><a href="#43-sort-文本排序" class="headerlink" title="43.sort 文本排序"></a>43.sort 文本排序</h4><p>&#x2F;&#x2F;sort排序 默认升序,-r降序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cat txt</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">adm:x:3:4:adm:/var/adm:/sbin/nologin</span><br><span class="line">lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin</span><br><span class="line">[root@master ~]# sort txt</span><br><span class="line">adm:x:3:4:adm:/var/adm:/sbin/nologin</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">[root@master ~]# sort -r  txt</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin</span><br><span class="line">daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">adm:x:3:4:adm:/var/adm:/sbin/nologin</span><br></pre></td></tr></table></figure>
+<h4 id="44-netstat命令可以查看系统中启动的端口信息，该命令常用选项"><a href="#44-netstat命令可以查看系统中启动的端口信息，该命令常用选项" class="headerlink" title="44.netstat命令可以查看系统中启动的端口信息，该命令常用选项"></a>44.netstat命令可以查看系统中启动的端口信息，该命令常用选项</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-a 显示所有端口的信息</span><br><span class="line">-n 以数字格式显示端口号</span><br><span class="line">-t 显示TCP连接的端口</span><br><span class="line">-u 显示UDP连接的端</span><br><span class="line">-l 显示服务正在监听的端口信息，如httpd启动后，会监听80端口</span><br><span class="line">-p 显示监听端口的服务名称是什么 (也就是程序名称)</span><br></pre></td></tr></table></figure>
+<h4 id="45-关闭防火墙"><a href="#45-关闭防火墙" class="headerlink" title="45.关闭防火墙"></a>45.关闭防火墙</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、命令行界面输入命令“systemctl status firewalld.service”并按下回车键。</span><br><span class="line">2、然后在下方可度以查看得到“active（running）”，此时说明防火墙已经被打开了。</span><br><span class="line">3、在命令行中输入systemctl stop firewalld.service命令，进行关闭防火墙。</span><br><span class="line">4、然后再使用命令systemctl status firewalld.service，在下方出现disavtive（dead），这样就说明防火墙已经关闭。</span><br><span class="line">5、再在命令行中输入命令“systemctl disable firewalld.service”命令，即可永久关闭防火墙。</span><br></pre></td></tr></table></figure>
+<h4 id="46-less-查看，显示行号"><a href="#46-less-查看，显示行号" class="headerlink" title="46.less 查看，显示行号"></a>46.less 查看，显示行号</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master nginx]# less -N /usr/local/nginx/conf/nginx.conf</span><br><span class="line">1</span><br><span class="line">2 #user  nobody;</span><br><span class="line">3 worker_processes  1;</span><br><span class="line">4</span><br><span class="line">5 #error_log  logs/error.log;</span><br><span class="line">6 #error_log  logs/error.log  notice;</span><br><span class="line">7 #error_log  logs/error.log  info;</span><br><span class="line">8</span><br><span class="line">9 #pid        logs/nginx.pid;</span><br></pre></td></tr></table></figure>
+<h4 id="47-vim-替换"><a href="#47-vim-替换" class="headerlink" title="47.vim 替换"></a>47.vim 替换</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:86,95s/#//;</span><br><span class="line">将86到95行#号替换为空</span><br></pre></td></tr></table></figure>
+<h4 id="48-lscpu"><a href="#48-lscpu" class="headerlink" title="48.lscpu"></a>48.lscpu</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# lscpu</span><br><span class="line">Architecture:          x86_64</span><br><span class="line">CPU op-mode(s):        32-bit, 64-bit</span><br><span class="line">Byte Order:            Little Endian</span><br><span class="line">CPU(s):                2</span><br><span class="line">On-line CPU(s) list:   0,1</span><br><span class="line">Thread(s) per core:    1</span><br><span class="line">Core(s) per socket:    2</span><br><span class="line">座：                 1</span><br><span class="line">NUMA 节点：         1</span><br><span class="line">厂商 ID：           GenuineIntel</span><br><span class="line">CPU 系列：          6</span><br><span class="line">型号：              70</span><br><span class="line">型号名称：        Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz</span><br><span class="line">步进：              1</span><br><span class="line">CPU MHz：             2199.776</span><br><span class="line">BogoMIPS：            4399.55</span><br><span class="line">超管理器厂商：  KVM</span><br><span class="line">虚拟化类型：     完全</span><br><span class="line">L1d 缓存：          32K</span><br><span class="line">L1i 缓存：          32K</span><br><span class="line">L2 缓存：           256K</span><br><span class="line">L3 缓存：           6144K</span><br><span class="line">L4 缓存：           131072K</span><br><span class="line">NUMA 节点0 CPU：    0,1</span><br><span class="line">Flags:                 fpu vme de</span><br></pre></td></tr></table></figure>
+<h4 id="49-kill-不仅仅是杀死进程，也可以暂停和其他，-kill-默认就是-15"><a href="#49-kill-不仅仅是杀死进程，也可以暂停和其他，-kill-默认就是-15" class="headerlink" title="49.kill 不仅仅是杀死进程，也可以暂停和其他， kill 默认就是 15"></a>49.kill 不仅仅是杀死进程，也可以暂停和其他， kill 默认就是 15</h4><p>kill -9  &#x3D;&#x3D; kill -kill<br>kill -USR1 &#x3D;&#x3D; kill -10<br>kill PID &#x3D; kill -15 PID &#x3D;&#x3D; kill -TERM PID </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# kill -l</span><br><span class="line"> 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP</span><br><span class="line"> 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1</span><br><span class="line">11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM</span><br><span class="line">16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP</span><br><span class="line">21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ</span><br><span class="line">26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR</span><br><span class="line">31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3</span><br><span class="line">38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8</span><br><span class="line">43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13</span><br><span class="line">48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12</span><br><span class="line">53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7</span><br><span class="line">58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2</span><br><span class="line">63) SIGRTMAX-1	64) SIGRTMAX</span><br></pre></td></tr></table></figure>
+<h4 id="50-yun安装的包，一定可以使用systemctl-管理"><a href="#50-yun安装的包，一定可以使用systemctl-管理" class="headerlink" title="50.yun安装的包，一定可以使用systemctl 管理"></a>50.yun安装的包，一定可以使用systemctl 管理</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cd  /usr/lib/systemd/system/</span><br><span class="line">[root@master system]# ls</span><br><span class="line">abrt-ccpp.service                       lvm2-lvmpolld.service                          -.slice</span><br><span class="line">abrtd.service                           lvm2-lvmpolld.socket                           slices.target</span><br><span class="line">abrt-oops.service                       lvm2-monitor.service                           smartcard.target</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@master system]# cat sshd.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=OpenSSH server daemon</span><br><span class="line">Documentation=man:sshd(8) man:sshd_config(5)</span><br><span class="line">After=network.target sshd-keygen.service</span><br><span class="line">Wants=sshd-keygen.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=notify</span><br><span class="line">EnvironmentFile=/etc/sysconfig/sshd</span><br><span class="line">ExecStart=/usr/sbin/sshd -D $OPTIONS</span><br><span class="line">ExecReload=/bin/kill -HUP $MAINPID</span><br><span class="line">KillMode=process</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=42s</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">[root@master system]#</span><br></pre></td></tr></table></figure>
+<h4 id="51-统计文件行数"><a href="#51-统计文件行数" class="headerlink" title="51.统计文件行数"></a>51.统计文件行数</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cat /usr/local/tomcat/conf/server.xml |wc -l</span><br></pre></td></tr></table></figure>
+<h4 id="52-打开文件，并到第11行去"><a href="#52-打开文件，并到第11行去" class="headerlink" title="52.# 打开文件，并到第11行去"></a>52.# 打开文件，并到第11行去</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# vim +11 /etc/gitweb.conf </span><br></pre></td></tr></table></figure>
+<h4 id="rpm-命令"><a href="#rpm-命令" class="headerlink" title="rpm 命令"></a>rpm 命令</h4><p>rpm -ql  chrony  显示全部文件 多<br>rpm -qc  chrony  显示配置文件 少</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[root@master logs]# rpm -ql chrony</span><br><span class="line">/etc/NetworkManager/dispatcher.d/20-chrony</span><br><span class="line">/etc/chrony.conf</span><br><span class="line">/etc/chrony.keys</span><br><span class="line">/etc/dhcp/dhclient.d/chrony.sh</span><br><span class="line">/etc/logrotate.d/chrony</span><br><span class="line">/etc/sysconfig/chronyd</span><br><span class="line">/usr/bin/chronyc</span><br><span class="line">/usr/lib/systemd/ntp-units.d/50-chronyd.list</span><br><span class="line">/usr/lib/systemd/system/chrony-dnssrv@.service</span><br><span class="line">/usr/lib/systemd/system/chrony-dnssrv@.timer</span><br><span class="line">/usr/lib/systemd/system/chrony-wait.service</span><br><span class="line">/usr/lib/systemd/system/chronyd.service</span><br><span class="line">/usr/libexec/chrony-helper</span><br><span class="line">/usr/sbin/chronyd</span><br><span class="line">/usr/share/doc/chrony-3.4</span><br><span class="line">/usr/share/doc/chrony-3.4/COPYING</span><br><span class="line">/usr/share/doc/chrony-3.4/FAQ</span><br><span class="line">/usr/share/doc/chrony-3.4/NEWS</span><br><span class="line">/usr/share/doc/chrony-3.4/README</span><br><span class="line">/usr/share/man/man1/chronyc.1.gz</span><br><span class="line">/usr/share/man/man5/chrony.conf.5.gz</span><br><span class="line">/usr/share/man/man8/chronyd.8.gz</span><br><span class="line">/var/lib/chrony</span><br><span class="line">/var/lib/chrony/drift</span><br><span class="line">/var/lib/chrony/rtc</span><br><span class="line">/var/log/chrony</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master logs]# rpm -qc chrony</span><br><span class="line">/etc/chrony.conf</span><br><span class="line">/etc/chrony.keys</span><br><span class="line">/etc/logrotate.d/chrony</span><br><span class="line">/etc/sysconfig/chronyd</span><br></pre></td></tr></table></figure>
+<h4 id="51-sshkey-免密登录"><a href="#51-sshkey-免密登录" class="headerlink" title="51.sshkey-免密登录"></a>51.sshkey-免密登录</h4><p>生成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+<p>第一种传key方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i /Users/dbbruce/.ssh/id_rsa.pub root@192.168.1.12</span><br><span class="line">或者</span><br><span class="line">ssh-copy-id -i 192.168.1.12 </span><br></pre></td></tr></table></figure>
+<p>第二种传key方式：<br>复制 id_rsa.pub</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master .ssh]# cat id_rsa.pub</span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQee16pHAr+0R5QGQd9ZRjNWbXTunIWIhzUCFNw1xcAGlSmXIowtkbLwJWCn0QdyA72ZGoW3IdjO06I8Uxk8mg33QZbsCEsNOBG/MFXahH0YNPDYhUDGPUHQOPxRNrYG6lycsgJm0kXy85Q2FVEH3iif5gYHAFQ8f7W8X12amdavN07ER+NBt root@centos-01</span><br></pre></td></tr></table></figure>
+<p>把公钥复制到别的机器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost .ssh]# vim authorized_keys</span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQee16pHAr+0R5QGQd9ZRjNWbXTunIWIhzUCFNw1xcAGlSmXIowtkbLwJWCn0QdyA72ZGoW3IdjO06I8Uxk8mg33QZbsCEsNOBG/MFXahH0YNPDYhUDGPUHQOPxRNrYG6lycsgJm0kXy85Q2FVEH3iif5gYHAFQ8f7W8X12amdavN07ER+NBt root@centos-01</span><br></pre></td></tr></table></figure>
+<h4 id="52-设置主机名"><a href="#52-设置主机名" class="headerlink" title="52.设置主机名"></a>52.设置主机名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname centos-01</span><br></pre></td></tr></table></figure>
+<h4 id="53-系统命令"><a href="#53-系统命令" class="headerlink" title="53.系统命令"></a>53.系统命令</h4><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ps</td>
+<td>进程</td>
+</tr>
+<tr>
+<td>uptime</td>
+<td>cpu 负载</td>
+</tr>
+<tr>
+<td>free</td>
+<td>内存</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>交换分区</td>
+</tr>
+<tr>
+<td>df -h</td>
+<td>磁盘空间</td>
+</tr>
+<tr>
+<td>ping</td>
+<td>网卡</td>
+</tr>
+<tr>
+<td>netstat 或则 ss</td>
+<td>端口</td>
+</tr>
+<tr>
+<td>ping</td>
+<td>通信</td>
+</tr>
+<tr>
+<td>traceroute</td>
+<td>路由跟踪</td>
+</tr>
+<tr>
+<td>iostat</td>
+<td>磁盘读写状态</td>
+</tr>
+</tbody></table>
+<h4 id="54-查看rpm包内容-已经安装位置"><a href="#54-查看rpm包内容-已经安装位置" class="headerlink" title="54.查看rpm包内容,已经安装位置"></a>54.查看rpm包内容,已经安装位置</h4><p> rpm -ql zabbix-release</p>
+<h4 id="55-查看包的真名"><a href="#55-查看包的真名" class="headerlink" title="55.查看包的真名"></a>55.查看包的真名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# which mail</span><br><span class="line">/usr/bin/mail</span><br><span class="line">[root@master ~]# rpm -qf /usr/bin/mail</span><br><span class="line">mailx-12.5-19.el7.x86_64</span><br></pre></td></tr></table></figure>
+<h4 id="56-端口状态"><a href="#56-端口状态" class="headerlink" title="56.端口状态"></a>56.端口状态</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# nmap -p 22 192.168.1.22</span><br><span class="line"></span><br><span class="line">Starting Nmap 6.40 ( http://nmap.org ) at 2023-09-15 03:29 CST</span><br><span class="line">Nmap scan report for centos07-22 (192.168.1.22)</span><br><span class="line">Host is up (0.00098s latency).</span><br><span class="line">PORT   STATE SERVICE</span><br><span class="line">22/tcp open  ssh</span><br><span class="line">MAC Address: 08:00:27:AB:32:79 (Cadmus Computer Systems)</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 2.93 seconds</span><br></pre></td></tr></table></figure>
+<h4 id="57-scp传输"><a href="#57-scp传输" class="headerlink" title="57.scp传输"></a>57.scp传输</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /etc/zabbix/zabbix_agent2.d/userparameter_login.conf  root@192.168.1.32:/etc/zabbix/zabbix_agent2.d/</span><br></pre></td></tr></table></figure>
+<h4 id="58-包大小"><a href="#58-包大小" class="headerlink" title="58.包大小"></a>58.包大小</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# du -sh php-7.1.1.tar.gz</span><br><span class="line">20M	php-7.1.1.tar.gz</span><br></pre></td></tr></table></figure>
+<h4 id="59-scp传目录"><a href="#59-scp传目录" class="headerlink" title="59.scp传目录"></a>59.scp传目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r 2023-09-23_15-16-20 root@192.168.1.22:~^C</span><br></pre></td></tr></table></figure>
+<h4 id="60-查看文件唯一id"><a href="#60-查看文件唯一id" class="headerlink" title="60.查看文件唯一id"></a>60.查看文件唯一id</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-01 ~]# ls -i anaconda-ks.cfg</span><br><span class="line">33581122 anaconda-ks.cfg</span><br></pre></td></tr></table></figure>
+<h4 id="61-yum仓库中查找某个文件属于哪个软件包-yum-provides-软件名"><a href="#61-yum仓库中查找某个文件属于哪个软件包-yum-provides-软件名" class="headerlink" title="61.yum仓库中查找某个文件属于哪个软件包,yum provides 软件名"></a>61.yum仓库中查找某个文件属于哪个软件包,yum provides 软件名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-01 /]# yum provides telnet</span><br><span class="line">已加载插件：fastestmirror, langpacks</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirror.lzu.edu.cn</span><br><span class="line"> * extras: ftp.sjtu.edu.cn</span><br><span class="line"> * updates: ftp.sjtu.edu.cn</span><br><span class="line">1:telnet-0.17-65.el7_8.x86_64 : The client program for the Telnet remote login protocol</span><br><span class="line">源    ：base</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1:telnet-0.17-66.el7.x86_64 : The client program for the Telnet remote login protocol</span><br><span class="line">源    ：updates</span><br></pre></td></tr></table></figure>
+<h4 id="62-linux-命令重入，命令2-命令1"><a href="#62-linux-命令重入，命令2-命令1" class="headerlink" title="62.linux 命令重入，命令2 $(命令1)"></a>62.linux 命令重入，命令2 $(命令1)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-01 sysctl.d]# ll $(ls *.conf)</span><br><span class="line">-rw-r--r--. 1 root root  293 10月 13 2020 00-system.conf</span><br><span class="line">-rw-r--r--. 1 root root 1810 10月  2 2020 10-default-yama-scope.conf</span><br><span class="line">-rw-r--r--. 1 root root 1285 10月  2 2020 50-default.conf</span><br></pre></td></tr></table></figure>
+<h4 id="63-linux-进程pid：echo"><a href="#63-linux-进程pid：echo" class="headerlink" title="63.linux 进程pid：echo $$"></a>63.linux 进程pid：echo $$</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-01 /]# echo $$</span><br><span class="line">1868</span><br></pre></td></tr></table></figure>
+<h4 id="64-pstree查看进程关系：-pstree-p-显示进程id"><a href="#64-pstree查看进程关系：-pstree-p-显示进程id" class="headerlink" title="64.pstree查看进程关系： pstree -p 显示进程id"></a>64.pstree查看进程关系： pstree -p 显示进程id</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-01 /]# pstree -p</span><br><span class="line">systemd(1)─┬─NetworkManager(728)─┬─&#123;NetworkManager&#125;(732)</span><br><span class="line">           │                     └─&#123;NetworkManager&#125;(735)</span><br><span class="line">           ├─abrt-watch-log(686)</span><br><span class="line">           ├─abrtd(684)</span><br><span class="line">           ├─atd(704)</span><br><span class="line">           ├─auditd(649)───&#123;auditd&#125;(650)</span><br><span class="line">           ├─containerd(2343)─┬─&#123;containerd&#125;(2345)</span><br><span class="line">           │                  ├─&#123;containerd&#125;(2346)</span><br><span class="line">           │                  ├─&#123;containerd&#125;(2347)</span><br><span class="line">           │                  ├─&#123;containerd&#125;(2348)</span><br></pre></td></tr></table></figure>
+<h4 id="65-linux2大派系的区别，redhat-centos-与debian-ubuntu"><a href="#65-linux2大派系的区别，redhat-centos-与debian-ubuntu" class="headerlink" title="65.linux2大派系的区别，redhat(centos)与debian(ubuntu)"></a>65.linux2大派系的区别，redhat(centos)与debian(ubuntu)</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>redhat</th>
+<th>debian</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>包扩展名</td>
+<td>.rpm</td>
+<td>.deb</td>
+</tr>
+<tr>
+<td></td>
+<td>yum</td>
+<td>apt-get</td>
+</tr>
+<tr>
+<td></td>
+<td>rpm</td>
+<td>dpkg</td>
+</tr>
+</tbody></table>
+<h4 id="66-linux版本查看：cat-etc-redhat-release"><a href="#66-linux版本查看：cat-etc-redhat-release" class="headerlink" title="66.linux版本查看：cat &#x2F;etc&#x2F;redhat-release"></a>66.linux版本查看：cat &#x2F;etc&#x2F;redhat-release</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-01 ~]# cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure>
+<h4 id="67-查看软件安装目录：rpm-ql-包名"><a href="#67-查看软件安装目录：rpm-ql-包名" class="headerlink" title="67.查看软件安装目录：rpm -ql 包名"></a>67.查看软件安装目录：rpm -ql 包名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/etc/pam.d/sshd</span><br><span class="line">/etc/ssh/sshd_config</span><br><span class="line">/etc/sysconfig/sshd</span><br><span class="line">/usr/lib/systemd/system/sshd-keygen.service</span><br><span class="line">/usr/lib/systemd/system/sshd.service</span><br><span class="line">/usr/lib/systemd/system/sshd.socket</span><br><span class="line">/usr/lib/systemd/system/sshd@.service</span><br><span class="line">/usr/lib64/fipscheck/sshd.hmac</span><br><span class="line">/usr/libexec/openssh/sftp-server</span><br><span class="line">/usr/sbin/sshd</span><br><span class="line">/usr/sbin/sshd-keygen</span><br><span class="line">/usr/share/man/man5/moduli.5.gz</span><br><span class="line">/usr/share/man/man5/sshd_config.5.gz</span><br><span class="line">/usr/share/man/man8/sftp-server.8.gz</span><br><span class="line">/usr/share/man/man8/sshd.8.gz</span><br><span class="line">/var/empty/sshd</span><br></pre></td></tr></table></figure>
+<h4 id="68-非交互式修改密码，root下修改"><a href="#68-非交互式修改密码，root下修改" class="headerlink" title="68.非交互式修改密码，root下修改"></a>68.非交互式修改密码，root下修改</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# echo &quot;a&quot; |passwd --stdin dong1</span><br><span class="line"> </span><br><span class="line">更改用户 dong1 的密码 。</span><br><span class="line">passwd：所有的身份验证令牌已经成功更新</span><br></pre></td></tr></table></figure>
+<h4 id="69-linux登录系统显示的名称：ps1"><a href="#69-linux登录系统显示的名称：ps1" class="headerlink" title="69.linux登录系统显示的名称：ps1"></a>69.linux登录系统显示的名称：ps1</h4><p>\u 用户名<br>\h hostname<br>\w 目录          </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@0385a0216446 yum.repos.d]# set |grep -i ps1</span><br><span class="line">PS1=&#x27;[\u@\h \W]\$ &#x27;</span><br></pre></td></tr></table></figure>
+<h4 id="70-yum启动服务目录：-usr-lib-systemd-system-xxx-service"><a href="#70-yum启动服务目录：-usr-lib-systemd-system-xxx-service" class="headerlink" title="70. yum启动服务目录：&#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;xxx.service"></a>70. yum启动服务目录：&#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;xxx.service</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/systemd/system/docker-distribution.service.</span><br></pre></td></tr></table></figure>
+<h4 id="71-查看网络配置信息：ip-a-s"><a href="#71-查看网络配置信息：ip-a-s" class="headerlink" title="71.查看网络配置信息：ip a s"></a>71.查看网络配置信息：ip a s</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-22 busybox]# ip a s</span><br><span class="line"></span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span><br><span class="line">    link/ether 08:00:27:ab:32:79 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.1.22/24 brd 192.168.1.255 scope global noprefixroute enp0s3</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 2409:8a00:6035:e890:1bf:c9d7:671d:fdd8/64 scope global noprefixroute dynamic</span><br><span class="line">       valid_lft 258815sec preferred_lft 172415sec</span><br><span class="line">    inet6 fe80::885:90eb:3a46:25fa/64 scope link noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default</span><br><span class="line">    link/ether 02:42:42:d0:db:a0 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::42:42ff:fed0:dba0/64 scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">8: br-58644461ac6e: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default</span><br><span class="line">    link/ether 02:42:a1:f0:fd:bb brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 10.10.10.1/24 brd 10.10.10.255 scope global br-58644461ac6e</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<h4 id="72-Linux-lsmod（英文全拼：list-modules）命令用于显示已载入系统的模块。"><a href="#72-Linux-lsmod（英文全拼：list-modules）命令用于显示已载入系统的模块。" class="headerlink" title="72.Linux lsmod（英文全拼：list modules）命令用于显示已载入系统的模块。"></a>72.Linux lsmod（英文全拼：list modules）命令用于显示已载入系统的模块。</h4><p>模块名称<br>模块的大小（Size）<br>此模块是否被其他模块使用（Used by</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-22 ~]# lsmod</span><br><span class="line"></span><br><span class="line">Module                  Size  Used by</span><br><span class="line">xt_conntrack           12760  1</span><br><span class="line">ipt_MASQUERADE         12678  1</span><br><span class="line">nf_nat_masquerade_ipv4    13463  1 ipt_MASQUERADE</span><br></pre></td></tr></table></figure>
+<h4 id="73-cat显示行号：cat-n-daemon-json"><a href="#73-cat显示行号：cat-n-daemon-json" class="headerlink" title="73.cat显示行号：cat -n daemon.json"></a>73.cat显示行号：cat -n daemon.json</h4><h4 id="74-ls显示单位"><a href="#74-ls显示单位" class="headerlink" title="74.ls显示单位"></a>74.ls显示单位</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">以适当方式显示文件大小，自动转为相关的单位： ls -lh</span><br><span class="line">以byte显示文件大小： ls -l</span><br><span class="line">以M显示文件大小： ls -l --block-size=m</span><br><span class="line">以G显示文件大小： ls -l --block-size=G</span><br></pre></td></tr></table></figure>
+<h4 id="75-统计目录文件：du"><a href="#75-统计目录文件：du" class="headerlink" title="75.统计目录文件：du"></a>75.统计目录文件：du</h4><p>-s参数表示只显示总大小，-h参数表示以人类可读的方式显示大小</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh $(ls) |sort -hr # 查看每个目录的大小，排序从大到小</span><br></pre></td></tr></table></figure>
+<h4 id="76-crontab格式"><a href="#76-crontab格式" class="headerlink" title="76.crontab格式"></a>76.crontab格式</h4><p><em>表示任何时候都匹配<br>“a,b,c” 表示a 或者 b 或者c 执行命令<br>“a-b” 表示a到b 之间 执行命令<br>“</em>&#x2F;a” 表示每 a分钟(小时等) 执行一次</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*&#x2F;1 * * * * service httpd restart</td>
+<td>每一分钟 重启httpd服务</td>
+</tr>
+<tr>
+<td>0 *&#x2F;1 * * * service httpd restart</td>
+<td>每一小时 重启httpd服务</td>
+</tr>
+<tr>
+<td>30 21 * * * service httpd restart</td>
+<td>每天 21：30 分 重启httpd服务</td>
+</tr>
+<tr>
+<td>26 4 1,5,23,28 * * service httpd restart</td>
+<td>每月的1号，5号 23 号 28 号 的4点26分，重启httpd服务</td>
+</tr>
+<tr>
+<td>26 4 1-21 * * service httpd restart</td>
+<td>每月的1号到21号 的4点26分，重启httpd服务</td>
+</tr>
+<tr>
+<td>*&#x2F;2 * * * * service httpd restart</td>
+<td>每隔两分钟 执行，偶数分钟 重启httpd服务</td>
+</tr>
+<tr>
+<td>1-59&#x2F;2 * * * * service httpd restart</td>
+<td>每隔两分钟 执行，奇数 重启httpd服务</td>
+</tr>
+<tr>
+<td>0 23-7&#x2F;1 * * * service httpd restart</td>
+<td>每天的晚上11点到早上7点 每隔一个小时 重启httpd服务</td>
+</tr>
+<tr>
+<td>0,30 18-23 * * * service httpd restart</td>
+<td>每天18点到23点 每隔30分钟 重启httpd服务</td>
+</tr>
+<tr>
+<td>0-59&#x2F;30 18-23 * * * service httpd restart</td>
+<td>每天18点到23点 每隔30分钟 重启httpd服务</td>
+</tr>
+<tr>
+<td>59 1 1-7 4 * test ‘date +%w’ -eq 0 &amp;&amp; &#x2F;root&#x2F;a.sh</td>
+<td>四月的第一个星期日 01:59 分运行脚本 &#x2F;root&#x2F;a.sh ，命令中的 test是判断，%w是数字的星期几</td>
+</tr>
+</tbody></table>
+<h4 id="77-centos时区设置"><a href="#77-centos时区设置" class="headerlink" title="77.centos时区设置"></a>77.centos时区设置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1)date -R #查看时区</span><br><span class="line">2)timedatectl list-timezones #列出所有时区</span><br><span class="line">3)timedatectl set-timezone Asia/Shanghai #设置系统时区为安徽</span><br></pre></td></tr></table></figure>
+<h4 id="78-yum卸载包：yum-remove-包名1-包名2-y"><a href="#78-yum卸载包：yum-remove-包名1-包名2-y" class="headerlink" title="78.yum卸载包：yum remove 包名1 包名2 -y"></a>78.yum卸载包：yum remove 包名1 包名2 -y</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove kubectl kubeadm kubelet -y </span><br></pre></td></tr></table></figure>
+<h4 id="78-vim-粘贴模式，能保持文本格式"><a href="#78-vim-粘贴模式，能保持文本格式" class="headerlink" title="78.vim 粘贴模式，能保持文本格式"></a>78.vim 粘贴模式，能保持文本格式</h4><blockquote>
+<p>:set paste + 回车<br>按 i ，进入 （粘贴插入）模式</p>
+</blockquote>
+<h4 id="79、ip个数计算方法"><a href="#79、ip个数计算方法" class="headerlink" title="79、ip个数计算方法"></a>79、ip个数计算方法</h4><p>192.168.40.0&#x2F;24 &#x3D; 2^(32-24)-2 &#x3D; 254个<br>192.168.0.0&#x2F;16 &#x3D; 2^(32-16)-2 &#x3D; 65534个<br>192.168.0.0&#x2F;12 &#x3D; 2^(32-12)-2 &#x3D; 1048574个</p>
+<h4 id="80-查看自动启动-systemctl-list-unit-files"><a href="#80-查看自动启动-systemctl-list-unit-files" class="headerlink" title="80.查看自动启动 - systemctl list-unit-files"></a>80.查看自动启动 - systemctl list-unit-files</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# systemctl list-unit-files  |grep enabled</span><br><span class="line">abrt-ccpp.service                                                       enabled</span><br><span class="line">abrt-oops.service                                                       enabled</span><br><span class="line">abrt-vmcore.service                                                     enabled</span><br><span class="line">abrt-xorg.service                                                       enabled</span><br><span class="line">abrtd.service                                                           enabled</span><br><span class="line">atd.service                                                             enabled</span><br><span class="line">auditd.service                                                          enabled</span><br></pre></td></tr></table></figure>
+<h4 id="81-linux的tree命令等代"><a href="#81-linux的tree命令等代" class="headerlink" title="81.linux的tree命令等代"></a>81.linux的tree命令等代</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -print | sed -e &#x27;s;[^/]*/;|____;g;s;____|; |;g&#x27;</span><br></pre></td></tr></table></figure>
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%A3%81%E7%9B%98"><span class="toc-text">1.磁盘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A1%A8%E7%A4%BA"><span class="toc-text">2.命令行表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-cat"><span class="toc-text">3.cat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-CPU"><span class="toc-text">4.CPU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%86%85%E5%AD%98"><span class="toc-text">5.内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-hostname"><span class="toc-text">6.hostname</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-ifconfig"><span class="toc-text">7.ifconfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-touch"><span class="toc-text">8.touch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E5%88%86%E5%B1%8F%E9%98%85%E8%AF%BB-less"><span class="toc-text">9.分屏阅读 less</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-head-tail"><span class="toc-text">10.head &#x2F; tail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-grep-%E8%BE%93%E5%87%BA%E5%8C%85%E5%90%AB%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">11.grep 输出包含指定字符串的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-nmtui%E5%9B%BE%E5%BD%A2%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C"><span class="toc-text">12.nmtui图形配置网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-vim"><span class="toc-text">13.vim</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E5%85%B3%E6%9C%BA%E3%80%81%E9%87%8D%E5%90%AF"><span class="toc-text">14.关机、重启</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E2%80%9C%E5%AE%B6%E7%9B%AE%E5%BD%95%E2%80%9D"><span class="toc-text">15. “家目录”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-text">16. 添加用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-ls"><span class="toc-text">17. ls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-%E5%8C%B9%E9%85%8D%E7%AC%A6"><span class="toc-text">18.匹配符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-mkdir-p-test-test2-test3"><span class="toc-text">19.mkdir -p &#x2F;test&#x2F;test2&#x2F;test3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-R-%E9%80%92%E5%BD%92%EF%BC%8C%E6%98%BE%E7%A4%BA%E6%89%80%E6%9C%89%E5%AD%90%E7%9B%AE%E5%BD%95%E5%92%8C%E5%AD%90%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89"><span class="toc-text">20. -R 递归，显示所有子目录和子目录下的所有</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-%E5%88%A0%E9%99%A4-%E5%8D%B1%E9%99%A9%E5%91%BD%E4%BB%A4"><span class="toc-text">21. 删除 (危险命令)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-grep-%E8%BF%87%E6%BB%A4"><span class="toc-text">22.grep 过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-cp-%E5%A4%8D%E5%88%B6"><span class="toc-text">23.cp 复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC"><span class="toc-text">24.内核版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#25-%E9%BB%91%E6%B4%9E%E8%AE%BE%E5%A4%87%EF%BC%9A-dev-null"><span class="toc-text">25.黑洞设备：&#x2F;dev&#x2F;null</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#26-%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-text">26.创建多个文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#27-selinun%E7%AE%A1%E7%90%86%E5%86%85%E9%83%A8%E5%AE%89%E5%85%A8"><span class="toc-text">27.selinun管理内部安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#28-%E8%B0%83%E6%95%B4%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-text">28.调整历史命令的数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#29-%E7%AE%A1%E7%90%86-%E8%B0%83%E7%94%A8%E6%9B%BE%E7%BB%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-text">29.管理&#x2F;调用曾经执行过的命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#30-du-%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E7%9A%84%E5%8D%A0%E7%94%A8%E7%A9%BA%E9%97%B4"><span class="toc-text">30.du,统计文件的占用空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#31-date-%E6%9F%A5%E7%9C%8B-%E8%B0%83%E6%95%B4%E7%B3%BB%E7%BB%9F%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="toc-text">31.date,查看&#x2F;调整系统日期时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#32-%E5%88%B6%E4%BD%9C%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-text">32.制作快捷方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#33-%E5%85%B7%E5%A4%87%E5%BE%88%E5%A4%9A%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85-%E5%B0%86toolstar-gz%E4%B8%8A%E4%BC%A0%E5%88%B0%E8%99%9A%E6%8B%9F%E6%9C%BAA%E7%9A%84-root%E4%B8%8B"><span class="toc-text">33.具备很多的软件包,将toolstar.gz上传到虚拟机A的&#x2F;root下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#34-%E5%9F%9F%E5%90%8D%E7%9A%84%E8%A7%A3%E6%9E%90"><span class="toc-text">34.域名的解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#35-umask%E5%80%BC-%E6%9D%83%E9%99%90%E6%8E%A9%E7%A0%81%E4%B8%8E%E7%94%A8%E6%88%B7%E5%88%9B%E5%BB%BA%E7%9A%84%E7%9B%AE%E5%BD%95%E9%BB%98%E8%AE%A4%E6%9D%83%E9%99%90%E6%9C%89%E5%85%B3"><span class="toc-text">35.umask值:权限掩码与用户创建的目录默认权限有关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#36-%E8%BF%87%E6%BB%A4%E5%B7%B2%E7%BB%8F%E5%AE%89%E8%A3%85%E7%9A%84%E5%8C%85"><span class="toc-text">36.过滤已经安装的包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#37-%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%90%AF%E5%8A%A8%E7%AB%AF%E5%8F%A3"><span class="toc-text">37.查看进程的启动端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#38%E3%80%82netstat%E5%91%BD%E4%BB%A4%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%AF%A5%E5%91%BD%E4%BB%A4%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9%E5%A6%82%E4%B8%8B"><span class="toc-text">38。netstat命令可以查看系统中启动的端口信息，该命令常用选项如下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#39-o-w"><span class="toc-text">39.o+w</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#40-vim"><span class="toc-text">40.vim</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#41-yum%E6%9F%A5%E7%9C%8B%E5%8C%85%E5%90%8D"><span class="toc-text">41.yum查看包名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#42-%E5%AF%86%E7%A0%81%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97"><span class="toc-text">42.密码错误日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#43-sort-%E6%96%87%E6%9C%AC%E6%8E%92%E5%BA%8F"><span class="toc-text">43.sort 文本排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#44-netstat%E5%91%BD%E4%BB%A4%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%90%AF%E5%8A%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%AF%A5%E5%91%BD%E4%BB%A4%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9"><span class="toc-text">44.netstat命令可以查看系统中启动的端口信息，该命令常用选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#45-%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">45.关闭防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#46-less-%E6%9F%A5%E7%9C%8B%EF%BC%8C%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%8F%B7"><span class="toc-text">46.less 查看，显示行号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#47-vim-%E6%9B%BF%E6%8D%A2"><span class="toc-text">47.vim 替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#48-lscpu"><span class="toc-text">48.lscpu</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#49-kill-%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E6%9D%80%E6%AD%BB%E8%BF%9B%E7%A8%8B%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%9A%82%E5%81%9C%E5%92%8C%E5%85%B6%E4%BB%96%EF%BC%8C-kill-%E9%BB%98%E8%AE%A4%E5%B0%B1%E6%98%AF-15"><span class="toc-text">49.kill 不仅仅是杀死进程，也可以暂停和其他， kill 默认就是 15</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#50-yun%E5%AE%89%E8%A3%85%E7%9A%84%E5%8C%85%EF%BC%8C%E4%B8%80%E5%AE%9A%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8systemctl-%E7%AE%A1%E7%90%86"><span class="toc-text">50.yun安装的包，一定可以使用systemctl 管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#51-%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E8%A1%8C%E6%95%B0"><span class="toc-text">51.统计文件行数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#52-%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E5%88%B0%E7%AC%AC11%E8%A1%8C%E5%8E%BB"><span class="toc-text">52.# 打开文件，并到第11行去</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpm-%E5%91%BD%E4%BB%A4"><span class="toc-text">rpm 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#51-sshkey-%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-text">51.sshkey-免密登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#52-%E8%AE%BE%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-text">52.设置主机名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#53-%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4"><span class="toc-text">53.系统命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#54-%E6%9F%A5%E7%9C%8Brpm%E5%8C%85%E5%86%85%E5%AE%B9-%E5%B7%B2%E7%BB%8F%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE"><span class="toc-text">54.查看rpm包内容,已经安装位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#55-%E6%9F%A5%E7%9C%8B%E5%8C%85%E7%9A%84%E7%9C%9F%E5%90%8D"><span class="toc-text">55.查看包的真名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#56-%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81"><span class="toc-text">56.端口状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#57-scp%E4%BC%A0%E8%BE%93"><span class="toc-text">57.scp传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#58-%E5%8C%85%E5%A4%A7%E5%B0%8F"><span class="toc-text">58.包大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#59-scp%E4%BC%A0%E7%9B%AE%E5%BD%95"><span class="toc-text">59.scp传目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#60-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%94%AF%E4%B8%80id"><span class="toc-text">60.查看文件唯一id</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#61-yum%E4%BB%93%E5%BA%93%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%9F%90%E4%B8%AA%E6%96%87%E4%BB%B6%E5%B1%9E%E4%BA%8E%E5%93%AA%E4%B8%AA%E8%BD%AF%E4%BB%B6%E5%8C%85-yum-provides-%E8%BD%AF%E4%BB%B6%E5%90%8D"><span class="toc-text">61.yum仓库中查找某个文件属于哪个软件包,yum provides 软件名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#62-linux-%E5%91%BD%E4%BB%A4%E9%87%8D%E5%85%A5%EF%BC%8C%E5%91%BD%E4%BB%A42-%E5%91%BD%E4%BB%A41"><span class="toc-text">62.linux 命令重入，命令2 $(命令1)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#63-linux-%E8%BF%9B%E7%A8%8Bpid%EF%BC%9Aecho"><span class="toc-text">63.linux 进程pid：echo $$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#64-pstree%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E5%85%B3%E7%B3%BB%EF%BC%9A-pstree-p-%E6%98%BE%E7%A4%BA%E8%BF%9B%E7%A8%8Bid"><span class="toc-text">64.pstree查看进程关系： pstree -p 显示进程id</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#65-linux2%E5%A4%A7%E6%B4%BE%E7%B3%BB%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8Credhat-centos-%E4%B8%8Edebian-ubuntu"><span class="toc-text">65.linux2大派系的区别，redhat(centos)与debian(ubuntu)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#66-linux%E7%89%88%E6%9C%AC%E6%9F%A5%E7%9C%8B%EF%BC%9Acat-etc-redhat-release"><span class="toc-text">66.linux版本查看：cat &#x2F;etc&#x2F;redhat-release</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#67-%E6%9F%A5%E7%9C%8B%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95%EF%BC%9Arpm-ql-%E5%8C%85%E5%90%8D"><span class="toc-text">67.查看软件安装目录：rpm -ql 包名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#68-%E9%9D%9E%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%8Croot%E4%B8%8B%E4%BF%AE%E6%94%B9"><span class="toc-text">68.非交互式修改密码，root下修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#69-linux%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F%E6%98%BE%E7%A4%BA%E7%9A%84%E5%90%8D%E7%A7%B0%EF%BC%9Aps1"><span class="toc-text">69.linux登录系统显示的名称：ps1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#70-yum%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E7%9B%AE%E5%BD%95%EF%BC%9A-usr-lib-systemd-system-xxx-service"><span class="toc-text">70. yum启动服务目录：&#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;xxx.service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#71-%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%EF%BC%9Aip-a-s"><span class="toc-text">71.查看网络配置信息：ip a s</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#72-Linux-lsmod%EF%BC%88%E8%8B%B1%E6%96%87%E5%85%A8%E6%8B%BC%EF%BC%9Alist-modules%EF%BC%89%E5%91%BD%E4%BB%A4%E7%94%A8%E4%BA%8E%E6%98%BE%E7%A4%BA%E5%B7%B2%E8%BD%BD%E5%85%A5%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A8%A1%E5%9D%97%E3%80%82"><span class="toc-text">72.Linux lsmod（英文全拼：list modules）命令用于显示已载入系统的模块。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#73-cat%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%8F%B7%EF%BC%9Acat-n-daemon-json"><span class="toc-text">73.cat显示行号：cat -n daemon.json</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#74-ls%E6%98%BE%E7%A4%BA%E5%8D%95%E4%BD%8D"><span class="toc-text">74.ls显示单位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#75-%E7%BB%9F%E8%AE%A1%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%EF%BC%9Adu"><span class="toc-text">75.统计目录文件：du</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#76-crontab%E6%A0%BC%E5%BC%8F"><span class="toc-text">76.crontab格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#77-centos%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE"><span class="toc-text">77.centos时区设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#78-yum%E5%8D%B8%E8%BD%BD%E5%8C%85%EF%BC%9Ayum-remove-%E5%8C%85%E5%90%8D1-%E5%8C%85%E5%90%8D2-y"><span class="toc-text">78.yum卸载包：yum remove 包名1 包名2 -y</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#78-vim-%E7%B2%98%E8%B4%B4%E6%A8%A1%E5%BC%8F%EF%BC%8C%E8%83%BD%E4%BF%9D%E6%8C%81%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-text">78.vim 粘贴模式，能保持文本格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#79%E3%80%81ip%E4%B8%AA%E6%95%B0%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="toc-text">79、ip个数计算方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#80-%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8-systemctl-list-unit-files"><span class="toc-text">80.查看自动启动 - systemctl list-unit-files</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#81-linux%E7%9A%84tree%E5%91%BD%E4%BB%A4%E7%AD%89%E4%BB%A3"><span class="toc-text">81.linux的tree命令等代</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2021/08/02/运维/Linux云计算教程/02-基础命令/">https://dbbruce.github.io/2021/08/02/运维/Linux云计算教程/02-基础命令/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2021/08/02/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/02-docker%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          02-Docker命名空间
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/08/03/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/03-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          03-常用快捷键
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

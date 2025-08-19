@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>16-Docker资源配额 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/docker/基础/16-Docker资源配额" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      16-Docker资源配额
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-14T02:00:52.000Z" itemprop="datePublished">2021年08月14日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2021/08/14/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/16-Docker%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Docker资源配额"><a href="#Docker资源配额" class="headerlink" title="Docker资源配额"></a>Docker资源配额</h1><p>Docker通过cgroup来控制容器使用的资源限制，可以对docker限制的资源包括CPU、内存、磁盘</p>
+<h3 id="指定docker容器可以使用的cpu份额"><a href="#指定docker容器可以使用的cpu份额" class="headerlink" title="指定docker容器可以使用的cpu份额"></a>指定docker容器可以使用的cpu份额</h3><ul>
+<li>查看配置份额的帮助命令：cpu配额参数：-c, –cpu-shares int  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run --help | grep cpu-shares</span><br><span class="line">  -c, --cpu-shares int                 CPU shares (relative weight)</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+<li>默认每个docker容器的cpu份额值都是1024</li>
+<li>CPU shares (relative weight) 在创建容器时指定容器所使用的CPU份额值。cpu-shares的值不能保证可以获得1个vcpu或者多少GHz的CPU资源，仅仅只是一个弹性的加权值。</li>
+<li>–cpu-shares 500-个人理解就是：这个500不是一个准确使用值，而是一个权重值；</li>
+<li>在同一个CPU核心上，同时运行多个容器时，容器的cpu加权的效果才能体现出来。</li>
+<li>宿主机查看绑定的信息：<blockquote>
+<p>[root@centos07-12 b47da8a3d40ba472a8cd45fa20ad99aed5e9fa70eded4dffd2086cf1f87b1e57]# cd &#x2F;sys&#x2F;fs&#x2F;cgroup&#x2F;cpuset&#x2F;docker&#x2F;b47da8a3d40ba472a8cd45fa20ad99aed5e9fa70eded4dffd2086cf1f87b1e57<br>root@centos07-12 b47da8a3d40ba472a8cd45fa20ad99aed5e9fa70eded4dffd2086cf1f87b1e57]# ll<br>用量 0<br>rw-r–r–. 1 root root 0 11月 24 14:30 cgroup.clone_children<br>w–w–w-. 1 root root 0 11月 24 14:30 cgroup.event_control<br>rw-r–r–. 1 root root 0 11月 24 14:30 cgroup.procs<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.cpu_exclusive<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.cpus<br>r–r–r–. 1 root root 0 11月 24 14:30 cpuset.effective_cpus<br>r–r–r–. 1 root root 0 11月 24 14:30 cpuset.effective_mems<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.mem_exclusive<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.mem_hardwall<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.memory_migrate<br>r–r–r–. 1 root root 0 11月 24 14:30 cpuset.memory_pressure<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.memory_spread_page<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.memory_spread_slab<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.mems<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.sched_load_balance<br>rw-r–r–. 1 root root 0 11月 24 14:30 cpuset.sched_relax_domain_level<br>rw-r–r–. 1 root root 0 11月 24 14:30 notify_on_release<br>rw-r–r–. 1 root root 0 11月 24 14:30 tasks<br><br></p>
+</blockquote>
+</li>
+<li>例： 两个容器A、B的cpu份额分别为1000和500，结果会怎么样？	<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">情况1：A和B正常运行，占用同一个CPU，在cpu进行时间片分配的时候，容器A比容器B多一倍的机会获得CPU的时间片。</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">情况2：分配的结果取决于当时其他容器的运行状态。比如容器A的进程一直是空闲的，那么容器B是可以获取比容器A更多的CPU时间片的； </span><br><span class="line">比如主机上只运行了一个容器，即使它的cpu份额只有50，它也可以独占整个主机的cpu资源。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><font color=red><strong>cgroups只在多个容器同时争抢同一个cpu资源时，cpu配额才会生效。</strong></font><br>因此，无法单纯根据某个容器的cpu份额来确定有多少cpu资源分配给它，<br><font color=red><strong>资源分配结果取决于同时运行的其他容器的cpu分配和容器中进程运行情况。</strong></font></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="给容器实例分配512权重的cpu使用份额-参数-–cpu-shares-512"><a href="#给容器实例分配512权重的cpu使用份额-参数-–cpu-shares-512" class="headerlink" title="给容器实例分配512权重的cpu使用份额-参数:–cpu-shares 512"></a>给容器实例分配512权重的cpu使用份额-参数:–cpu-shares 512</h3><blockquote>
+<p>注：稍后，我们启动多个容器，测试一下是不是只能使用512份额的cpu资源。单独一个容器，看不出来使用的cpu的比例。 因没有docker实例同此docker实例竞争。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run -it --cpu-shares 512 centos  bash</span><br><span class="line">[root@811221fc842a /]# cat /sys/fs/cgroup/cpu/cpu.shares</span><br><span class="line">512</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>总结：<br>通过-c设置的 cpu share 并不是 CPU 资源的绝对数量，而是一个相对的权重值。某个容器最终能分配到的 CPU 资源取决于它的 cpu share 占所有容器 cpu share 总和的比例。通过 cpu share 可以设置容器使用 CPU 的优先级。</p>
+</blockquote>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><ul>
+<li>比如在 host 中启动了两个容器：<blockquote>
+<p>container_A 的 cpu share 1024，是 container_B 的两倍。当两个容器都需要 CPU 资源时，container_A 可以得到的 CPU 是 container_B 的两倍。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run -it  --name &quot;container_A&quot; -c 1024 centos bash</span><br><span class="line">[root@centos07-12 ~]# docker run -it  --name &quot;container_B&quot; -c 512 centos bash</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是，这种按权重分配 CPU只会发生在 CPU资源紧张的情况下。如果 container_A 处于空闲状态，为了充分利用 CPU资源，container_B 也可以分配到全部可用的 CPU。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="CPU-core核心控制-参数-–cpuset-可以绑定CPU，指定使用的cpu：-–cpuset-cpu0-cpu1"><a href="#CPU-core核心控制-参数-–cpuset-可以绑定CPU，指定使用的cpu：-–cpuset-cpu0-cpu1" class="headerlink" title="CPU core核心控制-参数:–cpuset 可以绑定CPU，指定使用的cpu： –cpuset cpu0 cpu1"></a>CPU core核心控制-参数:–cpuset 可以绑定CPU，指定使用的cpu： –cpuset cpu0 cpu1</h3><blockquote>
+<p>对多核CPU的服务器，docker还可以控制容器运行限定使用哪些cpu内核和内存节点，即使用–cpuset-cpus和–cpuset-mems参数。对具有NUMA拓扑（具有多CPU、多内存节点）的服务器尤其有用，可以对需要高性能计算的容器进行性能最优的配置。如果服务器只有一个内存节点，则–cpuset-mems的配置基本上不会有明显效果。<br>查看容器绑定的cpu核号：对应的Cgroup文件为&#x2F;sys&#x2F;fs&#x2F;cgroup&#x2F;cpuset&#x2F;docker&#x2F;容器ID号&#x2F;cpuset.cpus<br><br><br>扩展：<br>服务器架构一般分： SMP、NUMA、MPP体系结构介绍<br>从系统架构来看，目前的商用服务器大体可以分为三类：<br>1.即对称多处理器结构(SMP ： Symmetric Multi-Processor) 例： x86 服务器，双路服务器。主板上有两个物理cpu<br>2.非一致存储访问结构 (NUMA ： Non-Uniform Memory Access) 例：  IBM 小型机 pSeries 690<br>3.海量并行处理结构 (MPP ： Massive ParallelProcessing) 。  例： 大型机  Z14   </p>
+</blockquote>
+<h3 id="CPU配额控制参数的混合使用"><a href="#CPU配额控制参数的混合使用" class="headerlink" title="CPU配额控制参数的混合使用"></a>CPU配额控制参数的混合使用</h3><blockquote>
+<p>在上面这些参数中，cpu-shares控制只发生在容器竞争同一个cpu的时间片时有效。如果通过cpuset-cpus指定容器A使用cpu 0，容器B只是用cpu1，在主机上只有这两个容器使用对应内核的情况，它们各自占用全部的内核资源，cpu-shares没有明显效果</p>
+</blockquote>
+<ul>
+<li>如何才能有效果？<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">容器A和容器B配置上cpuset-cpus值并都绑定到同一个cpu上，然后同时抢占cpu资源，就可以看出效果了。</span><br><span class="line"></span><br><span class="line">例1：测试cpu-shares和cpuset-cpus混合使用运行效果，就需要一个压缩力测试工具stress来让容器实例把cpu跑满。</span><br></pre></td></tr></table></figure></li>
+<li>如何把cpu跑满？<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如何把4核心的cpu中第一和第三核心跑满？可以运行stress，然后使用taskset绑定一下cpu。</span><br></pre></td></tr></table></figure></li>
+<li>先扩展：stress命令<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">概述：linux系统压力测试软件Stress</span><br><span class="line">stress参数解释</span><br><span class="line">-?       显示帮助信息</span><br><span class="line">-v       显示版本号</span><br><span class="line">-q       不显示运行信息</span><br><span class="line">-n       显示已完成的指令情况</span><br><span class="line">-t       --timeout  N  指定运行N秒后停止        </span><br><span class="line">         --backoff   N   等待N微妙后开始运行</span><br><span class="line">-c       产生n个进程 ：每个进程都反复不停的计算随机数的平方根，测试cpu</span><br><span class="line">-i       产生n个进程 ：每个进程反复调用sync()，sync()用于将内存上的内容写到硬盘上，测试磁盘io</span><br><span class="line">-m       --vm n 产生n个进程,每个进程不断调用内存分配malloc（）和内存释放free（）函数 ，测试内存</span><br><span class="line">         --vm-bytes B  指定malloc时内存的字节数 （默认256MB）</span><br><span class="line">         --vm-hang N   指定在free栈的秒数   </span><br><span class="line">-d       --hadd n  产生n个执行write和unlink函数的进程</span><br><span class="line">         -hadd-bytes B  指定写的字节数</span><br><span class="line">         --hadd-noclean  不unlink</span><br><span class="line">                 </span><br><span class="line">注：时间单位可以为秒s，分m，小时h，天d，年y，文件大小单位可以为K，M，G</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# yum install -y epel-release</span><br><span class="line">[root@centos07-12 ~]# yum -y install stress</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="例1：产生2个cpu进程，2个io进程，20秒后停止运行"><a href="#例1：产生2个cpu进程，2个io进程，20秒后停止运行" class="headerlink" title="例1：产生2个cpu进程，2个io进程，20秒后停止运行"></a>例1：产生2个cpu进程，2个io进程，20秒后停止运行</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 如果执行时间为分钟，改20s 为1m</span><br><span class="line">[root@centos07-12 ~]# stress -c 2 -i 2 --verbose --timeout 20s  </span><br></pre></td></tr></table></figure>
+<p><img src="/../../../../images/docker/img_7.png" alt="img_7.png"></p>
+<h4 id="例2：测试cpuset-cpus和cpu-shares混合使用运行效果，就需要一个压缩力测试工具stress来让容器实例把cpu跑满。-当跑满后，会不会去其他cpu上运行。-如果没有在其他cpu上运行，说明cgroup资源限制成功。"><a href="#例2：测试cpuset-cpus和cpu-shares混合使用运行效果，就需要一个压缩力测试工具stress来让容器实例把cpu跑满。-当跑满后，会不会去其他cpu上运行。-如果没有在其他cpu上运行，说明cgroup资源限制成功。" class="headerlink" title="例2：测试cpuset-cpus和cpu-shares混合使用运行效果，就需要一个压缩力测试工具stress来让容器实例把cpu跑满。 当跑满后，会不会去其他cpu上运行。 如果没有在其他cpu上运行，说明cgroup资源限制成功。"></a>例2：测试cpuset-cpus和cpu-shares混合使用运行效果，就需要一个压缩力测试工具stress来让容器实例把cpu跑满。 当跑满后，会不会去其他cpu上运行。 如果没有在其他cpu上运行，说明cgroup资源限制成功。</h4><ul>
+<li>注意：查看容器绑定的CPU核心：宿主机对应的Cgroup文件为：&#x2F;sys&#x2F;fs&#x2F;cgroup&#x2F;cpuset&#x2F;docker&#x2F;容器ID号&#x2F;cpuset.cpus<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name docker10 --cpuset-cpus 0 --cpu-shares 512 centos  /bin/bash </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="例3：创建两个容器实例-docker10-和docker20。-让docker10和docker20只运行在cpu0和cpu1上，最终测试一下docker10和docker20使用cpu的百分比。实验拓扑图如下："><a href="#例3：创建两个容器实例-docker10-和docker20。-让docker10和docker20只运行在cpu0和cpu1上，最终测试一下docker10和docker20使用cpu的百分比。实验拓扑图如下：" class="headerlink" title="例3：创建两个容器实例:docker10 和docker20。 让docker10和docker20只运行在cpu0和cpu1上，最终测试一下docker10和docker20使用cpu的百分比。实验拓扑图如下："></a>例3：创建两个容器实例:docker10 和docker20。 让docker10和docker20只运行在cpu0和cpu1上，最终测试一下docker10和docker20使用cpu的百分比。实验拓扑图如下：</h4><p><img src="/../../../../images/docker/img_8.png" alt="img_8.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 指定docker10只能在cpu0和cpu1上运行，而且docker10的使用cpu的份额512</span><br><span class="line"># 参数-itd就是又能打开一个伪终端，又可以在后台运行着docker实例</span><br><span class="line">[root@centos07-12 ~]# docker run -itd --name docker10 --cpuset-cpus 0,1 --cpu-shares 512 centos  /bin/bash</span><br><span class="line"></span><br><span class="line"># 指定docker20只能在cpu0和cpu1上运行，而且docker20的使用cpu的份额1024，比dcker10多一倍</span><br><span class="line">[root@centos07-12 ~]# docker run -itd --name docker20 --cpuset-cpus 0,1 --cpu-shares 1024 centos  /bin/bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 进入docker10，使用stress测试进程是不是只在cpu0,1上运行：</span><br><span class="line">[root@centos07-12 ~]# docker exec -it docker10 bash</span><br><span class="line">[root@b47da8a3d40b /]#  stress -c 2 -v   -t  10m</span><br><span class="line">stress: info: [123] dispatching hogs: 2 cpu, 0 io, 0 vm, 0 hdd</span><br><span class="line">stress: dbug: [123] using backoff sleep of 6000us</span><br><span class="line">stress: dbug: [123] setting timeout to 600s</span><br><span class="line">stress: dbug: [123] --&gt; hogcpu worker 2 [124] forked</span><br><span class="line">stress: dbug: [123] using backoff sleep of 3000us</span><br><span class="line">stress: dbug: [123] setting timeout to 600s</span><br><span class="line">stress: dbug: [123] --&gt; hogcpu worker 1 [125] forked</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在物理机另外一个虚拟终端上运行top命令，按1快捷键，查看每个cpu使用情况，可看到正常。只在cpu0,1上运行：<br><img src="/../../../../images/docker/img_9.png" alt="img_9.png"></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 进入docker20，使用stress测试进程是不是只在cpu0,1上运行，且docker20上运行的stress使用cpu百分比是docker10的2倍 </span><br><span class="line">[root@centos07-12 ~]# docker exec -it docker20 bash</span><br><span class="line">[root@3b103f5c23cf /]#  stress -c 2 -v   -t  10m</span><br><span class="line">stress: info: [122] dispatching hogs: 2 cpu, 0 io, 0 vm, 0 hdd</span><br><span class="line">stress: dbug: [122] using backoff sleep of 6000us</span><br><span class="line">stress: dbug: [122] setting timeout to 600s</span><br><span class="line">stress: dbug: [122] --&gt; hogcpu worker 2 [123] forked</span><br><span class="line">stress: dbug: [122] using backoff sleep of 3000us</span><br><span class="line">stress: dbug: [122] setting timeout to 600s</span><br><span class="line">stress: dbug: [122] --&gt; hogcpu worker 1 [124] forked</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在另外一个虚拟终端上运行top命令，按1快捷键，查看每个cpu使用情况：<br><img src="/../../../../images/docker/img_10.png" alt="img_10.png"><br>注：两个容器只在cpu0,1上运行，说明cpu绑定限制成功。而docker20是docker10使用cpu的2倍。说明–cpu-shares限制资源成功</p>
+</blockquote>
+<h3 id="docker容器控制内存"><a href="#docker容器控制内存" class="headerlink" title="docker容器控制内存"></a>docker容器控制内存</h3><ul>
+<li>Docker提供参数-m, –memory&#x3D;””限制容器的内存使用量。</li>
+</ul>
+<h4 id="例1：允许容器使用的内存上限为128M："><a href="#例1：允许容器使用的内存上限为128M：" class="headerlink" title="例1：允许容器使用的内存上限为128M："></a>例1：允许容器使用的内存上限为128M：</h4><ul>
+<li>-m &#x3D;&#x3D; –memory 相等</li>
+<li>cat &#x2F;sys&#x2F;fs&#x2F;cgroup&#x2F;memory&#x2F;memory.limit_in_bytes<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run -it -m 128m centos</span><br><span class="line">[root@d7291cfb7240 /]# cat /sys/fs/cgroup/memory/memory.limit_in_bytes</span><br><span class="line">134217728</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：也可以使用tress进行测试，到现在，我可以限制docker实例使用cpu的核心数和权重，可以限制内存大小</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="例2：创建一个docker，只使用2个cpu核心，只能使用128M内存"><a href="#例2：创建一个docker，只使用2个cpu核心，只能使用128M内存" class="headerlink" title="例2：创建一个docker，只使用2个cpu核心，只能使用128M内存"></a>例2：创建一个docker，只使用2个cpu核心，只能使用128M内存</h4><ul>
+<li>–cpuset-cpus 0,1 </li>
+<li>-m 128m <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run -it --cpuset-cpus 0,1 -m 128m centos</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="docker容器控制IO"><a href="#docker容器控制IO" class="headerlink" title="docker容器控制IO"></a>docker容器控制IO</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run --help | grep write-b</span><br><span class="line">      --device-write-bps list          Limit write rate (bytes per second) to a device (default [])</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 限制此设备上的写速度（bytes per second），单位可以是kb、mb或者gb。         </span><br><span class="line">--device-read-bps value   #限制此设备上的读速度（bytes per second），单位可以是kb、mb或者gb。         </span><br><span class="line">情景：防止某个 Docker 容器吃光你的磁盘 I / O 资源        </span><br></pre></td></tr></table></figure>
+<h4 id="例1：限制容器实例对硬盘的最高写入速度设定为-2MB-s。"><a href="#例1：限制容器实例对硬盘的最高写入速度设定为-2MB-s。" class="headerlink" title="例1：限制容器实例对硬盘的最高写入速度设定为 2MB&#x2F;s。"></a>例1：限制容器实例对硬盘的最高写入速度设定为 2MB&#x2F;s。</h4><ul>
+<li>–device参数：将主机设备添加到容器<blockquote>
+<p>注：dd 参数：<br>direct：读写数据采用直接IO方式，不走缓存。直接从内存写硬盘上。<br>nonblock：读写数据采用非阻塞IO方式，优先写dd命令的数据         </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run -it -v /var/www/html/:/var/www/html/ --device /dev/sda:/dev/sda --device-write-bps /dev/sda:2mb centos bash</span><br><span class="line">[root@9cd29b258646 /]# time dd if=/dev/sda of=/var/www/html/test.out bs=2M count=50 oflag=direct,nonblock</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="docker容器运行结束自动释放资源"><a href="#docker容器运行结束自动释放资源" class="headerlink" title="docker容器运行结束自动释放资源"></a>docker容器运行结束自动释放资源</h3><ul>
+<li>作用：当容器命令运行结束后，自动删除容器，自动释放资源 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run --help | grep rm</span><br><span class="line">      --rm                             Automatically remove the container when it exits</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# docker run -it --rm --name dbbruce centos  sleep 6</span><br><span class="line"></span><br><span class="line"># 6秒后查看</span><br><span class="line">[root@centos07-12 ~]# docker ps |grep dbbruce</span><br></pre></td></tr></table></figure>
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D"><span class="toc-text">Docker资源配额</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E5%AE%9Adocker%E5%AE%B9%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84cpu%E4%BB%BD%E9%A2%9D"><span class="toc-text">指定docker容器可以使用的cpu份额</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%9E%E4%BE%8B%E5%88%86%E9%85%8D512%E6%9D%83%E9%87%8D%E7%9A%84cpu%E4%BD%BF%E7%94%A8%E4%BB%BD%E9%A2%9D-%E5%8F%82%E6%95%B0-%E2%80%93cpu-shares-512"><span class="toc-text">给容器实例分配512权重的cpu使用份额-参数:–cpu-shares 512</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU-core%E6%A0%B8%E5%BF%83%E6%8E%A7%E5%88%B6-%E5%8F%82%E6%95%B0-%E2%80%93cpuset-%E5%8F%AF%E4%BB%A5%E7%BB%91%E5%AE%9ACPU%EF%BC%8C%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E7%9A%84cpu%EF%BC%9A-%E2%80%93cpuset-cpu0-cpu1"><span class="toc-text">CPU core核心控制-参数:–cpuset 可以绑定CPU，指定使用的cpu： –cpuset cpu0 cpu1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E9%85%8D%E9%A2%9D%E6%8E%A7%E5%88%B6%E5%8F%82%E6%95%B0%E7%9A%84%E6%B7%B7%E5%90%88%E4%BD%BF%E7%94%A8"><span class="toc-text">CPU配额控制参数的混合使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B1%EF%BC%9A%E4%BA%A7%E7%94%9F2%E4%B8%AAcpu%E8%BF%9B%E7%A8%8B%EF%BC%8C2%E4%B8%AAio%E8%BF%9B%E7%A8%8B%EF%BC%8C20%E7%A7%92%E5%90%8E%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C"><span class="toc-text">例1：产生2个cpu进程，2个io进程，20秒后停止运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B2%EF%BC%9A%E6%B5%8B%E8%AF%95cpuset-cpus%E5%92%8Ccpu-shares%E6%B7%B7%E5%90%88%E4%BD%BF%E7%94%A8%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%EF%BC%8C%E5%B0%B1%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%8E%8B%E7%BC%A9%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7stress%E6%9D%A5%E8%AE%A9%E5%AE%B9%E5%99%A8%E5%AE%9E%E4%BE%8B%E6%8A%8Acpu%E8%B7%91%E6%BB%A1%E3%80%82-%E5%BD%93%E8%B7%91%E6%BB%A1%E5%90%8E%EF%BC%8C%E4%BC%9A%E4%B8%8D%E4%BC%9A%E5%8E%BB%E5%85%B6%E4%BB%96cpu%E4%B8%8A%E8%BF%90%E8%A1%8C%E3%80%82-%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E5%9C%A8%E5%85%B6%E4%BB%96cpu%E4%B8%8A%E8%BF%90%E8%A1%8C%EF%BC%8C%E8%AF%B4%E6%98%8Ecgroup%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6%E6%88%90%E5%8A%9F%E3%80%82"><span class="toc-text">例2：测试cpuset-cpus和cpu-shares混合使用运行效果，就需要一个压缩力测试工具stress来让容器实例把cpu跑满。 当跑满后，会不会去其他cpu上运行。 如果没有在其他cpu上运行，说明cgroup资源限制成功。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B3%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%B8%AA%E5%AE%B9%E5%99%A8%E5%AE%9E%E4%BE%8B-docker10-%E5%92%8Cdocker20%E3%80%82-%E8%AE%A9docker10%E5%92%8Cdocker20%E5%8F%AA%E8%BF%90%E8%A1%8C%E5%9C%A8cpu0%E5%92%8Ccpu1%E4%B8%8A%EF%BC%8C%E6%9C%80%E7%BB%88%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%8Bdocker10%E5%92%8Cdocker20%E4%BD%BF%E7%94%A8cpu%E7%9A%84%E7%99%BE%E5%88%86%E6%AF%94%E3%80%82%E5%AE%9E%E9%AA%8C%E6%8B%93%E6%89%91%E5%9B%BE%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">例3：创建两个容器实例:docker10 和docker20。 让docker10和docker20只运行在cpu0和cpu1上，最终测试一下docker10和docker20使用cpu的百分比。实验拓扑图如下：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E5%AE%B9%E5%99%A8%E6%8E%A7%E5%88%B6%E5%86%85%E5%AD%98"><span class="toc-text">docker容器控制内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B1%EF%BC%9A%E5%85%81%E8%AE%B8%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E4%B8%8A%E9%99%90%E4%B8%BA128M%EF%BC%9A"><span class="toc-text">例1：允许容器使用的内存上限为128M：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B2%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAdocker%EF%BC%8C%E5%8F%AA%E4%BD%BF%E7%94%A82%E4%B8%AAcpu%E6%A0%B8%E5%BF%83%EF%BC%8C%E5%8F%AA%E8%83%BD%E4%BD%BF%E7%94%A8128M%E5%86%85%E5%AD%98"><span class="toc-text">例2：创建一个docker，只使用2个cpu核心，只能使用128M内存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E5%AE%B9%E5%99%A8%E6%8E%A7%E5%88%B6IO"><span class="toc-text">docker容器控制IO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B1%EF%BC%9A%E9%99%90%E5%88%B6%E5%AE%B9%E5%99%A8%E5%AE%9E%E4%BE%8B%E5%AF%B9%E7%A1%AC%E7%9B%98%E7%9A%84%E6%9C%80%E9%AB%98%E5%86%99%E5%85%A5%E9%80%9F%E5%BA%A6%E8%AE%BE%E5%AE%9A%E4%B8%BA-2MB-s%E3%80%82"><span class="toc-text">例1：限制容器实例对硬盘的最高写入速度设定为 2MB&#x2F;s。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9D%9F%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E8%B5%84%E6%BA%90"><span class="toc-text">docker容器运行结束自动释放资源</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%EF%BC%9A"><span class="toc-text">例：</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2021/08/14/运维/docker/基础/16-Docker资源配额/">https://dbbruce.github.io/2021/08/14/运维/docker/基础/16-Docker资源配额/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2021/08/13/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/15-Docker%E5%AE%B9%E5%99%A8%E4%BA%92%E8%81%94/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          15-Docker容器互联
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/08/14/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/14-%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          14-逻辑卷管理
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

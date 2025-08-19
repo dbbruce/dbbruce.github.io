@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>03-kubeadm安装单master多node节点k8s-1.20.6集群 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/K8S/基础/03-kubeadm安装单master多node节点k8s-1.20.6集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      03-kubeadm安装单master多node节点k8s-1.20.6集群
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-02T02:00:52.000Z" itemprop="datePublished">2023年05月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/03-kubeadm%E5%AE%89%E8%A3%85%E5%8D%95master%E5%A4%9Anode%E8%8A%82%E7%82%B9k8s-1.20.6%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="网段注意项，3个网段一定不能有冲突"><a href="#网段注意项，3个网段一定不能有冲突" class="headerlink" title="网段注意项，3个网段一定不能有冲突"></a>网段注意项，3个网段一定不能有冲突</h3><blockquote>
+<p>podSubnet（pod网段） 10.244.0.0&#x2F;16 <br><br>serviceSubnet（service网段）: 10.96.0.0&#x2F;16<br><br>物理机网段：192.168.40.0&#x2F;24<br></p>
+</blockquote>
+<h3 id="实验环境规划"><a href="#实验环境规划" class="headerlink" title="实验环境规划"></a>实验环境规划</h3><table>
+<thead>
+<tr>
+<th>k8s角色</th>
+<th>ip</th>
+<th>主机名</th>
+<th>安装组件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制节点</td>
+<td>192.168.1.12</td>
+<td>centos07-12</td>
+<td>apiserver、ontroller-manager、 scheduler、 etcd、 docker、 kubeproxy 、calico</td>
+</tr>
+<tr>
+<td>工作节点</td>
+<td>192.168.1.22</td>
+<td>centos07-22</td>
+<td>kubelet、kube-proxy、docker、calico、coredns</td>
+</tr>
+<tr>
+<td>工作节点</td>
+<td>192.168.1.42</td>
+<td>centos07-42</td>
+<td>kubelet、kube-proxy、docker、calico、coredns</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+<h3 id="1、初始化安装k8s集群的实验环境"><a href="#1、初始化安装k8s集群的实验环境" class="headerlink" title="1、初始化安装k8s集群的实验环境"></a>1、初始化安装k8s集群的实验环境</h3><h4 id="1-1-修改机器IP，变成静态IP-centos07-12-22-42"><a href="#1-1-修改机器IP，变成静态IP-centos07-12-22-42" class="headerlink" title="1.1 修改机器IP，变成静态IP - centos07-12&#x2F;22&#x2F;42"></a>1.1 修改机器IP，变成静态IP - centos07-12&#x2F;22&#x2F;42</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-enp0s3</span><br><span class="line"></span><br><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">IPADDR=192.168.1.12</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.1.1</span><br><span class="line">DNS1=192.168.1.1</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=enp0s3</span><br><span class="line">DEVICE=enp0s3</span><br><span class="line">ONBOOT=yes</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改配置文件之后需要重启网络服务才能使配置生效，重启网络服务命令如下<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-enp0s3文件里的配置说明：<br><br>NAME&#x3D;enp0s3    #网卡名字，跟DEVICE名字保持一致即可<br><br>DEVICE&#x3D;enp0s3   #网卡设备名，大家ip addr可看到自己的这个网卡设备名，每个人的机器可能这个名字不一样，需要写自己的<br><br>BOOTPROTO&#x3D;static   #static表示静态ip地址<br><br>ONBOOT&#x3D;yes    #开机自启动网络，必须是yes<br><br>IPADDR&#x3D;192.168.1.12   #ip地址，需要跟自己电脑所在网段一致<br><br>NETMASK&#x3D;255.255.255.0  #子网掩码，需要跟自己电脑所在网段一致<br><br>GATEWAY&#x3D;192.168.1.1   #网关，在自己电脑打开cmd，输入ipconfig &#x2F;all可看到<br><br>DNS1&#x3D;192.168.1.1    #DNS，在自己电脑打开cmd，输入ipconfig &#x2F;all可看到<br></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="1-2-关闭selinux-centos07-12-22-42"><a href="#1-2-关闭selinux-centos07-12-22-42" class="headerlink" title="1.2 关闭selinux - centos07-12&#x2F;22&#x2F;42"></a>1.2 关闭selinux - centos07-12&#x2F;22&#x2F;42</h4><blockquote>
+<p>#修改selinux配置文件之后，重启机器，selinux配置才能永久生效</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/SELINUX=enforcing/SELINUX=disabled/g&#x27; /etc/selinux/config</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>reboot<br><br>-n : 在重开机前不做将记忆体资料写回硬盘的动作<br><br>-w : 并不会真的重开机，只是把记录写到 &#x2F;var&#x2F;log&#x2F;wtmp 档案里<br><br>-d : 不把记录写到 &#x2F;var&#x2F;log&#x2F;wtmp 档案里（-n 这个参数包含了 -d）<br><br>-f : 强迫重开机，不呼叫 shutdown 这个指令<br><br>-i : 在重开机之前先把所有网络相关的装置先停止<br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot -f  </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>显示Disabled说明selinux已经关闭</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getenforce</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-配置机器主机名-centos07-12-22-42"><a href="#1-3-配置机器主机名-centos07-12-22-42" class="headerlink" title="1.3 配置机器主机名 - centos07-12&#x2F;22&#x2F;42"></a>1.3 配置机器主机名 - centos07-12&#x2F;22&#x2F;42</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname centos07-12 &amp;&amp; bash </span><br><span class="line">hostnamectl set-hostname centos07-22 &amp;&amp; bash </span><br><span class="line">hostnamectl set-hostname centos07-42 &amp;&amp; bash </span><br></pre></td></tr></table></figure>
+<h4 id="1-4-升级操作系统，k8s集群每台机器都操作-centos07-12-22-42"><a href="#1-4-升级操作系统，k8s集群每台机器都操作-centos07-12-22-42" class="headerlink" title="1.4 升级操作系统，k8s集群每台机器都操作 - centos07-12&#x2F;22&#x2F;42"></a>1.4 升级操作系统，k8s集群每台机器都操作 - centos07-12&#x2F;22&#x2F;42</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update -y</span><br></pre></td></tr></table></figure>
+<h4 id="1-5-配置主机hosts文件，相互之间通过主机名互相访问-centos07-12-22-42"><a href="#1-5-配置主机hosts文件，相互之间通过主机名互相访问-centos07-12-22-42" class="headerlink" title="1.5 配置主机hosts文件，相互之间通过主机名互相访问 - centos07-12&#x2F;22&#x2F;42"></a>1.5 配置主机hosts文件，相互之间通过主机名互相访问 - centos07-12&#x2F;22&#x2F;42</h4><blockquote>
+<p>修改每台机器的&#x2F;etc&#x2F;hosts文件，增加如下三行：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line"></span><br><span class="line">192.168.1.12   centos07-12  </span><br><span class="line">192.168.1.22   centos07-22  </span><br><span class="line">192.168.1.42   centos07-42  </span><br></pre></td></tr></table></figure>
+<h4 id="1-6-配置主机之间无密码登录-centos07-12-22-42"><a href="#1-6-配置主机之间无密码登录-centos07-12-22-42" class="headerlink" title="1.6 配置主机之间无密码登录 - centos07-12&#x2F;22&#x2F;42"></a>1.6 配置主机之间无密码登录 - centos07-12&#x2F;22&#x2F;42</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line"></span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa):</span><br><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:UWxG5OFiWTD1+Lf0Nk9ulqAcJ5vbnnDUAx7DMewR7FI root@centos07-12</span><br><span class="line">The key&#x27;s randomart image is:</span><br><span class="line">+---[RSA 2048]----+</span><br><span class="line">|        o*B o+.  |</span><br><span class="line">|         B++.Eo  |</span><br><span class="line">|        =o+ ==.  |</span><br><span class="line">|       . o o.o=  |</span><br><span class="line">|        S   oooo |</span><br><span class="line">|           o.= o.|</span><br><span class="line">|          ..B.o.=|</span><br><span class="line">|           =+ .==|</span><br><span class="line">|           .o+ oo|</span><br><span class="line">+----[SHA256]-----+</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id centos07-12</span><br><span class="line">ssh-copy-id centos07-22</span><br><span class="line">ssh-copy-id centos07-42</span><br></pre></td></tr></table></figure>
+<h4 id="1-7-关闭交换分区swap，提升性能-centos07-12-22-42"><a href="#1-7-关闭交换分区swap，提升性能-centos07-12-22-42" class="headerlink" title="1.7 关闭交换分区swap，提升性能 - centos07-12&#x2F;22&#x2F;42"></a>1.7 关闭交换分区swap，提升性能 - centos07-12&#x2F;22&#x2F;42</h4><blockquote>
+<p>K8S为了提高性能，需要关闭交换分区，swap<br><br>问题1：为什么要关闭swap交换分区？ <br><br>swap是交换分区，如果机器内存不够，会使用swap分区，但是swap分区的性能较低，k8s设计的时候为了能提升性能，默认是不允许使用交换分区的。<br><br>Kubeadm初始化的时候会检测swap是否关闭，如果没关闭，那就初始化失败。如果不想要关闭交换分区，安装k8s的时候可以指定–ignore-preflight-errors&#x3D;Swap来解决。<br></p>
+</blockquote>
+<ul>
+<li>临时关闭<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br></pre></td></tr></table></figure></li>
+<li>永久关闭：注释swap挂载，给swap这行开头加一下注释<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br><span class="line"></span><br><span class="line">#/dev/mapper/centos-swap swap                    swap    defaults        0 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-8-修改机器内核参数-centos07-12-22-42"><a href="#1-8-修改机器内核参数-centos07-12-22-42" class="headerlink" title="1.8 修改机器内核参数 - centos07-12&#x2F;22&#x2F;42"></a>1.8 修改机器内核参数 - centos07-12&#x2F;22&#x2F;42</h4><blockquote>
+<p>注意：加载模块报错，提示没有这个模块，centos8就没有这个模块，加载是就会报错，可以跳过加载，直接做下面的开启转发；</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">modprobe br_netfilter</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看是否加载<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# lsmod |grep br_netfilter</span><br><span class="line">br_netfilter           22256  0</span><br><span class="line">bridge                151336  2 br_netfilter,ebtable_broute</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;modprobe br_netfilter&quot; &gt;&gt; /etc/profile</span><br><span class="line"></span><br><span class="line">cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt;EOF</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sysctl -p /etc/sysctl.d/k8s.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>问题1：sysctl是做什么的？ <br><br>在运行时配置内核参数，从指定的文件加载系统参数，如不指定即从&#x2F;etc&#x2F;sysctl.conf中加载<br><br><br><br>问题2：为什么要执行modprobe br_netfilter？<br><br>修改&#x2F;etc&#x2F;sysctl.d&#x2F;k8s.conf文件，增加如下三行参数：<br><br>net.bridge.bridge-nf-call-ip6tables &#x3D; 1<br><br>net.bridge.bridge-nf-call-iptables &#x3D; 1<br><br>net.ipv4.ip_forward &#x3D; 1<br><br><br><br>sysctl -p &#x2F;etc&#x2F;sysctl.d&#x2F;k8s.conf出现报错：<br><br>sysctl: cannot stat &#x2F;proc&#x2F;sys&#x2F;net&#x2F;bridge&#x2F;bridge-nf-call-ip6tables: No such file or director<br><br>sysctl: cannot stat &#x2F;proc&#x2F;sys&#x2F;net&#x2F;bridge&#x2F;bridge-nf-call-iptables: No such file or directory<br><br>解决方法：<br><br>modprobe br_netfilter<br><br><br><br>问题3：为什么开启net.bridge.bridge-nf-call-iptables内核参数？<br><br>在centos下安装docker，执行docker info出现如下警告：<br><br>WARNING: bridge-nf-call-iptables is disabled<br><br>WARNING: bridge-nf-call-ip6tables is disabled<br><br>解决办法：<br><br>vim  &#x2F;etc&#x2F;sysctl.d&#x2F;k8s.conf<br><br>net.bridge.bridge-nf-call-ip6tables &#x3D; 1<br><br>net.bridge.bridge-nf-call-iptables &#x3D; 1<br><br><br><br>问题4：为什么要开启net.ipv4.ip_forward &#x3D; 1参数？<br><br>kubeadm初始化k8s如果报错 ：<br><br><img src="/../../../../images/k8s/jc9/img_13.png" alt="img_13.png"><br><br>就表示没有开启ip_forward，需要开启。<br><br><br><br>net.ipv4.ip_forward是数据包转发：<br><br>出于安全考虑，Linux系统默认是禁止数据包转发的。所谓转发即当主机拥有多于一块的网卡时，其中一块收到数据包，根据数据包的目的ip地址将数据包发往本机另一块<br><br>要让Linux系统具有路由转发功能，需要配置一个Linux的内核参数net.ipv4.ip_forward。这个参数指定了Linux系统当前对路由转发功能的支持情况；其值为0时表示禁止进行IP转发；如果是1,则说明IP转发功能已经打开。<br></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="1-9-关闭firewalld防火墙-centos07-12-22-42"><a href="#1-9-关闭firewalld防火墙-centos07-12-22-42" class="headerlink" title="1.9 关闭firewalld防火墙 - centos07-12&#x2F;22&#x2F;42"></a>1.9 关闭firewalld防火墙 - centos07-12&#x2F;22&#x2F;42</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld ; systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+<h4 id="2-0-配置阿里云的repo源-centos07-12-22-42"><a href="#2-0-配置阿里云的repo源-centos07-12-22-42" class="headerlink" title="2.0 配置阿里云的repo源 - centos07-12&#x2F;22&#x2F;42"></a>2.0 配置阿里云的repo源 - centos07-12&#x2F;22&#x2F;42</h4><blockquote>
+<p>配置国内阿里云docker的repo源</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<h4 id="2-1-安装基础软件-centos07-12-22-42"><a href="#2-1-安装基础软件-centos07-12-22-42" class="headerlink" title="2.1 安装基础软件 - centos07-12&#x2F;22&#x2F;42"></a>2.1 安装基础软件 - centos07-12&#x2F;22&#x2F;42</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2 wget net-tools nfs-utils lrzsz gcc gcc-c++ make cmake libxml2-devel openssl-devel curl curl-devel unzip sudo ntp libaio-devel wget vim ncurses-devel autoconf automake zlib-devel  python-devel epel-release openssh-server socat  ipvsadm conntrack ntpdate telnet ipvsadm</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-配置安装k8s组件需要的阿里云的repo源-centos07-12-22-42"><a href="#2-2-配置安装k8s组件需要的阿里云的repo源-centos07-12-22-42" class="headerlink" title="2.2 配置安装k8s组件需要的阿里云的repo源 - centos07-12&#x2F;22&#x2F;42"></a>2.2 配置安装k8s组件需要的阿里云的repo源 - centos07-12&#x2F;22&#x2F;42</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/yum.repos.d/kubernetes.repo</span><br><span class="line"></span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>或者通过scp把已经配置好的同步到别的机器上</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp /etc/yum.repos.d/kubernetes.repo centos07-22:/etc/yum.repos.d/</span><br><span class="line">scp /etc/yum.repos.d/kubernetes.repo centos07-42:/etc/yum.repos.d/</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-配置时间同步-centos07-12-22-42"><a href="#2-3-配置时间同步-centos07-12-22-42" class="headerlink" title="2.3 配置时间同步 - centos07-12&#x2F;22&#x2F;42"></a>2.3 配置时间同步 - centos07-12&#x2F;22&#x2F;42</h4><ul>
+<li>安装ntpdate命令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ntpdate -y</span><br></pre></td></tr></table></figure></li>
+<li>跟网络时间做同步<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ntpdate cn.pool.ntp.org</span><br></pre></td></tr></table></figure></li>
+<li>把时间同步做成计划任务<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line">* */1 * * * /usr/sbin/ntpdate   cn.pool.ntp.org </span><br></pre></td></tr></table></figure></li>
+<li>重启crond服务<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond restart</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2、安装docker服务"><a href="#2、安装docker服务" class="headerlink" title="2、安装docker服务"></a>2、安装docker服务</h3><h4 id="2-1-安装docker-ce-centos07-12-22-42"><a href="#2-1-安装docker-ce-centos07-12-22-42" class="headerlink" title="2.1 安装docker-ce - centos07-12&#x2F;22&#x2F;42"></a>2.1 安装docker-ce - centos07-12&#x2F;22&#x2F;42</h4><blockquote>
+<p>启动docker 并设置为开机启动，用一条命令就是：<br><br>systemctl start docker &amp;&amp; systemctl enable docker.service <br><br>systemctl enable docker –now<br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce-20.10.6 -y</span><br><span class="line"></span><br><span class="line">systemctl start docker &amp;&amp; systemctl enable docker.service</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-配置docker镜像加速器和驱动-centos07-12-22-42"><a href="#2-2-配置docker镜像加速器和驱动-centos07-12-22-42" class="headerlink" title="2.2 配置docker镜像加速器和驱动 - centos07-12&#x2F;22&#x2F;42"></a>2.2 配置docker镜像加速器和驱动 - centos07-12&#x2F;22&#x2F;42</h4><blockquote>
+<p>修改docker文件驱动为systemd，默认为cgroupfs，kubelet默认使用systemd，两者必须一致才可以。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/docker/daemon.json </span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> &quot;registry-mirrors&quot;:[&quot;https://rsbud4vc.mirror.aliyuncs.com&quot;,&quot;https://registry.docker-cn.com&quot;,&quot;https://docker.mirrors.ustc.edu.cn&quot;,&quot;https://dockerhub.azk8s.cn&quot;,&quot;http://hub-mirror.c.163.com&quot;],</span><br><span class="line">  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;]</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload  &amp;&amp; systemctl restart docker</span><br><span class="line"></span><br><span class="line">systemctl status docker</span><br></pre></td></tr></table></figure>
+<h3 id="3、安装初始化k8s需要的软件包-centos07-12-22-42"><a href="#3、安装初始化k8s需要的软件包-centos07-12-22-42" class="headerlink" title="3、安装初始化k8s需要的软件包 - centos07-12&#x2F;22&#x2F;42"></a>3、安装初始化k8s需要的软件包 - centos07-12&#x2F;22&#x2F;42</h3><blockquote>
+<p>注：每个软件包的作用<br><br>Kubeadm:  kubeadm是一个工具，用来初始化k8s集群的<br><br>kubelet:   安装在集群所有节点上，用于启动Pod的<br><br>kubectl:   通过kubectl可以部署和管理应用，查看各种资源，创建、删除和更新各种组件<br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y kubelet-1.20.6 kubeadm-1.20.6 kubectl-1.20.6</span><br><span class="line"></span><br><span class="line">systemctl enable kubelet</span><br></pre></td></tr></table></figure>
+<h3 id="4、kubeadm初始化k8s集群-centos07-12-22-42"><a href="#4、kubeadm初始化k8s集群-centos07-12-22-42" class="headerlink" title="4、kubeadm初始化k8s集群 - centos07-12&#x2F;22&#x2F;42"></a>4、kubeadm初始化k8s集群 - centos07-12&#x2F;22&#x2F;42</h3><blockquote>
+<p>把初始化k8s集群需要的离线镜像包上传到机器上，手动解压</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i k8simage-1-20-6.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="5、使用kubeadm初始化k8s集群-centos07-12"><a href="#5、使用kubeadm初始化k8s集群-centos07-12" class="headerlink" title="5、使用kubeadm初始化k8s集群 - centos07-12"></a>5、使用kubeadm初始化k8s集群 - centos07-12</h3><blockquote>
+<p>根据我们自己的需求修改配置，<br><br>advertiseAddress: 192.168.1.12 #控制节点的ip<br><br>name: centos07-12 #控制节点主机名<br><br>imageRepository: registry.aliyuncs.com&#x2F;google_containers  # 修改 imageRepository 的值<br><br>kubernetesVersion: v1.20.6   # 版本<br><br>podSubnet: 10.244.0.0&#x2F;16 #指定pod网段， 需要新增加这个<br><br>追加如下几行<br></p>
+<blockquote>
+<p>—<br><br>apiVersion: kubeproxy.config.k8s.io&#x2F;v1alpha1<br><br>kind: KubeProxyConfiguration<br><br>mode: ipvs         # kube-proxy 的模式为 ipvs<br><br>—<br><br>apiVersion: kubelet.config.k8s.io&#x2F;v1beta1<br><br>kind: KubeletConfiguration<br><br>cgroupDriver: systemd  初始化节点的时候需要指定cgroupDriver为systemd<br></p>
+</blockquote>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>比如修改 imageRepository 的值，kube-proxy 的模式为 ipvs，初始化节点的时候需要指定cgroupDriver为systemd</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 生成K8S初始化的yaml文件</span><br><span class="line"></span><br><span class="line">kubeadm config print init-defaults &gt; kubeadm.yaml  </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"># kubeadm.yaml配置如下：</span><br><span class="line">vim kubeadm.yaml</span><br><span class="line"></span><br><span class="line">apiVersion: kubeadm.k8s.io/v1beta2</span><br><span class="line">bootstrapTokens:</span><br><span class="line">- groups:</span><br><span class="line">  - system:bootstrappers:kubeadm:default-node-token</span><br><span class="line">  token: abcdef.0123456789abcdef</span><br><span class="line">  ttl: 24h0m0s</span><br><span class="line">  usages:</span><br><span class="line">  - signing</span><br><span class="line">  - authentication</span><br><span class="line">kind: InitConfiguration</span><br><span class="line">localAPIEndpoint:</span><br><span class="line">  advertiseAddress: 192.168.1.12 #控制节点的ip</span><br><span class="line">  bindPort: 6443</span><br><span class="line">nodeRegistration:  # 看下上面的图片</span><br><span class="line">  criSocket: /var/run/dockershim.sock</span><br><span class="line">  name: centos07-12 #控制节点主机名</span><br><span class="line">  taints:</span><br><span class="line">  - effect: NoSchedule</span><br><span class="line">    key: node-role.kubernetes.io/master</span><br><span class="line">---</span><br><span class="line">apiServer:</span><br><span class="line">  timeoutForControlPlane: 4m0s</span><br><span class="line">apiVersion: kubeadm.k8s.io/v1beta2</span><br><span class="line">certificatesDir: /etc/kubernetes/pki</span><br><span class="line">clusterName: kubernetes</span><br><span class="line">controllerManager: &#123;&#125;</span><br><span class="line">dns:</span><br><span class="line">  type: CoreDNS</span><br><span class="line">etcd:</span><br><span class="line">  local:</span><br><span class="line">    dataDir: /var/lib/etcd</span><br><span class="line">imageRepository: registry.aliyuncs.com/google_containers  # 修改 imageRepository 的值</span><br><span class="line">kind: ClusterConfiguration</span><br><span class="line">kubernetesVersion: v1.20.6   # 版本</span><br><span class="line">networking:</span><br><span class="line">  dnsDomain: cluster.local</span><br><span class="line">  serviceSubnet: 10.96.0.0/12</span><br><span class="line">  podSubnet: 10.244.0.0/16 #指定pod网段， 需要新增加这个</span><br><span class="line">scheduler: &#123;&#125;</span><br><span class="line">#追加如下几行</span><br><span class="line">---</span><br><span class="line">apiVersion: kubeproxy.config.k8s.io/v1alpha1</span><br><span class="line">kind: KubeProxyConfiguration</span><br><span class="line">mode: ipvs         # kube-proxy 的模式为 ipvs</span><br><span class="line">---</span><br><span class="line">apiVersion: kubelet.config.k8s.io/v1beta1</span><br><span class="line">kind: KubeletConfiguration</span><br><span class="line">cgroupDriver: systemd  初始化节点的时候需要指定cgroupDriver为systemd</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：centos7.9 需要加参数：–ignore-preflight-errors&#x3D;SystemVerification， 作用检测SystemVerification模块忽略错误；centos7.9没有SystemVerification模块会报错，这样就可以忽略这个错误了<br><br>在初始化时，有问题，或者想要修改yaml重新初始化，需要先执行下kubeadm reset;<br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --config=kubeadm.yaml --ignore-preflight-errors=SystemVerification</span><br></pre></td></tr></table></figure>
+<p><img src="/../../../../images/k8s/jc9/img_14.png" alt="img_14.png"></p>
+<ul>
+<li>显示如下，说明安装完成：<br><img src="/../../../../images/k8s/jc9/img_15.png" alt="img_15.png"><blockquote>
+<p>注意：初始化时发下版本有问题，可以使用yum卸载，重新安装<br><br>yum remove kubectl kubeadm kubelet -y<br><br><br><br>特别提醒：    <br><br>–image-repository registry.aliyuncs.com&#x2F;google_containers为保证拉取镜像不到国外站点拉取，手动指定仓库地址为registry.aliyuncs.com&#x2F;google_containers。kubeadm默认从k8s.gcr.io拉取镜像。   我们本地有导入到的离线镜像，所以会优先使用本地的镜像。<br><br>mode: ipvs 表示kube-proxy代理模式是ipvs，如果不指定ipvs，会默认使用iptables，但是iptables效率低，所以我们生产环境建议开启ipvs，阿里云和华为云托管的K8s，也提供ipvs模式，如下<br></p>
+<blockquote>
+<p><img src="/../../../../images/k8s/jc9/img_16.png" alt="img_16.png"><br><img src="/../../../../images/k8s/jc9/img_17.png" alt="img_17.png"></p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h3 id="6、配置kubectl的配置文件config-centos07-12"><a href="#6、配置kubectl的配置文件config-centos07-12" class="headerlink" title="6、配置kubectl的配置文件config - centos07-12"></a>6、配置kubectl的配置文件config - centos07-12</h3><blockquote>
+<p>未配置config，未做下面的操作就会有这个问题，相当于没有授权</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get nodes</span><br><span class="line">The connection to the server localhost:8080 was refused - did you specify the right host or port?</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>相当于对kubectl进行授权，这样kubectl命令可以使用这个证书对k8s集群进行管理</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p $HOME/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) $HOME/.kube/config</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br><span class="line"></span><br><span class="line"># 此时集群状态还是NotReady状态，因为没有安装网络插件。</span><br><span class="line">NAME          STATUS     ROLES                  AGE     VERSION</span><br><span class="line">centos07-12   NotReady   control-plane,master   7m45s   v1.20.6</span><br></pre></td></tr></table></figure>
+<ul>
+<li>扩展：kubeadm init初始化流程分析<br><blockquote>
+<p><img src="/../../../../images/k8s/jc9/img_18.png" alt="img_18.png"><br><br></p>
+</blockquote>
+</li>
+<li>kubeadm 在执行安装之前进行了相当细致的环境检测，下面看一看<blockquote>
+<p>注意：操作系统需要我们手动配置好，包括防火墙、swap、selinux关掉<br></p>
+<ol>
+<li>检查执行 init 命令的用户是否为 root，如果不是 root，直接快速失败（fail fast）；<br></li>
+<li>检查待安装的 k8s 版本是否被当前版本的 kubeadm 支持（kubeadm 版本 &gt;&#x3D; 待安装 k8s 版本）；<br></li>
+<li>检查防火墙，如果防火墙未关闭，提示开放端口 10250；<br></li>
+<li>检查端口是否已被占用，6443（或你指定的监听端口）、10257、10259；<br></li>
+<li>检查文件是否已经存在，&#x2F;etc&#x2F;kubernetes&#x2F;manifests&#x2F;*.yaml；<br><blockquote>
+<p>ll &#x2F;etc&#x2F;kubernetes&#x2F;manifests&#x2F;<br><br>-rw——- 1 root root 2216 11月 30 16:09 etcd.yaml<br><br>-rw——- 1 root root 3325 11月 30 16:09 kube-apiserver.yaml<br><br>-rw——- 1 root root 2827 11月 30 16:09 kube-controller-manager.yaml<br><br>-rw——- 1 root root 1413 11月 30 16:09 kube-scheduler.yaml<br></p>
+</blockquote>
+</li>
+<li>检查是否存在代理，连接本机网络、服务网络、Pod网络，都会检查，目前不允许代理；<br></li>
+<li>检查容器运行时，使用 CRI 还是 Docker，如果是 Docker，进一步检查 Docker 服务是否已启动，是否设置了开机自启动；<br></li>
+<li>对于 Linux 系统，会额外检查以下内容：<br><blockquote>
+<p>8.1) 检查以下命令是否存在：crictl、ip、iptables、mount、nsenter、ebtables、ethtool、socat、tc、touch；<br><br>8.2) 检查 &#x2F;proc&#x2F;sys&#x2F;net&#x2F;bridge&#x2F;bridge-nf-call-iptables、&#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip-forward 内容是否为 1；<br><br>8.3) 检查 swap 是否是关闭状态；<br></p>
+</blockquote>
+</li>
+<li>检查内核是否被支持，Docker 版本及后端存储 GraphDriver 是否被支持； <br><blockquote>
+<p>对于 Linux 系统，还需检查 OS 版本和 cgroup 支持程度（支持哪些资源的隔离）；<br></p>
+</blockquote>
+</li>
+<li>检查主机名访问可达性；<br></li>
+<li>检查 kubelet 版本，要高于 kubeadm 需要的最低版本，同时不高于待安装的 k8s 版本；<br></li>
+<li>检查 kubelet 服务是否开机自启动；<br></li>
+<li>检查 10250 端口是否被占用；<br></li>
+<li>如果开启 IPVS 功能，检查系统内核是否加载了 ipvs 模块；<br></li>
+<li>对于 etcd，如果使用 Local etcd，则检查 2379 端口是否被占用， &#x2F;var&#x2F;lib&#x2F;etcd&#x2F; 是否为空目录；<br><blockquote>
+<p>如果使用 External etcd，则检查证书文件是否存在（CA、key、cert），验证 etcd 服务版本是否符合要求；<br></p>
+</blockquote>
+</li>
+<li>如果使用 IPv6，<br><blockquote>
+<p>检查 &#x2F;proc&#x2F;sys&#x2F;net&#x2F;bridge&#x2F;bridge-nf-call-iptables、&#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv6&#x2F;conf&#x2F;default&#x2F;forwarding 内容是否为 1；<br></p>
+</blockquote>
+</li>
+</ol>
+<p>以上就是 kubeadm init 需要检查的所有项目了！<br></p>
+</blockquote>
+</li>
+<li>完成安装前的配置<blockquote>
+<ol>
+<li>在 kube-system 命名空间创建 ConfigMap kubeadm-config，同时对其配置 RBAC 权限；<br></li>
+<li>在 kube-system 命名空间创建 ConfigMap kubelet-config-<version>，同时对其配置 RBAC 权限；<br></li>
+<li>为当前节点（Master）打标记：node-role.kubernetes.io&#x2F;master&#x3D;；<br></li>
+<li>为当前节点（Master）补充 Annotation；<br></li>
+<li>如果启用了 DynamicKubeletConfig 特性，设置本节点 kubelet 的配置数据源为 ConfigMap 形式；<br></li>
+<li>创建 BootStrap token Secret，并对其配置 RBAC 权限；<br></li>
+<li>在 kube-public 命名空间创建 ConfigMap cluster-info，同时对其配置 RBAC 权限；<br></li>
+<li>与 apiserver 通信，部署 DNS 服务；<br></li>
+<li>与 apiserver 通信，部署 kube-proxy 服务；<br></li>
+<li>如果启用了 self-hosted 特性，将 Control Plane 转为 DaemonSet 形式运行；<br></li>
+<li>打印 join 语句；<br></li>
+</ol>
+</blockquote>
+</li>
+<li>扩展：Kubeadm生成的k8s证书内容说明<blockquote>
+<p>一、证书分组                                            <br><br>Kubernetes把证书放在了两个文件夹中                            <br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki                               <br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd                          <br><br>                                          <br></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>二、Kubernetes 集群根证书                                <br><br>Kubernetes 集群根证书CA(Kubernetes集群组件的证书签发机构)         <br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;ca.crt                        <br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;ca.key                        <br><br>以上这组证书为签发其他Kubernetes组件证书使用的根证书, 可以认为是Kubernetes集群中证书签发机构之一<br><br><br><br>由此根证书签发的证书有:<br><br>1、kube-apiserver apiserver证书<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;apiserver.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;apiserver.key<br><br><br><br>2、kubelet客户端证书, 用作 kube-apiserver 主动向 kubelet 发起请求时的客户端认证<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;apiserver-kubelet-client.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;apiserver-kubelet-client.key<br><br><br><br><br> 三、kube-apiserver 代理根证书(客户端证书)<br><br>用在requestheader-client-ca-file配置选项中, kube-apiserver 使用该证书来验证客户端证书是否为自己所签发<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;front-proxy-ca.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;front-proxy-ca.key<br><br><br><br>由此根证书签发的证书只有一组:<br><br>代理层(如汇聚层aggregator)使用此套代理证书来向 kube-apiserver 请求认证<br><br>代理端使用的客户端证书, 用作代用户与 kube-apiserver 认证<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;front-proxy-client.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;front-proxy-client.key<br><br><br><br>三、etcd 集群根证书<br><br>etcd集群所用到的证书都保存在&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd这路径下, 很明显, 这一套证书是用来专门给etcd集群服务使用的, 设计以下证书文件<br><br>etcd 集群根证书CA(etcd 所用到的所有证书的签发机构)<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;ca.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;ca.key<br><br><br><br>由此根证书签发机构签发的证书有:<br><br>1、etcd server 持有的服务端证书<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;server.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;server.key<br><br><br><br>2、peer 集群中节点互相通信使用的客户端证书<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;peer.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;peer.key<br><br>注: Peer：对同一个etcd集群中另外一个Member的称呼<br><br><br><br>3、pod 中定义 Liveness 探针使用的客户端证书<br><br>kubeadm 部署的 Kubernetes 集群是以 pod 的方式运行 etcd 服务的, 在该 pod 的定义中, 配置了 Liveness 探活探针<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;healthcheck-client.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;healthcheck-client.key<br><br><br><br>当你 describe etcd 的 pod 时, 会看到如下一行配置:<br><br>Liveness: exec [&#x2F;bin&#x2F;sh -ec ETCDCTL_API&#x3D;3 etcdctl –endpoints&#x3D;https:&#x2F;&#x2F;[127.0.0.1]:2379 –cacert&#x3D;&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;ca.crt –cert&#x3D;&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;healthcheck-client.crt –key&#x3D;&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;etcd&#x2F;healthcheck-client.key get foo] delay&#x3D;15s timeout&#x3D;15s period&#x3D;10s #success&#x3D;1 #failure&#x3D;8<br><br><br><br>4、配置在 kube-apiserver 中用来与 etcd server 做双向认证的客户端证书<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;apiserver-etcd-client.crt<br><br>&#x2F;etc&#x2F;kubernetes&#x2F;pki&#x2F;apiserver-etcd-client.key<br></p>
+</blockquote>
+<h3 id="7、扩容k8s集群-添加第一个工作节点"><a href="#7、扩容k8s集群-添加第一个工作节点" class="headerlink" title="7、扩容k8s集群-添加第一个工作节点"></a>7、扩容k8s集群-添加第一个工作节点</h3><ul>
+<li>在centos07-12上查看加入节点的命令, 注意博客上直接复制可能有问题，是（双横线） - -print-join-command<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm token create - -print-join-command</span><br></pre></td></tr></table></figure></li>
+<li>把centos07-22&#x2F;centos07-42加入k8s集群<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 192.168.1.12:6443 --token b6kj57.ufm161f5uz6sz9lf     --discovery-token-ca-cert-hash sha256:f0380afe2ae751ea1b4083759574654f3d05821ffdface9ed358ea04f965c586 --ignore-preflight-errors=SystemVerification</span><br></pre></td></tr></table></figure></li>
+<li>看到下面面说明centos07-22&#x2F;centos07-42节点已经加入到集群了,充当工作节点<br><img src="/../../../../images/k8s/jc9/img_19.png" alt="img_19.png"></li>
+<li>在centos07-12上查看集群节点状况：<blockquote>
+<p>可以看到centos07-22&#x2F;centos07-42的ROLES角色为空，<none>就表示这个节点是工作节点。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br><span class="line"></span><br><span class="line">NAME          STATUS     ROLES                  AGE   VERSION</span><br><span class="line">centos07-12   NotReady   control-plane,master   40m   v1.20.6</span><br><span class="line">centos07-22   NotReady   &lt;none&gt;                 82s   v1.20.6</span><br><span class="line">centos07-42   NotReady   &lt;none&gt;                 84s   v1.20.6</span><br></pre></td></tr></table></figure></li>
+<li>可以把centos07-22&#x2F;centos07-42的ROLES变成work，按照如下方法：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl label node centos07-22 node-role.kubernetes.io/worker=worker</span><br><span class="line"></span><br><span class="line">kubectl label node centos07-42 node-role.kubernetes.io/worker=worker</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br><span class="line"></span><br><span class="line"># roles变为work</span><br><span class="line">NAME          STATUS     ROLES                  AGE     VERSION</span><br><span class="line">centos07-12   NotReady   control-plane,master   42m     v1.20.6</span><br><span class="line">centos07-22   NotReady   worker                 3m43s   v1.20.6</span><br><span class="line">centos07-42   NotReady   worker                 3m45s   v1.20.6</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：上面状态都是NotReady状态，说明没有安装网络插件</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="8、安装kubernetes网络组件-Calico"><a href="#8、安装kubernetes网络组件-Calico" class="headerlink" title="8、安装kubernetes网络组件-Calico"></a>8、安装kubernetes网络组件-Calico</h3><blockquote>
+<p>注：官方提供的文件地址，下载后需要自己修改： <a target="_blank" rel="noopener" href="https://docs.projectcalico.org/manifests/calico.yaml">https://docs.projectcalico.org/manifests/calico.yaml</a><br>删除，kubectl delete -f calico.yaml</p>
+</blockquote>
+<ul>
+<li>上传calico.yaml到centos07-12上，使用yaml文件安装calico 网络插件<blockquote>
+<p><font color=red><strong>注意服务器多网卡，需要指定网卡。</strong></font>    </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim calico.yaml</span><br><span class="line"></span><br><span class="line">3648             - name: IP_AUTODETECTION_METHOD</span><br><span class="line">3649               value: &quot;interface=enp0s3&quot;</span><br></pre></td></tr></table></figure>
+<img src="/../../../../images/k8s/jc9/img_20.png" alt="img_20.png"></li>
+<li>安装calico<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f calico.yaml</span><br></pre></td></tr></table></figure></li>
+<li>node的状态pending变为ready<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br><span class="line"></span><br><span class="line">NAME          STATUS   ROLES                  AGE   VERSION</span><br><span class="line">centos07-12   Ready    control-plane,master   87m   v1.20.6</span><br><span class="line">centos07-22   Ready    worker                 48m   v1.20.6</span><br><span class="line">centos07-42   Ready    worker                 48m   v1.20.6 </span><br></pre></td></tr></table></figure></li>
+<li>pod， 状态都变成Running，ready变为1&#x2F;1;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod -n kube-system</span><br><span class="line"></span><br><span class="line">NAME                                       READY   STATUS    RESTARTS   AGE</span><br><span class="line">calico-kube-controllers-6949477b58-22zbl   1/1     Running   1          3m5s</span><br><span class="line">calico-node-9hqdh                          1/1     Running   0          3m5s</span><br><span class="line">calico-node-vxjkc                          1/1     Running   0          3m5s</span><br><span class="line">calico-node-z6p24                          1/1     Running   0          3m5s</span><br><span class="line">coredns-7f89b7bc75-lt6lr                   1/1     Running   0          89m</span><br><span class="line">coredns-7f89b7bc75-q5sz7                   1/1     Running   0          89m</span><br><span class="line">etcd-centos07-12                           1/1     Running   0          89m</span><br><span class="line">kube-apiserver-centos07-12                 1/1     Running   0          89m</span><br><span class="line">kube-controller-manager-centos07-12        1/1     Running   1          89m</span><br><span class="line">kube-proxy-cskcq                           1/1     Running   0          50m</span><br><span class="line">kube-proxy-mc5sv                           1/1     Running   0          89m</span><br><span class="line">kube-proxy-ndz4x                           1/1     Running   0          50m</span><br><span class="line">kube-scheduler-centos07-12                 1/1     Running   1          89m</span><br></pre></td></tr></table></figure></li>
+<li>查看日志<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs calico-node-9hqdh -n kube-system </span><br></pre></td></tr></table></figure></li>
+<li>Calico架构图<br><img src="/../../../../images/k8s/jc9/img_21.png" alt="img_21.png"><blockquote>
+<p>Calico网络模型主要工作组件：<br><br>1.Felix：运行在每一台 Host 的 agent 进程，主要负责网络接口管理和监听、路由、ARP 管理、ACL 管理和同步、状态上报等。保证跨主机容器网络互通。<br><br>2.etcd：分布式键值存储，相当于k8s集群中的数据库，存储着Calico网络模型中IP地址等相关信息。主要负责网络元数据一致性，确保 Calico 网络状态的准确性；<br><br>3.BGP Client（BIRD）：Calico 为每一台 Host 部署一个 BGP Client，即每台host上部署一个BIRD。 主要负责把 Felix 写入 Kernel 的路由信息分发到当前 Calico 网络，确保 Workload 间的通信的有效性；<br><br>4.BGP Route Reflector：在大型网络规模中，如果仅仅使用 BGP client 形成 mesh 全网互联的方案就会导致规模限制，因为所有节点之间俩俩互联，需要 N^2 个连接，为了解决这个规模问题，可以采用 BGP 的 Router Reflector 的方法，通过一个或者多个 BGP Route Reflector 来完成集中式的路由分发。<br></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>1、Daemonset配置<br></p>
+<blockquote>
+<p>……<br><br>containers:<br><br>        # Runs calico-node container on each Kubernetes node. This<br><br>        # container programs network policy and routes on each<br><br>        # host.<br><br>        - name: calico-node<br><br>          image: docker.io&#x2F;calico&#x2F;node:v3.18.0<br><br>…..<br><br>          env:<br><br>            # Use Kubernetes API as the backing datastore.<br><br>            - name: DATASTORE_TYPE<br><br>              value: “kubernetes”<br><br>            # Cluster type to identify the deployment type<br><br>            - name: CLUSTER_TYPE<br><br>              value: “k8s,bgp”<br><br>            # Auto-detect the BGP IP address.<br><br>            - name: IP<br><br>              value: “autodetect”<br><br>         #pod网段<br><br>         - name: CALICO_IPV4POOL_CIDR <br><br>value: “10.244.0.0&#x2F;16”<br><br>            # Enable IPIP<br><br>            - name: <font color=red><strong>CALICO_IPV4POOL_IPIP</strong></font><br><br>              value: “Always”<br></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>calico-node服务的主要参数如下:<br><br><font color=red><strong>CALICO_IPV4POOL_IPIP：是否启用IPIP模式。启用IPIP模式时，Calico将在Node上创建一个名为tunl0的虚拟隧道</strong></font>。IP Pool可以使用两种模式：BGP或IPIP。使用IPIP模式时，设置CALICO_IPV4POOL_IPIP&#x3D;”Always”，不使用IPIP模式时，设置CALICO_IPV4POOL_IPIP&#x3D;”Off”，此时将使用BGP模式。<br><br><img src="/../../../../images/k8s/jc9/img_22.png" alt="img_22.png"><br><br>IP_AUTODETECTION_METHOD：获取Node IP地址的方式，默认使用第1个网络接口的IP地址，对于安装了多块网卡的Node，可以使用正则表达式选择正确的网卡，例如”interface&#x3D;eth.*”表示选择名称以eth开头的网卡的IP地址。<br><br>-  name: IP_AUTODETECTION_METHOD<br><br>    value: “interface&#x3D;enp0s3”<br></p>
+</blockquote>
+<blockquote>
+<p>扩展：calico的IPIP模式和BGP模式对比分析<br><br>1）IPIP<br><br>把一个IP数据包又套在一个IP包里，即把IP层封装到IP层的一个 tunnel，它的作用其实基本上就相当于一个基于IP层的网桥，一般来说，普通的网桥是基于mac层的，根本不需要IP，而这个ipip则是通过两端的路由做一个tunnel，把两个本来不通的网络通过点对点连接起来；<br><br>calico以ipip模式部署完毕后，node上会有一个tunl0的网卡设备，这是ipip做隧道封装用的,也是一种overlay模式的网络。当我们把节点下线，calico容器都停止后，这个设备依然还在，执行 rmmodipip命令可以将它删除。<br><br><br><br>2）BGP<br><br>BGP模式直接使用物理机作为虚拟路由路（vRouter），不再创建额外的tunnel<br><br>边界网关协议（BorderGateway Protocol, BGP）是互联网上一个核心的去中心化的自治路由协议。它通过维护IP路由表或‘前缀’表来实现自治系统（AS）之间的可达性，属于矢量路由协议。BGP不使用传统的内部网关协议（IGP）的指标，而是基于路径、网络策略或规则集来决定路由。因此，它更适合被称为矢量性协议，而不是路由协议，通俗的说就是将接入到机房的多条线路（如电信、联通、移动等）融合为一体，实现多线单IP；<br><br>BGP 机房的优点：服务器只需要设置一个IP地址，最佳访问路由是由网络上的骨干路由器根据路由跳数与其它技术指标来确定的，不会占用服务器的任何系统；<br><br>官方提供的calico.yaml模板里，默认打开了ip-ip功能，该功能会在node上创建一个设备tunl0，容器的网络数据会经过该设备被封装一个ip头再转发。这里，calico.yaml中通过修改calico-node的环境变量：CALICO_IPV4POOL_IPIP来实现ipip功能的开关：默认是Always，表示开启；Off表示关闭ipip。<br><br>- name:  CLUSTER_TYPE<br><br>   value: “k8s,bgp”<br><br>   # Auto-detect the BGP IP address.<br><br>- name: IP<br><br>   value: “autodetect”<br><br>   # Enable IPIP<br><br>- name: CALICO_IPV4POOL_IPIP<br><br>   value: “Always”<br></p>
+<p>总结：<br><br>calico BGP通信是基于TCP协议的，所以只要节点间三层互通即可完成，即三层互通的环境bird就能生成与邻居有关的路由。但是这些路由和flannel host-gateway模式一样，需要二层互通才能访问的通，因此如果在实际环境中配置了BGP模式生成了路由但是不同节点间pod访问不通，可能需要再确认下节点间是否二层互通。<br><br>为了解决节点间二层不通场景下的跨节点通信问题，calico也有自己的解决方案——IPIP模式<br></p>
+</blockquote>
+<h3 id="9、测试在k8s创建pod是否可以正常访问网络，镜像放在node上，在master上执行命令"><a href="#9、测试在k8s创建pod是否可以正常访问网络，镜像放在node上，在master上执行命令" class="headerlink" title="9、测试在k8s创建pod是否可以正常访问网络，镜像放在node上，在master上执行命令"></a>9、测试在k8s创建pod是否可以正常访问网络，镜像放在node上，在master上执行命令</h3><ul>
+<li>注意：把busybox-1-28.tar.gz上传到centos07-22、centos07-42节点，手动解压<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp busybox-1-28.tar.gz root@192.168.1.22:~</span><br><span class="line">scp busybox-1-28.tar.gz root@192.168.1.42:~</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># centos07-22、centos07-42</span><br><span class="line">docker load -i busybox-1-28.tar.gz</span><br><span class="line">docker load -i busybox-1-28.tar.gz</span><br></pre></td></tr></table></figure></li>
+<li>在控制节点-centos07-12<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl run busybox --image busybox:1.28 --image-pull-policy=IfNotPresent --restart=Never --rm -it busybox -- sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 通过下面可以看到能访问网络，说明calico网络插件已经被正常安装了</span><br><span class="line">[root@centos07-12 ~]# kubectl run busybox --image busybox:1.28 --image-pull-policy=IfNotPresent --restart=Never --rm -it busybox -- sh</span><br><span class="line">If you don&#x27;t see a command prompt, try pressing enter.</span><br><span class="line">/ # ping www.baidu.com</span><br><span class="line">PING www.baidu.com (39.156.66.18): 56 data bytes</span><br><span class="line">64 bytes from 39.156.66.18: seq=0 ttl=61 time=710.812 ms</span><br><span class="line">64 bytes from 39.156.66.18: seq=1 ttl=61 time=798.976 ms</span><br><span class="line">64 bytes from 39.156.66.18: seq=2 ttl=61 time=822.153 ms</span><br><span class="line">64 bytes from 39.156.66.18: seq=3 ttl=61 time=1031.787 ms</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="10、测试coredns是否正常-centos07-12"><a href="#10、测试coredns是否正常-centos07-12" class="headerlink" title="10、测试coredns是否正常 - centos07-12"></a>10、测试coredns是否正常 - centos07-12</h3><blockquote>
+<p>0.96.0.10 就是我们coreDNS的clusterIP，说明coreDNS配置好了。<br><br>解析内部Service的名称，是通过coreDNS去解析的。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl run busybox --image busybox:1.28 --restart=Never --rm -it busybox -- sh</span><br><span class="line">If you don&#x27;t see a command prompt, try pressing enter.</span><br><span class="line">/ # nslookup kubernetes.default.svc.cluster.local</span><br><span class="line">Server:    10.96.0.10</span><br><span class="line">Address 1: 10.96.0.10 kube-dns.kube-system.svc.cluster.local</span><br><span class="line"></span><br><span class="line">Name:      kubernetes.default.svc.cluster.local</span><br><span class="line">Address 1: 10.96.0.1 kubernetes.default.svc.cluster.local</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意:busybox要用指定的1.28版本，不能用最新版本，最新版本，nslookup会解析不到dns和ip </p>
+</blockquote>
+<h3 id="11、kubeadm初始化k8s证书过期解决方案-centos07-12"><a href="#11、kubeadm初始化k8s证书过期解决方案-centos07-12" class="headerlink" title="11、kubeadm初始化k8s证书过期解决方案 - centos07-12"></a>11、kubeadm初始化k8s证书过期解决方案 - centos07-12</h3><blockquote>
+<p>注意：更新证书或重启组件，会影响业务，最好先更新</p>
+</blockquote>
+<ul>
+<li>查看证书有效时间：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in /etc/kubernetes/pki/ca.crt -noout -text  |grep Not</span><br><span class="line">openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -text  |grep Not</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 10年ca.crt</span><br><span class="line">[root@centos07-12 ~]# openssl x509 -in /etc/kubernetes/pki/ca.crt -noout -text  |grep Not</span><br><span class="line">            Not Before: Nov 30 08:09:20 2023 GMT</span><br><span class="line">            Not After : Nov 27 08:09:20 2033 GMT</span><br><span class="line"># 1年apiserver.crt</span><br><span class="line">[root@centos07-12 ~]# openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -text  |grep Not</span><br><span class="line">            Not Before: Nov 30 08:09:20 2023 GMT</span><br><span class="line">            Not After : Nov 29 08:09:21 2024 GMT</span><br></pre></td></tr></table></figure></li>
+<li>延长证书过期时间<blockquote>
+<p>1.把update-kubeadm-cert.sh文件上传到centos07-12节点</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp update-kubeadm-cert.sh root@192.168.1.12:~</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2.在centos07-12上执行如下：</p>
+</blockquote>
+</li>
+<li>1）给update-kubeadm-cert.sh证书授权可执行权限<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x update-kubeadm-cert.sh</span><br></pre></td></tr></table></figure></li>
+<li>2）执行下面命令，修改证书过期时间，把时间延长到10年<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./update-kubeadm-cert.sh all</span><br></pre></td></tr></table></figure></li>
+<li>3）在centos07-12节点查询Pod是否正常,能查询出数据说明证书签发完成<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  get pods -n kube-system</span><br></pre></td></tr></table></figure></li>
+<li>4）再次查看证书有效期，可以看到会延长到10年<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# openssl x509 -in /etc/kubernetes/pki/ca.crt -noout -text  |grep Not</span><br><span class="line">            Not Before: Nov 30 08:09:20 2023 GMT</span><br><span class="line">            Not After : Nov 27 08:09:20 2033 GMT</span><br><span class="line">            </span><br><span class="line">[root@centos07-12 ~]# openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -text  |grep Not</span><br><span class="line">            Not Before: Nov 30 11:13:01 2023 GMT</span><br><span class="line">            Not After : Nov 27 11:13:01 2033 GMT</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E6%AE%B5%E6%B3%A8%E6%84%8F%E9%A1%B9%EF%BC%8C3%E4%B8%AA%E7%BD%91%E6%AE%B5%E4%B8%80%E5%AE%9A%E4%B8%8D%E8%83%BD%E6%9C%89%E5%86%B2%E7%AA%81"><span class="toc-text">网段注意项，3个网段一定不能有冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E8%A7%84%E5%88%92"><span class="toc-text">实验环境规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%89%E8%A3%85k8s%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="toc-text">1、初始化安装k8s集群的实验环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E4%BF%AE%E6%94%B9%E6%9C%BA%E5%99%A8IP%EF%BC%8C%E5%8F%98%E6%88%90%E9%9D%99%E6%80%81IP-centos07-12-22-42"><span class="toc-text">1.1 修改机器IP，变成静态IP - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E5%85%B3%E9%97%ADselinux-centos07-12-22-42"><span class="toc-text">1.2 关闭selinux - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E9%85%8D%E7%BD%AE%E6%9C%BA%E5%99%A8%E4%B8%BB%E6%9C%BA%E5%90%8D-centos07-12-22-42"><span class="toc-text">1.3 配置机器主机名 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8Ck8s%E9%9B%86%E7%BE%A4%E6%AF%8F%E5%8F%B0%E6%9C%BA%E5%99%A8%E9%83%BD%E6%93%8D%E4%BD%9C-centos07-12-22-42"><span class="toc-text">1.4 升级操作系统，k8s集群每台机器都操作 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BAhosts%E6%96%87%E4%BB%B6%EF%BC%8C%E7%9B%B8%E4%BA%92%E4%B9%8B%E9%97%B4%E9%80%9A%E8%BF%87%E4%B8%BB%E6%9C%BA%E5%90%8D%E4%BA%92%E7%9B%B8%E8%AE%BF%E9%97%AE-centos07-12-22-42"><span class="toc-text">1.5 配置主机hosts文件，相互之间通过主机名互相访问 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E4%B9%8B%E9%97%B4%E6%97%A0%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95-centos07-12-22-42"><span class="toc-text">1.6 配置主机之间无密码登录 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-7-%E5%85%B3%E9%97%AD%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BAswap%EF%BC%8C%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD-centos07-12-22-42"><span class="toc-text">1.7 关闭交换分区swap，提升性能 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-8-%E4%BF%AE%E6%94%B9%E6%9C%BA%E5%99%A8%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0-centos07-12-22-42"><span class="toc-text">1.8 修改机器内核参数 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-9-%E5%85%B3%E9%97%ADfirewalld%E9%98%B2%E7%81%AB%E5%A2%99-centos07-12-22-42"><span class="toc-text">1.9 关闭firewalld防火墙 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-0-%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84repo%E6%BA%90-centos07-12-22-42"><span class="toc-text">2.0 配置阿里云的repo源 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%AE%89%E8%A3%85%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6-centos07-12-22-42"><span class="toc-text">2.1 安装基础软件 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E9%85%8D%E7%BD%AE%E5%AE%89%E8%A3%85k8s%E7%BB%84%E4%BB%B6%E9%9C%80%E8%A6%81%E7%9A%84%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84repo%E6%BA%90-centos07-12-22-42"><span class="toc-text">2.2 配置安装k8s组件需要的阿里云的repo源 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E9%85%8D%E7%BD%AE%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5-centos07-12-22-42"><span class="toc-text">2.3 配置时间同步 - centos07-12&#x2F;22&#x2F;42</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85docker%E6%9C%8D%E5%8A%A1"><span class="toc-text">2、安装docker服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%AE%89%E8%A3%85docker-ce-centos07-12-22-42"><span class="toc-text">2.1 安装docker-ce - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E9%85%8D%E7%BD%AEdocker%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8%E5%92%8C%E9%A9%B1%E5%8A%A8-centos07-12-22-42"><span class="toc-text">2.2 配置docker镜像加速器和驱动 - centos07-12&#x2F;22&#x2F;42</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85%E5%88%9D%E5%A7%8B%E5%8C%96k8s%E9%9C%80%E8%A6%81%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85-centos07-12-22-42"><span class="toc-text">3、安装初始化k8s需要的软件包 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81kubeadm%E5%88%9D%E5%A7%8B%E5%8C%96k8s%E9%9B%86%E7%BE%A4-centos07-12-22-42"><span class="toc-text">4、kubeadm初始化k8s集群 - centos07-12&#x2F;22&#x2F;42</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E4%BD%BF%E7%94%A8kubeadm%E5%88%9D%E5%A7%8B%E5%8C%96k8s%E9%9B%86%E7%BE%A4-centos07-12"><span class="toc-text">5、使用kubeadm初始化k8s集群 - centos07-12</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E9%85%8D%E7%BD%AEkubectl%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config-centos07-12"><span class="toc-text">6、配置kubectl的配置文件config - centos07-12</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E6%89%A9%E5%AE%B9k8s%E9%9B%86%E7%BE%A4-%E6%B7%BB%E5%8A%A0%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E4%BD%9C%E8%8A%82%E7%82%B9"><span class="toc-text">7、扩容k8s集群-添加第一个工作节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E5%AE%89%E8%A3%85kubernetes%E7%BD%91%E7%BB%9C%E7%BB%84%E4%BB%B6-Calico"><span class="toc-text">8、安装kubernetes网络组件-Calico</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E6%B5%8B%E8%AF%95%E5%9C%A8k8s%E5%88%9B%E5%BB%BApod%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E6%AD%A3%E5%B8%B8%E8%AE%BF%E9%97%AE%E7%BD%91%E7%BB%9C%EF%BC%8C%E9%95%9C%E5%83%8F%E6%94%BE%E5%9C%A8node%E4%B8%8A%EF%BC%8C%E5%9C%A8master%E4%B8%8A%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">9、测试在k8s创建pod是否可以正常访问网络，镜像放在node上，在master上执行命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E6%B5%8B%E8%AF%95coredns%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8-centos07-12"><span class="toc-text">10、测试coredns是否正常 - centos07-12</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81kubeadm%E5%88%9D%E5%A7%8B%E5%8C%96k8s%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-centos07-12"><span class="toc-text">11、kubeadm初始化k8s证书过期解决方案 - centos07-12</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/05/02/运维/K8S/基础/03-kubeadm安装单master多node节点k8s-1.20.6集群/">https://dbbruce.github.io/2023/05/02/运维/K8S/基础/03-kubeadm安装单master多node节点k8s-1.20.6集群/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/02-kubeadm%E5%AE%89%E8%A3%85k8s%E5%A6%82%E4%BD%95%E5%8D%B8%E8%BD%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          02-kubeadm安装k8s如何卸载
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          04-安装K8S可视化UI界面Dashboard
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

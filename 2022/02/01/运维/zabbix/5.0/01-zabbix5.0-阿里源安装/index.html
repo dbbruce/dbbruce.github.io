@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>01-zabbix5.0-阿里源安装 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/zabbix/5.0/01-zabbix5.0-阿里源安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      01-zabbix5.0-阿里源安装
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2022-02-01T12:00:00.000Z" itemprop="datePublished">2022年02月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2022/02/01/%E8%BF%90%E7%BB%B4/zabbix/5.0/01-zabbix5.0-%E9%98%BF%E9%87%8C%E6%BA%90%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>阿里源地址：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/">https://developer.aliyun.com/mirror/</a></p>
+</blockquote>
+<blockquote>
+<p>测试环境信息：</p>
+<p>zabbix-server:192.168.1.12:Admin+123456</p>
+<p>mysql:root+123456，zabbix+zabbix</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><h4 id="1-关闭防火墙"><a href="#1-关闭防火墙" class="headerlink" title="1.关闭防火墙"></a>1.关闭防火墙</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master sbin]# systemctl stop firewalld.service</span><br><span class="line">[root@master sbin]# systemctl disable firewalld.service</span><br><span class="line">Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.</span><br><span class="line">Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.</span><br></pre></td></tr></table></figure>
+<h4 id="2-关闭selinux"><a href="#2-关闭selinux" class="headerlink" title="2.关闭selinux"></a>2.关闭selinux</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master sbin]# setenforce 0</span><br><span class="line">config         final/         semanage.conf  targeted/      tmp/</span><br><span class="line">[root@master sbin]# vim /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br></pre></td></tr></table></figure>
+<h4 id="3-获取zabbix的下载源"><a href="#3-获取zabbix的下载源" class="headerlink" title="3.获取zabbix的下载源"></a>3.获取zabbix的下载源</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h4 id="4-更换zabbix-repo源，为阿里的"><a href="#4-更换zabbix-repo源，为阿里的" class="headerlink" title="4.更换zabbix.repo源，为阿里的"></a>4.更换zabbix.repo源，为阿里的</h4><ul>
+<li>替换<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# sed -i &#x27;s#http://repo.zabbix.com#https://mirrors.aliyun.com/zabbix#&#x27; /etc/yum.repos.d/zabbix.repo</span><br></pre></td></tr></table></figure>
+或者<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim </span><br><span class="line">:%s#http://repo.zabbix.com#https://mirrors.aliyun.com/zabbix#g</span><br></pre></td></tr></table></figure></li>
+<li>查看<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cat /etc/yum.repos.d/zabbix.repo</span><br><span class="line">[zabbix]</span><br><span class="line">name=Zabbix Official Repository - $basearch</span><br><span class="line">baseurl=https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591</span><br><span class="line"></span><br><span class="line">[zabbix-frontend]</span><br><span class="line">name=Zabbix Official Repository frontend - $basearch</span><br><span class="line">baseurl=https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/$basearch/frontend</span><br><span class="line">enabled=0</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591</span><br><span class="line"></span><br><span class="line">[zabbix-debuginfo]</span><br><span class="line">name=Zabbix Official Repository debuginfo - $basearch</span><br><span class="line">baseurl=https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/$basearch/debuginfo/</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591</span><br><span class="line">gpgcheck=1</span><br><span class="line"></span><br><span class="line">[zabbix-non-supported]</span><br><span class="line">name=Zabbix Official Repository non-supported - $basearch</span><br><span class="line">baseurl=https://mirrors.aliyun.com/zabbix/non-supported/rhel/7/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX</span><br><span class="line">gpgcheck=1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-清空缓存，下载zabbix服务端"><a href="#5-清空缓存，下载zabbix服务端" class="headerlink" title="5.清空缓存，下载zabbix服务端"></a>5.清空缓存，下载zabbix服务端</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zabbix-server-mysql zabbix-agent2 -y</span><br></pre></td></tr></table></figure>
+<h4 id="6-安装-centos-release-scl，解决软件版本冲突问题"><a href="#6-安装-centos-release-scl，解决软件版本冲突问题" class="headerlink" title="6.安装 centos-release-scl，解决软件版本冲突问题"></a>6.安装 centos-release-scl，解决软件版本冲突问题</h4><ul>
+<li>安装 Software Collections，<br>便于后续安装高版本的 php，默认 yum 安装的 php 版本为 54 过低sCl(Software Collections可以让你在同一个操作系统上安装和使用多个版本的软任，而不会影整个系统的安装包软件包会安装在&#x2F;opt&#x2F;rh目录下<br>为了避免系统广泛冲突，&#x2F;opt&#x2F;rh包安装在目录中，例如，这允许你在CentOS 7机器上安装Python 3.5，而不会删除或干扰Pyletc&#x2F;opt&#x2F;rh&#x2F;软件包的所有配置文件都存储在目录中相应的目录中，SCL包提供了定义使用所包含应用程序所需的环境变量的s<br>安装后软件会被放在目录:&#x2F;opt&#x2F;rh&#x2F;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install centos-release-scl -y</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="7-修改zabbix-front前端源，修改zabbix-frontend的enabled-1"><a href="#7-修改zabbix-front前端源，修改zabbix-frontend的enabled-1" class="headerlink" title="7.修改zabbix-front前端源，修改zabbix-frontend的enabled&#x3D;1"></a>7.修改zabbix-front前端源，修改zabbix-frontend的enabled&#x3D;1</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# vim /etc/yum.repos.d/zabbix.repo</span><br><span class="line">[zabbix-frontend]</span><br><span class="line">name=Zabbix Official Repository frontend - $basearch</span><br><span class="line">baseurl=https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/$basearch/frontend</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591</span><br></pre></td></tr></table></figure>
+<h4 id="8-安装zabbix前端环境，且是安装到scl环境下"><a href="#8-安装zabbix前端环境，且是安装到scl环境下" class="headerlink" title="8.安装zabbix前端环境，且是安装到scl环境下"></a>8.安装zabbix前端环境，且是安装到scl环境下</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# yum install zabbix-web-mysql-scl zabbix-apache-conf-scl -y</span><br></pre></td></tr></table></figure>
+<h4 id="9-安装zabbix所需的数据库，mariadb"><a href="#9-安装zabbix所需的数据库，mariadb" class="headerlink" title="9.安装zabbix所需的数据库，mariadb"></a>9.安装zabbix所需的数据库，mariadb</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mariadb-server -y</span><br></pre></td></tr></table></figure>
+<h4 id="10-配置数据库，开机启动"><a href="#10-配置数据库，开机启动" class="headerlink" title="10.配置数据库，开机启动"></a>10.配置数据库，开机启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# systemctl enable --now mariadb</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service to /usr/lib/systemd/system/mariadb.service.</span><br></pre></td></tr></table></figure>
+
+<h4 id="11-初始化数据库，设置密码，123456"><a href="#11-初始化数据库，设置密码，123456" class="headerlink" title="11.初始化数据库，设置密码，123456"></a>11.初始化数据库，设置密码，123456</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<h4 id="12-添加数据库用户，以及zabbix所需的数据库信息"><a href="#12-添加数据库用户，以及zabbix所需的数据库信息" class="headerlink" title="12.添加数据库用户，以及zabbix所需的数据库信息"></a>12.添加数据库用户，以及zabbix所需的数据库信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create database zabbix character set utf8 collate utf8_bin;</span><br><span class="line"></span><br><span class="line">create user zabbix@localhost identified by &#x27;zabbix&#x27;;</span><br><span class="line"></span><br><span class="line">grant all privileges on zabbix.* to zabbix@localhost;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<h4 id="13-使用zabbix-mysq1命令，导入数据库信息"><a href="#13-使用zabbix-mysq1命令，导入数据库信息" class="headerlink" title="13.使用zabbix-mysq1命令，导入数据库信息"></a>13.使用zabbix-mysq1命令，导入数据库信息</h4><h1 id="mysql-u用户名-p-数据库名"><a href="#mysql-u用户名-p-数据库名" class="headerlink" title="mysql -u用户名 -p 数据库名"></a>mysql -u用户名 -p 数据库名</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix</span><br></pre></td></tr></table></figure>
+<h4 id="14-修改zabbix-server配置文件，修改数据库的密码"><a href="#14-修改zabbix-server配置文件，修改数据库的密码" class="headerlink" title="14.修改zabbix server配置文件，修改数据库的密码"></a>14.修改zabbix server配置文件，修改数据库的密码</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# grep &#x27;^DBPa&#x27; /etc/zabbix/zabbix_server.conf</span><br><span class="line">DBPassword=zabbix</span><br></pre></td></tr></table></figure>
+<h4 id="15-修改zabbix的php配置文件"><a href="#15-修改zabbix的php配置文件" class="headerlink" title="15.修改zabbix的php配置文件"></a>15.修改zabbix的php配置文件</h4><p>&#x2F;etc&#x2F;opt&#x2F;rh&#x2F;rh-php72&#x2F;php-fpm.d&#x2F;zabbix.conf</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# vim /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf</span><br><span class="line">php_value[date.timezone] = Asia/Shanghai</span><br></pre></td></tr></table></figure>
+<h4 id="16-启动zabbix相关服务器"><a href="#16-启动zabbix相关服务器" class="headerlink" title="16.启动zabbix相关服务器"></a>16.启动zabbix相关服务器</h4><p>service zabbix-server start<br>systemctl restart zabbix-server zabbix-agent httpd rh-php72-php-fpm<br>systemctl enable zabbix-server zabbix-agent httpd rh-php72-php-fpm</p>
+<h4 id="17-web页面"><a href="#17-web页面" class="headerlink" title="17.web页面"></a>17.web页面</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.12/zabbix</span><br><span class="line">Admin</span><br><span class="line">zabbix</span><br></pre></td></tr></table></figure>
+
+<h2 id="agent"><a href="#agent" class="headerlink" title="agent"></a>agent</h2><h4 id="1-获取zabbix的下载源"><a href="#1-获取zabbix的下载源" class="headerlink" title="1.获取zabbix的下载源"></a>1.获取zabbix的下载源</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h4 id="2-更换zabbix-repo源，为阿里的"><a href="#2-更换zabbix-repo源，为阿里的" class="headerlink" title="2.更换zabbix.repo源，为阿里的"></a>2.更换zabbix.repo源，为阿里的</h4><ul>
+<li>替换<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# sed -i &#x27;s#http://repo.zabbix.com#https://mirrors.aliyun.com/zabbix#&#x27; /etc/yum.repos.d/zabbix.repo</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-安装agent"><a href="#3-安装agent" class="headerlink" title="3.安装agent"></a>3.安装agent</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zabbix-agent2 -y</span><br></pre></td></tr></table></figure>
+<h4 id="4-查看配置文件"><a href="#4-查看配置文件" class="headerlink" title="4.查看配置文件"></a>4.查看配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ll /etc/zabbix/zabbix_agent2.conf</span><br></pre></td></tr></table></figure>
+<h4 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# systemctl enable --now zabbix-agent2</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/zabbix-agent2.service to /usr/lib/systemd/system/zabbix-agent2.service.</span><br></pre></td></tr></table></figure>
+<h4 id="修改agent2配置文件，查看配置信息，根据自己的机器环境修改即可"><a href="#修改agent2配置文件，查看配置信息，根据自己的机器环境修改即可" class="headerlink" title="修改agent2配置文件，查看配置信息，根据自己的机器环境修改即可"></a>修改agent2配置文件，查看配置信息，根据自己的机器环境修改即可</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep -Ev  &#x27;^#|^$&#x27; /etc/zabbix/zabbix_agent2.conf</span><br><span class="line">PidFile=/var/run/zabbix/zabbix_agent2.pid</span><br><span class="line">LogFile=/var/log/zabbix/zabbix_agent2.log</span><br><span class="line">LogFileSize=0</span><br><span class="line">Server=192.168.1.12         # 修改    ***** 只修改这里就可以成功，sever就能添加主机</span><br><span class="line">ServerActive=192.168.1.12   # 修改</span><br><span class="line">Hostname=centos02-22        # 修改</span><br><span class="line">Include=/etc/zabbix/zabbix_agent2.d/*.conf</span><br><span class="line">ControlSocket=/tmp/agent.sock</span><br></pre></td></tr></table></figure>
+<h4 id="最后一步，进行重启zabbix-agent2"><a href="#最后一步，进行重启zabbix-agent2" class="headerlink" title="#最后一步，进行重启zabbix-agent2"></a>#最后一步，进行重启zabbix-agent2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart zabbix-agent2</span><br></pre></td></tr></table></figure>
+
+<h2 id="验证zabbix-agent2的连通性"><a href="#验证zabbix-agent2的连通性" class="headerlink" title="验证zabbix-agent2的连通性"></a>验证zabbix-agent2的连通性</h2><h4 id="0-关闭防火墙"><a href="#0-关闭防火墙" class="headerlink" title="0.关闭防火墙"></a>0.关闭防火墙</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master sbin]# systemctl stop firewalld.service</span><br><span class="line">[root@master sbin]# systemctl disable firewalld.service</span><br><span class="line">Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.</span><br><span class="line">Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.</span><br></pre></td></tr></table></figure>
+<h4 id="1-在服务端上通过命令，主动获取数据"><a href="#1-在服务端上通过命令，主动获取数据" class="headerlink" title="1.在服务端上通过命令，主动获取数据"></a>1.在服务端上通过命令，主动获取数据</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zabbix-get -y</span><br></pre></td></tr></table></figure>
+<h4 id="2-命令检测服务端是否连接上客户端"><a href="#2-命令检测服务端是否连接上客户端" class="headerlink" title="2.命令检测服务端是否连接上客户端"></a>2.命令检测服务端是否连接上客户端</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# zabbix_get -s &#x27;192.168.1.22&#x27; -p 10050 -k &#x27;system.hostname&#x27;</span><br><span class="line">localhost.localdomain</span><br></pre></td></tr></table></figure>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#server"><span class="toc-text">server</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">1.关闭防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%85%B3%E9%97%ADselinux"><span class="toc-text">2.关闭selinux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96zabbix%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%BA%90"><span class="toc-text">3.获取zabbix的下载源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9B%B4%E6%8D%A2zabbix-repo%E6%BA%90%EF%BC%8C%E4%B8%BA%E9%98%BF%E9%87%8C%E7%9A%84"><span class="toc-text">4.更换zabbix.repo源，为阿里的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%B8%85%E7%A9%BA%E7%BC%93%E5%AD%98%EF%BC%8C%E4%B8%8B%E8%BD%BDzabbix%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">5.清空缓存，下载zabbix服务端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%AE%89%E8%A3%85-centos-release-scl%EF%BC%8C%E8%A7%A3%E5%86%B3%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98"><span class="toc-text">6.安装 centos-release-scl，解决软件版本冲突问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E4%BF%AE%E6%94%B9zabbix-front%E5%89%8D%E7%AB%AF%E6%BA%90%EF%BC%8C%E4%BF%AE%E6%94%B9zabbix-frontend%E7%9A%84enabled-1"><span class="toc-text">7.修改zabbix-front前端源，修改zabbix-frontend的enabled&#x3D;1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E5%AE%89%E8%A3%85zabbix%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83%EF%BC%8C%E4%B8%94%E6%98%AF%E5%AE%89%E8%A3%85%E5%88%B0scl%E7%8E%AF%E5%A2%83%E4%B8%8B"><span class="toc-text">8.安装zabbix前端环境，且是安装到scl环境下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E5%AE%89%E8%A3%85zabbix%E6%89%80%E9%9C%80%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8Cmariadb"><span class="toc-text">9.安装zabbix所需的数据库，mariadb</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8"><span class="toc-text">10.配置数据库，开机启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81%EF%BC%8C123456"><span class="toc-text">11.初始化数据库，设置密码，123456</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7%EF%BC%8C%E4%BB%A5%E5%8F%8Azabbix%E6%89%80%E9%9C%80%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%A1%E6%81%AF"><span class="toc-text">12.添加数据库用户，以及zabbix所需的数据库信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-%E4%BD%BF%E7%94%A8zabbix-mysq1%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%A1%E6%81%AF"><span class="toc-text">13.使用zabbix-mysq1命令，导入数据库信息</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql-u%E7%94%A8%E6%88%B7%E5%90%8D-p-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D"><span class="toc-text">mysql -u用户名 -p 数据库名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E4%BF%AE%E6%94%B9zabbix-server%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8C%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AF%86%E7%A0%81"><span class="toc-text">14.修改zabbix server配置文件，修改数据库的密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E4%BF%AE%E6%94%B9zabbix%E7%9A%84php%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">15.修改zabbix的php配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-%E5%90%AF%E5%8A%A8zabbix%E7%9B%B8%E5%85%B3%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">16.启动zabbix相关服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-web%E9%A1%B5%E9%9D%A2"><span class="toc-text">17.web页面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#agent"><span class="toc-text">agent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96zabbix%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%BA%90"><span class="toc-text">1.获取zabbix的下载源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9B%B4%E6%8D%A2zabbix-repo%E6%BA%90%EF%BC%8C%E4%B8%BA%E9%98%BF%E9%87%8C%E7%9A%84"><span class="toc-text">2.更换zabbix.repo源，为阿里的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85agent"><span class="toc-text">3.安装agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9F%A5%E7%9C%8B%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">4.查看配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">启动命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9agent2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8C%E6%9F%A5%E7%9C%8B%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%A0%B9%E6%8D%AE%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9C%BA%E5%99%A8%E7%8E%AF%E5%A2%83%E4%BF%AE%E6%94%B9%E5%8D%B3%E5%8F%AF"><span class="toc-text">修改agent2配置文件，查看配置信息，根据自己的机器环境修改即可</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E4%B8%80%E6%AD%A5%EF%BC%8C%E8%BF%9B%E8%A1%8C%E9%87%8D%E5%90%AFzabbix-agent2"><span class="toc-text">#最后一步，进行重启zabbix-agent2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81zabbix-agent2%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-text">验证zabbix-agent2的连通性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">0.关闭防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9C%A8%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8A%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%EF%BC%8C%E4%B8%BB%E5%8A%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">1.在服务端上通过命令，主动获取数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%91%BD%E4%BB%A4%E6%A3%80%E6%B5%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%98%AF%E5%90%A6%E8%BF%9E%E6%8E%A5%E4%B8%8A%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">2.命令检测服务端是否连接上客户端</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2022/02/01/运维/zabbix/5.0/01-zabbix5.0-阿里源安装/">https://dbbruce.github.io/2022/02/01/运维/zabbix/5.0/01-zabbix5.0-阿里源安装/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2022/02/01/%E8%BF%90%E7%BB%B4/grafana/01-grafana%E5%AE%89%E8%A3%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          01-grafana安装
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/01/%E8%BF%90%E7%BB%B4/zabbix/5.0/01-zabbix5.0-%E6%97%A5%E5%BF%97%E7%9B%AE%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          01-zabbix5.0-日志目录
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

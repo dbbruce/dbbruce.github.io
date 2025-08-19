@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>45-shell | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/Linux云计算教程/45-shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      45-shell
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-15T03:00:52.000Z" itemprop="datePublished">2021年09月15日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2021/09/15/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/45-shell/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-快捷键"><a href="#1-快捷键" class="headerlink" title="1.快捷键"></a>1.快捷键</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl+A</td>
+<td>将光标移至行首</td>
+</tr>
+<tr>
+<td>Ctr+E</td>
+<td>将光标移至行尾</td>
+</tr>
+<tr>
+<td>Ctrl+C</td>
+<td>终止提作</td>
+</tr>
+<tr>
+<td>Ctn+D</td>
+<td>一般为结束输入</td>
+</tr>
+<tr>
+<td>Ctrl+M</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>Ctr+U</td>
+<td>删除光标至行首的所有内容</td>
+</tr>
+<tr>
+<td>Ctrl+W</td>
+<td>删除光标前面的一个单词( 空格分隔)</td>
+</tr>
+<tr>
+<td>Ctr+S</td>
+<td>挂起，冻结终端</td>
+</tr>
+<tr>
+<td>Ctrl+Q</td>
+<td>解除东结终端</td>
+</tr>
+<tr>
+<td>Alt+.</td>
+<td>使用前一个命令的最后一个词</td>
+</tr>
+<tr>
+<td>方向键( 上下键 )</td>
+<td>历史命令</td>
+</tr>
+<tr>
+<td>Tab键</td>
+<td>补齐命令、选项、路径与文件名</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+<h4 id="2-脚本执行方式"><a href="#2-脚本执行方式" class="headerlink" title="2.脚本执行方式:"></a>2.脚本执行方式:</h4><p>1,赋予x执行权限,然后使用绝对或相对路径运行该文件；<br>2,使用解释器直接执行脚本,即使没有X权限也,可以bash test1.sh,这种是新调用一个bash执行，执行后，还原到原窗口；<br>3,使用source命令执行脚本，使用当前窗口bash执行，执行后保持原样；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cat 1.sh</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">cd /</span><br><span class="line">echo &quot;done&quot;</span><br><span class="line"></span><br><span class="line">[root@master ~]# bash 1.sh  #新解析器， 执行后还在~目录</span><br><span class="line">done</span><br><span class="line">[root@master ~]# source 1.sh #使用原解析器，执行后进入根目录</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h4 id="3-变量置空"><a href="#3-变量置空" class="headerlink" title="3.变量置空"></a>3.变量置空</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# a=10</span><br><span class="line">[root@master ~]# echo $a</span><br><span class="line">10</span><br><span class="line">[root@master ~]# unset a</span><br><span class="line">[root@master ~]# echo $a   # 输出空</span><br><span class="line"></span><br><span class="line">[root@master ~]#</span><br></pre></td></tr></table></figure>
+<h4 id="4-环境变量-（大写）"><a href="#4-环境变量-（大写）" class="headerlink" title="4.环境变量: （大写）"></a>4.环境变量: （大写）</h4><p>查看环境变量：env</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# env</span><br><span class="line">XDG_SESSION_ID=1</span><br><span class="line">HOSTNAME=master</span><br><span class="line">SELINUX_ROLE_REQUESTED=</span><br><span class="line">TERM=xterm-256color</span><br><span class="line">SHELL=/bin/bash</span><br><span class="line">HISTSIZE=1000</span><br><span class="line">SSH_CLIENT=192.168.1.9 62447 22</span><br><span class="line">SELINUX_USE_CURRENT_RANGE=</span><br><span class="line">SSH_TTY=/dev/pts/0</span><br><span class="line">USER=root</span><br></pre></td></tr></table></figure>
+<h4 id="5-位置变量：-1-2-3-…-n"><a href="#5-位置变量：-1-2-3-…-n" class="headerlink" title="5.位置变量： $1  $2  $3 … $n"></a>5.位置变量： $1  $2  $3 … $n</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]#  cat 2.sh</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/bash</span></span><br><span class="line"></span><br><span class="line">echo $0</span><br><span class="line">echo $1</span><br><span class="line">echo $2</span><br><span class="line">echo $$   #进程号</span><br><span class="line">echo $?   #检测上一条指令使用有问题，0代表正常</span><br><span class="line">echo $#   #参数数量</span><br><span class="line">echo $*   #显示所有变量</span><br><span class="line">echo $!   #显示上一条放在后台的进程号</span><br><span class="line"></span><br><span class="line">[root@master ~]# bash 2.sh hello word</span><br><span class="line">2.sh    </span><br><span class="line">hello</span><br><span class="line">word</span><br><span class="line">2017</span><br><span class="line">0</span><br><span class="line">2</span><br><span class="line">hello word</span><br></pre></td></tr></table></figure>
+<h4 id="6-查看命令"><a href="#6-查看命令" class="headerlink" title="6.查看命令"></a>6.查看命令</h4><p>查看所有环境变量：env<br>查看所有变量：set</p>
+<h4 id="7-引号"><a href="#7-引号" class="headerlink" title="7.引号"></a>7.引号</h4><p>“” 界定范围<br>‘’ 界定范围,可以屏蔽特殊符号<br>&#96;&#96;(反撇)  获取指令的结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//创建2个文件</span><br><span class="line">touch a b   //创建2个文件</span><br><span class="line">touch&quot;a b&quot;  //创建1个文件</span><br><span class="line">touch&#x27;x y&#x27;  //创建1个文件</span><br><span class="line"></span><br><span class="line">a=10</span><br><span class="line">echo &quot;$a&quot;   // 显示变量a的值(内容)</span><br><span class="line">echo &#x27;$a&#x27; //显示$a,$是特殊符号,功能被屏蔽</span><br><span class="line"></span><br><span class="line">//定义变量a,内容是date,下面3个结果一样</span><br><span class="line">a=date   // a = 2023-09-02 21:30:55</span><br><span class="line">a=`date`  //定义变量a，内容是date命令执行的结果， a= 2023-09-02 21:30:55</span><br><span class="line">a=$(data) //定义变量a，内容是date命令执行的结果， a= 2023-09-02 21:30:55</span><br></pre></td></tr></table></figure>
+<h4 id="8-反撤号或-的应用"><a href="#8-反撤号或-的应用" class="headerlink" title="8.反撤号或$()的应用"></a>8.反撤号或$()的应用</h4><p>使用反撤号或$()时，可以将命令执行的标准输出作为字符串存储，因此称为命令替换</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>[root@svr5 ~]# tar -czf log-<code>date+%Y%m%d</code>.tar.gz &#x2F;var&#x2F;log</p>
+<h4 id="9-使用read命令从键盘读取变量值"><a href="#9-使用read命令从键盘读取变量值" class="headerlink" title="9.使用read命令从键盘读取变量值"></a>9.使用read命令从键盘读取变量值</h4><p>执行后从会等待并接受用户输入 (无任何提示的情况) ，并赋值给变量str</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@svr5 ~]# read str</span><br></pre></td></tr></table></figure>
+<h4 id="10-回显控制"><a href="#10-回显控制" class="headerlink" title="10.回显控制"></a>10.回显控制</h4><p>stty -echo  &#x2F;&#x2F;关闭回显<br>stty echo    &#x2F;&#x2F; 恢复回显</p>
+<h4 id="11-全局变量"><a href="#11-全局变量" class="headerlink" title="11.全局变量"></a>11.全局变量</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">局部变量 </span><br><span class="line">a=10 </span><br><span class="line">全局变量</span><br><span class="line">export a=10  //创建新变量,并发布成全局变量</span><br><span class="line">export a     //对已有的变量,发布全局</span><br><span class="line">export -n a  //撤销全局变量,恢复局部变量</span><br></pre></td></tr></table></figure>
+<h4 id="12-转移字符，-屏蔽之后一个字符的特殊含义"><a href="#12-转移字符，-屏蔽之后一个字符的特殊含义" class="headerlink" title="12. \转移字符，,屏蔽之后一个字符的特殊含义"></a>12. \转移字符，,屏蔽之后一个字符的特殊含义</h4><p>‘’单引号，用于多个字符屏蔽特殊含义</p>
+<h4 id="13-计算"><a href="#13-计算" class="headerlink" title="13.计算"></a>13.计算</h4><ul>
+<li>expr :同时具有输出和运算能力<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">expr 1 + 1 </span><br><span class="line">expr 1 - 1 </span><br><span class="line">expr 1 \* 1 </span><br><span class="line">expr 1 / 1 </span><br><span class="line">expr 1 % 1 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用变量</span></span><br><span class="line">a = 10</span><br><span class="line">expr $a + $a</span><br></pre></td></tr></table></figure></li>
+<li>$[…]:只有运算能力<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">echo $[1+1]</span><br><span class="line">echo $[1-1]</span><br><span class="line">echo $[1*1]</span><br><span class="line">echo $[1/1]</span><br><span class="line">echo $[1%1]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用变量</span></span><br><span class="line">a = 10</span><br><span class="line">echo $[a + 10]  # 这个简单，少些$</span><br></pre></td></tr></table></figure></li>
+<li>let :改变变量本身的值，不显示结果<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a = a + 1  # 不优雅</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">只要用法</span></span><br><span class="line">let a--</span><br><span class="line">let a++</span><br><span class="line">let a+=2</span><br></pre></td></tr></table></figure>
+<img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_31.png" alt="img_31.png"></li>
+<li>bc 小数计算<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;1+1&quot; | bc   //使用bc进行非交互式计算</span><br><span class="line">echo &quot;1.1+1&quot; |  bc  //并且可以计算小数</span><br><span class="line">echo &quot;scale=3;10/3&quot; | bc //定义小数点后面长度是3位</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="14-条件判断-字符判断"><a href="#14-条件判断-字符判断" class="headerlink" title="14.条件判断 &#x3D;&#x3D; !&#x3D;  字符判断"></a>14.条件判断 &#x3D;&#x3D; !&#x3D;  字符判断</h4><p>语法：空格[空格a空格&#x3D;&#x3D;空格空格]空格</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# [ $USER == root ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br><span class="line">[root@master ~]# [ $USER == root1 ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<h4 id="15-逻辑判断"><a href="#15-逻辑判断" class="headerlink" title="15.逻辑判断"></a>15.逻辑判断</h4><p>&amp;&amp;  :前面任务成功,才执行后续任务<br>||  :前面任务失败,才执行后续任务<br>;   :前面任务执行完毕后,继续执行后续任务,前后无逻辑关系; 省行，多行写一行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ $USER == root ] &amp;&amp; echo 123  //如果当前用户是管理员,才输出123</span><br><span class="line">[ $USER != root ] &amp;&amp; echo 123  //如果当前用户不是管理员,才输出123</span><br><span class="line">[ $USER == root ] || echo 123 / /如果当前用户不是管理员,才输出123</span><br></pre></td></tr></table></figure>
+<h4 id="16-z-判断是否为空"><a href="#16-z-判断是否为空" class="headerlink" title="16. -z 判断是否为空"></a>16. -z 判断是否为空</h4><p>使用 -z 优化创建用户的脚本,如果没有输入用户名直接回车则退出脚本</p>
+<ul>
+<li>[ -z $a ]  </li>
+<li>[ ! -z $a ]<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">read -p &quot;请输入账户名” u</span><br><span class="line">[ -z $u ] &amp;&amp; exit</span><br><span class="line">useradd $u</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="17-数字判断"><a href="#17-数字判断" class="headerlink" title="17.数字判断"></a>17.数字判断</h4><p>-eq等于 -ne不等于 -gt大于 -ge大于等于 -lt小于 -le小于等于</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# [ 1 == 1 ]  # wrong</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">127</span><br><span class="line">[root@master ~]# [ 1 -eq 1 ]  # right</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<h4 id="18-文件，目录存在判断"><a href="#18-文件，目录存在判断" class="headerlink" title="18. 文件，目录存在判断"></a>18. 文件，目录存在判断</h4><p>-e 判断文件或者目录是否存在，文件和目录都可以<br>-d 判断目录是否存在<br>-f 判断文件是否存在</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-e</span></span><br><span class="line">[root@master ~]# [ -e /root/ ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br><span class="line">[root@master ~]# [ -e /root/1.sh ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-d</span></span><br><span class="line">[root@master ~]# [ -d /root/ ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-f</span></span><br><span class="line">[root@master ~]# [ -f /root/1.sh ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<h4 id="18-权限判断"><a href="#18-权限判断" class="headerlink" title="18.权限判断"></a>18.权限判断</h4><p>-r 读权限（root无效）<br>-w 写权限 （root无效）<br>-x 执行权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# [ -r /root/ ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br><span class="line">[root@master ~]# [ -w /root/ ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br><span class="line">[root@master ~]# [ -x  /root/ ]</span><br><span class="line">[root@master ~]# echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<h4 id="19-if单分支"><a href="#19-if单分支" class="headerlink" title="19.if单分支"></a>19.if单分支</h4><p>if 条件测试 ;then<br>    命令序列<br>fi</p>
+<h4 id="20-if双分支"><a href="#20-if双分支" class="headerlink" title="20.if双分支"></a>20.if双分支</h4><p>if 条件测试;then<br>    命令序列1<br>else<br>    命令序列2<br>fi</p>
+<h4 id="21-if多分支"><a href="#21-if多分支" class="headerlink" title="21.if多分支"></a>21.if多分支</h4><p>if 条件测试，then<br>    命令序列1<br>elif 条件测试;then<br>    命令序列2<br>elif 条件测试;then<br>    命令序列3<br>else<br>    命令序列4<br>fi</p>
+<h4 id="21-for循环"><a href="#21-for循环" class="headerlink" title="21.for循环"></a>21.for循环</h4><p>for 变量名 in 值列表<br>do<br>    命令序列<br>done</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">for循环,执行多次相同任务时使用基本用法:</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">for i in a b</span><br><span class="line">//有a b两个值,循环两次</span><br><span class="line">do</span><br><span class="line">  //执行两次任务</span><br><span class="line">  echo 123</span><br><span class="line">done</span><br><span class="line">利用for循环测试多台主机是否可以连通</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">for i in [l..15]//准备15个值,循环15次,第一次ping</span><br><span class="line">do</span><br><span class="line">  ping -c 3 -i 0.2 -W 1 172.25.0.si &amp;&gt; /dev/null</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">  echo &quot;172.25..$i通了&quot;</span><br><span class="line">else</span><br><span class="line">  echo &quot;172.25.0.$i不通&quot;</span><br><span class="line">fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h4 id="22-case分支，是简化版本的if-代码编写比if精简-但功能不如if强大"><a href="#22-case分支，是简化版本的if-代码编写比if精简-但功能不如if强大" class="headerlink" title="22.case分支，是简化版本的if,代码编写比if精简,但功能不如if强大"></a>22.case分支，是简化版本的if,代码编写比if精简,但功能不如if强大</h4><p>case 变量 in<br>式1)<br>    命令序列;;<br>模式2)<br>    命令序列2;;<br>esac</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">case $1 in </span><br><span class="line">aa)</span><br><span class="line">    echo aaaaa;;</span><br><span class="line">bb)</span><br><span class="line">    echo bbbbb;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">case $1 in </span><br><span class="line">  st start)</span><br><span class="line">    /usr/local/nginx/sbin/nginx;;</span><br><span class="line">  stop)</span><br><span class="line">    /usr/local/nginx/sbin/nginx - s stop;;</span><br><span class="line">  rest)</span><br><span class="line">    /usr/local/nginx/sbin/nginx - s stop /usr/local/nginx/sbin/nginx;;</span><br><span class="line">  stat)</span><br><span class="line">    netstat - ntulp  grep - q nginx [ $? - eq o] &amp;&amp; echo&quot;服务已启动&quot; echo &quot;服务未启动&quot;;</span><br><span class="line">  *)</span><br><span class="line">  echo &quot;st stop rest stat&quot;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<h4 id="23-echo带颜色"><a href="#23-echo带颜色" class="headerlink" title="23.echo带颜色"></a>23.echo带颜色</h4><p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_32.png" alt="img_32.png"></p>
+<h4 id="24-函数"><a href="#24-函数" class="headerlink" title="24.函数"></a>24.函数</h4><p>函数名 (){<br>  XXXXX<br>}</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">abc () &#123;</span><br><span class="line">  mkdir $1   # 注意这个$1,是函数调用后的，第一个参数，不是执行脚本的第一个参数</span><br><span class="line">  cd $1</span><br><span class="line">&#125;</span><br><span class="line">abc abc</span><br></pre></td></tr></table></figure>
+<h4 id="25-中断控制"><a href="#25-中断控制" class="headerlink" title="25.中断控制"></a>25.中断控制</h4><p>exit      终止脚本程序<br>break     跳出循环,执行循环后任务<br>continue  结束本次循环,继续下一次循环</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bashX=0</span></span><br><span class="line">while :</span><br><span class="line">do</span><br><span class="line">read -p &quot;请输入数字(0是结束)&quot; n</span><br><span class="line">[ sn -eq 0 ] &amp;&amp; break </span><br><span class="line">let x+=n</span><br><span class="line">done</span><br><span class="line">echo &quot;所有数字之和是$x&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="26-字符串处理"><a href="#26-字符串处理" class="headerlink" title="26.字符串处理"></a>26.字符串处理</h4><ul>
+<li>截取<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~] a=abcdef</span><br><span class="line">[root@master ~] echo $&#123;a: 3: 2&#125;  # 从第三个开始截取，取2个值</span><br><span class="line">[root@master ~] de</span><br></pre></td></tr></table></figure></li>
+<li>替换</li>
+</ul>
+<ol>
+<li>只替换第1个子串<br>${变量名&#x2F;old&#x2F;new}</li>
+<li>替换全部子串<br>${变量名&#x2F;&#x2F;od&#x2F;new}<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# a=aabbccdd</span><br><span class="line">[root@master ~]#echo $&#123;a/a/b&#125; #替换一个</span><br><span class="line">babbccdd </span><br><span class="line">[root@master ~]#echo $&#123;a//a/b&#125; #替换全部</span><br><span class="line">bbbbccdd</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>删除</li>
+</ul>
+<ol>
+<li>从左向右，最短匹配删除<br>${变量名#<em>关键词} # 1个#号，删除从左侧第1个字符到最近的关键词“root”的部分，</em>作通配符理<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# a=`head -1 /etc/passwd`</span><br><span class="line">[root@master ~]# echo $a</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">[root@master ~]# echo $&#123;a#*root&#125; # 1个#号删除第一root</span><br><span class="line">:x:0:0:root:/root:/bin/bash</span><br><span class="line">[root@master ~]# echo $&#123;a##*root&#125;   # 最左边一个root</span><br><span class="line">:/bin/bash</span><br></pre></td></tr></table></figure></li>
+<li>从左向右，最长匹配删除<br>${变量名##*关键词}  # 2个#号， 删除从左侧第1个字符到最远的关键词“root”的部分 :<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# a=`head -1 /etc/passwd`</span><br><span class="line">[root@master ~]# echo $a</span><br><span class="line">:x:0:0:root:/root:/bin/bash</span><br><span class="line">[root@master ~]# echo $&#123;a##*root&#125;   # 最右边一个root</span><br><span class="line">:/bin/bash</span><br></pre></td></tr></table></figure></li>
+<li>从右向左，最短匹配删除<br>格式:${变量名%关键词*}  # 一个% 删除从右侧最后1个字符到往左最近的关键词“:”的部分，*做通配符理解:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# echo $&#123;a%:*&#125;</span><br><span class="line">root:x:0:0:root:/root</span><br></pre></td></tr></table></figure></li>
+<li>从右向左，最长匹配删除<br>格式:${变量名%%关键词*}  # 2个% 删除从右侧最后1个字符到往左最远的关键词“:”的部分 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# echo $&#123;a%%:*&#125;</span><br><span class="line">root</span><br></pre></td></tr></table></figure></li>
+<li>赋初值<br>格式:${变量名:-初始值} # 当变量没有值时，使用初始化<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# c=888</span><br><span class="line">[root@master ~]# echo $&#123;c:-1234&#125;</span><br><span class="line">888</span><br><span class="line">[root@master ~]# c=</span><br><span class="line">[root@master ~]# echo $&#123;c:-1234&#125;</span><br><span class="line">1234</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">1.快捷键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-text">2.脚本执行方式:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8F%98%E9%87%8F%E7%BD%AE%E7%A9%BA"><span class="toc-text">3.变量置空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-%EF%BC%88%E5%A4%A7%E5%86%99%EF%BC%89"><span class="toc-text">4.环境变量: （大写）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E4%BD%8D%E7%BD%AE%E5%8F%98%E9%87%8F%EF%BC%9A-1-2-3-%E2%80%A6-n"><span class="toc-text">5.位置变量： $1  $2  $3 … $n</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="toc-text">6.查看命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E5%BC%95%E5%8F%B7"><span class="toc-text">7.引号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E5%8F%8D%E6%92%A4%E5%8F%B7%E6%88%96-%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">8.反撤号或$()的应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E4%BD%BF%E7%94%A8read%E5%91%BD%E4%BB%A4%E4%BB%8E%E9%94%AE%E7%9B%98%E8%AF%BB%E5%8F%96%E5%8F%98%E9%87%8F%E5%80%BC"><span class="toc-text">9.使用read命令从键盘读取变量值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E5%9B%9E%E6%98%BE%E6%8E%A7%E5%88%B6"><span class="toc-text">10.回显控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-text">11.全局变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-%E8%BD%AC%E7%A7%BB%E5%AD%97%E7%AC%A6%EF%BC%8C-%E5%B1%8F%E8%94%BD%E4%B9%8B%E5%90%8E%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E7%9A%84%E7%89%B9%E6%AE%8A%E5%90%AB%E4%B9%89"><span class="toc-text">12. \转移字符，,屏蔽之后一个字符的特殊含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-%E8%AE%A1%E7%AE%97"><span class="toc-text">13.计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD-%E5%AD%97%E7%AC%A6%E5%88%A4%E6%96%AD"><span class="toc-text">14.条件判断 &#x3D;&#x3D; !&#x3D;  字符判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E9%80%BB%E8%BE%91%E5%88%A4%E6%96%AD"><span class="toc-text">15.逻辑判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-z-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA"><span class="toc-text">16. -z 判断是否为空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-%E6%95%B0%E5%AD%97%E5%88%A4%E6%96%AD"><span class="toc-text">17.数字判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-%E6%96%87%E4%BB%B6%EF%BC%8C%E7%9B%AE%E5%BD%95%E5%AD%98%E5%9C%A8%E5%88%A4%E6%96%AD"><span class="toc-text">18. 文件，目录存在判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-%E6%9D%83%E9%99%90%E5%88%A4%E6%96%AD"><span class="toc-text">18.权限判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-if%E5%8D%95%E5%88%86%E6%94%AF"><span class="toc-text">19.if单分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-if%E5%8F%8C%E5%88%86%E6%94%AF"><span class="toc-text">20.if双分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-if%E5%A4%9A%E5%88%86%E6%94%AF"><span class="toc-text">21.if多分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-for%E5%BE%AA%E7%8E%AF"><span class="toc-text">21.for循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-case%E5%88%86%E6%94%AF%EF%BC%8C%E6%98%AF%E7%AE%80%E5%8C%96%E7%89%88%E6%9C%AC%E7%9A%84if-%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%AF%94if%E7%B2%BE%E7%AE%80-%E4%BD%86%E5%8A%9F%E8%83%BD%E4%B8%8D%E5%A6%82if%E5%BC%BA%E5%A4%A7"><span class="toc-text">22.case分支，是简化版本的if,代码编写比if精简,但功能不如if强大</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-echo%E5%B8%A6%E9%A2%9C%E8%89%B2"><span class="toc-text">23.echo带颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-%E5%87%BD%E6%95%B0"><span class="toc-text">24.函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#25-%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6"><span class="toc-text">25.中断控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#26-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86"><span class="toc-text">26.字符串处理</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2021/09/15/运维/Linux云计算教程/45-shell/">https://dbbruce.github.io/2021/09/15/运维/Linux云计算教程/45-shell/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2021/09/15/%E8%BF%90%E7%BB%B4/nginx/15-%E6%97%A5%E5%BF%97%E5%88%87%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          15-日志切分
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/09/16/%E8%BF%90%E7%BB%B4/nginx/16-%E5%AF%B9%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9%E5%A4%84%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          16-对页面进行压缩处理
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

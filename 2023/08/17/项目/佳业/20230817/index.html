@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>项目的一些知识 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-项目/佳业/20230817" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      项目的一些知识
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-17T14:14:52.000Z" itemprop="datePublished">2023年08月17日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/08/17/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20230817/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1、确认代码模块与升级模块关系"><a href="#1、确认代码模块与升级模块关系" class="headerlink" title="1、确认代码模块与升级模块关系"></a>1、确认代码模块与升级模块关系</h4><ul>
+<li>1.1. 背景<blockquote>
+<p>在修改了Py文件中的<code>model</code>字段后，需要更新设计时的模块。那么，如何确认特定模块与设计时的关联呢？</p>
+</blockquote>
+</li>
+<li>1.2. 方法<blockquote>
+<p>查看修改的 Python 文件路径：gsp就是目录名</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/xx/xx/biz/med/gsp/xx/xx/xx/report.py</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+<li>1.3. 查看设计时的模块信息：</li>
+</ul>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/QQ_1724986081391.png" alt="QQ_1724986081391.png"><br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/QQ_1724986124953.png" alt="QQ_1724986124953.png"></p>
+<h4 id="2、项目代码结构"><a href="#2、项目代码结构" class="headerlink" title="2、项目代码结构"></a>2、项目代码结构</h4><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img.png" alt="img.png"></p>
+<h4 id="3、创建应用流程"><a href="#3、创建应用流程" class="headerlink" title="3、创建应用流程"></a>3、创建应用流程</h4><h5 id="3-1、需要进入菜单创建应用"><a href="#3-1、需要进入菜单创建应用" class="headerlink" title="3.1、需要进入菜单创建应用"></a>3.1、需要进入菜单创建应用</h5><blockquote>
+<p>“医药管理”， 点击“采购管理”，进入“采购管理”</p>
+</blockquote>
+<img src="../../../images/项目/佳业/other/img_1.png" width=100%>
+
+<blockquote>
+<p>进入“采购管理后”，点击“创建”，创建“应用”</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_2.png" alt="img_2.png"></p>
+<blockquote>
+<p>选择“熟练模式”</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_3.png" alt="img_3.png"></p>
+<h5 id="3-2、创建应用流程"><a href="#3-2、创建应用流程" class="headerlink" title="3.2、创建应用流程"></a>3.2、创建应用流程</h5><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_4.png" alt="img_4.png"></p>
+<blockquote>
+<p>应用名称：菜单中显示的名称</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_5.png" alt="img_5.png"></p>
+<blockquote>
+<p>模型key：代码目录名称</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_6.png" alt="img_6.png"></p>
+<blockquote>
+<p>所属模块: 显示菜单的位置</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_7.png" alt="img_7.png"></p>
+<blockquote>
+<p>文件路径：&#x2F;med&#x2F;med_pur</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_8.png" alt="img_8.png"></p>
+<blockquote>
+<p>继承模板: 继承模板后，会自动带来一个字段</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_9.png" alt="img_9.png"><br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_10.png" alt="img_10.png"></p>
+<blockquote>
+<p>保存，同步IDE后，只会生成代码目录，不会生成PG数据表</p>
+</blockquote>
+<h5 id="3-3、生成PG数据表"><a href="#3-3、生成PG数据表" class="headerlink" title="3.3、生成PG数据表"></a>3.3、生成PG数据表</h5><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_11.png" alt="img_11.png"></p>
+<h4 id="4、目录结构"><a href="#4、目录结构" class="headerlink" title="4、目录结构"></a>4、目录结构</h4><blockquote>
+<p>custom：看了几个项目都是空着的，后期补充下</p>
+<p>development：研发修改的目录</p>
+<p>generate：</p>
+<p>i18n： 页面上设置的多语言配置，都会写在这个目录下的zh_CN.CSV文件里</p>
+<p>json：</p>
+<p><strong>init</strong>.py: 用来引用自动生成的3个目录，custom，development，generate</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_12.png" alt="img_12.png"></p>
+<h5 id="4-1、-init-py"><a href="#4-1、-init-py" class="headerlink" title="4.1、 init.py"></a>4.1、 <strong>init</strong>.py</h5><blockquote>
+<p>引用自动生成的3个目录</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_13.png" alt="img_13.png"></p>
+<h5 id="4-2、generate"><a href="#4-2、generate" class="headerlink" title="4.2、generate"></a>4.2、generate</h5><table>
+<thead>
+<tr>
+<th>文件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>studio_app_version.xml</td>
+<td>包含表单的信息</td>
+</tr>
+<tr>
+<td>studio_default.xml</td>
+<td>默认值管理</td>
+</tr>
+<tr>
+<td>studio_onchange_config.xml</td>
+<td>值更新事件管理，配置的信息</td>
+</tr>
+<tr>
+<td>studio_button_action_config.xml</td>
+<td>操作按钮管理，涉及按钮的一些信</td>
+</tr>
+<tr>
+<td>studio_fields_config.xml</td>
+<td>视图中的字段，表的字段信息</td>
+</tr>
+<tr>
+<td>sys_ele_ctrl_config.xml</td>
+<td>按钮信息，操作按钮管理</td>
+</tr>
+<tr>
+<td>studio_compute_config.xml</td>
+<td>计算字段配置</td>
+</tr>
+<tr>
+<td>studio_model_fields.xml</td>
+<td>视图中的字段，表的字段信息</td>
+</tr>
+<tr>
+<td>studio_service_config.xml</td>
+<td>服务调用管理</td>
+</tr>
+<tr>
+<td>ir_model_extension.xml</td>
+<td>过滤配置</td>
+</tr>
+<tr>
+<td>studio_botp.xml</td>
+<td>流程设置中单据转换的相关配置</td>
+</tr>
+<tr>
+<td>studio_botp_version.xml</td>
+<td>流程设置中单据转换的相关配置</td>
+</tr>
+</tbody></table>
+<h5 id="4-3、views-前端视图"><a href="#4-3、views-前端视图" class="headerlink" title="4.3、views:前端视图"></a>4.3、views:前端视图</h5><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_14.png" alt="img_14.png"></p>
+<h4 id="5、i18n-多语言翻译对应的文档"><a href="#5、i18n-多语言翻译对应的文档" class="headerlink" title="5、i18n  &lt; &#x3D;&#x3D;&#x3D; &gt; 多语言翻译对应的文档"></a>5、i18n  &lt; &#x3D;&#x3D;&#x3D; &gt; 多语言翻译对应的文档</h4><blockquote>
+<p>应用下i18n的，zh_CN.CSV</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_15.png" alt="img_15.png"><br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_16.png" alt="img_16.png"></p>
+<h4 id="6、视图，模型属性"><a href="#6、视图，模型属性" class="headerlink" title="6、视图，模型属性"></a>6、视图，模型属性</h4><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_17.png" alt="img_17.png"></p>
+<h5 id="6-1、默认值管理"><a href="#6-1、默认值管理" class="headerlink" title="6.1、默认值管理"></a>6.1、默认值管理</h5><blockquote>
+<p>默认值配置后关联的2个文件</p>
+<p>1.应用名&#x2F;generate&#x2F;data&#x2F;studio_default.xml</p>
+<p>2.应用名&#x2F;json&#x2F;model__pur_noun_case0806.json [pur.noun.case0806这个是表单视图名称]</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_18.png" alt="img_18.png"></p>
+<blockquote>
+<p>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;generate&#x2F;data&#x2F;studio_default.xml</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_19.png" alt="img_19.png"></p>
+<blockquote>
+<p>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;json&#x2F;model__pur_noun_case0806.json</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_20.png" alt="img_20.png"></p>
+<h5 id="6-2、值更新事件管理"><a href="#6-2、值更新事件管理" class="headerlink" title="6.2、值更新事件管理"></a>6.2、值更新事件管理</h5><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_21.png" alt="img_21.png"></p>
+<blockquote>
+<p>studio_onchange_config.xml文件</p>
+<p>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;generate&#x2F;data&#x2F;studio_onchange_config.xml</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_22.png" alt="img_22.png"></p>
+<blockquote>
+<p>json文件中的onchange<br>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;json&#x2F;model__pur_noun_case0806.json</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_23.png" alt="img_23.png"></p>
+<blockquote>
+<p>自定义方法编写的位置<br>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;development&#x2F;models&#x2F;pur_noun_case0806.py</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MedPurOrder</span>(models.Model):</span><br><span class="line">   _inherit = <span class="string">&#x27;pur.noun.case0806&#x27;</span></span><br><span class="line">   <span class="comment">################################  其他方法区  start  ################################</span></span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">_filter_pur_org</span>(<span class="params">self</span>):</span><br><span class="line">       <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">       高级筛选视图采购组织改变触发函数</span></span><br><span class="line"><span class="string">       :params:</span></span><br><span class="line"><span class="string">           self: 当前模型对象(obj)</span></span><br><span class="line"><span class="string">       :return:</span></span><br><span class="line"><span class="string">       &quot;&quot;&quot;</span></span><br><span class="line">       <span class="comment"># 清空采购部门、采购员、供应商</span></span><br><span class="line">       self.pur_dept_id = <span class="literal">False</span></span><br><span class="line">       self.pur_id = <span class="literal">False</span></span><br><span class="line">       self.supplier_id = <span class="literal">False</span></span><br><span class="line">       <span class="comment"># 过滤采购组织</span></span><br><span class="line">       org_list = self.p_get_org_domain(<span class="string">&#x27;purchase&#x27;</span>)</span><br><span class="line">       <span class="keyword">return</span> &#123;<span class="string">&#x27;domain&#x27;</span>: &#123;<span class="string">&#x27;pur_org_id&#x27;</span>: [(<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;in&#x27;</span>, org_list)]&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="6-3、计算字段配置"><a href="#6-3、计算字段配置" class="headerlink" title="6.3、计算字段配置"></a>6.3、计算字段配置</h5><blockquote>
+<p>文件：generate&#x2F;data&#x2F;studio_compute_config.xml</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_24.png" alt="img_24.png"></p>
+<blockquote>
+<p>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;generate&#x2F;data&#x2F;studio_compute_config.xml</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_25.png" alt="img_25.png"></p>
+<h5 id="6-4、服务调用管理"><a href="#6-4、服务调用管理" class="headerlink" title="6.4、服务调用管理"></a>6.4、服务调用管理</h5><blockquote>
+<p>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;generate&#x2F;data&#x2F;studio_service_config.xml</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_26.png" alt="img_26.png"></p>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_27.png" alt="img_27.png"></p>
+<blockquote>
+<p>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;development&#x2F;models&#x2F;pur_noun_case0806.py</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MedPurOrder</span>(models.Model):</span><br><span class="line">   _inherit = <span class="string">&#x27;pur.noun.case0806&#x27;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">################################  约束方法区  start  ################################</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">_check_pur_order_line2_ids</span>(<span class="params">self, **kwargs</span>):</span><br><span class="line">       <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">       付款计划明细行应付金额总和应等于订单总金额</span></span><br><span class="line"><span class="string">       :param:</span></span><br><span class="line"><span class="string">           self: 当前模型对象(obj)</span></span><br><span class="line"><span class="string">       :return:</span></span><br><span class="line"><span class="string">       &quot;&quot;&quot;</span></span><br><span class="line">       record_ids = kwargs.get(<span class="string">&#x27;record_ids&#x27;</span>, <span class="literal">False</span>)</span><br><span class="line">       message1 = _(<span class="string">&#x27;Only one payable business is allowed on a single purchase order&#x27;</span>)</span><br><span class="line">       message2 = _(<span class="string">&#x27;The total payable amount of the payment plan must equal the total amount of the purchase order&#x27;</span>)</span><br><span class="line">       <span class="keyword">for</span> rec <span class="keyword">in</span> record_ids:</span><br><span class="line">           line_pay_amount_total = <span class="number">0</span>  <span class="comment"># 明细行总金额</span></span><br><span class="line">           material_line_amount = <span class="number">0</span>  <span class="comment"># 物料明细行总含税金额</span></span><br><span class="line"></span><br><span class="line">           <span class="keyword">for</span> material_line <span class="keyword">in</span> rec.pur_order_line1_ids:</span><br><span class="line">               <span class="comment"># 计算物料明细行总含税金额</span></span><br><span class="line">               material_line_amount += material_line.amount_tax</span><br><span class="line">           <span class="keyword">for</span> line <span class="keyword">in</span> rec.pur_order_line2_ids:</span><br><span class="line">               <span class="comment"># 计算付款计划明细行总应付金额</span></span><br><span class="line">               line_pay_amount_total += line.payable_amount</span><br><span class="line">               <span class="keyword">if</span> <span class="keyword">not</span> line.is_need_payadvance <span class="keyword">and</span> line.pay_date <span class="keyword">and</span> line.pay_date &lt; rec.biz_date:</span><br><span class="line">                   <span class="comment"># 应付日期不允许小于业务日期</span></span><br><span class="line">                   message = _(</span><br><span class="line">                       <span class="string">&#x27;The due date of the %s line cannot be less than the business date&#x27;</span>) % (line.sequence)</span><br><span class="line">                   <span class="keyword">raise</span> ValidationError(message)</span><br><span class="line">           <span class="comment"># 按项目分组计算is_need_payadvance=True的个数，只能有一个</span></span><br><span class="line">           temp = rec.pur_order_line2_ids.<span class="built_in">sorted</span>(key=<span class="keyword">lambda</span> x: <span class="built_in">str</span>(x.project_id.<span class="built_in">id</span> <span class="keyword">or</span> <span class="string">&#x27;&#x27;</span>))</span><br><span class="line">           <span class="keyword">for</span> k, items <span class="keyword">in</span> groupby(temp, key=<span class="keyword">lambda</span> x: <span class="built_in">str</span>(x.project_id.<span class="built_in">id</span> <span class="keyword">or</span> <span class="string">&#x27;&#x27;</span>)):</span><br><span class="line">               <span class="keyword">if</span> <span class="built_in">sum</span>([row.is_need_payadvance <span class="keyword">for</span> row <span class="keyword">in</span> items] <span class="keyword">or</span> [<span class="number">0</span>, ]) &gt; <span class="number">1</span>:</span><br><span class="line">                   <span class="comment"># 一张采购订单仅允许有一项应付业务</span></span><br><span class="line">                   message = message1</span><br><span class="line">                   <span class="keyword">raise</span> ValidationError(message)</span><br><span class="line">           <span class="keyword">if</span> rec.env[<span class="string">&#x27;mdm.currency&#x27;</span>].p_amount_float_compare(material_line_amount, line_pay_amount_total,</span><br><span class="line">                                                             rec.currency_id.<span class="built_in">id</span>) != <span class="number">0</span>:</span><br><span class="line">               <span class="comment"># 付款计划应付金额合计需等于采购订单总含税金额</span></span><br><span class="line">               message = message2</span><br><span class="line">               <span class="keyword">raise</span> ValidationError(message)</span><br></pre></td></tr></table></figure>
+<h5 id="6-5、过滤配置"><a href="#6-5、过滤配置" class="headerlink" title="6.5、过滤配置"></a>6.5、过滤配置</h5><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_28.png" alt="img_28.png"></p>
+<blockquote>
+<p>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;generate&#x2F;data&#x2F;ir_model_extension.xml</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_29.png" alt="img_29.png"></p>
+<h4 id="7、视图，操作按钮管理"><a href="#7、视图，操作按钮管理" class="headerlink" title="7、视图，操作按钮管理"></a>7、视图，操作按钮管理</h4><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_30.png" alt="img_30.png"><br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_31.png" alt="img_31.png"></p>
+<blockquote>
+<p>&#x2F;med&#x2F;med_pur&#x2F;pur_noun_case0806&#x2F;generate&#x2F;data&#x2F;studio_button_action_config.xml</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_32.png" alt="img_32.png"></p>
+<h4 id="7、视图，流程设置"><a href="#7、视图，流程设置" class="headerlink" title="7、视图，流程设置"></a>7、视图，流程设置</h4><h5 id="7-1、流程设置"><a href="#7-1、流程设置" class="headerlink" title="7.1、流程设置"></a>7.1、流程设置</h5><blockquote>
+<p>&#x2F;opt&#x2F;projects&#x2F;insuite&#x2F;biz&#x2F;platform&#x2F;ps_studio&#x2F;controllers&#x2F;studio_botp_ctrl.py</p>
+<p>&#x2F;opt&#x2F;projects&#x2F;insuite&#x2F;biz&#x2F;platform&#x2F;ps_studio&#x2F;models&#x2F;studio_botp_rule_version.py</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_33.png" alt="img_33.png"></p>
+<h5 id="7-2、单据转换涉及的文件"><a href="#7-2、单据转换涉及的文件" class="headerlink" title="7.2、单据转换涉及的文件"></a>7.2、单据转换涉及的文件</h5><blockquote>
+<p>&#x2F;opt&#x2F;projects&#x2F;insuite&#x2F;biz&#x2F;med&#x2F;gsp&#x2F;med_pur_order&#x2F;generate&#x2F;data&#x2F;studio_botp_rule_version.xml</p>
+<p>&#x2F;opt&#x2F;projects&#x2F;insuite&#x2F;biz&#x2F;med&#x2F;gsp&#x2F;med_pur_order&#x2F;generate&#x2F;data&#x2F;studio_botp_rule.xml</p>
+<p>&#x2F;opt&#x2F;projects&#x2F;insuite&#x2F;biz&#x2F;med&#x2F;gsp&#x2F;med_pur_order&#x2F;generate&#x2F;data&#x2F;studio_botp_version.xml</p>
+<p>&#x2F;opt&#x2F;projects&#x2F;insuite&#x2F;biz&#x2F;med&#x2F;gsp&#x2F;med_pur_order&#x2F;generate&#x2F;data&#x2F;studio_botp.xml</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_34.png" alt="img_34.png"></p>
+<blockquote>
+<p>将配置信息存储在数据表里</p>
+<p>‘studio_botp_version’ # 单据转换 流程中间表</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">StudioBotpRuleVersion</span>(models.Model):</span><br><span class="line">   _name = <span class="string">&#x27;studio.botp.version&#x27;</span></span><br><span class="line">   _description = <span class="string">&#x27;Studio Botp Version&#x27;</span>  <span class="comment"># 单据转换 流程中间表</span></span><br><span class="line"></span><br><span class="line">   tenant_id = fields.Integer(string=<span class="string">&quot;Tenant&quot;</span>, default=<span class="keyword">lambda</span> self: self.env.user.tenant_id)  <span class="comment"># 租户</span></span><br><span class="line">   config_uuid = fields.Char(string=<span class="string">&#x27;Service UUID&#x27;</span>, copy=<span class="literal">False</span>)  <span class="comment"># 服务 UUID</span></span><br><span class="line">   botp_key = fields.Char(string=<span class="string">&#x27;Botp Key&#x27;</span>)  <span class="comment"># 生成规则 &quot;&#123;&#125;_&#123;&#125;&quot;.format(source_model_key, target_model_key)</span></span><br><span class="line">   source_model_key = fields.Char(string=<span class="string">&#x27;Source Model Key&#x27;</span>, index=<span class="literal">True</span>)  <span class="comment"># 来源单模型名</span></span><br><span class="line">   target_model_key = fields.Char(string=<span class="string">&#x27;Target Model Key&#x27;</span>, index=<span class="literal">True</span>)  <span class="comment"># 目标单模型名</span></span><br><span class="line">   source_seq = fields.Integer(string=<span class="string">&quot;Source Seq&quot;</span>)  <span class="comment"># 来源单流程排序权重</span></span><br><span class="line">   target_seq = fields.Integer(string=<span class="string">&quot;Target Seq&quot;</span>)  <span class="comment"># 目标单流程排序权重</span></span><br><span class="line">   is_no_preset = fields.Boolean(string=<span class="string">&#x27;Is No Preset&#x27;</span>, default=<span class="literal">False</span>)  <span class="comment"># 客开判断是否预置字段 默认为 False 系统预置</span></span><br><span class="line">   launch_condition = fields.Text(string=<span class="string">&#x27;Launch Condition&#x27;</span>)  <span class="comment"># 俩个单据下推的启动条件</span></span><br><span class="line">   delete_state = fields.Boolean(string=<span class="string">&#x27;Delete State&#x27;</span>, default=<span class="literal">False</span>)  <span class="comment"># 删除状态(正常/删除)</span></span><br><span class="line">   is_publish = fields.Boolean(string=<span class="string">&#x27;Is Publish&#x27;</span>, default=<span class="literal">False</span>)  <span class="comment"># 是否发布</span></span><br><span class="line">   publish_date = fields.Datetime(string=<span class="string">&quot;Publish Date&quot;</span>)  <span class="comment"># 发布时间  未发布则为空</span></span><br><span class="line">   partner = fields.Char(string=<span class="string">&#x27;Partner&#x27;</span>)  <span class="comment"># 伙伴标识 此条记录是哪个伙伴生成的 如果为空则是标准产品</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>‘studio_botp_rule_version’  # 单据转换规则 中间表</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">StudioBotpRuleVersionLine</span>(models.Model):</span><br><span class="line">   _name = <span class="string">&#x27;studio.botp.rule.version&#x27;</span>  <span class="comment"># 单据转换规则 中间表</span></span><br><span class="line">   _description = <span class="string">&#x27;Studio Botp Rule Version&#x27;</span></span><br><span class="line">   tenant_id = fields.Integer(string=<span class="string">&quot;Tenant&quot;</span>, default=<span class="keyword">lambda</span> self: self.env.user.tenant_id)  <span class="comment"># 租户</span></span><br><span class="line">   config_uuid = fields.Char(string=<span class="string">&#x27;Service UUID&#x27;</span>, copy=<span class="literal">False</span>)  <span class="comment"># 服务 UUID</span></span><br><span class="line">   botp_key = fields.Char(string=<span class="string">&#x27;Botp Key&#x27;</span>)  <span class="comment"># 生成规则 &quot;&#123;&#125;_&#123;&#125;&quot;.format(source_model_key, target_model_key)</span></span><br><span class="line">   rule_key = fields.Char(string=<span class="string">&#x27;Rule Key&#x27;</span>, index=<span class="literal">True</span>)  <span class="comment"># 单据转换规则唯一标识 前端生成</span></span><br><span class="line">   parent_rule_key = fields.Char(string=<span class="string">&#x27;Parent Rule Key&#x27;</span>, index=<span class="literal">True</span>, copy=<span class="literal">False</span>)  <span class="comment"># 单据转换规则父级标识 用于转换规则的复制 记录被复制规则key</span></span><br><span class="line">   rule_name = fields.Char(string=<span class="string">&#x27;Rule Name&#x27;</span>, translate=<span class="literal">True</span>)  <span class="comment"># 单据转换规则名称</span></span><br><span class="line">   rule_seq = fields.Integer(string=<span class="string">&quot;Rule Seq&quot;</span>)  <span class="comment"># 单据转换规则排序权重</span></span><br><span class="line">   source_model_key = fields.Char(string=<span class="string">&#x27;Source Model Key&#x27;</span>, index=<span class="literal">True</span>)  <span class="comment"># 来源单模型名</span></span><br><span class="line">   target_model_key = fields.Char(string=<span class="string">&#x27;Target Model Key&#x27;</span>, index=<span class="literal">True</span>)  <span class="comment"># 目标单模型名</span></span><br><span class="line">   json_data = fields.Text(string=<span class="string">&#x27;Botp Rule Json&#x27;</span>)  <span class="comment"># 保存的 json 数据</span></span><br><span class="line">   path = fields.Char(string=<span class="string">&#x27;Json Path&#x27;</span>)  <span class="comment"># json 数据的路径</span></span><br><span class="line">   is_no_preset = fields.Boolean(string=<span class="string">&#x27;Is No Preset&#x27;</span>, default=<span class="literal">False</span>)  <span class="comment"># 客开判断是否预置字段 默认为 False 系统预置</span></span><br><span class="line">   delete_state = fields.Boolean(string=<span class="string">&#x27;Delete State&#x27;</span>, default=<span class="literal">False</span>)  <span class="comment"># 删除状态(正常/删除)</span></span><br><span class="line">   forbid_state = fields.Boolean(string=<span class="string">&#x27;Forbid State&#x27;</span>, default=<span class="literal">False</span>)  <span class="comment"># 禁用状态(正常/已禁用)</span></span><br><span class="line">   is_publish = fields.Boolean(string=<span class="string">&#x27;Is Publish&#x27;</span>, default=<span class="literal">False</span>)  <span class="comment"># 是否发布</span></span><br><span class="line">   publish_date = fields.Datetime(string=<span class="string">&quot;Publish Date&quot;</span>)  <span class="comment"># 发布时间  未发布则为空</span></span><br><span class="line">   partner = fields.Char(string=<span class="string">&#x27;Partner&#x27;</span>)  <span class="comment"># 伙伴标识 此条记录是哪个伙伴生成的 如果为空则是标准产品</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>config_uuid从xml文件中获取</p>
+<p>select * from studio_botp_rule_version where config_uuid in (‘243b43b8880f11edafa802420a0001a9’,’697ec59c31da11eeb41e02420a0001aa’,’940a60a2b28f11ed849a02420a000191’);</p>
+<p>select * from studio_botp_version where config_uuid in (‘243b43b8880f11edafa802420a0001a9’,’697ec59c31da11eeb41e02420a0001aa’,’940a60a2b28f11ed849a02420a000191’);</p>
+</blockquote>
+<h4 id="8、IDE"><a href="#8、IDE" class="headerlink" title="8、IDE"></a>8、IDE</h4><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_35.png" alt="img_35.png"></p>
+<h4 id="9、单据转换"><a href="#9、单据转换" class="headerlink" title="9、单据转换"></a>9、单据转换</h4><p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_36.png" alt="img_36.png"></p>
+<blockquote>
+<p>映射关系<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_37.png" alt="img_37.png"><br>模型映射：指定推数据的模型之间关系<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_38.png" alt="img_38.png"><br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_39.png" alt="img_39.png"></p>
+</blockquote>
+<blockquote>
+<p>分单合并规则</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_40.png" alt="img_40.png"></p>
+<blockquote>
+<p>选单依据，过滤数据</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_41.png" alt="img_41.png"><br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_42.png" alt="img_42.png"></p>
+<blockquote>
+<p>反写规则，数据生成后的一些动作</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_43.png" alt="img_43.png"> </p>
+<blockquote>
+<p>服务调用</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_44.png" alt="img_44.png"></p>
+<blockquote>
+<p>目标单服务</p>
+</blockquote>
+<blockquote>
+<p>场景：字段对应的单位不同，换算数量</p>
+</blockquote>
+<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_45.png" alt="img_45.png"><br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_46.png" alt="img_46.png"></p>
+<h4 id="10、单据转换"><a href="#10、单据转换" class="headerlink" title="10、单据转换"></a>10、单据转换</h4><ul>
+<li>整单：表头</li>
+<li>分录：表体<br><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/other/img_49.png" alt="img_49.png"></li>
+</ul>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%A1%AE%E8%AE%A4%E4%BB%A3%E7%A0%81%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%8D%87%E7%BA%A7%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB"><span class="toc-text">1、确认代码模块与升级模块关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="toc-text">2、项目代码结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="toc-text">3、创建应用流程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1%E3%80%81%E9%9C%80%E8%A6%81%E8%BF%9B%E5%85%A5%E8%8F%9C%E5%8D%95%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="toc-text">3.1、需要进入菜单创建应用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2%E3%80%81%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="toc-text">3.2、创建应用流程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3%E3%80%81%E7%94%9F%E6%88%90PG%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">3.3、生成PG数据表</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">4、目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1%E3%80%81-init-py"><span class="toc-text">4.1、 init.py</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2%E3%80%81generate"><span class="toc-text">4.2、generate</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3%E3%80%81views-%E5%89%8D%E7%AB%AF%E8%A7%86%E5%9B%BE"><span class="toc-text">4.3、views:前端视图</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81i18n-%E5%A4%9A%E8%AF%AD%E8%A8%80%E7%BF%BB%E8%AF%91%E5%AF%B9%E5%BA%94%E7%9A%84%E6%96%87%E6%A1%A3"><span class="toc-text">5、i18n  &lt; &#x3D;&#x3D;&#x3D; &gt; 多语言翻译对应的文档</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E8%A7%86%E5%9B%BE%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%B1%9E%E6%80%A7"><span class="toc-text">6、视图，模型属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-1%E3%80%81%E9%BB%98%E8%AE%A4%E5%80%BC%E7%AE%A1%E7%90%86"><span class="toc-text">6.1、默认值管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2%E3%80%81%E5%80%BC%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-text">6.2、值更新事件管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3%E3%80%81%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5%E9%85%8D%E7%BD%AE"><span class="toc-text">6.3、计算字段配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4%E3%80%81%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E7%AE%A1%E7%90%86"><span class="toc-text">6.4、服务调用管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-5%E3%80%81%E8%BF%87%E6%BB%A4%E9%85%8D%E7%BD%AE"><span class="toc-text">6.5、过滤配置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E8%A7%86%E5%9B%BE%EF%BC%8C%E6%93%8D%E4%BD%9C%E6%8C%89%E9%92%AE%E7%AE%A1%E7%90%86"><span class="toc-text">7、视图，操作按钮管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E8%A7%86%E5%9B%BE%EF%BC%8C%E6%B5%81%E7%A8%8B%E8%AE%BE%E7%BD%AE"><span class="toc-text">7、视图，流程设置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#7-1%E3%80%81%E6%B5%81%E7%A8%8B%E8%AE%BE%E7%BD%AE"><span class="toc-text">7.1、流程设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-2%E3%80%81%E5%8D%95%E6%8D%AE%E8%BD%AC%E6%8D%A2%E6%B6%89%E5%8F%8A%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-text">7.2、单据转换涉及的文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81IDE"><span class="toc-text">8、IDE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9%E3%80%81%E5%8D%95%E6%8D%AE%E8%BD%AC%E6%8D%A2"><span class="toc-text">9、单据转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10%E3%80%81%E5%8D%95%E6%8D%AE%E8%BD%AC%E6%8D%A2"><span class="toc-text">10、单据转换</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/08/17/项目/佳业/20230817/">https://dbbruce.github.io/2023/08/17/项目/佳业/20230817/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/08/17/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/20230817-%E6%B6%89%E5%8F%8A%E7%9A%84%E5%BA%93%E5%AD%98%E5%90%8D%E7%A7%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          订单中涉及的库存数量名词
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/18/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/011-python%E8%BF%9E%E6%8E%A5mysql/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          011-python连接mysql
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

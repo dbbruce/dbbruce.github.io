@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MySQL键值(索引) | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-mysql/MySQL键值(索引)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MySQL键值(索引)
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2017-02-10T05:14:52.000Z" itemprop="datePublished">2017年02月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2017/02/10/mysql/MySQL%E9%94%AE%E5%80%BC(%E7%B4%A2%E5%BC%95)/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-索引"><a href="#1-索引" class="headerlink" title="1.索引"></a>1.索引</h3><ul>
+<li>类似于书的目录，排序的方式</li>
+<li>对表中字段值进行排序</li>
+<li>索引类型包括:Btree、B+tree 、hash，默认Btre（二叉树）</li>
+<li>索引优点<blockquote>
+<ol>
+<li><p>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性</p>
+</li>
+<li><p>可以加快数据的查询速度</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li>索引缺点<blockquote>
+<ol>
+<li><p>当对表中的数据进行增加、删除和修改的时候，索引也要动态的调整，降低了数据的维护速度</p>
+</li>
+<li><p>索引需要占物理空间</p>
+</li>
+</ol>
+</blockquote>
+<span id="more"></span></li>
+</ul>
+<h3 id="2-普通索引-index"><a href="#2-普通索引-index" class="headerlink" title="2.普通索引 index"></a>2.普通索引 index</h3><ul>
+<li>使用规则<blockquote>
+<p>1.一个表中可以有多个index字段</p>
+<p>2.字段的值允许重复，且可以赋NULL值</p>
+<p>3.通常把做为查询条件的字段设置为index字段</p>
+<p>4.index字段标志是 MUL</p>
+</blockquote>
+</li>
+<li>创建索引<br>建表时创建索引<blockquote>
+<p>index(字段名)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">create table db1.t9(</span><br><span class="line">    name1 char(5),</span><br><span class="line">    name2 char(5),</span><br><span class="line">    name3 char(5),</span><br><span class="line">    index(name1),</span><br><span class="line">    index(name2)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">mysql&gt; desc t9;</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br><span class="line">| Field | Type    | Null | Key | Default | Extra |</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br><span class="line">| name1 | char(5) | YES  | MUL | NULL    |       |</span><br><span class="line">| name2 | char(5) | YES  | MUL | NULL    |       |</span><br><span class="line">| name3 | char(5) | YES  |     | NULL    |       |</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br></pre></td></tr></table></figure></li>
+<li>已有表创建索引<blockquote>
+<p>create index 索引名 on 表名(字段名);</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create index idx_name3 t9(name3);</span><br></pre></td></tr></table></figure></li>
+<li>查看所有字段<blockquote>
+<p>show index from 表名 \G;</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show index from t9 \G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">        Table: t9</span><br><span class="line">   Non_unique: 1</span><br><span class="line">     Key_name: name1</span><br><span class="line"> Seq_in_index: 1</span><br><span class="line">  Column_name: name1</span><br><span class="line">    Collation: A</span><br><span class="line">  Cardinality: 0</span><br><span class="line">     Sub_part: NULL</span><br><span class="line">       Packed: NULL</span><br><span class="line">         Null: YES</span><br><span class="line">   Index_type: BTREE</span><br><span class="line">      Comment:</span><br><span class="line">Index_comment:</span><br></pre></td></tr></table></figure></li>
+<li>删除索引<blockquote>
+<p>drop index 索引名 on 库名.表名;</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; drop index name1 on t9;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-唯一索引-unique"><a href="#3-唯一索引-unique" class="headerlink" title="3.唯一索引 unique"></a>3.唯一索引 unique</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE UNIQUE INDEX index_name  </span><br><span class="line">ON table_name (index_column1, index_column2,...);  </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE table_name(    </span><br><span class="line">  col1 col_definition,    </span><br><span class="line">  col2 col_definition,    </span><br><span class="line">  ...    </span><br><span class="line">  [CONSTRAINT constraint_name]    </span><br><span class="line">  UNIQUE Key (column_name(s))    </span><br><span class="line">);  </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP INDEX idx_username ON user;</span><br></pre></td></tr></table></figure>
+<h3 id="4-全文索引-fulltext"><a href="#4-全文索引-fulltext" class="headerlink" title="4.全文索引 fulltext"></a>4.全文索引 fulltext</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE articles (</span><br><span class="line">    id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,</span><br><span class="line">    title VARCHAR (200),</span><br><span class="line">    body TEXT,</span><br><span class="line">    FULLTEXT (title, body) WITH PARSER ngram</span><br><span class="line">) ENGINE = INNODB DEFAULT CHARSET=utf8mb4 COMMENT=&#x27;文章表&#x27;;</span><br><span class="line"></span><br><span class="line">INSERT INTO articles (title, body) VALUES (&#x27;弘扬正能量&#x27;, &#x27;贯彻党的18大精神&#x27;);</span><br><span class="line">INSERT INTO articles (title, body) VALUES (&#x27;北京冬奥会&#x27;, &#x27;2022年北京冬奥会于2022年2月20日闭幕啦&#x27;);</span><br><span class="line">INSERT INTO articles (title, body) VALUES (&#x27;MySQL Tutorial&#x27;, &#x27;DBMS stands for Database&#x27;);</span><br><span class="line">INSERT INTO articles (title, body) VALUES (&#x27;IBM History&#x27;, &#x27;DB2 history for IBM&#x27;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE articles ADD FULLTEXT INDEX title_body_index (title,body) WITH PARSER ngram;</span><br></pre></td></tr></table></figure>
+<p>直接删除全文索引</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP INDEX full_idx_name ON db_name.table_name;</span><br></pre></td></tr></table></figure>
+<p>使用 alter table 删除全文索引</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE db_name.table_name DROP INDEX full_idx_name;</span><br></pre></td></tr></table></figure>
+<h3 id="5-主键-primary-key"><a href="#5-主键-primary-key" class="headerlink" title="5.主键 primary key"></a>5.主键 primary key</h3><ul>
+<li><p>使用规则</p>
+<blockquote>
+<ol>
+<li><p>字段值不允许重复，且不允许赋NULL值</p>
+</li>
+<li><p>一个表中只能有一个primary key字段</p>
+</li>
+<li><p>多个字段都作为主键，称为复合主键，必须一起创建</p>
+</li>
+<li><p>主键字段的标志是PRI</p>
+</li>
+<li><p>主键通常与 auto increment 连用</p>
+</li>
+<li><p>通常把表中唯一标识记录的字段设置为主键</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>创建索引<br>建表时创建主键</p>
+<blockquote>
+<p>primary key</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create table db1.t10(</span><br><span class="line">    name1 char(5) primary key,</span><br><span class="line">    name2 char(5),</span><br><span class="line">    name3 char(5)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table db1.t10(</span><br><span class="line">    name1 char(5),</span><br><span class="line">    name2 char(5),</span><br><span class="line">    name3 char(5),</span><br><span class="line">    primary key(name1)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>已有表创建主键</p>
+<blockquote>
+<p>alter table 库.表 add primary key(字段名);</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table db1.t8 add primary key(name1);</span><br><span class="line">alter table db1.t8 add primary key(name1, name2, name3);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc t8;</span><br><span class="line">+-------+-----------------------------------+------+-----+---------+-------+</span><br><span class="line">| Field | Type                              | Null | Key | Default | Extra |</span><br><span class="line">+-------+-----------------------------------+------+-----+---------+-------+</span><br><span class="line">| name1 | char(5)                           | NO   | PRI | dong    |       |</span><br><span class="line">| sex   | enum(&#x27;man&#x27;,&#x27;girl&#x27;)                | YES  |     | NULL    |       |</span><br><span class="line">| aihao | set(&#x27;eat&#x27;,&#x27;game&#x27;,&#x27;music&#x27;,&#x27;money&#x27;) | YES  |     | NULL    |       |</span><br><span class="line">+-------+-----------------------------------+------+-----+---------+-------+</span><br></pre></td></tr></table></figure>
+<p>复合主键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table db1.t11(</span><br><span class="line">    -&gt;     name1 char(5),</span><br><span class="line">    -&gt;     name2 char(5),</span><br><span class="line">    -&gt;     name3 char(5),</span><br><span class="line">    -&gt;     primary key(name1, name2, name3)</span><br><span class="line">    -&gt; );</span><br><span class="line"></span><br><span class="line">mysql&gt; desc t11;</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br><span class="line">| Field | Type    | Null | Key | Default | Extra |</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br><span class="line">| name1 | char(5) | NO   | PRI | NULL    |       |</span><br><span class="line">| name2 | char(5) | NO   | PRI | NULL    |       |</span><br><span class="line">| name3 | char(5) | NO   | PRI | NULL    |       |</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br></pre></td></tr></table></figure>
+<p>删除主键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table db1.t11 drop primary key;</span><br></pre></td></tr></table></figure>
+<p>与auto_increment连用，自增</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">create table t12(</span><br><span class="line">    age int primary key auto_increment,</span><br><span class="line">    name char(5),</span><br><span class="line">    sec_name char(5)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into t12(name, sec_name) values(&quot;dong&quot;, &quot;xb&quot;);</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from t12;</span><br><span class="line">+-----+------+----------+</span><br><span class="line">| age | name | sec_name |</span><br><span class="line">+-----+------+----------+</span><br><span class="line">|   1 | dong | xb       |</span><br><span class="line">+-----+------+----------+</span><br><span class="line">```    </span><br><span class="line">从100开始自增</span><br><span class="line">```mysql</span><br><span class="line">create table t13(</span><br><span class="line">    age int primary key auto_increment,</span><br><span class="line">    name char(5),</span><br><span class="line">    sec_name char(5)</span><br><span class="line">)auto_increment = 100;</span><br><span class="line">    </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6-外键-foreign-key"><a href="#6-外键-foreign-key" class="headerlink" title="6.外键 foreign key"></a>6.外键 foreign key</h3><p>-外键功能</p>
+<blockquote>
+<p>插入记录时，字段值在另一个表字段值范围内选择</p>
+</blockquote>
+<ul>
+<li>使用规则<blockquote>
+<ol>
+<li><p>表存储引擎必须是innodb</p>
+</li>
+<li><p>字段类型要一致</p>
+</li>
+<li><p>被参照字段必须要是索引类型的 种(primary key)</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li>创建索引<br>建表时创建主键<blockquote>
+<p>references 另一个表(字段名) 限制方式；</p>
+<p>限制方式：1、同步更新 &#x3D; on update cascade ; 2、同步删除 &#x3D; on delete cascade;</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">create table ygb(</span><br><span class="line">    yg_id int primary key auto_increment,</span><br><span class="line">    name char(20),</span><br><span class="line">    sex enum(&quot;boy&quot;, &quot;girl&quot;)</span><br><span class="line">)engine =innodb;</span><br><span class="line"></span><br><span class="line">insert into ygb(name, sex) values(&quot;dong1&quot;,&quot;boy&quot;),(&quot;dong2&quot;,&quot;boy&quot;);  # 注意字段名一定不要加引号</span><br><span class="line"></span><br><span class="line">create table gzb(</span><br><span class="line">    gz_id int,</span><br><span class="line">    pay float(7,2),</span><br><span class="line">    foreign key(gz_id) references ygb(yg_id) on update cascade on delete cascade </span><br><span class="line">)engine=innodb;</span><br><span class="line"></span><br><span class="line">insert into gzb values(2, 20000);</span><br><span class="line">insert into gzb values(1, 10000);</span><br></pre></td></tr></table></figure>
+验证同步更新，on update cascade<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from ygb;</span><br><span class="line">+-------+-------+------+</span><br><span class="line">| yg_id | name  | sex  |</span><br><span class="line">+-------+-------+------+</span><br><span class="line">|     1 | dong1 | boy  |</span><br><span class="line">|     2 | dong2 | boy  |</span><br><span class="line">+-------+-------+------+</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from gzb;</span><br><span class="line">+-------+----------+</span><br><span class="line">| gz_id | pay      |</span><br><span class="line">+-------+----------+</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">+-------+----------+</span><br><span class="line"></span><br><span class="line"># 更改ygb的id， 看下gzb的的id是否跟着变动</span><br><span class="line">mysql&gt; update ygb set yg_id=8 where yg_id=1;</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from ygb;</span><br><span class="line">+-------+-------+------+</span><br><span class="line">| yg_id | name  | sex  |</span><br><span class="line">+-------+-------+------+</span><br><span class="line">|     2 | dong2 | boy  |</span><br><span class="line">|     8 | dong1 | boy  |</span><br><span class="line">+-------+-------+------+</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from gzb;</span><br><span class="line">+-------+----------+</span><br><span class="line">| gz_id | pay      |</span><br><span class="line">+-------+----------+</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     8 | 10000.00 |</span><br><span class="line">+-------+----------+</span><br></pre></td></tr></table></figure>
+验证同步删除，on delete cascade<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from ygb;</span><br><span class="line">+-------+-------+------+</span><br><span class="line">| yg_id | name  | sex  |</span><br><span class="line">+-------+-------+------+</span><br><span class="line">|     2 | dong2 | boy  |</span><br><span class="line">|     8 | dong1 | boy  |</span><br><span class="line">+-------+-------+------+</span><br><span class="line">2 rows in set (0.20 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from gzb;</span><br><span class="line">+-------+----------+</span><br><span class="line">| gz_id | pay      |</span><br><span class="line">+-------+----------+</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     8 | 10000.00 |</span><br><span class="line">+-------+----------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"># 删除ygb的id， 看下gzb的的id是否跟着变动</span><br><span class="line">mysql&gt; delete from ygb where yg_id=8;</span><br><span class="line">Query OK, 1 row affected (0.25 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from ygb;</span><br><span class="line">+-------+-------+------+</span><br><span class="line">| yg_id | name  | sex  |</span><br><span class="line">+-------+-------+------+</span><br><span class="line">|     2 | dong2 | boy  |</span><br><span class="line">+-------+-------+------+</span><br><span class="line">    </span><br><span class="line">mysql&gt; select * from gzb;</span><br><span class="line">+-------+----------+</span><br><span class="line">| gz_id | pay      |</span><br><span class="line">+-------+----------+</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">|     2 | 20000.00 |</span><br><span class="line">+-------+----------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+删除外键<blockquote>
+<p>使用外键名，删除外键，foreign key 前面就是外键名称</p>
+<p>show create table 表名；foreign key 前面就是外键名称</p>
+<p>alter table 表名 drop foreign key 外键名</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show create table gzb;</span><br><span class="line">+-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| Table | Create Table                                                                                                                                                                                                                                                       |</span><br><span class="line">+-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| gzb   | CREATE TABLE `gzb` (</span><br><span class="line">  `gz_id` int(11) DEFAULT NULL,</span><br><span class="line">  `pay` float(7,2) DEFAULT NULL,</span><br><span class="line">  KEY `gz_id` (`gz_id`),</span><br><span class="line">  CONSTRAINT `gzb_ibfk_1` FOREIGN KEY (`gz_id`) REFERENCES `ygb` (`yg_id`) ON DELETE CASCADE ON UPDATE CASCADE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</span><br><span class="line">+-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line"></span><br><span class="line">mysql&gt; alter table gzb drop foreign key gzb_ibfk_1;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%B4%A2%E5%BC%95"><span class="toc-text">1.索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%99%AE%E9%80%9A%E7%B4%A2%E5%BC%95-index"><span class="toc-text">2.普通索引 index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95-unique"><span class="toc-text">3.唯一索引 unique</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95-fulltext"><span class="toc-text">4.全文索引 fulltext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%B8%BB%E9%94%AE-primary-key"><span class="toc-text">5.主键 primary key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%A4%96%E9%94%AE-foreign-key"><span class="toc-text">6.外键 foreign key</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2017/02/10/mysql/MySQL键值(索引)/">https://dbbruce.github.io/2017/02/10/mysql/MySQL键值(索引)/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2017/02/10/mysql/%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%BB%93%E6%9E%84(%E5%AF%B9%E8%A1%A8%E7%9A%84%E4%BF%AE%E6%94%B9)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          修改表结构(对表的修改)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/10/mysql/%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          数据导入导出-
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

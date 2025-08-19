@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>04-安装K8S可视化UI界面Dashboard | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/K8S/基础/04-安装K8S可视化UI界面Dashboard" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      04-安装K8S可视化UI界面Dashboard
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-02T12:00:50.000Z" itemprop="datePublished">2023年05月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/04-%E5%AE%89%E8%A3%85K8S%E5%8F%AF%E8%A7%86%E5%8C%96UI%E7%95%8C%E9%9D%A2Dashboard/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1、安装dashboard"><a href="#1、安装dashboard" class="headerlink" title="1、安装dashboard"></a>1、安装dashboard</h3><h4 id="安装dashboard-centos07-22-42"><a href="#安装dashboard-centos07-22-42" class="headerlink" title="安装dashboard - centos07-22&#x2F;42"></a>安装dashboard - centos07-22&#x2F;42</h4><ul>
+<li>把安装kubernetes-dashboard需要的镜像上传到工作节点centos07-22和centos07-42，手动解压：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp dashboard_2_0_0.tar.gz metrics-scrapter-1-0-1.tar.gz root@192.168.1.22:~</span><br><span class="line">scp dashboard_2_0_0.tar.gz metrics-scrapter-1-0-1.tar.gz root@192.168.1.42:~</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker load -i dashboard_2_0_0.tar.gz</span><br><span class="line">docker load -i metrics-scrapter-1-0-1.tar.gz</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+</ul>
+<h4 id="安装dashboard组件-centos07-12"><a href="#安装dashboard组件-centos07-12" class="headerlink" title="安装dashboard组件 - centos07-12"></a>安装dashboard组件 - centos07-12</h4><ul>
+<li>在centos07-12节点操作如下命令:<blockquote>
+<p>kubectl apply -f kubernetes-dashboard.yaml</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl apply -f kubernetes-dashboard.yaml</span><br><span class="line">namespace/kubernetes-dashboard created</span><br><span class="line">serviceaccount/kubernetes-dashboard created</span><br><span class="line">service/kubernetes-dashboard created</span><br><span class="line">secret/kubernetes-dashboard-certs created</span><br><span class="line">secret/kubernetes-dashboard-csrf created</span><br><span class="line">secret/kubernetes-dashboard-key-holder created</span><br><span class="line">configmap/kubernetes-dashboard-settings created</span><br><span class="line">role.rbac.authorization.k8s.io/kubernetes-dashboard created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/kubernetes-dashboard created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created</span><br><span class="line">deployment.apps/kubernetes-dashboard created</span><br><span class="line">service/dashboard-metrics-scraper created</span><br><span class="line">deployment.apps/dashboard-metrics-scraper created</span><br></pre></td></tr></table></figure></li>
+<li>查看集群部署了哪些应用: kubectl get pods -A<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get pods -A</span><br><span class="line">NAMESPACE              NAME                                         READY   STATUS    RESTARTS   AGE</span><br><span class="line">kube-system            calico-kube-controllers-6949477b58-22zbl     1/1     Running   3          141m</span><br><span class="line">kube-system            calico-node-9hqdh                            1/1     Running   2          141m</span><br><span class="line">kube-system            calico-node-vxjkc                            1/1     Running   13         141m</span><br><span class="line">kube-system            calico-node-z6p24                            1/1     Running   8          141m</span><br><span class="line">kube-system            coredns-7f89b7bc75-lt6lr                     1/1     Running   1          3h47m</span><br><span class="line">kube-system            coredns-7f89b7bc75-q5sz7                     1/1     Running   1          3h47m</span><br><span class="line">kube-system            etcd-centos07-12                             1/1     Running   1          3h47m</span><br><span class="line">kube-system            kube-apiserver-centos07-12                   1/1     Running   1          3h47m</span><br><span class="line">kube-system            kube-controller-manager-centos07-12          1/1     Running   3          3h47m</span><br><span class="line">kube-system            kube-proxy-cskcq                             1/1     Running   1          3h8m</span><br><span class="line">kube-system            kube-proxy-mc5sv                             1/1     Running   1          3h47m</span><br><span class="line">kube-system            kube-proxy-ndz4x                             1/1     Running   1          3h8m</span><br><span class="line">kube-system            kube-scheduler-centos07-12                   1/1     Running   3          3h47m</span><br><span class="line">kubernetes-dashboard   dashboard-metrics-scraper-7445d59dfd-lxkzr   1/1     Running   0          8m40s</span><br><span class="line">kubernetes-dashboard   kubernetes-dashboard-54f5b6dc4b-zvl2k        1/1     Running   0          8m42s</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="查看dashboard的状态-centos07-12"><a href="#查看dashboard的状态-centos07-12" class="headerlink" title="查看dashboard的状态 -centos07-12"></a>查看dashboard的状态 -centos07-12</h4><blockquote>
+<p>kubectl get pods -n kubernetes-dashboard</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get pods -n kubernetes-dashboard</span><br><span class="line"></span><br><span class="line"># 显示如下，说明dashboard安装成功了</span><br><span class="line">NAME                                         READY   STATUS    RESTARTS   AGE</span><br><span class="line">dashboard-metrics-scraper-7445d59dfd-lxkzr   1/1     Running   0          63s</span><br><span class="line">kubernetes-dashboard-54f5b6dc4b-zvl2k        1/1     Running   0          65s</span><br></pre></td></tr></table></figure>
+<h4 id="查看dashboard前端的service"><a href="#查看dashboard前端的service" class="headerlink" title="查看dashboard前端的service"></a>查看dashboard前端的service</h4><blockquote>
+<p>kubectl get svc -n kubernetes-dashboard<br>修改service type类型变成NodePort<br>把type: ClusterIP 变成 type: NodePort，保存退出即可。</p>
+</blockquote>
+<ul>
+<li>修改前 - type：ClusterIP<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 查看指定名称空间的service信息</span><br><span class="line">[root@centos07-12 ~]# kubectl get svc -n kubernetes-dashboard</span><br><span class="line">NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE</span><br><span class="line">dashboard-metrics-scraper   ClusterIP   10.100.127.24   &lt;none&gt;        8000/TCP   2m34s</span><br><span class="line">kubernetes-dashboard        ClusterIP   10.106.111.83   &lt;none&gt;        443/TCP    2m36s</span><br></pre></td></tr></table></figure></li>
+<li>修改service type类型变成NodePort<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 辑修改service</span><br><span class="line">kubectl edit svc kubernetes-dashboard -n kubernetes-dashboard</span><br><span class="line"></span><br><span class="line">     28   selector:</span><br><span class="line">     29     k8s-app: kubernetes-dashboard</span><br><span class="line">     30   sessionAffinity: None</span><br><span class="line">     31   type: ClusterIP    #  这里改为NodePort，保存wq</span><br><span class="line">     32 status:</span><br></pre></td></tr></table></figure>
+<img src="/../../../../images/k8s/jc9/img_23.png" alt="img_23.png"></li>
+<li>修改后<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get svc -n kubernetes-dashboard</span><br><span class="line">NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)         AGE</span><br><span class="line">dashboard-metrics-scraper   ClusterIP   10.100.127.24   &lt;none&gt;        8000/TCP        16m</span><br><span class="line">kubernetes-dashboard        NodePort    10.106.111.83   &lt;none&gt;        443:30089/TCP   16m</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面可看到service类型是NodePort，访问任何一个工作节点ip:30089端口即可访问kubernetes dashboard，在浏览器(使用火狐浏览器)访问如下地址:<br><br><a target="_blank" rel="noopener" href="https://192.168.1.12:30089/">https://192.168.1.12:30089</a>                                                               <br><br><a target="_blank" rel="noopener" href="https://192.168.1.22:30089/">https://192.168.1.22:30089</a>                                                               <br><br><a target="_blank" rel="noopener" href="https://192.168.1.32:30089/">https://192.168.1.32:30089</a>                                                               <br><br>都能访问                                                                                     <br><br><img src="/../../../../images/k8s/jc9/img_24.png" alt="img_24.png"></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="chrome解决-“您的连接不是私密连接”-问题"><a href="#chrome解决-“您的连接不是私密连接”-问题" class="headerlink" title="chrome解决 “您的连接不是私密连接” 问题"></a>chrome解决 “您的连接不是私密连接” 问题</h4><p><img src="/../../../../images/k8s/jc9/img_25.png" alt="img_25.png"></p>
+<blockquote>
+<p>解决办法：<br><br>在chrome该页面上，在当前页面（也就是上图页面）注意是在当前页面打开的时候点网页任意地方，不是输入框，直接输入thisisunsafe回车，直接就打开页面了<br><br>点击页面，直接输入”thisisunsafe” + 回车；在输入是完全看不到任何反应，必须回车后，才会看到页面刷新重新载入，跳过安全验证了；<br><br><img src="/../../../../images/k8s/jc9/img_26.png" alt="img_26.png"></p>
+</blockquote>
+<h3 id="2、通过token令牌访问dashboard"><a href="#2、通过token令牌访问dashboard" class="headerlink" title="2、通过token令牌访问dashboard"></a>2、通过token令牌访问dashboard</h3><h4 id="查看-sa"><a href="#查看-sa" class="headerlink" title="查看 sa"></a>查看 sa</h4><blockquote>
+<p>SA简介<br><br>K8S自动为每个Pod注入一个 ServiceAccount 及 配套的令牌<br><br>在每个名称空间中，会自动存在(由ServiceAccount准入控制器负责)一个ServiceAccount，将被该空间下的每个Pod共享使用。<br><br>认证令牌保存于该空间下的一个Secret对象中，该对象中共有三个信息：namespace、ca.crt、token<br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl get sa -n kubernetes-dashboard</span><br><span class="line">NAME                   SECRETS   AGE</span><br><span class="line">default                1         177m</span><br><span class="line">kubernetes-dashboard   1         177m</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>vim kubernetes-dashboard.yaml<br><br><img src="/../../../../images/k8s/jc9/img_27.png" alt="img_27.png"><br></p>
+</blockquote>
+<ul>
+<li>创建管理员token，具有查看任何空间的权限，可以管理所有资源对象<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 把命名空间kubernetes-dashboard下的kubernetes-dashboard绑定到clusterrole的cluster-admin(超级管理员权限)</span><br><span class="line">kubectl create clusterrolebinding dashboard-cluster-admin --clusterrole=cluster-admin --serviceaccount=kubernetes-dashboard:kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl create clusterrolebinding dashboard-cluster-admin --clusterrole=cluster-admin --serviceaccount=kubernetes-dashboard:kubernetes-dashboard</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/dashboard-cluster-admin created</span><br></pre></td></tr></table></figure></li>
+<li>查看kubernetes-dashboard名称空间下的secret<blockquote>
+<p>kubectl get secret -n kubernetes-dashboard</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get secret -n kubernetes-dashboard</span><br><span class="line">NAME                               TYPE                                  DATA   AGE</span><br><span class="line">default-token-sn4lg                kubernetes.io/service-account-token   3      3h24m</span><br><span class="line">kubernetes-dashboard-certs         Opaque                                0      3h24m</span><br><span class="line">kubernetes-dashboard-csrf          Opaque                                1      3h24m</span><br><span class="line">kubernetes-dashboard-key-holder    Opaque                                2      3h24m</span><br><span class="line">kubernetes-dashboard-token-8lvdn   kubernetes.io/service-account-token   3      3h24m</span><br></pre></td></tr></table></figure></li>
+<li>找到对应的带有token的kubernetes-dashboard-token-8lvdn<blockquote>
+<p>kubectl  describe  secret kubernetes-dashboard-token-8lvdn -n kubernetes-dashboard</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl  describe  secret kubernetes-dashboard-token-8lvdn -n   kubernetes-dashboard</span><br><span class="line">Name:         kubernetes-dashboard-token-8lvdn</span><br><span class="line">Namespace:    kubernetes-dashboard</span><br><span class="line">Labels:       &lt;none&gt;</span><br><span class="line">Annotations:  kubernetes.io/service-account.name: kubernetes-dashboard</span><br><span class="line">              kubernetes.io/service-account.uid: adc41318-9bfd-4a9b-9629-8ea1122615d6</span><br><span class="line"></span><br><span class="line">Type:  kubernetes.io/service-account-token</span><br><span class="line"></span><br><span class="line">Data</span><br><span class="line">====</span><br><span class="line">ca.crt:     1066 bytes</span><br><span class="line">namespace:  20 bytes</span><br><span class="line">token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IkpUUlZENnZKcEVjZVNfODlHZDBQOTdOSFc5LWhILUFiUHlGSTEwck9NYUUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi04bHZkbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImFkYzQxMzE4LTliZmQtNGE5Yi05NjI5LThlYTExMjI2MTVkNiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.MQ2tZXtN-BYZ5uO0Kp0g2e2IPVhnUR-y9NtVpszi_gpUF6PcqVg0nmFTV-YZuohfRkQszzXFIiMOYMBb9fq8893ypjbfEIFGh0D_RaU1ysQNvMCRbm9fMrMWHBM95EJd4EaIeXooFfl4Ao9J-9iKvSBu2aVCNUXQE3NJ4nyTClgXyVdfdfw4lazc56SlVdAI16utq0rAzc7zGa6nJv9zJR1gAKZ67ndb2rIthPyePFE-13kFetM3CIu0RpbJ0j5Zoq6LkmJHp_pjPw270KiAkzdlhZ-dw5-i3CVrPfboa7AW6f6SO-QVEbm0E17dfEMudAxBJDOBJ8_4ISXJ4FIL0g</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记住token后面的值，把下面的token值复制到浏览器token登陆处即可登陆：<br><img src="/../../../../images/k8s/jc9/img_28.png" alt="img_28.png"><br><img src="/../../../../images/k8s/jc9/img_29.png" alt="img_29.png"></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3、通过kubeconfig文件访问dashboard"><a href="#3、通过kubeconfig文件访问dashboard" class="headerlink" title="3、通过kubeconfig文件访问dashboard"></a>3、通过kubeconfig文件访问dashboard</h3><h4 id="创建cluster集群"><a href="#创建cluster集群" class="headerlink" title="创建cluster集群"></a>创建cluster集群</h4><blockquote>
+<p>注意：替换自己的server地址                                                                                                                                                      <br><br>cd &#x2F;etc&#x2F;kubernetes&#x2F;pki                                                                                                                                                     <br><br>kubectl config set-cluster kubernetes –certificate-authority&#x3D;.&#x2F;ca.crt –server&#x3D;”<a target="_blank" rel="noopener" href="https://192.168.1.12:30089/">https://192.168.1.12:30089</a>“ –embed-certs&#x3D;true –kubeconfig&#x3D;&#x2F;root&#x2F;dashboard-admin.conf    <br><br>cat -n &#x2F;root&#x2F;dashboard-admin.conf                                                                                                                                          <br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# cd /etc/kubernetes/pki</span><br><span class="line"></span><br><span class="line">[root@centos07-12 pki]# kubectl config set-cluster kubernetes --certificate-authority=./ca.crt --server=&quot;https://192.168.1.12:30089&quot; --embed-certs=true --kubeconfig=/root/dashboard-admin.conf</span><br><span class="line">Cluster &quot;kubernetes&quot; set.</span><br><span class="line"></span><br><span class="line">[root@centos07-12 pki]# cat -n /root/dashboard-admin.conf</span><br><span class="line">     1	apiVersion: v1</span><br><span class="line">     2	clusters:</span><br><span class="line">     3	- cluster:</span><br><span class="line">     4	    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1ekNDQWMrZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1URXpNREE0TURreU1Gb1hEVE16TVRFeU56QTRNRGt5TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnMrCmEzd2NwL3UrN3U1enlNdnl1ZzRtTUJ1dk5HaVFDeDZOZFFmeEZ2dWhJL1QzdUpFVTJ4anJCZk5HZXI1MjRQUEIKNUhmVERsT0hWdjErRFdCNnU0VXI0UUlueEwwMVpLSzlURndFd0dLbG1URE5EdDRhNE15SXZqY3NGSWdRRjZnbgpNdmJuS0ltV3J2YldVRkRPS01EdUo2b1lwdWFTUHU3NUZzMDVjYWloTGwwY1FtbEJaeVRaRUVPZWh3alhIaVFvCkViVnFKaG1xRWI1VXRGWTAzY0lyQ3EyRkd0bGsySGhQWWpwWTNYdWlMNDBkalpseU11em1nZ2FmelFmZ1B4WjYKczcvMFhxNjJMUExRVXRGZlRrU2JwYkI3NnpJenE4bVlvTkN3dnJiemdkM21ZRStnd0dVNjRZZzRMUXFwT3ZhcgpsOWtJVXNnekI0NVU4S0JlZC8wQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZIbHJYdkRzNzFZbW1DUGF2NFlSZW01MzBsMk5NQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFBRDFsMUtXU3lkcmZmNCtUcWFlOTRtT3AzWjlwTUJmQXBGVzlKYXpIc0RWbCtWNmxKTwp1bGFLZ21QbFlxNkhkMHUrRUVwYldlUmN1L2gwaWlVTU0wcHA3dEJoZ3YrcEhpMDBkallLSXF6U2xYNlF4bHA1CnhzWEhGN1htWW9MV1FENUdQTmtNWVpUMUViSDNoU1dwWkFWL09CSU5TZEdvejVFRDBwRkxkWFhETUlsbGN5ek8KMXBmQzdMVENEZERkVEIxOUI4Y0JHdVZEOU9iL1dwSitSeFBoVDlMblZVQzFrVk5jNTllSGNSb0RBSXdPeW1LdAp3VTR5QXNWWXB6a0V0TEVqODBYOUdSRkVtT01JYko5MHRvbmhzdFFINTZraCt3ak4ySWZQOGhwSjYxcURuSzFtCkVhNjBXbll3NktSZlFkaG16NXpRRzNMYXhoWkZUNHA2bzRKZgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==</span><br><span class="line">     5	    server: https://192.168.1.12:30089</span><br><span class="line">     6	  name: kubernetes</span><br><span class="line">     7	contexts: null</span><br><span class="line">     8	current-context: &quot;&quot;</span><br><span class="line">     9	kind: Config</span><br><span class="line">    10	preferences: &#123;&#125;</span><br><span class="line">    11	users: null</span><br></pre></td></tr></table></figure>
+<h4 id="创建credentials"><a href="#创建credentials" class="headerlink" title="创建credentials"></a>创建credentials</h4><blockquote>
+<p>创建credentials需要使用上面的kubernetes-dashboard-token-ppc8c对应的token信息<br><br>注意：替换下自己的token：DEF_NS_ADMIN_TOKEN&#x3D;$(kubectl get secret kubernetes-dashboard-token-8lvdn -n kubernetes-dashboard  -o jsonpath&#x3D;{.data.token}|base64 -d)<br><br>kubectl config set-credentials dashboard-admin –token&#x3D;$DEF_NS_ADMIN_TOKEN –kubeconfig&#x3D;&#x2F;root&#x2F;dashboard-admin.conf<br><br>cat -n &#x2F;root&#x2F;dashboard-admin.conf <br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 pki]# kubectl get secret -n kubernetes-dashboard</span><br><span class="line">NAME                               TYPE                                  DATA   AGE</span><br><span class="line">default-token-sn4lg                kubernetes.io/service-account-token   3      19h</span><br><span class="line">kubernetes-dashboard-certs         Opaque                                0      19h</span><br><span class="line">kubernetes-dashboard-csrf          Opaque                                1      19h</span><br><span class="line">kubernetes-dashboard-key-holder    Opaque                                2      19h</span><br><span class="line">kubernetes-dashboard-token-8lvdn   kubernetes.io/service-account-token   3      19h</span><br><span class="line"></span><br><span class="line">[root@centos07-12 pki]# DEF_NS_ADMIN_TOKEN=$(kubectl get secret kubernetes-dashboard-token-8lvdn -n kubernetes-dashboard  -o jsonpath=&#123;.data.token&#125;|base64 -d)</span><br><span class="line"></span><br><span class="line">[root@centos07-12 pki]# echo $DEF_NS_ADMIN_TOKEN</span><br><span class="line">eyJhbGciOiJSUzI1NiIsImtpZCI6IkpUUlZENnZKcEVjZVNfODlHZDBQOTdOSFc5LWhILUFiUHlGSTEwck9NYUUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi04bHZkbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImFkYzQxMzE4LTliZmQtNGE5Yi05NjI5LThlYTExMjI2MTVkNiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.MQ2tZXtN-BYZ5uO0Kp0g2e2IPVhnUR-y9NtVpszi_gpUF6PcqVg0nmFTV-YZuohfRkQszzXFIiMOYMBb9fq8893ypjbfEIFGh0D_RaU1ysQNvMCRbm9fMrMWHBM95EJd4EaIeXooFfl4Ao9J-9iKvSBu2aVCNUXQE3NJ4nyTClgXyVdfdfw4lazc56SlVdAI16utq0rAzc7zGa6nJv9zJR1gAKZ67ndb2rIthPyePFE-13kFetM3CIu0RpbJ0j5Zoq6LkmJHp_pjPw270KiAkzdlhZ-dw5-i3CVrPfboa7AW6f6SO-QVEbm0E17dfEMudAxBJDOBJ8_4ISXJ4FIL0g</span><br><span class="line"></span><br><span class="line">[root@centos07-12 pki]# kubectl config set-credentials dashboard-admin --token=$DEF_NS_ADMIN_TOKEN --kubeconfig=/root/dashboard-admin.conf</span><br><span class="line">User &quot;dashboard-admin&quot; set.</span><br><span class="line"></span><br><span class="line">[root@centos07-12 pki]# cat -n /root/dashboard-admin.conf</span><br><span class="line">     1	apiVersion: v1</span><br><span class="line">     2	clusters:</span><br><span class="line">     3	- cluster:</span><br><span class="line">     4	    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1ekNDQWMrZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1URXpNREE0TURreU1Gb1hEVE16TVRFeU56QTRNRGt5TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnMrCmEzd2NwL3UrN3U1enlNdnl1ZzRtTUJ1dk5HaVFDeDZOZFFmeEZ2dWhJL1QzdUpFVTJ4anJCZk5HZXI1MjRQUEIKNUhmVERsT0hWdjErRFdCNnU0VXI0UUlueEwwMVpLSzlURndFd0dLbG1URE5EdDRhNE15SXZqY3NGSWdRRjZnbgpNdmJuS0ltV3J2YldVRkRPS01EdUo2b1lwdWFTUHU3NUZzMDVjYWloTGwwY1FtbEJaeVRaRUVPZWh3alhIaVFvCkViVnFKaG1xRWI1VXRGWTAzY0lyQ3EyRkd0bGsySGhQWWpwWTNYdWlMNDBkalpseU11em1nZ2FmelFmZ1B4WjYKczcvMFhxNjJMUExRVXRGZlRrU2JwYkI3NnpJenE4bVlvTkN3dnJiemdkM21ZRStnd0dVNjRZZzRMUXFwT3ZhcgpsOWtJVXNnekI0NVU4S0JlZC8wQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZIbHJYdkRzNzFZbW1DUGF2NFlSZW01MzBsMk5NQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFBRDFsMUtXU3lkcmZmNCtUcWFlOTRtT3AzWjlwTUJmQXBGVzlKYXpIc0RWbCtWNmxKTwp1bGFLZ21QbFlxNkhkMHUrRUVwYldlUmN1L2gwaWlVTU0wcHA3dEJoZ3YrcEhpMDBkallLSXF6U2xYNlF4bHA1CnhzWEhGN1htWW9MV1FENUdQTmtNWVpUMUViSDNoU1dwWkFWL09CSU5TZEdvejVFRDBwRkxkWFhETUlsbGN5ek8KMXBmQzdMVENEZERkVEIxOUI4Y0JHdVZEOU9iL1dwSitSeFBoVDlMblZVQzFrVk5jNTllSGNSb0RBSXdPeW1LdAp3VTR5QXNWWXB6a0V0TEVqODBYOUdSRkVtT01JYko5MHRvbmhzdFFINTZraCt3ak4ySWZQOGhwSjYxcURuSzFtCkVhNjBXbll3NktSZlFkaG16NXpRRzNMYXhoWkZUNHA2bzRKZgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==</span><br><span class="line">     5	    server: https://192.168.1.12:30089</span><br><span class="line">     6	  name: kubernetes</span><br><span class="line">     7	contexts: null</span><br><span class="line">     8	current-context: &quot;&quot;</span><br><span class="line">     9	kind: Config</span><br><span class="line">    10	preferences: &#123;&#125;</span><br><span class="line">    11	users:</span><br><span class="line">    12	- name: dashboard-admin</span><br><span class="line">    13	  user:</span><br><span class="line">    14	    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IkpUUlZENnZKcEVjZVNfODlHZDBQOTdOSFc5LWhILUFiUHlGSTEwck9NYUUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi04bHZkbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImFkYzQxMzE4LTliZmQtNGE5Yi05NjI5LThlYTExMjI2MTVkNiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.MQ2tZXtN-BYZ5uO0Kp0g2e2IPVhnUR-y9NtVpszi_gpUF6PcqVg0nmFTV-YZuohfRkQszzXFIiMOYMBb9fq8893ypjbfEIFGh0D_RaU1ysQNvMCRbm9fMrMWHBM95EJd4EaIeXooFfl4Ao9J-9iKvSBu2aVCNUXQE3NJ4nyTClgXyVdfdfw4lazc56SlVdAI16utq0rAzc7zGa6nJv9zJR1gAKZ67ndb2rIthPyePFE-13kFetM3CIu0RpbJ0j5Zoq6LkmJHp_pjPw270KiAkzdlhZ-dw5-i3CVrPfboa7AW6f6SO-QVEbm0E17dfEMudAxBJDOBJ8_4ISXJ4FIL0g</span><br></pre></td></tr></table></figure>
+<h4 id="创建context"><a href="#创建context" class="headerlink" title="创建context"></a>创建context</h4><blockquote>
+<p>kubectl config set-context dashboard-admin@kubernetes –cluster&#x3D;kubernetes –user&#x3D;dashboard-admin –kubeconfig&#x3D;&#x2F;root&#x2F;dashboard-admin.conf  <br><br>cat -n &#x2F;root&#x2F;dashboard-admin.conf                                                                                                          <br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 pki]# kubectl config set-context dashboard-admin@kubernetes --cluster=kubernetes --user=dashboard-admin --kubeconfig=/root/dashboard-admin.conf</span><br><span class="line">Context &quot;dashboard-admin@kubernetes&quot; created.</span><br><span class="line"></span><br><span class="line">[root@centos07-12 pki]# cat -n /root/dashboard-admin.conf</span><br><span class="line">     1	apiVersion: v1</span><br><span class="line">     2	clusters:</span><br><span class="line">     3	- cluster:</span><br><span class="line">     4	    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1ekNDQWMrZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1URXpNREE0TURreU1Gb1hEVE16TVRFeU56QTRNRGt5TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnMrCmEzd2NwL3UrN3U1enlNdnl1ZzRtTUJ1dk5HaVFDeDZOZFFmeEZ2dWhJL1QzdUpFVTJ4anJCZk5HZXI1MjRQUEIKNUhmVERsT0hWdjErRFdCNnU0VXI0UUlueEwwMVpLSzlURndFd0dLbG1URE5EdDRhNE15SXZqY3NGSWdRRjZnbgpNdmJuS0ltV3J2YldVRkRPS01EdUo2b1lwdWFTUHU3NUZzMDVjYWloTGwwY1FtbEJaeVRaRUVPZWh3alhIaVFvCkViVnFKaG1xRWI1VXRGWTAzY0lyQ3EyRkd0bGsySGhQWWpwWTNYdWlMNDBkalpseU11em1nZ2FmelFmZ1B4WjYKczcvMFhxNjJMUExRVXRGZlRrU2JwYkI3NnpJenE4bVlvTkN3dnJiemdkM21ZRStnd0dVNjRZZzRMUXFwT3ZhcgpsOWtJVXNnekI0NVU4S0JlZC8wQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZIbHJYdkRzNzFZbW1DUGF2NFlSZW01MzBsMk5NQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFBRDFsMUtXU3lkcmZmNCtUcWFlOTRtT3AzWjlwTUJmQXBGVzlKYXpIc0RWbCtWNmxKTwp1bGFLZ21QbFlxNkhkMHUrRUVwYldlUmN1L2gwaWlVTU0wcHA3dEJoZ3YrcEhpMDBkallLSXF6U2xYNlF4bHA1CnhzWEhGN1htWW9MV1FENUdQTmtNWVpUMUViSDNoU1dwWkFWL09CSU5TZEdvejVFRDBwRkxkWFhETUlsbGN5ek8KMXBmQzdMVENEZERkVEIxOUI4Y0JHdVZEOU9iL1dwSitSeFBoVDlMblZVQzFrVk5jNTllSGNSb0RBSXdPeW1LdAp3VTR5QXNWWXB6a0V0TEVqODBYOUdSRkVtT01JYko5MHRvbmhzdFFINTZraCt3ak4ySWZQOGhwSjYxcURuSzFtCkVhNjBXbll3NktSZlFkaG16NXpRRzNMYXhoWkZUNHA2bzRKZgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==</span><br><span class="line">     5	    server: https://192.168.1.12:30089</span><br><span class="line">     6	  name: kubernetes</span><br><span class="line">     7	contexts:</span><br><span class="line">     8	- context:</span><br><span class="line">     9	    cluster: kubernetes</span><br><span class="line">    10	    user: dashboard-admin</span><br><span class="line">    11	  name: dashboard-admin@kubernetes</span><br><span class="line">    12	current-context: &quot;&quot;</span><br><span class="line">    13	kind: Config</span><br><span class="line">    14	preferences: &#123;&#125;</span><br><span class="line">    15	users:</span><br><span class="line">    16	- name: dashboard-admin</span><br><span class="line">    17	  user:</span><br><span class="line">    18	    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IkpUUlZENnZKcEVjZVNfODlHZDBQOTdOSFc5LWhILUFiUHlGSTEwck9NYUUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi04bHZkbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImFkYzQxMzE4LTliZmQtNGE5Yi05NjI5LThlYTExMjI2MTVkNiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.MQ2tZXtN-BYZ5uO0Kp0g2e2IPVhnUR-y9NtVpszi_gpUF6PcqVg0nmFTV-YZuohfRkQszzXFIiMOYMBb9fq8893ypjbfEIFGh0D_RaU1ysQNvMCRbm9fMrMWHBM95EJd4EaIeXooFfl4Ao9J-9iKvSBu2aVCNUXQE3NJ4nyTClgXyVdfdfw4lazc56SlVdAI16utq0rAzc7zGa6nJv9zJR1gAKZ67ndb2rIthPyePFE-13kFetM3CIu0RpbJ0j5Zoq6LkmJHp_pjPw270KiAkzdlhZ-dw5-i3CVrPfboa7AW6f6SO-QVEbm0E17dfEMudAxBJDOBJ8_4ISXJ4FIL0g</span><br></pre></td></tr></table></figure>
+<h4 id="切换context的current-context是dashboard-admin-kubernetes"><a href="#切换context的current-context是dashboard-admin-kubernetes" class="headerlink" title="切换context的current-context是dashboard-admin@kubernetes"></a>切换context的current-context是dashboard-admin@kubernetes</h4><blockquote>
+<p>kubectl config use-context dashboard-admin@kubernetes –kubeconfig&#x3D;&#x2F;root&#x2F;dashboard-admin.conf <br><br>cat &#x2F;root&#x2F;dashboard-admin.conf                                                                <br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 pki]# kubectl config use-context dashboard-admin@kubernetes --kubeconfig=/root/dashboard-admin.conf</span><br><span class="line">Switched to context &quot;dashboard-admin@kubernetes&quot;.</span><br><span class="line"></span><br><span class="line">[root@centos07-12 pki]# cat /root/dashboard-admin.conf</span><br><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1ekNDQWMrZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1URXpNREE0TURreU1Gb1hEVE16TVRFeU56QTRNRGt5TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnMrCmEzd2NwL3UrN3U1enlNdnl1ZzRtTUJ1dk5HaVFDeDZOZFFmeEZ2dWhJL1QzdUpFVTJ4anJCZk5HZXI1MjRQUEIKNUhmVERsT0hWdjErRFdCNnU0VXI0UUlueEwwMVpLSzlURndFd0dLbG1URE5EdDRhNE15SXZqY3NGSWdRRjZnbgpNdmJuS0ltV3J2YldVRkRPS01EdUo2b1lwdWFTUHU3NUZzMDVjYWloTGwwY1FtbEJaeVRaRUVPZWh3alhIaVFvCkViVnFKaG1xRWI1VXRGWTAzY0lyQ3EyRkd0bGsySGhQWWpwWTNYdWlMNDBkalpseU11em1nZ2FmelFmZ1B4WjYKczcvMFhxNjJMUExRVXRGZlRrU2JwYkI3NnpJenE4bVlvTkN3dnJiemdkM21ZRStnd0dVNjRZZzRMUXFwT3ZhcgpsOWtJVXNnekI0NVU4S0JlZC8wQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZIbHJYdkRzNzFZbW1DUGF2NFlSZW01MzBsMk5NQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFBRDFsMUtXU3lkcmZmNCtUcWFlOTRtT3AzWjlwTUJmQXBGVzlKYXpIc0RWbCtWNmxKTwp1bGFLZ21QbFlxNkhkMHUrRUVwYldlUmN1L2gwaWlVTU0wcHA3dEJoZ3YrcEhpMDBkallLSXF6U2xYNlF4bHA1CnhzWEhGN1htWW9MV1FENUdQTmtNWVpUMUViSDNoU1dwWkFWL09CSU5TZEdvejVFRDBwRkxkWFhETUlsbGN5ek8KMXBmQzdMVENEZERkVEIxOUI4Y0JHdVZEOU9iL1dwSitSeFBoVDlMblZVQzFrVk5jNTllSGNSb0RBSXdPeW1LdAp3VTR5QXNWWXB6a0V0TEVqODBYOUdSRkVtT01JYko5MHRvbmhzdFFINTZraCt3ak4ySWZQOGhwSjYxcURuSzFtCkVhNjBXbll3NktSZlFkaG16NXpRRzNMYXhoWkZUNHA2bzRKZgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==</span><br><span class="line">    server: https://192.168.1.12:30089</span><br><span class="line">  name: kubernetes</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kubernetes</span><br><span class="line">    user: dashboard-admin</span><br><span class="line">  name: dashboard-admin@kubernetes</span><br><span class="line">current-context: dashboard-admin@kubernetes</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: dashboard-admin</span><br><span class="line">  user:</span><br><span class="line">    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IkpUUlZENnZKcEVjZVNfODlHZDBQOTdOSFc5LWhILUFiUHlGSTEwck9NYUUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi04bHZkbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImFkYzQxMzE4LTliZmQtNGE5Yi05NjI5LThlYTExMjI2MTVkNiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.MQ2tZXtN-BYZ5uO0Kp0g2e2IPVhnUR-y9NtVpszi_gpUF6PcqVg0nmFTV-YZuohfRkQszzXFIiMOYMBb9fq8893ypjbfEIFGh0D_RaU1ysQNvMCRbm9fMrMWHBM95EJd4EaIeXooFfl4Ao9J-9iKvSBu2aVCNUXQE3NJ4nyTClgXyVdfdfw4lazc56SlVdAI16utq0rAzc7zGa6nJv9zJR1gAKZ67ndb2rIthPyePFE-13kFetM3CIu0RpbJ0j5Zoq6LkmJHp_pjPw270KiAkzdlhZ-dw5-i3CVrPfboa7AW6f6SO-QVEbm0E17dfEMudAxBJDOBJ8_4ISXJ4FIL0g</span><br></pre></td></tr></table></figure>
+<h4 id="把刚才的kubeconfig文件dashboard-admin-conf复制到桌面，使用kubeconfig登录"><a href="#把刚才的kubeconfig文件dashboard-admin-conf复制到桌面，使用kubeconfig登录" class="headerlink" title="把刚才的kubeconfig文件dashboard-admin.conf复制到桌面，使用kubeconfig登录"></a>把刚才的kubeconfig文件dashboard-admin.conf复制到桌面，使用kubeconfig登录</h4><p><img src="/../../../../images/k8s/jc9/img_31.png" alt="img_31.png"></p>
+<h3 id="4、通过kubernetes-dashboard创建容器"><a href="#4、通过kubernetes-dashboard创建容器" class="headerlink" title="4、通过kubernetes-dashboard创建容器"></a>4、通过kubernetes-dashboard创建容器</h3><blockquote>
+<p>把nginx.tar.gz镜像压缩包上传到centos07-22和centos07-42上，手动解压：<br><br>docker load -i nginx.tar.gz <br></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-22 ~]# docker load -i nginx.tar.gz</span><br><span class="line">[root@centos07-42 ~]# docker load -i nginx.tar.gz</span><br></pre></td></tr></table></figure>
+<h4 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h4><p><img src="/../../../../images/k8s/jc9/img_32.png" alt="img_32.png"></p>
+<blockquote>
+<p>应用名称：nginx<br><br>容器镜像：nginx<br><br>pod数量：2<br><br>service： external 外部网络<br><br>port：80<br><br>targetport：80<br><br><br><br>注：表单中创建pod时没有创建nodeport的选项，会自动创建在30000+以上的端口。<br><br><br><br>关于port、targetport、nodeport的说明：<br><br>nodeport是集群外流量访问集群内服务的端口，比如客户访问nginx，apache，<br><br>port是集群内的pod互相通信用的端口类型，比如nginx访问mysql，而mysql是不需要让客户访问到的，port是service的的端口<br><br>targetport目标端口，也就是最终端口，也就是pod的端口。<br></p>
+</blockquote>
+<h4 id="在dashboard的左侧选择Services"><a href="#在dashboard的左侧选择Services" class="headerlink" title="在dashboard的左侧选择Services"></a>在dashboard的左侧选择Services</h4><p><img src="/../../../../images/k8s/jc9/img_33.png" alt="img_33.png"></p>
+<h4 id="上图可看到刚才创建的nginx的service在宿主机映射的端口是30107，在浏览器访问：http-192-168-1-12-30107"><a href="#上图可看到刚才创建的nginx的service在宿主机映射的端口是30107，在浏览器访问：http-192-168-1-12-30107" class="headerlink" title="上图可看到刚才创建的nginx的service在宿主机映射的端口是30107，在浏览器访问：http://192.168.1.12:30107/"></a>上图可看到刚才创建的nginx的service在宿主机映射的端口是30107，在浏览器访问：<a target="_blank" rel="noopener" href="http://192.168.1.12:30107/">http://192.168.1.12:30107/</a></h4><p><img src="/../../../../images/k8s/jc9/img_34.png" alt="img_34.png"></p>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85dashboard"><span class="toc-text">1、安装dashboard</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85dashboard-centos07-22-42"><span class="toc-text">安装dashboard - centos07-22&#x2F;42</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85dashboard%E7%BB%84%E4%BB%B6-centos07-12"><span class="toc-text">安装dashboard组件 - centos07-12</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bdashboard%E7%9A%84%E7%8A%B6%E6%80%81-centos07-12"><span class="toc-text">查看dashboard的状态 -centos07-12</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bdashboard%E5%89%8D%E7%AB%AF%E7%9A%84service"><span class="toc-text">查看dashboard前端的service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chrome%E8%A7%A3%E5%86%B3-%E2%80%9C%E6%82%A8%E7%9A%84%E8%BF%9E%E6%8E%A5%E4%B8%8D%E6%98%AF%E7%A7%81%E5%AF%86%E8%BF%9E%E6%8E%A5%E2%80%9D-%E9%97%AE%E9%A2%98"><span class="toc-text">chrome解决 “您的连接不是私密连接” 问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%80%9A%E8%BF%87token%E4%BB%A4%E7%89%8C%E8%AE%BF%E9%97%AEdashboard"><span class="toc-text">2、通过token令牌访问dashboard</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-sa"><span class="toc-text">查看 sa</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%80%9A%E8%BF%87kubeconfig%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AEdashboard"><span class="toc-text">3、通过kubeconfig文件访问dashboard</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAcluster%E9%9B%86%E7%BE%A4"><span class="toc-text">创建cluster集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAcredentials"><span class="toc-text">创建credentials</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAcontext"><span class="toc-text">创建context</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%87%E6%8D%A2context%E7%9A%84current-context%E6%98%AFdashboard-admin-kubernetes"><span class="toc-text">切换context的current-context是dashboard-admin@kubernetes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%8A%E5%88%9A%E6%89%8D%E7%9A%84kubeconfig%E6%96%87%E4%BB%B6dashboard-admin-conf%E5%A4%8D%E5%88%B6%E5%88%B0%E6%A1%8C%E9%9D%A2%EF%BC%8C%E4%BD%BF%E7%94%A8kubeconfig%E7%99%BB%E5%BD%95"><span class="toc-text">把刚才的kubeconfig文件dashboard-admin.conf复制到桌面，使用kubeconfig登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E9%80%9A%E8%BF%87kubernetes-dashboard%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8"><span class="toc-text">4、通过kubernetes-dashboard创建容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8"><span class="toc-text">创建容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8dashboard%E7%9A%84%E5%B7%A6%E4%BE%A7%E9%80%89%E6%8B%A9Services"><span class="toc-text">在dashboard的左侧选择Services</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E5%9B%BE%E5%8F%AF%E7%9C%8B%E5%88%B0%E5%88%9A%E6%89%8D%E5%88%9B%E5%BB%BA%E7%9A%84nginx%E7%9A%84service%E5%9C%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E6%98%A0%E5%B0%84%E7%9A%84%E7%AB%AF%E5%8F%A3%E6%98%AF30107%EF%BC%8C%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE%EF%BC%9Ahttp-192-168-1-12-30107"><span class="toc-text">上图可看到刚才创建的nginx的service在宿主机映射的端口是30107，在浏览器访问：http:&#x2F;&#x2F;192.168.1.12:30107&#x2F;</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/05/02/运维/K8S/基础/04-安装K8S可视化UI界面Dashboard/">https://dbbruce.github.io/2023/05/02/运维/K8S/基础/04-安装K8S可视化UI界面Dashboard/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/05/02/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/03-kubeadm%E5%AE%89%E8%A3%85%E5%8D%95master%E5%A4%9Anode%E8%8A%82%E7%82%B9k8s-1.20.6%E9%9B%86%E7%BE%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          03-kubeadm安装单master多node节点k8s-1.20.6集群
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/03/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/05-kubeadm%E5%AE%89%E8%A3%85k8s1.26%E9%9B%86%E7%BE%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          05-kubeadm安装k8s1.26集群
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

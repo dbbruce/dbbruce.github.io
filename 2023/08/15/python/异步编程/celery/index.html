@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>celery | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-python/异步编程/celery" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      celery
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-15T12:50:10.000Z" itemprop="datePublished">2023年08月15日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/celery/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="一、celery"><a href="#一、celery" class="headerlink" title="一、celery"></a>一、celery</h4><p>Celery 是一个强大的 分布式任务队列 的 异步处理框架，它可以让任务的执行完全脱离主程序，甚至可以被分配到其他主机上运行。我们通常使用它来实现异步任务（async task）和定时任务（crontab）.<br>可以看到，Celery 主要包含以下几个模块：</p>
+<ul>
+<li><ol>
+<li>任务模块 Task:包含异步任务和定时任务。其中，异步任务通常在业务逻辑中被触发并发往任务队列，而定时任务由 Celery Beat 进程周期性地将任务发往任务队列。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>消息中间件 Broker: Broker，即为任务调度队列，接收任务生产者发来的消息（即任务），将任务存入队列。Celery 本身不提供队列服务，官方推荐使用 RabbitMQ 和 Redis 等。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>任务执行单元 Worker: Worker 是执行任务的处理单元，它实时监控消息队列，获取队列中调度的任务，并执行它。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>任务结果存储 Backend: Backend 用于存储任务的执行结果，以供查询。同消息中间件一样，存储也可使用 RabbitMQ, redis 和 MongoDB 等。<span id="more"></span>
+<img src="/../../../images/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/celery%E7%BB%84%E4%BB%B6%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="celery组件示意图.jpg"></li>
+</ol>
+</li>
+</ul>
+<h4 id="二、创建异步任务"><a href="#二、创建异步任务" class="headerlink" title="二、创建异步任务"></a>二、创建异步任务</h4><ul>
+<li><ol>
+<li>创建一个celery实例<br>创建一个celery实例，并指定broker和backend，添加celery任务（用@app.task装饰函数即可）</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>启动celery worker<blockquote>
+<p>Celery worker -A tasks –loglevel&#x3D;info<br>参数： -A 指定了celery 实例的位置，celery 会自动在该文件中寻找celery实例<br>参数–loglevel 指定了日志级别，默认为warning,也可以 -l info来表示。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>调用任务<br>可以通过调用delay()方法和apply_async()方法来调用任务。<br>Delay可以理解为apply_async()的快捷方式，appy_async支持更多的参数，一般形式如下：<br>apply_async(args&#x3D;(), kwargs&#x3D;{}, route_name&#x3D;None, **options)</li>
+</ol>
+</li>
+</ul>
+<p>常用参数：<br>countdown:指定多少秒后执行任务<br>eta: 指定任务的具体被调度时间，参数类型为datetime<br>expires: 任务过期时间，参数类型可以是int，也可以是datetime</p>
+<h4 id="三、配置文件和定时任务"><a href="#三、配置文件和定时任务" class="headerlink" title="三、配置文件和定时任务"></a>三、配置文件和定时任务</h4><p>Celery 除了可以执行异步任务，也支持执行周期性任务（Periodic Tasks），或者说定时任务。Celery Beat 进程通过读取配置文件的内容，周期性地将定时任务发往任务队列。</p>
+<ul>
+<li><ol>
+<li>BROKER_URL: 指定broker</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>CELERY_RESULT_BACKEND: 指定 backend</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>CELERY_TIMEZONE: 制定时区</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>CELERY_IMPORTS &#x3D; (,): 指定导入的任务模块</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>CELERYBEAT_SCHEDULE: 定时任务， 可以指定间隔时间发送，也可以指定固定时间发送。<br>通过开启celery beat 进程，定时任务将在对应时刻发送到broker:<br>Celery beat -A celery_app</li>
+</ol>
+</li>
+</ul>
+<h4 id="四、代码应用"><a href="#四、代码应用" class="headerlink" title="四、代码应用"></a>四、代码应用</h4><ul>
+<li><ol>
+<li>配置文件(解释见)</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> platforms</span><br><span class="line"><span class="keyword">from</span> apps.task.models <span class="keyword">import</span> ScheduleTask</span><br><span class="line"><span class="keyword">from</span> environment <span class="keyword">import</span> environment</span><br><span class="line"><span class="comment"># 允许root用户启动</span></span><br><span class="line">platforms.C_FORCE_ROOT = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable UTC user 是否自动转换utc时间</span></span><br><span class="line">CELERY_ENABLE_UTC = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set Broken url</span></span><br><span class="line"><span class="keyword">if</span> environment.get_conf(<span class="string">&quot;celery&quot;</span>, <span class="string">&quot;broker_url&quot;</span>, default=<span class="string">&#x27;&#x27;</span>) <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> environment.get_conf(<span class="string">&quot;celery&quot;</span>, <span class="string">&quot;broker_url&quot;</span>,default=<span class="string">&#x27;&#x27;</span>) == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">BROKER_URL = environment.get_conf(<span class="string">&quot;hcm_cloud&quot;</span>, <span class="string">&quot;redis&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">BROKER_URL = environment.get_conf(<span class="string">&quot;celery&quot;</span>, <span class="string">&quot;broker_url&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable Hijack 默认情况下将删除日志配置，禁用后可以自定义日志</span></span><br><span class="line">CELERYD_HIJACK_ROOT_LOGGER = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable Poll Restart 可以通过远程命令重启worker</span></span><br><span class="line">CELERYD_POOL_RESTARTS = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个worker执行了多少任务就会死掉，默认是无限的 杀掉是解决celery内存泄露问题</span></span><br><span class="line">CELERYD_MAX_TASKS_PER_CHILD = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set Pool Limit to 100</span></span><br><span class="line">连接池最大连接数</span><br><span class="line">BROKER_POOL_LIMIT = <span class="number">10</span></span><br><span class="line">Redis最大连接数</span><br><span class="line">CELERY_REDIS_MAX_CONNECTIONS = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">BROKER_TRANSPORT_OPTIONS = &#123;<span class="string">&quot;max_connections&quot;</span>: <span class="number">400</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set Serializers</span></span><br><span class="line">CELERY_ACCEPT_CONTENT = [<span class="string">&#x27;json&#x27;</span>, <span class="string">&#x27;pickle&#x27;</span>]</span><br><span class="line">CELERY_TASK_SERIALIZER = <span class="string">&#x27;json&#x27;</span></span><br><span class="line">CELERY_RESULT_SERIALIZER = <span class="string">&#x27;json&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set Imports</span></span><br><span class="line"></span><br><span class="line">CELERY_IMPORTS = [</span><br><span class="line"><span class="string">&#x27;apps.insight.services_kanban_schedule&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;apps.circle.circle_article.services_article&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;core.base.message.send&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;apps.task.service&#x27;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt; <span class="number">1</span> <span class="keyword">and</span> sys.argv[<span class="number">1</span>] == <span class="string">&#x27;beat&#x27;</span>:</span><br><span class="line">    CELERYBEAT_SCHEDULE = ScheduleTask.get_schedule_task()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><ol start="2">
+<li>启动方法</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">app = celery.Celery(<span class="string">&#x27;hcm_cloud&#x27;</span>)</span><br><span class="line">app_celery.config_from_object(<span class="string">&#x27;apps.task.celery_config&#x27;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">start_worker</span>():</span><br><span class="line"><span class="keyword">from</span> celery.<span class="built_in">bin</span> <span class="keyword">import</span> worker</span><br><span class="line">options = &#123;</span><br><span class="line"><span class="string">&#x27;hostname&#x27;</span>: environment.get_conf(<span class="string">&#x27;celery&#x27;</span>, <span class="string">&#x27;host_name&#x27;</span>),</span><br><span class="line"><span class="string">&#x27;loglevel&#x27;</span>: <span class="string">&#x27;INFO&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;traceback&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line"><span class="string">&#x27;queues&#x27;</span>: environment.get_conf(<span class="string">&#x27;celery&#x27;</span>, <span class="string">&#x27;queues&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">worker.worker(app=app_celery).run(**options)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">start_beat</span>():</span><br><span class="line"><span class="keyword">from</span> celery.<span class="built_in">bin</span> <span class="keyword">import</span> beat</span><br><span class="line">options = &#123;</span><br><span class="line"><span class="string">&#x27;loglevel&#x27;</span>: <span class="string">&#x27;INFO&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">beat.beat(app=app_celery).run(**options)</span><br></pre></td></tr></table></figure>
+
+<p>首先创建一个celery对象,通过app.config_from_object 方法加载配置文件.代码中启动celery的方法通过celery.bin模块来启动一个celery实例.在run方法里面传入启动时的参数,<br>hostname:主机名<br>loglevel:日志级别<br>traceback:是否返回处理结果<br>queues:该woker对应的消息队列<br>注:celery是一个分布式的任务调度模块，支持多台不同的计算机执行不同的任务或者相同的任务,简单理解就是celery可以创建多个消息队列,通过配置,不同的消息队列可以对应一个或多个woker.而这是通过Exchange来实现的，发送消息到”消息队列”中时，可以指定routiing_key，Exchange通过routing_key来把消息路由（routes）到不同的”消息队列”中去,然后由该消息队列对应的woker来执行任务.我们代码中有default, monitor,syn,appoint,time五种任务队列.</p>
+<ul>
+<li><ol start="3">
+<li>异步任务</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.task(<span class="params">queue=<span class="string">&#x27;syn&#x27;</span>, routing_key=<span class="string">&#x27;syn&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">call_open_api_asynchronous</span>(<span class="params">token, emp_id, company_id, api_name, api_param</span>):</span><br><span class="line"><span class="built_in">setattr</span>(context, <span class="string">&#x27;token&#x27;</span>, token)</span><br><span class="line">OpenApiFactory.execute_open_api(context=context, name=api_name, param=api_param)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">environment.db.remove()</span><br><span class="line">call_open_api_asynchronous.apply_async(</span><br><span class="line">[<span class="built_in">getattr</span>(self.context, <span class="string">&#x27;token&#x27;</span>),</span><br><span class="line">self.context.employee.<span class="built_in">id</span>,</span><br><span class="line">self.context.company.<span class="built_in">id</span>,</span><br><span class="line"><span class="string">&#x27;motion.add.middle.document&#x27;</span>,</span><br><span class="line">&#123;<span class="string">&#x27;motion_id&#x27;</span>: _items[<span class="number">0</span>].get(<span class="string">&quot;motion_id&quot;</span>)&#125;],</span><br><span class="line">queue=<span class="string">&#x27;syn&#x27;</span>,</span><br><span class="line">routing_key=<span class="string">&#x27;syn&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>我们通过app.task装饰器,将一个函数定义为一个异步任务,然后通过func.apply_async()来发布任务,其中app为一开始创建的那个celery对象.<br>func.apply_async(*args, **kwargs)第一个参数接受一个元祖或者列表,依次传入该方法对应的参数.<br>这里有不管装饰器和apply_async()方法中,都分别定义了queue 和routing_key两个参数,我的理解是将任务发布到某一个队列中.经测试,queue是发布队列的参数,当去掉所有参数,只留apply_async(queue&#x3D; “syn”)或者只保留task(queue &#x3D; “syn”)时,syn对应的worker都能顺利的接受到任务并执行.<br>##4. 定时任务<br>定时任务通过celery_beat进行发布,当启动celery-beat之后,会自动获取配置文件中CELERYBEAT_SCHEDULE的值,进行定时的任务发布.业务中通过back_ground_schedule_task 这张表保存需要执行的定时任务.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">_rows = cls.db().query(cls).<span class="built_in">filter</span>(cls.enabled == <span class="literal">True</span>).<span class="built_in">all</span>()</span><br><span class="line">_ret = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> _rows:</span><br><span class="line">domain = row.domain <span class="keyword">if</span> row.domain <span class="keyword">else</span> <span class="string">&#x27;main&#x27;</span></span><br><span class="line">_ret[row.schedule_number] = &#123;</span><br><span class="line"><span class="string">&#x27;task&#x27;</span>: <span class="string">&quot;apps.task.service.process_schedule_task_&quot;</span> + domain,</span><br><span class="line"><span class="string">&#x27;schedule&#x27;</span>: <span class="built_in">eval</span>(row.schedule),</span><br><span class="line"><span class="string">&#x27;args&#x27;</span>: (row.task,) + <span class="built_in">eval</span>(<span class="string">&quot;()&quot;</span> <span class="keyword">if</span> (row.args <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> row.args == <span class="string">&quot;&quot;</span>) <span class="keyword">else</span> row.args)</span><br><span class="line">&#125;</span><br><span class="line">logging.info(<span class="string">&quot;&#123;&#125;:&#123;&#125;:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="string">&quot;apps.task.service.process_schedule_task_&quot;</span> + domain, row.schedule, row.task))</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> _ret</span><br></pre></td></tr></table></figure>
+
+
+<p>task:要执行的任务的的函数<br>schedule:执行时间,可以是一个timedelta表示每间隔多久执行一次,也可以是一个crontab指定固定的时间去执行<br>args:传入的参数.<br>代码中每个队列执行的任务都是由一个统一的函数进行分发,比如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.task(<span class="params">bind=<span class="literal">True</span>, queue=<span class="string">&#x27;syn&#x27;</span>, routing_key=<span class="string">&#x27;syn&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_schedule_task_syn</span>(<span class="params">self, *args</span>):</span><br><span class="line">full_method_name = args[<span class="number">0</span>]</span><br><span class="line">full_path = full_method_name.split(<span class="string">&quot;.&quot;</span>)</span><br><span class="line">new_args = args[<span class="number">1</span>:]</span><br><span class="line">sys.path.append(</span><br><span class="line">os.path.abspath(os.path.join(os.path.join(os.path.dirname(__file__), os.path.pardir), os.path.pardir)))</span><br><span class="line">temp_class_name = full_path[<span class="built_in">len</span>(full_path) - <span class="number">2</span>]</span><br><span class="line">module = importlib.import_module(<span class="string">&quot;.&quot;</span>.join(full_path[:-<span class="number">2</span>]))</span><br><span class="line">_<span class="keyword">class</span> = <span class="built_in">getattr</span>(module, temp_class_name)</span><br><span class="line">_<span class="keyword">class</span> = _<span class="keyword">class</span>()</span><br><span class="line">_method = <span class="built_in">getattr</span>(_<span class="keyword">class</span>, full_path[<span class="built_in">len</span>(full_path) - <span class="number">1</span>])</span><br><span class="line">apply(_method, new_args)</span><br></pre></td></tr></table></figure>
+<p>在配置文件中传入的参数有两个,一个是该任务对应的函数,另一个是函数需传入的参数.因此在统一发布的函数中,解析出该任务对应执行的函数及参数,然后通过apply方法调用函数.</p>
+<h3 id="添加flower监控"><a href="#添加flower监控" class="headerlink" title="添加flower监控"></a>添加flower监控</h3><p>安装flower包</p>
+<blockquote>
+<p>终端输入 celery flower –address&#x3D;127.0.0.1 –port&#x3D;5555 –broker&#x3D;redis:&#x2F;&#x2F;127.0.0.1:6379&#x2F;</p>
+</blockquote>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81celery"><span class="toc-text">一、celery</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1"><span class="toc-text">二、创建异步任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%92%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-text">三、配置文件和定时任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BB%A3%E7%A0%81%E5%BA%94%E7%94%A8"><span class="toc-text">四、代码应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0flower%E7%9B%91%E6%8E%A7"><span class="toc-text">添加flower监控</span></a>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/08/15/python/异步编程/celery/">https://dbbruce.github.io/2023/08/15/python/异步编程/celery/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E7%88%AC%E8%99%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          爬虫
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/Websocket/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Websocket
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

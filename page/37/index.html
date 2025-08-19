@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  <article id="post-运维/docker/基础/01-docker基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/01-docker%E5%9F%BA%E7%A1%80/">01-Docker基础</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-01T03:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/01-docker%E5%9F%BA%E7%A1%80/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker基础"><a href="#docker基础" class="headerlink" title="docker基础"></a>docker基础</h1><h4 id="什么是容器"><a href="#什么是容器" class="headerlink" title="什么是容器"></a>什么是容器</h4><ul>
+<li>容器技术已经成为应用程序封装和交付的核心技术    </li>
+<li>容器技术的核心有以下几个内核技术组成<br>Cgroups ( Control Groups )-资源管理，资源限制<br>NameSpace-进程隔离<br>SELinux-安全      </li>
+<li>由于是在物理机上实施隔离，启动一个容器，可以像启动一个进程一样快速</li>
+</ul>
+<h4 id="Docker缺点"><a href="#Docker缺点" class="headerlink" title="Docker缺点"></a>Docker缺点</h4><ul>
+<li>容器的隔离性没有虚拟化强     </li>
+<li>共用Linux内核，安全性有先天缺陷     </li>
+<li>SELinux难以驾驭    </li>
+<li>监控容器和容器排错是挑战
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/01-docker%E5%9F%BA%E7%A1%80/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/00-linux目录简介" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/00-linux%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B/">00-linux目录简介</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-01T02:00:00.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/00-linux%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-linux"><a href="#1-linux" class="headerlink" title="1.linux"></a>1.linux</h4><p>&#x2F;boot 存放系统引导必男的文件,包括内核、启动配置<br>&#x2F;bin、&#x2F;sbin 存放各种命令程序<br>&#x2F;dev 存放硬盘、键盘、鼠标、光驱等各种设备文件<br>&#x2F;etc 存放Linux系统及各种程序的配置文件</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/00-linux%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/00-docker开启包转发功能和修改内核参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%BC%80%E5%90%AF%E5%8C%85%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BF%AE%E6%94%B9%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0/">00-Docker开启包转发功能和修改内核参数</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-07-31T18:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%BC%80%E5%90%AF%E5%8C%85%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BF%AE%E6%94%B9%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker开启包转发功能和修改内核参数"><a href="#docker开启包转发功能和修改内核参数" class="headerlink" title="docker开启包转发功能和修改内核参数"></a>docker开启包转发功能和修改内核参数</h1><h4 id="内核参数修改-br-netfilter模块用于将桥接流量转发至-iptables-链，br-netfilter内核参数需要开启转发"><a href="#内核参数修改-br-netfilter模块用于将桥接流量转发至-iptables-链，br-netfilter内核参数需要开启转发" class="headerlink" title="内核参数修改: br_netfilter模块用于将桥接流量转发至 iptables 链，br_netfilter内核参数需要开启转发"></a>内核参数修改: br_netfilter模块用于将桥接流量转发至 iptables 链，br_netfilter内核参数需要开启转发</h4><p>允许 iptables检查桥接流量<br>为了让你的 Linux 节点上的 iptables 能够正确地查看桥接流量，你需要确保在你的 sysctl 配置中将 net.bridge.bridge-nf-call-iptables 设置为 1;</p>
+<ul>
+<li>加载br-netfilter模块<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">modprobe br_netfilter</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%BC%80%E5%90%AF%E5%8C%85%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BF%AE%E6%94%B9%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/错误/01-kubernetes注意项" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/01-kubernetes%E6%B3%A8%E6%84%8F%E9%A1%B9/">01-kubernetes注意项</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-07-31T16:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/01-kubernetes%E6%B3%A8%E6%84%8F%E9%A1%B9/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Kubernetes简介"><a href="#Kubernetes简介" class="headerlink" title="Kubernetes简介"></a>Kubernetes简介</h1><h3 id="1、主机名，不要用带下划线的，有时K8S不能识别带下划线的主机名；"><a href="#1、主机名，不要用带下划线的，有时K8S不能识别带下划线的主机名；" class="headerlink" title="1、主机名，不要用带下划线的，有时K8S不能识别带下划线的主机名；"></a>1、主机名，不要用带下划线的，有时K8S不能识别带下划线的主机名；</h3><h3 id="2、node有污点，导致pod在各个node上无法创建报错信息："><a href="#2、node有污点，导致pod在各个node上无法创建报错信息：" class="headerlink" title="2、node有污点，导致pod在各个node上无法创建报错信息："></a>2、node有污点，导致pod在各个node上无法创建报错信息：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning  FailedScheduling  22s   default-scheduler  0/3 nodes are available: 1 node(s) had untolerated taint &#123;node-role.kubernetes.io/control-plane: &#125;, 1 node(s) had untolerated taint &#123;node-type: dev&#125;, 1 node(s) had untolerated taint &#123;node-type: prduction&#125;. preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling..</span><br></pre></td></tr></table></figure>
+<h3 id="3、有亲和性策略，pod调度不到node上报错信息："><a href="#3、有亲和性策略，pod调度不到node上报错信息：" class="headerlink" title="3、有亲和性策略，pod调度不到node上报错信息："></a>3、有亲和性策略，pod调度不到node上报错信息：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning  FailedScheduling  4m49s (x3 over 15m)  default-scheduler  0/3 nodes are available: 1 node(s) had untolerated taint &#123;node-role.kubernetes.io/control-plane: &#125;, 2 node(s) didn&#x27;t match pod anti-affinity rules. preemption: 0/3 nodes are available: 1 Preemption is not helpful for scheduling, 2 No preemption victims found for incoming pod..</span><br></pre></td></tr></table></figure>
+<h3 id="4、pod存在，由于污点pending状态，再起一个相同pod名的pod，报错信息"><a href="#4、pod存在，由于污点pending状态，再起一个相同pod名的pod，报错信息" class="headerlink" title="4、pod存在，由于污点pending状态，再起一个相同pod名的pod，报错信息"></a>4、pod存在，由于污点pending状态，再起一个相同pod名的pod，报错信息</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The Pod &quot;myapp-deploy&quot; is invalid: spec.tolerations: Forbidden: existing toleration can not be modified except its tolerationSeconds</span><br></pre></td></tr></table></figure>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/37/index.html">https://dbbruce.github.io/page/37/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/docker/基础/00-docker安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/">00-Docker安装</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-07-31T16:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h1><h4 id="镜像仓库"><a href="#镜像仓库" class="headerlink" title="镜像仓库"></a>镜像仓库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Docker Hub：https://registry.hub.docker.com/</span><br></pre></td></tr></table></figure>
+<h4 id="docker官方"><a href="#docker官方" class="headerlink" title="docker官方"></a>docker官方</h4><p>docker有社区版和企业版两个版本，社区版是免费的，企业版是收费的。其实社区版就够用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.docker.com/</span><br></pre></td></tr></table></figure>
+<h4 id="时间同步服务开启"><a href="#时间同步服务开启" class="headerlink" title="时间同步服务开启"></a>时间同步服务开启</h4><h4 id="关闭selinux"><a href="#关闭selinux" class="headerlink" title="关闭selinux"></a>关闭selinux</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 修改文件</span><br><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br><span class="line"></span><br><span class="line"># 查看</span><br><span class="line">getenforce</span><br><span class="line">Disabled</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/00-docker%E5%AE%89%E8%A3%85/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/工作问题处理/监控功能服务器脚本，达到阈值告警" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/05/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/%E7%9B%91%E6%8E%A7%E5%8A%9F%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%84%9A%E6%9C%AC%EF%BC%8C%E8%BE%BE%E5%88%B0%E9%98%88%E5%80%BC%E5%91%8A%E8%AD%A6/">监控功能服务器脚本，达到阈值告警</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2020-05-05T04:00:52.000Z" itemprop="datePublished">2020年05月05日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a>
+  </div>
+
+      
+      
+<a href="/2020/05/05/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/%E7%9B%91%E6%8E%A7%E5%8A%9F%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%84%9A%E6%9C%AC%EF%BC%8C%E8%BE%BE%E5%88%B0%E9%98%88%E5%80%BC%E5%91%8A%E8%AD%A6/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">source /etc/profile</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">磁盘告警上限值</span></span><br><span class="line">disklimit=85</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">内存告警上限值</span></span><br><span class="line">memlimit=90</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">cpu告警上限值</span></span><br><span class="line">cpulimit=95</span><br><span class="line">tokenurl=&quot;http://xxx/token&quot;</span><br><span class="line">mailurl=&quot;http://xxxx/sendEmail&quot;</span><br><span class="line">service=&quot;&quot;</span><br><span class="line">arr=(xx@163.com)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取系统版本</span></span><br><span class="line">sys_os=`cat /etc/redhat-release|awk &#x27;&#123;print $1 &quot;_&quot;$4&#125;&#x27;`</span><br><span class="line">echo &quot;系统版本：&quot;$sys_os</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取系统内核</span></span><br><span class="line">sys_version=`uname -r`</span><br><span class="line">echo &quot;Linux内核版本：&quot;$sys_version</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取要监控的本地服务器IP地址</span></span><br><span class="line">IP=`ifconfig | grep inet | grep -vE &#x27;inet6|127.0.0.1&#x27; | awk &#x27;&#123;print $2&#125;&#x27;`</span><br><span class="line">echo &quot;IP地址：&quot;$IP</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取cpu总核数</span></span><br><span class="line">cpu_num=`grep -c &quot;model name&quot; /proc/cpuinfo`</span><br><span class="line">echo &quot;cpu总核数：&quot;$cpu_num</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取占用CPU百分比</span></span><br><span class="line">cpu_use=`top -b -n 1 | grep Cpu | awk &#x27;&#123;print $2&#125;&#x27; | cut -f 1 -d &quot;%&quot;`</span><br><span class="line">echo &quot;CPU使用百分比：&quot;$cpu_use</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取空闲CPU百分比</span></span><br><span class="line">cpu_idle=`top -b -n 1 | grep Cpu | awk &#x27;&#123;print $8&#125;&#x27; | cut -f 1 -d &quot;%&quot;`</span><br><span class="line">echo &quot;空闲CPU百分比：&quot;$cpu_idle</span><br><span class="line">cpuradio=$(awk &#x27;BEGIN&#123;printf &quot;%.2f\n&quot;,100-&#x27;$cpu_idle&#x27;&#125;&#x27;)</span><br><span class="line">echo &quot;CPU使用率:&quot;$cpuradio&quot; %&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取物理内存总量</span></span><br><span class="line">mem_total=`free | grep Mem | awk &#x27;&#123;print $2&#125;&#x27;`</span><br><span class="line">mem_total_g=$(printf &quot;%.4f&quot; `echo &quot;scale=4;($mem_total/1024/1024)&quot;|bc`)</span><br><span class="line">echo &quot;物理内存总量：&quot;$mem_total</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取操作系统已使用内存总量</span></span><br><span class="line">mem_used=`free | grep Mem | awk &#x27;&#123;print $3&#125;&#x27;`</span><br><span class="line">echo &quot;已使用内存总量(操作系统)：&quot;$mem_used</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取操作系统未使用内存总量</span></span><br><span class="line">mem_free=`free | grep Mem | awk &#x27;&#123;print $4&#125;&#x27;`</span><br><span class="line">echo &quot;剩余内存总量(操作系统)：&quot;$mem_free</span><br><span class="line">mem_available=`free | grep Mem | awk &#x27;&#123;print $7&#125;&#x27;`</span><br><span class="line">echo &quot;可用内存:&quot;$mem_available</span><br><span class="line">memradio=$(printf &quot;%.4f&quot; `echo &quot;scale=4;($mem_used/$mem_total)&quot;|bc`)</span><br><span class="line">memradio=$(awk &#x27;BEGIN&#123;printf &quot;%.2f\n&quot;,&#x27;$memradio&#x27;*100&#125;&#x27;)</span><br><span class="line">echo &quot;内存使用率:&quot;$memradio&quot; %&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">disk_total=`<span class="built_in">df</span> / | grep <span class="string">&#x27;/&#x27;</span> | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> `</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&quot;磁盘总数:&quot;</span><span class="variable">$disk_total</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">disk_use=`<span class="built_in">df</span> / | grep <span class="string">&#x27;/&#x27;</span> | awk <span class="string">&#x27;&#123;print $3&#125;&#x27;</span> `</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&quot;磁盘已使用:&quot;</span><span class="variable">$disk_use</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">disk_use_rate=`<span class="built_in">df</span> / | grep <span class="string">&#x27;/&#x27;</span> | awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span> `</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&quot;磁盘使用率:&quot;</span><span class="variable">$disk_use_rate</span></span></span><br><span class="line"> </span><br><span class="line">DEV=`df -Ph | grep &#x27;^/dev/*&#x27; | cut -d&#x27; &#x27; -f1 | sort`</span><br><span class="line">disk_total=0</span><br><span class="line">disk_used=0</span><br><span class="line">for I in $DEV </span><br><span class="line">do </span><br><span class="line">  dev=`df -h | grep $I | awk &#x27;&#123;print $1&#125;&#x27;`</span><br><span class="line">  size=`df  | grep $I | awk &#x27;&#123;print $2&#125;&#x27;`</span><br><span class="line">  use=`df  |grep $I |awk &#x27;&#123;print $3&#125;&#x27;`</span><br><span class="line">  disk_total=$(($disk_total+$size))</span><br><span class="line">  disk_used=$(($disk_used+$use))</span><br><span class="line"><span class="meta prompt_">  #</span><span class="language-bash"><span class="built_in">echo</span> <span class="variable">$disk_used</span></span></span><br><span class="line"><span class="meta prompt_">  #</span><span class="language-bash"><span class="built_in">echo</span> -e <span class="string">&quot;<span class="variable">$I</span>:\tsize:<span class="variable">$size</span>\tuse:<span class="variable">$use</span>&quot;</span></span></span><br><span class="line">done</span><br><span class="line">echo &quot;磁盘总数:&quot;$disk_total</span><br><span class="line">disk_total_g=$(printf &quot;%.4f&quot; `echo &quot;scale=4;($disk_total/1024/1024)&quot;|bc`)</span><br><span class="line">echo &quot;磁盘使用量:&quot;$disk_used</span><br><span class="line">dsikradio=$(printf &quot;%.4f&quot; `echo &quot;scale=4;($disk_used/$disk_total)&quot;|bc`)</span><br><span class="line">dsikradio=$(awk &#x27;BEGIN&#123;printf &quot;%.2f\n&quot;,&#x27;$dsikradio&#x27;*100&#125;&#x27;)</span><br><span class="line">echo &quot;磁盘使用率:&quot;$dsikradio&quot; %&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">邮件告警</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">磁盘告警上限</span></span><br><span class="line">if [ `echo &quot;$dsikradio &gt; $disklimit&quot;|bc` -eq 1 ] || [ `echo &quot;$memradio &gt; $memlimit&quot;|bc` -eq 1 ]</span><br><span class="line">then</span><br><span class="line">addr=`ip a|grep -w &#x27;inet&#x27;|grep &#x27;global&#x27;|sed &#x27;s/^.*inet //g&#x27;|sed &#x27;s/\/[0-9][0-9].*$//g&#x27;`</span><br><span class="line">           for i in &quot;$&#123;arr[@]&#125;&quot;; do</span><br><span class="line">                params=&#x27;&#123;&quot;email&quot;:&quot;&#x27;$i&#x27;&quot;,&quot;theme&quot;:&quot;服务器监控告警异常&quot;,&quot;content&quot;:服务器&#x27;$IP&#x27;磁盘使用率: &#x27;$dsikradio&#x27; %，内存使用率: &#x27;$memradio&#x27; %，cpu使用率: &#x27;$cpuradio&#x27; %,请检查服务是否正常.服务器配置如下：\n cpu总核数：&#x27;$cpu_num&#x27; 核 \n 物理内存总量：&#x27;$mem_total_g&#x27; g \n 磁盘总数: &#x27;$disk_total_g&#x27; g \n &quot;&#125;&#x27;</span><br><span class="line">                echo &quot;$params&quot;</span><br><span class="line">                result=`curl -s -H &quot;Content-Type: application/json&quot; -XPOST -d &#x27;&#123;&quot;client_id&quot;: &quot;imas-monitoryt&quot;, &quot;client_secret&quot;: &quot;rUHib0bAqUOBtPsu&quot;, &quot;grant_type&quot;: &quot;client_credentials&quot;&#125;&#x27; $tokenurl`</span><br><span class="line">                echo $result &gt; requestresult.txt</span><br><span class="line">                token=$(cat requestresult.txt | sed &#x27;s/,/\n/g&#x27; | grep &quot;access_token&quot; | sed &#x27;s/:/\n/g&#x27; | sed &#x27;1d&#x27; |sed &#x27;1d&#x27; |  sed &#x27;s/&#125;//g&#x27; |  sed &#x27;s/&quot;//g&#x27; )</span><br><span class="line">                curl   -XPOST -H  &quot;Content-Type: application/json&quot;  -H &quot;Authorization: Bearer $&#123;token&#125;&quot;  $&#123;mailurl&#125;  -d &quot;$params&quot;</span><br><span class="line">                rm -f requestresult.txt</span><br><span class="line">           done</span><br><span class="line">else</span><br><span class="line">  echo &quot;$IP服务器指标正常&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/37/index.html">https://dbbruce.github.io/page/37/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/工作问题处理/监控流量" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/05/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/%E7%9B%91%E6%8E%A7%E6%B5%81%E9%87%8F/">监控流量</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2020-05-05T03:00:52.000Z" itemprop="datePublished">2020年05月05日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a>
+  </div>
+
+      
+      
+<a href="/2020/05/05/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/%E7%9B%91%E6%8E%A7%E6%B5%81%E9%87%8F/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">TIME=$(date +%s)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取接收流量和发送流量</span></span><br><span class="line">RX=$(cat /proc/net/dev | grep eth0 | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">TX=$(cat /proc/net/dev | grep eth0 | awk &#x27;&#123;print $10&#125;&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">计算并转化流量单位为 Mbps</span></span><br><span class="line">RX_MBPS=$(echo &quot;scale=2; $RX/$TIME/1048576*8&quot; | bc)</span><br><span class="line">TX_MBPS=$(echo &quot;scale=2; $TX/$TIME/1048576*8&quot; | bc)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出流量信息</span></span><br><span class="line">echo &quot;RX: $RX_MBPS Mbps&quot;</span><br><span class="line">echo &quot;TX: $TX_MBPS Mbps&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Set variables</span></span><br><span class="line">TIME=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">CPU=$(top -bn1 | grep %Cpu | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">MEMORY=$(free | awk &#x27;/Mem/&#123;printf &quot;%dMB/%dMB(%.2f%%)\n&quot;, $3/1024,$2/1024,$3/$2*100.0&#125;&#x27;)</span><br><span class="line">AVAILABLE_MEMORY=$(free -h | grep Mem: | awk &#x27;&#123;print $7&#125;&#x27;)</span><br><span class="line">CURR_ESTAB=$(netstat -an | grep ESTABLISHED | wc -l)</span><br><span class="line">TCP_TW=$(netstat -an | grep TIME_WAIT | wc -l)</span><br><span class="line">SOCKETS_USED=$(netstat -an | grep -v -e TIME_WAIT -e LISTEN | wc -l)</span><br><span class="line">UDP_INUSE=$(netstat -anu | grep -v -e TIME_WAIT | wc -l)</span><br><span class="line">TCP_ALLOC=$(cat /proc/sys/net/ipv4/tcp_max_orphans)</span><br><span class="line">TCP_INSEGS=$(cat /proc/net/snmp | grep TcpInSegs | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">TCP_OUTSEGS=$(cat /proc/net/snmp | grep TcpOutSegs | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">TCP_RETRANSSEGS=$(cat /proc/net/snmp | grep TcpRetransSegs | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">ONE_UPLOAD=$(uptime | awk &#x27;&#123;print $10&#125;&#x27; | awk -F&#x27;,&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">WU_UPLOAD=$(uptime | awk -F&#x27;,&#x27; &#x27;&#123;print $5&#125;&#x27;)</span><br><span class="line">SHIWU_UPLOAD=$(uptime | awk -F&#x27;,&#x27; &#x27;&#123;print $6&#125;&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Send message to WeChat robot</span></span><br><span class="line">curl &#x27;https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=7c39d97e-23b5-4a6f-999d-b594beb14c20&#x27; \</span><br><span class="line">-H &#x27;Content-Type: application/json&#x27; \</span><br><span class="line">-d &quot;</span><br><span class="line">&#123;</span><br><span class="line">  \&quot;msgtype\&quot;: \&quot;text\&quot;,</span><br><span class="line">  \&quot;text\&quot;: &#123;</span><br><span class="line">    \&quot;content\&quot;: \&quot;neo4j服务器资源使用情况如下：</span><br><span class="line">- 当前时间: $TIME</span><br><span class="line">- CPU使用量: $&#123;CPU&#125;%</span><br><span class="line">- 内存使用量: $MEMORY</span><br><span class="line">- 可用内存为: $AVAILABLE_MEMORY</span><br><span class="line">- ESTABLISHED的TCP连接数: $CURR_ESTAB</span><br><span class="line">- TIME_WAIT的TCP连接数: $TCP_TW</span><br><span class="line">- 当前使用的Socket数: $SOCKETS_USED</span><br><span class="line">- 当前使用的UDP连接数: $UDP_INUSE</span><br><span class="line">- 系统1分钟负载：$ONE_UPLOAD</span><br><span class="line">- 系统5分钟负载：$WU_UPLOAD</span><br><span class="line">- 系统15分钟负载：$SHIWU_UPLOAD\&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/37/index.html">https://dbbruce.github.io/page/37/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/工作问题处理/日志切割脚本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/05/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E8%84%9A%E6%9C%AC/">日志切割脚本</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2020-05-05T02:00:52.000Z" itemprop="datePublished">2020年05月05日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a>
+  </div>
+
+      
+      
+<a href="/2020/05/05/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E8%84%9A%E6%9C%AC/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">LOGFILE=/var/log/app.log</span><br><span class="line">BACKUP_DIR=/var/log/backup</span><br><span class="line">BACKUP_NUM=10</span><br><span class="line"></span><br><span class="line">if [ ! -d &quot;$BACKUP_DIR&quot; ]; then</span><br><span class="line">  mkdir -p &quot;$BACKUP_DIR&quot;</span><br><span class="line">fi </span><br><span class="line"></span><br><span class="line">timestamp=$(date +&quot;%Y%m%d%H%M%S&quot;)</span><br><span class="line">backup_file=&quot;$BACKUP_DIR/app_$timestamp.log&quot;</span><br><span class="line"></span><br><span class="line">mv &quot;$LOGFILE&quot; &quot;$backup_file&quot;</span><br><span class="line">touch &quot;$LOGFILE&quot;</span><br><span class="line">gzip -f &quot;$backup_file&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除旧的备份文件</span></span><br><span class="line">ls -t &quot;$BACKUP_DIR&quot;/*.gz | tail -n +$((BACKUP_NUM + 1)) |  | xargs  rm  -f</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/37/index.html">https://dbbruce.github.io/page/37/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/工作问题处理/备份脚本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/01/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/">备份脚本</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2020-05-01T03:00:52.000Z" itemprop="datePublished">2020年05月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a>
+  </div>
+
+      
+      
+<a href="/2020/05/01/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置备份目录和文件名</span></span><br><span class="line">backup_dir=&quot;/backup&quot;</span><br><span class="line">backup_file=&quot;backup_$(date +%Y%m%d).tar.gz&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建备份目录</span></span><br><span class="line">mkdir -p $backup_dir</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行备份</span></span><br><span class="line">tar -czvf $backup_dir/$backup_file  /path/to/backup/files</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出备份完成信息</span></span><br><span class="line">echo &quot;Backup completed：$backup_dir/$backup_file&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/37/index.html">https://dbbruce.github.io/page/37/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/工作问题处理/mac安装virtualbox不能上网的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/10/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/mac%E5%AE%89%E8%A3%85virtualbox%E4%B8%8D%E8%83%BD%E4%B8%8A%E7%BD%91%E7%9A%84%E9%97%AE%E9%A2%98/">mac安装virtualbox不能上网的问题</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2020-01-10T03:00:52.000Z" itemprop="datePublished">2020年01月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a>
+  </div>
+
+      
+      
+<a href="/2020/01/10/%E8%BF%90%E7%BB%B4/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/mac%E5%AE%89%E8%A3%85virtualbox%E4%B8%8D%E8%83%BD%E4%B8%8A%E7%BD%91%E7%9A%84%E9%97%AE%E9%A2%98/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="场景：mac安装virtualbox，windows连外网正常，CentOS不能连外网。"><a href="#场景：mac安装virtualbox，windows连外网正常，CentOS不能连外网。" class="headerlink" title="场景：mac安装virtualbox，windows连外网正常，CentOS不能连外网。"></a>场景：mac安装virtualbox，windows连外网正常，CentOS不能连外网。</h4><h4 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h4><ul>
+<li>1.打开设置</li>
+<li>2.将连接方式设置为网络地址转换(NAT)</li>
+<li>3.将高级-控制芯片-设置为准虚拟化网络<br><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98/img.png" alt="img.png"><br><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/%E5%B7%A5%E4%BD%9C%E9%97%AE%E9%A2%98/img_1.png" alt="img_1.png"></li>
+</ul>
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/37/index.html">https://dbbruce.github.io/page/37/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+
+    <nav id="page-nav">
+
+<a class="extend prev" rel="prev" href="/page/36/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><a class="page-number" href="/page/39/">39</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/38/">下一页</a>
+</nav>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+
+
+
+
+  
+
+
+
+</body>
+</html>

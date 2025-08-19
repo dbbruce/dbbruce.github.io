@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>20-iSCSI磁盘 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/Linux云计算教程/20-iSCSI磁盘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      20-iSCSI磁盘
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-08-20T03:00:52.000Z" itemprop="datePublished">2021年08月20日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2021/08/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/20-iSCSI%E7%A3%81%E7%9B%98/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="0-Internet-SCSI-网际SCSI接口-（默认端口3260）"><a href="#0-Internet-SCSI-网际SCSI接口-（默认端口3260）" class="headerlink" title="0.Internet SCSI,网际SCSI接口 （默认端口3260）"></a>0.Internet SCSI,网际SCSI接口 （默认端口3260）</h4><p>一种基于C&#x2F;S架构的虚拟磁盘技术<br>服务器提供磁盘空间,客户机连接并当成本地磁盘使用</p>
+<span id="more"></span>
+
+<h4 id="1-iSCSI磁盘的工作模式"><a href="#1-iSCSI磁盘的工作模式" class="headerlink" title="1.iSCSI磁盘的工作模式"></a>1.iSCSI磁盘的工作模式</h4><p><img src="/../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/img_3.png" alt="img_3.png"></p>
+<h4 id="2-iSCSI磁盘的构成"><a href="#2-iSCSI磁盘的构成" class="headerlink" title="2.iSCSI磁盘的构成"></a>2.iSCSI磁盘的构成</h4><p>backstore，后端存储<br>    对应到服务端提供实际存储空间的设备，需要起一个管理名称<br>target，磁盘组<br>    是客户端的访问目标，作为一个框架，由多个lun组成<br>lun，逻辑单元<br>    每一个lun需要关联到某一个后端存储设备，在客户端会视为一块虚拟硬盘</p>
+<h4 id="3-ISCSI-Qualified-Name-名称规范"><a href="#3-ISCSI-Qualified-Name-名称规范" class="headerlink" title="3.ISCSI Qualified Name 名称规范"></a>3.ISCSI Qualified Name 名称规范</h4><pre><code>- iqn.yyyy-mm.倒序域名:自定义标识用来识别 target 磁盘组，也用来识别客户机身份
+名称示例
+    - ign.2016-02.com.example:server0-ign.2016-02.com:example:desktop0
+</code></pre>
+<h4 id="4-安装targetcli"><a href="#4-安装targetcli" class="headerlink" title="4.安装targetcli"></a>4.安装targetcli</h4><p>[root@master dong]# yum -y install targetcli</p>
+<h4 id="5-运行targetcli命令进行配置"><a href="#5-运行targetcli命令进行配置" class="headerlink" title="5.运行targetcli命令进行配置"></a>5.运行targetcli命令进行配置</h4><p>1.生成及指定后端存储(backstore，后端存储)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@master dong]# targetcli</span><br><span class="line">Warning: Could not load preferences file /root/.targetcli/prefs.bin.</span><br><span class="line">targetcli shell version 2.1.53</span><br><span class="line">Copyright 2011-2013 by Datera, Inc and others.</span><br><span class="line">For help on commands, type &#x27;help&#x27;.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">o- / ......................................................................................................................... [...]</span><br><span class="line">  o- backstores .............................................................................................................. [...]</span><br><span class="line">  | o- block .................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- fileio ................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- pscsi .................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- ramdisk ................................................................................................ [Storage Objects: 0]</span><br><span class="line">  o- iscsi ............................................................................................................ [Targets: 0]</span><br><span class="line">  o- loopback ......................................................................................................... [Targets: 0]</span><br><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash">backstores/block create name=dongiscsi dev=/dev/sdb1</span></span><br><span class="line">Created block storage object dongiscsi using /dev/sdb1.</span><br></pre></td></tr></table></figure>
+
+<p>2.生成target磁盘组(木质的箱子)<br>使用iscsi命名规范</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash">iscsi/ create iqn.2023-08.dongiscsi.com:dong</span></span><br><span class="line">Created target iqn.2023-08.dongiscsi.com:dong.</span><br><span class="line">Created TPG 1.</span><br><span class="line">Global pref auto_add_default_portal=true</span><br><span class="line">Created default portal listening on all IPs (0.0.0.0), port 3260.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">o- / ......................................................................................................................... [...]</span><br><span class="line">  o- backstores .............................................................................................................. [...]</span><br><span class="line">  | o- block .................................................................................................. [Storage Objects: 1]</span><br><span class="line">  | | o- dongiscsi ..................................................................... [/dev/sdb1 (3.0GiB) write-thru deactivated]</span><br><span class="line">  | |   o- alua ................................................................................................... [ALUA Groups: 1]</span><br><span class="line">  | |     o- default_tg_pt_gp ....................................................................... [ALUA state: Active/optimized]</span><br><span class="line">  | o- fileio ................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- pscsi .................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- ramdisk ................................................................................................ [Storage Objects: 0]</span><br><span class="line">  o- iscsi ............................................................................................................ [Targets: 1]</span><br><span class="line">  | o- iqn.2023-08.dongiscsi.com:dong .................................................................................... [TPGs: 1]</span><br><span class="line">  |   o- tpg1 ............................................................................................... [no-gen-acls, no-auth]</span><br><span class="line">  |     o- acls .......................................................................................................... [ACLs: 0]</span><br><span class="line">  |     o- luns .......................................................................................................... [LUNs: 0]</span><br><span class="line">  |     o- portals .................................................................................................... [Portals: 1]</span><br><span class="line">  |       o- 0.0.0.0:3260 ..................................................................................................... [OK]</span><br><span class="line">  o- loopback ......................................................................................................... [Targets: 0]</span><br></pre></td></tr></table></figure>
+
+<p>3.进行Lun关联</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash">iscsi/iqn.2023-08.dongiscsi.com:dong/tpg1/luns create /backstores/block/dongiscsi</span></span><br><span class="line">Created LUN 0.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">o- / ......................................................................................................................... [...]</span><br><span class="line">  o- backstores .............................................................................................................. [...]</span><br><span class="line">  | o- block .................................................................................................. [Storage Objects: 1]</span><br><span class="line">  | | o- dongiscsi ....................................................................... [/dev/sdb1 (3.0GiB) write-thru activated]</span><br><span class="line">  | |   o- alua ................................................................................................... [ALUA Groups: 1]</span><br><span class="line">  | |     o- default_tg_pt_gp ....................................................................... [ALUA state: Active/optimized]</span><br><span class="line">  | o- fileio ................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- pscsi .................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- ramdisk ................................................................................................ [Storage Objects: 0]</span><br><span class="line">  o- iscsi ............................................................................................................ [Targets: 1]</span><br><span class="line">  | o- iqn.2023-08.dongiscsi.com:dong .................................................................................... [TPGs: 1]</span><br><span class="line">  |   o- tpg1 ............................................................................................... [no-gen-acls, no-auth]</span><br><span class="line">  |     o- acls .......................................................................................................... [ACLs: 0]</span><br><span class="line">  |     o- luns .......................................................................................................... [LUNs: 1]</span><br><span class="line">  |     | o- lun0 ................................................................. [block/dongiscsi (/dev/sdb1) (default_tg_pt_gp)]</span><br><span class="line">  |     o- portals .................................................................................................... [Portals: 1]</span><br><span class="line">  |       o- 0.0.0.0:3260 ..................................................................................................... [OK]</span><br><span class="line">  o- loopback ......................................................................................................... [Targets: 0]</span><br><span class="line"><span class="meta prompt_">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>4.设置ACL验证,设置客户端需声称的名字符合iqn名称规范</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash">iscsi/iqn.2023-08.dongiscsi.com:dong/tpg1/acls create iqn.2023-08.dongiscsi.com:dongacl</span></span><br><span class="line">Created Node ACL for iqn.2023-08.dongiscsi.com:dongacl</span><br><span class="line">Created mapped LUN 0.</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">o- / ......................................................................................................................... [...]</span><br><span class="line">  o- backstores .............................................................................................................. [...]</span><br><span class="line">  | o- block .................................................................................................. [Storage Objects: 1]</span><br><span class="line">  | | o- dongiscsi ....................................................................... [/dev/sdb1 (3.0GiB) write-thru activated]</span><br><span class="line">  | |   o- alua ................................................................................................... [ALUA Groups: 1]</span><br><span class="line">  | |     o- default_tg_pt_gp ....................................................................... [ALUA state: Active/optimized]</span><br><span class="line">  | o- fileio ................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- pscsi .................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- ramdisk ................................................................................................ [Storage Objects: 0]</span><br><span class="line">  o- iscsi ............................................................................................................ [Targets: 1]</span><br><span class="line">  | o- iqn.2023-08.dongiscsi.com:dong .................................................................................... [TPGs: 1]</span><br><span class="line">  |   o- tpg1 ............................................................................................... [no-gen-acls, no-auth]</span><br><span class="line">  |     o- acls .......................................................................................................... [ACLs: 1]</span><br><span class="line">  |     | o- iqn.2023-08.dongiscsi.com:dongacl .................................................................... [Mapped LUNs: 1]</span><br><span class="line">  |     |   o- mapped_lun0 ............................................................................. [lun0 block/dongiscsi (rw)]</span><br><span class="line">  |     o- luns .......................................................................................................... [LUNs: 1]</span><br><span class="line">  |     | o- lun0 ................................................................. [block/dongiscsi (/dev/sdb1) (default_tg_pt_gp)]</span><br><span class="line">  |     o- portals .................................................................................................... [Portals: 1]</span><br><span class="line">  |       o- 0.0.0.0:3260 ..................................................................................................... [OK]</span><br><span class="line">  o- loopback ......................................................................................................... [Targets: 0]</span><br><span class="line"><span class="meta prompt_">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>5.指定本机提供服务的IP地址及端口(默认为3260)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash">iscsi/iqn.2023-08.dongiscsi.com:dong/tpg1/portals create ip_address=127.0.0.1</span></span><br><span class="line">Using default IP port 3260</span><br><span class="line">Could not create NetworkPortal in configFS</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">o- / ......................................................................................................................... [...]</span><br><span class="line">  o- backstores .............................................................................................................. [...]</span><br><span class="line">  | o- block .................................................................................................. [Storage Objects: 1]</span><br><span class="line">  | | o- dongiscsi ....................................................................... [/dev/sdb1 (3.0GiB) write-thru activated]</span><br><span class="line">  | |   o- alua ................................................................................................... [ALUA Groups: 1]</span><br><span class="line">  | |     o- default_tg_pt_gp ....................................................................... [ALUA state: Active/optimized]</span><br><span class="line">  | o- fileio ................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- pscsi .................................................................................................. [Storage Objects: 0]</span><br><span class="line">  | o- ramdisk ................................................................................................ [Storage Objects: 0]</span><br><span class="line">  o- iscsi ............................................................................................................ [Targets: 1]</span><br><span class="line">  | o- iqn.2023-08.dongiscsi.com:dong .................................................................................... [TPGs: 1]</span><br><span class="line">  |   o- tpg1 ............................................................................................... [no-gen-acls, no-auth]</span><br><span class="line">  |     o- acls .......................................................................................................... [ACLs: 1]</span><br><span class="line">  |     | o- iqn.2023-08.dongiscsi.com:dongacl .................................................................... [Mapped LUNs: 1]</span><br><span class="line">  |     |   o- mapped_lun0 ............................................................................. [lun0 block/dongiscsi (rw)]</span><br><span class="line">  |     o- luns .......................................................................................................... [LUNs: 1]</span><br><span class="line">  |     | o- lun0 ................................................................. [block/dongiscsi (/dev/sdb1) (default_tg_pt_gp)]</span><br><span class="line">  |     o- portals .................................................................................................... [Portals: 1]</span><br><span class="line">  |       o- 0.0.0.0:3260 ..................................................................................................... [OK]</span><br><span class="line">  o- loopback ......................................................................................................... [Targets: 0]</span><br><span class="line"><span class="meta prompt_">/&gt;</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"></span><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash">iscsi/iqn.2023-08.dongiscsi.com:dong/tpg1/portals delete ip_address=0.0.0.0 ip_port=3260</span></span><br><span class="line">Deleted network portal 0.0.0.0:3260</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash">iscsi/iqn.2023-08.dongiscsi.com:dong/tpg1/portals create ip_address=192.168.1.12 ip_port=3260</span></span><br><span class="line">Using default IP port 3260</span><br><span class="line">Created network portal 192.168.1.12:3260.</span><br></pre></td></tr></table></figure>
+
+<p>6.退出自动保存</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">/&gt; </span><span class="language-bash"><span class="built_in">exit</span></span></span><br><span class="line">Global pref auto_save_on_exit=true</span><br><span class="line">Configuration saved to /etc/target/saveconfig.json</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5四重启服务"><a href="#5四重启服务" class="headerlink" title="5四重启服务"></a>5四重启服务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master dong]# systemctl restart target</span><br><span class="line">[root@master dong]# systemctl enable target</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/target.service to /usr/lib/systemd/system/target.service.</span><br><span class="line">[root@master dong]#</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-客户端安装"><a href="#6-客户端安装" class="headerlink" title="6.客户端安装"></a>6.客户端安装</h4><p>1.安装软件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yum -y install iscsi-initiator-utils</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.修改配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master dong]# vim /etc/iscsi/initiatorname.iscsi</span><br><span class="line">InitiatorName=iqn.2023-08.dongiscsi.com:dongacl   # 使用ACL名称</span><br></pre></td></tr></table></figure>
+<p>3.客户端重启服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master dong]# systemctl restart iscsid</span><br></pre></td></tr></table></figure>
+<p>4.发现共享存储<br>iscsiadm  –m  discoverydb  –type sendtargets –portal 192.168.1.12 –discover 192.168.1.12:3260,1 iqn.2023-08.dongiscsi.com:dong</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master dong]# iscsiadm  --m  discoverydb  --type sendtargets --portal 192.168.1.12 --discover 192.168.1.12:3260,1 iqn.2023-08.dongiscsi.com:dong</span><br><span class="line">192.168.1.12:3260,1 iqn.2023-08.dongiscsi.com:dong</span><br></pre></td></tr></table></figure>
+
+<p>5.加载使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master dong]# lsblk</span><br><span class="line">NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda               8:0    0   30G  0 disk</span><br><span class="line">├─sda1            8:1    0    1G  0 part /boot</span><br><span class="line">└─sda2            8:2    0   29G  0 part</span><br><span class="line">  ├─centos-root 253:0    0   26G  0 lvm  /</span><br><span class="line">  └─centos-swap 253:1    0    3G  0 lvm  [SWAP]</span><br><span class="line">sdb               8:16   0    5G  0 disk</span><br><span class="line">└─sdb1            8:17   0    3G  0 part</span><br><span class="line">sr0              11:0    1 1024M  0 rom</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master dong]# systemctl restart iscsi.service</span><br><span class="line">[root@master dong]# systemctl enable iscsi.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@master dong]# lsblk</span><br><span class="line">NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda               8:0    0   30G  0 disk</span><br><span class="line">├─sda1            8:1    0    1G  0 part /boot</span><br><span class="line">└─sda2            8:2    0   29G  0 part</span><br><span class="line">  ├─centos-root 253:0    0   26G  0 lvm  /</span><br><span class="line">  └─centos-swap 253:1    0    3G  0 lvm  [SWAP]</span><br><span class="line">sdb               8:16   0    5G  0 disk</span><br><span class="line">└─sdb1            8:17   0    3G  0 part</span><br><span class="line">sdc               8:32   0    3G  0 disk  # 这块磁盘</span><br><span class="line">sr0              11:0    1 1024M  0 rom</span><br></pre></td></tr></table></figure>
+
+
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-Internet-SCSI-%E7%BD%91%E9%99%85SCSI%E6%8E%A5%E5%8F%A3-%EF%BC%88%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A33260%EF%BC%89"><span class="toc-text">0.Internet SCSI,网际SCSI接口 （默认端口3260）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-iSCSI%E7%A3%81%E7%9B%98%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-text">1.iSCSI磁盘的工作模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-iSCSI%E7%A3%81%E7%9B%98%E7%9A%84%E6%9E%84%E6%88%90"><span class="toc-text">2.iSCSI磁盘的构成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-ISCSI-Qualified-Name-%E5%90%8D%E7%A7%B0%E8%A7%84%E8%8C%83"><span class="toc-text">3.ISCSI Qualified Name 名称规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%89%E8%A3%85targetcli"><span class="toc-text">4.安装targetcli</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E8%BF%90%E8%A1%8Ctargetcli%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE"><span class="toc-text">5.运行targetcli命令进行配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E5%9B%9B%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="toc-text">5四重启服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85"><span class="toc-text">6.客户端安装</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2021/08/20/运维/Linux云计算教程/20-iSCSI磁盘/">https://dbbruce.github.io/2021/08/20/运维/Linux云计算教程/20-iSCSI磁盘/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2021/08/19/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/19-%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          19-交换分区
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/08/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/21-%E6%95%B0%E6%8D%AE%E5%BA%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          21-数据库
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

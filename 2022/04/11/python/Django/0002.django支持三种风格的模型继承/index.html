@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>django支持三种风格的模型继承 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-python/Django/0002.django支持三种风格的模型继承" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      django支持三种风格的模型继承
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2022-04-11T11:14:52.000Z" itemprop="datePublished">2022年04月11日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2022/04/11/python/Django/0002.django%E6%94%AF%E6%8C%81%E4%B8%89%E7%A7%8D%E9%A3%8E%E6%A0%BC%E7%9A%84%E6%A8%A1%E5%9E%8B%E7%BB%A7%E6%89%BF/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="Django支持三种风格的模型继承"><a href="#Django支持三种风格的模型继承" class="headerlink" title="Django支持三种风格的模型继承"></a>Django支持三种风格的模型继承</h4><ul>
+<li>抽象类继承：父类继承自models.Model，但不会在底层数据库中生成相应的数据表。父类的属性列存储在其子类的数据表中。</li>
+<li>多表继承：多表继承的每个模型类都在底层数据库中生成相应的数据表管理数据。</li>
+<li>代理模型继承：父类用于在底层数据库中管理数据表；而子类不定义数据列，只定义查询数据集的排序方式等元数据。<span id="more"></span></li>
+</ul>
+<h4 id="1．抽象类继承"><a href="#1．抽象类继承" class="headerlink" title="1．抽象类继承"></a>1．抽象类继承</h4><p>抽象类继承的作用是在多个表有若干相同的字段时，可以使开发者将这些字段统一定义在抽象基类中，免于重复定义这些字段。抽象基类的定义通过在模型的Meta中定义属性abstract &#x3D;True来实现。抽象基类的举例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MessageBase</span>(models.Model):</span><br><span class="line">  <span class="built_in">id</span> = models.AutoField()</span><br><span class="line">  content = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">  user_name = models.CharField(max_length=<span class="number">80</span>)</span><br><span class="line">  pub_date = models.DateField()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">      abstract = <span class="literal">True</span>     <span class="comment">#定义本类为抽象基类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Moment</span>(<span class="title class_ inherited__">MessageBase</span>):</span><br><span class="line">    headline = models.CharField(max_length=<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="2．多表继承"><a href="#2．多表继承" class="headerlink" title="2．多表继承"></a>2．多表继承</h4><p>在多表继承技术中，无论是父表还是子表都会用数据库中相对应的数据表维护模型数据，父类中的字段不会重复地在多个子类的相关数据表中进行定义。从这种意义上讲，多表继承才是真正面向对象的ORM技术。<br>多表继承的定义不需要特殊的关键字。在Django内部通过在父模型和子模型之间建立一对一关系来实现多表继承技术。如下代码定义了MessageBase及其子类的多表继承版本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MessageBase</span>(models.Model):</span><br><span class="line">  <span class="built_in">id</span> = models.AutoField()</span><br><span class="line">  content = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">  user_name = models.CharField(max_length=<span class="number">80</span>)</span><br><span class="line">  pub_date = models.DateField()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Moment</span>(<span class="title class_ inherited__">MessageBase</span>):</span><br><span class="line">  headline = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Comment</span>(<span class="title class_ inherited__">MessageBase</span>):</span><br><span class="line">  level = models.CharField(max_length=<span class="number">1</span>, […])</span><br></pre></td></tr></table></figure>
+<h4 id="3．代理模型继承"><a href="#3．代理模型继承" class="headerlink" title="3．代理模型继承"></a>3．代理模型继承</h4><p>在前两种继承模型中子类模型都有实际存储数据的作用；而代理模型继承中子类只用于管理父类的数据，而不实际存储数据。代理模型继承通过在子类的Meta中定义proxy&#x3D;True属性来实现，举例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Moment</span>(models.Model):</span><br><span class="line">  <span class="built_in">id</span> = models.AutoField()</span><br><span class="line">  headline = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">  content = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">  user_name = models.CharField(max_length=<span class="number">80</span>)</span><br><span class="line">  pub_date = models.DateField()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderedMoment</span>(<span class="title class_ inherited__">Moment</span>):</span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">      proxy = <span class="literal">True</span></span><br><span class="line">      ordering = [<span class="string">&quot;-pub_date&quot;</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="4-反向解析"><a href="#4-反向解析" class="headerlink" title="4.反向解析"></a>4.反向解析</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Django还提供了反向的从映射名到URL地址的解析功能。</span><br><span class="line">Django的URL反向解析功能在模板文件和Python程序中有不同的调用方法：在模板文件中用&#123;%url %&#125;标签调用反向解析；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在Python程序中用django.core.urlresolvers.reverse（）函数调用反向解析<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;&#123;% url &#x27;moments_2015&#x27; %&#125;&quot;</span>&gt;</span><br><span class="line"><span class="keyword">from</span> django.core.urlresolvers <span class="keyword">import</span> reverse</span><br><span class="line">reverse(<span class="string">&#x27;moments_2015&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>带参数的反向解析<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;&#123;% url &#x27;moments&#x27;, 2014 %&#125;&quot;</span>&gt;</span><br><span class="line">(reverse(<span class="string">&#x27;moments&#x27;</span>, args=(<span class="number">2013</span>, ))</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-Django为继承自Form类的表单维护了一个绑定（bound）"><a href="#5-Django为继承自Form类的表单维护了一个绑定（bound）" class="headerlink" title="5.Django为继承自Form类的表单维护了一个绑定（bound）"></a>5.Django为继承自Form类的表单维护了一个绑定（bound）</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果一个表单对象在实例化后被赋予过数据内容，则称该表单处于bound状态。只有处于bound状态的表单才具有表单数据验证（validate data）的功能。</span><br><span class="line">如果未被赋予过数据内容，则表单处于unbound状态。只有处于unbound状态的表单才能被赋予数据，使该表单变为bound状态。</span><br><span class="line">注意： 已经处于bound状态的表单不能在Python代码中修改其数据，而只能由网页用户在页面中输入数据进行修改。</span><br></pre></td></tr></table></figure>
+<h4 id="6-在Python中，同步I-O可以被理解为一个被调用的I-O函数会阻塞调用函数的执行，而异步I-O则不会阻塞调用函数的执行。代码举例如下："><a href="#6-在Python中，同步I-O可以被理解为一个被调用的I-O函数会阻塞调用函数的执行，而异步I-O则不会阻塞调用函数的执行。代码举例如下：" class="headerlink" title="6.在Python中，同步I&#x2F;O可以被理解为一个被调用的I&#x2F;O函数会阻塞调用函数的执行，而异步I&#x2F;O则不会阻塞调用函数的执行。代码举例如下："></a>6.在Python中，同步I&#x2F;O可以被理解为一个被调用的I&#x2F;O函数会阻塞调用函数的执行，而异步I&#x2F;O则不会阻塞调用函数的执行。代码举例如下：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tornado.httpclient <span class="keyword">import</span> HTTPClient            <span class="comment">#Tornado的HTTP客户端类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">synchronous_visit</span>():</span><br><span class="line">  http_client = HTTPClient()</span><br><span class="line">  response = http_client.fetch(<span class="string">&quot;www.baidu.com&quot;</span>) <span class="comment">#阻塞，直到对www.baidu.com访问完成</span></span><br><span class="line">  <span class="built_in">print</span>(response.body)</span><br></pre></td></tr></table></figure>
+<h4 id="7-协程是Torando中进行异步I-O代码开发的方法。协程使用了Python关键字yield将调用者挂起和恢复执行"><a href="#7-协程是Torando中进行异步I-O代码开发的方法。协程使用了Python关键字yield将调用者挂起和恢复执行" class="headerlink" title="7.协程是Torando中进行异步I&#x2F;O代码开发的方法。协程使用了Python关键字yield将调用者挂起和恢复执行"></a>7.协程是Torando中进行异步I&#x2F;O代码开发的方法。协程使用了Python关键字yield将调用者挂起和恢复执行</h4><p>迭代器（Iterator）是访问集合内元素的一种方式。迭代器对象从集合的第1个元素开始访问，直到所有元素都被访问一遍后结束。迭代器不能回退，只能往前进行迭代。<br>使用iter（）调用可以将列表、集合转换为迭代器，比如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;numbers = [1, 3, 5, 7, 8]</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;t = iter(numbers)</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;<span class="built_in">print</span> t</span></span><br><span class="line">&lt;listiterator object at 0x0012B3F0&gt;</span><br></pre></td></tr></table></figure>
+
+<p>迭代器与普通Python对象的区别是迭代器有一个next（）方法，每次调用该方法可以返回一个元素。调用者（比如for语句）可以通过不断调用next（）方法来逐个访问集合元素。比如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;iter = iter(range(5))</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;<span class="built_in">print</span> iter.next()</span></span><br><span class="line">0</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;<span class="built_in">print</span> iter.next()</span></span><br></pre></td></tr></table></figure>
+<h4 id="8-编写协程函数"><a href="#8-编写协程函数" class="headerlink" title="8.编写协程函数"></a>8.编写协程函数</h4><p>用协程技术开发网页访问功能的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tornado <span class="keyword">import</span> gen                        <span class="comment"># 引入协程库gen</span></span><br><span class="line"><span class="keyword">from</span> tornado.httpclient <span class="keyword">import</span> AsyncHTTPClient</span><br><span class="line"><span class="meta">@gen.coroutine                                </span><span class="comment"># 使用gen.coroutine修饰器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">coroutine_visit</span>():</span><br><span class="line">  http_client = AsyncHTTPClient()</span><br><span class="line">  response = <span class="keyword">yield</span> http_client.fetch(<span class="string">&quot;www.baidu.com&quot;</span>)</span><br><span class="line">  <span class="built_in">print</span>(response.body)</span><br></pre></td></tr></table></figure>
+
+<p>在Python中，使用yield关键字定义的迭代器也被称为“生成器”。<br>因为协程本身不使用线程，所以减少了线程上下文切换的开销，是一种更高效的开发模式。</p>
+<p>协程函数可以通过以下三种方式进行调用。</p>
+<ul>
+<li>在本身是协程的函数内通过yield关键字调用。</li>
+<li>在IOLoop尚未启动时，通过IOLoop的run_sync（）函数调用。</li>
+<li>在IOLoop已经启动时，通过IOLoop的spawn_callback（）函数调用。</li>
+</ul>
+<p>IOLoop是Torando的主事件循环对象，Tornado程序通过它监听外部客户端的访问请求，并执行相应的操作。当程序尚未进入IOLoop的running状态时，可以通过run_sync（）函数调用协程函数</p>
+<p>Tornado要求协程函数在IOLoop的running状态中才能被调用，只不过run_sync函数自动完成了启动、停止IOLoop的步骤，它的实现逻辑为：启动IOLoop→调用被lambda封装的协程函数→停止IOLoop</p>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Django%E6%94%AF%E6%8C%81%E4%B8%89%E7%A7%8D%E9%A3%8E%E6%A0%BC%E7%9A%84%E6%A8%A1%E5%9E%8B%E7%BB%A7%E6%89%BF"><span class="toc-text">Django支持三种风格的模型继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%BB%A7%E6%89%BF"><span class="toc-text">1．抽象类继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%EF%BC%8E%E5%A4%9A%E8%A1%A8%E7%BB%A7%E6%89%BF"><span class="toc-text">2．多表继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%EF%BC%8E%E4%BB%A3%E7%90%86%E6%A8%A1%E5%9E%8B%E7%BB%A7%E6%89%BF"><span class="toc-text">3．代理模型继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%8F%8D%E5%90%91%E8%A7%A3%E6%9E%90"><span class="toc-text">4.反向解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Django%E4%B8%BA%E7%BB%A7%E6%89%BF%E8%87%AAForm%E7%B1%BB%E7%9A%84%E8%A1%A8%E5%8D%95%E7%BB%B4%E6%8A%A4%E4%BA%86%E4%B8%80%E4%B8%AA%E7%BB%91%E5%AE%9A%EF%BC%88bound%EF%BC%89"><span class="toc-text">5.Django为继承自Form类的表单维护了一个绑定（bound）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%9C%A8Python%E4%B8%AD%EF%BC%8C%E5%90%8C%E6%AD%A5I-O%E5%8F%AF%E4%BB%A5%E8%A2%AB%E7%90%86%E8%A7%A3%E4%B8%BA%E4%B8%80%E4%B8%AA%E8%A2%AB%E8%B0%83%E7%94%A8%E7%9A%84I-O%E5%87%BD%E6%95%B0%E4%BC%9A%E9%98%BB%E5%A1%9E%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%80%8C%E5%BC%82%E6%AD%A5I-O%E5%88%99%E4%B8%8D%E4%BC%9A%E9%98%BB%E5%A1%9E%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E3%80%82%E4%BB%A3%E7%A0%81%E4%B8%BE%E4%BE%8B%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">6.在Python中，同步I&#x2F;O可以被理解为一个被调用的I&#x2F;O函数会阻塞调用函数的执行，而异步I&#x2F;O则不会阻塞调用函数的执行。代码举例如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E5%8D%8F%E7%A8%8B%E6%98%AFTorando%E4%B8%AD%E8%BF%9B%E8%A1%8C%E5%BC%82%E6%AD%A5I-O%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%82%E5%8D%8F%E7%A8%8B%E4%BD%BF%E7%94%A8%E4%BA%86Python%E5%85%B3%E9%94%AE%E5%AD%97yield%E5%B0%86%E8%B0%83%E7%94%A8%E8%80%85%E6%8C%82%E8%B5%B7%E5%92%8C%E6%81%A2%E5%A4%8D%E6%89%A7%E8%A1%8C"><span class="toc-text">7.协程是Torando中进行异步I&#x2F;O代码开发的方法。协程使用了Python关键字yield将调用者挂起和恢复执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E7%BC%96%E5%86%99%E5%8D%8F%E7%A8%8B%E5%87%BD%E6%95%B0"><span class="toc-text">8.编写协程函数</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2022/04/11/python/Django/0002.django支持三种风格的模型继承/">https://dbbruce.github.io/2022/04/11/python/Django/0002.django支持三种风格的模型继承/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2022/04/10/python/Django/0001.django%E9%85%8D%E7%BD%AEfcgi%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          django配置fcgi参数解释
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/05/01/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/00-Failed%20to%20set%20locale/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          00-Failed to set locale
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MHA集群 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-mysql/MHA集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MHA集群
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2017-02-12T13:00:00.000Z" itemprop="datePublished">2017年02月12日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2017/02/12/mysql/MHA%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-MHA-Master-High-Availability"><a href="#1-MHA-Master-High-Availability" class="headerlink" title="1.MHA ( Master High Availability)"></a>1.MHA ( Master High Availability)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">由日本DeNA公司youshimaton开发</span><br><span class="line">是一套优秀的实现MySQL高可用的解决方案</span><br><span class="line">数据库的自动故障切换操作能做到在0~30秒之内完成</span><br><span class="line">MHA能确保在故障切换过程中最大限度保证数据的一致性，以达到真正意义上的高可用</span><br></pre></td></tr></table></figure>
+<ul>
+<li>MHA Manager ( 管理节点 )<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">管理所有数据库服务器</span><br><span class="line">可以单独部署在一台独立的机器上</span><br><span class="line">也可以部署在某台数据库服务器上</span><br></pre></td></tr></table></figure></li>
+<li>MHA Node ( 数据节点)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">存储数据的MySQL服务器</span><br><span class="line">运行在每台MySQL服务器上</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+<li>MHA工作过程<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">由Manager定时探测集群中的master节点</span><br><span class="line">当master故障时，Manager自动将拥有最新数据的slave提升为新的master</span><br></pre></td></tr></table></figure></li>
+<li>试验配置<br>192.168.1.12 mysql 主<br>192.168.1.22 mysql 从<br>192.168.1.32 mysql 从<br>192.168.1.12 MHA管理主机,注意：这里主服务和manger是一台机器，那么ssh-copy-id时，要把公钥给自己下，也就是：ssh-copy-id <a href="mailto:&#114;&#111;&#x6f;&#x74;&#64;&#x31;&#x39;&#x32;&#46;&#x31;&#54;&#56;&#46;&#x31;&#46;&#x31;&#50;">&#114;&#111;&#x6f;&#x74;&#64;&#x31;&#x39;&#x32;&#46;&#x31;&#54;&#56;&#46;&#x31;&#46;&#x31;&#50;</a><br>192.168.1.10 客户端<br>192.168.1.100 VIP</li>
+</ul>
+<h4 id="2-部署MHA集群"><a href="#2-部署MHA集群" class="headerlink" title="2.部署MHA集群"></a>2.部署MHA集群</h4><ul>
+<li>安装perl相关软件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install perl-*</span><br></pre></td></tr></table></figure></li>
+<li>安装依赖包-perl依赖包<br>下载perl依赖包,可以用下面的地址：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.rpmfind.net/linux/rpm2html/search.php?query=perl-mail-send&amp;submit=Search+…&amp;system=&amp;arch=</span><br></pre></td></tr></table></figure></li>
+<li>依赖的包,依次下载安装<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">perl-Email-Date-Format-1.002-15.el7.noarch.rpm</span><br><span class="line">perl-MIME-Types-1.38-2.el7.noarch.rpm</span><br><span class="line">perl-MIME-Lite-3.030-1.el7.noarch.rpm</span><br><span class="line">perl-Mail-Sendmail-0.79-21.el7.noarch.rpm</span><br><span class="line">perl-Mail-Sender-0.8.23-1.el7.noarch.rpm</span><br><span class="line">perl-Log-Dispatch-2.41-1.el7.1.noarch.rpm</span><br><span class="line">perl-Parallel-ForkManager-1.18-2.el7.noarch.rpm</span><br></pre></td></tr></table></figure></li>
+<li>共享了，在百度云盘<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">链接:https://pan.baidu.com/s/17lZGPbJDRpedEZ5O0XEHMw  密码:sbau</span><br></pre></td></tr></table></figure></li>
+<li>配置ssh密码对认证登录：1、管理主机可以无密码连接所有数据库；2、数据库之间可以无密码互相连接；<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 .ssh]# ssh-keygen</span><br><span class="line">[root@centos07-12 .ssh]# ssh-copy-id root@192.168.1.22</span><br></pre></td></tr></table></figure></li>
+<li>配置一主多从，192.168.1.12 主，192.168.1.22 从，192.168.1.32 从<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">参考：https://dbbruce.github.io/2017/02/10/mysql/%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E/</span><br></pre></td></tr></table></figure></li>
+<li>配置管理主机57，既要manager包，也要装node包，必须先装node</li>
+</ul>
+<ol>
+<li>安装node<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mha4mysql-node-0.58-0.el7.centos.noarch.rpm</span><br></pre></td></tr></table></figure></li>
+<li>安装manger</li>
+</ol>
+<ul>
+<li>下面是缺少依赖，会有missing的显示<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# perl Makefile.PL</span><br><span class="line">*** Module::AutoInstall version 1.06</span><br><span class="line">*** Checking for Perl dependencies...</span><br><span class="line">[Core Features]</span><br><span class="line">- DBI                   ...loaded. (1.627)</span><br><span class="line">- DBD::mysql            ...loaded. (4.023)</span><br><span class="line">- Time::HiRes           ...loaded. (1.9725)</span><br><span class="line">- Config::Tiny          ...loaded. (2.14)</span><br><span class="line">- Log::Dispatch         ...missing.</span><br><span class="line">- Parallel::ForkManager ...missing.</span><br></pre></td></tr></table></figure></li>
+<li>成功，没有缺少依赖的显示<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# tar xvf mha4mysql-manager-0.58.tar.gz</span><br><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# which perl</span><br><span class="line">/usr/bin/perl</span><br><span class="line"># 使用perl安装</span><br><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# perl Makefile.PL</span><br><span class="line">*** Module::AutoInstall version 1.06</span><br><span class="line">*** Checking for Perl dependencies...</span><br><span class="line">[Core Features]</span><br><span class="line">- DBI                   ...loaded. (1.627)   # 注意下面这loaded，如果有miss就是缺少依赖，看上面有安装依赖的方法</span><br><span class="line">- DBD::mysql            ...loaded. (4.023)</span><br><span class="line">- Time::HiRes           ...loaded. (1.9725)</span><br><span class="line">- Config::Tiny          ...loaded. (2.14)</span><br><span class="line">- Log::Dispatch         ...loaded. (2.41)</span><br><span class="line">- Parallel::ForkManager ...loaded. (1.18)</span><br><span class="line">- MHA::NodeConst        ...loaded. (0.58)</span><br><span class="line">*** Module::AutoInstall configuration finished.</span><br><span class="line">Writing Makefile for mha4mysql::manager</span><br><span class="line">Writing MYMETA.yml and MYMETA.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# make</span><br><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# make install</span><br></pre></td></tr></table></figure></li>
+<li>验证，有下面的命令，说明安装成功<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# masterha_</span><br><span class="line">masterha_check_repl       masterha_check_status     masterha_manager          masterha_master_switch    masterha_stop</span><br><span class="line">masterha_check_ssh        masterha_conf_host        masterha_master_monitor   masterha_secondary_check</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-编辑主配置文件"><a href="#3-编辑主配置文件" class="headerlink" title="3.编辑主配置文件"></a>3.编辑主配置文件</h4><ul>
+<li>主文件配置模板在源码包里<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# cat /root/mha4mysql-manager-0.58/samples/conf/app1.cnf</span><br></pre></td></tr></table></figure></li>
+<li>故障切换的模板<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# cat /root/mha4mysql-manager-0.58/samples/scripts/master_ip_failover</span><br></pre></td></tr></table></figure></li>
+<li>添加配置文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]#  mkdir /etc/mha</span><br><span class="line"># 拷贝配置文件</span><br><span class="line">[root@centos07-12 ~]# cp /root/mha4mysql-manager-0.58/samples/conf/app1.cnf  /etc/mha/</span><br><span class="line"># 拷贝故障脚本，给执行权限</span><br><span class="line">[root@centos07-12 ~]# cp /root/mha4mysql-manager-0.58/samples/scripts/master_ip_failover  /etc/mha/</span><br><span class="line">[root@centos07-12 ~]# chmod +x  /etc/mha/master_ip_failover</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# vim /etc/mha/app1.cnf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">管理端配置</span></span><br><span class="line">[server default]</span><br><span class="line">manager_workdir=/etc/mha/</span><br><span class="line">manager_log=/etc/mha/manager.log</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">故障切换的脚步,自己添加</span></span><br><span class="line">master_ip_failover_script=/etc/mha/master_ip_failover</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下面6行需要自己添加</span></span><br><span class="line">ssh_user=root</span><br><span class="line">ssh_port=22</span><br><span class="line">repl_user=repluser</span><br><span class="line">repl_password=654321</span><br><span class="line">user=root               # 这里的root要在所有的主从服务器上都有，必须有全部权限，如果没有使用下面sql授权</span><br><span class="line">password=123456</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据库配置</span></span><br><span class="line">[server1]</span><br><span class="line">hostname=192.168.1.12 </span><br><span class="line">port=3306    #默认是3306可以不写</span><br><span class="line">candidate_master=1  # 1表示，如果master坏了，参加master竞选</span><br><span class="line"></span><br><span class="line">[server2]</span><br><span class="line">hostname=192.168.1.22</span><br><span class="line">port=3306</span><br><span class="line">candidate_master=1</span><br><span class="line"></span><br><span class="line">[server3]</span><br><span class="line">hostname=192.168.1.32</span><br><span class="line">port=3306</span><br><span class="line">candidate_master=1</span><br></pre></td></tr></table></figure></li>
+<li>授权，主，从服务器都要<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; grant all on *.* to root@&quot;%&quot; identified by &quot;123456&quot;;</span><br><span class="line"></span><br><span class="line">mysql&gt; select user,host from mysql.user;</span><br><span class="line">+----------------+-----------+</span><br><span class="line">| user           | host      |</span><br><span class="line">+----------------+-----------+</span><br><span class="line">| root           | %         |  # 远程权限</span><br><span class="line">| root           | localhost |</span><br><span class="line">+----------------+-----------+</span><br></pre></td></tr></table></figure></li>
+<li>从服务，添加同步用户，用户主机挂了，从服务变成主服务后需要同步用户<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;  grant replication slave on *.* to repluser@&quot;%&quot; identified by &quot;654321&quot;;</span><br><span class="line"></span><br><span class="line">mysql&gt; select user,host from mysql.user;</span><br><span class="line">+----------------+-----------+</span><br><span class="line">| user           | host      |</span><br><span class="line">+----------------+-----------+</span><br><span class="line">| repluser       | %         |</span><br><span class="line">| root           | %         |</span><br><span class="line">| root           | localhost |</span><br><span class="line">+----------------+-----------+</span><br></pre></td></tr></table></figure></li>
+<li>从服务，开启binlog日志文件，禁止自动删除中继文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id=288</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开启binlog</span></span><br><span class="line">log-bin=master22-dong</span><br><span class="line">binlog_format=mixed</span><br></pre></td></tr></table></figure></li>
+<li>所有服务上，禁止自动删除中继文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id=88</span><br><span class="line">log-bin=master-dong</span><br><span class="line">binlog_format=mixed</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁止自动删除中继日志</span></span><br><span class="line">relay_log_purge=0</span><br></pre></td></tr></table></figure></li>
+<li>所有服务上，启用半同步复制<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugin-load=&quot;rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so;&quot;</span><br><span class="line">rpl_semi_sync_master_enabled=1</span><br><span class="line">rpl_semi_sync_slave_enabled=1</span><br></pre></td></tr></table></figure></li>
+<li>最终修改后的样子<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id=288</span><br><span class="line">log-bin=master22-dong</span><br><span class="line">binlog_format=mixed</span><br><span class="line">relay_log_purge=0</span><br><span class="line"></span><br><span class="line">validate_password_length=6</span><br><span class="line">validate_password_policy=0</span><br><span class="line"></span><br><span class="line">plugin-load=&quot;rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so;&quot;</span><br><span class="line">rpl_semi_sync_master_enabled=1</span><br><span class="line">rpl_semi_sync_slave_enabled=1</span><br></pre></td></tr></table></figure></li>
+<li>配置修改后重启mysql<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-32 mycat]# systemctl restart mysqld</span><br></pre></td></tr></table></figure></li>
+<li>查看主从同步是否正常<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 主服务</span><br><span class="line">mysql&gt; show master status \G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">             File: master-dong.000007</span><br><span class="line">         Position: 154</span><br><span class="line">     Binlog_Do_DB:</span><br><span class="line"> Binlog_Ignore_DB:</span><br><span class="line">Executed_Gtid_Set:</span><br><span class="line">    </span><br><span class="line"># 从服务</span><br><span class="line">mysql&gt; show slave status \G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 192.168.1.12</span><br><span class="line">                  Master_User: repluser</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: master-dong.000007</span><br><span class="line">          Read_Master_Log_Pos: 154</span><br><span class="line">               Relay_Log_File: centos07-22-relay-bin.000008</span><br><span class="line">                Relay_Log_Pos: 371</span><br><span class="line">        Relay_Master_Log_File: master-dong.000007</span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br></pre></td></tr></table></figure></li>
+<li>修改故障切换脚本，指定vip地址， 1.100是虚拟IP<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# cat /etc/mha/master_ip_failover</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/env perl</span></span><br><span class="line">use strict;</span><br><span class="line">use warnings FATAL =&gt; &#x27;all&#x27;;</span><br><span class="line"></span><br><span class="line">use Getopt::Long;</span><br><span class="line"></span><br><span class="line">my (</span><br><span class="line"><span class="meta prompt_">   $</span><span class="language-bash"><span class="built_in">command</span>,         <span class="variable">$ssh_user</span>,       <span class="variable">$orig_master_host</span>, <span class="variable">$orig_master_ip</span>,</span></span><br><span class="line"><span class="meta prompt_">   $</span><span class="language-bash">orig_master_port, <span class="variable">$new_master_host</span>, <span class="variable">$new_master_ip</span>,   <span class="variable">$new_master_port</span></span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">my $vip = &#x27;192.168.1.100/24&#x27;;</span><br><span class="line">my $key = &quot;1&quot;;</span><br><span class="line">my $ssh_start_vip = &quot;/sbin/ifconfig enp0s3:$key $vip&quot;;</span><br><span class="line">my $ssh_stop_vip = &quot;/sbin/ifconfig enp0s3:$key down&quot;;</span><br><span class="line">GetOptions(</span><br><span class="line">   &#x27;command=s&#x27;         =&gt; \$command,</span><br><span class="line">   &#x27;ssh_user=s&#x27;        =&gt; \$ssh_user,</span><br><span class="line">   &#x27;orig_master_host=s&#x27; =&gt; \$orig_master_host,</span><br><span class="line">   &#x27;orig_master_ip=s&#x27;   =&gt; \$orig_master_ip,</span><br><span class="line">   &#x27;orig_master_port=i&#x27; =&gt; \$orig_master_port,</span><br><span class="line">   &#x27;new_master_host=s&#x27;  =&gt; \$new_master_host,</span><br><span class="line">   &#x27;new_master_ip=s&#x27;   =&gt; \$new_master_ip,</span><br><span class="line">   &#x27;new_master_port=i&#x27;  =&gt; \$new_master_port,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">exit &amp;main();</span><br><span class="line"></span><br><span class="line">sub main &#123;</span><br><span class="line"></span><br><span class="line">    print &quot;\n\nIN SCRIPT TEST====$ssh_stop_vip==$ssh_start_vip===\n\n&quot;;</span><br><span class="line"></span><br><span class="line">    if ( $command eq &quot;stop&quot; || $command eq &quot;stopssh&quot; ) &#123;</span><br><span class="line"></span><br><span class="line">       my $exit_code = 1;</span><br><span class="line">       eval &#123;</span><br><span class="line">           print &quot;Disabling the VIP on old master: $orig_master_host \n&quot;;</span><br><span class="line">           &amp;stop_vip();</span><br><span class="line">           $exit_code = 0;</span><br><span class="line">       &#125;;</span><br><span class="line">       if ($@) &#123;</span><br><span class="line">           warn &quot;Got Error: $@\n&quot;;</span><br><span class="line">           exit $exit_code;</span><br><span class="line">       &#125;</span><br><span class="line">       exit $exit_code;</span><br><span class="line">    &#125;</span><br><span class="line">    elsif ( $command eq &quot;start&quot; ) &#123;</span><br><span class="line">       my $exit_code = 10;</span><br><span class="line">       eval &#123;</span><br><span class="line">           print &quot;Enabling the VIP - $vip on the new master - $new_master_host \n&quot;;</span><br><span class="line">           &amp;start_vip();</span><br><span class="line">           $exit_code = 0;</span><br><span class="line">       &#125;;</span><br><span class="line">       if ($@) &#123;</span><br><span class="line">           warn $@;</span><br><span class="line">           exit $exit_code;</span><br><span class="line">       &#125;</span><br><span class="line">       exit $exit_code;</span><br><span class="line">    &#125;</span><br><span class="line">    elsif ( $command eq &quot;status&quot; ) &#123;</span><br><span class="line">       print &quot;Checking the Status of the script.. OK \n&quot;;</span><br><span class="line">       `ssh $ssh_user\@$orig_master_host \&quot; $ssh_start_vip \&quot;`;</span><br><span class="line">       exit 0;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">       &amp;usage();</span><br><span class="line">       exit 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sub start_vip() &#123;</span><br><span class="line">    `ssh $ssh_user\@$new_master_host \&quot; $ssh_start_vip \&quot;`;</span><br><span class="line">&#125;</span><br><span class="line">sub stop_vip() &#123;</span><br><span class="line">    `ssh $ssh_user\@$orig_master_host \&quot; $ssh_stop_vip \&quot;`;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sub usage &#123;</span><br><span class="line">    print</span><br><span class="line">    &quot;Usage: master_ip_failover --command=start|stop|stopssh|status --orig_master_host=host --orig_master_ip=ip --orig_master_port=port --new_master_host=host --new_master_ip=ip --new_master_port=port\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>配置主数据vip，192.168.1.100， enp0s3 网卡配置多个ip<br>查看原IP<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ifconfig enp0s3</span><br><span class="line">enp0s3: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.1.12  netmask 255.255.255.0  broadcast 192.168.1.255</span><br><span class="line">        inet6 2409:8a00:603d:4af0:b5bd:a13a:e695:d5a3  prefixlen 64  scopeid 0x0&lt;global&gt;</span><br><span class="line">        inet6 fe80::f1a3:a1af:6006:3ae6  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 08:00:27:79:a3:b8  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 238358  bytes 170560391 (162.6 MiB)</span><br><span class="line">        RX errors 0  dropped 85  overruns 0  frame 0</span><br><span class="line">        TX packets 132313  bytes 46270535 (44.1 MiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure>
+多加一个IP<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ifconfig enp0s3:1 192.168.1.100/24</span><br><span class="line">[root@centos07-12 ~]# ifconfig enp0s3</span><br><span class="line">enp0s3: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.1.12  netmask 255.255.255.0  broadcast 192.168.1.255</span><br><span class="line">        inet6 2409:8a00:603d:4af0:b5bd:a13a:e695:d5a3  prefixlen 64  scopeid 0x0&lt;global&gt;</span><br><span class="line">        inet6 fe80::f1a3:a1af:6006:3ae6  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 08:00:27:79:a3:b8  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 238602  bytes 170579151 (162.6 MiB)</span><br><span class="line">        RX errors 0  dropped 85  overruns 0  frame 0</span><br><span class="line">        TX packets 132464  bytes 46353023 (44.2 MiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# ifconfig enp0s3:1</span><br><span class="line">enp0s3:1: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.1.100  netmask 255.255.255.0  broadcast 192.168.1.255</span><br><span class="line">        ether 08:00:27:79:a3:b8  txqueuelen 1000  (Ethernet)</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]#</span><br></pre></td></tr></table></figure></li>
+<li>所有的数据库服务上，安装node<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-32 ~]# rpm -ivh mha4mysql-node-0.58-0.el7.centos.noarch.rpm</span><br><span class="line">准备中...                          ################################# [100%]</span><br><span class="line">正在升级/安装...</span><br><span class="line">   1:mha4mysql-node-0.58-0.el7.centos ################################# [100%]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-验证"><a href="#3-验证" class="headerlink" title="3.验证"></a>3.验证</h4><ul>
+<li>验证ssh，masterha_check_ssh –conf&#x3D;&#x2F;etc&#x2F;mha&#x2F;app1.cnf<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# masterha_check_ssh --conf=/etc/mha/app1.cnf</span><br><span class="line">Thu Oct 26 10:22:08 2023 - [warning] Global configuration file /etc/masterha_default.cnf not found. Skipping.</span><br><span class="line">Thu Oct 26 10:22:08 2023 - [info] Reading application default configuration from /etc/mha/app1.cnf..</span><br><span class="line">Thu Oct 26 10:22:08 2023 - [info] Reading server configuration from /etc/mha/app1.cnf..</span><br><span class="line">Thu Oct 26 10:22:08 2023 - [info] Starting SSH connection tests..</span><br><span class="line">Thu Oct 26 10:23:01 2023 - [debug]</span><br><span class="line">Thu Oct 26 10:22:20 2023 - [debug]  Connecting via SSH from root@192.168.1.32(192.168.1.32:22) to root@192.168.1.12(192.168.1.12:22)..</span><br><span class="line">Thu Oct 26 10:22:39 2023 - [debug]   ok.</span><br><span class="line">Thu Oct 26 10:22:39 2023 - [debug]  Connecting via SSH from root@192.168.1.32(192.168.1.32:22) to root@192.168.1.22(192.168.1.22:22)..</span><br><span class="line">Thu Oct 26 10:23:00 2023 - [debug]   ok.</span><br><span class="line">Thu Oct 26 10:23:11 2023 - [debug]</span><br><span class="line">Thu Oct 26 10:22:10 2023 - [debug]  Connecting via SSH from root@192.168.1.22(192.168.1.22:22) to root@192.168.1.12(192.168.1.12:22)..</span><br><span class="line">Thu Oct 26 10:22:40 2023 - [debug]   ok.</span><br><span class="line">Thu Oct 26 10:22:40 2023 - [debug]  Connecting via SSH from root@192.168.1.22(192.168.1.22:22) to root@192.168.1.32(192.168.1.32:22)..</span><br><span class="line">Thu Oct 26 10:23:01 2023 - [debug]   ok.</span><br><span class="line">Thu Oct 26 10:27:44 2023 - [debug]</span><br><span class="line">Thu Oct 26 10:22:08 2023 - [debug]  Connecting via SSH from root@192.168.1.12(192.168.1.12:22) to root@192.168.1.22(192.168.1.22:22)..</span><br><span class="line">Thu Oct 26 10:23:45 2023 - [debug]   ok.</span><br><span class="line">Thu Oct 26 10:23:45 2023 - [debug]  Connecting via SSH from root@192.168.1.12(192.168.1.12:22) to root@192.168.1.32(192.168.1.32:22)..</span><br><span class="line">Thu Oct 26 10:27:13 2023 - [debug]   ok.</span><br><span class="line">Thu Oct 26 10:27:44 2023 - [info] All SSH connection tests passed successfully.</span><br></pre></td></tr></table></figure></li>
+<li>验证数据库是否是，一主多从，masterha_check_repl  –conf&#x3D;&#x2F;etc&#x2F;mha&#x2F;app1.cnf<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 mha4mysql-manager-0.58]# masterha_check_repl  --conf=/etc/mha/app1.cnf</span><br><span class="line">Thu Oct 26 12:52:25 2023 - [warning] Global configuration file /etc/masterha_default.cnf not found. Skipping.</span><br><span class="line">Thu Oct 26 12:52:25 2023 - [info] Reading application default configuration from /etc/mha/app1.cnf..</span><br><span class="line">Thu Oct 26 12:52:25 2023 - [info] Reading server configuration from /etc/mha/app1.cnf..</span><br><span class="line">Thu Oct 26 12:52:25 2023 - [info] MHA::MasterMonitor version 0.58.</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] GTID failover mode = 0</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] Dead Servers:</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] Alive Servers:</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]   192.168.1.12(192.168.1.12:3306)</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]   192.168.1.22(192.168.1.22:3306)</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]   192.168.1.32(192.168.1.32:3306)</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] Alive Slaves:</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]   192.168.1.22(192.168.1.22:3306)  Version=5.7.43-log (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]     Replicating from 192.168.1.12(192.168.1.12:3306)</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]     Primary candidate for the new Master (candidate_master is set)</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]   192.168.1.32(192.168.1.32:3306)  Version=5.7.43-log (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]     Replicating from 192.168.1.12(192.168.1.12:3306)</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]     Primary candidate for the new Master (candidate_master is set)</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] Current Alive Master: 192.168.1.12(192.168.1.12:3306)</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] Checking slave configurations..</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]  read_only=1 is not set on slave 192.168.1.22(192.168.1.22:3306).</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]  read_only=1 is not set on slave 192.168.1.32(192.168.1.32:3306).</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] Checking replication filtering settings..</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]  binlog_do_db= , binlog_ignore_db=</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info]  Replication filtering check ok.</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] GTID (with auto-pos) is not supported</span><br><span class="line">Thu Oct 26 12:52:36 2023 - [info] Starting SSH connection tests..</span><br><span class="line">Thu Oct 26 12:55:29 2023 - [info] All SSH connection tests passed successfully.</span><br><span class="line">Thu Oct 26 12:55:29 2023 - [info] Checking MHA Node version..</span><br><span class="line">Thu Oct 26 12:55:58 2023 - [info]  Version check ok.</span><br><span class="line">Thu Oct 26 12:55:58 2023 - [info] Checking SSH publickey authentication settings on the current master..</span><br><span class="line">Thu Oct 26 12:56:28 2023 - [warning] HealthCheck: Got timeout on checking SSH connection to 192.168.1.12! at /root/perl5/lib/perl5/MHA/HealthCheck.pm line 343.</span><br><span class="line">Thu Oct 26 12:56:28 2023 - [info] Checking SSH publickey authentication and checking recovery script configurations on all alive slave servers..</span><br><span class="line">Thu Oct 26 12:56:28 2023 - [info]   Executing command : apply_diff_relay_logs --command=test --slave_user=&#x27;root&#x27; --slave_host=192.168.1.22 --slave_ip=192.168.1.22 --slave_port=3306 --workdir=/var/tmp --target_version=5.7.43-log --manager_version=0.58 --relay_log_info=/var/lib/mysql/relay-log.info  --relay_dir=/var/lib/mysql/  --slave_pass=xxx</span><br><span class="line">Thu Oct 26 12:56:28 2023 - [info]   Connecting to root@192.168.1.22(192.168.1.22:22)..</span><br><span class="line">  Checking slave recovery environment settings..</span><br><span class="line">    Opening /var/lib/mysql/relay-log.info ... ok.</span><br><span class="line">    Relay log found at /var/lib/mysql, up to centos07-22-relay-bin.000034</span><br><span class="line">    Temporary relay log file is /var/lib/mysql/centos07-22-relay-bin.000034</span><br><span class="line">    Checking if super_read_only is defined and turned on.. not present or turned off, ignoring.</span><br><span class="line">    Testing mysql connection and privileges..</span><br><span class="line">mysql: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line"> done.</span><br><span class="line">    Testing mysqlbinlog output.. done.</span><br><span class="line">    Cleaning up test file(s).. done.</span><br><span class="line">Thu Oct 26 12:56:39 2023 - [info]   Executing command : apply_diff_relay_logs --command=test --slave_user=&#x27;root&#x27; --slave_host=192.168.1.32 --slave_ip=192.168.1.32 --slave_port=3306 --workdir=/var/tmp --target_version=5.7.43-log --manager_version=0.58 --relay_log_info=/var/lib/mysql/relay-log.info  --relay_dir=/var/lib/mysql/  --slave_pass=xxx</span><br><span class="line">Thu Oct 26 12:56:39 2023 - [info]   Connecting to root@192.168.1.32(192.168.1.32:22)..</span><br><span class="line">  Checking slave recovery environment settings..</span><br><span class="line">    Opening /var/lib/mysql/relay-log.info ... ok.</span><br><span class="line">    Relay log found at /var/lib/mysql, up to centos07-32-relay-bin.000038</span><br><span class="line">    Temporary relay log file is /var/lib/mysql/centos07-32-relay-bin.000038</span><br><span class="line">    Checking if super_read_only is defined and turned on.. not present or turned off, ignoring.</span><br><span class="line">    Testing mysql connection and privileges..</span><br><span class="line">mysql: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line"> done.</span><br><span class="line">    Testing mysqlbinlog output.. done.</span><br><span class="line">    Cleaning up test file(s).. done.</span><br><span class="line">Thu Oct 26 12:56:50 2023 - [info] Slaves settings check done.</span><br><span class="line">Thu Oct 26 12:56:50 2023 - [info]</span><br><span class="line">192.168.1.12(192.168.1.12:3306) (current master)</span><br><span class="line"> +--192.168.1.22(192.168.1.22:3306)</span><br><span class="line"> +--192.168.1.32(192.168.1.32:3306)</span><br><span class="line">Thu Oct 26 12:56:50 2023 - [info] Checking replication health on 192.168.1.22..</span><br><span class="line">Thu Oct 26 12:56:50 2023 - [info]  ok.</span><br><span class="line">Thu Oct 26 12:56:50 2023 - [info] Checking replication health on 192.168.1.32..</span><br><span class="line">Thu Oct 26 12:56:50 2023 - [info]  ok.</span><br><span class="line">Thu Oct 26 12:56:50 2023 - [info] Checking master_ip_failover_script status:</span><br><span class="line">Thu Oct 26 12:56:50 2023 - [info]   /etc/mha/master_ip_failover --command=status --ssh_user=root --orig_master_host=192.168.1.12 --orig_master_ip=192.168.1.12 --orig_master_port=3306</span><br><span class="line">IN SCRIPT TEST====/sbin/ifconfig enp0s3:1 down==/sbin/ifconfig enp0s3:1 192.168.1.100/24===</span><br><span class="line">Checking the Status of the script.. OK</span><br><span class="line">Thu Oct 26 12:57:35 2023 - [info]  OK.</span><br><span class="line">Thu Oct 26 12:57:35 2023 - [warning] shutdown_script is not defined.</span><br><span class="line">Thu Oct 26 12:57:35 2023 - [info] Got exit code 0 (Not master dead).</span><br><span class="line">MySQL Replication Health is OK.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="4-启动管理服务"><a href="#4-启动管理服务" class="headerlink" title="4.启动管理服务"></a>4.启动管理服务</h4><ul>
+<li>使用 masterha_manager 命令 </li>
+<li>–remove_dead_master_conf &#x2F;&#x2F;删除宕机主库的配置 </li>
+<li>–ignore_last_failover  &#x2F;&#x2F;忽略xxx.health文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# masterha_manager --conf=/etc/mha/app1.cnf --remove_dead_master_conf --ignore_last_failover</span><br><span class="line"></span><br><span class="line">Thu Oct 26 13:05:33 2023 - [warning] Global configuration file /etc/masterha_default.cnf not found. Skipping.</span><br><span class="line">Thu Oct 26 13:05:33 2023 - [info] Reading application default configuration from /etc/mha/app1.cnf..</span><br><span class="line">Thu Oct 26 13:05:33 2023 - [info] Reading server configuration from /etc/mha/app1.cnf..</span><br></pre></td></tr></table></figure></li>
+<li>查看启动状态<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# masterha_check_status  --conf=/etc/mha/app1.cnf</span><br><span class="line">app1 (pid:7136) is running(0:PING_OK), master:192.168.1.12</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-测试集群高可用功能"><a href="#5-测试集群高可用功能" class="headerlink" title="5.测试集群高可用功能"></a>5.测试集群高可用功能</h4><ul>
+<li>在主库，创建库，表，用户<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database db9;</span><br><span class="line"></span><br><span class="line">mysql&gt; create table db9.a(id int);</span><br><span class="line"></span><br><span class="line">mysql&gt; grant select,insert on db9.* to jjyy88@&quot;%&quot; identified by &quot;123456&quot;;</span><br><span class="line"></span><br><span class="line">mysql&gt; show grants for jjyy88@&quot;%&quot;;</span><br><span class="line">+-------------------------------------------------+</span><br><span class="line">| Grants for jjyy88@%                             |</span><br><span class="line">+-------------------------------------------------+</span><br><span class="line">| GRANT USAGE ON *.* TO &#x27;jjyy88&#x27;@&#x27;%&#x27;              |</span><br><span class="line">| GRANT SELECT, INSERT ON `db9`.* TO &#x27;jjyy88&#x27;@&#x27;%&#x27; |</span><br><span class="line">+-------------------------------------------------+</span><br></pre></td></tr></table></figure></li>
+<li>使用vip访问数据，使用jjyy88连接数据库<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">dbbruce@dbburce Downloads % mysql -h192.168.1.100 -ujjyy88 -p123456</span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">use db9;</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">show tables;</span></span><br><span class="line">+---------------+</span><br><span class="line">| Tables_in_db9 |</span><br><span class="line">+---------------+</span><br><span class="line">| a             |</span><br><span class="line">+---------------+</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash"><span class="keyword">select</span> * from a;</span></span><br><span class="line">Empty set (0.00 sec)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">insert into a values(1);</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">insert into a values(2);</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash"><span class="keyword">select</span> * from a;</span></span><br><span class="line">+------+</span><br><span class="line">| id   |</span><br><span class="line">+------+</span><br><span class="line">|    1 |</span><br><span class="line">|    2 |</span><br><span class="line">+------+</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="6-模拟故障，停止主服务，从服务自动变为主，自动拷贝故障脚本"><a href="#6-模拟故障，停止主服务，从服务自动变为主，自动拷贝故障脚本" class="headerlink" title="6.模拟故障，停止主服务，从服务自动变为主，自动拷贝故障脚本"></a>6.模拟故障，停止主服务，从服务自动变为主，自动拷贝故障脚本</h4><ul>
+<li>从服务上，先查看主服务<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show slave status \G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 192.168.1.12   # 主服务</span><br></pre></td></tr></table></figure></li>
+<li>会自动修改&#x2F;etc&#x2F;mha&#x2F;app1.cnf，会删除主服务的配置；</li>
+</ul>
+<ol>
+<li>主服务启动后，就是一台新的服务了</li>
+<li>需要同步数据，配置为从服务，</li>
+<li>修改mha服务的配置文件，添加新的从服务配置</li>
+</ol>
+<ul>
+<li>特点<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MHA必要条件必须是 一主多从结构</span><br><span class="line">客户端访问必须连接vip地址</span><br><span class="line">且vip地址必须在主数据库服务器上</span><br><span class="line">把坏掉的数据库服务器添加到集群里时，必须手动配置数据一致、把服务器添加为当前主服务器的从库、添加到集群里</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-MHA-Master-High-Availability"><span class="toc-text">1.MHA ( Master High Availability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2MHA%E9%9B%86%E7%BE%A4"><span class="toc-text">2.部署MHA集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%BC%96%E8%BE%91%E4%B8%BB%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">3.编辑主配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%AA%8C%E8%AF%81"><span class="toc-text">3.验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1"><span class="toc-text">4.启动管理服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4%E9%AB%98%E5%8F%AF%E7%94%A8%E5%8A%9F%E8%83%BD"><span class="toc-text">5.测试集群高可用功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%A8%A1%E6%8B%9F%E6%95%85%E9%9A%9C%EF%BC%8C%E5%81%9C%E6%AD%A2%E4%B8%BB%E6%9C%8D%E5%8A%A1%EF%BC%8C%E4%BB%8E%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8F%98%E4%B8%BA%E4%B8%BB%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%8B%B7%E8%B4%9D%E6%95%85%E9%9A%9C%E8%84%9A%E6%9C%AC"><span class="toc-text">6.模拟故障，停止主服务，从服务自动变为主，自动拷贝故障脚本</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2017/02/12/mysql/MHA集群/">https://dbbruce.github.io/2017/02/12/mysql/MHA集群/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2017/02/10/mysql/mycat%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          分库分表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/13/mysql/PXC%E9%9B%86%E7%BE%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          PXC集群
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

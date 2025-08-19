@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>010-openpyxl库处理Excel文件 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-爬虫/基础/010-openpyxl库处理Excel文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      010-openpyxl库处理Excel文件
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-17T07:04:52.000Z" itemprop="datePublished">2023年08月17日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/08/17/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/010-openpyxl%E5%BA%93%E5%A4%84%E7%90%86Excel%E6%96%87%E4%BB%B6/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-创建一个xlsx格式的excel文件并保存"><a href="#1-创建一个xlsx格式的excel文件并保存" class="headerlink" title="1.创建一个xlsx格式的excel文件并保存"></a>1.创建一个xlsx格式的excel文件并保存</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="comment"># 创建一个工作表</span></span><br><span class="line">wb = Workbook()</span><br><span class="line"><span class="comment"># 保存为本地excel文件</span></span><br><span class="line">wb.save(<span class="string">&quot;1.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h4 id="2-保存成流-stream"><a href="#2-保存成流-stream" class="headerlink" title="2.保存成流(stream)"></a>2.保存成流(stream)</h4><blockquote>
+<p>例如当使用 Pyramid, Flask 或 Django 等 web 应用程序时，如果想把文件保存成流，可以使用 NamedTemporaryFile( )方法</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tempfile <span class="keyword">import</span> NamedTemporaryFile</span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"> </span><br><span class="line">wb = Workbook()</span><br><span class="line"><span class="keyword">with</span> NamedTemporaryFile() <span class="keyword">as</span> tmp:</span><br><span class="line">     wb.save(tmp.name)</span><br><span class="line">     tmp.seek(<span class="number">0</span>)</span><br><span class="line">     stream = tmp.read()</span><br></pre></td></tr></table></figure>
+<h4 id="3-写入单元格"><a href="#3-写入单元格" class="headerlink" title="3.写入单元格"></a>3.写入单元格</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"> </span><br><span class="line">wb = Workbook()</span><br><span class="line"><span class="comment"># 创建第一个sheet</span></span><br><span class="line">sheet = wb.active</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 方式一 在第1行第1列的单元格写入111</span></span><br><span class="line">sheet[<span class="string">&#x27;A1&#x27;</span>] = <span class="number">111</span></span><br><span class="line"><span class="comment"># 方式二 在第1行第1列的单元格写入111</span></span><br><span class="line"><span class="comment"># sheet.cell(row=1, column=1, value=111)</span></span><br><span class="line"><span class="comment"># 方式三 先获取到单元格，再将数据写入value属性</span></span><br><span class="line"><span class="comment"># cell = sheet[&#x27;A1&#x27;]</span></span><br><span class="line"><span class="comment"># cell.value = 111</span></span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;1.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">wb = Workbook()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 创建第一个sheet</span></span><br><span class="line">sheet = wb.active</span><br><span class="line"><span class="comment"># 在第1行第1列的单元格写入111</span></span><br><span class="line">sheet[<span class="string">&#x27;A1&#x27;</span>] = <span class="number">111</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 创建一个新的sheet</span></span><br><span class="line">sheet1 = wb.create_sheet()</span><br><span class="line"><span class="comment"># 在这个新的sheet中第2行第2列的单元格写入222</span></span><br><span class="line">sheet1[<span class="string">&#x27;B2&#x27;</span>] = <span class="number">222</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 创建一个叫&quot;第3个工作表&quot;的新sheet</span></span><br><span class="line">sheet3 = wb.create_sheet(<span class="string">&quot;第3个工作表&quot;</span>)</span><br><span class="line"><span class="comment"># 在这个新的sheet中第3行第3列的单元格写入333</span></span><br><span class="line">sheet3[<span class="string">&#x27;C3&#x27;</span>] = <span class="number">333</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 保存本地excel文件中</span></span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="1-创建新的工作表"><a href="#1-创建新的工作表" class="headerlink" title="1.创建新的工作表"></a>1.创建新的工作表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在结尾插入一个叫 &quot;我的sheet1&quot; 的sheet</span></span><br><span class="line">sheet1 = wb.create_sheet(<span class="string">&quot;我的sheet1&quot;</span>) </span><br><span class="line"><span class="comment"># 或者在最开始插入一个叫 &quot;我的sheet12&quot; 的sheet</span></span><br><span class="line">sheet2 = wb.create_sheet(<span class="string">&quot;我的sheet12&quot;</span>, <span class="number">0</span>)</span><br><span class="line"><span class="comment"># 或者在倒数第二的位置插入一个叫 &quot;我的sheet13&quot; 的sheet</span></span><br><span class="line">sheet3 = wb.create_sheet(<span class="string">&quot;我的sheet13&quot;</span>, -<span class="number">1</span>) </span><br></pre></td></tr></table></figure>
+
+<h4 id="2-删除指定工作表"><a href="#2-删除指定工作表" class="headerlink" title="2.删除指定工作表"></a>2.删除指定工作表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除名字是 &quot;我的sheet13&quot; 的工作表</span></span><br><span class="line">wb.remove(wb[<span class="string">&#x27;3号sheet&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<h4 id="3-修改sheet工作表的名称"><a href="#3-修改sheet工作表的名称" class="headerlink" title="3.修改sheet工作表的名称"></a>3.修改sheet工作表的名称</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在结尾插入一个叫 &quot;我的sheet1&quot; 的工作表</span></span><br><span class="line">sheet1 = wb.create_sheet(<span class="string">&quot;我的sheet1&quot;</span>) </span><br><span class="line"><span class="comment"># 将&quot;我的sheet1&quot; 的工作表名字改为&quot;first&quot;</span></span><br><span class="line">sheet1.title = <span class="string">&quot;first&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-获取所有工作表的名称"><a href="#4-获取所有工作表的名称" class="headerlink" title="4.获取所有工作表的名称"></a>4.获取所有工作表的名称</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(wb.sheetnames) <span class="comment">#[&#x27;Sheet&#x27;, &#x27;我的sheet1&#x27;, &#x27;first&#x27;, &#x27;second&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-切换工作表"><a href="#5-切换工作表" class="headerlink" title="5.切换工作表"></a>5.切换工作表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">current = wb[<span class="string">&quot;first&quot;</span>]</span><br><span class="line"><span class="comment"># 切换到 &quot;second&quot; 工作表</span></span><br><span class="line">current = wb[<span class="string">&quot;second&quot;</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="6-遍历所有sheet工作表"><a href="#6-遍历所有sheet工作表" class="headerlink" title="6.遍历所有sheet工作表"></a>6.遍历所有sheet工作表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> wb:</span><br><span class="line">     <span class="built_in">print</span>(s.title)</span><br></pre></td></tr></table></figure>
+<h4 id="7-复制sheet工作表"><a href="#7-复制sheet工作表" class="headerlink" title="7.复制sheet工作表"></a>7.复制sheet工作表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sheet = wb.active</span><br><span class="line">sheetNew = wb.copy_worksheet(sheet)</span><br></pre></td></tr></table></figure>
+<h4 id="1-读取-excel-文件"><a href="#1-读取-excel-文件" class="headerlink" title="1.读取 excel 文件"></a>1.读取 excel 文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">读取 excel 文件并打印所有的 sheet 工作表名称</span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(wb.sheetnames) <span class="comment"># [&#x27;Sheet&#x27;, &#x27;Sheet1&#x27;, &#x27;New Title&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-读取单元格"><a href="#2-读取单元格" class="headerlink" title="2.读取单元格"></a>2.读取单元格</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line"><span class="comment"># 获取&quot;New Title&quot; 这个sheet工作表</span></span><br><span class="line">sheet = wb[<span class="string">&quot;第3个工作表&quot;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 方式一 获取 &quot;C3&quot;这个单元格</span></span><br><span class="line">cell = sheet[<span class="string">&quot;C3&quot;</span>]</span><br><span class="line"><span class="comment"># 方式二 获取 第3行3列 这个单元格</span></span><br><span class="line"><span class="comment"># cell = sheet.cell(row=3, column=3)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 打印单元格的值</span></span><br><span class="line"><span class="built_in">print</span>(cell.value)</span><br></pre></td></tr></table></figure>
+<h4 id="3-获取某一行某一列的数据"><a href="#3-获取某一行某一列的数据" class="headerlink" title="3.获取某一行某一列的数据"></a>3.获取某一行某一列的数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;1.xlsx&quot;</span>)</span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"><span class="comment"># 获取第2行的单元格数据并打印</span></span><br><span class="line">row = sheet[<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line">row_data = []</span><br><span class="line"><span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">    row_data.append(cell.value)</span><br><span class="line"><span class="built_in">print</span>(row_data)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 获取第3列的单元格数据并打印</span></span><br><span class="line">col = sheet[<span class="string">&#x27;C&#x27;</span>]</span><br><span class="line">col_data = []</span><br><span class="line"><span class="keyword">for</span> cell <span class="keyword">in</span> col:</span><br><span class="line">    col_data.append(cell.value)</span><br><span class="line"><span class="built_in">print</span>(col_data)</span><br></pre></td></tr></table></figure>
+<h4 id="4-遍历所有单元格"><a href="#4-遍历所有单元格" class="headerlink" title="4.遍历所有单元格"></a>4.遍历所有单元格</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line"><span class="comment"># 遍历所有的sheet工作表</span></span><br><span class="line"><span class="keyword">for</span> sheet <span class="keyword">in</span> wb:</span><br><span class="line">    <span class="comment"># 获取当前sheet工作表的行数据</span></span><br><span class="line">    rows = <span class="built_in">tuple</span>(sheet.rows)</span><br><span class="line">    <span class="comment"># 遍历每一行</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">        <span class="comment"># 遍历每一个单元格</span></span><br><span class="line">        <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">            <span class="built_in">print</span>(cell.value)</span><br><span class="line"><span class="comment"># 上面使用了sheet.rows 获取行数据，如果要获取列数据可以使用 sheet.columns</span></span><br></pre></td></tr></table></figure>
+<p>5.遍历指定行列范围的单元格<br>方式一：使用切片方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line"><span class="comment"># 获取叫&quot;Sheet&quot;的工作表</span></span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"><span class="comment"># 获取叫&#x27;A2&#x27;到&#x27;C4&#x27;范围的所有单元格</span></span><br><span class="line">rows = sheet[<span class="string">&#x27;A2&#x27;</span>:<span class="string">&#x27;C4&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> cells <span class="keyword">in</span> rows:</span><br><span class="line">    <span class="keyword">for</span> cell <span class="keyword">in</span> cells:</span><br><span class="line">        <span class="built_in">print</span>(cell.value, end=<span class="string">&quot; &quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>()</span><br></pre></td></tr></table></figure>
+
+<p>方式二：使用iter_rows方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line"><span class="comment"># 获取叫&quot;Sheet&quot;的工作表</span></span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"><span class="comment"># 获取 2到4行，1到3列 范围的所有单元格</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> sheet.iter_rows(min_row=<span class="number">2</span>, min_col=<span class="number">1</span>, max_col=<span class="number">3</span>, max_row=<span class="number">4</span>):</span><br><span class="line">    <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">        <span class="built_in">print</span>(cell.value, end=<span class="string">&quot; &quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>()</span><br></pre></td></tr></table></figure>
+<h4 id="1-合并单元格"><a href="#1-合并单元格" class="headerlink" title="1.合并单元格"></a>1.合并单元格</h4><p>合并单元格时，除了左上角的单元格内容，其他都选中范围单元格将从工作表中删除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line"><span class="comment"># 获取叫&quot;Sheet&quot;的工作表</span></span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 方式一 合并 A2到C4 范围的单元格</span></span><br><span class="line">sheet.merge_cells(<span class="string">&#x27;A2:C4&#x27;</span>)</span><br><span class="line"><span class="comment"># 方式二 合并 2到4行，1到3列 范围的所有单元格</span></span><br><span class="line"><span class="comment"># sheet.merge_cells(start_row=2, start_column=1, end_row=4, end_column=3)</span></span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="2-拆分合并的单元格"><a href="#2-拆分合并的单元格" class="headerlink" title="2.拆分合并的单元格"></a>2.拆分合并的单元格</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line"><span class="comment"># 获取叫&quot;Sheet&quot;的工作表</span></span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 方式一 拆分 A2到C4 范围的单元格</span></span><br><span class="line">sheet.unmerge_cells(<span class="string">&#x27;A2:C4&#x27;</span>)</span><br><span class="line"><span class="comment"># 方式二 拆分 2到4行，1到3列 范围的所有单元格</span></span><br><span class="line">ws.unmerge_cells(start_row=<span class="number">2</span>, start_column=<span class="number">1</span>, end_row=<span class="number">4</span>, end_column=<span class="number">4</span>)</span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="3-插入行和列"><a href="#3-插入行和列" class="headerlink" title="3.插入行和列"></a>3.插入行和列</h4><p>(1)插入单行单列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"><span class="comment"># 在第3行前插入一行</span></span><br><span class="line">sheet.insert_rows(<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 在第2列前插入一列</span></span><br><span class="line">sheet.insert_cols(<span class="number">2</span>)</span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="2-插入多行多列"><a href="#2-插入多行多列" class="headerlink" title="(2)插入多行多列"></a>(2)插入多行多列</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"><span class="comment"># 在第3行前插入四行</span></span><br><span class="line">sheet.insert_rows(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="comment"># 在第2列前插入五列</span></span><br><span class="line">sheet.insert_cols(<span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="4-删除行和列"><a href="#4-删除行和列" class="headerlink" title="4.删除行和列"></a>4.删除行和列</h4><p>(1)删除单行单列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"><span class="comment"># 删除第3行</span></span><br><span class="line">sheet.delete_rows(<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 删除第2列</span></span><br><span class="line">sheet.delete_cols(<span class="number">2</span>)</span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>(2)删除多行多列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"><span class="comment"># 从第3行前开始删除四行</span></span><br><span class="line">sheet.delete_rows(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="comment"># 从第2列开始删除五列</span></span><br><span class="line">sheet.delete_cols(<span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="1-对齐方式与换行"><a href="#1-对齐方式与换行" class="headerlink" title="1. 对齐方式与换行"></a>1. 对齐方式与换行</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># horizontal是水平方向，vertical 是垂直方向</span><br><span class="line">Alignment(horizontal=&quot;center&quot;, vertical=&quot;center&quot;)</span><br><span class="line"># 默认单元格填满了是不换行的，如果要自动换行可使用 wrap_text=True</span><br><span class="line">Alignment(horizontal=&quot;center&quot;, vertical=&quot;center&quot;, wrap_text=True)</span><br><span class="line">horizontal 水平对齐可选值如下</span><br><span class="line"></span><br><span class="line">参数值	对齐方式</span><br><span class="line">left	左对齐</span><br><span class="line">center	左右居中</span><br><span class="line">right	右对齐</span><br><span class="line">fill	填满对齐</span><br><span class="line">distributed	分散对齐</span><br><span class="line">centerContinously	连续居中</span><br><span class="line">justify	两端对齐</span><br><span class="line">general	一般对齐</span><br><span class="line">vertical 垂直对齐可选值如下</span><br><span class="line"></span><br><span class="line">参数值	对齐方式</span><br><span class="line">top	上对齐</span><br><span class="line">center	左右居中</span><br><span class="line">bottom	下对齐</span><br><span class="line">distributed	分散对齐</span><br><span class="line">justify	两端对齐</span><br></pre></td></tr></table></figure>
+<h4 id="2-单元格对齐"><a href="#2-单元格对齐" class="headerlink" title="2.单元格对齐"></a>2.单元格对齐</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Alignment</span><br><span class="line"> </span><br><span class="line">wb = Workbook()</span><br><span class="line">sheet = wb.active</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 在第1行第1列的那个单元格写入123546</span></span><br><span class="line">cell = sheet[<span class="string">&#x27;A1&#x27;</span>]</span><br><span class="line">cell.value = <span class="number">123546</span></span><br><span class="line"><span class="comment"># 将该单元格对齐方式设置为水平和垂直都居中</span></span><br><span class="line">cell.alignment = Alignment(horizontal=<span class="string">&quot;center&quot;</span>, vertical=<span class="string">&quot;center&quot;</span>)</span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="3-合并后的单元格设置对齐方式"><a href="#3-合并后的单元格设置对齐方式" class="headerlink" title="3.合并后的单元格设置对齐方式"></a>3.合并后的单元格设置对齐方式</h4><p>可以改变左上单元格的对齐方式、边框等属性来改变整个合并单元格的对齐方式、边框等属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Alignment</span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"> </span><br><span class="line">wb = load_workbook(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br><span class="line"><span class="comment"># 获取叫&quot;Sheet&quot;的工作表</span></span><br><span class="line"></span><br><span class="line">sheet = wb[<span class="string">&quot;Sheet&quot;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment">#  合并 A2到C4 范围的单元格</span></span><br><span class="line"></span><br><span class="line">sheet.merge_cells(<span class="string">&#x27;A2:C4&#x27;</span>)</span><br><span class="line"><span class="comment"># 改变左上单元格的对齐方式来改变合并单元格的对齐方式</span></span><br><span class="line"></span><br><span class="line">cell = sheet[<span class="string">&#x27;A2&#x27;</span>]</span><br><span class="line">cell.alignment = Alignment(horizontal=<span class="string">&quot;center&quot;</span>, vertical=<span class="string">&quot;center&quot;</span>)</span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;F:\pythonTest\sample.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="1-边框线条粗细、颜色设置"><a href="#1-边框线条粗细、颜色设置" class="headerlink" title="1. 边框线条粗细、颜色设置"></a>1. 边框线条粗细、颜色设置</h4><p>（1）你可以对单元格上下左右的边框进行设置虚线和实线</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Border(</span><br><span class="line">    left=Side(style=&#x27;thick&#x27;),</span><br><span class="line">    bottom=Side(style=&#x27;mediumDashed&#x27;),</span><br><span class="line">    right=Side(style=&#x27;thin&#x27;),</span><br><span class="line">    top=Side(style=&#x27;dashed&#x27;))</span><br><span class="line">其中thin是细实线，thick是粗实线，dashed是细虚线，mediumDashed是粗虚线.</span><br></pre></td></tr></table></figure>
+<p>全部边框线条可选的有如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x27;dashDot&#x27;,&#x27;dashDotDot&#x27;, &#x27;dashed&#x27;,&#x27;dotted&#x27;,</span><br><span class="line">&#x27;double&#x27;,&#x27;hair&#x27;, &#x27;medium&#x27;, &#x27;mediumDashDot&#x27;, </span><br><span class="line">&#x27;mediumDashDotDot&#x27;,&#x27;mediumDashed&#x27;, &#x27;slantDashDot&#x27;,</span><br><span class="line">&#x27;thick&#x27;, &#x27;thin&#x27;</span><br></pre></td></tr></table></figure>
+<p>（2）你还可以使用 color 参数调整单元格上下左右边框的颜色</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Border(</span><br><span class="line">    left=Side(style=&#x27;thick&#x27;, color=&#x27;00000000&#x27;),</span><br><span class="line">    bottom=Side(style=&#x27;mediumDashed&#x27;, color=&#x27;00000000&#x27;),</span><br><span class="line">    right=Side(style=&#x27;thin&#x27;, color=&#x27;00000000&#x27;),</span><br><span class="line">    top=Side(style=&#x27;dashed&#x27;, color=&#x27;00000000&#x27;))</span><br></pre></td></tr></table></figure>
+<p>可取的颜色参考如下：</p>
+<h4 id="2-设置单个单元格边框和颜色"><a href="#2-设置单个单元格边框和颜色" class="headerlink" title="2.设置单个单元格边框和颜色"></a>2.设置单个单元格边框和颜色</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Border, Side</span><br><span class="line"> </span><br><span class="line">wb = Workbook()</span><br><span class="line">sheet = wb.active</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 在第1行第1列的那个单元格写入123546</span></span><br><span class="line">cell = sheet[<span class="string">&#x27;B2&#x27;</span>]</span><br><span class="line">cell.value = <span class="number">123546</span></span><br><span class="line"><span class="comment"># 设置该单元格边框和颜色</span></span><br><span class="line">cell.border = Border(</span><br><span class="line">    left=Side(style=<span class="string">&#x27;thick&#x27;</span>, color=<span class="string">&#x27;00000000&#x27;</span>),</span><br><span class="line">    bottom=Side(style=<span class="string">&#x27;mediumDashed&#x27;</span>, color=<span class="string">&#x27;00000000&#x27;</span>),</span><br><span class="line">    right=Side(style=<span class="string">&#x27;thin&#x27;</span>, color=<span class="string">&#x27;00000000&#x27;</span>),</span><br><span class="line">    top=Side(style=<span class="string">&#x27;dashed&#x27;</span>, color=<span class="string">&#x27;00000000&#x27;</span>))</span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;1.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="3-设置多个单元格整体边框和颜色"><a href="#3-设置多个单元格整体边框和颜色" class="headerlink" title="3.设置多个单元格整体边框和颜色"></a>3.设置多个单元格整体边框和颜色</h4><p>想要整体添加边框，有两种方式：<br>（1） 先合并单元格再对左上角的单元格进行操作，但往往这些单元格都有不同的数据，难以进行合并。<br>（2） 遍历所有的单元格，分别赋予属性。这种方法比较适用于为所有的单元格赋予相同的属性。</p>
+<h4 id="1-设置单元格背景颜色"><a href="#1-设置单元格背景颜色" class="headerlink" title="1.设置单元格背景颜色"></a>1.设置单元格背景颜色</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> PatternFill</span><br><span class="line"> </span><br><span class="line">wb = Workbook()</span><br><span class="line">sheet = wb.active</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 在第1行第1列的那个单元格写入123546</span></span><br><span class="line">cell = sheet[<span class="string">&#x27;B2&#x27;</span>]</span><br><span class="line">cell.value = <span class="number">123546</span></span><br><span class="line"><span class="comment"># 使用fgColor属性16进制颜色填充</span></span><br><span class="line">cell.fill = PatternFill(<span class="string">&#x27;solid&#x27;</span>, fgColor=<span class="string">&quot;FF00FF&quot;</span>)</span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;1.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="2-设置字体、字体的粗细、大小、颜色"><a href="#2-设置字体、字体的粗细、大小、颜色" class="headerlink" title="2.设置字体、字体的粗细、大小、颜色"></a>2.设置字体、字体的粗细、大小、颜色</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Font</span><br><span class="line"> </span><br><span class="line">wb = Workbook()</span><br><span class="line">sheet = wb.active</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 在第1行第1列的那个单元格写入123546</span></span><br><span class="line">cell = sheet[<span class="string">&#x27;B2&#x27;</span>]</span><br><span class="line">cell.value = <span class="number">123546</span></span><br><span class="line"><span class="comment"># 设置字体样式：  字体大小为30， bold加粗,字体颜色 00FFFF 16进制颜色</span></span><br><span class="line">cell.font = Font(<span class="string">u&#x27;微软雅黑&#x27;</span>, size=<span class="number">30</span>, bold=<span class="literal">True</span>, color=<span class="string">&quot;00FFFF&quot;</span>)</span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;1.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="九、设置行高和列宽"><a href="#九、设置行高和列宽" class="headerlink" title="九、设置行高和列宽"></a>九、设置行高和列宽</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"> </span><br><span class="line">wb = Workbook()</span><br><span class="line">sheet = wb.active</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置第1行高度为60</span></span><br><span class="line">sheet.row_dimensions[<span class="number">1</span>].height = <span class="number">60</span></span><br><span class="line"><span class="comment"># 设置B列宽度为30</span></span><br><span class="line">sheet.column_dimensions[<span class="string">&quot;B&quot;</span>].width = <span class="number">30</span></span><br><span class="line"> </span><br><span class="line">wb.save(<span class="string">&quot;1.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAxlsx%E6%A0%BC%E5%BC%8F%E7%9A%84excel%E6%96%87%E4%BB%B6%E5%B9%B6%E4%BF%9D%E5%AD%98"><span class="toc-text">1.创建一个xlsx格式的excel文件并保存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BF%9D%E5%AD%98%E6%88%90%E6%B5%81-stream"><span class="toc-text">2.保存成流(stream)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%86%99%E5%85%A5%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-text">3.写入单元格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%A1%A8"><span class="toc-text">1.创建新的工作表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E5%B7%A5%E4%BD%9C%E8%A1%A8"><span class="toc-text">2.删除指定工作表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9sheet%E5%B7%A5%E4%BD%9C%E8%A1%A8%E7%9A%84%E5%90%8D%E7%A7%B0"><span class="toc-text">3.修改sheet工作表的名称</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E5%B7%A5%E4%BD%9C%E8%A1%A8%E7%9A%84%E5%90%8D%E7%A7%B0"><span class="toc-text">4.获取所有工作表的名称</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%88%87%E6%8D%A2%E5%B7%A5%E4%BD%9C%E8%A1%A8"><span class="toc-text">5.切换工作表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E9%81%8D%E5%8E%86%E6%89%80%E6%9C%89sheet%E5%B7%A5%E4%BD%9C%E8%A1%A8"><span class="toc-text">6.遍历所有sheet工作表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E5%A4%8D%E5%88%B6sheet%E5%B7%A5%E4%BD%9C%E8%A1%A8"><span class="toc-text">7.复制sheet工作表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%AF%BB%E5%8F%96-excel-%E6%96%87%E4%BB%B6"><span class="toc-text">1.读取 excel 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AF%BB%E5%8F%96%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-text">2.读取单元格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E6%9F%90%E4%B8%80%E8%A1%8C%E6%9F%90%E4%B8%80%E5%88%97%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">3.获取某一行某一列的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%81%8D%E5%8E%86%E6%89%80%E6%9C%89%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-text">4.遍历所有单元格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-text">1.合并单元格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8B%86%E5%88%86%E5%90%88%E5%B9%B6%E7%9A%84%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-text">2.拆分合并的单元格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8F%92%E5%85%A5%E8%A1%8C%E5%92%8C%E5%88%97"><span class="toc-text">3.插入行和列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8F%92%E5%85%A5%E5%A4%9A%E8%A1%8C%E5%A4%9A%E5%88%97"><span class="toc-text">(2)插入多行多列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%88%A0%E9%99%A4%E8%A1%8C%E5%92%8C%E5%88%97"><span class="toc-text">4.删除行和列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C"><span class="toc-text">1. 对齐方式与换行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8D%95%E5%85%83%E6%A0%BC%E5%AF%B9%E9%BD%90"><span class="toc-text">2.单元格对齐</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%90%88%E5%B9%B6%E5%90%8E%E7%9A%84%E5%8D%95%E5%85%83%E6%A0%BC%E8%AE%BE%E7%BD%AE%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F"><span class="toc-text">3.合并后的单元格设置对齐方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BE%B9%E6%A1%86%E7%BA%BF%E6%9D%A1%E7%B2%97%E7%BB%86%E3%80%81%E9%A2%9C%E8%89%B2%E8%AE%BE%E7%BD%AE"><span class="toc-text">1. 边框线条粗细、颜色设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E5%8D%95%E4%B8%AA%E5%8D%95%E5%85%83%E6%A0%BC%E8%BE%B9%E6%A1%86%E5%92%8C%E9%A2%9C%E8%89%B2"><span class="toc-text">2.设置单个单元格边框和颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E5%8D%95%E5%85%83%E6%A0%BC%E6%95%B4%E4%BD%93%E8%BE%B9%E6%A1%86%E5%92%8C%E9%A2%9C%E8%89%B2"><span class="toc-text">3.设置多个单元格整体边框和颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%AE%BE%E7%BD%AE%E5%8D%95%E5%85%83%E6%A0%BC%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2"><span class="toc-text">1.设置单元格背景颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E3%80%81%E5%AD%97%E4%BD%93%E7%9A%84%E7%B2%97%E7%BB%86%E3%80%81%E5%A4%A7%E5%B0%8F%E3%80%81%E9%A2%9C%E8%89%B2"><span class="toc-text">2.设置字体、字体的粗细、大小、颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E8%AE%BE%E7%BD%AE%E8%A1%8C%E9%AB%98%E5%92%8C%E5%88%97%E5%AE%BD"><span class="toc-text">九、设置行高和列宽</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/08/17/爬虫/基础/010-openpyxl库处理Excel文件/">https://dbbruce.github.io/2023/08/17/爬虫/基础/010-openpyxl库处理Excel文件/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/08/16/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20230816/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          一些专业词汇与git命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/17/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/20230817%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          项目的一些知识
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

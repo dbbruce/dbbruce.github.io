@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>002-HTTP头部信息分析 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-爬虫/基础/002-HTTP头部信息分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      002-HTTP头部信息分析
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-10T04:04:52.000Z" itemprop="datePublished">2023年08月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/002-HTTP%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="常识"><a href="#常识" class="headerlink" title="常识"></a>常识</h4><p>HTTP得头域包括通用头(Genaral headers)，请求头()，响应头()和实体(entity header)头四个部分，每个头域都由一个域名，冒号和域值三部分组成。</p>
+<span id="more"></span>
+
+<ul>
+<li>通用头部：指的是可以应用于请求和响应中，但是不能应用于消息内容自身的HTTP首部，取决于应用的上下文环境，通用首部可以是响应头部或者请求头部，但是不可以是实体头部。最常见的通用首部包括：Date，Cache-Control，Connection</li>
+<li>请求头部：是请求报文特有的，并且和请求主体无关。比如客户端希望接收到什么类型的数据，像Accept头部。 并非所有出现在请求中的HTTP首部都属于请求头，例如在POST请求中经常出现的Content-Length实际上是一个代表请求主体大小的entity header，当然这也可以叫做请求头。</li>
+<li>响应头部：被用于http响应中并且和响应消息主体无关的那一类HTTP header。详细的在这像Age，Location和Server都属于响应头，他们都用于描述响应。 并非所有出现在响应中的http header都属于响应头，例如Content- Length就是一个代表响应体消息大小的entity header，当然也是可以叫他响应头的。</li>
+<li>实体头部：用来描述消息体内容。实体报头既可以用于请求也可以用于响应中，如Content-Length，Content-Language，Content-Encoding之类的报头都是实体报头。 尽管实体报头既不是请求也不是响应报头，但是它经常出现在请求头或响应头中，所以还是把他们包含在一个概念里。</li>
+</ul>
+<h5 id="通用头部"><a href="#通用头部" class="headerlink" title="通用头部"></a>通用头部</h5><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cache-Control</td>
+<td>控制缓存的行为； 详情 请求：no-cache（不要缓存的实体，要求现在从WEB服务器去取） max-age：（只接受 Age 值小于 max-age 值，并且没有过期的对象）max-stale：（可以接受过去的对象，但是过期时间必须小于max-stale 值） min-fresh：（接受其新鲜生命期大于其当前 Age 跟 min-fresh 值之和的缓存对象） 响应：public(可以用 Cached 内容回应任何用户)private（只能用缓存内容回应先前请求该内容的那个用户）no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端） max-age：（本响应包含的对象的过期时间）ALL: no-store（不允许缓存）</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>决定当前的事务完成后，是否会关闭网络连接； 详情 请求：close（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，断开连接，不要等待本次连接的后续请求了）。 keepalive（告诉WEB服务器或者代理服务器，在完成本次请求的 响应后，保持连接，等待本次连接的后续请求）。 响应：close（连接已经关闭）。 keepalive（连接保持着，在等待本次连接的后续请求）。</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>创建报文的日期时间；</td>
+</tr>
+<tr>
+<td>Keep-Alive</td>
+<td>用来设置超时时长和最大请求数；如果浏览器请求保持连接，则该头部表明希望 WEB 服务器保持连接多长时间（秒）。 例如：Keep-Alive：300</td>
+</tr>
+<tr>
+<td>Via</td>
+<td>代理服务器的相关信息；列出从客户端到 OCS 或者相反方向的响应经过了哪些代理服务器，他们用什么协议（和版本）发送的请求。当客户端请求到达第一个代理服务器时，该服务器会在自己发出的请求里面 添加 Via 头部，并填上自己的相关信息当下一个代理服务器收到第一个代理服务器的请求时，会在自己发出的请求里面复制前一个代理服务器的请求的Via头部，并把自己的相关信息加到后面，以此类推，当 OCS 收到最后一个代理服务器的请求时，检查 Via 头部，就知道该请求所经过的路由。例如：Via：1.0 236-81.D07071953.sina.com.cn:80 (squid&#x2F;2.6.STABLE13)</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>错误通知；</td>
+</tr>
+<tr>
+<td>Trailer</td>
+<td>允许发送方在分块发送的消息后面添加额外的元信息；</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>指定报文主体的传输编码方式；WEB 服务器表明自己对本响应消息体（不是消息体里面的对象）做了怎样的编码，比如是否分块（chunked）。例如：Transfer-Encoding: chunked</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>升级为其他协议；</td>
+</tr>
+</tbody></table>
+<h5 id="请求头部"><a href="#请求头部" class="headerlink" title="请求头部"></a>请求头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-137db4f39f8c0ee46a4ea5ae2def987d_1440w.png" alt="v2-137db4f39f8c0ee46a4ea5ae2def987d_1440w.png"></p>
+<h5 id="响应头部"><a href="#响应头部" class="headerlink" title="响应头部"></a>响应头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-7337c5d28b8ee17e534da96e9177a68d_1440w.png" alt="v2-7337c5d28b8ee17e534da96e9177a68d_1440w.png"></p>
+<h5 id="实体头部"><a href="#实体头部" class="headerlink" title="实体头部"></a>实体头部</h5><p><img src="/../../../images/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/v2-d0f8817d91a80f5cc7a9c0cac93c35ac_1440w.png" alt="v2-d0f8817d91a80f5cc7a9c0cac93c35ac_1440w.png"></p>
+<h5 id="End-to-end头部和Hop-by-hop头部"><a href="#End-to-end头部和Hop-by-hop头部" class="headerlink" title="End-to-end头部和Hop-by-hop头部"></a>End-to-end头部和Hop-by-hop头部</h5><p>http首部字段将定义成缓存代理和非缓存代理的行为，分成2种类型<br>端到端首部（End-to-end Header）<br>此类别中的首部会转发给请求&#x2F;响应对应的最终接受目标，而且必须保存在由缓存生成的响应中，另外规定它必须被转发。<br>逐跳首部（Hop-by-hop Header）<br>此类别中的首部只对单次转发有效，会因通过缓存或代理而不再转发；http1.1和之后的版本，如要使用该首部，需提供Connection首部字段。</p>
+<p>下面列举下http&#x2F;1.1中的逐跳首部字段，除了这8个，其他所有字段都属于端到端首部。<br>Connection:<br>Keep-Alive<br>Proxy-Authenticate<br>Proxy-Authorization<br>Trailer<br>TE<br>Transfer-Encoding<br>Upgrade</p>
+<h4 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h4><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td>信息，表示临时响应并需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错</td>
+</tr>
+</tbody></table>
+<h5 id="1xx"><a href="#1xx" class="headerlink" title="1xx"></a>1xx</h5><p>100：（继续） 请求者应当继续提出请求。 服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。</p>
+<p>101：（切换协议） 请求者已要求服务器切换协议，服务器已确认并准备切换。</p>
+<p>102：由WebDAV（RFC 2518）扩展的状态码，代表处理将被继续执行。</p>
+<h5 id="2XX"><a href="#2XX" class="headerlink" title="2XX"></a>2XX</h5><p>200：（成功） 服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。</p>
+<p>201：（已创建） 请求成功并且服务器创建了新的资源。</p>
+<p>202：（已接受） 服务器已接受请求，但尚未处理。</p>
+<p>203：（非授权信息） 服务器已成功处理了请求，但返回的信息可能来自另一来源。</p>
+<p>204：（无内容） 服务器成功处理了请求，但没有返回任何内容。</p>
+<p>205：（重置内容） 服务器成功处理了请求，但没有返回任何内容。</p>
+<p>206：（部分内容） 服务器成功处理了部分 GET 请求。</p>
+<p>208：（已经报告）一个DAV的绑定成员被前一个请求枚举，并且没有被再一次包括。</p>
+<p>226：（IM Used）服务器已经满足了请求所要的资源，并且响应是一个或者多个实例操作应用于当前实例的结果。</p>
+<h5 id="3XX"><a href="#3XX" class="headerlink" title="3XX"></a>3XX</h5><p>300：（多种选择） 针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</p>
+<p>301：（永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。</p>
+<p>302：（临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
+<p>303：（查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。</p>
+<p>304：（未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。</p>
+<p>305：（使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。</p>
+<p>307：（临时重定向） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
+<p>308：（永久转移）这个请求和以后的请求都应该被另一个URI地址重新发送。307、308和302、301有相同的表现，但是不允许HTTP方法改变。例如，请求表单到一个永久转移的资源将会继续顺利地执行。</p>
+<h5 id="4XX"><a href="#4XX" class="headerlink" title="4XX"></a>4XX</h5><p>400:（错误请求) 服务器不理解请求的语法。</p>
+<p>401：(未授权) 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</p>
+<p>402：该状态码是为了将来可能的需求而预留的。</p>
+<p>403：（禁止) 服务器拒绝请求。</p>
+<p>404：（未找到) 服务器找不到请求的网页。</p>
+<p>405：（方法禁用) 禁用请求中指定的方法。</p>
+<p>406：（不接受) 无法使用请求的内容特性响应请求的网页。</p>
+<p>407：（需要代理授权) 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。</p>
+<p>408：（请求超时) 服务器等候请求时发生超时。</p>
+<p>409：（冲突) 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。</p>
+<p>410：（已删除) 如果请求的资源已永久删除，服务器就会返回此响应。</p>
+<p>411：（需要有效长度) 服务器不接受不含有效内容长度标头字段的请求。</p>
+<p>412：（未满足前提条件) 服务器未满足请求者在请求中设置的其中一个前提条件。</p>
+<p>413：（请求实体过大) 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。</p>
+<p>414：（请求的 URI 过长) 请求的 URI（通常为网址）过长，服务器无法处理。</p>
+<p>415：（不支持的媒体类型) 请求的格式不受请求页面的支持。</p>
+<p>416：（请求范围不符合要求) 如果页面无法提供请求的范围，则服务器会返回此状态代码。</p>
+<p>417：（未满足期望值) 服务器未满足”期望”请求标头字段的要求。</p>
+<p>418：（我是一个茶壶）这个代码是在1998年作为传统的IETF April Fools‘ jokes被定义的在RFC2324，超文本咖啡罐控制协议，但是并没有被实际的HTTP服务器实现。RFC指定了这个代码应该是由茶罐返回给速溶咖啡。</p>
+<p>419：（认证超时）并不是HTTP标注的一部分，419认证超时表示以前的有效证明已经失效了。同时也被用于401未认证的替代选择为了从其它被拒绝访问的已认证客户端中指定服务器的资源。</p>
+<p>420：（方法失效）不是HTTP的标准，但是被Spring定义在HTTP状态类中当方法失时使用。这个状态码已经不推荐在Spring中使用。</p>
+<p>420：（提高你的耐心）也不是HTTP标准的一部分，但是被版本1的Twitter搜索和趋势APi返回当客户端的速率被限制的时候。其它的服务提供商可能会使用429太多的请求响应码来代替。</p>
+<p>421：从当前客户端所在的IP地址到服务器的连接数超过了服务器许可的最大范围。通常，这里的IP地址指的是从服务器上看到的客户端地址（比如用户的网关或者代理服务器地址）。在这种情况下，连接数的计算可能涉及到不止一个终端用户。</p>
+<p>422：请求格式正确，但是由于含有语义错误，无法响应。（RFC 4918 WebDAV）423 Locked 当前资源被锁定。（RFC 4918 WebDAV）</p>
+<p>424：由于之前的某个请求发生的错误，导致当前请求失败，例如 PROPPATCH。（RFC 4918 WebDAV）</p>
+<p>425：在WebDav Advanced Collections 草案中定义，但是未出现在《WebDAV 顺序集协议》（RFC 3658）中。</p>
+<p>426：客户端应当切换到TLS&#x2F;1.0。（RFC 2817）</p>
+<p>428：(需要前置条件)原始服务器需要有条件的请求。当客户端GET一个资源的状态的时候，同时又PUT回给服务器，与此同时第三方修改状态到服务器上的时候，为了避免丢失更新的问题发生将会导致冲突。</p>
+<p>429：（过多请求）用户已经发送了太多的请求在指定的时间里。用于限制速率。</p>
+<p>431：（请求头部字段太大）服务器由于一个单独的请求头部字段或者是全部的字段太大而不愿意处理请求。</p>
+<p>440：（登陆超时（微软））一个微软的扩展，意味着你的会话已经超时。</p>
+<p>444：（无响应）被使用在Nginx的日志中表明服务器没有返回信息给客户端并且关闭了连接（在威慑恶意软件的时候比较有用）。</p>
+<p>449：（重试（微软））一个微软的扩展。请求应该在执行适当的动作之后被重试。</p>
+<p>450：（被Windows家长控制阻塞（微软））一个微软的扩展。这个错误是当Windows家长控制打开并且阻塞指定网页的访问的时候被指定。</p>
+<p>451：（由于法律原因而无效（因特网草稿））被定义在因特网草稿“一个新的HTTP状态码用于法律限制的资源”。被用于当资源的访问由于法律原因被禁止的时候。例如检查制度或者是政府强制要求禁止访问。一个例子是1953年dystopian的小说Fahrenheit 451就是一个非法的资源。</p>
+<p>451：（重定向（微软））被用在Exchange ActiveSync中如果一个更有效的服务器能够被使用或者是服务器不能访问用户的邮箱。客户端会假定重新执行HTTP自动发现协议去寻找更适合的服务器。</p>
+<p>494：（请求头太大（Nginx））Nginx内置代码和431类似，但是是被更早地引入在版本0.9.4（在2011年1月21日）。</p>
+<p>495：（证书错误（Nginx））Nginx内置的代码，当使用SSL客户端证书的时候错误会出现为了在日志错误中区分它和4XX和一个错误页面的重定向。。</p>
+<p>496：（没有证书（Nginx））Nginx内置的代码，当客户端不能提供证书在日志中分辨4XX和一个错误页面的重定向。</p>
+<p>497：（HTTP到HTTPS（Nginx））Nginx内置的代码，被用于原始的HTTP的请求发送给HTTPS端口去分辨4XX在日志中和一个错误页面的重定向。</p>
+<p>498：（令牌超时或失效（Esri））由ArcGIS for Server返回。这个代码意味着令牌的超时或者是失效。</p>
+<p>499：（客户端关闭请求（Nginx））被用在Nginx日志去表明一个连接已经被客户端关闭当服务器仍然正在处理它的请求，是的服务器无法返货状态码。</p>
+<p>499：（需要令牌（Esri））由ArcGIS for Server返回。意味着需要一个令牌（如果没有令牌被提交）。</p>
+<h5 id="5XX"><a href="#5XX" class="headerlink" title="5XX"></a>5XX</h5><p>500：（服务器内部错误） 服务器遇到错误，无法完成请求。</p>
+<p>501：（尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。</p>
+<p>502：（错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。</p>
+<p>503：（服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。</p>
+<p>504：（网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。</p>
+<p>505：（HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p>
+<p>506：由《透明内容协商协议》（RFC 2295）扩展，代表服务器存在内部配置错误：被请求的协商变元资源被配置为在透明内容协商中使用自己，因此在一个协商处理中不是一个合适的重点。</p>
+<p>507：服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。WebDAV (RFC 4918)</p>
+<p>509：服务器达到带宽限制。这不是一个官方的状态码，但是仍被广泛使用。</p>
+<p>510：获取资源所需要的策略并没有没满足。（RFC 2774）。</p>
+<p>508：（发现环路）服务器发现了一个无限的循环档处理请求的时候。</p>
+<p>511：（需要网络授权）客户端需要授权去火的网络的访问权限。一般用于代理交互中被用来进行网络的访问控制。</p>
+<p>520：（未知错误）这个状态码也没有被指定在任何RFC中，并且只会被一些服务器返回，例如微软的Azure和CloudFlare服务器:”520错误。本质上是一个捕获全部的响应当原始服务器返回一些未知的或者一些不能被忍受或者被解释的(协议违反或者空响应)”。</p>
+<p>598：（网络读取超时异常(未知)）这个状态码也没有在任何RFC中指定，但是被用在微软的HTTP代理中去标注一个网络读取超时在一个客户端之前的代理的后面。</p>
+<p>599：（网络连接超时异常(未知)）这个状态码也没有在任何RFC中指定，但是被用在微软的HTTP代理中去标注一个网络连接超时在一个客户端之前的代理的后面。</p>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%AF%86"><span class="toc-text">常识</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%A4%B4%E9%83%A8"><span class="toc-text">通用头部</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%E9%83%A8"><span class="toc-text">请求头部</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%A4%B4%E9%83%A8"><span class="toc-text">响应头部</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E5%A4%B4%E9%83%A8"><span class="toc-text">实体头部</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#End-to-end%E5%A4%B4%E9%83%A8%E5%92%8CHop-by-hop%E5%A4%B4%E9%83%A8"><span class="toc-text">End-to-end头部和Hop-by-hop头部</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">http状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1xx"><span class="toc-text">1xx</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2XX"><span class="toc-text">2XX</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3XX"><span class="toc-text">3XX</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4XX"><span class="toc-text">4XX</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5XX"><span class="toc-text">5XX</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/08/10/爬虫/基础/002-HTTP头部信息分析/">https://dbbruce.github.io/2023/08/10/爬虫/基础/002-HTTP头部信息分析/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/08/10/%E7%BD%91%E7%BB%9C/%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%82%E5%B8%B8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          客户端访问服务器异常
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/10/python/%E5%9F%BA%E7%A1%80/tempfile%20---%20%E7%94%9F%E6%88%90%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          tempfile --- 生成临时文件和目录
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

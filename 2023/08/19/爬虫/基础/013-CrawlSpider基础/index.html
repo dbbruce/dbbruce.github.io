@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>013-CrawlSpider基础 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-爬虫/基础/013-CrawlSpider基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      013-CrawlSpider基础
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-19T07:04:52.000Z" itemprop="datePublished">2023年08月19日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/08/19/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/013-CrawlSpider%E5%9F%BA%E7%A1%80/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="CrawlSpider"><a href="#CrawlSpider" class="headerlink" title="CrawlSpider"></a>CrawlSpider</h4><blockquote>
+<p>CrawlSpider 是 Scrapy 框架提供的一个特殊的 Spider 类型，在Scrapy中Spider是所有爬虫的基类，而CrawSpiders就是Spider的派生类，用于处理那些需要遵循特定规则和链接提取的网站。它是基于广度优先算法构建的，可以自动发现并跟踪网页上的链接，并根据预定义的规则提取数据。</p>
+</blockquote>
+<span id="more"></span>
+<blockquote>
+<p>CrawlSpider 提供了一种更高级的方法来定义爬取规则，而无需编写大量的重复代码。它基于规则系统工作，其中每个规则由一个或多个链接提取器（LinkExtractor）和一个回调函数（callback）组成。规则定义了要提取的链接和如何处理这些链接的方法。</p>
+</blockquote>
+<h4 id="创建一个crawl模板的爬虫"><a href="#创建一个crawl模板的爬虫" class="headerlink" title="创建一个crawl模板的爬虫"></a>创建一个crawl模板的爬虫</h4><blockquote>
+<p>scrapy genspider  -t crawl XXX爬虫名 XXXX域名</p>
+</blockquote>
+<h4 id="linkExtractors链接提取器"><a href="#linkExtractors链接提取器" class="headerlink" title="linkExtractors链接提取器"></a>linkExtractors链接提取器</h4><blockquote>
+<p>使用LinkExtractors可以不用程序员自己提取想要的url，然后发送请求。这些工作都可以交给LinkExtractors. 他会在所有爬的页面中找到满足规则的url.实现自动爬取。</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">主要参数</span><br><span class="line">allow:允许的url。所有满足这个正则表达式的url都会被提取</span><br><span class="line">deny:禁止的url。 所有满足这个正则表达式的url都不会被提取</span><br><span class="line">allow domains:允许的域名。只有在这个里面指定的域名的url才会被提取</span><br><span class="line">deny domains:禁止的域名，所有在这个里面指定的域名的url都不会被提取</span><br><span class="line">restrict xpaths:严格的xpath。和allow共同过滤链接</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">scrapy startproject lieyun</span>                         </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cd</span> lieyun</span>                 </span><br><span class="line">(spider-env) dbbruce@dbburce lieyun % scrapy genspider  -t crawl lieyunpro lieyunpro.com </span><br><span class="line"></span><br><span class="line">Created spider &#x27;lieyunpro&#x27; using template &#x27;crawl&#x27; in module:</span><br><span class="line">  lieyun.spiders.lieyunpro</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tree lieyun</span></span><br><span class="line">lieyun</span><br><span class="line">├── lieyun</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── items.py</span><br><span class="line">│   ├── middlewares.py</span><br><span class="line">│   ├── pipelines.py</span><br><span class="line">│   ├── settings.py</span><br><span class="line">│   └── spiders</span><br><span class="line">│       ├── __init__.py</span><br><span class="line">│       └── lieyunpro.py</span><br><span class="line">└── scrapy.cfg</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lieyunpro.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider, Rule</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LieyunproSpider</span>(<span class="title class_ inherited__">CrawlSpider</span>):</span><br><span class="line">    name = <span class="string">&quot;lieyunpro&quot;</span></span><br><span class="line">    allowed_domains = [<span class="string">&quot;lieyunpro.com&quot;</span>]</span><br><span class="line">    start_urls = [<span class="string">&quot;https://lieyunpro.com&quot;</span>]</span><br><span class="line"></span><br><span class="line">    rules = (Rule(LinkExtractor(allow=<span class="string">r&quot;Items/&quot;</span>), callback=<span class="string">&quot;parse_item&quot;</span>, follow=<span class="literal">True</span>),) </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse_item</span>(<span class="params">self, response</span>):</span><br><span class="line">        item = &#123;&#125;</span><br><span class="line">        <span class="comment">#item[&quot;domain_id&quot;] = response.xpath(&#x27;//input[@id=&quot;sid&quot;]/@value&#x27;).get()</span></span><br><span class="line">        <span class="comment">#item[&quot;name&quot;] = response.xpath(&#x27;//div[@id=&quot;name&quot;]&#x27;).get()</span></span><br><span class="line">        <span class="comment">#item[&quot;description&quot;] = response.xpath(&#x27;//div[@id=&quot;description&quot;]&#x27;).get()</span></span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">链接提取器（LinkExtractor）：链接提取器用于从网页中提取链接。CrawlSpider 提供了几种内置的链接提取器，如基于正则表达式、基于 CSS 选择器、基于 XPath 等，你可以根据需求选择合适的链接提取器。</span><br><span class="line">规则（Rule）：规则定义了要提取的链接和如何处理这些链接的方法。每个规则由一个链接提取器和一个回调函数组成。链接提取器用于提取链接，回调函数定义了如何处理这些链接。可以定义多个规则来处理不同类型的链接。</span><br><span class="line">回调函数（callback）：回调函数是指定规则要调用的方法。当链接提取器提取到链接时，将会调用相应的回调函数来处理提取到的链接。在回调函数中，你可以编写解析页面和提取数据的逻辑。</span><br><span class="line">follow 参数：在规则中，可以设置 follow 参数来决定是否继续跟踪从链接提取器提取的链接。如果设置为 True，则会继续跟踪这些链接并提取数据；如果设置为 False，则不会跟踪这些链接。</span><br><span class="line">allowed_domains 参数：allowed_domains 参数用于限制爬取的域名。只有在 allowed_domains 列表中的域名下的链接才会被跟踪和提取数据，其他域名下的链接将被忽略。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>callback 进行解析<br>follow 是否继续爬<br>allow 运行爬取的网页 </p>
+</blockquote>
+<h4 id="scrapy-提供的调试方式"><a href="#scrapy-提供的调试方式" class="headerlink" title="scrapy 提供的调试方式"></a>scrapy 提供的调试方式</h4><blockquote>
+<p>scrapy shell url地址</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; scrapy shell https://lieyunpro.com/archives/493159</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.url</span></span><br><span class="line">&#x27;https://lieyunpro.com/archives/493159&#x27;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>)</span></span><br><span class="line">[&lt;Selector query=&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27; data=&#x27;\r\n                        &#x27;&gt;, &lt;Selector query=&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27; data=&#x27;\r\n                                   ...&#x27;&gt;]</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>).getall()</span></span><br><span class="line">[&#x27;\r\n                        &#x27;, &#x27;\r\n                                                                        衡道医学完成B+轮融资，提升                    &#x27;]</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="string">&#x27;&#x27;</span>.<span class="built_in">join</span>(response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>).getall()).strip()</span></span><br><span class="line">&#x27;衡道医学完成B+轮融资，提升数智化病理综合解决能力&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="获取元素内容方法的区别"><a href="#获取元素内容方法的区别" class="headerlink" title="获取元素内容方法的区别"></a>获取元素内容方法的区别</h4><blockquote>
+<p>注意：scrapy的xpath方法只能获取到元素，得到的是一个selector选择器，不能获取到内容，如果要获取内容需要用到下面方法</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>区别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>extract()</td>
+<td>返回列表</td>
+</tr>
+<tr>
+<td>getall()</td>
+<td>返回列表</td>
+</tr>
+<tr>
+<td>extract_first()</td>
+<td>返回字符串，区别是不能用于选择器，也就是单个元素，可以用于列表</td>
+</tr>
+<tr>
+<td>get()</td>
+<td>返回字符串</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">xpath方法获取的是列selector对象列表</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>)</span></span><br><span class="line">[&lt;Selector query=&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27; data=&#x27;\r\n                        &#x27;&gt;, &lt;Selector query=&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27; data=&#x27;\r\n                                   ...&#x27;&gt;]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">getall 获取的是内容列表</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>).getall()</span></span><br><span class="line">[&#x27;\r\n                        &#x27;, &#x27;\r\n                                                                        衡道医学完成B+轮融资，提升                    &#x27;]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">extract 获取的是内容列表</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>).extract()</span></span><br><span class="line">[&#x27;\r\n                        &#x27;, &#x27;\r\n                                                                        衡道医学完成B+轮融资，提升                    &#x27;]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">get获取的是内容字符串，获取一个</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>).get()</span></span><br><span class="line">&#x27;\r\n                        &#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">extract_first获取的是内容字符串，获取一个</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>).extract_first()</span></span><br><span class="line">&#x27;\r\n                        &#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">get与extract_first唯一区别，单元素不能用extract_first</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>)[0].get()</span></span><br><span class="line">&#x27;\r\n                        &#x27;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>)[0].extract_first()</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;console&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">AttributeError: &#x27;Selector&#x27; object has no attribute &#x27;extract_first&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">getall 和 extract 对单元素也是一样的</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>)[0].extract()</span></span><br><span class="line">&#x27;\r\n                        &#x27;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>)[0].getall()</span></span><br><span class="line">[&#x27;\r\n                        &#x27;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="项目信息"><a href="#项目信息" class="headerlink" title="项目信息"></a>项目信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lieyun</span><br><span class="line">├── lieyun</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── items.py</span><br><span class="line">│   ├── middlewares.py</span><br><span class="line">│   ├── pipelines.py</span><br><span class="line">│   ├── settings.py</span><br><span class="line">│   └── spiders</span><br><span class="line">│       ├── __init__.py</span><br><span class="line">│       └── lieyunpro.py</span><br><span class="line">└── scrapy.cfg</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table article(</span><br><span class="line">    id smallint(5) primary key auto_increment comment &#x27;主键id&#x27;,</span><br><span class="line">    title varchar(45) not null,</span><br><span class="line">    author varchar(45) not null,</span><br><span class="line">    pub_time varchar(45) not null,</span><br><span class="line">    content varchar(10240) not null,</span><br><span class="line">    article_url varchar(20) not null</span><br><span class="line">)ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT charset=utf8;</span><br></pre></td></tr></table></figure>
+<p>settings中新增</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MYSQL_DB_CONFIG = &#123;</span><br><span class="line">    <span class="string">&#x27;driver&#x27;</span>:<span class="string">&#x27;mysql.connector&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;host&#x27;</span>:<span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user&#x27;</span>:<span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span>:<span class="string">&#x27;123456&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;database&#x27;</span>:<span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;auth_plugin&#x27;</span>:<span class="string">&#x27;mysql_native_password&#x27;</span>,</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h5 id="爬虫"><a href="#爬虫" class="headerlink" title="爬虫"></a>爬虫</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider, Rule</span><br><span class="line"><span class="keyword">from</span> ..items <span class="keyword">import</span> LieyunItem</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LieyunproSpider</span>(<span class="title class_ inherited__">CrawlSpider</span>):</span><br><span class="line">    name = <span class="string">&quot;lieyunpro&quot;</span></span><br><span class="line">    allowed_domains = [<span class="string">&quot;lieyunpro.com&quot;</span>]</span><br><span class="line">    start_urls = [<span class="string">&quot;https://lieyunpro.com/latest/p1.html&quot;</span>]</span><br><span class="line"></span><br><span class="line">    rules = (</span><br><span class="line">        Rule(LinkExtractor(allow=<span class="string">r&quot;/latest/p1\d+.html&quot;</span>), follow=<span class="literal">True</span>),</span><br><span class="line">        Rule(LinkExtractor(allow=<span class="string">r&quot;/archives/\d+&quot;</span>), callback=<span class="string">&quot;parse_item&quot;</span>, follow=<span class="literal">False</span>),</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse_item</span>(<span class="params">self, response</span>):</span><br><span class="line">        title_lst = response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/text()&#x27;</span>).getall()</span><br><span class="line">        title = <span class="string">&#x27;&#x27;</span>.join(title_lst).strip()</span><br><span class="line">        publish_time = response.xpath(<span class="string">&#x27;//h1[@class=&quot;lyw-article-title-inner&quot;]/span/text()&#x27;</span>).get()</span><br><span class="line">        author_name = response.xpath(<span class="string">&#x27;//a[contains(@class, &quot;author-name&quot;)]/text()&#x27;</span>).get()</span><br><span class="line">        content = response.xpath(<span class="string">&#x27;//div[@class=&quot;main-text&quot;]//text()&#x27;</span>).getall()</span><br><span class="line">        content = <span class="string">&#x27;&#x27;</span>.join(content).strip()</span><br><span class="line">        article_url = response.url</span><br><span class="line"></span><br><span class="line">        item = LieyunItem()</span><br><span class="line">        item[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">        item[<span class="string">&#x27;publish_time&#x27;</span>] = publish_time</span><br><span class="line">        item[<span class="string">&#x27;author_name&#x27;</span>] = author_name</span><br><span class="line">        item[<span class="string">&#x27;content&#x27;</span>] = content</span><br><span class="line">        item[<span class="string">&#x27;article_url&#x27;</span>] = article_url</span><br><span class="line"></span><br><span class="line">        <span class="keyword">yield</span> item</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="item"><a href="#item" class="headerlink" title="item"></a>item</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LieyunItem</span>(scrapy.Item):</span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    publish_time = scrapy.Field()</span><br><span class="line">    author_name = scrapy.Field()</span><br><span class="line">    content = scrapy.Field()</span><br><span class="line">    article_url = scrapy.Field()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itemadapter <span class="keyword">import</span> ItemAdapter</span><br><span class="line"><span class="keyword">from</span> twisted.enterprise <span class="keyword">import</span> adbapi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LieyunPipeline</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, mysql_config</span>):</span><br><span class="line">        self.dbpool = adbapi.ConnectionPool(</span><br><span class="line">            mysql_config[<span class="string">&#x27;driver&#x27;</span>],</span><br><span class="line">            host=mysql_config[<span class="string">&#x27;host&#x27;</span>],</span><br><span class="line">            user=mysql_config[<span class="string">&#x27;user&#x27;</span>],</span><br><span class="line">            password=mysql_config[<span class="string">&#x27;password&#x27;</span>],</span><br><span class="line">            database=mysql_config[<span class="string">&#x27;database&#x27;</span>],</span><br><span class="line">            charset=<span class="string">&#x27;utf8&#x27;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">from_crawler</span>(<span class="params">cls, crawler</span>):</span><br><span class="line">        mysql_config=crawler.settings[<span class="string">&#x27;MYSQL_DB_CONFIG&#x27;</span>]</span><br><span class="line">        <span class="keyword">return</span> cls(mysql_config)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_item</span>(<span class="params">self, item, spider</span>):</span><br><span class="line">        result = self.dbpool.runInteraction(self.insert_item, item)</span><br><span class="line">        result.addErrback(self.insert_error)</span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert_item</span>(<span class="params">self, cursor, item</span>):</span><br><span class="line">        sql =<span class="string">&#x27;insert into article(id, title,author, pub_time,content,article_url) values(null,%s,%s,%s,%s,%s)&#x27;</span></span><br><span class="line">        args =(item[<span class="string">&#x27;title&#x27;</span>],item[<span class="string">&#x27;publish_time&#x27;</span>],item[<span class="string">&#x27;author_name&#x27;</span>],item[<span class="string">&#x27;content&#x27;</span>],item[<span class="string">&#x27;article_url&#x27;</span>] )</span><br><span class="line">        cursor.execute(sql, args)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert_error</span>(<span class="params">self, failure</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;++++++++++++++++++&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(failure)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;++++++++++++++++++&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="settings"><a href="#settings" class="headerlink" title="settings"></a>settings</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据库配置</span></span><br><span class="line">MYSQL_DB_CONFIG = &#123;</span><br><span class="line">    <span class="string">&#x27;driver&#x27;</span>:<span class="string">&#x27;mysql.connector&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;host&#x27;</span>:<span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user&#x27;</span>:<span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span>:<span class="string">&#x27;123456&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;database&#x27;</span>:<span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启pipeline</span></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">   <span class="string">&quot;lieyun.pipelines.LieyunPipeline&quot;</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># robots协议</span></span><br><span class="line">ROBOTSTXT_OBEY = <span class="literal">False</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="start文件，start-py"><a href="#start文件，start-py" class="headerlink" title="start文件，start.py"></a>start文件，start.py</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</span><br><span class="line"></span><br><span class="line">cmdline.execute(<span class="string">&#x27;scrapy crawl lieyunpro&#x27;</span>.split(<span class="string">&#x27; &#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#CrawlSpider"><span class="toc-text">CrawlSpider</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAcrawl%E6%A8%A1%E6%9D%BF%E7%9A%84%E7%88%AC%E8%99%AB"><span class="toc-text">创建一个crawl模板的爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#linkExtractors%E9%93%BE%E6%8E%A5%E6%8F%90%E5%8F%96%E5%99%A8"><span class="toc-text">linkExtractors链接提取器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#scrapy-%E6%8F%90%E4%BE%9B%E7%9A%84%E8%B0%83%E8%AF%95%E6%96%B9%E5%BC%8F"><span class="toc-text">scrapy 提供的调试方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E5%86%85%E5%AE%B9%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">获取元素内容方法的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF"><span class="toc-text">项目信息</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%88%AC%E8%99%AB"><span class="toc-text">爬虫</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#item"><span class="toc-text">item</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pipeline"><span class="toc-text">pipeline</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#settings"><span class="toc-text">settings</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#start%E6%96%87%E4%BB%B6%EF%BC%8Cstart-py"><span class="toc-text">start文件，start.py</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/08/19/爬虫/基础/013-CrawlSpider基础/">https://dbbruce.github.io/2023/08/19/爬虫/基础/013-CrawlSpider基础/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/08/18/odoo/20230818-odoo%E7%9F%A5%E8%AF%86%E7%82%B94/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          odoo知识点(四)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/19/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/012-scrapy%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          012-scrapy基础
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

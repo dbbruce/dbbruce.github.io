@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>18-Pod生命周期完整流程介绍 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-运维/K8S/基础/18-Pod生命周期完整流程介绍" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      18-Pod生命周期完整流程介绍
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-09T02:00:00.000Z" itemprop="datePublished">2023年05月09日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/18-Pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Pod生命周期"><a href="#Pod生命周期" class="headerlink" title="Pod生命周期"></a>Pod生命周期</h3><p>pod从<font color="red">开始创建到终止退出的时间范围</font>称为Pod生命周期<br>生命周期包含以下几个重要流程：<br>创建<font color="red">主容器（containers）</font>是必须的操作，<font color="red">初始化容器（initContainers），容器启动后钩子，启动探测、存活性探测，就绪性探测，容器停止前钩子</font></p>
+<span id="more"></span>
+<p><img src="/../../../../images/k8s/jc18/img.png" alt="img.png"></p>
+<h3 id="pod在整个生命周期的过程中总会处于以下几个状态："><a href="#pod在整个生命周期的过程中总会处于以下几个状态：" class="headerlink" title="pod在整个生命周期的过程中总会处于以下几个状态："></a>pod在整个生命周期的过程中总会处于以下几个状态：</h3><ul>
+<li>Pending：创建了pod资源并存入etcd中，但尚未完成调度。</li>
+<li>ContainerCreating：Pod 的调度完成，被分配到指定 Node 上。处于容器创建的过程中。通常是在拉取镜像的过程中。</li>
+<li>Running：Pod 包含的所有容器都已经成功创建，并且成功运行起来。</li>
+<li>Succeeded：Pod中的所有容器都已经成功终止并且不会被重启</li>
+<li>Failed：所有容器都已经终止，但至少有一个容器终止失败，也就是说容器返回了非0值的退出状态或已经被系统终止。</li>
+<li>Unknown：因为某些原因无法取得 Pod 的状态。这种情况通常是因为与 Pod 所在主机通信失败。</li>
+</ul>
+<h3 id="pod生命周期的重要行为："><a href="#pod生命周期的重要行为：" class="headerlink" title="pod生命周期的重要行为："></a>pod生命周期的重要行为：</h3><ul>
+<li><p>1.在启动任何容器之前，先创建pause基础容器，它初始化Pod的环境并为后续加⼊的容器提供共享的名称空间。</p>
+</li>
+<li><p>2.初始化容器（initcontainer）：<br>一个pod可以拥有任意数量的init容器。init容器是按照顺序以此执行的，并且仅当最后一个init容器执行完毕才会去启动主容器。</p>
+</li>
+<li><p>3.生命周期钩子：<br>pod允许定义两种类型的生命周期钩子，启动后(post-start)钩子和停止前(pre-stop)钩子<br>这些生命周期钩子是基于每个容器来指定的，和init容器不同的是，init容器是应用到整个pod。而这些钩子是针对容器的，是在容器启动后和停止前执行的。</p>
+</li>
+<li><p>4.容器探测：</p>
+<ul>
+<li>4.1.对Pod健康状态诊断。分为三种： Startupprobe、Livenessprobe(存活性探测)， Readinessprobe(就绪性检测)<blockquote>
+<p>Startup（启动探测）:探测容器是否正常运行<br><br>Liveness(存活性探测)：判断容器是否处于runnning状态，根据重启策略决定是否重启容器<br><br>Readiness(就绪性检测)：判断容器是否准备就绪并对外提供服务，将容器设置为不可用，不接受service转发的请求<br></p>
+</blockquote>
+</li>
+<li>4.2.三种探针用于Pod检测：<blockquote>
+<p>ExecAction：在容器中执行一个命令，并根据返回的状态码进行诊断，只有返回0为成功<br><br>TCPSocketAction：通过与容器的某TCP端口尝试建立连接<br><br>HTTPGetAction：通过向容器IP地址的某指定端口的path发起HTTP GET请求。<br><br><img src="/../../../../images/k8s/jc18/img_1.png" alt="img_1.png"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>5.容器的重启策略：<br>定义是否重启Pod对象<br>Always：但凡Pod对象终止就重启，默认设置<br>OnFailure：仅在Pod出现错误时才重启<br>Never：从不<br>注：一旦Pod绑定到一个节点上，就不会被重新绑定到另一个节点上，要么重启，要么终止</p>
+</li>
+<li><p>6.pod的终止过程<br>终止过程主要分为如下几个步骤：<br>(1)用户发出删除 pod 命令：kubectl delete pods ，kubectl delete -f yaml<br>(2)Pod 对象随着时间的推移更新，在宽限期（默认情况下30秒），pod 被视为“dead”状态<br>(3)将 pod 标记为“Terminating”状态<br>(4)第三步同时运行，监控到 pod 对象为“Terminating”状态的同时启动 pod 关闭过程<br>(5)第三步同时进行，endpoints 控制器监控到 pod 对象关闭，将pod与service匹配的 endpoints 列表中删除<br>(6)如果 pod 中定义了 preStop 钩子处理程序，则 pod 被标记为“Terminating”状态时以同步的方式启动执行；若宽限期结束后，preStop 仍未执行结束，第二步会重新执行并额外获得一个2秒的小宽限期<br>(7)Pod 内对象的容器收到 TERM 信号<br>(8)宽限期结束之后，若存在任何一个运行的进程，pod 会收到 SIGKILL 信号<br>(9)Kubelet 请求 API Server 将此 Pod 资源宽限期设置为0从而完成删除操作</p>
+</li>
+</ul>
+<h3 id="Init容器"><a href="#Init容器" class="headerlink" title="Init容器"></a>Init容器</h3><p><img src="/../../../../images/k8s/jc18/img_2.png" alt="img_2.png"><br>spec字段下有个initContainers字段(初始化容器)，Init容器就是做初始化工作的容器。可以有一个或多个，如果多个按照定义的顺序依次执行，先执行初始化容器1，再执行初始化容器2等，等初始化容器执行完具体操作之后初始化容器就退出了，只有所有的初始化容器执行完后，主容器才启动。<br>由于一个Pod里容器存储卷是共享的，所以Init Container里产生的数据可以被主容器使用到，Init Container可以在多种K8S资源里被使用到，如Deployment、DaemonSet, StatefulSet、Job等，但都是在Pod启动时，在主容器启动前执行，做初始化工作。</p>
+<ul>
+<li>初始化容器与主容器区别是:<br>1、初始化容器不支持 Readinessprobe,因为它们必须在Pod就绪之前运行完成<br>2、每个Init容器必须运行成功,下一个才能够运行</li>
+<li>初始化容器的官方地址：<br><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/#init-containers-in-use">https://kubernetes.io/docs/concepts/workloads/pods/init-containers/#init-containers-in-use</a></li>
+</ul>
+<h3 id="初始化容器使用案例1"><a href="#初始化容器使用案例1" class="headerlink" title="初始化容器使用案例1"></a>初始化容器使用案例1</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat init.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">myapp-pod</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">default</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">myapp</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">   <span class="attr">initContainers:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">init-myserver</span></span><br><span class="line">     <span class="attr">image:</span> <span class="string">docker.io/library/busybox:1.28</span></span><br><span class="line">     <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">     <span class="attr">command:</span> [<span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>, <span class="string">&quot;until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done&quot;</span>]</span><br><span class="line">   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">init-mydb</span></span><br><span class="line">     <span class="attr">image:</span> <span class="string">docker.io/library/busybox:1.28</span></span><br><span class="line">     <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">     <span class="attr">command:</span> [<span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>, <span class="string">&quot;until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done&quot;</span>]</span><br><span class="line">   <span class="attr">containers:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">myapp-container</span></span><br><span class="line">     <span class="attr">image:</span> <span class="string">docker.io/library/busybox:1.28</span></span><br><span class="line">     <span class="attr">command:</span> [<span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>, <span class="string">&#x27;echo The app is running! &amp;&amp; sleep 3600&#x27;</span>]  </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl apply -f init.yaml</span><br></pre></td></tr></table></figure>
+<ul>
+<li>有2个容器初始化<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl get pods -owide</span><br><span class="line">NAME        READY   STATUS     RESTARTS   AGE   IP               NODE          NOMINATED NODE   READINESS GATES</span><br><span class="line">myapp-pod   0/1     Init:0/2   0          52s   10.244.250.208   centos07-62   &lt;none&gt;           &lt;none&gt;</span><br></pre></td></tr></table></figure></li>
+<li>查看详情<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl describe pod myapp-pod</span><br><span class="line">Name:             myapp-pod</span><br><span class="line">Namespace:        default</span><br><span class="line">Priority:         0</span><br><span class="line">Service Account:  default</span><br><span class="line">Node:             centos07-62/192.168.1.62</span><br><span class="line">Start Time:       Wed, 06 Dec 2023 20:39:52 +0800</span><br><span class="line">Labels:           app=myapp</span><br><span class="line">Annotations:      cni.projectcalico.org/podIP: 10.244.250.208/32</span><br><span class="line">                  cni.projectcalico.org/podIPs: 10.244.250.208/32</span><br><span class="line">Status:           Pending</span><br><span class="line">IP:               10.244.250.208</span><br><span class="line">IPs:</span><br><span class="line">  IP:  10.244.250.208</span><br><span class="line">Init Containers:</span><br><span class="line">  init-myserver:</span><br><span class="line">    Container ID:  containerd://d15939ab99e8e35dc158548e2189a99dd86565c4278cce07392e960060aedeb2</span><br><span class="line">    Image:         docker.io/library/busybox:1.28</span><br><span class="line">    Image ID:      docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47</span><br><span class="line">    Port:          &lt;none&gt;</span><br><span class="line">    Host Port:     &lt;none&gt;</span><br><span class="line">    Command:</span><br><span class="line">      sh</span><br><span class="line">      -c</span><br><span class="line">      until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done</span><br><span class="line">    State:          Running</span><br><span class="line">      Started:      Wed, 06 Dec 2023 20:40:05 +0800</span><br><span class="line">    Ready:          False</span><br><span class="line">    Restart Count:  0</span><br><span class="line">    Environment:    &lt;none&gt;</span><br><span class="line">    Mounts:</span><br><span class="line">      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-h8chq (ro)</span><br><span class="line">  init-mydb:</span><br><span class="line">    Container ID:</span><br><span class="line">    Image:         docker.io/library/busybox:1.28</span><br><span class="line">    Image ID:</span><br><span class="line">    Port:          &lt;none&gt;</span><br><span class="line">    Host Port:     &lt;none&gt;</span><br><span class="line">    Command:</span><br><span class="line">      sh</span><br><span class="line">      -c</span><br><span class="line">      until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done</span><br><span class="line">    State:          Waiting</span><br><span class="line">      Reason:       PodInitializing</span><br><span class="line">    Ready:          False</span><br><span class="line">    Restart Count:  0</span><br><span class="line">    Environment:    &lt;none&gt;</span><br><span class="line">    Mounts:</span><br><span class="line">      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-h8chq (ro)</span><br><span class="line">Containers:</span><br><span class="line">  myapp-container:</span><br><span class="line">    Container ID:</span><br><span class="line">    Image:         docker.io/library/busybox:1.28</span><br><span class="line">    Image ID:</span><br><span class="line">    Port:          &lt;none&gt;</span><br><span class="line">    Host Port:     &lt;none&gt;</span><br><span class="line">    Command:</span><br><span class="line">      sh</span><br><span class="line">      -c</span><br><span class="line">      echo The app is running! &amp;&amp; sleep 3600</span><br><span class="line">    State:          Waiting</span><br><span class="line">      Reason:       PodInitializing</span><br><span class="line">    Ready:          False</span><br><span class="line">    Restart Count:  0</span><br><span class="line">    Environment:    &lt;none&gt;</span><br><span class="line">    Mounts:</span><br><span class="line">      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-h8chq (ro)</span><br><span class="line">Conditions:</span><br><span class="line">  Type              Status</span><br><span class="line">  Initialized       False</span><br><span class="line">  Ready             False</span><br><span class="line">  ContainersReady   False</span><br><span class="line">  PodScheduled      True</span><br><span class="line">Volumes:</span><br><span class="line">  kube-api-access-h8chq:</span><br><span class="line">    Type:                    Projected (a volume that contains injected data from multiple sources)</span><br><span class="line">    TokenExpirationSeconds:  3607</span><br><span class="line">    ConfigMapName:           kube-root-ca.crt</span><br><span class="line">    ConfigMapOptional:       &lt;nil&gt;</span><br><span class="line">    DownwardAPI:             true</span><br><span class="line">QoS Class:                   BestEffort</span><br><span class="line">Node-Selectors:              &lt;none&gt;</span><br><span class="line">Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s</span><br><span class="line">                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s</span><br><span class="line">Events:</span><br><span class="line">  Type    Reason     Age   From               Message</span><br><span class="line">  ----    ------     ----  ----               -------</span><br><span class="line">  Normal  Scheduled  17m   default-scheduler  Successfully assigned default/myapp-pod to centos07-62</span><br><span class="line">  Normal  Pulling    17m   kubelet            Pulling image &quot;docker.io/library/busybox:1.28&quot;</span><br><span class="line">  Normal  Pulled     17m   kubelet            Successfully pulled image &quot;docker.io/library/busybox:1.28&quot; in 11.385772079s (11.38581593s including waiting)</span><br><span class="line">  Normal  Created    17m   kubelet            Created container init-myserver</span><br><span class="line">  Normal  Started    17m   kubelet            Started container init-myserver</span><br></pre></td></tr></table></figure></li>
+<li>删除<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@centos07-12</span> <span class="string">inittest</span>]<span class="comment"># kubectl delete -f .</span></span><br><span class="line"><span class="string">pod</span> <span class="string">&quot;myapp-pod&quot;</span> <span class="string">deleted</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="初始化容器使用案例2"><a href="#初始化容器使用案例2" class="headerlink" title="初始化容器使用案例2"></a>初始化容器使用案例2</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim init2.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">myapp-pod</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">myapp</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">initContainers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">init-myservice</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.io/library/busybox:1.28</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">    <span class="attr">command:</span> [<span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>, <span class="string">&quot;sleep 10&quot;</span>]</span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">init-mydb</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.io/library/busybox:1.28</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">    <span class="attr">command:</span> [<span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>, <span class="string">&quot;sleep 10&quot;</span>]</span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">myapp-container</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.io/library/busybox:1.28</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">    <span class="attr">command:</span> [<span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>, <span class="string">&#x27;echo containers start running! &amp;&amp; sleep 3600&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl apply -f init2.yaml</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl get pod -w</span><br><span class="line">NAME        READY   STATUS     RESTARTS   AGE</span><br><span class="line">myapp-pod   0/1     Init:0/2   0          11s</span><br><span class="line">myapp-pod   0/1     Init:1/2   0          13s</span><br><span class="line">myapp-pod   0/1     Init:1/2   0          14s</span><br><span class="line">myapp-pod   0/1     PodInitializing   0          24s</span><br><span class="line">myapp-pod   1/1     Running           0          25s</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl describe pod myapp-pod</span><br><span class="line">Name:             myapp-pod</span><br><span class="line">Namespace:        default</span><br><span class="line">Priority:         0</span><br><span class="line">Service Account:  default</span><br><span class="line">Node:             centos07-62/192.168.1.62</span><br><span class="line">Start Time:       Wed, 06 Dec 2023 21:05:02 +0800</span><br><span class="line">Labels:           app=myapp</span><br><span class="line">Annotations:      cni.projectcalico.org/podIP: 10.244.250.209/32</span><br><span class="line">                  cni.projectcalico.org/podIPs: 10.244.250.209/32</span><br><span class="line">Status:           Running</span><br><span class="line">IP:               10.244.250.209</span><br><span class="line">IPs:</span><br><span class="line">  IP:  10.244.250.209</span><br><span class="line">Init Containers:</span><br><span class="line">  init-myservice:</span><br><span class="line">    Container ID:  containerd://44b3a8c036547f4367179f7276b6708c67d288f6009fd4cd039a3cf2e9155fe5</span><br><span class="line">    Image:         docker.io/library/busybox:1.28</span><br><span class="line">    Image ID:      docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47</span><br><span class="line">    Port:          &lt;none&gt;</span><br><span class="line">    Host Port:     &lt;none&gt;</span><br><span class="line">    Command:</span><br><span class="line">      sh</span><br><span class="line">      -c</span><br><span class="line">      sleep 10</span><br><span class="line">    State:          Terminated</span><br><span class="line">      Reason:       Completed</span><br><span class="line">      Exit Code:    0</span><br><span class="line">      Started:      Wed, 06 Dec 2023 21:05:04 +0800</span><br><span class="line">      Finished:     Wed, 06 Dec 2023 21:05:14 +0800</span><br><span class="line">    Ready:          True</span><br><span class="line">    Restart Count:  0</span><br><span class="line">    Environment:    &lt;none&gt;</span><br><span class="line">    Mounts:</span><br><span class="line">      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-scjhq (ro)</span><br><span class="line">  init-mydb:</span><br><span class="line">    Container ID:  containerd://bc777de83e2d10cc848866e5c45dce24bf1d988a4821d6851e9e4b5f945c238b</span><br><span class="line">    Image:         docker.io/library/busybox:1.28</span><br><span class="line">    Image ID:      docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47</span><br><span class="line">    Port:          &lt;none&gt;</span><br><span class="line">    Host Port:     &lt;none&gt;</span><br><span class="line">    Command:</span><br><span class="line">      sh</span><br><span class="line">      -c</span><br><span class="line">      sleep 10</span><br><span class="line">    State:          Terminated</span><br><span class="line">      Reason:       Completed</span><br><span class="line">      Exit Code:    0</span><br><span class="line">      Started:      Wed, 06 Dec 2023 21:05:14 +0800</span><br><span class="line">      Finished:     Wed, 06 Dec 2023 21:05:24 +0800</span><br><span class="line">    Ready:          True</span><br><span class="line">    Restart Count:  0</span><br><span class="line">    Environment:    &lt;none&gt;</span><br><span class="line">    Mounts:</span><br><span class="line">      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-scjhq (ro)</span><br><span class="line">Containers:</span><br><span class="line">  myapp-container:</span><br><span class="line">    Container ID:  containerd://ce6cd5a85e5ae1939fa943d7b8a008005a7b6b16091a892a41f3c4bbc3c140b5</span><br><span class="line">    Image:         docker.io/library/busybox:1.28</span><br><span class="line">    Image ID:      docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47</span><br><span class="line">    Port:          &lt;none&gt;</span><br><span class="line">    Host Port:     &lt;none&gt;</span><br><span class="line">    Command:</span><br><span class="line">      sh</span><br><span class="line">      -c</span><br><span class="line">      echo containers start running! &amp;&amp; sleep 3600</span><br><span class="line">    State:          Running</span><br><span class="line">      Started:      Wed, 06 Dec 2023 21:05:25 +0800</span><br><span class="line">    Ready:          True</span><br><span class="line">    Restart Count:  0</span><br><span class="line">    Environment:    &lt;none&gt;</span><br><span class="line">    Mounts:</span><br><span class="line">      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-scjhq (ro)</span><br><span class="line">Conditions:</span><br><span class="line">  Type              Status</span><br><span class="line">  Initialized       True</span><br><span class="line">  Ready             True</span><br><span class="line">  ContainersReady   True</span><br><span class="line">  PodScheduled      True</span><br><span class="line">Volumes:</span><br><span class="line">  kube-api-access-scjhq:</span><br><span class="line">    Type:                    Projected (a volume that contains injected data from multiple sources)</span><br><span class="line">    TokenExpirationSeconds:  3607</span><br><span class="line">    ConfigMapName:           kube-root-ca.crt</span><br><span class="line">    ConfigMapOptional:       &lt;nil&gt;</span><br><span class="line">    DownwardAPI:             true</span><br><span class="line">QoS Class:                   BestEffort</span><br><span class="line">Node-Selectors:              &lt;none&gt;</span><br><span class="line">Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s</span><br><span class="line">                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s</span><br><span class="line">Events:</span><br><span class="line">  Type    Reason     Age   From               Message</span><br><span class="line">  ----    ------     ----  ----               -------</span><br><span class="line">  Normal  Scheduled  94s   default-scheduler  Successfully assigned default/myapp-pod to centos07-62</span><br><span class="line">  Normal  Pulled     93s   kubelet            Container image &quot;docker.io/library/busybox:1.28&quot; already present on machine</span><br><span class="line">  Normal  Created    92s   kubelet            Created container init-myservice</span><br><span class="line">  Normal  Started    92s   kubelet            Started container init-myservice</span><br><span class="line">  Normal  Pulled     82s   kubelet            Container image &quot;docker.io/library/busybox:1.28&quot; already present on machine</span><br><span class="line">  Normal  Created    82s   kubelet            Created container init-mydb</span><br><span class="line">  Normal  Started    82s   kubelet            Started container init-mydb</span><br><span class="line">  Normal  Pulled     71s   kubelet            Container image &quot;docker.io/library/busybox:1.28&quot; already present on machine</span><br><span class="line">  Normal  Created    71s   kubelet            Created container myapp-container</span><br><span class="line">  Normal  Started    71s   kubelet            Started container myapp-container</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl delete pod myapp-pod</span><br><span class="line">pod &quot;myapp-pod&quot; deleted</span><br></pre></td></tr></table></figure>
+<h3 id="初始化容器生产应用"><a href="#初始化容器生产应用" class="headerlink" title="初始化容器生产应用"></a>初始化容器生产应用</h3><ul>
+<li>主容器运行nginx服务，初始化容器用来给主容器生成index.html文件<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  init3.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">initnginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">initContainers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">install</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.io/library/busybox:1.28</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">    <span class="attr">command:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">wget</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;-O&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;/work-dir/index.html&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;https://www.baidu.com&quot;</span></span><br><span class="line">    <span class="attr">volumeMounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">workdir</span></span><br><span class="line">      <span class="attr">mountPath:</span> <span class="string">/work-dir</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.io/library/nginx:latest</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">volumeMounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">workdir</span></span><br><span class="line">      <span class="attr">mountPath:</span> <span class="string">/usr/share/nginx/html</span></span><br><span class="line">  <span class="attr">dnsPolicy:</span> <span class="string">Default</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">workdir</span></span><br><span class="line">    <span class="attr">emptyDir:</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl apply -f init3.yaml</span><br><span class="line">pod/initnginx created</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">root@centos07-12</span> <span class="string">inittest]#</span> <span class="string">kubectl</span> <span class="string">get</span> <span class="string">pods</span> <span class="string">-owide</span></span><br><span class="line"><span class="string">NAME</span>        <span class="string">READY</span>   <span class="string">STATUS</span>    <span class="string">RESTARTS</span>   <span class="string">AGE</span>     <span class="string">IP</span>               <span class="string">NODE</span>          <span class="string">NOMINATED</span> <span class="string">NODE</span>   <span class="string">READINESS</span> <span class="string">GATES</span></span><br><span class="line"><span class="string">initnginx</span>   <span class="number">1</span><span class="string">/1</span>     <span class="string">Running</span>   <span class="number">0</span>          <span class="string">2m10s</span>   <span class="number">10.244</span><span class="number">.250</span><span class="number">.210</span>   <span class="string">centos07-62</span>   <span class="string">&lt;none&gt;</span>           <span class="string">&lt;none&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@centos07-12</span> <span class="string">inittest</span>]<span class="comment"># curl 10.244.250.210</span></span><br><span class="line"><span class="string">&lt;!DOCTYPE</span> <span class="string">html&gt;</span></span><br><span class="line"><span class="string">&lt;!--STATUS</span> <span class="string">OK--&gt;&lt;html&gt;</span> <span class="string">&lt;head&gt;&lt;meta</span> <span class="string">http-equiv=content-type</span> <span class="string">content=text/html;charset=utf-8&gt;&lt;meta</span> <span class="string">http-equiv=X-UA-Compatible</span> <span class="string">content=IE=Edge&gt;&lt;meta</span> <span class="string">content=always</span> <span class="string">name=referrer&gt;&lt;link</span> <span class="string">rel=stylesheet</span> <span class="string">type=text/css</span> <span class="string">href=https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/bdorz/baidu.min.css&gt;&lt;title&gt;百度一下，你就知道&lt;/title&gt;&lt;/head&gt;</span> <span class="string">&lt;body</span> <span class="string">link=#0000cc&gt;</span> <span class="string">&lt;div</span> <span class="string">id=wrapper&gt;</span> <span class="string">&lt;div</span> <span class="string">id=head&gt;</span> <span class="string">&lt;div</span> <span class="string">class=head_wrapper&gt;</span> <span class="string">&lt;div</span> <span class="string">class=s_form&gt;</span> <span class="string">&lt;div</span> <span class="string">class=s_form_wrapper&gt;</span> <span class="string">&lt;div</span> <span class="string">id=lg&gt;</span> <span class="string">&lt;img</span> <span class="string">hidefocus=true</span> <span class="string">src=//www.baidu.com/img/bd_logo1.png</span> <span class="string">width=270</span> <span class="string">height=129&gt;</span> <span class="string">&lt;/div&gt;</span> <span class="string">&lt;form</span> <span class="string">id=form</span> <span class="string">name=f</span> <span class="string">action=//www.baidu.com/s</span> <span class="string">class=fm&gt;</span> <span class="string">&lt;input</span> <span class="string">type=hidden</span> <span class="string">name=bdorz_come</span> <span class="string">value=1&gt;</span> <span class="string">&lt;input</span> <span class="string">type=hidden</span> <span class="string">name=ie</span> <span class="string">value=utf-8&gt;</span> <span class="string">&lt;input</span> <span class="string">type=hidden</span> <span class="string">name=f</span> <span class="string">value=8&gt;</span> <span class="string">&lt;input</span> <span class="string">type=hidden</span> <span class="string">name=rsv_bp</span> <span class="string">value=1&gt;</span> <span class="string">&lt;input</span> <span class="string">type=hidden</span> <span class="string">name=rsv_idx</span> <span class="string">value=1&gt;</span> <span class="string">&lt;input</span> <span class="string">type=hidden</span> <span class="string">name=tn</span> <span class="string">value=baidu&gt;&lt;span</span> <span class="string">class=&quot;bg</span> <span class="string">s_ipt_wr&quot;&gt;&lt;input</span> <span class="string">id=kw</span> <span class="string">name=wd</span> <span class="string">class=s_ipt</span> <span class="string">value</span> <span class="string">maxlength=255</span> <span class="string">autocomplete=off</span> <span class="string">autofocus=autofocus&gt;&lt;/span&gt;&lt;span</span> <span class="string">class=&quot;bg</span> <span class="string">s_btn_wr&quot;&gt;&lt;input</span> <span class="string">type=submit</span> <span class="string">id=su</span> <span class="string">value=百度一下</span> <span class="string">class=&quot;bg</span> <span class="string">s_btn&quot;</span> <span class="string">autofocus&gt;&lt;/span&gt;</span> <span class="string">&lt;/form&gt;</span> <span class="string">&lt;/div&gt;</span> <span class="string">&lt;/div&gt;</span> <span class="string">&lt;div</span> <span class="string">id=u1&gt;</span> <span class="string">&lt;a</span> <span class="string">href=http://news.baidu.com</span> <span class="string">name=tj_trnews</span> <span class="string">class=mnav&gt;新闻&lt;/a&gt;</span> <span class="string">&lt;a</span> <span class="string">href=https://www.hao123.com</span> <span class="string">name=tj_trhao123</span> <span class="string">class=mnav&gt;hao123&lt;/a&gt;</span> <span class="string">&lt;a</span> <span class="string">href=http://map.baidu.com</span> <span class="string">name=tj_trmap</span> <span class="string">class=mnav&gt;地图&lt;/a&gt;</span> <span class="string">&lt;a</span> <span class="string">href=http://v.baidu.com</span> <span class="string">name=tj_trvideo</span> <span class="string">class=mnav&gt;视频&lt;/a&gt;</span> <span class="string">&lt;a</span> <span class="string">href=http://tieba.baidu.com</span> <span class="string">name=tj_trtieba</span> <span class="string">class=mnav&gt;贴吧&lt;/a&gt;</span> <span class="string">&lt;noscript&gt;</span> <span class="string">&lt;a</span> <span class="string">href=http://www.baidu.com/bdorz/login.gif?login&amp;amp;tpl=mn&amp;amp;u=http%3A%2F%2Fwww.baidu.com%2f%3fbdorz_come%3d1</span> <span class="string">name=tj_login</span> <span class="string">class=lb&gt;登录&lt;/a&gt;</span> <span class="string">&lt;/noscript&gt;</span> <span class="string">&lt;script&gt;document.write(&#x27;&lt;a</span> <span class="string">href=&quot;http://www.baidu.com/bdorz/login.gif?login&amp;tpl=mn&amp;u=&#x27;+</span> <span class="string">encodeURIComponent(window.location.href+</span> <span class="string">(window.location.search</span> <span class="string">===</span> <span class="string">&quot;&quot;</span> <span class="string">?</span> <span class="string">&quot;?&quot;</span> <span class="string">:</span> <span class="string">&quot;&amp;&quot;</span><span class="string">)+</span> <span class="string">&quot;bdorz_come=1&quot;</span><span class="string">)+</span> <span class="string">&#x27;&quot; name=&quot;tj_login&quot; class=&quot;lb&quot;&gt;登录&lt;/a&gt;&#x27;</span><span class="string">);</span></span><br><span class="line">                <span class="string">&lt;/script&gt;</span> <span class="string">&lt;a</span> <span class="string">href=//www.baidu.com/more/</span> <span class="string">name=tj_briicon</span> <span class="string">class=bri</span> <span class="string">style=&quot;display:</span> <span class="string">block;&quot;&gt;更多产品&lt;/a&gt;</span> <span class="string">&lt;/div&gt;</span> <span class="string">&lt;/div&gt;</span> <span class="string">&lt;/div&gt;</span> <span class="string">&lt;div</span> <span class="string">id=ftCon&gt;</span> <span class="string">&lt;div</span> <span class="string">id=ftConw&gt;</span> <span class="string">&lt;p</span> <span class="string">id=lh&gt;</span> <span class="string">&lt;a</span> <span class="string">href=http://home.baidu.com&gt;关于百度&lt;/a&gt;</span> <span class="string">&lt;a</span> <span class="string">href=http://ir.baidu.com&gt;About</span> <span class="string">Baidu&lt;/a&gt;</span> <span class="string">&lt;/p&gt;</span> <span class="string">&lt;p</span> <span class="string">id=cp&gt;&amp;copy;2017&amp;nbsp;Baidu&amp;nbsp;&lt;a</span> <span class="string">href=http://www.baidu.com/duty/&gt;使用百度前必读&lt;/a&gt;&amp;nbsp;</span> <span class="string">&lt;a</span> <span class="string">href=http://jianyi.baidu.com/</span> <span class="string">class=cp-fe</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl exec -it initnginx -- /bin/bash</span><br><span class="line">Defaulted container &quot;nginx&quot; out of: nginx, install (init)</span><br><span class="line">root@initnginx:/# cd /usr/share/nginx/html/</span><br><span class="line">root@initnginx:/usr/share/nginx/html# ls</span><br><span class="line">index.html</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="主容器"><a href="#主容器" class="headerlink" title="主容器"></a>主容器</h3><h4 id="1、容器钩子"><a href="#1、容器钩子" class="headerlink" title="1、容器钩子"></a>1、容器钩子</h4><p>初始化容器启动之后，开始启动主容器，在主容器启动之后有一个post start hook（容器启动后钩子）和pre stop hook（容器结束前钩子），无论启动后还是结束前所做的事我们可以把它放两个钩子，这个钩子就表示用户可以用它来钩住一些命令，非必须选项</p>
+<ul>
+<li>postStart：该钩子在容器被创建后立刻执行，如果该钩子对应的探测执行失败，则该容器会被杀死，并根据该容器的重启策略决定是否要重启该容器，这个钩子不需要传递任何参数。</li>
+<li>preStop：该钩子在容器被删除前执行，主要用于释放资源和优雅关闭程序</li>
+</ul>
+<h4 id="容器钩子：postStart和preStop"><a href="#容器钩子：postStart和preStop" class="headerlink" title="容器钩子：postStart和preStop"></a>容器钩子：postStart和preStop</h4><ul>
+<li>postStart：容器创建之后立刻执行，用于资源部署、环境准备等。</li>
+<li>preStop：在容器被终止前执行，用于优雅关闭应用程序、通知其他系统等。</li>
+</ul>
+<h4 id="演示postStart和preStop用法"><a href="#演示postStart和preStop用法" class="headerlink" title="演示postStart和preStop用法"></a>演示postStart和preStop用法</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p3.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">life-demo</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">lifecycle-demo-container</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.io/library/nginx:latest</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">    <span class="attr">lifecycle:</span></span><br><span class="line">      <span class="attr">postStart:</span></span><br><span class="line">         <span class="attr">exec:</span></span><br><span class="line">           <span class="attr">command:</span> [<span class="string">&quot;/bin/sh&quot;</span>, <span class="string">&quot;-c&quot;</span>,<span class="string">&quot;echo &#x27;lifecycle hookshandler&#x27; &gt; /usr/share/nginx/html/test.html&quot;</span>]</span><br><span class="line">      <span class="attr">preStop:</span></span><br><span class="line">         <span class="attr">exec:</span></span><br><span class="line">           <span class="attr">command:</span></span><br><span class="line">           <span class="bullet">-</span> <span class="string">&quot;/bin/sh&quot;</span></span><br><span class="line">           <span class="bullet">-</span> <span class="string">&quot;-c&quot;</span></span><br><span class="line">           <span class="bullet">-</span> <span class="string">&quot;nginx -s stop&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 inittest]# kubectl exec -it lifecycle-demo -- /bin/bash</span><br><span class="line">root@lifecycle-demo:/# cat /usr/share/nginx/html/test.html</span><br><span class="line">lifecycle hookshardler</span><br><span class="line">root@lifecycle-demo:/# exit</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>pod在整个生命周期中有非常多的用户行为：</p>
+<ul>
+<li>1、初始化容器完成初始化</li>
+<li>2、主容器启动后可以做启动后钩子</li>
+<li>3、主容器结束前可以做结束前钩子</li>
+<li>4、在主容器运行中可以做一些健康检测，如startupprobe、livenessprobe，readnessprobe</li>
+</ul>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">Pod生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pod%E5%9C%A8%E6%95%B4%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%80%BB%E4%BC%9A%E5%A4%84%E4%BA%8E%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E7%8A%B6%E6%80%81%EF%BC%9A"><span class="toc-text">pod在整个生命周期的过程中总会处于以下几个状态：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E9%87%8D%E8%A6%81%E8%A1%8C%E4%B8%BA%EF%BC%9A"><span class="toc-text">pod生命周期的重要行为：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Init%E5%AE%B9%E5%99%A8"><span class="toc-text">Init容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B1"><span class="toc-text">初始化容器使用案例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B2"><span class="toc-text">初始化容器使用案例2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%B9%E5%99%A8%E7%94%9F%E4%BA%A7%E5%BA%94%E7%94%A8"><span class="toc-text">初始化容器生产应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%AE%B9%E5%99%A8"><span class="toc-text">主容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90"><span class="toc-text">1、容器钩子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90%EF%BC%9ApostStart%E5%92%8CpreStop"><span class="toc-text">容器钩子：postStart和preStop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%94%E7%A4%BApostStart%E5%92%8CpreStop%E7%94%A8%E6%B3%95"><span class="toc-text">演示postStart和preStop用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/05/09/运维/K8S/基础/18-Pod生命周期完整流程介绍/">https://dbbruce.github.io/2023/05/09/运维/K8S/基础/18-Pod生命周期完整流程介绍/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          17-Pod常见的状态和重启策略
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          19-Pod容器健康探测
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>

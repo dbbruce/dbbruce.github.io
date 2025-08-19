@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>odoo知识点(五)-PostgreSQL | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-odoo/20230922-odoo知识点5-PostgreSQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      odoo知识点(五)-PostgreSQL
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-19T12:50:52.000Z" itemprop="datePublished">2023年08月19日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/odoo/">odoo</a> > <a class="article-category-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2023/08/19/odoo/20230922-odoo%E7%9F%A5%E8%AF%86%E7%82%B95-PostgreSQL/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-进入psql"><a href="#1-进入psql" class="headerlink" title="1.进入psql"></a>1.进入psql</h4><ul>
+<li>psql  (本机数据库，直接进入)</li>
+<li>psql -h 地址 -p 端口 -U 用户名 -d 数据库名<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -h localhost -p <span class="number">5432</span> -U postgres runoobdb</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<img src="/../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-171424@2x.png" alt="WX20241122-171424@2x.png"></li>
+</ul>
+<h4 id="1-创建数据库"><a href="#1-创建数据库" class="headerlink" title="1.创建数据库"></a>1.创建数据库</h4><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> runoobdb;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /Library/PostgreSQL/11/bin/</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">createdb -h localhost -p 5432 -U postgres runoobdb</span></span><br><span class="line">password ******</span><br></pre></td></tr></table></figure>
+<h4 id="2-创建角色"><a href="#2-创建角色" class="headerlink" title="2.创建角色"></a>2.创建角色</h4><ul>
+<li>查看角色： \du</li>
+<li>创建角色： CREATE USER 角色名 WITH  PASSWORD ‘密码’<blockquote>
+<p>create user odoo15 with password ‘odoo15’;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172112@2x.png" alt="WX20241122-172112@2x.png"></p>
+<ul>
+<li>超级权限： <blockquote>
+<p>alter role odoo15 with superuser;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172327@2x.png" alt="WX20241122-172327@2x.png"></p>
+<ul>
+<li>删除用户<blockquote>
+<p>drop role odoo15;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-173953@2x.png" alt="WX20241122-173953@2x.png"></p>
+<h4 id="3-创建数据库"><a href="#3-创建数据库" class="headerlink" title="3.创建数据库"></a>3.创建数据库</h4><ul>
+<li>查看数据库： \l</li>
+<li>创建数据库： CREATE DATABASE 数据库名 WITH OWNER 角色名;<blockquote>
+<p>create database odoo15_db owner odoo15;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172548@2x.png" alt="WX20241122-172548@2x.png"></p>
+<ul>
+<li>数据库权限：<blockquote>
+<p>grant all privileges on database odoo15_db to odoo15;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-172821@2x.png" alt="WX20241122-172821@2x.png"></p>
+<ul>
+<li>删除数据库<blockquote>
+<p>drop database odoo15_db;</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/WX20241122-173929@2x.png" alt="WX20241122-173929@2x.png"></p>
+<h4 id="4-修改PG配置文件"><a href="#4-修改PG配置文件" class="headerlink" title="4.修改PG配置文件"></a>4.修改PG配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(odoo16) dbbruce@dbburce var-14 % pwd</span><br><span class="line">/Users/dbbruce/Library/Application Support/Postgres/var-14</span><br><span class="line">(odoo16) dbbruce@dbburce var-14 % vim pg_hba.conf</span><br><span class="line"></span><br><span class="line"> 88 # &quot;local&quot; is for Unix domain socket connections only</span><br><span class="line"> 89 local   all             all                                     trust</span><br><span class="line"> 90 # IPv4 local connections:</span><br><span class="line"> 91 host    all             all             127.0.0.1/32            trust</span><br><span class="line"> 92 # IPv6 local connections:</span><br><span class="line"> 93 host    all             all             ::1/128                 trust</span><br></pre></td></tr></table></figure>
+<h4 id="5-数据导入"><a href="#5-数据导入" class="headerlink" title="5.数据导入"></a>5.数据导入</h4><blockquote>
+<p>psql -d yiyao -h 127.0.0.1 -p 5432 -U odoo17 -f  &#x2F;Users&#x2F;dbbruce&#x2F;Downloads&#x2F;yiyao&#x2F;dump.sql</p>
+</blockquote>
+<h4 id="6-进入数据库"><a href="#6-进入数据库" class="headerlink" title="6.进入数据库"></a>6.进入数据库</h4><blockquote>
+<p>\c + 数据库名</p>
+</blockquote>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">postgres=# \c runoobdb</span><br><span class="line">You are now connected <span class="keyword">to</span> <span class="keyword">database</span> &quot;runoobdb&quot; <span class="keyword">as</span> <span class="keyword">user</span> &quot;postgres&quot;.</span><br></pre></td></tr></table></figure>
+<h4 id="7-查看已经存在的数据库"><a href="#7-查看已经存在的数据库" class="headerlink" title="7.查看已经存在的数据库"></a>7.查看已经存在的数据库</h4><blockquote>
+<p>\l</p>
+</blockquote>
+<h4 id="8-删除数据库"><a href="#8-删除数据库" class="headerlink" title="8.删除数据库"></a>8.删除数据库</h4><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postgres=# <span class="keyword">DROP</span> <span class="keyword">DATABASE</span> runoobdb;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /Library/PostgreSQL/11/bin/</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">dropdb -h localhost -p 5432 -U postgres runoobdb</span></span><br><span class="line">password ******</span><br></pre></td></tr></table></figure>
+<h4 id="9-查询表-d"><a href="#9-查询表-d" class="headerlink" title="9.查询表 - \d"></a>9.查询表 - \d</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">runoobdb=# \d</span><br><span class="line"> public | company | table | dbbruce</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">runoobdb=# \d company</span><br><span class="line"> id      | integer       |           | not null | </span><br><span class="line"> name    | text          |           | not null | </span><br><span class="line"> age     | integer       |           | not null | </span><br><span class="line"> address | character(50) |           |          | </span><br><span class="line"> salary  | real          |           |          | </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="10-创建表"><a href="#10-创建表" class="headerlink" title="10.创建表"></a>10.创建表</h4><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">runoobdb=# <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> COMPANY(                                                                                                     </span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> COMPANY(</span><br><span class="line">   ID <span class="type">INT</span> <span class="keyword">PRIMARY KEY</span>     <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">   <span class="type">NAME</span>           <span class="type">TEXT</span>    <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">   AGE            <span class="type">INT</span>     <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">   ADDRESS        <span class="type">CHAR</span>(<span class="number">50</span>),</span><br><span class="line">   SALARY         <span class="type">REAL</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span></span><br><span class="line"></span><br><span class="line">runoobdb=# \d</span><br><span class="line"> <span class="built_in">public</span> | company | <span class="keyword">table</span> | dbbruce</span><br></pre></td></tr></table></figure>
+<h4 id="11-删除表"><a href="#11-删除表" class="headerlink" title="11.删除表"></a>11.删除表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">runoobdb=# drop table department, company;</span><br><span class="line">DROP TABLE</span><br></pre></td></tr></table></figure>
+<h4 id="12-查看表结构"><a href="#12-查看表结构" class="headerlink" title="12.查看表结构"></a>12.查看表结构</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">runoobdb=# \d company;</span><br><span class="line"> id      | integer       |           | not null | </span><br><span class="line"> name    | text          |           | not null | </span><br><span class="line"> age     | integer       |           | not null | </span><br><span class="line"> address | character(50) |           |          | </span><br><span class="line"> salary  | real          |           |          | </span><br></pre></td></tr></table></figure>
+<h4 id="13-PostgreSQL-模式（SCHEMA）"><a href="#13-PostgreSQL-模式（SCHEMA）" class="headerlink" title="13.PostgreSQL 模式（SCHEMA）"></a>13.PostgreSQL 模式（SCHEMA）</h4><blockquote>
+<p>CREATE SCHEMA myschema ( … );</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PostgreSQL 模式（SCHEMA）可以看着是一个表的集合。</span><br><span class="line">一个模式可以包含视图、索引、数据类型、函数和操作符等。</span><br><span class="line">相同的对象名称可以被用于不同的模式中而不会出现冲突，例如 schema1 和 myschema 都可以包含名为 mytable 的表</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接下来我们连接到 runoobdb 来创建模式 myschema：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">runoobdb=# create schema myschema;</span><br><span class="line">CREATE SCHEMA</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">输出结果 <span class="string">&quot;CREATE SCHEMA&quot;</span> 就代表模式创建成功。</span></span><br></pre></td></tr></table></figure></li>
+<li>接下来我们再创建一个表格：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">runoobdb=# create table myschema.company(</span><br><span class="line">   ID   INT              NOT NULL,</span><br><span class="line">   NAME VARCHAR (20)     NOT NULL,</span><br><span class="line">   AGE  INT              NOT NULL,</span><br><span class="line">   ADDRESS  CHAR (25),</span><br><span class="line">   SALARY   DECIMAL (18, 2),</span><br><span class="line">   PRIMARY KEY (ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="14-删除模式"><a href="#14-删除模式" class="headerlink" title="14.删除模式"></a>14.删除模式</h4><ul>
+<li>删除一个为空的模式（其中的所有对象已经被删除）：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP SCHEMA myschema;</span><br></pre></td></tr></table></figure></li>
+<li>删除一个模式以及其中包含的所有对象：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP SCHEMA myschema CASCADE;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="15-with"><a href="#15-with" class="headerlink" title="15.with"></a>15.with</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WITH 子句有助于将复杂的大型查询分解为更简单的表单，便于阅读。这些语句通常称为通用表表达式（Common Table Express， CTE），也可以当做一个为查询而存在的临时表。</span><br><span class="line">WITH 子句是在多次执行子查询时特别有用，允许我们在查询中通过它的名称(可能是多次)引用它。</span><br><span class="line">WITH 子句在使用前必须先定义。</span><br></pre></td></tr></table></figure>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">With</span> CTE <span class="keyword">AS</span> (<span class="keyword">Select</span> ID , <span class="type">NAME</span> , AGE , ADDRESS , SALARY <span class="keyword">FROM</span> COMPANY ) <span class="keyword">Select</span> * <span class="keyword">From</span> CTE;</span><br></pre></td></tr></table></figure>
+<h4 id="16-HAVING-子句可以让我们筛选分组后的各组数据。"><a href="#16-HAVING-子句可以让我们筛选分组后的各组数据。" class="headerlink" title="16.HAVING 子句可以让我们筛选分组后的各组数据。"></a>16.HAVING 子句可以让我们筛选分组后的各组数据。</h4><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="type">NAME</span> <span class="keyword">FROM</span> COMPANY <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="type">name</span> <span class="keyword">HAVING</span> count(<span class="type">name</span>) &lt; <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="17-PostgreSQL-约束"><a href="#17-PostgreSQL-约束" class="headerlink" title="17.PostgreSQL 约束"></a>17.PostgreSQL 约束</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PostgreSQL 约束用于规定表中的数据规则。</span><br><span class="line">如果存在违反约束的数据行为，行为会被约束终止。</span><br><span class="line"></span><br><span class="line">以下是在 PostgreSQL 中常用的约束。</span><br><span class="line">NOT NULL：指示某列不能存储 NULL 值。</span><br><span class="line">UNIQUE：确保某列的值都是唯一的。</span><br><span class="line">PRIMARY Key：NOT NULL 和 UNIQUE 的结合。确保某列（或两个列多个列的结合）有唯一标识，有助于更容易更快速地找到表中的一个特定的记录。。</span><br><span class="line">FOREIGN Key： 通常一个表中的 FOREIGN KEY 指向另一个表中的 UNIQUE KEY(唯一约束的键)，即维护了两个相关表之间的引用完整性。</span><br><span class="line">CHECK： 保证列中的值符合指定的条件。</span><br><span class="line">EXCLUSION ：排他约束，保证如果将任何两行的指定列或表达式使用指定操作符进行比较，至少其中一个操作符比较将会返回 false 或空值。</span><br></pre></td></tr></table></figure>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">runoobdb=# \d company</span><br><span class="line"> id        | <span class="type">integer</span>       |           | <span class="keyword">not</span> <span class="keyword">null</span> | </span><br><span class="line"> <span class="type">name</span>      | <span class="type">text</span>          |           | <span class="keyword">not</span> <span class="keyword">null</span> | </span><br><span class="line"> age       | <span class="type">integer</span>       |           | <span class="keyword">not</span> <span class="keyword">null</span> | </span><br><span class="line"> address   | <span class="type">character</span>(<span class="number">50</span>) |           |          | </span><br><span class="line"> salary    | <span class="type">real</span>          |           |          | </span><br><span class="line"> join_date | <span class="type">date</span>          |           |          | </span><br></pre></td></tr></table></figure>
+<ul>
+<li>CHECK 约束<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> COMPANY5(</span><br><span class="line">   ID <span class="type">INT</span> <span class="keyword">PRIMARY KEY</span>     <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">   <span class="type">NAME</span>           <span class="type">TEXT</span>    <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">   AGE            <span class="type">INT</span>     <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">   ADDRESS        <span class="type">CHAR</span>(<span class="number">50</span>),</span><br><span class="line">   SALARY         <span class="type">REAL</span>    <span class="keyword">CHECK</span>(SALARY &gt; <span class="number">0</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+<li>EXCLUSION 约束<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> COMPANY7(</span><br><span class="line">   ID <span class="type">INT</span> <span class="keyword">PRIMARY KEY</span>     <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">   <span class="type">NAME</span>           <span class="type">TEXT</span>,</span><br><span class="line">   AGE            <span class="type">INT</span>  ,</span><br><span class="line">   ADDRESS        <span class="type">CHAR</span>(<span class="number">50</span>),</span><br><span class="line">   SALARY         <span class="type">REAL</span>,</span><br><span class="line">   <span class="keyword">EXCLUDE</span> <span class="keyword">USING</span> gist</span><br><span class="line">   (<span class="type">NAME</span> <span class="keyword">WITH</span> =,  <span class="comment">-- 如果满足 NAME 相同，AGE 不相同则不允许插入，否则允许插入</span></span><br><span class="line">   AGE <span class="keyword">WITH</span> &lt;&gt;)   <span class="comment">-- 其比较的结果是如果整个表达式返回 true，则不允许插入，否则允许</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="18-PostgreSQL-连接-JOIN"><a href="#18-PostgreSQL-连接-JOIN" class="headerlink" title="18.PostgreSQL 连接(JOIN)"></a>18.PostgreSQL 连接(JOIN)</h4><p>在 PostgreSQL 中，JOIN 有五种连接类型：</p>
+<table>
+<thead>
+<tr>
+<th align="center">连接类型</th>
+<th align="center">中文</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CROSS JOIN</td>
+<td align="center">交叉连接</td>
+<td align="center">(a表与b表，交叉组合)       把第一个表的每一行与第二个表的每一行进行匹配。如果两个输入表分别有 x 和 y 行，则结果表有 x*y 行。</td>
+</tr>
+<tr>
+<td align="center">INNER JOIN</td>
+<td align="center">内连接</td>
+<td align="center">根据连接谓词结合两个表（table1 和 table2）的列值来创建一个新的结果表。查询会把 table1 中的每一行与 table2 中的每一行进行比较，找到所有满足连接谓词的行的匹配对</td>
+</tr>
+<tr>
+<td align="center">LEFT OUTER JOIN</td>
+<td align="center">左外连接</td>
+<td align="center">已左表为基准，左表中每一行至少有一行，右表没有匹配的，使用null匹配</td>
+</tr>
+<tr>
+<td align="center">RIGHT OUTER JOIN</td>
+<td align="center">右外连接</td>
+<td align="center">对于表T2中不满足表T1中连接条件的每一行，其中T1列中的值为空也会添加一个连接行</td>
+</tr>
+<tr>
+<td align="center">FULL OUTER JOIN</td>
+<td align="center">全外连接</td>
+<td align="center">对于表 T1 中不满足表 T2 中任何行连接条件的每一行，如果 T2 的列中有 null 值也会添加一个到结果中。此外，对于 T2 中不满足与 T1 中的任何行连接条件的每一行，将会添加 T1 列中包含 null 值的到结果中</td>
+</tr>
+</tbody></table>
+<ul>
+<li>CROSS JOIN<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> EMP_ID, <span class="type">NAME</span>, DEPT <span class="keyword">FROM</span> COMPANY <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> DEPARTMENT;</span><br></pre></td></tr></table></figure></li>
+<li>INNER JOIN<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> table1.column1, table2.column2</span><br><span class="line"><span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> table2</span><br><span class="line"><span class="keyword">ON</span> table1.common_filed = table2.common_field;</span><br></pre></td></tr></table></figure></li>
+<li>LEFT OUTER JOIN<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> EMP_ID, <span class="type">NAME</span>, DEPT <span class="keyword">FROM</span> COMPANY <span class="keyword">LEFT OUTER JOIN</span> DEPARTMENT <span class="keyword">ON</span> COMPANY.ID = DEPARTMENT.EMP_ID;</span><br></pre></td></tr></table></figure></li>
+<li>RIGHT OUTER JOIN<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> EMP_ID, <span class="type">NAME</span>, DEPT <span class="keyword">FROM</span> COMPANY <span class="keyword">RIGHT OUTER JOIN</span> DEPARTMENT <span class="keyword">ON</span> COMPANY.ID = DEPARTMENT.EMP_ID;</span><br></pre></td></tr></table></figure></li>
+<li>FULL OUTER JOIN<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> EMP_ID, <span class="type">NAME</span>, DEPT <span class="keyword">FROM</span> COMPANY <span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> DEPARTMENT <span class="keyword">ON</span> COMPANY.ID = DEPARTMENT.EMP_ID;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="19-UNION-操作符"><a href="#19-UNION-操作符" class="headerlink" title="19.UNION 操作符"></a>19.UNION 操作符</h4><p>合并两个或多个 SELECT 语句的结果<br>注意：重复项会被删除，只保留一条</p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> EMP_ID, <span class="type">NAME</span>, DEPT <span class="keyword">FROM</span> COMPANY <span class="keyword">INNER</span> <span class="keyword">JOIN</span> DEPARTMENT</span><br><span class="line">   <span class="keyword">ON</span> COMPANY.ID = DEPARTMENT.EMP_ID</span><br><span class="line">   <span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> EMP_ID, <span class="type">NAME</span>, DEPT <span class="keyword">FROM</span> COMPANY <span class="keyword">LEFT OUTER JOIN</span> DEPARTMENT</span><br><span class="line">    <span class="keyword">ON</span> COMPANY.ID = DEPARTMENT.EMP_ID;</span><br></pre></td></tr></table></figure>
+<h4 id="20-UNION-ALL"><a href="#20-UNION-ALL" class="headerlink" title="20.UNION ALL"></a>20.UNION ALL</h4><p>连接两个有重复行的 SELECT 语句，默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL。<br>注意：重复项会被保留</p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> EMP_ID, <span class="type">NAME</span>, DEPT <span class="keyword">FROM</span> COMPANY <span class="keyword">INNER</span> <span class="keyword">JOIN</span> DEPARTMENT</span><br><span class="line">   <span class="keyword">ON</span> COMPANY.ID = DEPARTMENT.EMP_ID</span><br><span class="line">   <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> EMP_ID, <span class="type">NAME</span>, DEPT <span class="keyword">FROM</span> COMPANY <span class="keyword">LEFT OUTER JOIN</span> DEPARTMENT</span><br><span class="line">    <span class="keyword">ON</span> COMPANY.ID = DEPARTMENT.EMP_ID;</span><br></pre></td></tr></table></figure>
+<h4 id="21-IS-NULL-用来查找为-NULL-值的字段。"><a href="#21-IS-NULL-用来查找为-NULL-值的字段。" class="headerlink" title="21.IS NULL 用来查找为 NULL 值的字段。"></a>21.IS NULL 用来查找为 NULL 值的字段。</h4><h4 id="22-索引"><a href="#22-索引" class="headerlink" title="22.索引"></a>22.索引</h4><p>索引是加速搜索引擎检索数据的一种特殊表查询。简单地说，索引是一个指向表中数据的指针。一个数据库中的索引与一本书的索引目录是非常相似的。</p>
+<table>
+<thead>
+<tr>
+<th align="center">索引类型</th>
+<th align="center">key</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">单列索引</td>
+<td align="center">CREATE INDEX index_name ON table_name (column_name);</td>
+<td align="center">单列索引是一个只基于表的一个列上创建的索引</td>
+</tr>
+<tr>
+<td align="center">组合索引</td>
+<td align="center">CREATE INDEX index_name ON table_name (column1_name, column2_name);</td>
+<td align="center">组合索引是基于表的多列上创建的索引</td>
+</tr>
+<tr>
+<td align="center">唯一索引</td>
+<td align="center">CREATE UNIQUE INDEX index_name on table_name (column_name);</td>
+<td align="center">使用唯一索引不仅是为了性能，同时也为了数据的完整性。唯一索引不允许任何重复的值插入到表中</td>
+</tr>
+<tr>
+<td align="center">局部索引</td>
+<td align="center">CREATE INDEX index_name ON table_name(column_list) WHERE condition;</td>
+<td align="center">在表的子集上构建的索引；子集由一个条件表达式上定义。索引只包含满足条件的行</td>
+</tr>
+<tr>
+<td align="center">隐式索引</td>
+<td align="center">创建表时自动创建</td>
+<td align="center">隐式索引是在创建对象时，由数据库服务器自动创建的索引。这类索引通常为主键约束和唯一约束自动创建。当在创建表时声明一个列为主键、唯一约束或外键时，PostgreSQL 会自动为该列创建一个隐式索引</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>CREATE INDEX index_name ON table_name;</p>
+</blockquote>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> salary_index <span class="keyword">ON</span> COMPANY (salary);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 用 \d company 命令列出 COMPANY 表的所有索引：</span></span><br><span class="line"><span class="comment">-- 得到的结果如下，company_pkey 是隐式索引 ，是表创建表时创建的：</span></span><br><span class="line">runoobdb=# \d company</span><br><span class="line">                  <span class="keyword">Table</span> &quot;public.company&quot;</span><br><span class="line"> <span class="keyword">Column</span>  |     <span class="keyword">Type</span>      | <span class="keyword">Collation</span> | Nullable | <span class="keyword">Default</span> </span><br><span class="line"><span class="comment">---------+---------------+-----------+----------+---------</span></span><br><span class="line"> id      | <span class="type">integer</span>       |           | <span class="keyword">not</span> <span class="keyword">null</span> | </span><br><span class="line"> <span class="type">name</span>    | <span class="type">text</span>          |           | <span class="keyword">not</span> <span class="keyword">null</span> | </span><br><span class="line"> age     | <span class="type">integer</span>       |           | <span class="keyword">not</span> <span class="keyword">null</span> | </span><br><span class="line"> address | <span class="type">character</span>(<span class="number">50</span>) |           |          | </span><br><span class="line"> salary  | <span class="type">real</span>          |           |          | </span><br><span class="line">Indexes:</span><br><span class="line">    &quot;company_pkey&quot; <span class="keyword">PRIMARY KEY</span>, btree (id)</span><br><span class="line">    &quot;salary_index&quot; btree (salary)</span><br><span class="line">                  </span><br><span class="line">                  </span><br><span class="line"><span class="comment">-- 你可以使用 \di 命令列出数据库中所有索引：</span></span><br><span class="line">runoobdb=# \di</span><br><span class="line">                    List <span class="keyword">of</span> relations</span><br><span class="line"> <span class="keyword">Schema</span> |      <span class="type">Name</span>       | <span class="keyword">Type</span>  |  <span class="keyword">Owner</span>   |   <span class="keyword">Table</span>    </span><br><span class="line"><span class="comment">--------+-----------------+-------+----------+------------</span></span><br><span class="line"> <span class="built_in">public</span> | company_pkey    | <span class="keyword">index</span> | postgres | company</span><br><span class="line"> <span class="built_in">public</span> | department_pkey | <span class="keyword">index</span> | postgres | department</span><br><span class="line"> <span class="built_in">public</span> | salary_index    | <span class="keyword">index</span> | postgres | company</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查看索引</p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">runoobdb=# <span class="keyword">select</span> * <span class="keyword">from</span> pg_indexes <span class="keyword">WHERE</span></span><br><span class="line">runoobdb-#     tablename = <span class="string">&#x27;company&#x27;</span>;</span><br><span class="line"> <span class="built_in">public</span>     | company   | company_pkey       |            | <span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> company_pkey <span class="keyword">ON</span> <span class="built_in">public</span>.company <span class="keyword">USING</span> btree (id)</span><br><span class="line"> <span class="built_in">public</span>     | company   | salary_index       |            | <span class="keyword">CREATE</span> <span class="keyword">INDEX</span> salary_index <span class="keyword">ON</span> <span class="built_in">public</span>.company <span class="keyword">USING</span> btree (salary)</span><br><span class="line"> <span class="built_in">public</span>     | company   | myuniqueconstraint |            | <span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> myuniqueconstraint <span class="keyword">ON</span> <span class="built_in">public</span>.company <span class="keyword">USING</span> btree (<span class="type">name</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>避免使用索引</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">索引不应该使用在较小的表上。</span><br><span class="line">索引不应该使用在有频繁的大批量的更新或插入操作的表上。</span><br><span class="line">索引不应该使用在含有大量的 NULL 值的列上。</span><br><span class="line">索引不应该使用在频繁操作的列上。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="23-ALTER-TABLE-命令"><a href="#23-ALTER-TABLE-命令" class="headerlink" title="23.ALTER TABLE 命令"></a>23.ALTER TABLE 命令</h4><p>ALTER TABLE 命令用于添加，修改，删除一张已经存在表的列，添加和删除约束</p>
+<ul>
+<li>添加字段<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> COMPANY <span class="keyword">ADD</span> AGE <span class="type">int</span> <span class="keyword">default</span> <span class="number">18</span>;</span><br></pre></td></tr></table></figure></li>
+<li>删除字段<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="built_in">table_name</span> <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> <span class="built_in">column_name</span>;</span><br></pre></td></tr></table></figure></li>
+<li>修改字段类型<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="built_in">table_name</span> <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> <span class="built_in">column_name</span> <span class="keyword">TYPE</span> datatype;</span><br></pre></td></tr></table></figure></li>
+<li>添加 NOT NULL 约束<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="built_in">table_name</span> <span class="keyword">ALTER</span> <span class="built_in">column_name</span> datatype <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure></li>
+<li>添加 UNIQUE 约束<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="built_in">table_name</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> MyUniqueConstraint <span class="keyword">UNIQUE</span>(column1, column2...);</span><br></pre></td></tr></table></figure></li>
+<li>添加 CHECK 约束<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="built_in">table_name</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> MyUniqueConstraint <span class="keyword">CHECK</span> (CONDITION);</span><br></pre></td></tr></table></figure></li>
+<li>添加主键<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="built_in">table_name</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> MyPrimaryKey <span class="keyword">PRIMARY KEY</span> (column1, column2...);</span><br></pre></td></tr></table></figure></li>
+<li>删除约束<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="built_in">table_name</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> MyUniqueConstraint;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="24-TRUNCATE-TABLE-命令"><a href="#24-TRUNCATE-TABLE-命令" class="headerlink" title="24.TRUNCATE TABLE 命令"></a>24.TRUNCATE TABLE 命令</h4><p>TRUNCATE TABLE 用于删除表的数据，但不删除表结构。<br>也可以用 DROP TABLE 删除表，但是这个命令会连表的结构一起删除，如果想插入数据，需要重新建立这张表。<br>TRUNCATE TABLE 与 DELETE 具有相同的效果，但是由于它实际上并不扫描表，所以速度更快。 此外，TRUNCATE TABLE 可以立即释放表空间，而不需要后续 VACUUM 操作，这在大型表上非常有用。</p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span>  <span class="built_in">table_name</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BF%9B%E5%85%A5psql"><span class="toc-text">1.进入psql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E8%A7%92%E8%89%B2"><span class="toc-text">2.创建角色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">3.创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E4%BF%AE%E6%94%B9PG%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">4.修改PG配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5"><span class="toc-text">5.数据导入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%BF%9B%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">6.进入数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E6%9F%A5%E7%9C%8B%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">7.查看已经存在的数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">8.删除数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E6%9F%A5%E8%AF%A2%E8%A1%A8-d"><span class="toc-text">9.查询表 - \d</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-text">10.创建表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-text">11.删除表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-text">12.查看表结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-PostgreSQL-%E6%A8%A1%E5%BC%8F%EF%BC%88SCHEMA%EF%BC%89"><span class="toc-text">13.PostgreSQL 模式（SCHEMA）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E5%88%A0%E9%99%A4%E6%A8%A1%E5%BC%8F"><span class="toc-text">14.删除模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-with"><span class="toc-text">15.with</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-HAVING-%E5%AD%90%E5%8F%A5%E5%8F%AF%E4%BB%A5%E8%AE%A9%E6%88%91%E4%BB%AC%E7%AD%9B%E9%80%89%E5%88%86%E7%BB%84%E5%90%8E%E7%9A%84%E5%90%84%E7%BB%84%E6%95%B0%E6%8D%AE%E3%80%82"><span class="toc-text">16.HAVING 子句可以让我们筛选分组后的各组数据。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-PostgreSQL-%E7%BA%A6%E6%9D%9F"><span class="toc-text">17.PostgreSQL 约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-PostgreSQL-%E8%BF%9E%E6%8E%A5-JOIN"><span class="toc-text">18.PostgreSQL 连接(JOIN)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-UNION-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-text">19.UNION 操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-UNION-ALL"><span class="toc-text">20.UNION ALL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-IS-NULL-%E7%94%A8%E6%9D%A5%E6%9F%A5%E6%89%BE%E4%B8%BA-NULL-%E5%80%BC%E7%9A%84%E5%AD%97%E6%AE%B5%E3%80%82"><span class="toc-text">21.IS NULL 用来查找为 NULL 值的字段。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-%E7%B4%A2%E5%BC%95"><span class="toc-text">22.索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-ALTER-TABLE-%E5%91%BD%E4%BB%A4"><span class="toc-text">23.ALTER TABLE 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-TRUNCATE-TABLE-%E5%91%BD%E4%BB%A4"><span class="toc-text">24.TRUNCATE TABLE 命令</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2023/08/19/odoo/20230922-odoo知识点5-PostgreSQL/">https://dbbruce.github.io/2023/08/19/odoo/20230922-odoo知识点5-PostgreSQL/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2023/08/19/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/012-scrapy%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          012-scrapy基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/19/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/20230819/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          存货收发存汇总(ia.transaction.summary.query)
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/051-%E5%B8%B8%E7%94%A8relation%E9%85%8D%E7%BD%AE/">051-常用relation配置</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/050-%E6%B5%81%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BD%AC%E5%88%AB%E7%9A%84%E6%B5%81%E7%A8%8B/">050-流程中跳转别的流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>
