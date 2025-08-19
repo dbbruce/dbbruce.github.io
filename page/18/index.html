@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-项目/医药公司ERP/inSuite文档汇总" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/20-replicaset资源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/06/17/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/inSuite%E6%96%87%E6%A1%A3%E6%B1%87%E6%80%BB/">inSuite文档汇总</a>
+      <a class="p-name article-title" href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/20-replicaset%E8%B5%84%E6%BA%90/">20-replicaset资源</a>
     </h1>
   
 
@@ -106,17 +106,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-06-17T14:14:52.000Z" itemprop="datePublished">2023年06月17日</time>
+  <time class="dt-published" datetime="2023-05-10T02:00:00.000Z" itemprop="datePublished">2023年05月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
   </div>
 
       
       
-<a href="/2023/06/17/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/inSuite%E6%96%87%E6%A1%A3%E6%B1%87%E6%80%BB/#comments" class="article-comment-link">
+<a href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/20-replicaset%E8%B5%84%E6%BA%90/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,15 +126,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-创建应用流程"><a href="#1-创建应用流程" class="headerlink" title="1.创建应用流程"></a>1.创建应用流程</h4><ul>
-<li>创建单据<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">单据</span><br><span class="line">应用名称:拆卸组装单</span><br><span class="line">模型key:用.分隔</span><br><span class="line">所属模块:外部管理系统/ps_ext</span><br><span class="line">文件路径:ext/ps_ext/</span><br><span class="line">继承模型:Studio Bill Base,stk.doc.base</span><br></pre></td></tr></table></figure>
+        <h3 id="K8s控制器Replicaset"><a href="#K8s控制器Replicaset" class="headerlink" title="K8s控制器Replicaset"></a>K8s控制器Replicaset</h3><p>前面我们学习了Pod，那我们在定义pod资源时，可以直接创建一个kind：Pod类型的自主式pod，但是这存在一个问题，假如pod被删除了，那这个pod就不能自我恢复，就会彻底被删除，线上这种情况非常危险，所以今天就给大家讲解下pod的控制器，所谓控制器就是能够管理pod，监测pod运行状况，当pod发生故障，可以自动恢复pod。也就是说能够代我们去管理pod中间层，并帮助我们确保每一个pod资源始终处于我们所定义或者我们所期望的目标状态，一旦pod资源出现故障，那么控制器会尝试重启pod或者里面的容器，如果一直重启有问题的话那么它可能会基于某种策略来进行重新布派或者重新编排；如果pod副本数量低于用户所定义的目标数量，它也会自动补全；如果多余，也会自动终止pod资源。</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/06/17/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/inSuite%E6%96%87%E6%A1%A3%E6%B1%87%E6%80%BB/#more">阅读全文</a>
+          <a href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/20-replicaset%E8%B5%84%E6%BA%90/#more">阅读全文</a>
         </p>
       
       
@@ -144,7 +143,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基于K8S的世界500强企业真实项目汇总/02-基于Prometheus和K8S构建智能化监控告警系统" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/19-Pod容器健康探测" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -152,7 +151,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/02-%E5%9F%BA%E4%BA%8EPrometheus%E5%92%8CK8S%E6%9E%84%E5%BB%BA%E6%99%BA%E8%83%BD%E5%8C%96%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%B3%BB%E7%BB%9F/">02-基于Prometheus和K8S构建智能化监控告警系统</a>
+      <a class="p-name article-title" href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/">19-Pod容器健康探测</a>
     </h1>
   
 
@@ -163,17 +162,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-18T12:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-09T12:00:00.000Z" itemprop="datePublished">2023年05月09日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
   </div>
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/02-%E5%9F%BA%E4%BA%8EPrometheus%E5%92%8CK8S%E6%9E%84%E5%BB%BA%E6%99%BA%E8%83%BD%E5%8C%96%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%B3%BB%E7%BB%9F/#comments" class="article-comment-link">
+<a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -183,15 +182,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>k8s环境规划：<br>  podSubnet（pod网段） 10.244.0.0&#x2F;16<br>  serviceSubnet（service网段）: 10.96.0.0&#x2F;12</p>
-<p>实验环境规划：<br>操作系统：centos7.9<br>配置： 4Gib内存&#x2F;4vCPU&#x2F;60G硬盘<br>网络：NAT模式</p>
+        <h3 id="为什么要对容器做探测？"><a href="#为什么要对容器做探测？" class="headerlink" title="为什么要对容器做探测？"></a>为什么要对容器做探测？</h3><p>在 Kubernetes 中 Pod 是最小的计算单元，而一个 Pod 又由多个容器组成，相当于每个容器就是一个应用，应用在运行期间，可能因为某些意外情况致使程序挂掉。那么如何监控这些容器状态稳定性，保证服务在运行期间不会发生问题，发生问题后进行重启等机制，就成为了重中之重的事情，考虑到这点 kubernetes 推出了活性探针机制。有了存活性探针能保证程序在运行中如果挂掉能够自动重启，但是还有个经常遇到的问题，比如说，在Kubernetes 中启动Pod，显示明明Pod已经启动成功，且能访问里面的端口，但是却返回错误信息。还有就是在执行滚动更新时候，总会出现一段时间，Pod对外提供网络访问，但是访问却发生404，这两个原因，都是因为Pod已经成功启动，但是 Pod 的的容器中应用程序还在启动中导致，考虑到这点Kubernetes推出了就绪性探针机制</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/02-%E5%9F%BA%E4%BA%8EPrometheus%E5%92%8CK8S%E6%9E%84%E5%BB%BA%E6%99%BA%E8%83%BD%E5%8C%96%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%B3%BB%E7%BB%9F/#more">阅读全文</a>
+          <a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/#more">阅读全文</a>
         </p>
       
       
@@ -201,7 +199,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基于K8S的世界500强企业真实项目汇总/01-安装稳定版本K8S-1.23高可用集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/18-Pod生命周期完整流程介绍" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -209,7 +207,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/01-%E5%AE%89%E8%A3%85%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%ACK8S-1.23%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/">01-安装稳定版本K8S-1.23高可用集群</a>
+      <a class="p-name article-title" href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/18-Pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D/">18-Pod生命周期完整流程介绍</a>
     </h1>
   
 
@@ -220,17 +218,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-18T02:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-09T02:00:00.000Z" itemprop="datePublished">2023年05月09日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
   </div>
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/01-%E5%AE%89%E8%A3%85%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%ACK8S-1.23%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
+<a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/18-Pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -240,15 +238,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>k8s环境规划：<br>  podSubnet（pod网段） 10.244.0.0&#x2F;16<br>  serviceSubnet（service网段）: 10.96.0.0&#x2F;12</p>
-<p>实验环境规划：<br>操作系统：centos7.9<br>配置： 4Gib内存&#x2F;4vCPU&#x2F;60G硬盘<br>网络：NAT模式</p>
+        <h3 id="Pod生命周期"><a href="#Pod生命周期" class="headerlink" title="Pod生命周期"></a>Pod生命周期</h3><p>pod从<font color="red">开始创建到终止退出的时间范围</font>称为Pod生命周期<br>生命周期包含以下几个重要流程：<br>创建<font color="red">主容器（containers）</font>是必须的操作，<font color="red">初始化容器（initContainers），容器启动后钩子，启动探测、存活性探测，就绪性探测，容器停止前钩子</font></p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/01-%E5%AE%89%E8%A3%85%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%ACK8S-1.23%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
+          <a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/18-Pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D/#more">阅读全文</a>
         </p>
       
       
@@ -258,7 +255,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/42-Service四层代理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/17-Pod常见的状态和重启策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -266,7 +263,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/42-Service%E5%9B%9B%E5%B1%82%E4%BB%A3%E7%90%86/">42-Service四层代理</a>
+      <a class="p-name article-title" href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/">17-Pod常见的状态和重启策略</a>
     </h1>
   
 
@@ -277,7 +274,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-17T23:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-08T12:00:50.000Z" itemprop="datePublished">2023年05月08日</time>
 </span>
       
   <div class="article-category">
@@ -287,7 +284,7 @@
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/42-Service%E5%9B%9B%E5%B1%82%E4%BB%A3%E7%90%86/#comments" class="article-comment-link">
+<a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -297,37 +294,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="关键字：service"><a href="#关键字：service" class="headerlink" title="关键字：service"></a>关键字：service</h3><p><img src="/../../../../images/k8s/jckt/img_8.png" alt="img_8.png"></p>
-<h4 id="1、切换集群：kubectl-config-use-context-集群名"><a href="#1、切换集群：kubectl-config-use-context-集群名" class="headerlink" title="1、切换集群：kubectl config use-context 集群名"></a>1、切换集群：kubectl config use-context 集群名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 .kube]# vim /root/.kube/config</span><br><span class="line"></span><br><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: LS0tLS1CRUdJTiB...</span><br><span class="line">    server: https://192.168.1.12:6443</span><br><span class="line">  name: kubernetes</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kubernetes</span><br><span class="line">    user: kubernetes-admin</span><br><span class="line">  name: kubernetes-admin@kubernetes</span><br><span class="line">current-context: kubernetes-admin@kubernetes</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kubernetes-admin</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: LS0tLS1CRUdJTi...</span><br><span class="line">    client-key-data: LS0tLS1CRUdJTiBSU0EgU...</span><br><span class="line">kubernetes-admin@kubernetes</span><br><span class="line"></span><br><span class="line">[root@centos07-12 .kube]# kubectl config use-context kubernetes-admin@kubernetes</span><br><span class="line">Switched to context &quot;kubernetes-admin@kubernetes&quot;.</span><br></pre></td></tr></table></figure>
-<h4 id="2、题目"><a href="#2、题目" class="headerlink" title="2、题目"></a>2、题目</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">考题：</span><br><span class="line"></span><br><span class="line">设置配置环境：</span><br><span class="line">[student@node-1] $ kubectl config use-context k8s</span><br><span class="line"></span><br><span class="line">Task</span><br><span class="line">重新配置一个已经存在的 front-end 的 deployment，在名字为 nginx 的容器里面添加一个端口配</span><br><span class="line">置，名字为 http，暴露端口号为 80，然后创建一个 service，名字为 front-end-svc，暴露该 deployment</span><br><span class="line">的 http 端口，并且 service 的类型为 NodePort。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>0、自己创建2个命名空间和打一个标签，考试时不需要<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get ns --show-labels</span><br><span class="line">NAME              STATUS   AGE   LABELS</span><br><span class="line">default           Active   39d   kubernetes.io/metadata.name=default</span><br><span class="line">kube-node-lease   Active   39d   kubernetes.io/metadata.name=kube-node-lease</span><br><span class="line">kube-public       Active   39d   kubernetes.io/metadata.name=kube-public</span><br><span class="line">kube-system       Active   39d   kubernetes.io/metadata.name=kube-system</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl create ns my-app</span><br><span class="line">namespace/my-app created</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl create ns echo</span><br><span class="line">namespace/echo created</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl label ns echo project=echo</span><br><span class="line">namespace/echo labeled</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl get ns --show-labels</span><br><span class="line">NAME              STATUS   AGE   LABELS</span><br><span class="line">default           Active   39d   kubernetes.io/metadata.name=default</span><br><span class="line">echo              Active   30s   kubernetes.io/metadata.name=echo,project=echo  # 注意这里，标签，project=echo,后期会用到，如果没有自己手动打一个标签</span><br><span class="line">kube-node-lease   Active   39d   kubernetes.io/metadata.name=kube-node-lease</span><br><span class="line">kube-public       Active   39d   kubernetes.io/metadata.name=kube-public</span><br><span class="line">kube-system       Active   39d   kubernetes.io/metadata.name=kube-system</span><br><span class="line">my-app            Active   35s   kubernetes.io/metadata.name=my-app</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>1、vim networkpolicy.yaml; :set paste,防止格式错乱;复制官网的例子<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim networkpolicy.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">NetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">allow-port-from-namespace</span>   <span class="comment"># 修改名称</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">my-app</span>   <span class="comment"># 生效的命名空间</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">podSelector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span> &#123;&#125;    <span class="comment"># 添加&#123;&#125;</span></span><br><span class="line">      <span class="comment"># role: db    # 删除</span></span><br><span class="line">  <span class="attr">policyTypes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Ingress</span></span><br><span class="line">  <span class="comment"># - Egress   # 删除</span></span><br><span class="line">  <span class="attr">ingress:</span></span><br><span class="line">   <span class="comment"># - from:</span></span><br><span class="line">     <span class="comment"># - ipBlock:   # 删除</span></span><br><span class="line">        <span class="comment">#  cidr: 172.17.0.0/16   # 删除</span></span><br><span class="line">         <span class="comment"># except:   # 删除</span></span><br><span class="line">         <span class="comment"># - 172.17.1.0/24   # 删除</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">namespaceSelector:</span></span><br><span class="line">        <span class="attr">matchLabels:</span></span><br><span class="line">          <span class="attr">project:</span> <span class="string">echo</span> <span class="comment"># 运行方法，使用命名空间echo的标签</span></span><br><span class="line">     <span class="comment"># - podSelector:  # 删除</span></span><br><span class="line">         <span class="comment"># matchLabels:  # 删除</span></span><br><span class="line">          <span class="comment">#  role: frontend  # 删除</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">9000</span> <span class="comment"># 9000端口</span></span><br><span class="line">   <span class="comment"># egress:  # 删除</span></span><br><span class="line">   <span class="comment"># - to:  # 删除</span></span><br><span class="line">    <span class="comment">#  - ipBlock:  # 删除</span></span><br><span class="line">       <span class="comment">#   cidr: 10.0.0.0/24  # 删除</span></span><br><span class="line">    <span class="comment">#  ports:  # 删除</span></span><br><span class="line">     <span class="comment"># - protocol: TCP  # 删除</span></span><br><span class="line">      <span class="comment">#  port: 5978  # 删除</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/18/index.html">https://dbbruce.github.io/page/18/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
+        <h3 id="Pod常见的状态和重启策略"><a href="#Pod常见的状态和重启策略" class="headerlink" title="Pod常见的状态和重启策略"></a>Pod常见的状态和重启策略</h3><h4 id="常见的pod状态"><a href="#常见的pod状态" class="headerlink" title="常见的pod状态"></a>常见的pod状态</h4>
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/17-Pod%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/#more">阅读全文</a>
+        </p>
       
       
       
@@ -336,7 +311,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/41-networkpolicy网络策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/16-污点和容忍度" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -344,7 +319,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/41-networkpolicy%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/">41-networkpolicy网络策略</a>
+      <a class="p-name article-title" href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/">16-污点和容忍度</a>
     </h1>
   
 
@@ -355,7 +330,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-17T22:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-08T02:00:50.000Z" itemprop="datePublished">2023年05月08日</time>
 </span>
       
   <div class="article-category">
@@ -365,7 +340,7 @@
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/41-networkpolicy%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">
+<a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -375,38 +350,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="关键字：networkpolicy"><a href="#关键字：networkpolicy" class="headerlink" title="关键字：networkpolicy"></a>关键字：networkpolicy</h3><p><img src="/../../../../images/k8s/jckt/img_7.png" alt="img_7.png"></p>
-<h4 id="1、切换集群：kubectl-config-use-context-集群名"><a href="#1、切换集群：kubectl-config-use-context-集群名" class="headerlink" title="1、切换集群：kubectl config use-context 集群名"></a>1、切换集群：kubectl config use-context 集群名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 .kube]# vim /root/.kube/config</span><br><span class="line"></span><br><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: LS0tLS1CRUdJTiB...</span><br><span class="line">    server: https://192.168.1.12:6443</span><br><span class="line">  name: kubernetes</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kubernetes</span><br><span class="line">    user: kubernetes-admin</span><br><span class="line">  name: kubernetes-admin@kubernetes</span><br><span class="line">current-context: kubernetes-admin@kubernetes</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kubernetes-admin</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: LS0tLS1CRUdJTi...</span><br><span class="line">    client-key-data: LS0tLS1CRUdJTiBSU0EgU...</span><br><span class="line">kubernetes-admin@kubernetes</span><br><span class="line"></span><br><span class="line">[root@centos07-12 .kube]# kubectl config use-context kubernetes-admin@kubernetes</span><br><span class="line">Switched to context &quot;kubernetes-admin@kubernetes&quot;.</span><br></pre></td></tr></table></figure>
-<h4 id="2、题目"><a href="#2、题目" class="headerlink" title="2、题目"></a>2、题目</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">考题：</span><br><span class="line">设置配置环境：</span><br><span class="line">[student@node-1] $ kubectl config use-context hk8s</span><br><span class="line"></span><br><span class="line">Task</span><br><span class="line">在现有的namespace my-app中创建一个名为allow-port-from-namespace的新NetworkPolicy。</span><br><span class="line"></span><br><span class="line">确保新的NetworkPolicy允许namespace echo中的Pods连接到namespace my-app中的Pods的9000端口。</span><br><span class="line"></span><br><span class="line">进一步确保新的 NetworkPolicy：</span><br><span class="line">不允许对没有在监听端口 9000 的 Pods 的访问</span><br><span class="line">不允许非来自 namespace echo 中的 Pods 的访问 </span><br></pre></td></tr></table></figure>
-<ul>
-<li>0、自己创建2个命名空间和打一个标签，考试时不需要<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get ns --show-labels</span><br><span class="line">NAME              STATUS   AGE   LABELS</span><br><span class="line">default           Active   39d   kubernetes.io/metadata.name=default</span><br><span class="line">kube-node-lease   Active   39d   kubernetes.io/metadata.name=kube-node-lease</span><br><span class="line">kube-public       Active   39d   kubernetes.io/metadata.name=kube-public</span><br><span class="line">kube-system       Active   39d   kubernetes.io/metadata.name=kube-system</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl create ns my-app</span><br><span class="line">namespace/my-app created</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl create ns echo</span><br><span class="line">namespace/echo created</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl label ns echo project=echo</span><br><span class="line">namespace/echo labeled</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl get ns --show-labels</span><br><span class="line">NAME              STATUS   AGE   LABELS</span><br><span class="line">default           Active   39d   kubernetes.io/metadata.name=default</span><br><span class="line">echo              Active   30s   kubernetes.io/metadata.name=echo,project=echo  # 注意这里，标签，project=echo,后期会用到，如果没有自己手动打一个标签</span><br><span class="line">kube-node-lease   Active   39d   kubernetes.io/metadata.name=kube-node-lease</span><br><span class="line">kube-public       Active   39d   kubernetes.io/metadata.name=kube-public</span><br><span class="line">kube-system       Active   39d   kubernetes.io/metadata.name=kube-system</span><br><span class="line">my-app            Active   35s   kubernetes.io/metadata.name=my-app</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>1、vim networkpolicy.yaml; :set paste,防止格式错乱;复制官网的例子<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim networkpolicy.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">NetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">allow-port-from-namespace</span>   <span class="comment"># 修改名称</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">my-app</span>   <span class="comment"># 生效的命名空间</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">podSelector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span> &#123;&#125;    <span class="comment"># 添加&#123;&#125;</span></span><br><span class="line">      <span class="comment"># role: db    # 删除</span></span><br><span class="line">  <span class="attr">policyTypes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Ingress</span></span><br><span class="line">  <span class="comment"># - Egress   # 删除</span></span><br><span class="line">  <span class="attr">ingress:</span></span><br><span class="line">   <span class="comment"># - from:</span></span><br><span class="line">     <span class="comment"># - ipBlock:   # 删除</span></span><br><span class="line">        <span class="comment">#  cidr: 172.17.0.0/16   # 删除</span></span><br><span class="line">         <span class="comment"># except:   # 删除</span></span><br><span class="line">         <span class="comment"># - 172.17.1.0/24   # 删除</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">namespaceSelector:</span></span><br><span class="line">        <span class="attr">matchLabels:</span></span><br><span class="line">          <span class="attr">project:</span> <span class="string">echo</span> <span class="comment"># 运行方法，使用命名空间echo的标签</span></span><br><span class="line">     <span class="comment"># - podSelector:  # 删除</span></span><br><span class="line">         <span class="comment"># matchLabels:  # 删除</span></span><br><span class="line">          <span class="comment">#  role: frontend  # 删除</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">9000</span> <span class="comment"># 9000端口</span></span><br><span class="line">   <span class="comment"># egress:  # 删除</span></span><br><span class="line">   <span class="comment"># - to:  # 删除</span></span><br><span class="line">    <span class="comment">#  - ipBlock:  # 删除</span></span><br><span class="line">       <span class="comment">#   cidr: 10.0.0.0/24  # 删除</span></span><br><span class="line">    <span class="comment">#  ports:  # 删除</span></span><br><span class="line">     <span class="comment"># - protocol: TCP  # 删除</span></span><br><span class="line">      <span class="comment">#  port: 5978  # 删除</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl apply -f networkpolicy.yaml</span><br><span class="line">networkpolicy.networking.k8s.io/test-network-policy created</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/18/index.html">https://dbbruce.github.io/page/18/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
+        <h3 id="污点、容忍度"><a href="#污点、容忍度" class="headerlink" title="污点、容忍度"></a>污点、容忍度</h3><p><font color=red><strong>给了节点选则的主动权，我们给节点打一个污点，不容忍的pod就运行不上来，污点就是定义在节点上的键值属性数据，可以定决定拒绝那些pod；<br>taints是键值数据，用在节点上，定义污点；<br>tolerations是键值数据，用在pod上，定义容忍度，能容忍哪些污点<br>pod亲和性是pod属性；但是污点是node节点的属性，污点定义在k8s集群的node节点上的一个字段</strong></font>    </p>
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2023/05/08/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/16-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6/#more">阅读全文</a>
+        </p>
       
       
       
@@ -415,7 +367,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/40-etcd备份还原" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/15-node节点亲和性，pod亲和性，pod反亲和性多种调度策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -423,7 +375,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/40-etcd%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/">40-etcd备份还原</a>
+      <a class="p-name article-title" href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/">15-node节点亲和性，pod亲和性，pod反亲和性多种调度策略</a>
     </h1>
   
 
@@ -434,7 +386,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-17T21:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-07T12:00:50.000Z" itemprop="datePublished">2023年05月07日</time>
 </span>
       
   <div class="article-category">
@@ -444,7 +396,7 @@
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/40-etcd%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/#comments" class="article-comment-link">
+<a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -454,43 +406,20 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="关键字：upgrade-etcd"><a href="#关键字：upgrade-etcd" class="headerlink" title="关键字：upgrade-etcd"></a>关键字：upgrade-etcd</h3><p><img src="/../../../../images/k8s/jckt/img_6.png" alt="img_6.png"></p>
-<h4 id="1、题目"><a href="#1、题目" class="headerlink" title="1、题目"></a>1、题目</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Task：</span><br><span class="line">首先，为运行在 https://127.0.0.1:2379 上的现有 etcd 实例创建快照并将快照保存</span><br><span class="line">到 /srv/data/etcd-snapshot.db 文件</span><br><span class="line">为给定实例创建快照预计能在几秒钟内完成。 如果该操作似乎挂起，则命令可能有问题。</span><br><span class="line">用 CTRL + C 来取消操作，然后重试。</span><br><span class="line"></span><br><span class="line">然后还原位于/var/lib/backup/etcd-snapshot-previous.db 的现有先前快照。</span><br><span class="line">提供了以下 TLS 证书和密钥，以通过 etcdctl 连接到服务器。</span><br><span class="line"></span><br><span class="line">CA 证书: /opt/KUIN00601/ca.crt</span><br><span class="line">客户端证书: /opt/KUIN00601/etcd-client.crt</span><br><span class="line">客户端密钥: /opt/KUIN00601/etcd-client.key</span><br><span class="line"></span><br><span class="line">考点： etcd 的备份和还原命令</span><br><span class="line"></span><br><span class="line">解题：</span><br><span class="line">确认一下 ssh 终端，是在[student@node-1] $ 下</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>0、自己环境的证书</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 etcd]# ll /etc/kubernetes/pki/etcd</span><br><span class="line">总用量 32</span><br><span class="line">-rw-r--r-- 1 root root 1086 12月 24 22:34 ca.crt</span><br><span class="line">-rw------- 1 root root 1675 12月 24 22:34 ca.key</span><br><span class="line">-rw-r--r-- 1 root root 1159 12月 24 22:34 healthcheck-client.crt</span><br><span class="line">-rw------- 1 root root 1675 12月 24 22:34 healthcheck-client.key</span><br><span class="line">-rw-r--r-- 1 root root 1204 12月 24 22:34 peer.crt</span><br><span class="line">-rw------- 1 root root 1679 12月 24 22:34 peer.key</span><br><span class="line">-rw-r--r-- 1 root root 1204 12月 24 22:34 server.crt</span><br><span class="line">-rw------- 1 root root 1675 12月 24 22:34 server.key</span><br></pre></td></tr></table></figure></li>
-<li><p>1、使用 etcdctl 选项的快照  – 关键字：snapshot save</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /srv/data/ -p</span><br><span class="line"></span><br><span class="line">export ETCDCTL_API=3</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# sudo ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key  snapshot save /srv/data/etcd-snapshot.db</span><br><span class="line"></span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1706844905.770798,&quot;caller&quot;:&quot;snapshot/v3_snapshot.go:119&quot;,&quot;msg&quot;:&quot;created temporary db file&quot;,&quot;path&quot;:&quot;/srv/data/etcd-snapshot.db.part&quot;&#125;</span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2024-02-02T11:35:05.782+0800&quot;,&quot;caller&quot;:&quot;clientv3/maintenance.go:200&quot;,&quot;msg&quot;:&quot;opened snapshot stream; downloading&quot;&#125;</span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1706844905.7827845,&quot;caller&quot;:&quot;snapshot/v3_snapshot.go:127&quot;,&quot;msg&quot;:&quot;fetching snapshot&quot;,&quot;endpoint&quot;:&quot;https://127.0.0.1:2379&quot;&#125;</span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:&quot;2024-02-02T11:35:05.865+0800&quot;,&quot;caller&quot;:&quot;clientv3/maintenance.go:208&quot;,&quot;msg&quot;:&quot;completed snapshot read; closing&quot;&#125;</span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1706844905.8859088,&quot;caller&quot;:&quot;snapshot/v3_snapshot.go:142&quot;,&quot;msg&quot;:&quot;fetched snapshot&quot;,&quot;endpoint&quot;:&quot;https://127.0.0.1:2379&quot;,&quot;size&quot;:&quot;4.0 MB&quot;,&quot;took&quot;:0.114535755&#125;</span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1706844905.88601,&quot;caller&quot;:&quot;snapshot/v3_snapshot.go:152&quot;,&quot;msg&quot;:&quot;saved&quot;,&quot;path&quot;:&quot;/srv/data/etcd-snapshot.db&quot;&#125;</span><br><span class="line">Snapshot saved at /srv/data/etcd-snapshot.db</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ll /srv/data/</span><br><span class="line">总用量 3940</span><br><span class="line">-rw------- 1 root root 4030496 2月   2 11:35 etcd-snapshot.db</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>2、恢复 etcd 集群 – 关键字：snapshot restore</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[root@centos07-12 ~]# sudo ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key  snapshot restore /srv/data/etcd-snapshot.db</span><br><span class="line"></span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1706845867.4458947,&quot;caller&quot;:&quot;snapshot/v3_snapshot.go:296&quot;,&quot;msg&quot;:&quot;restoring snapshot&quot;,&quot;path&quot;:&quot;/srv/data/etcd-snapshot.db&quot;,&quot;wal-dir&quot;:&quot;default.etcd/member/wal&quot;,&quot;data-dir&quot;:&quot;default.etcd&quot;,&quot;snap-dir&quot;:&quot;default.etcd/member/snap&quot;&#125;</span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1706845867.498151,&quot;caller&quot;:&quot;mvcc/kvstore.go:380&quot;,&quot;msg&quot;:&quot;restored last compact revision&quot;,&quot;meta-bucket-name&quot;:&quot;meta&quot;,&quot;meta-bucket-name-key&quot;:&quot;finishedCompactRev&quot;,&quot;restored-compact-revision&quot;:72278&#125;</span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1706845867.5096366,&quot;caller&quot;:&quot;membership/cluster.go:392&quot;,&quot;msg&quot;:&quot;added member&quot;,&quot;cluster-id&quot;:&quot;cdf818194e3a8c32&quot;,&quot;local-member-id&quot;:&quot;0&quot;,&quot;added-peer-id&quot;:&quot;8e9e05c52164694d&quot;,&quot;added-peer-peer-urls&quot;:[&quot;http://localhost:2380&quot;]&#125;</span><br><span class="line">&#123;&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1706845867.5236795,&quot;caller&quot;:&quot;snapshot/v3_snapshot.go:309&quot;,&quot;msg&quot;:&quot;restored snapshot&quot;,&quot;path&quot;:&quot;/srv/data/etcd-snapshot.db&quot;,&quot;wal-dir&quot;:&quot;default.etcd/member/wal&quot;,&quot;data-dir&quot;:&quot;default.etcd&quot;,&quot;snap-dir&quot;:&quot;default.etcd/member/snap&quot;&#125;</span><br></pre></td></tr></table></figure></li>
+        <h3 id="亲和性"><a href="#亲和性" class="headerlink" title="亲和性"></a>亲和性</h3><ul>
+<li>node节点亲和性</li>
+<li>Pod节点亲和性</li>
+<li>pod节点反亲和性</li>
 </ul>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/18/index.html">https://dbbruce.github.io/page/18/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
+<h3 id="node节点亲和性"><a href="#node节点亲和性" class="headerlink" title="node节点亲和性"></a>node节点亲和性</h3><p>node节点亲和性调度：nodeAffinity</p>
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/15-node%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%8Cpod%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7%E5%A4%9A%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/#more">阅读全文</a>
+        </p>
       
       
       
@@ -499,7 +428,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/39-安装etcdctl命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/14-K8S节点选择器nodeName和nodeSelector" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -507,7 +436,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/39-%E5%AE%89%E8%A3%85etcdctl%E5%91%BD%E4%BB%A4/">39-安装etcdctl命令</a>
+      <a class="p-name article-title" href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/">14-K8S节点选择器nodeName和nodeSelector</a>
     </h1>
   
 
@@ -518,7 +447,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-17T20:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-07T02:00:50.000Z" itemprop="datePublished">2023年05月07日</time>
 </span>
       
   <div class="article-category">
@@ -528,7 +457,7 @@
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/39-%E5%AE%89%E8%A3%85etcdctl%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+<a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -538,32 +467,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="上传解压软件包"><a href="#上传解压软件包" class="headerlink" title="上传解压软件包"></a>上传解压软件包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scp etcd-v3.4.13-linux-amd64.tar.gz root@192.168.1.12:~</span><br><span class="line"></span><br><span class="line">tar xvf etcd-v3.4.13-linux-amd64.tar.gz</span><br><span class="line"></span><br><span class="line">cp etcd-v3.4.13-linux-amd64/etcdctl /usr/bin/</span><br></pre></td></tr></table></figure>
-<h4 id="测试命令"><a href="#测试命令" class="headerlink" title="测试命令"></a>测试命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# etcdctl</span><br><span class="line"></span><br><span class="line">NAME:</span><br><span class="line">	etcdctl - A simple command line client for etcd3.</span><br><span class="line"></span><br><span class="line">USAGE:</span><br><span class="line">	etcdctl [flags]</span><br><span class="line"></span><br><span class="line">VERSION:</span><br><span class="line">	3.4.13</span><br><span class="line"></span><br><span class="line">API VERSION:</span><br><span class="line">	3.4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">COMMANDS:</span><br><span class="line">	alarm disarm		Disarms all alarms</span><br><span class="line">	alarm list		Lists all alarms</span><br><span class="line">	auth disable		Disables authentication</span><br><span class="line">	auth enable		Enables authentication</span><br></pre></td></tr></table></figure>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/18/index.html">https://dbbruce.github.io/page/18/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
+        <h3 id="node节点选择器"><a href="#node节点选择器" class="headerlink" title="node节点选择器"></a>node节点选择器</h3><p>我们在创建pod资源的时候，pod会根据schduler进行调度，那么默认会调度到随机的一个工作节点<br>如果我们想要pod调度到指定节点或者调度到一些具有相同特点的node节点，怎么办呢？<br>可以使用pod中的<font color=red><strong>nodeName</strong></font>或者<font color=red><strong>nodeSelector</strong></font>字段指定要调度到的node节点     </p>
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2023/05/07/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/14-K8S%E8%8A%82%E7%82%B9%E9%80%89%E6%8B%A9%E5%99%A8nodeName%E5%92%8CnodeSelector/#more">阅读全文</a>
+        </p>
       
       
       
@@ -572,7 +484,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/38-k8s版本升级-ubuntu版本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/13-K8S标签labels的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -580,7 +492,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/38-k8s%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7-ubuntu%E7%89%88%E6%9C%AC/">38-k8s版本升级-ubuntu版本</a>
+      <a class="p-name article-title" href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/">13-K8S标签labels的使用</a>
     </h1>
   
 
@@ -591,7 +503,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-17T19:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-06T12:00:50.000Z" itemprop="datePublished">2023年05月06日</time>
 </span>
       
   <div class="article-category">
@@ -601,7 +513,7 @@
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/38-k8s%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7-ubuntu%E7%89%88%E6%9C%AC/#comments" class="article-comment-link">
+<a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -611,48 +523,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="关键字：kubeadm-upgrade"><a href="#关键字：kubeadm-upgrade" class="headerlink" title="关键字：kubeadm-upgrade"></a>关键字：kubeadm-upgrade</h3><p><img src="/../../../../images/k8s/jckt/img_4.png" alt="img_4.png"></p>
-<h4 id="1、切换集群：kubectl-config-use-context-集群名"><a href="#1、切换集群：kubectl-config-use-context-集群名" class="headerlink" title="1、切换集群：kubectl config use-context 集群名"></a>1、切换集群：kubectl config use-context 集群名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 .kube]# vim /root/.kube/config</span><br><span class="line"></span><br><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: LS0tLS1CRUdJTiB...</span><br><span class="line">    server: https://192.168.1.12:6443</span><br><span class="line">  name: kubernetes</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kubernetes</span><br><span class="line">    user: kubernetes-admin</span><br><span class="line">  name: kubernetes-admin@kubernetes</span><br><span class="line">current-context: kubernetes-admin@kubernetes</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kubernetes-admin</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: LS0tLS1CRUdJTi...</span><br><span class="line">    client-key-data: LS0tLS1CRUdJTiBSU0EgU...</span><br><span class="line">kubernetes-admin@kubernetes</span><br><span class="line"></span><br><span class="line">[root@centos07-12 .kube]# kubectl config use-context kubernetes-admin@kubernetes</span><br><span class="line">Switched to context &quot;kubernetes-admin@kubernetes&quot;.</span><br></pre></td></tr></table></figure>
-<h4 id="2、题目"><a href="#2、题目" class="headerlink" title="2、题目"></a>2、题目</h4><p><img src="/../../../../images/k8s/jckt/img_5.png" alt="img_5.png"></p>
-<ul>
-<li>1、查看全部nodes<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br><span class="line"></span><br><span class="line">NAME          STATUS   ROLES                  AGE   VERSION</span><br><span class="line">centos07-12   Ready    control-plane,master   36d   v1.23.1</span><br><span class="line">centos07-22   Ready    worker                 36d   v1.23.1</span><br><span class="line">centos07-42   Ready    worker                 36d   v1.23.1</span><br></pre></td></tr></table></figure></li>
-<li>2、设置master不可以调度 - 查考文档<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl cordon centos07-12</span><br><span class="line"></span><br><span class="line">node/centos07-12 cordoned</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl get nodes</span><br><span class="line">NAME          STATUS                     ROLES                  AGE   VERSION</span><br><span class="line">centos07-12   Ready,SchedulingDisabled   control-plane,master   36d   v1.23.1</span><br><span class="line">centos07-22   Ready                      worker                 36d   v1.23.1</span><br><span class="line">centos07-42   Ready                      worker                 36d   v1.23.1</span><br><span class="line">kubectl cordon centos07-12</span><br></pre></td></tr></table></figure></li>
-<li>3、驱逐master上的pods  - 查看 kubectl drain centos07-12 –help<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">kubectl drain centos07-12 --delete-emptydir-data --ignore-daemonsets  --force</span><br><span class="line"></span><br><span class="line">node/centos07-12 already cordoned</span><br><span class="line">WARNING: ignoring DaemonSet-managed Pods: kube-system/calico-node-shmqp, kube-system/kube-proxy-v87c6</span><br><span class="line">evicting pod kube-system/coredns-6d8c4cb4d-vd2p5</span><br><span class="line">evicting pod kube-system/calico-kube-controllers-677cd97c8d-bdrmf</span><br><span class="line">pod/calico-kube-controllers-677cd97c8d-bdrmf evicted</span><br><span class="line">pod/coredns-6d8c4cb4d-vd2p5 evicted</span><br><span class="line">node/centos07-12 drained</span><br></pre></td></tr></table></figure></li>
-<li>4、确定要升级到1.23.2版本<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-cache show kubeadm |grep 1.23.2</span><br></pre></td></tr></table></figure></li>
-<li>5、更新下系统源<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure></li>
-<li>6、升级控制平面节点<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y kubeadm=1.23.2-00</span><br></pre></td></tr></table></figure></li>
-<li>7、验证下载操作正常，并且 kubeadm 版本正确<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm version</span><br></pre></td></tr></table></figure></li>
-<li>8、验证升级计划<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm upgrade plan</span><br></pre></td></tr></table></figure></li>
-<li>9、选择要升级到的目标版本，运行合适的命令，题目etcd不升级<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm upgrade apply v1.23.2 --etcd-upgrade=false</span><br></pre></td></tr></table></figure></li>
-<li>10、升级kubelet kubectl<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y kubelet=1.23.2-00 kubectl=1.23.2-00</span><br></pre></td></tr></table></figure></li>
-<li>11、重启 kubelet<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart kubelet</span><br></pre></td></tr></table></figure></li>
-<li>12、解除节点的保护 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl uncordon centos07-12</span><br></pre></td></tr></table></figure></li>
-<li>12、查看下版本<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubelet --version</span><br><span class="line">kubectl version</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/18/index.html">https://dbbruce.github.io/page/18/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
+        <h2 id="标签-labels"><a href="#标签-labels" class="headerlink" title="标签 labels"></a>标签 labels</h2><h3 id="什么是标签？"><a href="#什么是标签？" class="headerlink" title="什么是标签？"></a>什么是标签？</h3><p>标签其实就一对 key&#x2F;value ，被关联到对象上，比如Pod,标签的使用我们倾向于能够表示对象的特殊特点，就是一眼就看出了这个Pod是干什么的，标签可以用来划分特定的对象（比如版本，服务类型等），标签可以在创建一个对象的时候直接定义，也可以在后期随时修改，每一个对象可以拥有多个标签，但是，key值必须是唯一的。创建标签之后也可以方便我们对资源进行分组管理。如果对pod打标签，之后就可以使用标签来查看、删除指定的pod。<br>在k8s中，大部分资源都可以打标签。</p>
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/13-K8S%E6%A0%87%E7%AD%BElabels%E7%9A%84%E4%BD%BF%E7%94%A8/#more">阅读全文</a>
+        </p>
       
       
       
@@ -661,7 +540,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/37-节点维护-指定node节点不可用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/12-namespace和资源配额应用场景分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -669,7 +548,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/37-%E8%8A%82%E7%82%B9%E7%BB%B4%E6%8A%A4-%E6%8C%87%E5%AE%9Anode%E8%8A%82%E7%82%B9%E4%B8%8D%E5%8F%AF%E7%94%A8/">37-节点维护-指定node节点不可用</a>
+      <a class="p-name article-title" href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/">12-namespace和资源配额应用场景分析</a>
     </h1>
   
 
@@ -680,7 +559,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-17T18:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-06T02:00:50.000Z" itemprop="datePublished">2023年05月06日</time>
 </span>
       
   <div class="article-category">
@@ -690,7 +569,7 @@
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/37-%E8%8A%82%E7%82%B9%E7%BB%B4%E6%8A%A4-%E6%8C%87%E5%AE%9Anode%E8%8A%82%E7%82%B9%E4%B8%8D%E5%8F%AF%E7%94%A8/#comments" class="article-comment-link">
+<a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -700,39 +579,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="关键字：node节点不可用-drain-node"><a href="#关键字：node节点不可用-drain-node" class="headerlink" title="关键字：node节点不可用 - drain-node"></a>关键字：node节点不可用 - drain-node</h3><p><img src="/../../../../images/k8s/jckt/img_2.png" alt="img_2.png"></p>
-<h4 id="1、切换集群：kubectl-config-use-context-集群名"><a href="#1、切换集群：kubectl-config-use-context-集群名" class="headerlink" title="1、切换集群：kubectl config use-context 集群名"></a>1、切换集群：kubectl config use-context 集群名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 .kube]# vim /root/.kube/config</span><br><span class="line"></span><br><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: LS0tLS1CRUdJTiB...</span><br><span class="line">    server: https://192.168.1.12:6443</span><br><span class="line">  name: kubernetes</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kubernetes</span><br><span class="line">    user: kubernetes-admin</span><br><span class="line">  name: kubernetes-admin@kubernetes</span><br><span class="line">current-context: kubernetes-admin@kubernetes</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kubernetes-admin</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: LS0tLS1CRUdJTi...</span><br><span class="line">    client-key-data: LS0tLS1CRUdJTiBSU0EgU...</span><br><span class="line">kubernetes-admin@kubernetes</span><br><span class="line"></span><br><span class="line">[root@centos07-12 .kube]# kubectl config use-context kubernetes-admin@kubernetes</span><br><span class="line">Switched to context &quot;kubernetes-admin@kubernetes&quot;.</span><br></pre></td></tr></table></figure>
-<h4 id="2、题目"><a href="#2、题目" class="headerlink" title="2、题目"></a>2、题目</h4><p><img src="/../../../../images/k8s/jckt/img_3.png" alt="img_3.png"></p>
-<ul>
-<li>1、查看全部nodes<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br><span class="line"></span><br><span class="line">NAME          STATUS   ROLES                  AGE   VERSION</span><br><span class="line">centos07-12   Ready    control-plane,master   36d   v1.23.1</span><br><span class="line">centos07-22   Ready    worker                 36d   v1.23.1</span><br><span class="line">centos07-42   Ready    worker                 36d   v1.23.1</span><br></pre></td></tr></table></figure></li>
-<li>2、设置node不可以调度 - 查考文档<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl cordon centos07-42</span><br><span class="line"></span><br><span class="line">node/centos07-42 cordoned</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>3、驱逐node上的pods  - 查看 kubectl drain centos07-42 –help<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl drain centos07-42  --delete-emptydir-data  --ignore-daemonsets --force</span><br><span class="line"></span><br><span class="line">node/centos07-42 already cordoned</span><br></pre></td></tr></table></figure></li>
-<li>4、查看哪些pods在nodes<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -A -owide</span><br><span class="line"></span><br><span class="line">NAMESPACE     NAME                                       READY   STATUS    RESTARTS        AGE   IP               NODE          NOMINATED NODE   READINESS GATES</span><br><span class="line">kube-system   calico-kube-controllers-677cd97c8d-bdrmf   1/1     Running   2 (2d18h ago)   28d   10.244.234.198   centos07-12   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   calico-node-l26gm                          1/1     Running   1 (2d18h ago)   28d   192.168.1.42     centos07-42   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   calico-node-l9mtc                          1/1     Running   3 (43h ago)     28d   192.168.1.22     centos07-22   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   calico-node-shmqp                          1/1     Running   4 (43h ago)     28d   192.168.1.12     centos07-12   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   coredns-6d8c4cb4d-h2vl6                    1/1     Running   0               33m   10.244.193.129   centos07-22   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   coredns-6d8c4cb4d-vd2p5                    1/1     Running   2 (2d18h ago)   28d   10.244.234.197   centos07-12   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   etcd-centos07-12                           1/1     Running   3 (2d18h ago)   36d   192.168.1.12     centos07-12   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   kube-apiserver-centos07-12                 1/1     Running   3 (2d18h ago)   36d   192.168.1.12     centos07-12   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   kube-controller-manager-centos07-12        1/1     Running   3 (2d18h ago)   36d   192.168.1.12     centos07-12   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   kube-proxy-4nx9c                           1/1     Running   2 (2d18h ago)   36d   192.168.1.22     centos07-22   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   kube-proxy-v87c6                           1/1     Running   3 (2d18h ago)   36d   192.168.1.12     centos07-12   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   kube-proxy-v9lx5                           1/1     Running   2 (2d18h ago)   36d   192.168.1.42     centos07-42   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">kube-system   kube-scheduler-centos07-12                 1/1     Running   3 (2d18h ago)   36d   192.168.1.12     centos07-12   &lt;none&gt;           &lt;none&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/18/index.html">https://dbbruce.github.io/page/18/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
+        <h3 id="命名空间-namespace-ns"><a href="#命名空间-namespace-ns" class="headerlink" title="命名空间 &#x3D;&gt; namespace &#x3D;&#x3D; ns"></a>命名空间 &#x3D;&gt; namespace &#x3D;&#x3D; ns</h3><h4 id="什么是命名空间？"><a href="#什么是命名空间？" class="headerlink" title="什么是命名空间？"></a>什么是命名空间？</h4><p>Kubernetes 支持多个虚拟集群，它们底层依赖于同一个物理集群。 这些虚拟集群被称为命名空间。<br>命名空间namespace是k8s集群级别的资源，可以给不同的用户、租户、环境或项目创建对应的命名空间，例如，可以为test、devlopment、production环境分别创建各自的命名空间。</p>
       
     </div>
     <footer class="article-footer">
       
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
+        
+        <p class="article-more-link">
+          <a href="/2023/05/06/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/12-namespace%E5%92%8C%E8%B5%84%E6%BA%90%E9%85%8D%E9%A2%9D%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90/#more">阅读全文</a>
+        </p>
       
       
       
@@ -741,7 +596,7 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/36-基于角色的访问控制-RBAC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/11- Pod资源清单编写技巧" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -749,7 +604,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/36-%E5%9F%BA%E4%BA%8E%E8%A7%92%E8%89%B2%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-RBAC/">36-基于角色的访问控制-RBAC</a>
+      <a class="p-name article-title" href="/2023/05/05/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/11-%20Pod%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95%E7%BC%96%E5%86%99%E6%8A%80%E5%B7%A7/">11- Pod资源清单编写技巧</a>
     </h1>
   
 
@@ -760,7 +615,7 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-17T17:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+  <time class="dt-published" datetime="2023-05-05T13:00:50.000Z" itemprop="datePublished">2023年05月05日</time>
 </span>
       
   <div class="article-category">
@@ -770,7 +625,7 @@
 
       
       
-<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/36-%E5%9F%BA%E4%BA%8E%E8%A7%92%E8%89%B2%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-RBAC/#comments" class="article-comment-link">
+<a href="/2023/05/05/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/11-%20Pod%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95%E7%BC%96%E5%86%99%E6%8A%80%E5%B7%A7/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -780,16 +635,41 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="关键字：RBAC"><a href="#关键字：RBAC" class="headerlink" title="关键字：RBAC"></a>关键字：RBAC</h3><p><img src="/../../../../images/k8s/jckt/img.png" alt="img.png"></p>
-<h4 id="1、切换集群：kubectl-config-use-context-集群名"><a href="#1、切换集群：kubectl-config-use-context-集群名" class="headerlink" title="1、切换集群：kubectl config use-context 集群名"></a>1、切换集群：kubectl config use-context 集群名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 .kube]# vim /root/.kube/config</span><br><span class="line"></span><br><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: LS0tLS1CRUdJTiB...</span><br><span class="line">    server: https://192.168.1.12:6443</span><br><span class="line">  name: kubernetes</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kubernetes</span><br><span class="line">    user: kubernetes-admin</span><br><span class="line">  name: kubernetes-admin@kubernetes</span><br><span class="line">current-context: kubernetes-admin@kubernetes</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kubernetes-admin</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: LS0tLS1CRUdJTi...</span><br><span class="line">    client-key-data: LS0tLS1CRUdJTiBSU0EgU...</span><br><span class="line">kubernetes-admin@kubernetes</span><br><span class="line"></span><br><span class="line">[root@centos07-12 .kube]# kubectl config use-context kubernetes-admin@kubernetes</span><br><span class="line">Switched to context &quot;kubernetes-admin@kubernetes&quot;.</span><br></pre></td></tr></table></figure>
-<h4 id="2、题目"><a href="#2、题目" class="headerlink" title="2、题目"></a>2、题目</h4><p><img src="/../../../../images/k8s/jckt/img_1.png" alt="img_1.png"></p>
-<ul>
-<li>1、创建cluster role - 查考文档-clusterrole<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl create clusterrole deploy-clusterrole --verb=create --resource=deployment,daemonset,statefulset </span><br><span class="line"></span><br><span class="line">clusterrole.rbac.authorization.k8s.io/deploy-clusterrole created</span><br></pre></td></tr></table></figure></li>
-<li>2、创建SA - 查看 kubectl create sa –help<br>这个考试时，不要管，会有这个app-team1命名空间<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl create ns app-team1</span><br><span class="line"></span><br><span class="line">namespace/app-team1 created</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl create serviceaccount cicd-token -n app-team1</span><br><span class="line"></span><br><span class="line">serviceaccount/cicd-token created </span><br></pre></td></tr></table></figure></li>
-<li>3、绑定cluserrole和sa - 查考文档-clusterrolebinding<br>注意：题目中写了”限于namespace app-team1”,则创建rolebinding。没写则用clusterrolebinding<br>注意：题目没有给rolebinding名称，名称随意起了，如果给定了要写人家给定的<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl create rolebinding cicd-token-binding --clusterrole=deploy-clusterrole --serviceaccount=app-team1:cicd-token --namespace=app-team1</span><br><span class="line"></span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cicd-token-binding created</span><br></pre></td></tr></table></figure></li>
-<li>4、验证<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe rolebinding cicd-token-binding -n app-team1</span><br><span class="line"></span><br><span class="line">Name:         cicd-token-binding</span><br><span class="line">Labels:       &lt;none&gt;</span><br><span class="line">Annotations:  &lt;none&gt;</span><br><span class="line">Role:</span><br><span class="line">  Kind:  ClusterRole</span><br><span class="line">  Name:  deploy-clusterrole</span><br><span class="line">Subjects:</span><br><span class="line">  Kind            Name        Namespace</span><br><span class="line">  ----            ----        ---------</span><br><span class="line">  ServiceAccount  cicd-token  app-team1</span><br></pre></td></tr></table></figure></li>
-</ul>
+        <h3 id="Pod资源清单编写技巧"><a href="#Pod资源清单编写技巧" class="headerlink" title="Pod资源清单编写技巧"></a>Pod资源清单编写技巧</h3><blockquote>
+<p>通过kubectl explain 查看定义Pod资源包含哪些字段。<br><br>kubectl explain pod<br></p>
+</blockquote>
+<blockquote>
+<p>APIVersion定义了对象,代表了一个版本。<br><br>Kind是字符串类型的值，代表了要创建的资源。服务器可以从客户端提交的请求推断出这个资源。<br><br>metadata是对象，定义元数据属性信息的<br><br>spec制定了定义Pod的规格，里面包含容器的信息<br><br>status表示状态，这个不可以修改，定义pod的时候也不需要定义这个字段<br></p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">KIND:     Pod</span><br><span class="line">VERSION:  v1</span><br><span class="line">DESCRIPTION:</span><br><span class="line">     Pod is a collection of containers that can run on a host. This resource is</span><br><span class="line">     created by clients and scheduled onto hosts.</span><br><span class="line">Pod是可以在主机上运行的容器的集合。此资源是由客户端创建并安排到主机上。</span><br><span class="line"></span><br><span class="line">FIELDS:</span><br><span class="line">   APIVersion定义了对象,代表了一个版本。</span><br><span class="line">   apiVersion	&lt;string&gt;</span><br><span class="line">     APIVersion defines the versioned schema of this representation of an</span><br><span class="line">     object. Servers should convert recognized schemas to the latest internal</span><br><span class="line">     value, and may reject unrecognized values. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</span><br><span class="line">      </span><br><span class="line">   Kind是字符串类型的值，代表了要创建的资源。服务器可以从客户端提交的请求推断出这个资源。</span><br><span class="line">   kind	&lt;string&gt;</span><br><span class="line">     Kind is a string value representing the REST resource this object</span><br><span class="line">     represents. Servers may infer this from the endpoint the client submits</span><br><span class="line">     requests to. Cannot be updated. In CamelCase. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</span><br><span class="line">   </span><br><span class="line">   metadata是对象，定义元数据属性信息的   </span><br><span class="line">   metadata	&lt;Object&gt;</span><br><span class="line">     Standard object&#x27;s metadata. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</span><br><span class="line"></span><br><span class="line">   spec制定了定义Pod的规格，里面包含容器的信息</span><br><span class="line">   spec	&lt;Object&gt;</span><br><span class="line">     Specification of the desired behavior of the pod. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</span><br><span class="line">   </span><br><span class="line">   status表示状态，这个不可以修改，定义pod的时候也不需要定义这个字段</span><br><span class="line">   status	&lt;Object&gt;</span><br><span class="line">     Most recently observed status of the pod. This data may not be up to date.</span><br><span class="line">     Populated by the system. Read-only. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看pod-metadata字段如何定义"><a href="#查看pod-metadata字段如何定义" class="headerlink" title="查看pod.metadata字段如何定义"></a>查看pod.metadata字段如何定义</h3><blockquote>
+<p>kubectl explain pod.metadata<br><br>metadata是对象Object，下面可以有多个字段<br></p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">KIND:     Pod</span><br><span class="line">VERSION:  v1</span><br><span class="line">RESOURCE: metadata &lt;Object&gt;</span><br><span class="line"></span><br><span class="line"> metadata是对象&lt;Object&gt;，下面可以有多个字段</span><br><span class="line"></span><br><span class="line">DESCRIPTION:</span><br><span class="line">     Standard object&#x27;s metadata. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</span><br><span class="line">     ObjectMeta is metadata that all persisted resources must have, which</span><br><span class="line">     includes all objects users must create.</span><br><span class="line"></span><br><span class="line">FIELDS:</span><br><span class="line"></span><br><span class="line">annotations是注解，map类型表示对应的值是key-value键值对，&lt;string,string&gt;表示 key和value都是String类型的</span><br><span class="line">   annotations	&lt;mapstringstring&gt;</span><br><span class="line">       Annotations is an unstructured key value map stored with a resource that</span><br><span class="line">       may be set by external tools to store and retrieve arbitrary metadata. They</span><br><span class="line">       are not queryable and should be preserved when modifying objects. More</span><br><span class="line">       info: http://kubernetes.io/docs/user-guide/annotations</span><br><span class="line">       </span><br><span class="line">&quot;metadata&quot;: &#123;</span><br><span class="line">        &quot;annotations&quot;: &#123;</span><br><span class="line">          &quot;key1&quot; : &quot;value1&quot;,</span><br><span class="line">          &quot;key2&quot; : &quot;value2&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">用Annotation来记录的信息包括：</span><br><span class="line">build信息、release信息、Docker镜像信息等，例如时间戳、release id号、镜像hash值、docker registry地址等；</span><br><span class="line">日志库、监控库、分析库等资源库的地址信息；</span><br><span class="line">程序调试工具信息，例如工具名称、版本号等；</span><br><span class="line">团队的联系信息，例如电话号码、负责人名称、网址等。</span><br><span class="line"></span><br><span class="line">#对象所属群集的名称。这是用来区分不同集群中具有相同名称和命名空间的资源。此字段现在未设置在任何位置，apiserver将忽略它，如果设置了就使用设置的值</span><br><span class="line">   clusterName	&lt;string&gt;</span><br><span class="line">     The name of the cluster which the object belongs to. This is used to</span><br><span class="line">     distinguish resources with same name and namespace in different clusters.</span><br><span class="line">     This field is not set anywhere right now and apiserver is going to ignore</span><br><span class="line">     it if set in create or update request.</span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">   creationTimestamp	&lt;string&gt;</span><br><span class="line">   deletionGracePeriodSeconds	&lt;integer&gt;</span><br><span class="line">   deletionTimestamp	&lt;string&gt;</span><br><span class="line">   finalizers	&lt;string&gt;</span><br><span class="line">   generateName	&lt;string&gt;</span><br><span class="line">   generation	&lt;integer&gt;</span><br><span class="line">   </span><br><span class="line">#labels是标签，labels是map类型，map类型表示对应的值是key-value键值对，&lt;string,string&gt;表示 key和value都是String类型的</span><br><span class="line">   labels	&lt;mapstringstring&gt; #创建的资源具有的标签</span><br><span class="line">      Map of string keys and values that can be used to organize and categorize</span><br><span class="line">      (scope and select) objects. May match selectors of replication controllers</span><br><span class="line">      and services. More info: http://kubernetes.io/docs/user-guide/labels</span><br><span class="line">     </span><br><span class="line">   managedFields	&lt;Object&gt;</span><br><span class="line">   </span><br><span class="line">#创建的资源的名字   </span><br><span class="line">   name	&lt;string&gt;    </span><br><span class="line">          </span><br><span class="line">#创建的资源所属的名称空间   </span><br><span class="line">namespaces划分了一个空间，在同一个namesace下的资源名字是唯一的，默认的名称空间是default。</span><br><span class="line">   namespace	&lt;string&gt;      </span><br><span class="line">      Namespace defines the space within which each name must be unique. An empty</span><br><span class="line">      namespace is equivalent to the &quot;default&quot; namespace, but &quot;default&quot; is the</span><br><span class="line">      canonical representation. Not all objects are required to be scoped to a</span><br><span class="line">      namespace - the value of this field for those objects will be empty.</span><br><span class="line">      Must be a DNS_LABEL. Cannot be updated. More info:</span><br><span class="line">      http://kubernetes.io/docs/user-guide/namespaces</span><br><span class="line">      </span><br><span class="line">   ownerReferences	&lt;Object&gt;</span><br><span class="line">   resourceVersion	&lt;string&gt;</span><br><span class="line">   selfLink	&lt;string&gt;</span><br><span class="line">   uid	&lt;string&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="查看pod-spec字段如何定义"><a href="#查看pod-spec字段如何定义" class="headerlink" title="查看pod.spec字段如何定义"></a>查看pod.spec字段如何定义</h3><blockquote>
+<p>kubectl explain pod.spec</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">KIND:     Pod</span><br><span class="line">VERSION:  v1</span><br><span class="line">RESOURCE: spec &lt;Object&gt;</span><br><span class="line">DESCRIPTION:</span><br><span class="line">     Specification of the desired behavior of the pod. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status</span><br><span class="line">     PodSpec is a description of a pod.</span><br><span class="line">#Pod的spec字段是用来描述Pod的</span><br><span class="line"></span><br><span class="line">FIELDS:</span><br><span class="line">#表示Pod可以运行的最长时间，达到设置的值后，Pod会自动停止。</span><br><span class="line">   activeDeadlineSeconds	&lt;integer&gt; </span><br><span class="line"></span><br><span class="line">#定义亲和性的  </span><br><span class="line">   affinity	&lt;Object&gt;  </span><br><span class="line">  </span><br><span class="line">   automountServiceAccountToken	&lt;boolean&gt;</span><br><span class="line">   </span><br><span class="line">#containers是对象列表，用来定义容器的，是必须字段。对象列表 表示下面有很多对象，对象列表下面的内容用 - 连接。</span><br><span class="line">   containers	&lt;Object&gt; -required- </span><br><span class="line">   </span><br><span class="line">   dnsConfig	&lt;Object&gt;</span><br><span class="line">   dnsPolicy	&lt;string&gt;</span><br><span class="line">   enableServiceLinks	&lt;boolean&gt;</span><br><span class="line">   ephemeralContainers	&lt;Object&gt;</span><br><span class="line">   hostAliases	&lt;Object&gt;</span><br><span class="line">   hostIPC	&lt;boolean&gt;</span><br><span class="line">   hostNetwork	&lt;boolean&gt;</span><br><span class="line">   hostPID	&lt;boolean&gt;</span><br><span class="line">   hostname	&lt;string&gt;</span><br><span class="line">   imagePullSecrets	&lt;Object&gt;</span><br><span class="line">   initContainers	&lt;Object&gt;</span><br><span class="line">   nodeName	&lt;string&gt;</span><br><span class="line">   nodeSelector	&lt;mapstringstring&gt;</span><br><span class="line">   overhead	&lt;mapstringstring&gt;</span><br><span class="line">   preemptionPolicy	&lt;string&gt;</span><br><span class="line">   priority	&lt;integer&gt;</span><br><span class="line">   priorityClassName	&lt;string&gt;</span><br><span class="line">   readinessGates	&lt;Object&gt;</span><br><span class="line">   restartPolicy	&lt;string&gt;</span><br><span class="line">   runtimeClassName	&lt;string&gt;</span><br><span class="line">   schedulerName	&lt;string&gt;</span><br><span class="line">   securityContext	&lt;Object&gt;</span><br><span class="line">   serviceAccount	&lt;string&gt;</span><br><span class="line">   serviceAccountName	&lt;string&gt;</span><br><span class="line">   setHostnameAsFQDN	&lt;boolean&gt;</span><br><span class="line">   shareProcessNamespace	&lt;boolean&gt;</span><br><span class="line">   subdomain	&lt;string&gt;</span><br><span class="line">   terminationGracePeriodSeconds	&lt;integer&gt;</span><br><span class="line">   tolerations	&lt;Object&gt;</span><br><span class="line">   topologySpreadConstraints	&lt;Object&gt;</span><br><span class="line">   volumes	&lt;Object&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="查看pod-spec-containers字段如何定义"><a href="#查看pod-spec-containers字段如何定义" class="headerlink" title="查看pod.spec.containers字段如何定义"></a>查看pod.spec.containers字段如何定义</h3><blockquote>
+<p>kubectl explain pod.spec.containers</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">KIND:     Pod</span><br><span class="line">VERSION:  v1</span><br><span class="line"></span><br><span class="line">RESOURCE: containers &lt;Object&gt;</span><br><span class="line">DESCRIPTION:</span><br><span class="line">     List of containers belonging to the pod. Containers cannot currently be</span><br><span class="line">     added or removed. There must be at least one container in a Pod. Cannot be</span><br><span class="line">     updated.</span><br><span class="line">     A single application container that you want to run within a pod.</span><br><span class="line">#container是定义在pod里面的，一个pod至少要有一个容器。</span><br><span class="line"></span><br><span class="line">FIELDS:</span><br><span class="line">   args	&lt;string&gt;</span><br><span class="line">   command	&lt;string&gt;</span><br><span class="line">   env	&lt;Object&gt;</span><br><span class="line">   envFrom	&lt;Object&gt;</span><br><span class="line"></span><br><span class="line">image是用来指定容器需要的镜像的</span><br><span class="line">   image	&lt;string&gt;</span><br><span class="line">  </span><br><span class="line">镜像拉取策略，pod是要调度到node节点的，那pod启动需要镜像，可以根据这个字段设置镜像拉取策略，支持如下三种：</span><br><span class="line">Always：不管本地是否存在镜像，都要重新拉取镜像</span><br><span class="line">Never： 从不拉取镜像</span><br><span class="line">IfNotPresent：如果本地存在，使用本地的镜像，本地不存在，从官方拉取镜像</span><br><span class="line">   imagePullPolicy	&lt;string&gt;</span><br><span class="line">  </span><br><span class="line">   lifecycle	&lt;Object&gt;</span><br><span class="line">   livenessProbe	&lt;Object&gt;</span><br><span class="line">#name是必须字段，用来指定容器名字的</span><br><span class="line">   name	&lt;string&gt; -required-</span><br><span class="line"></span><br><span class="line">#port是端口，属于对象列表</span><br><span class="line">   ports	&lt;Object&gt;</span><br><span class="line">  </span><br><span class="line">   readinessProbe	&lt;Object&gt;</span><br><span class="line">   resources	&lt;Object&gt;</span><br><span class="line">   securityContext	&lt;Object&gt;</span><br><span class="line">   startupProbe	&lt;Object&gt;</span><br><span class="line">   stdin	&lt;boolean&gt;</span><br><span class="line">   stdinOnce	&lt;boolean&gt;</span><br><span class="line">   terminationMessagePath	&lt;string&gt;</span><br><span class="line">   terminationMessagePolicy	&lt;string&gt;</span><br><span class="line">   tty	&lt;boolean&gt;</span><br><span class="line">   volumeDevices	&lt;Object&gt;</span><br><span class="line">   volumeMounts	&lt;Object&gt;</span><br><span class="line">   workingDir	&lt;string&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="查看pod-spec-container-ports字段如何定义"><a href="#查看pod-spec-container-ports字段如何定义" class="headerlink" title="###  查看pod.spec.container.ports字段如何定义"></a>###  查看pod.spec.container.ports字段如何定义</h3><blockquote>
+<p>kubectl explain pod.spec.containers.ports</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">KIND:     Pod</span><br><span class="line">VERSION:  v1</span><br><span class="line">RESOURCE: ports &lt;Object&gt;</span><br><span class="line">DESCRIPTION:</span><br><span class="line">     List of ports to expose from the container. Exposing a port here gives the</span><br><span class="line">     system additional information about the network connections a container</span><br><span class="line">     uses, but is primarily informational. Not specifying a port here DOES NOT</span><br><span class="line">     prevent that port from being exposed. Any port which is listening on the</span><br><span class="line">     default &quot;0.0.0.0&quot; address inside a container will be accessible from the</span><br><span class="line">     network. Cannot be updated.</span><br><span class="line"></span><br><span class="line">     ContainerPort represents a network port in a single container.</span><br><span class="line">FIELDS:</span><br><span class="line">#containerPort是必须字段， pod中的容器需要暴露的端口。</span><br><span class="line">   containerPort	&lt;integer&gt; -required-</span><br><span class="line">       Number of port to expose on the pod&#x27;s IP address. This must be a valid port</span><br><span class="line">       number, 0 &lt; x &lt; 65536.</span><br><span class="line"></span><br><span class="line">#将容器中的服务暴露到宿主机的端口上时，可以指定绑定的宿主机 IP。</span><br><span class="line">   hostIP	&lt;string&gt;</span><br><span class="line">      What host IP to bind the external port to.</span><br><span class="line"></span><br><span class="line">#容器中的服务在宿主机上映射的端口</span><br><span class="line">   hostPort	&lt;integer&gt;</span><br><span class="line">       Number of port to expose on the host. If specified, this must be a valid</span><br><span class="line">       port number, 0 &lt; x &lt; 65536. If HostNetwork is specified, this must match</span><br><span class="line">       ContainerPort. Most containers do not need this.</span><br><span class="line"></span><br><span class="line">#端口的名字</span><br><span class="line">   name	&lt;string&gt;</span><br><span class="line">       If specified, this must be an IANA_SVC_NAME and unique within the pod. Each</span><br><span class="line">       named port in a pod must have a unique name. Name for the port that can be</span><br><span class="line">       referred to by services.</span><br><span class="line">       </span><br><span class="line">   protocol	&lt;string&gt;</span><br><span class="line">      Protocol for port. Must be UDP, TCP, or SCTP. Defaults to &quot;TCP&quot;.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过kubectl-run创建Pod"><a href="#通过kubectl-run创建Pod" class="headerlink" title="通过kubectl run创建Pod"></a>通过kubectl run创建Pod</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl run tomcat --image=xianchao/tomcat-8.5-jre8:v1  --image-pull-policy=&#x27;IfNotPresent&#x27;  --port=8080</span><br></pre></td></tr></table></figure>
+<h3 id="查看kubectl的帮助命令："><a href="#查看kubectl的帮助命令：" class="headerlink" title="查看kubectl的帮助命令："></a>查看kubectl的帮助命令：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl --help (双杠)</span><br></pre></td></tr></table></figure>
+<h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -it tomcat-test -c tomcat-java -- /bin/bash</span><br></pre></td></tr></table></figure>
+<p><img src="/../../../../images/k8s/jc10/img_15.png" alt="img_15.png"></p>
 
         
 <!--          -->
@@ -825,7 +705,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/17/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/19/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/17/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/19/">下一页</a>
 </nav>
 
 
@@ -838,10 +718,6 @@
     <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
-          </li>
         
           <li>
             <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
@@ -859,6 +735,10 @@
             <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
           </li>
         
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/048-application/">048-application</a>
+          </li>
+        
       </ul>
     </div>
   </div>
@@ -871,7 +751,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">78</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -881,7 +761,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">57</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">136</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

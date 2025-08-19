@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/zabbix/5.0/14-监控数据库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/59-SELinux" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/14/%E8%BF%90%E7%BB%B4/zabbix/5.0/14-%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E5%BA%93/">14-监控数据库</a>
+      <a class="p-name article-title" href="/2021/09/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/59-SELinux/">59-SELinux</a>
     </h1>
   
 
@@ -106,17 +106,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-14T12:00:00.000Z" itemprop="datePublished">2022年02月14日</time>
+  <time class="dt-published" datetime="2021-09-29T03:00:52.000Z" itemprop="datePublished">2021年09月29日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/02/14/%E8%BF%90%E7%BB%B4/zabbix/5.0/14-%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E5%BA%93/#comments" class="article-comment-link">
+<a href="/2021/09/29/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/59-SELinux/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,16 +126,135 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-安装-percona-zabbix-templates"><a href="#1-安装-percona-zabbix-templates" class="headerlink" title="1.安装 percona-zabbix-templates"></a>1.安装 percona-zabbix-templates</h4><p>注意：这里使用的PHP版本必须7+，如果不用7下面测试时，会报错。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh https://www.percona.com/downloads/percona-monitoring-plugins/percona-monitoring-plugins-1.1.8/binary/redhat/7/x86_64/percona-zabbix-templates-1.1.8-1.noarch.rpm</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# rpm -ql percona-zabbix-templates</span><br><span class="line">/var/lib/zabbix/percona</span><br><span class="line">/var/lib/zabbix/percona/scripts</span><br><span class="line">/var/lib/zabbix/percona/scripts/get_mysql_stats_wrapper.sh</span><br><span class="line">/var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php</span><br><span class="line">/var/lib/zabbix/percona/templates</span><br><span class="line">/var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf</span><br><span class="line">/var/lib/zabbix/percona/templates/zabbix_agent_template_percona_mysql_server_ht_2.0.9-sver1.1.8.xml</span><br></pre></td></tr></table></figure>
+        <h2 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h2><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>Security-Enhanced Linux<br>一套强化Linux安全的扩展模块<br>美国国家安全局主导开发     </li>
+<li>SELinux的运作机制<br>集成到Linux内核( 2.6及以上)<br>操作系统提供可定制的策略、管理工具</li>
+</ul>
+<h4 id="查看selinux状态：sestatus"><a href="#查看selinux状态：sestatus" class="headerlink" title="查看selinux状态：sestatus"></a>查看selinux状态：sestatus</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# sestatus</span><br><span class="line">SELinux status:                 enabled</span><br><span class="line">SELinuxfs mount:                /sys/fs/selinux    # 文件加载目录</span><br><span class="line">SELinux root directory:         /etc/selinux       # 工作目录</span><br><span class="line">Loaded policy name:             targeted</span><br><span class="line">Current mode:                   enforcing</span><br><span class="line">Mode from config file:          enforcing           # 配置文件模式</span><br><span class="line">Policy MLS status:              enabled</span><br><span class="line">Policy deny_unknown status:     allowed</span><br><span class="line">Max kernel policy version:      31</span><br></pre></td></tr></table></figure>
+<h4 id="配置文件-etc-selinux-config"><a href="#配置文件-etc-selinux-config" class="headerlink" title="配置文件:&#x2F;etc&#x2F;selinux&#x2F;config"></a>配置文件:&#x2F;etc&#x2F;selinux&#x2F;config</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# vim /etc/selinux/config</span><br><span class="line"></span><br><span class="line"># This file controls the state of SELinux on the system.</span><br><span class="line"># SELINUX= can take one of these three values:</span><br><span class="line">#     enforcing - SELinux security policy is enforced.</span><br><span class="line">#     permissive - SELinux prints warnings instead of enforcing.</span><br><span class="line">#     disabled - No SELinux policy is loaded.</span><br><span class="line">SELINUX=enforcing</span><br><span class="line"># SELINUXTYPE= can take one of three values:</span><br><span class="line">#     targeted - Targeted processes are protected,</span><br><span class="line">#     minimum - Modification of targeted policy. Only selected processes are protected.</span><br><span class="line">#     mls - Multi Level Security protection.</span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure>
+<h4 id="重置安全上下文，也就是开启selinux的步骤，只重启并不生效，需要创建autorelable文件"><a href="#重置安全上下文，也就是开启selinux的步骤，只重启并不生效，需要创建autorelable文件" class="headerlink" title="重置安全上下文，也就是开启selinux的步骤，只重启并不生效，需要创建autorelable文件"></a>重置安全上下文，也就是开启selinux的步骤，只重启并不生效，需要创建autorelable文件</h4><ul>
+<li>修改配置文件，开启selinux<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=enforcing</span><br></pre></td></tr></table></figure></li>
+<li>根下创建.autorelable文件, 注意不要缺失了点，创建的是隐藏文件，重启后这个文件会自动消失；          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch /.autorelable</span><br></pre></td></tr></table></figure></li>
+<li>重启    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="SELinux开关控制"><a href="#SELinux开关控制" class="headerlink" title="SELinux开关控制"></a>SELinux开关控制</h4><ul>
+<li>非Disabled状态下才可可用</li>
+<li>临时调整，setenforce 命令</li>
+<li>设为 1，对应强制模式 </li>
+<li>设为 0，对应宽松模式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# getenforce</span><br><span class="line">Enforcing</span><br><span class="line">[root@centos07-12 ~]# setenforce 0</span><br><span class="line">[root@centos07-12 ~]# setenforce 1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="查看安全上下文-安全上下文，就是安全策略-使用大写Z"><a href="#查看安全上下文-安全上下文，就是安全策略-使用大写Z" class="headerlink" title="查看安全上下文(安全上下文，就是安全策略), 使用大写Z"></a>查看安全上下文(安全上下文，就是安全策略), 使用大写Z</h4><ul>
+<li>Security Context，安全上下文为文件<br>&#x2F;目录&#x2F;设备标记访问控制属性      </li>
+<li>属性构成，比较关注的是访问类型<br>用户:角色:访问类型:选项.      </li>
+<li>查看文件的安全上下文<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ls -Z /etc/hosts</span><br><span class="line">-rw-r--r--. root root system_u:object_r:net_conf_t:s0  /etc/hosts</span><br></pre></td></tr></table></figure></li>
+<li>查看目录的安全上下文<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ls -dZ /etc/</span><br><span class="line">drwxr-xr-x. root root system_u:object_r:etc_t:s0       /etc/</span><br></pre></td></tr></table></figure></li>
+<li>查看进程的安全上下文<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# ps -aux -Z |grep python</span><br><span class="line">system_u:system_r:tuned_t:s0    root      1031  0.0  0.5 574284 19492 ?        Ssl  11月02   0:11 /usr/bin/python2 -Es /usr/sbin/tuned -l -P</span><br><span class="line">unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 root 5123 0.0  0.0 112824 988 pts/0 R+ 07:29   0:00 grep --color=auto python</span><br></pre></td></tr></table></figure></li>
+<li>修改安全上下文，一般操作规律<br>移动的文件，原有的上下文属性不变      <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 查看下原文件安全属性，net_conf_t</span><br><span class="line">[root@centos07-12 ~]# ll -Z /etc/hosts</span><br><span class="line">-rw-r--r--. root root system_u:object_r:net_conf_t:s0  /etc/hosts</span><br><span class="line"># 复制文件</span><br><span class="line">[root@centos07-12 ~]# cp /etc/hosts /root</span><br><span class="line"># 查看下复制后的文件属性，admin_home_t</span><br><span class="line">[root@centos07-12 ~]# ll -Z /root/hosts</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 /root/hosts</span><br><span class="line"># 查看目录文件属性</span><br><span class="line">[root@centos07-12 ~]# ls -dZ /root</span><br><span class="line">dr-xr-x---. root root system_u:object_r:admin_home_t:s0 /root</span><br></pre></td></tr></table></figure>
+创建或复制的文件，自动继承目标位置的上下文      <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查看下目录的访问类型， admin_home_t</span><br><span class="line">[root@centos07-12 ~]# ls -dZ /root</span><br><span class="line">dr-xr-x---. root root system_u:object_r:admin_home_t:s0 /root</span><br><span class="line"># 新创建一个文件</span><br><span class="line">[root@centos07-12 ~]# vim 1.txt</span><br><span class="line"># 查看下新文件访问类型， admin_home_t，继承目录访问类型</span><br><span class="line">[root@centos07-12 ~]# ls -dZ 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 1.txt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="修改文件的访问类型，使用chcon工具"><a href="#修改文件的访问类型，使用chcon工具" class="headerlink" title="修改文件的访问类型，使用chcon工具"></a>修改文件的访问类型，使用chcon工具</h4><ul>
+<li>t，指定访问类型        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 原访问类型</span><br><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:public_content_t:s0 1.txt</span><br><span class="line"></span><br><span class="line"># 修改访问类型</span><br><span class="line">[root@centos07-12 ftp]# ll -dZ /var/www/html</span><br><span class="line">drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 /var/www/html</span><br><span class="line">[root@centos07-12 ftp]# chcon -t httpd_sys_content_t 1.txt</span><br><span class="line"></span><br><span class="line"># 新访问类型</span><br><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 1.txt</span><br></pre></td></tr></table></figure></li>
+<li>-R，递归修改      <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# chcon -R -t httpd_sys_content_t  /temp/files/</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="恢复访问类型，-restorecon"><a href="#恢复访问类型，-restorecon" class="headerlink" title="恢复访问类型， restorecon"></a>恢复访问类型， restorecon</h4><ul>
+<li>恢复为所在位置的默认上下文属性     <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 1.txt</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ftp]# restorecon 1.txt</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:public_content_t:s0 1.txt</span><br></pre></td></tr></table></figure></li>
+<li>-R，递归修改     <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# restorecon -R  /var/ftp/</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ftp]# ll -Z 1.txt</span><br><span class="line">-rw-r--r--. root root unconfined_u:object_r:public_content_t:s0 1.txt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="调整SELinux布尔值"><a href="#调整SELinux布尔值" class="headerlink" title="调整SELinux布尔值"></a>调整SELinux布尔值</h4><ul>
+<li>使用 getsebool 查看<br>a，可列出所有布尔值，on 开启， off 关闭<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# getsebool -a |grep ftp</span><br><span class="line"></span><br><span class="line">ftpd_anon_write --&gt; off</span><br><span class="line">ftpd_connect_all_unreserved --&gt; off</span><br><span class="line">ftpd_connect_db --&gt; off</span><br><span class="line">ftpd_full_access --&gt; off</span><br><span class="line">ftpd_use_cifs --&gt; off</span><br><span class="line">ftpd_use_fusefs --&gt; off</span><br><span class="line">ftpd_use_nfs --&gt; off</span><br><span class="line">ftpd_use_passive_mode --&gt; off</span><br><span class="line">httpd_can_connect_ftp --&gt; off</span><br><span class="line">httpd_enable_ftp_server --&gt; off</span><br><span class="line">tftp_anon_write --&gt; off</span><br><span class="line">tftp_home_dir --&gt; off</span><br></pre></td></tr></table></figure></li>
+<li>使用 setsebool 设置<br>-P，永久更改，重启后仍然有效    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# setsebool -P  ftpd_anon_write on</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ftp]# setsebool -P  ftpd_anon_write off</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="查看SELinux日志排查"><a href="#查看SELinux日志排查" class="headerlink" title="查看SELinux日志排查"></a>查看SELinux日志排查</h4><ul>
+<li>开启selinux，严格模式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# setenforce 1</span><br><span class="line">[root@centos07-12 ftp]# getenforce</span><br><span class="line">Enforcing</span><br></pre></td></tr></table></figure></li>
+<li>启动httpd服务，修改为非80端口，无法启动，启动报错<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# vim /etc/httpd/conf/httpd.conf</span><br><span class="line"></span><br><span class="line">Listen 8070</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# systemctl start httpd</span><br><span class="line">Job for httpd.service failed because the control process exited with error code. See &quot;systemctl status httpd.service&quot; and &quot;journalctl -xe&quot; for details.</span><br></pre></td></tr></table></figure></li>
+<li>查看SELinux日志，排查问题，需要用到setrubleshoot<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ftp]# rpm -aq|grep shoot</span><br><span class="line">[root@centos07-12 ftp]# yum list|grep shoot</span><br><span class="line">setroubleshoot.x86_64                       3.2.30-8.el7               base</span><br><span class="line">setroubleshoot-plugins.noarch               3.0.67-4.el7               base</span><br><span class="line">setroubleshoot-server.x86_64                3.2.30-8.el7               base</span><br><span class="line">[root@centos07-12 ftp]# yum -y install setroubleshoot*</span><br><span class="line">[root@centos07-12 ftp]# reboot</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# systemctl restart httpd.service</span><br><span class="line">Job for httpd.service failed because the control process exited with error code. See &quot;systemctl status httpd.service&quot; and &quot;journalctl -xe&quot; for details.</span><br></pre></td></tr></table></figure>
+查看日志，执行下面命令，sealert -l 0f7e3663-d739-4bd1-bbca-c08c652b48cd，查看如何修改     <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# grep setroubleshoot /var/log/messages |tail -1</span><br><span class="line">Nov  6 13:59:42 centos07-12 setroubleshoot: SELinux is preventing /usr/sbin/httpd from name_bind access on the tcp_socket port 8070. For complete SELinux messages run: sealert -l 0f7e3663-d739-4bd1-bbca-c08c652b48cd</span><br></pre></td></tr></table></figure>
+执行DO里的内容，注意里面的变量，PORT_TYPE                       <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# sealert -l 0f7e3663-d739-4bd1-bbca-c08c652b48cd</span><br><span class="line">SELinux is preventing /usr/sbin/httpd from name_bind access on the tcp_socket port 8070.</span><br><span class="line"></span><br><span class="line">*****  插件 bind_ports (92.2 置信度) 建议  ******************************************</span><br><span class="line"></span><br><span class="line">如果你想允许 /usr/sbin/httpd绑定到网络端口 $PORT_数</span><br><span class="line">Then you need to modify the port type.</span><br><span class="line">Do   ####注意这里..., PORT_TYPE</span><br><span class="line"># semanage port -a -t PORT_TYPE -p tcp 8070</span><br><span class="line">    其中 PORT_TYPE 是以下之一：http_cache_port_t, http_port_t, jboss_management_port_t, jboss_messaging_port_t, ntop_port_t, puppet_port_t。</span><br><span class="line"></span><br><span class="line">*****  插件 catchall_boolean (7.83 置信度) 建议  ************************************</span><br><span class="line"></span><br><span class="line">如果你想 allow nis to enabled</span><br><span class="line">Then 必须启用 &#x27;nis_enabled&#x27; 布尔值告知 SELinux 此情况。</span><br><span class="line"></span><br><span class="line">Do</span><br><span class="line">setsebool -P nis_enabled 1</span><br><span class="line"></span><br><span class="line">*****  插件 catchall (1.41 置信度) 建议  ********************************************</span><br><span class="line"></span><br><span class="line">如果你相信 httpd应该允许_BASE_PATH name_bind 访问 port 8070 tcp_socket默认情况下。</span><br><span class="line">Then 应该将这个情况作为 bug 报告。</span><br><span class="line">可以生成本地策略模块以允许此访问。</span><br><span class="line">Do</span><br><span class="line">暂时允许此访问权限执行：</span><br><span class="line"># ausearch -c &#x27;httpd&#x27; --raw | audit2allow -M my-httpd</span><br><span class="line"># semodule -i my-httpd.pp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">更多信息:</span><br><span class="line">源环境 (Context)                 system_u:system_r:httpd_t:s0</span><br><span class="line">目标环境                          system_u:object_r:unreserved_port_t:s0</span><br><span class="line">目标对象                          port 8070 [ tcp_socket ]</span><br><span class="line">源                             httpd</span><br><span class="line">源路径                           /usr/sbin/httpd</span><br><span class="line">端口                            8070</span><br><span class="line">主机                            centos07-12</span><br><span class="line">源 RPM 软件包                     httpd-2.4.6-95.el7.centos.x86_64</span><br><span class="line">目标 RPM 软件包</span><br><span class="line">策略 RPM                        selinux-policy-3.13.1-268.el7.noarch</span><br><span class="line">Selinux 已启用                   True</span><br><span class="line">策略类型                          targeted</span><br><span class="line">强制模式                          Enforcing</span><br><span class="line">主机名                           centos07-12</span><br><span class="line">平台                            Linux centos07-12 3.10.0-1160.el7.x86_64 #1 SMP</span><br><span class="line">                              Mon Oct 19 16:18:59 UTC 2020 x86_64 x86_64</span><br><span class="line">警报计数                          1</span><br><span class="line">第一个                           2023-11-06 13:59:40 CST</span><br><span class="line">最后一个                          2023-11-06 13:59:40 CST</span><br><span class="line">本地 ID                         0f7e3663-d739-4bd1-bbca-c08c652b48cd</span><br><span class="line"></span><br><span class="line">原始核查信息</span><br><span class="line">type=AVC msg=audit(1699250380.724:118): avc:  denied  &#123; name_bind &#125; for  pid=1619 comm=&quot;httpd&quot; src=8070 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:unreserved_port_t:s0 tclass=tcp_socket permissive=0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type=SYSCALL msg=audit(1699250380.724:118): arch=x86_64 syscall=bind success=no exit=EACCES a0=3 a1=558d7078f180 a2=10 a3=7ffc7b98312c items=0 ppid=1 pid=1619 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm=httpd exe=/usr/sbin/httpd subj=system_u:system_r:httpd_t:s0 key=(null)</span><br><span class="line"></span><br><span class="line">Hash: httpd,httpd_t,unreserved_port_t,tcp_socket,name_bind</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="总结就是，开启selinux后，想使用非标准接口，那就需要使用selinux命令，允许使用其他的端口；"><a href="#总结就是，开启selinux后，想使用非标准接口，那就需要使用selinux命令，允许使用其他的端口；" class="headerlink" title="总结就是，开启selinux后，想使用非标准接口，那就需要使用selinux命令，允许使用其他的端口；"></a>总结就是，开启selinux后，想使用非标准接口，那就需要使用selinux命令，允许使用其他的端口；</h4>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/25/index.html">https://dbbruce.github.io/page/25/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/58-制作本地yum源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/">58-制作本地yum源</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-28T03:00:52.000Z" itemprop="datePublished">2021年09月28日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="构建本地yum源"><a href="#构建本地yum源" class="headerlink" title="构建本地yum源"></a>构建本地yum源</h2><p>构建本地yum源，然后通过yum 进行安装。</p>
+<ol>
+<li>准备rpm包<br>rpm包源建议使用对应的iso文件进行解压获得。</li>
+<li>安装 createrepo 工具
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/02/14/%E8%BF%90%E7%BB%B4/zabbix/5.0/14-%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E5%BA%93/#more">阅读全文</a>
+          <a href="/2021/09/28/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/58-%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0yum%E6%BA%90/#more">阅读全文</a>
         </p>
       
       
@@ -145,7 +264,7 @@
 </article>
 
 
-  <article id="post-运维/zabbix/5.0/13-监控日志中的状态码的数量" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/57-haproxy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -153,7 +272,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/13/%E8%BF%90%E7%BB%B4/zabbix/5.0/13-%E7%9B%91%E6%8E%A7%E6%97%A5%E5%BF%97%E4%B8%AD%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81%E7%9A%84%E6%95%B0%E9%87%8F/">13-监控日志中的状态码的数量</a>
+      <a class="p-name article-title" href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/">57-haproxy</a>
     </h1>
   
 
@@ -164,17 +283,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-13T12:00:00.000Z" itemprop="datePublished">2022年02月13日</time>
+  <time class="dt-published" datetime="2021-09-27T03:00:52.000Z" itemprop="datePublished">2021年09月27日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/02/13/%E8%BF%90%E7%BB%B4/zabbix/5.0/13-%E7%9B%91%E6%8E%A7%E6%97%A5%E5%BF%97%E4%B8%AD%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81%E7%9A%84%E6%95%B0%E9%87%8F/#comments" class="article-comment-link">
+<a href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -184,85 +303,22 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-获取nginx日志中状态码数量"><a href="#1-获取nginx日志中状态码数量" class="headerlink" title="1.获取nginx日志中状态码数量"></a>1.获取nginx日志中状态码数量</h4><ul>
-<li>nginx_status_code.sh<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">author: dbruce dong</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">desc: 检查某状态码的数量</span></span><br><span class="line">CHOICE=$1</span><br><span class="line">awk -v s=$CHOICE &#x27;&#123;code[$9]++&#125;END&#123;if( s in code) print code[s]&#125;&#x27;  /usr/local/nginx/logs/access.log</span><br></pre></td></tr></table></figure></li>
-<li>使用<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod +x nginx_status_code.sh</span><br><span class="line">./nginx_status_code.sh 404</span><br><span class="line">17</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2022/02/13/%E8%BF%90%E7%BB%B4/zabbix/5.0/13-%E7%9B%91%E6%8E%A7%E6%97%A5%E5%BF%97%E4%B8%AD%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81%E7%9A%84%E6%95%B0%E9%87%8F/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/zabbix/5.0/12-监控端口进程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/12/%E8%BF%90%E7%BB%B4/zabbix/5.0/12-%E7%9B%91%E6%8E%A7%E7%AB%AF%E5%8F%A3%E8%BF%9B%E7%A8%8B/">12-监控端口进程</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-12T12:00:00.000Z" itemprop="datePublished">2022年02月12日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
-  </div>
-
-      
-      
-<a href="/2022/02/12/%E8%BF%90%E7%BB%B4/zabbix/5.0/12-%E7%9B%91%E6%8E%A7%E7%AB%AF%E5%8F%A3%E8%BF%9B%E7%A8%8B/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>zabbix 自带的监控项：<a target="_blank" rel="noopener" href="https://www.zabbix.com/documentation/5.0/zh/manual/config/items/itemtypes/zabbix_agent">https://www.zabbix.com/documentation/5.0/zh/manual/config/items/itemtypes/zabbix_agent</a></p>
-<h4 id="1-使用zabbix自动key，获取进程和端口信息"><a href="#1-使用zabbix自动key，获取进程和端口信息" class="headerlink" title="1.使用zabbix自动key，获取进程和端口信息"></a>1.使用zabbix自动key，获取进程和端口信息</h4><blockquote>
+        <h2 id="haproxy"><a href="#haproxy" class="headerlink" title="haproxy"></a>haproxy</h2><p>优点</p>
 <ul>
-<li><ol>
-<li>net.tcp.port[,80]   — 检查是否可以将TCP连接到指定的端口。 0 - 不能连接</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>proc.num[nginx]   — 进程数量</li>
-</ol>
-</li>
-</ul>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# zabbix_get -s 192.168.1.22 -k net.tcp.port[,80]  # 1运行 0关闭</span><br><span class="line">1  </span><br><span class="line">[root@master ~]# zabbix_get -s 192.168.1.22 -k proc.num[nginx]</span><br><span class="line">2</span><br><span class="line">[root@master ~]# zabbix_get -s 192.168.1.22 -k proc.num[]</span><br><span class="line">108</span><br></pre></td></tr></table></figure>
+<li>支持session、cookie功能</li>
+<li>可以通过url进行健康检查</li>
+<li>效率、负载均衡速度，高于Nginx，低于LVS</li>
+<li>HAProxy支持TCP，可以对MySQL进行负载均衡</li>
+<li>调度算法丰富<br>缺点</li>
+<li>正则弱于Nginx</li>
+<li>日志依赖于syslogd
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/02/12/%E8%BF%90%E7%BB%B4/zabbix/5.0/12-%E7%9B%91%E6%8E%A7%E7%AB%AF%E5%8F%A3%E8%BF%9B%E7%A8%8B/#more">阅读全文</a>
+          <a href="/2021/09/27/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/57-haproxy/#more">阅读全文</a>
         </p>
       
       
@@ -272,7 +328,7 @@
 </article>
 
 
-  <article id="post-运维/zabbix/5.0/11-监控证书过期" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/56-keepalived" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -280,7 +336,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/11/%E8%BF%90%E7%BB%B4/zabbix/5.0/11-%E7%9B%91%E6%8E%A7%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F/">11-监控证书过期</a>
+      <a class="p-name article-title" href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/">56-keepalived</a>
     </h1>
   
 
@@ -291,17 +347,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-11T12:00:00.000Z" itemprop="datePublished">2022年02月11日</time>
+  <time class="dt-published" datetime="2021-09-26T03:00:52.000Z" itemprop="datePublished">2021年09月26日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/02/11/%E8%BF%90%E7%BB%B4/zabbix/5.0/11-%E7%9B%91%E6%8E%A7%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F/#comments" class="article-comment-link">
+<a href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -311,16 +367,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-查看证书信息"><a href="#1-查看证书信息" class="headerlink" title="1.查看证书信息"></a>1.查看证书信息</h4><blockquote>
-<p>openssl x509 -in cert.pem -noout -text</p>
-</blockquote>
+        <h2 id="Keepalived概述"><a href="#Keepalived概述" class="headerlink" title="Keepalived概述"></a>Keepalived概述</h2><p>调度器出现单点故障，如何解决 ?<br>Keepalived实现了高可用集群<br>Keepalived最初是为LVS设计的，专门监控各服务器节点的状态<br>Keepalived后来加入了VRRP功能，防止单点故障</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/02/11/%E8%BF%90%E7%BB%B4/zabbix/5.0/11-%E7%9B%91%E6%8E%A7%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F/#more">阅读全文</a>
+          <a href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/#more">阅读全文</a>
         </p>
       
       
@@ -330,7 +384,7 @@
 </article>
 
 
-  <article id="post-运维/zabbix/5.0/10-监控tcp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/55-LVS集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -338,7 +392,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/10/%E8%BF%90%E7%BB%B4/zabbix/5.0/10-%E7%9B%91%E6%8E%A7tcp/">10-监控tcp</a>
+      <a class="p-name article-title" href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/">55-LVS集群</a>
     </h1>
   
 
@@ -349,17 +403,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-10T12:00:00.000Z" itemprop="datePublished">2022年02月10日</time>
+  <time class="dt-published" datetime="2021-09-25T03:00:52.000Z" itemprop="datePublished">2021年09月25日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/02/10/%E8%BF%90%E7%BB%B4/zabbix/5.0/10-%E7%9B%91%E6%8E%A7tcp/#comments" class="article-comment-link">
+<a href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -369,110 +423,19 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="0-tcp连接状态"><a href="#0-tcp连接状态" class="headerlink" title="0. tcp连接状态"></a>0. tcp连接状态</h4><p>SYN_SEND: client发送连接请求<br>SYN_RECD: server接收到连接请求<br>ESTABLISHED: 连接<br>CLOSE_WAIT: 收到client端口请求<br>LAST_ACK: Server发送确认（fin）<br>TIME-WAIT1：等待1， clinet发起断开请求（fin ack），等待server回复<br>TIME-WAIT2：等待2， server回复（ack），收到请求，但是没有确认<br>TIME-WAIT： 断开，  server发送（fin）， client收到确认</p>
-<p>连接：</p>
-<p><img src="/../../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/zabbix/5.0/img_51.png" alt="img_51.png"></p>
-<p>断开：</p>
-<p><img src="/../../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/zabbix/5.0/img_50.png" alt="img_50.png"></p>
-<h4 id="1-查看tcp连接"><a href="#1-查看tcp连接" class="headerlink" title="1.查看tcp连接"></a>1.查看tcp连接</h4><p>ss -ant |grep -i  ‘estab’  # -i 忽略大小写<br>查看tcp连接中22端口的连接</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-22 conf]# ss -ant |grep -i  &#x27;estab&#x27; |awk &#x27;$4~/:22/&#x27;</span><br></pre></td></tr></table></figure>
-<p>查看tcp 22端口连接数量</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-22 conf]# ss -ant |grep -i  &#x27;estab&#x27; |awk &#x27;$4~/:22/&#x27; | wc -l</span><br></pre></td></tr></table></figure>
-<h4 id="2-编写脚本"><a href="#2-编写脚本" class="headerlink" title="2.编写脚本"></a>2.编写脚本</h4><ul>
-<li><ol>
-<li>通过脚本获取证书的相关时间</li>
-</ol>
-</li>
-<li><ol>
-<li>zabbix agent端，编写自定义监控脚本</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>web页面添加自定义监控</li>
-</ol>
-</li>
-</ul>
-
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/25/index.html">https://dbbruce.github.io/page/25/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/zabbix/5.0/09-监控负载均衡" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/09/%E8%BF%90%E7%BB%B4/zabbix/5.0/09-%E7%9B%91%E6%8E%A7%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">09-监控负载均衡</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-09T12:00:00.000Z" itemprop="datePublished">2022年02月09日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
-  </div>
-
-      
-      
-<a href="/2022/02/09/%E8%BF%90%E7%BB%B4/zabbix/5.0/09-%E7%9B%91%E6%8E%A7%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Nginx-开启状态统计"><a href="#1-Nginx-开启状态统计" class="headerlink" title="1.Nginx 开启状态统计"></a>1.Nginx 开启状态统计</h4><ul>
-<li><p>编译安装时使用–with-http_stub_status_module开启状态页面模块</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master nginx-1.22.1]# ./configure </span><br><span class="line">--prefix=/usr/local/nginx  # 安装路径</span><br><span class="line">--with-http_ssl_module   # 开启ssl加密功能</span><br><span class="line">--with-stream              # 开启tcp udp代理</span><br><span class="line">--with-http_stub_status_module  # 开通status状态统计</span><br></pre></td></tr></table></figure>
+        <h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><p>集群分类</p>
+<ul>
+<li>高性能计算集群HPC<br>通过以集群开发的并行应用程序，解决复杂的科学问题</li>
+<li>负载均衡( LB )集群<br>客户端负载在计算机集群中尽可能平均分摊[</li>
+<li>高可用( HA)集群<br>避免单点故障，当一个系统发生故障时，可以快速迁移</li>
+<li>原理<br>LVS原理和nginx不同<br>lvs原理是路由器，转发数据包，性能高，只能做转发，功能单一；<br>nginx原始代理，需要处理下数据包，功能多，比如健康检查；
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/02/09/%E8%BF%90%E7%BB%B4/zabbix/5.0/09-%E7%9B%91%E6%8E%A7%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/#more">阅读全文</a>
+          <a href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
         </p>
       
       
@@ -482,7 +445,7 @@
 </article>
 
 
-  <article id="post-运维/zabbix/5.0/08-监控java（待完善）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/54-NTP服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -490,7 +453,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/08/%E8%BF%90%E7%BB%B4/zabbix/5.0/08-%E7%9B%91%E6%8E%A7java%EF%BC%88%E5%BE%85%E5%AE%8C%E5%96%84%EF%BC%89/">08-监控java（待完善）</a>
+      <a class="p-name article-title" href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">54-NTP服务器</a>
     </h1>
   
 
@@ -501,17 +464,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-08T12:00:00.000Z" itemprop="datePublished">2022年02月08日</time>
+  <time class="dt-published" datetime="2021-09-24T03:00:52.000Z" itemprop="datePublished">2021年09月24日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/02/08/%E8%BF%90%E7%BB%B4/zabbix/5.0/08-%E7%9B%91%E6%8E%A7java%EF%BC%88%E5%BE%85%E5%AE%8C%E5%96%84%EF%BC%89/#comments" class="article-comment-link">
+<a href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -521,107 +484,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
-        
-<!--          -->
-<!--           <blockquote id="copyright"> -->
-<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/25/index.html">https://dbbruce.github.io/page/25/index.html</a></p> -->
-<!--               <p>版权声明: 转载请注明出处.</p> -->
-<!--           </blockquote> -->
-<!--          -->
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          <!--  -->
-<!--     <div class="social-share"> -->
-<!--       <span>分享到:</span> -->
-<!--     </div> -->
-<!--  -->
-<!--  -->
-
-        </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/zabbix/5.0/07-监控SNMP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/07/%E8%BF%90%E7%BB%B4/zabbix/5.0/07-%E7%9B%91%E6%8E%A7SNMP/">07-监控SNMP</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-07T12:00:00.000Z" itemprop="datePublished">2022年02月07日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
-  </div>
-
-      
-      
-<a href="/2022/02/07/%E8%BF%90%E7%BB%B4/zabbix/5.0/07-%E7%9B%91%E6%8E%A7SNMP/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-SNMP"><a href="#1-SNMP" class="headerlink" title="1.SNMP"></a>1.SNMP</h4><ul>
-<li>开启SNMP</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>snmp版本</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>V3</td>
-<td>通过用户名和密码 访问 snmp信息</td>
-</tr>
-<tr>
-<td>y2c</td>
-<td>通过团体名id 访问设备 访问 snmp信息</td>
-</tr>
-<tr>
-<td>v1</td>
-<td>基本不用</td>
-</tr>
-</tbody></table>
+        <h2 id="NTP"><a href="#NTP" class="headerlink" title="NTP"></a>NTP</h2><p>Network Time Protocol (网络时间协议)采用的是分层设计，最多不能超过15层</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/02/07/%E8%BF%90%E7%BB%B4/zabbix/5.0/07-%E7%9B%91%E6%8E%A7SNMP/#more">阅读全文</a>
+          <a href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/#more">阅读全文</a>
         </p>
       
       
@@ -631,7 +501,7 @@
 </article>
 
 
-  <article id="post-运维/zabbix/5.0/06-企业微信告警" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/53-VPN(待续)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -639,7 +509,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/06/%E8%BF%90%E7%BB%B4/zabbix/5.0/06-%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6/">06-企业微信告警</a>
+      <a class="p-name article-title" href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/">53-VPN</a>
     </h1>
   
 
@@ -650,17 +520,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-06T12:00:00.000Z" itemprop="datePublished">2022年02月06日</time>
+  <time class="dt-published" datetime="2021-09-23T03:00:52.000Z" itemprop="datePublished">2021年09月23日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/02/06/%E8%BF%90%E7%BB%B4/zabbix/5.0/06-%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6/#comments" class="article-comment-link">
+<a href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -670,14 +540,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-查看脚本的路径"><a href="#1-查看脚本的路径" class="headerlink" title="1.查看脚本的路径"></a>1.查看脚本的路径</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# rpm -ql zabbix-server-mysql |grep alert</span><br><span class="line">/usr/lib/zabbix/alertscripts</span><br></pre></td></tr></table></figure>
+        <h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p>Virtual Private Network ( 虚拟专用网络)<br>在公用网络上建立专用私有网络，进行加密通讯<br>多用于为集团公司的各地子公司建立连接<br>连接完成后，各个地区的子公司可以像局域网一样通讯<br>在企业网络中有广泛应用<br>偶尔可以用于翻墙<br>目前主流的VPN技术( GRE，PPTP，L2TP+IPSec，SSL )<br>gre &gt; pptp &gt; l2tp+ipsec   (安装, 易 -&gt; 难)<br>l2tcp+ipsec &gt; pptp &gt; gre  (安全, 高 -&gt; 底)</p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/02/06/%E8%BF%90%E7%BB%B4/zabbix/5.0/06-%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6/#more">阅读全文</a>
+          <a href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/#more">阅读全文</a>
         </p>
       
       
@@ -687,7 +557,7 @@
 </article>
 
 
-  <article id="post-运维/zabbix/5.0/05-邮件报警" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/Linux云计算教程/52-rpm打包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -695,7 +565,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/05/%E8%BF%90%E7%BB%B4/zabbix/5.0/05-%E9%82%AE%E4%BB%B6%E6%8A%A5%E8%AD%A6/">05-邮件报警</a>
+      <a class="p-name article-title" href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/">52-RPM打包</a>
     </h1>
   
 
@@ -706,17 +576,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-02-05T12:00:00.000Z" itemprop="datePublished">2022年02月05日</time>
+  <time class="dt-published" datetime="2021-09-22T03:00:52.000Z" itemprop="datePublished">2021年09月22日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
   </div>
 
       
       
-<a href="/2022/02/05/%E8%BF%90%E7%BB%B4/zabbix/5.0/05-%E9%82%AE%E4%BB%B6%E6%8A%A5%E8%AD%A6/#comments" class="article-comment-link">
+<a href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -726,14 +596,132 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-配置发件人"><a href="#1-配置发件人" class="headerlink" title="1.配置发件人"></a>1.配置发件人</h4><p><img src="/../../../../images/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/zabbix/5.0/img_29.png" alt="img_29.png"></p>
+        <h2 id="RPM打包"><a href="#RPM打包" class="headerlink" title="RPM打包"></a>RPM打包</h2><p>原理：先把源码安装一遍，对安装好的结果打包，包的扩展名为rpm，rpm就是一个压缩包</p>
+<h4 id="1-将源码包转为RPM包"><a href="#1-将源码包转为RPM包" class="headerlink" title="1.将源码包转为RPM包"></a>1.将源码包转为RPM包</h4><ol>
+<li>安装rpm-build软件包<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# yum -y install rpm-build</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2022/02/05/%E8%BF%90%E7%BB%B4/zabbix/5.0/05-%E9%82%AE%E4%BB%B6%E6%8A%A5%E8%AD%A6/#more">阅读全文</a>
+          <a href="/2021/09/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/52-rpm%E6%89%93%E5%8C%85/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/51-Linux下实现免密码登录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/">51-Linux下实现免密码登录</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-21T03:00:52.000Z" itemprop="datePublished">2021年09月21日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Linux下实现免密码登录"><a href="#Linux下实现免密码登录" class="headerlink" title="Linux下实现免密码登录"></a>Linux下实现免密码登录</h2><h4 id="第一步：检查本机是否已经存在密钥对"><a href="#第一步：检查本机是否已经存在密钥对" class="headerlink" title="第一步：检查本机是否已经存在密钥对"></a>第一步：检查本机是否已经存在密钥对</h4><p>为了实现免密码登录，我们需要在本机上生成一对密钥，如果你已经有了密钥对的话，可以跳过这一步。如果没有，可以通过以下命令进行检查：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> ~/.ssh/id_*</span></span><br></pre></td></tr></table></figure>
+<p>如果返回以下错误信息，说明你还没有生成密钥对：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls: /home/user/.ssh/id_*: No such file or directory</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/21/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/51-Linux%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/50-vim常用快捷键" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/50-vim%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">50-vim常用快捷键</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-20T03:00:52.000Z" itemprop="datePublished">2021年09月20日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/50-vim%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="vim常用快捷键"><a href="#vim常用快捷键" class="headerlink" title="vim常用快捷键"></a>vim常用快捷键</h2><h4 id="vim编辑器的三种模式转换"><a href="#vim编辑器的三种模式转换" class="headerlink" title="vim编辑器的三种模式转换"></a>vim编辑器的三种模式转换</h4><p>插入模式&lt;&#x3D;&gt;命令模式&lt;&#x3D;&gt;末行模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">插入模式  =&gt; 命令模式       按Esc键</span><br><span class="line">命令模式  =&gt; 末行模式       按冒号键</span><br><span class="line">末行模式  =&gt; 命令模式       输入末行命令之后回车键</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/20/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/50-vim%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#more">阅读全文</a>
         </p>
       
       
@@ -746,7 +734,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/24/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/26/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/24/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/26/">下一页</a>
 </nav>
 
 
@@ -759,10 +747,6 @@
     <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
-          </li>
         
           <li>
             <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
@@ -780,6 +764,10 @@
             <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
           </li>
         
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/048-application/">048-application</a>
+          </li>
+        
       </ul>
     </div>
   </div>
@@ -792,7 +780,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">78</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -802,7 +790,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">57</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">136</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

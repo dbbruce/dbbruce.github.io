@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-运维/Linux云计算教程/06-重定向" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-redis/03-redis主从复制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/06-%E9%87%8D%E5%AE%9A%E5%90%91/">06-重定向</a>
+      <a class="p-name article-title" href="/2018/02/12/redis/03-redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">redis主从复制</a>
     </h1>
   
 
@@ -106,17 +106,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-06T03:00:52.000Z" itemprop="datePublished">2021年08月06日</time>
+  <time class="dt-published" datetime="2018-02-12T10:30:58.000Z" itemprop="datePublished">2018年02月12日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/redis/">redis</a>
   </div>
 
       
       
-<a href="/2021/08/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/06-%E9%87%8D%E5%AE%9A%E5%90%91/#comments" class="article-comment-link">
+<a href="/2018/02/12/redis/03-redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,15 +126,18 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-重定向输出"><a href="#1-重定向输出" class="headerlink" title="1.重定向输出"></a>1.重定向输出</h4><p>覆盖重定向 &gt;<br>追加重定向 &gt;&gt;</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls --help &gt; 1.txt</span><br><span class="line">ls --help &gt;&gt; 1.txt</span><br></pre></td></tr></table></figure>
+        <h4 id="redis主从复制"><a href="#redis主从复制" class="headerlink" title="redis主从复制"></a>redis主从复制</h4><ul>
+<li>结构模式<br>一主一从、一主多从、主从从</li>
+</ul>
+<h4 id="一主一从、一主多从，从只能读"><a href="#一主一从、一主多从，从只能读" class="headerlink" title="一主一从、一主多从，从只能读"></a>一主一从、一主多从，从只能读</h4><h6 id="redis默认就是主库，不需要配置"><a href="#redis默认就是主库，不需要配置" class="headerlink" title="redis默认就是主库，不需要配置"></a>redis默认就是主库，不需要配置</h6><ul>
+<li>查看复制信息<br>role:    &#x2F;&#x2F;角色<br>master_link_status: &#x2F;&#x2F;与主库连接状态<br>master_host:   &#x2F;&#x2F;主库ip地址<br>master_port:    &#x2F;&#x2F;主库端口号
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/06/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/06-%E9%87%8D%E5%AE%9A%E5%90%91/#more">阅读全文</a>
+          <a href="/2018/02/12/redis/03-redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/#more">阅读全文</a>
         </p>
       
       
@@ -144,7 +147,7 @@
 </article>
 
 
-  <article id="post-运维/docker/基础/05-dockerfile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-redis/02-redis集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -152,7 +155,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/05/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/05-dockerfile/">05-Dockerfile</a>
+      <a class="p-name article-title" href="/2018/02/11/redis/02-redis%E9%9B%86%E7%BE%A4/">redis集群</a>
     </h1>
   
 
@@ -163,17 +166,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-05T05:00:52.000Z" itemprop="datePublished">2021年08月05日</time>
+  <time class="dt-published" datetime="2018-02-11T12:30:58.000Z" itemprop="datePublished">2018年02月11日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+    <a class="article-category-link" href="/categories/redis/">redis</a>
   </div>
 
       
       
-<a href="/2021/08/05/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/05-dockerfile/#comments" class="article-comment-link">
+<a href="/2018/02/11/redis/02-redis%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -183,28 +186,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p>Dockerfile 是一个用于定义 Docker 镜像的文本文件。<br>它包含了一系列的指令和参数，用于指示 Docker 在构建镜像时应该执行哪些操作，例如基于哪个基础镜像、复制哪些文件到镜像中、运行哪些命令等等。<br>通过 Dockerfile，开发人员可以将应用程序和其所有依赖项打包在一起，创建出一个可移植的 Docker 镜像，使得这个应用程序可以在任何 Docker环境中都能够快速部署和运行。</p>
-<h4 id="Dockerfile语法格式"><a href="#Dockerfile语法格式" class="headerlink" title="Dockerfile语法格式"></a>Dockerfile语法格式</h4><ul>
-<li>FROM:基础镜像       </li>
-<li>MAINTAINER:镜像创建者信息       </li>
-<li>EXPOSE:开放的端口,一个或多个       </li>
-<li>ENV:设置变量   ENV key value;ENV key&#x3D;value     </li>
-<li>ONBUILD:用于延迟命令的执行。简单的说，就是 Dockerfile 里用 ONBUILD 指定的命令，在本次构建镜像的过程中不会执行（假设镜像为 test-build）。当有新的 Dockerfile 使用了之前构建的镜像 FROM test-build ，这时执行新镜像的 Dockerfile 构建时候，会执行 test-build 的 Dockerfile 里的 ONBUILD 指定的命令。:ONBUILD &lt;其它指令&gt;， onbuild copy          </li>
-<li>USER:用于指定执行后续命令的用户和用户组，这边只是切换后续命令执行的用户（用户和用户组必须提前已经存在）:USER &lt;用户名&gt;[:&lt;用户组&gt;]</li>
-<li>VOLUME:定义匿名数据卷，存数据。容器里的一个目录会和物理机的一个目录映射，在这个目录添加文件，物理机目录也会有文件； 在启动容器时忘记挂载数据卷，会自动挂载到匿名卷：VOLUME [“&lt;路径1&gt;”, “&lt;路径2&gt;”…]，VOLUME &lt;路径&gt;：VOLUME [“&#x2F;data”]<br>  作用：<br>  1、避免重要的数据，因容器重启而丢失，这是非常致命的。<br>  2、避免容器不断变大。<br> 在启动容器 docker run 的时候，我们可以通过 -v 参数修改挂载点。  </li>
-<li>ADD:复制文件到镜像；本地文件拷贝到容器里；ADD的优点是拷贝文件为压缩文件：tar,gzip,bzip2等，会自动复制并解压文件；       </li>
-<li>COPY:复制文件到镜像；本地文件拷贝到容器里；COPY不论文件格式，原样拷贝；       </li>
-<li>RUN:制作镜像时执行的命令，可以有多个；在容器里执行的命令；<br>  包含两种模式：<br>  1、shell模式，最常用的模式：       run yum install -y wget<br>  2、exec模式，先指定shell再执行命令；run [“&#x2F;bin&#x2F;bash”, “-c”, “yum install -y wget”]        </li>
-<li>WORKDIR:定义容器默认工作目录，定义当前家目录；登录容器后默认的目录；        </li>
-<li>CMD:容器启动时执行的命令，仅可以有一条CMD ；必须是中括号+双引号，命令用逗号分隔：[“命令”,”参数1”,”参数2”]；cmd提供的命令，都是进程id：1，所有的父进程；多条cmd时，最后一条生效；<br>  包含两种模式：<br>  1、shell模式：cmd command<br>  2、exec模式：cmd [“param1”, “param2”]     </li>
-<li>ENTERYPOINT:启动服务的命令，镜像创建好后执行的命令;多条entrypoint时，最后一条生效；<br>  1、ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数。ENTRYPOINT 在运行时也可以替代，不过比 CMD 要略显繁琐，需要通过 docker run 的参数 –entrypoint 来指定。<br>  2、当指定了 ENTRYPOINT 后，CMD 的含义就发生了改变，不再是直接的运行其命令，而是将 CMD 的内容作为参数传给 ENTRYPOINT 指令，换句话说实际执行时，将变为：<ENTRYPOINT> “<CMD>“
+        <h4 id="redis分布式存储工作原理"><a href="#redis分布式存储工作原理" class="headerlink" title="redis分布式存储工作原理"></a>redis分布式存储工作原理</h4><p>set x 123<br>x根据crc16算法获取到一个值，在对16383取余数，余数根据node的数值范围，存入不同的node，注意redis集群会对node分配数字的范围，余数根据数字的范围，就可以存储到特定的node上了<br><img src="/../../images/redis/img.png" alt="img.png"></p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/05/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/05-dockerfile/#more">阅读全文</a>
+          <a href="/2018/02/11/redis/02-redis%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
         </p>
       
       
@@ -214,7 +203,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/05-别名使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-redis/01-搭建redis单服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -222,7 +211,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/05-%E5%88%AB%E5%90%8D%E4%BD%BF%E7%94%A8/">05-命令的别名</a>
+      <a class="p-name article-title" href="/2018/02/10/redis/01-%E6%90%AD%E5%BB%BAredis%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%99%A8/">搭建redis</a>
     </h1>
   
 
@@ -233,17 +222,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-05T03:00:52.000Z" itemprop="datePublished">2021年08月05日</time>
+  <time class="dt-published" datetime="2018-02-10T10:30:58.000Z" itemprop="datePublished">2018年02月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/redis/">redis</a>
   </div>
 
       
       
-<a href="/2021/08/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/05-%E5%88%AB%E5%90%8D%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">
+<a href="/2018/02/10/redis/01-%E6%90%AD%E5%BB%BAredis%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%99%A8/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -253,15 +242,16 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-别名的定义"><a href="#1-别名的定义" class="headerlink" title="1. 别名的定义"></a>1. 别名的定义</h4><p>alias hn &#x3D; ‘hostname’<br>mount 设备路径 挂载点目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[dong@master /]$ alias hn=&#x27;hostname&#x27;</span><br><span class="line">[dong@master /]$ hn</span><br><span class="line">master</span><br></pre></td></tr></table></figure>
+        <h4 id="1-RDBMS-关系数据库管理系统-Relational-Database-Management-System"><a href="#1-RDBMS-关系数据库管理系统-Relational-Database-Management-System" class="headerlink" title="1.RDBMS-关系数据库管理系统-Relational Database Management System"></a>1.RDBMS-关系数据库管理系统-Relational Database Management System</h4><ul>
+<li>按照预先设置的组织结构，将数据存储在物理介质上</li>
+<li>数据之间可以做关联操作
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/05/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/05-%E5%88%AB%E5%90%8D%E4%BD%BF%E7%94%A8/#more">阅读全文</a>
+          <a href="/2018/02/10/redis/01-%E6%90%AD%E5%BB%BAredis%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%99%A8/#more">阅读全文</a>
         </p>
       
       
@@ -271,7 +261,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/04-mount" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-mysql/存储引擎" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -279,7 +269,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/04-mount/">04-mount命令</a>
+      <a class="p-name article-title" href="/2017/02/14/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">存储引擎</a>
     </h1>
   
 
@@ -290,17 +280,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-04T03:00:52.000Z" itemprop="datePublished">2021年08月04日</time>
+  <time class="dt-published" datetime="2017-02-14T13:00:00.000Z" itemprop="datePublished">2017年02月14日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
   </div>
 
       
       
-<a href="/2021/08/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/04-mount/#comments" class="article-comment-link">
+<a href="/2017/02/14/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -310,15 +300,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-mount"><a href="#1-mount" class="headerlink" title="1. mount"></a>1. mount</h4><p>mount 设备路径 挂载点目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master /]# mount /dev/cdrom /dvd</span><br><span class="line">mount: /dev/sr0 写保护，将以只读方式挂载</span><br></pre></td></tr></table></figure>
+        <h4 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h4><p>MySQL中的数据用各种不同的技术存储在文件(或者内存)中。每一种技术都使用不同的存储机制、索引技巧、锁定水平并且最终提供广泛的不同的功能和能力。通过选择不同的技术，你能够获得额外的速度或者功能，从而改善你的应用的整体功能。例如，如果你在研究大量的临时数据，你也许需要使用内存MySQL存储引擎。内存存储引擎能够在内存中存储所有的表格数据。又或者，你也许需要一个支持事务处理的数据库(以确保事务处理不成功时数据的回退能力)。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show engines;</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |</span><br><span class="line">| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |</span><br><span class="line">| MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables      | NO           | NO   | NO         |</span><br><span class="line">| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |</span><br><span class="line">| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |</span><br><span class="line">| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |</span><br><span class="line">| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |</span><br><span class="line">| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |</span><br><span class="line">| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/04/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/04-mount/#more">阅读全文</a>
+          <a href="/2017/02/14/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/#more">阅读全文</a>
         </p>
       
       
@@ -328,7 +318,7 @@
 </article>
 
 
-  <article id="post-运维/docker/基础/04-docker自定义镜像（手工人肉）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-mysql/PXC集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -336,7 +326,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/04/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/04-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%EF%BC%88%E6%89%8B%E5%B7%A5%E4%BA%BA%E8%82%89%EF%BC%89/">04-Docker自定义镜像（手工人肉）</a>
+      <a class="p-name article-title" href="/2017/02/13/mysql/PXC%E9%9B%86%E7%BE%A4/">PXC集群</a>
     </h1>
   
 
@@ -347,17 +337,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-04T03:00:52.000Z" itemprop="datePublished">2021年08月04日</time>
+  <time class="dt-published" datetime="2017-02-13T13:00:00.000Z" itemprop="datePublished">2017年02月13日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
   </div>
 
       
       
-<a href="/2021/08/04/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/04-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%EF%BC%88%E6%89%8B%E5%B7%A5%E4%BA%BA%E8%82%89%EF%BC%89/#comments" class="article-comment-link">
+<a href="/2017/02/13/mysql/PXC%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -367,15 +357,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="docker自定义镜像"><a href="#docker自定义镜像" class="headerlink" title="docker自定义镜像"></a>docker自定义镜像</h1><h4 id="自作镜像（手工人肉）"><a href="#自作镜像（手工人肉）" class="headerlink" title="自作镜像（手工人肉）"></a>自作镜像（手工人肉）</h4><ul>
-<li>1 使用centos官方镜像，产生容器<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line"></span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED             SIZE</span><br><span class="line">mycentos7    latest    26934b5d7364   About an hour ago   533MB</span><br><span class="line">redis        latest    7f27d60cb8e0   11 days ago         138MB</span><br><span class="line">nginx        latest    c20060033e06   12 days ago         187MB</span><br><span class="line">ubuntu       latest    e4c58958181a   5 weeks ago         77.8MB</span><br><span class="line">busybox      latest    a416a98b71e2   3 months ago        4.26MB</span><br><span class="line">centos       latest    5d0da3dc9764   2 years ago         231MB</span><br><span class="line"></span><br><span class="line">docker run -itd centos</span><br></pre></td></tr></table></figure>
+        <h4 id="PXC-不太稳定"><a href="#PXC-不太稳定" class="headerlink" title="PXC(不太稳定)"></a>PXC(不太稳定)</h4><p>Percona XtraDB Cluster ( 简称PXC )<br><br>-是基于Galera的mysql高可用集群解决方案<br><br>-Galera Cluster是Codership公司开发的一套免费开源的高可用方案<br><br>-PXC集群主要由两部分组成: Percona Server withXtraDB和Write Set Replication patches ( 同步、多主复制插件 )<br><br>-官网<a target="_blank" rel="noopener" href="http://galeracluster.com/">http://galeracluster.com</a><br></p>
+<h4 id="PXC特点"><a href="#PXC特点" class="headerlink" title="PXC特点"></a>PXC特点</h4><p>数据强一致性、无同步延迟<br><br>没有主从切换操作，无需使用虚拟IP<br><br>支持InnoDB存储引擎<br><br>多线程复制<br><br>部署使用简单<br><br>支持节点自动加入，无需手动拷贝数据<br></p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/04/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/04-docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F%EF%BC%88%E6%89%8B%E5%B7%A5%E4%BA%BA%E8%82%89%EF%BC%89/#more">阅读全文</a>
+          <a href="/2017/02/13/mysql/PXC%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
         </p>
       
       
@@ -385,7 +375,7 @@
 </article>
 
 
-  <article id="post-运维/docker/基础/03-docker命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-mysql/MHA集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -393,7 +383,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/03/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/03-docker%E5%91%BD%E4%BB%A4/">03-Docker命令</a>
+      <a class="p-name article-title" href="/2017/02/12/mysql/MHA%E9%9B%86%E7%BE%A4/">MHA集群</a>
     </h1>
   
 
@@ -404,17 +394,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-03T03:00:52.000Z" itemprop="datePublished">2021年08月03日</time>
+  <time class="dt-published" datetime="2017-02-12T13:00:00.000Z" itemprop="datePublished">2017年02月12日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
   </div>
 
       
       
-<a href="/2021/08/03/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/03-docker%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+<a href="/2017/02/12/mysql/MHA%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -424,18 +414,17 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h1><h4 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h4><ul>
-<li><p>docker images       &#x2F;&#x2F;查看镜像列表       </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-01 /]# docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">redis        latest    7f27d60cb8e0   5 days ago     138MB</span><br><span class="line">nginx        latest    c20060033e06   6 days ago     187MB</span><br><span class="line">ubuntu       latest    e4c58958181a   4 weeks ago    77.8MB</span><br><span class="line">busybox      latest    a416a98b71e2   3 months ago   4.26MB</span><br><span class="line">centos       latest    5d0da3dc9764   2 years ago    231MB</span><br></pre></td></tr></table></figure></li>
-<li><p>docker history  镜像名:版本    &#x2F;&#x2F;查看镜像制作历史，主要看几层      </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2层，第一次添加文件，第二层 添加一个默认命名</span></span><br><span class="line">[root@centos07-01 /]# docker history busybox:latest</span><br><span class="line">IMAGE          CREATED        CREATED BY                                       SIZE      COMMENT</span><br><span class="line">a416a98b71e2   3 months ago   /bin/sh -c #(nop)  CMD [&quot;sh&quot;]                    0B</span><br><span class="line">&lt;missing&gt;      3 months ago   /bin/sh -c #(nop) ADD file:7e9002edaafd4e457…   4.26MB</span><br></pre></td></tr></table></figure>
+        <h4 id="1-MHA-Master-High-Availability"><a href="#1-MHA-Master-High-Availability" class="headerlink" title="1.MHA ( Master High Availability)"></a>1.MHA ( Master High Availability)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">由日本DeNA公司youshimaton开发</span><br><span class="line">是一套优秀的实现MySQL高可用的解决方案</span><br><span class="line">数据库的自动故障切换操作能做到在0~30秒之内完成</span><br><span class="line">MHA能确保在故障切换过程中最大限度保证数据的一致性，以达到真正意义上的高可用</span><br></pre></td></tr></table></figure>
+<ul>
+<li>MHA Manager ( 管理节点 )<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">管理所有数据库服务器</span><br><span class="line">可以单独部署在一台独立的机器上</span><br><span class="line">也可以部署在某台数据库服务器上</span><br></pre></td></tr></table></figure></li>
+<li>MHA Node ( 数据节点)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">存储数据的MySQL服务器</span><br><span class="line">运行在每台MySQL服务器上</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/03/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/03-docker%E5%91%BD%E4%BB%A4/#more">阅读全文</a>
+          <a href="/2017/02/12/mysql/MHA%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
         </p>
       
       
@@ -445,7 +434,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/03-常用快捷键" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-mysql/mycat分库分表" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -453,7 +442,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/03/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/03-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">03-常用快捷键</a>
+      <a class="p-name article-title" href="/2017/02/10/mysql/mycat%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">分库分表</a>
     </h1>
   
 
@@ -464,17 +453,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-03T02:02:52.000Z" itemprop="datePublished">2021年08月03日</time>
+  <time class="dt-published" datetime="2017-02-10T13:00:00.000Z" itemprop="datePublished">2017年02月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
   </div>
 
       
       
-<a href="/2021/08/03/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/03-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#comments" class="article-comment-link">
+<a href="/2017/02/10/mysql/mycat%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -484,14 +473,19 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-执行历史中匹配输入的内容"><a href="#1-执行历史中匹配输入的内容" class="headerlink" title="1. 执行历史中匹配输入的内容"></a>1. 执行历史中匹配输入的内容</h4><p>[root@master ~]# ctrl + r<br>(reverse-i-search)&#96;w’: whoami</p>
+        <h4 id="1-分库分表"><a href="#1-分库分表" class="headerlink" title="1.分库分表"></a>1.分库分表</h4><ul>
+<li>概念<br>将存放在一台数据库服务器中的数据，按照持定方式进行拆分，分散存放到多台数据库服务器中，以达到了分散单台服务器负载的效果</li>
+<li>纵向切分<br>将单个数据库的多个表按业务类型分类，分散存储到不同的数据库中</li>
+<li>横向切分<br>按照表中指定字段的分片规则，将表记录按行切分分散存储到多个数据库中</li>
+<li>试验配置<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.12 db1</span><br><span class="line">192.168.1.22 db2</span><br><span class="line">192.168.1.32 db3</span><br><span class="line">192.168.1.32 分片服务器</span><br><span class="line">192.168.1.10 客户端</span><br></pre></td></tr></table></figure></li>
+<li>至少需要三个db，否则会报错<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO   | jvm 1    | 2023/10/26 01:37:03 | 2023-10-26 01:37:03,634 [WARN ][WrapperSimpleAppMain] table conf : table [ EMPLOYEE ] rule function [ hash-int ] partition size : 2      &lt; table datanode size : 3 , this cause some datanode to be redundant  (io.mycat.config.loader.xml.XMLSchemaLoader:XMLSchemaLoader.java:571)</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/03/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/03-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#more">阅读全文</a>
+          <a href="/2017/02/10/mysql/mycat%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/#more">阅读全文</a>
         </p>
       
       
@@ -501,7 +495,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/02-基础命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-mysql/多实例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -509,7 +503,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">02-基础命令</a>
+      <a class="p-name article-title" href="/2017/02/10/mysql/%E5%A4%9A%E5%AE%9E%E4%BE%8B/">多实例</a>
     </h1>
   
 
@@ -520,17 +514,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-02T03:00:52.000Z" itemprop="datePublished">2021年08月02日</time>
+  <time class="dt-published" datetime="2017-02-10T12:30:00.000Z" itemprop="datePublished">2017年02月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
   </div>
 
       
       
-<a href="/2021/08/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+<a href="/2017/02/10/mysql/%E5%A4%9A%E5%AE%9E%E4%BE%8B/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -540,14 +534,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-磁盘"><a href="#1-磁盘" class="headerlink" title="1.磁盘"></a>1.磁盘</h4><p>&#x2F;dev&#x2F;sda  sd代表磁盘类型，a代表第几块磁盘<br>&#x2F;dev&#x2F;hda<br>hd表示IDE设备，老设备，传输慢<br>sd表示scsi设备，新设备，传输快</p>
+        <h4 id="1-多实例"><a href="#1-多实例" class="headerlink" title="1.多实例"></a>1.多实例</h4><p>在一个主机上运行多个数据库服务<br>优点：<br>节约成本<br>提高硬件利用率</p>
+<h4 id="2-安装过单实例机器，mysql清理的一些步骤"><a href="#2-安装过单实例机器，mysql清理的一些步骤" class="headerlink" title="2.安装过单实例机器，mysql清理的一些步骤"></a>2.安装过单实例机器，mysql清理的一些步骤</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep -i mysql</span><br><span class="line">netstat -utnlp | grep ：3306</span><br><span class="line">systemctl stop mysqld</span><br><span class="line">systemctl disable mysqld</span><br><span class="line">mv /etc/my.cnf /root/</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/02-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/#more">阅读全文</a>
+          <a href="/2017/02/10/mysql/%E5%A4%9A%E5%AE%9E%E4%BE%8B/#more">阅读全文</a>
         </p>
       
       
@@ -557,7 +552,7 @@
 </article>
 
 
-  <article id="post-运维/docker/基础/02-docker命名空间" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-mysql/数据读写分离" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -565,7 +560,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/02/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/02-docker%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">02-Docker命名空间</a>
+      <a class="p-name article-title" href="/2017/02/10/mysql/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">数据读写分离-maxscale</a>
     </h1>
   
 
@@ -576,17 +571,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-02T03:00:52.000Z" itemprop="datePublished">2021年08月02日</time>
+  <time class="dt-published" datetime="2017-02-10T12:00:00.000Z" itemprop="datePublished">2017年02月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
   </div>
 
       
       
-<a href="/2021/08/02/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/02-docker%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/#comments" class="article-comment-link">
+<a href="/2017/02/10/mysql/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -596,14 +591,15 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="docker命名空间"><a href="#docker命名空间" class="headerlink" title="docker命名空间"></a>docker命名空间</h1><h4 id="6大命名空间"><a href="#6大命名空间" class="headerlink" title="6大命名空间"></a>6大命名空间</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. Mount (mnt)     </span><br><span class="line">这种命名空间隔离的是挂载点。通过这个空间，我们可以在容器中挂载文件系统，而不会影响到主机系统的挂载点，实现了文件系统的隔离。</span><br><span class="line">2. Process ID (pid)      </span><br><span class="line">这种命名空间隔离了进程 ID。使用这种空间可以将容器内部的进程 ID 隔离开来，从而避免与宿主机的进程 ID 冲突。</span><br><span class="line">3. Network (net)       </span><br><span class="line">这种命名空间隔离的是网络配置。通过这个空间，我们可以自定义容器的网络配置，而不会影响到宿主机或其他容器的网络配置，实现了网络的隔离。</span><br><span class="line">4. Interprocess Communication (ipc)       </span><br><span class="line">这种命名空间隔离的是进程间通信。使用这个空间，可以将容器内部的进程间通信隔离，避免与宿主机或其他容器的进程间通信冲突。</span><br><span class="line">5. User ID (user)         </span><br><span class="line">这种命名空间隔离的是用户 ID。使用这种命名空间可以让容器内部的用户 ID 和宿主机上的用户 ID 隔离开来，从而避免权限问题。</span><br><span class="line">6. UTS Namespace (uts)      </span><br><span class="line">这种命名空间隔离的是主机的主机名和域名。使用这种空间可以让容器内部有独立的主机名和域名，而不会影响到宿主机的主机名和域名。</span><br></pre></td></tr></table></figure>
+        <h4 id="1-读写分离案例图"><a href="#1-读写分离案例图" class="headerlink" title="1.读写分离案例图"></a>1.读写分离案例图</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">master： 192.168.1.12</span><br><span class="line">slave：  192.168.1.22</span><br><span class="line">代理：   192.168.1.32</span><br><span class="line">客户端： 192.168.1.10 -mac</span><br></pre></td></tr></table></figure>
+<p><img src="/../../images/mysql/img_10.png" alt="img_10.png"></p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/02/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/02-docker%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/#more">阅读全文</a>
+          <a href="/2017/02/10/mysql/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/#more">阅读全文</a>
         </p>
       
       
@@ -613,7 +609,7 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/01-tcp、ip协议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-mysql/主主(互为主从)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -621,7 +617,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/01-tcp%E3%80%81ip%E5%8D%8F%E8%AE%AE/">01-tcp、ip协议</a>
+      <a class="p-name article-title" href="/2017/02/10/mysql/%E4%B8%BB%E4%B8%BB(%E4%BA%92%E4%B8%BA%E4%B8%BB%E4%BB%8E)/">主主(互为主从)</a>
     </h1>
   
 
@@ -632,17 +628,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-01T03:00:52.000Z" itemprop="datePublished">2021年08月01日</time>
+  <time class="dt-published" datetime="2017-02-10T11:30:58.000Z" itemprop="datePublished">2017年02月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
   </div>
 
       
       
-<a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/01-tcp%E3%80%81ip%E5%8D%8F%E8%AE%AE/#comments" class="article-comment-link">
+<a href="/2017/02/10/mysql/%E4%B8%BB%E4%B8%BB(%E4%BA%92%E4%B8%BA%E4%B8%BB%E4%BB%8E)/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -652,14 +648,14 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-主机与主机通信三个要素"><a href="#1-主机与主机通信三个要素" class="headerlink" title="1.主机与主机通信三个要素"></a>1.主机与主机通信三个要素</h4><p>IP地址 ip address ，32位二进制，255.255.255.255  二进制 11111111 &#x3D;&gt; 十进制 255<br>子网掩码 subnet mask<br>IP路由  ip router  </p>
+        <h4 id="1-主主-互为主从"><a href="#1-主主-互为主从" class="headerlink" title="1.主主(互为主从)"></a>1.主主(互为主从)</h4><p>主：主+从，既做主服务器，也做从服务器<br>主：主+从， 既做主服务器，也做从服务器<br><img src="/../../images/mysql/img_9.png" alt="img_9.png"></p>
       
     </div>
     <footer class="article-footer">
       
         
         <p class="article-more-link">
-          <a href="/2021/08/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/01-tcp%E3%80%81ip%E5%8D%8F%E8%AE%AE/#more">阅读全文</a>
+          <a href="/2017/02/10/mysql/%E4%B8%BB%E4%B8%BB(%E4%BA%92%E4%B8%BA%E4%B8%BB%E4%BB%8E)/#more">阅读全文</a>
         </p>
       
       
@@ -672,7 +668,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/35/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/37/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/35/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/37/">下一页</a>
 </nav>
 
 
@@ -685,10 +681,6 @@
     <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
-          </li>
         
           <li>
             <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
@@ -706,6 +698,10 @@
             <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
           </li>
         
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/048-application/">048-application</a>
+          </li>
+        
       </ul>
     </div>
   </div>
@@ -718,7 +714,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">78</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -728,7 +724,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">57</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">136</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

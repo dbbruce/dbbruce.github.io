@@ -87,7 +87,7 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-python/异步编程/celery" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-爬虫/基础/001-基础知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -95,7 +95,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/celery/">celery</a>
+      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/001-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">001-基础知识</a>
     </h1>
   
 
@@ -106,17 +106,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-15T12:50:10.000Z" itemprop="datePublished">2023年08月15日</time>
+  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
   </div>
 
       
       
-<a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/celery/#comments" class="article-comment-link">
+<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/001-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -126,30 +126,488 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="一、celery"><a href="#一、celery" class="headerlink" title="一、celery"></a>一、celery</h4><p>Celery 是一个强大的 分布式任务队列 的 异步处理框架，它可以让任务的执行完全脱离主程序，甚至可以被分配到其他主机上运行。我们通常使用它来实现异步任务（async task）和定时任务（crontab）.<br>可以看到，Celery 主要包含以下几个模块：</p>
+        <h4 id="1-协议爬虫"><a href="#1-协议爬虫" class="headerlink" title="1.协议爬虫"></a>1.协议爬虫</h4><p>数据采集：天眼查，数据来源工商<br>监控爬虫：合理性爬虫， 灰色爬虫， 是否获取暴利<br>搜索引擎：百度，google<br>红人点集数据</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/001-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-爬虫/编码/百度翻译-中文乱码问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/">百度翻译-中文乱码问题</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a>
+  </div>
+
+      
+      
+<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="解决百度时乱码的问题"><a href="#解决百度时乱码的问题" class="headerlink" title="解决百度时乱码的问题"></a>解决百度时乱码的问题</h4>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-爬虫/编码/设置爬取页面的编码格式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E8%AE%BE%E7%BD%AE%E7%88%AC%E5%8F%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">设置爬取页面的编码格式</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a>
+  </div>
+
+      
+      
+<a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E8%AE%BE%E7%BD%AE%E7%88%AC%E5%8F%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnicodeDecodeError： &#x27;utf-8&#x27; codec can&#x27;t decode byte 0xcd in position 956: invalid continuation byte</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/08/10/%E7%88%AC%E8%99%AB/%E7%BC%96%E7%A0%81/%E8%AE%BE%E7%BD%AE%E7%88%AC%E5%8F%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-面试/题/获取二叉树右侧视图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/10/%E9%9D%A2%E8%AF%95/%E9%A2%98/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/">获取二叉树右侧视图</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-10T03:14:52.000Z" itemprop="datePublished">2023年08月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a> > <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a>
+  </div>
+
+      
+      
+<a href="/2023/08/10/%E9%9D%A2%E8%AF%95/%E9%A2%98/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-代码"><a href="#1-代码" class="headerlink" title="1.代码"></a>1.代码</h4>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/08/10/%E9%9D%A2%E8%AF%95/%E9%A2%98/%E8%8E%B7%E5%8F%96%E4%BA%8C%E5%8F%89%E6%A0%91%E5%8F%B3%E4%BE%A7%E8%A7%86%E5%9B%BE/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-python/异步编程/greenlet实现协程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/09/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/greenlet%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/">greenlet实现协程</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-08-09T12:15:10.000Z" itemprop="datePublished">2023年08月09日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+  </div>
+
+      
+      
+<a href="/2023/08/09/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/greenlet%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-包安装"><a href="#1-包安装" class="headerlink" title="1.包安装"></a>1.包安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install greenlet</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/08/09/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/greenlet%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-项目/医药公司ERP/inSuite文档汇总" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/17/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/inSuite%E6%96%87%E6%A1%A3%E6%B1%87%E6%80%BB/">inSuite文档汇总</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-06-17T14:14:52.000Z" itemprop="datePublished">2023年06月17日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/06/17/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/inSuite%E6%96%87%E6%A1%A3%E6%B1%87%E6%80%BB/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-创建应用流程"><a href="#1-创建应用流程" class="headerlink" title="1.创建应用流程"></a>1.创建应用流程</h4><ul>
+<li>创建单据<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">单据</span><br><span class="line">应用名称:拆卸组装单</span><br><span class="line">模型key:用.分隔</span><br><span class="line">所属模块:外部管理系统/ps_ext</span><br><span class="line">文件路径:ext/ps_ext/</span><br><span class="line">继承模型:Studio Bill Base,stk.doc.base</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/06/17/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/inSuite%E6%96%87%E6%A1%A3%E6%B1%87%E6%80%BB/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基于K8S的世界500强企业真实项目汇总/02-基于Prometheus和K8S构建智能化监控告警系统" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/02-%E5%9F%BA%E4%BA%8EPrometheus%E5%92%8CK8S%E6%9E%84%E5%BB%BA%E6%99%BA%E8%83%BD%E5%8C%96%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%B3%BB%E7%BB%9F/">02-基于Prometheus和K8S构建智能化监控告警系统</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-18T12:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a>
+  </div>
+
+      
+      
+<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/02-%E5%9F%BA%E4%BA%8EPrometheus%E5%92%8CK8S%E6%9E%84%E5%BB%BA%E6%99%BA%E8%83%BD%E5%8C%96%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%B3%BB%E7%BB%9F/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>k8s环境规划：<br>  podSubnet（pod网段） 10.244.0.0&#x2F;16<br>  serviceSubnet（service网段）: 10.96.0.0&#x2F;12</p>
+<p>实验环境规划：<br>操作系统：centos7.9<br>配置： 4Gib内存&#x2F;4vCPU&#x2F;60G硬盘<br>网络：NAT模式</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/02-%E5%9F%BA%E4%BA%8EPrometheus%E5%92%8CK8S%E6%9E%84%E5%BB%BA%E6%99%BA%E8%83%BD%E5%8C%96%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%B3%BB%E7%BB%9F/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基于K8S的世界500强企业真实项目汇总/01-安装稳定版本K8S-1.23高可用集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/01-%E5%AE%89%E8%A3%85%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%ACK8S-1.23%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/">01-安装稳定版本K8S-1.23高可用集群</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-18T02:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a>
+  </div>
+
+      
+      
+<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/01-%E5%AE%89%E8%A3%85%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%ACK8S-1.23%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>k8s环境规划：<br>  podSubnet（pod网段） 10.244.0.0&#x2F;16<br>  serviceSubnet（service网段）: 10.96.0.0&#x2F;12</p>
+<p>实验环境规划：<br>操作系统：centos7.9<br>配置： 4Gib内存&#x2F;4vCPU&#x2F;60G硬盘<br>网络：NAT模式</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84%E4%B8%96%E7%95%8C500%E5%BC%BA%E4%BC%81%E4%B8%9A%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/01-%E5%AE%89%E8%A3%85%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%ACK8S-1.23%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基础/42-Service四层代理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/42-Service%E5%9B%9B%E5%B1%82%E4%BB%A3%E7%90%86/">42-Service四层代理</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-17T23:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/42-Service%E5%9B%9B%E5%B1%82%E4%BB%A3%E7%90%86/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="关键字：service"><a href="#关键字：service" class="headerlink" title="关键字：service"></a>关键字：service</h3><p><img src="/../../../../images/k8s/jckt/img_8.png" alt="img_8.png"></p>
+<h4 id="1、切换集群：kubectl-config-use-context-集群名"><a href="#1、切换集群：kubectl-config-use-context-集群名" class="headerlink" title="1、切换集群：kubectl config use-context 集群名"></a>1、切换集群：kubectl config use-context 集群名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 .kube]# vim /root/.kube/config</span><br><span class="line"></span><br><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: LS0tLS1CRUdJTiB...</span><br><span class="line">    server: https://192.168.1.12:6443</span><br><span class="line">  name: kubernetes</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kubernetes</span><br><span class="line">    user: kubernetes-admin</span><br><span class="line">  name: kubernetes-admin@kubernetes</span><br><span class="line">current-context: kubernetes-admin@kubernetes</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kubernetes-admin</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: LS0tLS1CRUdJTi...</span><br><span class="line">    client-key-data: LS0tLS1CRUdJTiBSU0EgU...</span><br><span class="line">kubernetes-admin@kubernetes</span><br><span class="line"></span><br><span class="line">[root@centos07-12 .kube]# kubectl config use-context kubernetes-admin@kubernetes</span><br><span class="line">Switched to context &quot;kubernetes-admin@kubernetes&quot;.</span><br></pre></td></tr></table></figure>
+<h4 id="2、题目"><a href="#2、题目" class="headerlink" title="2、题目"></a>2、题目</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">考题：</span><br><span class="line"></span><br><span class="line">设置配置环境：</span><br><span class="line">[student@node-1] $ kubectl config use-context k8s</span><br><span class="line"></span><br><span class="line">Task</span><br><span class="line">重新配置一个已经存在的 front-end 的 deployment，在名字为 nginx 的容器里面添加一个端口配</span><br><span class="line">置，名字为 http，暴露端口号为 80，然后创建一个 service，名字为 front-end-svc，暴露该 deployment</span><br><span class="line">的 http 端口，并且 service 的类型为 NodePort。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ul>
-<li><ol>
-<li>任务模块 Task:包含异步任务和定时任务。其中，异步任务通常在业务逻辑中被触发并发往任务队列，而定时任务由 Celery Beat 进程周期性地将任务发往任务队列。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>消息中间件 Broker: Broker，即为任务调度队列，接收任务生产者发来的消息（即任务），将任务存入队列。Celery 本身不提供队列服务，官方推荐使用 RabbitMQ 和 Redis 等。</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>任务执行单元 Worker: Worker 是执行任务的处理单元，它实时监控消息队列，获取队列中调度的任务，并执行它。</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>任务结果存储 Backend: Backend 用于存储任务的执行结果，以供查询。同消息中间件一样，存储也可使用 RabbitMQ, redis 和 MongoDB 等。
+<li>0、自己创建2个命名空间和打一个标签，考试时不需要<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get ns --show-labels</span><br><span class="line">NAME              STATUS   AGE   LABELS</span><br><span class="line">default           Active   39d   kubernetes.io/metadata.name=default</span><br><span class="line">kube-node-lease   Active   39d   kubernetes.io/metadata.name=kube-node-lease</span><br><span class="line">kube-public       Active   39d   kubernetes.io/metadata.name=kube-public</span><br><span class="line">kube-system       Active   39d   kubernetes.io/metadata.name=kube-system</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl create ns my-app</span><br><span class="line">namespace/my-app created</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl create ns echo</span><br><span class="line">namespace/echo created</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl label ns echo project=echo</span><br><span class="line">namespace/echo labeled</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl get ns --show-labels</span><br><span class="line">NAME              STATUS   AGE   LABELS</span><br><span class="line">default           Active   39d   kubernetes.io/metadata.name=default</span><br><span class="line">echo              Active   30s   kubernetes.io/metadata.name=echo,project=echo  # 注意这里，标签，project=echo,后期会用到，如果没有自己手动打一个标签</span><br><span class="line">kube-node-lease   Active   39d   kubernetes.io/metadata.name=kube-node-lease</span><br><span class="line">kube-public       Active   39d   kubernetes.io/metadata.name=kube-public</span><br><span class="line">kube-system       Active   39d   kubernetes.io/metadata.name=kube-system</span><br><span class="line">my-app            Active   35s   kubernetes.io/metadata.name=my-app</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>1、vim networkpolicy.yaml; :set paste,防止格式错乱;复制官网的例子<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim networkpolicy.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">NetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">allow-port-from-namespace</span>   <span class="comment"># 修改名称</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">my-app</span>   <span class="comment"># 生效的命名空间</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">podSelector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span> &#123;&#125;    <span class="comment"># 添加&#123;&#125;</span></span><br><span class="line">      <span class="comment"># role: db    # 删除</span></span><br><span class="line">  <span class="attr">policyTypes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Ingress</span></span><br><span class="line">  <span class="comment"># - Egress   # 删除</span></span><br><span class="line">  <span class="attr">ingress:</span></span><br><span class="line">   <span class="comment"># - from:</span></span><br><span class="line">     <span class="comment"># - ipBlock:   # 删除</span></span><br><span class="line">        <span class="comment">#  cidr: 172.17.0.0/16   # 删除</span></span><br><span class="line">         <span class="comment"># except:   # 删除</span></span><br><span class="line">         <span class="comment"># - 172.17.1.0/24   # 删除</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">namespaceSelector:</span></span><br><span class="line">        <span class="attr">matchLabels:</span></span><br><span class="line">          <span class="attr">project:</span> <span class="string">echo</span> <span class="comment"># 运行方法，使用命名空间echo的标签</span></span><br><span class="line">     <span class="comment"># - podSelector:  # 删除</span></span><br><span class="line">         <span class="comment"># matchLabels:  # 删除</span></span><br><span class="line">          <span class="comment">#  role: frontend  # 删除</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">9000</span> <span class="comment"># 9000端口</span></span><br><span class="line">   <span class="comment"># egress:  # 删除</span></span><br><span class="line">   <span class="comment"># - to:  # 删除</span></span><br><span class="line">    <span class="comment">#  - ipBlock:  # 删除</span></span><br><span class="line">       <span class="comment">#   cidr: 10.0.0.0/24  # 删除</span></span><br><span class="line">    <span class="comment">#  ports:  # 删除</span></span><br><span class="line">     <span class="comment"># - protocol: TCP  # 删除</span></span><br><span class="line">      <span class="comment">#  port: 5978  # 删除</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/15/index.html">https://dbbruce.github.io/page/15/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
       
     </div>
     <footer class="article-footer">
       
-        
-        <p class="article-more-link">
-          <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/celery/#more">阅读全文</a>
-        </p>
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
       
       
       
@@ -158,7 +616,7 @@
 </article>
 
 
-  <article id="post-python/异步编程/爬虫" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-运维/K8S/基础/41-networkpolicy网络策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
     
@@ -166,7 +624,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E7%88%AC%E8%99%AB/">爬虫</a>
+      <a class="p-name article-title" href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/41-networkpolicy%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/">41-networkpolicy网络策略</a>
     </h1>
   
 
@@ -177,17 +635,17 @@
       
       <span class="article-date">
   <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-15T11:50:10.000Z" itemprop="datePublished">2023年08月15日</time>
+  <time class="dt-published" datetime="2023-05-17T22:00:00.000Z" itemprop="datePublished">2023年05月18日</time>
 </span>
       
   <div class="article-category">
     <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
   </div>
 
       
       
-<a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E7%88%AC%E8%99%AB/#comments" class="article-comment-link">
+<a href="/2023/05/18/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/41-networkpolicy%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">
   
 <!--   <i class="fa fa-commt"></i> -->
 <!--   留言 -->
@@ -197,464 +655,38 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="1-爬虫"><a href="#1-爬虫" class="headerlink" title="1.爬虫"></a>1.爬虫</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install aiohttp</span><br></pre></td></tr></table></figure>
+        <h3 id="关键字：networkpolicy"><a href="#关键字：networkpolicy" class="headerlink" title="关键字：networkpolicy"></a>关键字：networkpolicy</h3><p><img src="/../../../../images/k8s/jckt/img_7.png" alt="img_7.png"></p>
+<h4 id="1、切换集群：kubectl-config-use-context-集群名"><a href="#1、切换集群：kubectl-config-use-context-集群名" class="headerlink" title="1、切换集群：kubectl config use-context 集群名"></a>1、切换集群：kubectl config use-context 集群名</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 .kube]# vim /root/.kube/config</span><br><span class="line"></span><br><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: LS0tLS1CRUdJTiB...</span><br><span class="line">    server: https://192.168.1.12:6443</span><br><span class="line">  name: kubernetes</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kubernetes</span><br><span class="line">    user: kubernetes-admin</span><br><span class="line">  name: kubernetes-admin@kubernetes</span><br><span class="line">current-context: kubernetes-admin@kubernetes</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kubernetes-admin</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: LS0tLS1CRUdJTi...</span><br><span class="line">    client-key-data: LS0tLS1CRUdJTiBSU0EgU...</span><br><span class="line">kubernetes-admin@kubernetes</span><br><span class="line"></span><br><span class="line">[root@centos07-12 .kube]# kubectl config use-context kubernetes-admin@kubernetes</span><br><span class="line">Switched to context &quot;kubernetes-admin@kubernetes&quot;.</span><br></pre></td></tr></table></figure>
+<h4 id="2、题目"><a href="#2、题目" class="headerlink" title="2、题目"></a>2、题目</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">考题：</span><br><span class="line">设置配置环境：</span><br><span class="line">[student@node-1] $ kubectl config use-context hk8s</span><br><span class="line"></span><br><span class="line">Task</span><br><span class="line">在现有的namespace my-app中创建一个名为allow-port-from-namespace的新NetworkPolicy。</span><br><span class="line"></span><br><span class="line">确保新的NetworkPolicy允许namespace echo中的Pods连接到namespace my-app中的Pods的9000端口。</span><br><span class="line"></span><br><span class="line">进一步确保新的 NetworkPolicy：</span><br><span class="line">不允许对没有在监听端口 9000 的 Pods 的访问</span><br><span class="line">不允许非来自 namespace echo 中的 Pods 的访问 </span><br></pre></td></tr></table></figure>
+<ul>
+<li>0、自己创建2个命名空间和打一个标签，考试时不需要<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl get ns --show-labels</span><br><span class="line">NAME              STATUS   AGE   LABELS</span><br><span class="line">default           Active   39d   kubernetes.io/metadata.name=default</span><br><span class="line">kube-node-lease   Active   39d   kubernetes.io/metadata.name=kube-node-lease</span><br><span class="line">kube-public       Active   39d   kubernetes.io/metadata.name=kube-public</span><br><span class="line">kube-system       Active   39d   kubernetes.io/metadata.name=kube-system</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl create ns my-app</span><br><span class="line">namespace/my-app created</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl create ns echo</span><br><span class="line">namespace/echo created</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl label ns echo project=echo</span><br><span class="line">namespace/echo labeled</span><br><span class="line"></span><br><span class="line">[root@centos07-12 ~]# kubectl get ns --show-labels</span><br><span class="line">NAME              STATUS   AGE   LABELS</span><br><span class="line">default           Active   39d   kubernetes.io/metadata.name=default</span><br><span class="line">echo              Active   30s   kubernetes.io/metadata.name=echo,project=echo  # 注意这里，标签，project=echo,后期会用到，如果没有自己手动打一个标签</span><br><span class="line">kube-node-lease   Active   39d   kubernetes.io/metadata.name=kube-node-lease</span><br><span class="line">kube-public       Active   39d   kubernetes.io/metadata.name=kube-public</span><br><span class="line">kube-system       Active   39d   kubernetes.io/metadata.name=kube-system</span><br><span class="line">my-app            Active   35s   kubernetes.io/metadata.name=my-app</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>1、vim networkpolicy.yaml; :set paste,防止格式错乱;复制官网的例子<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim networkpolicy.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">NetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">allow-port-from-namespace</span>   <span class="comment"># 修改名称</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">my-app</span>   <span class="comment"># 生效的命名空间</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">podSelector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span> &#123;&#125;    <span class="comment"># 添加&#123;&#125;</span></span><br><span class="line">      <span class="comment"># role: db    # 删除</span></span><br><span class="line">  <span class="attr">policyTypes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Ingress</span></span><br><span class="line">  <span class="comment"># - Egress   # 删除</span></span><br><span class="line">  <span class="attr">ingress:</span></span><br><span class="line">   <span class="comment"># - from:</span></span><br><span class="line">     <span class="comment"># - ipBlock:   # 删除</span></span><br><span class="line">        <span class="comment">#  cidr: 172.17.0.0/16   # 删除</span></span><br><span class="line">         <span class="comment"># except:   # 删除</span></span><br><span class="line">         <span class="comment"># - 172.17.1.0/24   # 删除</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">namespaceSelector:</span></span><br><span class="line">        <span class="attr">matchLabels:</span></span><br><span class="line">          <span class="attr">project:</span> <span class="string">echo</span> <span class="comment"># 运行方法，使用命名空间echo的标签</span></span><br><span class="line">     <span class="comment"># - podSelector:  # 删除</span></span><br><span class="line">         <span class="comment"># matchLabels:  # 删除</span></span><br><span class="line">          <span class="comment">#  role: frontend  # 删除</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">9000</span> <span class="comment"># 9000端口</span></span><br><span class="line">   <span class="comment"># egress:  # 删除</span></span><br><span class="line">   <span class="comment"># - to:  # 删除</span></span><br><span class="line">    <span class="comment">#  - ipBlock:  # 删除</span></span><br><span class="line">       <span class="comment">#   cidr: 10.0.0.0/24  # 删除</span></span><br><span class="line">    <span class="comment">#  ports:  # 删除</span></span><br><span class="line">     <span class="comment"># - protocol: TCP  # 删除</span></span><br><span class="line">      <span class="comment">#  port: 5978  # 删除</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos07-12 ~]# kubectl apply -f networkpolicy.yaml</span><br><span class="line">networkpolicy.networking.k8s.io/test-network-policy created</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/15/index.html">https://dbbruce.github.io/page/15/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
       
     </div>
     <footer class="article-footer">
       
-        
-        <p class="article-more-link">
-          <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E7%88%AC%E8%99%AB/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
+        <div class="article-tag-wrap">
+          
 
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
 
-  <article id="post-python/异步编程/异步mysql" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5mysql/">异步mysql</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-15T11:30:10.000Z" itemprop="datePublished">2023年08月15日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
-  </div>
-
-      
-      
-<a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5mysql/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-异步mysql"><a href="#1-异步mysql" class="headerlink" title="1.异步mysql"></a>1.异步mysql</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install aiomysql</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5mysql/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-python/异步编程/异步redis" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/">异步redis</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-15T11:00:10.000Z" itemprop="datePublished">2023年08月15日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
-  </div>
-
-      
-      
-<a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-异步redis"><a href="#1-异步redis" class="headerlink" title="1.异步redis"></a>1.异步redis</h4><p>在使用python代码操作redis时，链接&#x2F;操作&#x2F;断开都是网络10。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install aioredis</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/08/15/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5redis/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-爬虫/基础/008-pyquery解析数据" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/15/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/008-pyquery%E8%A7%A3%E6%9E%90%E6%95%B0%E6%8D%AE/">008-pyquery解析数据</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-15T05:04:52.000Z" itemprop="datePublished">2023年08月15日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/08/15/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/008-pyquery%E8%A7%A3%E6%9E%90%E6%95%B0%E6%8D%AE/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="pyquery"><a href="#pyquery" class="headerlink" title="pyquery"></a>pyquery</h4><p>PyQuery是一个Python库，它提供了一种用于解析HTML、XML和JSON文档的非常直观和方便的方式。它基于jQuery库的选择器语法，并支持类似于XPath的表达式。PyQuery可以轻松地在Python程序中实现Web爬虫，从而使数据挖掘变得非常容易。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/08/15/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/008-pyquery%E8%A7%A3%E6%9E%90%E6%95%B0%E6%8D%AE/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-python/异步编程/uvloop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/">uvloop</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-14T15:00:10.000Z" itemprop="datePublished">2023年08月14日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
-  </div>
-
-      
-      
-<a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-uvloop"><a href="#1-uvloop" class="headerlink" title="1.uvloop"></a>1.uvloop</h4><p>asyncio的事件循环的替代方案。事件循环—&gt;默认asyncio的事件循环</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/uvloop/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-python/异步编程/异步迭代器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/">异步迭代器</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-14T13:25:10.000Z" itemprop="datePublished">2023年08月14日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
-  </div>
-
-      
-      
-<a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-异步迭代器"><a href="#1-异步迭代器" class="headerlink" title="1.异步迭代器"></a>1.异步迭代器</h4><p>实现了__aiter__()和__anext__()方法的对象。<br><strong>anext</strong>()必须返回一个awaitable 对象。<br>async for 会处理异步选代器的__anext__()方法所返回的可等待对象，直到其引发一个 StopAsyncIteration 异常。<br>什么是异步可迭代对象?<br>可在 async for 语句中被使用的对象。必须通过它的 <strong>aiter</strong>()方法返回一个asynchronous_iterator。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/08/14/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E8%BF%AD%E4%BB%A3%E5%99%A8/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-爬虫/基础/007-正则表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/14/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/007-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">007-正则表达式</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-14T05:04:52.000Z" itemprop="datePublished">2023年08月14日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/08/14/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/007-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="正则表达式模式"><a href="#正则表达式模式" class="headerlink" title="正则表达式模式"></a>正则表达式模式</h4>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/08/14/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/007-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-python/异步编程/async&amp;await实现协程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/13/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/async&await%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/">async&amp;await实现协程</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-13T14:25:10.000Z" itemprop="datePublished">2023年08月13日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a> > <a class="article-category-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a>
-  </div>
-
-      
-      
-<a href="/2023/08/13/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/async&await%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-注意"><a href="#1-注意" class="headerlink" title="1.注意"></a>1.注意</h4><p>async, await只能用于python3.5及之后的版本</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/08/13/python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/async&await%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-爬虫/基础/006-BeautifullSoup数据解析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/13/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/006-BeautifullSoup%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/">006-BeautifullSoup数据解析</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-08-13T02:04:52.000Z" itemprop="datePublished">2023年08月13日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a> > <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/08/13/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/006-BeautifullSoup%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="Beautiful-Soup-是一个可以从HTML或XML文件中提取数据的Python库"><a href="#Beautiful-Soup-是一个可以从HTML或XML文件中提取数据的Python库" class="headerlink" title="Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库"></a>Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库</h3><h4 id="安装-Beautiful-Soup"><a href="#安装-Beautiful-Soup" class="headerlink" title="安装 Beautiful Soup"></a>安装 Beautiful Soup</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip install beautifulsoup4</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/08/13/%E7%88%AC%E8%99%AB/%E5%9F%BA%E7%A1%80/006-BeautifullSoup%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/#more">阅读全文</a>
-        </p>
+        </div>
       
       
       
@@ -666,7 +698,7 @@
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/14/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/16/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/14/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/16/">下一页</a>
 </nav>
 
 
@@ -679,10 +711,6 @@
     <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2025/08/26/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/20231200000-%E5%BA%93%E5%AD%98%E6%96%B9%E6%B3%95-%E5%85%A5%E5%BA%93/">库存-入库方法</a>
-          </li>
         
           <li>
             <a href="/2025/06/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/052-%E4%BA%91%E5%87%BD%E6%95%B0%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">052-云函数互相调用</a>
@@ -700,6 +728,10 @@
             <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/049-%E6%B5%81%E7%A8%8B%E5%AD%90%E8%A1%A8%E5%8D%95%E5%A1%AB%E5%85%85%E6%95%B0%E6%8D%AE/">049-流程子表单填充数据</a>
           </li>
         
+          <li>
+            <a href="/2025/06/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/048-application/">048-application</a>
+          </li>
+        
       </ul>
     </div>
   </div>
@@ -712,7 +744,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">104</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BA%BA%E4%BA%8B%E7%B3%BB%E7%BB%9F/">人事系统</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/">佳业</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/odoo/">odoo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">78</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">53</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -722,7 +754,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">158</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">57</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">136</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
