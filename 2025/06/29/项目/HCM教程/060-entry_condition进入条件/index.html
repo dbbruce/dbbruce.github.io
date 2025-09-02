@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>060-entry_condition进入条件 | 董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="桑弧蓬矢">
+  
+  
+  
+    <link rel="alternate" href="/atom.xml" title="董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">董勉 | 技术博客 | 成功的秘诀在于耐心和求胜心.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">此生当克己勤免，自强不息 .</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-项目/HCM教程/060-entry_condition进入条件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      060-entry_condition进入条件
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2025-06-29T12:00:00.000Z" itemprop="datePublished">2025年06月29日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2025/06/29/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/060-entry_condition%E8%BF%9B%E5%85%A5%E6%9D%A1%E4%BB%B6/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h5 id="entry-condition-进入条件"><a href="#entry-condition-进入条件" class="headerlink" title="entry_condition 进入条件"></a>entry_condition 进入条件</h5><ul>
+<li>“expression[EQ(GET(RES(‘inst_data’),[‘count’]), 0)]”  &#x3D; 数据等于0 </li>
+<li>“entry_condition”: “expression[RES(‘create_inst_data’)]”  &#x3D; 有返回值</li>
+<li>“entry_condition”: “expression[OR(RES(‘create_inst_data’), RES(‘inst_data’))]” &#x3D; 有返回值 或者 有返回值<span id="more"></span></li>
+</ul>
+<h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;actions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;report_real_rpt&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;实时上报数据&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;hide&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;is_sealed_check&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;CALL_API&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;salary.to.rpt.check.sealed.state&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;program_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[parseInt(GET(ENV(), [&#x27;program_id&#x27;]))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;month&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(FILTER_DICT(), [&#x27;month&#x27;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;provide_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(FILTER_DICT(), [&#x27;provide_id&#x27;])]&quot;</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;inst_data&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;CALL_API&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;validators&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                        <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;validator&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[RES(&#x27;is_sealed_check&#x27;)]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;tips&quot;</span><span class="punctuation">:</span> <span class="string">&quot;当前方案下，存在未封存数据，不可上报！&quot;</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hcm.model.list&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ReportIntegrate1180Instance&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;filter_dict&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                                <span class="attr">&quot;salary_month&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(FILTER_DICT(), [&#x27;month&#x27;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                                <span class="attr">&quot;program_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(ENV(), [&#x27;program_id&#x27;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                                <span class="attr">&quot;provide_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(FILTER_DICT(), [&#x27;provide_id&#x27;])]&quot;</span></span><br><span class="line">                            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;extra_property&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                                <span class="attr">&quot;state&quot;</span><span class="punctuation">:</span> <span class="string">&quot;salaryRpt&quot;</span></span><br><span class="line">                            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;page_size&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;page_index&quot;</span><span class="punctuation">:</span> <span class="number">1</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;call_api&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;entry_condition&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[EQ(GET(RES(&#x27;inst_data&#x27;),[&#x27;count&#x27;]), 0)]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;CALL_API&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hcm.model.list&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SalaryRptProgramItemRelation&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;filter_dict&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                                <span class="attr">&quot;program_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(ENV(), [&#x27;program_id&#x27;])]&quot;</span></span><br><span class="line">                            <span class="punctuation">&#125;</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sta_program&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;entry_condition&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[EQ(GET(RES(&#x27;call_api&#x27;),[&#x27;count&#x27;]), 0)]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;CALL_API&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hcm.model.list&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SalaryStatisticsProgram&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;extra_property&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                                <span class="attr">&quot;state&quot;</span><span class="punctuation">:</span> <span class="string">&quot;rptCollect&quot;</span></span><br><span class="line">                            <span class="punctuation">&#125;</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;create_inst_data&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;COMMON_INFO_DIALOG&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;entry_condition&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[EQ(GET(RES(&#x27;inst_data&#x27;),[&#x27;count&#x27;]), 0)]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ReportIntegrate1180Instance&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;new&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;state&quot;</span><span class="punctuation">:</span> <span class="string">&quot;salaryRpt&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;salary_month&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(FILTER_DICT(), [&#x27;month&#x27;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;program_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[parseInt(GET(ENV(), [&#x27;program_id&#x27;]))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;provide_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(FILTER_DICT(), [&#x27;provide_id&#x27;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;statistics_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GT(GET(RES(&#x27;call_api&#x27;),[&#x27;count&#x27;]),0) ,GET(RES(&#x27;call_api&#x27;), [&#x27;list&#x27;,0,&#x27;statistics_program_id&#x27;]),IF(EQ(GET(RES(&#x27;sta_program&#x27;),[&#x27;count&#x27;]), 1),GET(RES(&#x27;sta_program&#x27;),[&#x27;list&#x27;,0,&#x27;id&#x27;]), null))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;dsp_data_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Y&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;package_filter_dict&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GET(FILTER_DICT(), [&#x27;provide_id&#x27;]),[&#123;&#x27;program_id&#x27;: parseInt(GET(ENV(), [&#x27;program_id&#x27;])),&#x27;provide_id&#x27;: GET(FILTER_DICT(), [&#x27;provide_id&#x27;])&#125;],[&#123;&#x27;program_id&#x27;: parseInt(GET(ENV(), [&#x27;program_id&#x27;]))&#125;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;rpt_params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                                <span class="attr">&quot;statistics_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GT(GET(RES(&#x27;call_api&#x27;),[&#x27;count&#x27;]),0) ,GET(RES(&#x27;call_api&#x27;), [&#x27;list&#x27;,0,&#x27;statistics_program_id&#x27;]),IF(EQ(GET(RES(&#x27;sta_program&#x27;),[&#x27;count&#x27;]), 1),GET(RES(&#x27;sta_program&#x27;),[&#x27;list&#x27;,0,&#x27;id&#x27;]), null))]&quot;</span></span><br><span class="line">                            <span class="punctuation">&#125;</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;init_rpt_data&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;entry_condition&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[RES(&#x27;create_inst_data&#x27;)]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;WEBSOCKET_ACTION&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;calc.rpt.program.data.notify&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;beginTip&quot;</span><span class="punctuation">:</span> <span class="string">&quot;准备开始生成上报数据···&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;program_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[parseInt(GET(ENV(), [&#x27;program_id&#x27;]))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;inst_id&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;model_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ReportEmpIncomeData&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;month&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(RES(&#x27;create_inst_data&#x27;),[&#x27;month&#x27;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;provide_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(RES(&#x27;create_inst_data&#x27;),[&#x27;provide_id&#x27;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;statistics_program_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(RES(&#x27;create_inst_data&#x27;),[&#x27;statistics_id&#x27;])]&quot;</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;add_paytime_data&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;添加发薪时&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;OPEN_WEBSOCKET&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;entry_condition&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[RES(&#x27;create_inst_data&#x27;)]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;private.AddReportEmpIncomePayTime&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;beginTip&quot;</span><span class="punctuation">:</span> <span class="string">&quot;准备添加发薪时间...&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;program_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[parseInt(GET(ENV(), [&#x27;program_id&#x27;]))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;month&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(FILTER_DICT(), [&#x27;month&#x27;])]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;paytime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[GET(RES(&#x27;create_inst_data&#x27;),[&#x27;u_payday&#x27;])]&quot;</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;super_go&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;entry_condition&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[OR(RES(&#x27;create_inst_data&#x27;), RES(&#x27;inst_data&#x27;))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GO_STATE&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;state&quot;</span><span class="punctuation">:</span> <span class="string">&quot;common_model_list&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;open_new_page&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                            <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ReportIntegrate1180Instance&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;filter_str&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;filter_dict&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                                <span class="attr">&quot;month&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GT(GET(RES(&#x27;inst_data&#x27;), [&#x27;count&#x27;]), 0), GET(RES(&#x27;inst_data&#x27;), [&#x27;list&#x27;,0,&#x27;month&#x27;]), GET(RES(&#x27;create_inst_data&#x27;), [&#x27;month&#x27;]))]&quot;</span></span><br><span class="line">                            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;meta_state&quot;</span><span class="punctuation">:</span> <span class="string">&quot;salaryView&quot;</span><span class="punctuation">,</span></span><br><span class="line">                            <span class="attr">&quot;advance_filter_dict&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                                <span class="attr">&quot;month&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                                    <span class="attr">&quot;eq&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GT(GET(RES(&#x27;inst_data&#x27;), [&#x27;count&#x27;]), 0), GET(RES(&#x27;inst_data&#x27;), [&#x27;list&#x27;,0,&#x27;month&#x27;]), GET(RES(&#x27;create_inst_data&#x27;), [&#x27;month&#x27;]))]&quot;</span></span><br><span class="line">                                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                                <span class="attr">&quot;statistics_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GT(GET(RES(&#x27;inst_data&#x27;), [&#x27;count&#x27;]), 0), GET(RES(&#x27;inst_data&#x27;), [&#x27;list&#x27;,0,&#x27;statistics_id&#x27;]), GET(RES(&#x27;create_inst_data&#x27;), [&#x27;statistics_id&#x27;]))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                                <span class="attr">&quot;program_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GT(GET(RES(&#x27;inst_data&#x27;), [&#x27;count&#x27;]), 0), GET(RES(&#x27;inst_data&#x27;), [&#x27;list&#x27;,0,&#x27;program_id&#x27;]), GET(RES(&#x27;create_inst_data&#x27;), [&#x27;program_id&#x27;]))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                                <span class="attr">&quot;provide_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GT(GET(RES(&#x27;inst_data&#x27;), [&#x27;count&#x27;]), 0), GET(RES(&#x27;inst_data&#x27;), [&#x27;list&#x27;,0,&#x27;provide_id&#x27;]), GET(RES(&#x27;create_inst_data&#x27;), [&#x27;provide_id&#x27;]))]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                                <span class="attr">&quot;salary_month&quot;</span><span class="punctuation">:</span> <span class="string">&quot;expression[IF(GT(GET(RES(&#x27;inst_data&#x27;), [&#x27;count&#x27;]), 0), GET(RES(&#x27;inst_data&#x27;), [&#x27;list&#x27;,0,&#x27;salary_month&#x27;]), GET(RES(&#x27;create_inst_data&#x27;), [&#x27;salary_month&#x27;]))]&quot;</span></span><br><span class="line">                            <span class="punctuation">&#125;</span></span><br><span class="line">                        <span class="punctuation">&#125;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#entry-condition-%E8%BF%9B%E5%85%A5%E6%9D%A1%E4%BB%B6"><span class="toc-text">entry_condition 进入条件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-text">实例</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/2025/06/29/项目/HCM教程/060-entry_condition进入条件/">https://dbbruce.github.io/2025/06/29/项目/HCM教程/060-entry_condition进入条件/</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2025/06/28/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/058-model%E6%A0%A1%E9%AA%8C%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          058-model校验器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/06/29/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/059-%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB%E5%BC%B9%E7%AA%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          059-按钮点击弹窗
+        
+      </div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/06/29/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/059-%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB%E5%BC%B9%E7%AA%97/">059-按钮点击弹窗</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/29/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/060-entry_condition%E8%BF%9B%E5%85%A5%E6%9D%A1%E4%BB%B6/">060-entry_condition进入条件</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/28/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/058-model%E6%A0%A1%E9%AA%8C%E5%99%A8/">058-model校验器</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/27/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/057-%E5%85%83%E6%95%B0%E6%8D%AE%E4%BD%93%E7%B3%BB/">057-元数据体系</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/26/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/056-%E8%BF%90%E8%90%A5%E8%80%85%E6%A8%A1%E5%BC%8F/">056-运营者模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">86</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">61</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">65</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a href="https://dbbruce.github.io/">董迟钝的Blog</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+<!--       <p> -->
+<!--         <a href="/sitemap.xml">网站地图</a> -->
+<!--         <span> | </span><a href="/atom.xml">订阅本站</a> -->
+<!--         <span> | </span><a href="/about/">联系博主</a> -->
+<!--       </p> -->
+<!--        -->
+<!--         <p> -->
+<!--           <i class="fa fa-visitors"></i> -->
+<!--           <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i> -->
+<!--           ， -->
+<!--           <i class="fa fa-views"></i> -->
+<!--           <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> -->
+<!--         </p> -->
+<!--        -->
+<!--       <p> -->
+        <span>Copyright &copy; 2025 DB Bruce. 董勉的技术博客  https://dbbruce.github.io</span>
+<!--         <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span> -->
+<!--         <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span> -->
+<!--       </p> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </div>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!--  -->
+<!--    -->
+<!--     
+<script src="/localshare/js/social-share.js"></script>
+ -->
+<!--     
+<script src="/localshare/js/qrcode.js"></script>
+ -->
+<!--    -->
+<!--    -->
+<!--  -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+</body>
+</html>
