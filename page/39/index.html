@@ -87,62 +87,6 @@
 
       <div class="outer">
         <section id="main">
-  <article id="post-mysql/主从同步复制模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/10/mysql/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F/">主从同步复制模式</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2017-02-10T11:30:58.000Z" itemprop="datePublished">2017年02月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/mysql/">mysql</a>
-  </div>
-
-      
-      
-<a href="/2017/02/10/mysql/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-主从同步复制模式"><a href="#1-主从同步复制模式" class="headerlink" title="1.主从同步复制模式"></a>1.主从同步复制模式</h4><p>异步复制模式（默认）<br>全同步复制模式<br>半同步复制模式</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2017/02/10/mysql/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
   <article id="post-mysql/主从从(链式复制)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -661,6 +605,67 @@
 </article>
 
 
+  <article id="post-mysql/数据导入导出" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/02/10/mysql/%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/">数据导入导出-</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2017-02-10T06:04:52.000Z" itemprop="datePublished">2017年02月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+      
+      
+<a href="/2017/02/10/mysql/%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="0-这个很重要，导入导出需要先关闭，selinux-否则会报各种权限问题"><a href="#0-这个很重要，导入导出需要先关闭，selinux-否则会报各种权限问题" class="headerlink" title="0.这个很重要，导入导出需要先关闭，selinux,否则会报各种权限问题"></a>0.这个很重要，导入导出需要先关闭，selinux,否则会报各种权限问题</h3><p>错误：(Errcode: 13 - Permission denied)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from db3.user limit 1  into outfile &quot;/mysqldatafiles/user1.txt&quot;;</span><br><span class="line">ERROR 1 (HY000): Can&#x27;t create/write to file &#x27;/mysqldatafiles/user1.txt&#x27; (Errcode: 13 - Permission denied)</span><br></pre></td></tr></table></figure>
+<p>解决：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0</span><br><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br></pre></td></tr></table></figure>
+<h3 id="1-数据导入与导出默认检索路径"><a href="#1-数据导入与导出默认检索路径" class="headerlink" title="1.数据导入与导出默认检索路径"></a>1.数据导入与导出默认检索路径</h3><ul>
+<li>查看默认导入导出路径<br>默认路径：secure_file_priv -  &#x2F;var&#x2F;lib&#x2F;mysql-files&#x2F; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like &#x27;%file%&#x27;;</span><br><span class="line">+---------------------------------------+-------------------------------------+</span><br><span class="line">| Variable_name                         | Value                               |</span><br><span class="line">+---------------------------------------+-------------------------------------+</span><br><span class="line">| character_set_filesystem              | binary                              |</span><br><span class="line">| core_file                             | OFF                                 |</span><br><span class="line">| ft_stopword_file                      | (built-in)                          |</span><br><span class="line">| general_log_file                      | /var/lib/mysql/centos07-12.log      |</span><br><span class="line">| init_file                             |                                     |</span><br><span class="line">| innodb_buffer_pool_filename           | ib_buffer_pool                      |</span><br><span class="line">| innodb_data_file_path                 | ibdata1:12M:autoextend              |</span><br><span class="line">| innodb_disable_sort_file_cache        | OFF                                 |</span><br><span class="line">| innodb_file_format                    | Barracuda                           |</span><br><span class="line">| innodb_file_format_check              | ON                                  |</span><br><span class="line">| innodb_file_format_max                | Barracuda                           |</span><br><span class="line">| innodb_file_per_table                 | ON                                  |</span><br><span class="line">| innodb_log_file_size                  | 50331648                            |</span><br><span class="line">| innodb_log_files_in_group             | 2                                   |</span><br><span class="line">| innodb_open_files                     | 2000                                |</span><br><span class="line">| innodb_temp_data_file_path            | ibtmp1:12M:autoextend               |</span><br><span class="line">| keep_files_on_create                  | OFF                                 |</span><br><span class="line">| large_files_support                   | ON                                  |</span><br><span class="line">| local_infile                          | ON                                  |</span><br><span class="line">| lower_case_file_system                | OFF                                 |</span><br><span class="line">| myisam_max_sort_file_size             | 9223372036853727232                 |</span><br><span class="line">| open_files_limit                      | 5000                                |</span><br><span class="line">| performance_schema_max_file_classes   | 80                                  |</span><br><span class="line">| performance_schema_max_file_handles   | 32768                               |</span><br><span class="line">| performance_schema_max_file_instances | -1                                  |</span><br><span class="line">| pid_file                              | /var/run/mysqld/mysqld.pid          |</span><br><span class="line">| relay_log_info_file                   | relay-log.info                      |</span><br><span class="line">| secure_file_priv                      | /var/lib/mysql-files/               |</span><br><span class="line">| slow_query_log_file                   | /var/lib/mysql/centos07-12-slow.log |</span><br><span class="line">| validate_password_dictionary_file     |                                     |</span><br><span class="line">+---------------------------------------+-------------------------------------+</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2017/02/10/mysql/%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
 
     <nav id="page-nav">
 
@@ -679,10 +684,6 @@
       <ul>
         
           <li>
-            <a href="/2025/10/29/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/1/">(no title)</a>
-          </li>
-        
-          <li>
             <a href="/2025/07/08/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/072-%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC/">072-页面跳转</a>
           </li>
         
@@ -696,6 +697,10 @@
         
           <li>
             <a href="/2025/07/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/069-%E5%BC%B9%E7%AA%97-%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8/">069-弹窗-下拉列表</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/068-%E5%88%97%E8%A1%A8%E8%B7%B3%E8%BD%AC/">068-列表跳转</a>
           </li>
         
       </ul>
@@ -720,7 +725,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">78</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">77</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
