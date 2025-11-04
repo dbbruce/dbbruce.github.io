@@ -126,14 +126,7 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h5 id="1、页面配置"><a href="#1、页面配置" class="headerlink" title="1、页面配置"></a>1、页面配置</h5><ul>
-<li>1.func字段：加调整</li>
-<li>2.SCOPE.super_go(‘common_model_tree_list’,{})</li>
-<li>3.model: 模型名称</li>
-<li>4.meta_state：场景</li>
-<li>5.filter_dict：过滤条件</li>
-<li>6.tree_id：左侧组织树，格式：18309808!18314985 &#x3D;&#x3D; 根组织ID!选中的组织ID, 注意：根!二级ID!三级ID!四级ID!，要选中四级的单位，前面必须要有根，二级，三级:比如：tree_id&#x3D;18309808!18314985!18355257!18355276</li>
-<li>7.custom_params：自定义参数
+        <h5 id="super-go讲解"><a href="#super-go讲解" class="headerlink" title="super_go讲解"></a>super_go讲解</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">super_go(跳转页面,&#123;参数1,参数2&#125;)写法简要说明：</span><br><span class="line">根据要跳转的地址拆解:</span><br><span class="line">https://xx.hcmcloud.com/#/workflow_online/monitor?meta_state=sys-manager&amp;page_index=1&amp;page_size=100</span><br><span class="line">step 1：规律是用跳转地址？号前面的替换跳转页面，碰到问号前面有/连接符，就替换成_，这里就应该写作super_go(workflow_online_monitor,&#123;参数1,参数2&#125;)</span><br><span class="line">step 2：得到super_go(workflow_online_monitor,&#123;参数1,参数2&#125;)后，需要填充花括号里的参数，跳转地址问号后面?meta_state=sys-manager&amp;page_index=1&amp;page_size=100需要拆分进跳转设置，参数可能有多个，会用&amp;连接；【&amp;page_index=1&amp;page_size=100】这部分是list页面的默认属性，一般不加在跳转参数里，所以这里只有【meta_state=sys-manager】这个参数，最后写作super_go(workflow_online_monitor,&#123;&#x27;meta_state&#x27;:&#x27;sys-manager&#x27;&#125;)，如果有多个参数写作super_go(workflow_online_monitor,&#123;&#x27;meta_state&#x27;:&#x27;sys-manager&#x27;,&#x27;参数2&#x27;:’参数2等于的值‘,’参数3‘:&#x27;参数3等于的值&#x27;&#125;)，以此类推</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
