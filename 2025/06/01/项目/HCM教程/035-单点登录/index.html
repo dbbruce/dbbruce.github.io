@@ -156,8 +156,8 @@
 </thead>
 <tbody><tr>
 <td>handler.request</td>
-<td></td>
 <td>HTTPServerRequest(protocol&#x3D;’http’, host&#x3D;’20.24.9.85’, method&#x3D;’GET’, uri&#x3D;’&#x2F;api&#x2F;auth&#x2F;login_by_sso?sso&#x3D;customer_sso&amp;next&#x3D;&#x2F;index’, version&#x3D;’HTTP&#x2F;1.1’, remote_ip&#x3D;’172.18.11.51’)</td>
+<td></td>
 </tr>
 <tr>
 <td>handler.request.cookies</td>
@@ -168,6 +168,31 @@
 <td>res &#x3D; response.text</td>
 <td>根据token获取三方系统用户的信息</td>
 <td>response.text–{‘result’: True, ‘errorMsg’: None, ‘loginName’: ‘2631’, ‘userName’: ‘张月梅’}</td>
+</tr>
+<tr>
+<td>get_authorize_redirect</td>
+<td>拼装重定向地址</td>
+<td></td>
+</tr>
+<tr>
+<td>get_sso_user</td>
+<td>获取第三方用户信息</td>
+<td></td>
+</tr>
+<tr>
+<td>bind_sso_user</td>
+<td>第三方用户信息绑定CLOUD用户</td>
+<td></td>
+</tr>
+<tr>
+<td>get_cloud_user</td>
+<td>根据第三方用户信息获取CLOUD用户信息</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_logout</td>
+<td>根据第三方注销规则拼装注销地址</td>
+<td></td>
 </tr>
 </tbody></table>
 <ul>
