@@ -87,6 +87,300 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-运维/Linux云计算教程/62-查看Linux硬件配置信息" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/62-%E6%9F%A5%E7%9C%8BLinux%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/">62-查看Linux硬件配置信息</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-10-01T04:00:52.000Z" itemprop="datePublished">2021年10月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/10/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/62-%E6%9F%A5%E7%9C%8BLinux%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="查看Linux硬件配置信息"><a href="#查看Linux硬件配置信息" class="headerlink" title="查看Linux硬件配置信息"></a>查看Linux硬件配置信息</h2><h4 id="1-查看机器所有硬件信息"><a href="#1-查看机器所有硬件信息" class="headerlink" title="1.查看机器所有硬件信息:"></a>1.查看机器所有硬件信息:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dmidecode |more</span><br><span class="line">dmesg |more</span><br></pre></td></tr></table></figure>
+<p>这2个命令出来的信息都非常多,所以建议后面使用”|more”便于查看</p>
+<h4 id="2-查看CPU信息"><a href="#2-查看CPU信息" class="headerlink" title="2.查看CPU信息"></a>2.查看CPU信息</h4><ul>
+<li>方法一:<br>Linux下CPU相关的参数保存在 &#x2F;proc&#x2F;cpuinfo 文件里<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo |more</span><br></pre></td></tr></table></figure></li>
+<li>方法二:<br>采用命令dmesg | grep CPU可以查看到相关CPU的启动信息<br>查看CPU的位数:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getconf LONG_BIT</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-查看Mem信息"><a href="#3-查看Mem信息" class="headerlink" title="3.查看Mem信息"></a>3.查看Mem信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/meminfo |more （注意输出信息的最后一行:MachineMem:41932272 kB）</span><br><span class="line">free -m</span><br><span class="line">top</span><br></pre></td></tr></table></figure>
+<h4 id="4-查看磁盘信息"><a href="#4-查看磁盘信息" class="headerlink" title="4.查看磁盘信息"></a>4.查看磁盘信息</h4><ul>
+<li>方法一:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+可以看到系统上的磁盘(包括U盘)的分区以及大小相关信息。</li>
+<li>方法二:<br>直接查看<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat/proc/partitions</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-查看网卡信息"><a href="#5-查看网卡信息" class="headerlink" title="5.查看网卡信息"></a>5.查看网卡信息</h4><ul>
+<li>方法一：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">采用此命令可以查看到网卡相关的技术指标</span></span><br><span class="line">ethtool eth0  </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看网卡驱动</span></span><br><span class="line">ethtool -i eth1 加上 -i 参数  </span><br></pre></td></tr></table></figure></li>
+<li>方法二：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">看到网卡名字(厂家)等信息</span></span><br><span class="line">dmesg | grep eth0 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可以看到当前的网卡配置包括IP、网关地址等信息。</span></span><br><span class="line">/etc/sysconfig/network-scripts/ifcfg-eth0  </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">当然也可以通过ifconfig命令查看。</span></span><br><span class="line">ifconfig</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="6-如何查看主板信息？"><a href="#6-如何查看主板信息？" class="headerlink" title="6.如何查看主板信息？"></a>6.如何查看主板信息？</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lspci</span><br></pre></td></tr></table></figure>
+<h4 id="7-如何挂载ISO文件"><a href="#7-如何挂载ISO文件" class="headerlink" title="7.如何挂载ISO文件"></a>7.如何挂载ISO文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -o loop *.iso mount_point</span><br></pre></td></tr></table></figure>
+<h4 id="8-如何查看光盘相关信息"><a href="#8-如何查看光盘相关信息" class="headerlink" title="8.如何查看光盘相关信息"></a>8.如何查看光盘相关信息</h4><ul>
+<li>方法一：<br>插入CD光碟后，在本人的RHEL5系统里，光碟文件是 &#x2F;dev&#x2F;cdrom，<br>因此只需 mount &#x2F;dev&#x2F;cdrom mount_point 即可。<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@miix tmp]# mount /dev/cdrom mount_point</span><br><span class="line">mount: block device /dev/cdrom is write-protected, mounting read-only</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>其实仔细看一下，光驱的设备文件是 hdc</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@miix tmp]# ls -l /dev/cdrom*</span><br><span class="line">lrwxrwxrwx 1 root root 3 01-08 08:54 /dev/cdrom -&gt; hdc</span><br><span class="line">lrwxrwxrwx 1 root root 3 01-08 08:54 /dev/cdrom-hdc -&gt; hdc</span><br></pre></td></tr></table></figure>
+
+<p>因此我们也可以这样 mount &#x2F;dev&#x2F;hdc mount_point<br>如果光驱里没放入有效光盘，则报错：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@miix tmp]# mount /dev/hdc mount_point</span><br></pre></td></tr></table></figure>
+<p>mount: 找不到介质</p>
+<h4 id="9-如何查看USB设备相关"><a href="#9-如何查看USB设备相关" class="headerlink" title="9.如何查看USB设备相关"></a>9.如何查看USB设备相关</h4><ul>
+<li>方法一：<br>其实通过 fdisk -l 命令可以查看到接入的U盘信息，本人的U盘信息如下：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Disk /dev/sda: 2012 MB, 2012217344 bytes</span><br><span class="line">16 heads, 32 sectors/track, 7676 cylinders</span><br><span class="line">Units = cylinders of 512 * 512 = 262144 bytes</span><br><span class="line"></span><br><span class="line">Device BootStartEndBlocksId System</span><br><span class="line">/dev/sda1*1676761961024b W95 FAT32</span><br></pre></td></tr></table></figure>
+U盘的设备文件是 &#x2F;dev&#x2F;sda，2G大小，FAT32格式。</li>
+</ul>
+<p>如果用户登陆的不是Linux图形界面，U盘不会自动挂载上来。<br>此时可以通过手工挂载(mount)：<br>mount &#x2F;dev&#x2F;sda1 mount_point<br>以上命令将U盘挂载到当前目录的 mount_point 目录，注意挂的是 sda1 不是 sda。<br>卸载命令是 umount mount_point</p>
+<p>Linux默认没有自带支持NTFS格式磁盘的驱动，但对FAT32支持良好，挂载的时候一般不需要 -t vfat 参数 。<br>如果支持ntfs，对ntfs格式的磁盘分区应使用 -t ntfs 参数。<br>如果出现乱码情况，可以考虑用 -o iocharset&#x3D;字符集 参数。</p>
+<p>可以通过 lsusb 命令查看 USB 设备信息哦：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@miix tmp]# lsusb</span><br><span class="line">Bus 001 Device 001: ID 0000:0000</span><br><span class="line">Bus 002 Device 001: ID 0000:0000</span><br><span class="line">Bus 003 Device 001: ID 0000:0000</span><br><span class="line">Bus 004 Device 002: ID 0951:1613 Kingston Technology</span><br><span class="line">Bus 004 Device 001: ID 0000:0000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1、创建多目录<br>-p 如果文件存在,不报错 如果文件不存在,创建文件 补充[可以递归创建文件夹 例如 test&#x2F;test]<br>-v 为每个创建的目录打印一条消息 例如 mkdir -v test 则会显示 已创建目录’test’<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@Centos7-56 ~]# mkdir -vp ./&#123;a,b&#125;-&#123;a,c&#125;-&#123;t,y&#125;</span><br><span class="line">mkdir: created directory ‘./a-a-t’</span><br><span class="line">mkdir: created directory ‘./a-a-y’</span><br><span class="line">mkdir: created directory ‘./a-c-t’</span><br><span class="line">mkdir: created directory ‘./a-c-y’</span><br><span class="line">mkdir: created directory ‘./b-a-t’</span><br><span class="line">mkdir: created directory ‘./b-a-y’</span><br><span class="line">mkdir: created directory ‘./b-c-t’</span><br><span class="line">mkdir: created directory ‘./b-c-y’</span><br></pre></td></tr></table></figure></li>
+<li>2、打印环境变量：printenv</li>
+<li>3、文件类型<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-普通文件</span><br><span class="line">d目录文件</span><br><span class="line">b块设备文件</span><br><span class="line">c字符设备文件</span><br><span class="line">l符号链接文件</span><br><span class="line">p管道命令文件</span><br><span class="line">s套接字文件</span><br></pre></td></tr></table></figure></li>
+<li>4、ls -h 文件单位自动转换</li>
+<li>5、时间<br>date，clock， hwclock， cal</li>
+<li>6、head -n 10 查看前10行</li>
+<li>7、tail -n 10 查看后10行</li>
+<li>8、cut文件切分<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-d 指定分隔符</span><br><span class="line">-f 指定要显示的字符 </span><br><span class="line">-f    1,3 显示第一个和第三个</span><br><span class="line">-f    1-3 显示第一到第三</span><br><span class="line">实例：cut -d :  -f1,3  /etc/passwd</span><br></pre></td></tr></table></figure></li>
+<li>9、sort 排序，对内容排序<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-r 反向排序</span><br><span class="line">-n 数值排序</span><br><span class="line">-t 分隔符</span><br><span class="line">-k  指定字段</span><br><span class="line">-u  去重</span><br><span class="line">-f 忽略大小写</span><br><span class="line">sort  1.txt</span><br><span class="line">sort -t : -k3 /etc/passwd  用：分隔，第3个字段排序</span><br></pre></td></tr></table></figure></li>
+<li>10、uniq<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-c 显示重复次数</span><br><span class="line">-d 只显示重复的行</span><br><span class="line">uniq -c 1.txt</span><br><span class="line">uniq -d 1.txt</span><br></pre></td></tr></table></figure></li>
+<li>11、wc <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wc /etc/fstab</span><br><span class="line">8    48    608    /etc/fstab  8行  48个单词  608个字符（包含空格）</span><br><span class="line">-l  行数</span><br><span class="line">-w 单词</span><br><span class="line">-c  字符</span><br><span class="line">-L  最长一行多少字符</span><br></pre></td></tr></table></figure>
+12、tr 替换或删除字符<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tr  &#x27;ab&#x27;  &#x27;AB&#x27;</span><br><span class="line">-d 删除</span><br><span class="line">tr  -d ‘a&#x27; </span><br></pre></td></tr></table></figure></li>
+<li>13、设置英文 export  LANG&#x3D;en</li>
+<li>14、ctrl+a 跳到命令行首   ctrl+e  跳到命令行尾  ctrl+u  删除光标到行首  ctrl+k 删除光标到行尾  ctrl+l 清屏</li>
+<li>15、history （默认1000条）<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-c 清空命令历史</span><br><span class="line">-d  清空指定位置历史   -d 501 10 从501开始删除10个</span><br><span class="line">-w 将缓存中命令历史保存至文件中</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/28/index.html">https://dbbruce.github.io/page/28/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/nginx/00-错误集锦-414 Request-URI Too Large" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-414%20Request-URI%20Too%20Large/">00-错误集锦-414 Request-URI Too Large</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-10-01T03:00:52.000Z" itemprop="datePublished">2021年10月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-414%20Request-URI%20Too%20Large/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-414-Request-URI-Too-Large"><a href="#1-414-Request-URI-Too-Large" class="headerlink" title="1.414 Request-URI Too Large"></a>1.414 Request-URI Too Large</h4><h5 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;414 Request-URI Too Large&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;center&gt;&lt;h1&gt;414 Request-URI Too Large&lt;/h1&gt;&lt;/center&gt;</span><br><span class="line">&lt;hr&gt;&lt;center&gt;nginx/1.22.1&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-414%20Request-URI%20Too%20Large/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/nginx/00-错误集锦-nginx1.22 配置证书报错" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx1.22%20%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%E6%8A%A5%E9%94%99/">00-错误集锦-nginx1.22 配置证书报错</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-10-01T03:00:52.000Z" itemprop="datePublished">2021年10月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx1.22%20%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%E6%8A%A5%E9%94%99/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-nginx1-22-配置证书报错"><a href="#1-nginx1-22-配置证书报错" class="headerlink" title="1.nginx1.22 配置证书报错"></a>1.nginx1.22 配置证书报错</h4><h5 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# /usr/local/nginx/sbin/nginx -s reload</span><br><span class="line">nginx: [emerg] cannot load certificate &quot;/usr/local/nginx/conf/cert.pem&quot;: </span><br><span class="line">PEM_read_bio_X509_AUX() failed (SSL: error:0906D06C:PEM routines:PEM_read_bio:no start line:Expecting: TRUSTED CERTIFICATE)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# /usr/local/nginx/sbin/nginx -v</span><br><span class="line">nginx version: nginx/1.22.1</span><br></pre></td></tr></table></figure>
+<h5 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">未指定证书格式 -x509</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx1.22%20%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%E6%8A%A5%E9%94%99/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/nginx/00-错误集锦-nginx未启动，reload报错" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx%E6%9C%AA%E5%90%AF%E5%8A%A8%EF%BC%8Creload%E6%8A%A5%E9%94%99/">00-错误集锦-nginx未启动，reload报错</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-10-01T03:00:52.000Z" itemprop="datePublished">2021年10月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx%E6%9C%AA%E5%90%AF%E5%8A%A8%EF%BC%8Creload%E6%8A%A5%E9%94%99/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-nginx未启动，reload报错"><a href="#1-nginx未启动，reload报错" class="headerlink" title="1.nginx未启动，reload报错"></a>1.nginx未启动，reload报错</h4><h5 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master conf]# /usr/local/nginx/sbin/nginx -s reload</span><br><span class="line">nginx: [error] open() &quot;/usr/local/nginx/logs/nginx.pid&quot; failed (2: No such file or directory)</span><br></pre></td></tr></table></figure>
+<h5 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx未启动</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/10/01/%E8%BF%90%E7%BB%B4/nginx/00-%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6-nginx%E6%9C%AA%E5%90%AF%E5%8A%A8%EF%BC%8Creload%E6%8A%A5%E9%94%99/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-运维/nginx/00-错误集锦-socket: Too many open files (24)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -549,239 +843,10 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/56-keepalived" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/">56-keepalived</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-26T03:00:52.000Z" itemprop="datePublished">2021年09月26日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Keepalived概述"><a href="#Keepalived概述" class="headerlink" title="Keepalived概述"></a>Keepalived概述</h2><p>调度器出现单点故障，如何解决 ?<br>Keepalived实现了高可用集群<br>Keepalived最初是为LVS设计的，专门监控各服务器节点的状态<br>Keepalived后来加入了VRRP功能，防止单点故障</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/26/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/56-keepalived/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/55-LVS集群" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/">55-LVS集群</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-25T03:00:52.000Z" itemprop="datePublished">2021年09月25日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><p>集群分类</p>
-<ul>
-<li>高性能计算集群HPC<br>通过以集群开发的并行应用程序，解决复杂的科学问题</li>
-<li>负载均衡( LB )集群<br>客户端负载在计算机集群中尽可能平均分摊[</li>
-<li>高可用( HA)集群<br>避免单点故障，当一个系统发生故障时，可以快速迁移</li>
-<li>原理<br>LVS原理和nginx不同<br>lvs原理是路由器，转发数据包，性能高，只能做转发，功能单一；<br>nginx原始代理，需要处理下数据包，功能多，比如健康检查；
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/55-LVS%E9%9B%86%E7%BE%A4/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/54-NTP服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">54-NTP服务器</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-24T03:00:52.000Z" itemprop="datePublished">2021年09月24日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="NTP"><a href="#NTP" class="headerlink" title="NTP"></a>NTP</h2><p>Network Time Protocol (网络时间协议)采用的是分层设计，最多不能超过15层</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/54-NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/53-VPN(待续)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/">53-VPN</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-09-23T03:00:52.000Z" itemprop="datePublished">2021年09月23日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p>Virtual Private Network ( 虚拟专用网络)<br>在公用网络上建立专用私有网络，进行加密通讯<br>多用于为集团公司的各地子公司建立连接<br>连接完成后，各个地区的子公司可以像局域网一样通讯<br>在企业网络中有广泛应用<br>偶尔可以用于翻墙<br>目前主流的VPN技术( GRE，PPTP，L2TP+IPSec，SSL )<br>gre &gt; pptp &gt; l2tp+ipsec   (安装, 易 -&gt; 难)<br>l2tcp+ipsec &gt; pptp &gt; gre  (安全, 高 -&gt; 底)</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/09/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/53-VPN(%E5%BE%85%E7%BB%AD)/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/27/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/29/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/27/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/29/">下一页</a>
 </nav>
 
 
@@ -796,23 +861,23 @@
       <ul>
         
           <li>
+            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/089-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E5%AD%97%E6%AE%B5%E8%B7%B3%E8%BD%AC-%E7%A9%BF%E9%80%8F/">089-实例:列表-字段跳转-穿透</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/090-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E8%A1%8C%E8%B7%B3%E8%BD%AC-%E7%A9%BF%E9%80%8F/">090-实例:列表-行跳转-穿透</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/088-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E6%93%8D%E4%BD%9C%E5%AD%97%E6%AE%B5/">088-实例:列表-操作字段</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/087-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E5%A4%9A%E8%A1%A8%E5%A4%B4/">087-实例:列表-多表头</a>
+          </li>
+        
+          <li>
             <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/086-%E5%AE%9E%E4%BE%8B:%E5%86%85%E8%92%99%E5%8F%A4%E4%BA%A4%E6%8A%95-360%E8%80%83%E6%A0%B8%E8%AF%84%E5%88%86%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%B6%85%E5%87%BA%E9%99%90%E5%88%B6%E4%BA%BA%E6%95%B0%E5%AE%9E%E6%97%B6%E6%8F%90%E9%86%92/">086-实例:内蒙古交投-360考核评分过程中超出限制人数实时提醒</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/04/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/085-%E5%AE%9E%E4%BE%8B:%E8%87%B4%E8%BF%9COA%E5%AF%B9%E6%8E%A5%E4%BB%A3%E7%A0%81/">085-实例:致远OA对接代码</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/03/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/084-%E5%AE%9E%E4%BE%8B:%E6%97%A5%E5%BF%97%E6%B8%85%E7%90%86/">084-实例:日志清理</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/01/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/083-%E4%BA%91%E5%87%BD%E6%95%B0%E5%9C%A8%E9%A1%B5%E9%9D%A2%E5%BC%B9%E6%B6%88%E6%81%AF/">083-云函数在页面弹消息</a>
-          </li>
-        
-          <li>
-            <a href="/2025/07/19/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/082-%E8%8E%B7%E5%8F%96%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E6%95%B0%E6%8D%AE/">082-获取分析报表数据</a>
           </li>
         
       </ul>
@@ -827,7 +892,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">112</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">87</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">116</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">91</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -837,7 +902,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">91</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">95</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

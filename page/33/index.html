@@ -87,6 +87,256 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-运维/Linux云计算教程/33-rsync同步" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/33-rsync%E5%90%8C%E6%AD%A5/">33-rsync同步</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-02T03:00:52.000Z" itemprop="datePublished">2021年09月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/33-rsync%E5%90%8C%E6%AD%A5/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-内核及系统日志"><a href="#1-内核及系统日志" class="headerlink" title="1.内核及系统日志"></a>1.内核及系统日志</h4><p>由系统服务rsyslog统一记录&#x2F;管理日志消息采用文本格式<br>主要记录事件发生的时间、主机、进程、内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# tail -f /var/log/messages</span><br><span class="line">Aug 25 19:13:45 master dhclient[916]: DHCPREQUEST on team0 to 192.168.1.1 port 67 (xid=0x62cb920a)</span><br><span class="line">Aug 25 19:13:53 master dhclient[916]: DHCPREQUEST on team0 to 192.168.1.1 port 67 (xid=0x62cb920a)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/02/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/33-rsync%E5%90%8C%E6%AD%A5/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/nginx/02-平滑升级" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/">02-平滑升级</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-02T03:00:52.000Z" itemprop="datePublished">2021年09月02日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-平滑升级nginx"><a href="#1-平滑升级nginx" class="headerlink" title="1.平滑升级nginx"></a>1.平滑升级nginx</h4><p>可以跨版本升级，不要跨太多；<br>注意：conf，html，log文件不需要升级，升级需要的文件是sbin<br>0) 升级前，版本1.0.15</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master sbin]# ./nginx -V</span><br><span class="line">    nginx version: nginx/1.0.15</span><br><span class="line">    TLS SNI support enabled</span><br><span class="line">    configure arguments: --prefix=/usr/local/nginx1.0.15 --user=nginx --group=nginx --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/02/%E8%BF%90%E7%BB%B4/nginx/02-%E5%B9%B3%E6%BB%91%E5%8D%87%E7%BA%A7/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/Linux云计算教程/32-DHCP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/32-DHCP/">32-dncp（缺失）</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-01T03:00:52.000Z" itemprop="datePublished">2021年09月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
+  </div>
+
+      
+      
+<a href="/2021/09/01/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/32-DHCP/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/33/index.html">https://dbbruce.github.io/page/33/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/nginx/01-源码安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/">01-源码安装</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-09-01T03:00:52.000Z" itemprop="datePublished">2021年09月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a>
+  </div>
+
+      
+      
+<a href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>优点</p>
+<ul>
+<li>工作在7层，可以针对http做分流策略</li>
+<li>1.9版本开始支持4层代理</li>
+<li>正则表达式比HAProxy强大</li>
+<li>安装、配置、测试简单，通过日志可以解决多数问题</li>
+<li>并发量可以达到几万次</li>
+<li>Nginx还可以作为Web服务器使用<br>缺点</li>
+<li>仅支持http、https、mail协议，应用面小</li>
+<li>监控检查仅通过端口，无法使用url检查
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2021/09/01/%E8%BF%90%E7%BB%B4/nginx/01-%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-运维/Linux云计算教程/31-日志管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -433,238 +683,10 @@
 </article>
 
 
-  <article id="post-运维/Linux云计算教程/25-链路聚合" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/25-%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/">25-链路聚合</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-25T03:00:52.000Z" itemprop="datePublished">2021年08月25日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/25-%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-链路聚合的优势"><a href="#1-链路聚合的优势" class="headerlink" title="1.链路聚合的优势"></a>1.链路聚合的优势</h4><p>team,聚合连接(也称为链路聚合 网卡绑定 网卡组队)<br>备份网卡设备,提高可靠性</p>
-<p>eth0 和 eth1组成一个  虚拟网卡: team0: 192.168.1.1</p>
-<p>作用1:轮询式(roundrobin)的流量负载均衡<br>作用2:热备份(activebackup)连接几余</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/08/25/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/25-%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/24-网络配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/24-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/">24-网络配置</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-24T03:00:52.000Z" itemprop="datePublished">2021年08月24日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/24-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-查看网卡名称"><a href="#1-查看网卡名称" class="headerlink" title="1.查看网卡名称"></a>1.查看网卡名称</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection show</span><br><span class="line">NAME    UUID                                  TYPE      DEVICE</span><br><span class="line">enp0s3  7418e7f8-60e3-41cd-a265-f24c5ef8cd48  ethernet  enp0s3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意这个名称可能和我们用ifconfig看到的不一样</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/08/24/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/24-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/23-安全web服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/23-%E5%AE%89%E5%85%A8web%E6%9C%8D%E5%8A%A1/">23-安全web服务</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-23T03:00:52.000Z" itemprop="datePublished">2021年08月23日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/23-%E5%AE%89%E5%85%A8web%E6%9C%8D%E5%8A%A1/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Public-Key-Infrastruc"><a href="#1-Public-Key-Infrastruc" class="headerlink" title="1.Public Key Infrastruc"></a>1.Public Key Infrastruc</h4><p>公钥:主要用来加密数据<br>私钥:主要用来解密数据(与相的公钥匹配)<br>数字证书:证明拥有者的合法&#x2F;权威性(单位名称、有效期、公钥、颁发机 构及签名、……)<br>Certificate Authority 数字证书授权中心:负责证书的申请&#x2F;审核&#x2F;颁发&#x2F;鉴定&#x2F;撤销等管理工作</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/08/23/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/23-%E5%AE%89%E5%85%A8web%E6%9C%8D%E5%8A%A1/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Linux云计算教程/22-nfs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/08/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/22-nfs/">22-nfs</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-08-22T03:00:52.000Z" itemprop="datePublished">2021年08月22日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a>
-  </div>
-
-      
-      
-<a href="/2021/08/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/22-nfs/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-NFS共享概述"><a href="#1-NFS共享概述" class="headerlink" title="1.NFS共享概述"></a>1.NFS共享概述</h4><p>Network File System，网络文件系统<br>用途:为客户机提供共享使用的文件夹</p>
-<ul>
-<li>协议: NFS (TCP&#x2F;UDP 2049) 、RPC (TCP&#x2F;UDP 111)<br>所需软件包: nfs-utils<br>系统服务: nfs-server<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -q nfs-utilsnfs-utils-1.3.0-0.el7.x86 64</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2021/08/22/%E8%BF%90%E7%BB%B4/Linux%E4%BA%91%E8%AE%A1%E7%AE%97%E6%95%99%E7%A8%8B/22-nfs/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
-<a class="extend prev" rel="prev" href="/page/32/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/34/">下一页</a>
+<a class="extend prev" rel="prev" href="/page/32/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/34/">下一页</a>
 </nav>
 
 
@@ -679,23 +701,23 @@
       <ul>
         
           <li>
+            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/089-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E5%AD%97%E6%AE%B5%E8%B7%B3%E8%BD%AC-%E7%A9%BF%E9%80%8F/">089-实例:列表-字段跳转-穿透</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/090-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E8%A1%8C%E8%B7%B3%E8%BD%AC-%E7%A9%BF%E9%80%8F/">090-实例:列表-行跳转-穿透</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/088-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E6%93%8D%E4%BD%9C%E5%AD%97%E6%AE%B5/">088-实例:列表-操作字段</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/087-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E5%A4%9A%E8%A1%A8%E5%A4%B4/">087-实例:列表-多表头</a>
+          </li>
+        
+          <li>
             <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/086-%E5%AE%9E%E4%BE%8B:%E5%86%85%E8%92%99%E5%8F%A4%E4%BA%A4%E6%8A%95-360%E8%80%83%E6%A0%B8%E8%AF%84%E5%88%86%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%B6%85%E5%87%BA%E9%99%90%E5%88%B6%E4%BA%BA%E6%95%B0%E5%AE%9E%E6%97%B6%E6%8F%90%E9%86%92/">086-实例:内蒙古交投-360考核评分过程中超出限制人数实时提醒</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/04/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/085-%E5%AE%9E%E4%BE%8B:%E8%87%B4%E8%BF%9COA%E5%AF%B9%E6%8E%A5%E4%BB%A3%E7%A0%81/">085-实例:致远OA对接代码</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/03/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/084-%E5%AE%9E%E4%BE%8B:%E6%97%A5%E5%BF%97%E6%B8%85%E7%90%86/">084-实例:日志清理</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/01/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/083-%E4%BA%91%E5%87%BD%E6%95%B0%E5%9C%A8%E9%A1%B5%E9%9D%A2%E5%BC%B9%E6%B6%88%E6%81%AF/">083-云函数在页面弹消息</a>
-          </li>
-        
-          <li>
-            <a href="/2025/07/19/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/082-%E8%8E%B7%E5%8F%96%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E6%95%B0%E6%8D%AE/">082-获取分析报表数据</a>
           </li>
         
       </ul>
@@ -710,7 +732,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">112</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">87</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">116</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">91</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -720,7 +742,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">91</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">95</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
