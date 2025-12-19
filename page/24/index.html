@@ -87,6 +87,265 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-运维/K8S/基础/00-kubernetes基础知识扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95/">00-kubernetes基础知识扩展.</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-04-30T18:00:52.000Z" itemprop="datePublished">2023年05月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><h3 id="Containerd-常见命令操作"><a href="#Containerd-常见命令操作" class="headerlink" title="Containerd 常见命令操作"></a>Containerd 常见命令操作</h3><p>更换 Containerd 后，以往我们常用的 docker 命令也不再使用，取而代之的分别是 crictl 和 ctr 两个命令客户端。<br>crictl 是遵循 CRI 接口规范的一个命令行工具，通常用它来检查和管理kubelet节点上的容器运行时和镜像。<br>ctr 是 containerd 的一个客户端工具。<br>ctr -v 输出的是 containerd 的版本，crictl -v 输出的是当前 k8s 的版本，从结果显而易见你可以认为 crictl 是用于 k8s 的。<br>一般来说你某个主机安装了 k8s 后，命令行才会有 crictl 命令。而 ctr 是跟 k8s 无关的，你主机安装了 containerd 服务后就可以操作 ctr 命令。</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基础/00-kubernetes常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">00-kubernetes常用命令</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-04-30T16:00:59.000Z" itemprop="datePublished">2023年05月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="集群信息："><a href="#集群信息：" class="headerlink" title="集群信息："></a>集群信息：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">显示 Kubernetes 版本：kubectl version</span><br><span class="line">显示集群信息：kubectl cluster-info</span><br><span class="line">要进一步调试和诊断集群问题：kubectl cluster-info dump</span><br><span class="line">列出集群中的所有节点：kubectl get nodes</span><br><span class="line">查看一个具体的节点详情：kubectl describe node &lt;node-name&gt;</span><br><span class="line">列出所有命名空间：kubectl get namespaces</span><br><span class="line">列出所有命名空间中的所有 pod：kubectl get pods --all-namespaces   === kubectl get pods -A</span><br></pre></td></tr></table></figure>
+<h4 id="Pod-诊断："><a href="#Pod-诊断：" class="headerlink" title="Pod 诊断："></a>Pod 诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">列出特定命名空间中的 pod：kubectl get pods -n &lt;namespace&gt;</span><br><span class="line">查看一个 Pod 详情：kubectl describe pod &lt;pod-name&gt; -n &lt;namespace&gt;</span><br><span class="line">查看 Pod 日志：kubectl logs &lt;pod-name&gt; -n &lt;namespace&gt;</span><br><span class="line">尾部 Pod 日志：kubectl logs -f &lt;pod-name&gt; -n &lt;namespace&gt;</span><br><span class="line">在 pod 中执行命令：kubectl exec -it &lt;pod-name&gt; -n &lt;namespace&gt; -- &lt;command&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Pod-健康检查："><a href="#Pod-健康检查：" class="headerlink" title="Pod 健康检查："></a>Pod 健康检查：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">检查 Pod 准备情况：kubectl get pods &lt;pod-name&gt; -n &lt;namespace&gt; -o jsonpath=&#x27;&#123;.status.conditions[?(@.type==&quot;Ready&quot;)].status&#125;&#x27;</span><br><span class="line">检查 Pod 事件：kubectl get events -n &lt;namespace&gt; --field-selector involvedObject.name=&lt;pod-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Service诊断："><a href="#Service诊断：" class="headerlink" title="Service诊断："></a>Service诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的所有服务：kubectl get svc -n &lt;namespace&gt;</span><br><span class="line">查看一个服务详情：kubectl describe svc &lt;service-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Deployment诊断："><a href="#Deployment诊断：" class="headerlink" title="Deployment诊断："></a>Deployment诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的所有Deployment：kubectl get deployments -n &lt;namespace&gt;</span><br><span class="line">查看一个Deployment详情：kubectl describe deployment &lt;deployment-name&gt; -n &lt;namespace&gt;</span><br><span class="line">查看滚动发布状态：kubectl rollout status deployment/&lt;deployment-name&gt; -n &lt;namespace&gt;</span><br><span class="line">查看滚动发布历史记录：kubectl rollout history deployment/&lt;deployment-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="StatefulSet诊断："><a href="#StatefulSet诊断：" class="headerlink" title="StatefulSet诊断："></a>StatefulSet诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的所有 StatefulSet：kubectl get statefulsets -n &lt;namespace&gt;</span><br><span class="line">查看一个 StatefulSet详情：kubectl describe statefulset &lt;statefulset-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ConfigMap-和Secret诊断："><a href="#ConfigMap-和Secret诊断：" class="headerlink" title="ConfigMap 和Secret诊断："></a>ConfigMap 和Secret诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的 ConfigMap：kubectl get configmaps -n &lt;namespace&gt;</span><br><span class="line">查看一个ConfigMap详情：kubectl describe configmap &lt;configmap-name&gt; -n &lt;namespace&gt;</span><br><span class="line">列出命名空间中的 Secret：kubectl get secrets -n &lt;namespace&gt;</span><br><span class="line">查看一个Secret详情：kubectl describe secret &lt;secret-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="命名空间诊断："><a href="#命名空间诊断：" class="headerlink" title="命名空间诊断："></a>命名空间诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查看一个命名空间详情：kubectl describe namespace &lt;namespace-name&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="资源使用情况："><a href="#资源使用情况：" class="headerlink" title="资源使用情况："></a>资源使用情况：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">检查 pod 的资源使用情况：kubectl top pod &lt;pod-name&gt; -n &lt;namespace&gt;</span><br><span class="line">检查节点资源使用情况：kubectl top nodes</span><br></pre></td></tr></table></figure>
+
+<h4 id="网络诊断："><a href="#网络诊断：" class="headerlink" title="网络诊断："></a>网络诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">显示命名空间中 Pod 的 IP 地址：kubectl get pods -n &lt;namespace&gt; -o custom-columns=POD:metadata.name,IP:status.podIP --no-headers</span><br><span class="line">列出命名空间中的所有网络策略：kubectl get networkpolicies -n &lt;namespace&gt;</span><br><span class="line">查看一个网络策略详情：kubectl describe networkpolicy &lt;network-policy-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="持久卷-PV-和持久卷声明-PVC-诊断："><a href="#持久卷-PV-和持久卷声明-PVC-诊断：" class="headerlink" title="持久卷 (PV) 和持久卷声明 (PVC) 诊断："></a>持久卷 (PV) 和持久卷声明 (PVC) 诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">列出PV：kubectl get pv</span><br><span class="line">查看一个PV详情：kubectl describe pv &lt;pv-name&gt;</span><br><span class="line">列出命名空间中的 PVC：kubectl get pvc -n &lt;namespace&gt;</span><br><span class="line">查看PVC详情：kubectl describe pvc &lt;pvc-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="节点诊断："><a href="#节点诊断：" class="headerlink" title="节点诊断："></a>节点诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取特定节点上运行的 Pod 列表：kubectl get pods --field-selector spec.nodeName=&lt;node-name&gt; -n &lt;namespace&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="资源配额和限制："><a href="#资源配额和限制：" class="headerlink" title="资源配额和限制："></a>资源配额和限制：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的资源配额：kubectl get resourcequotas -n &lt;namespace&gt;</span><br><span class="line">查看一个资源配额详情：kubectl describe resourcequota &lt;resource-quota-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义资源定义-CRD-诊断："><a href="#自定义资源定义-CRD-诊断：" class="headerlink" title="自定义资源定义 (CRD) 诊断："></a>自定义资源定义 (CRD) 诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的自定义资源：kubectl get &lt;custom-resource-name&gt; -n &lt;namespace&gt;</span><br><span class="line">查看自定义资源详情：kubectl describe &lt;custom-resource-name&gt; &lt;custom-resource-instance-name&gt; -n &lt;namespace&gt;</span><br><span class="line">使用这些命令时，请记住将&lt;namespace&gt;, &lt;pod-name&gt;, &lt;service-name&gt;, &lt;deployment-name&gt;, &lt;statefulset-name&gt;, &lt;configmap-name&gt;, &lt;secret-name&gt;, &lt;namespace-name&gt;, &lt;pv-name&gt;, &lt;pvc-name&gt;, &lt;node-name&gt;, &lt;network-policy-name&gt;, &lt;resource-quota-name&gt;, &lt;custom-resource-name&gt;, 和替换为你的特定值。</span><br><span class="line">&lt;custom-resource-instance-name&gt;这些命令应该可以帮助你诊断 Kubernetes 集群以及在其中运行的应用程序。</span><br></pre></td></tr></table></figure>
+
+<h4 id="资源伸缩和自动伸缩"><a href="#资源伸缩和自动伸缩" class="headerlink" title="资源伸缩和自动伸缩"></a>资源伸缩和自动伸缩</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Deployment伸缩：kubectl scale deployment &lt;deployment-name&gt; --replicas=&lt;replica-count&gt; -n &lt;namespace&gt;</span><br><span class="line">设置Deployment的自动伸缩：kubectl autoscale deployment &lt;deployment-name&gt; --min=&lt;min-pods&gt; --max=&lt;max-pods&gt; --cpu-percent=&lt;cpu-percent&gt; -n &lt;namespace&gt;</span><br><span class="line">检查水平伸缩器状态：kubectl get hpa -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="作业和-CronJob-诊断："><a href="#作业和-CronJob-诊断：" class="headerlink" title="作业和 CronJob 诊断："></a>作业和 CronJob 诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的所有作业：kubectl get jobs -n &lt;namespace&gt;</span><br><span class="line">查看一份工作详情：kubectl describe job &lt;job-name&gt; -n &lt;namespace&gt;</span><br><span class="line">列出命名空间中的所有 cron 作业：kubectl get cronjobs -n &lt;namespace&gt;</span><br><span class="line">查看一个 cron 作业详情：kubectl describe cronjob &lt;cronjob-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="容量诊断："><a href="#容量诊断：" class="headerlink" title="容量诊断："></a>容量诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">列出按容量排序的持久卷 (PV)：kubectl get pv --sort-by=.spec.capacity.storage</span><br><span class="line">查看PV回收策略：kubectl get pv &lt;pv-name&gt; -o=jsonpath=&#x27;&#123;.spec.persistentVolumeReclaimPolicy&#125;&#x27;</span><br><span class="line">列出所有存储类别：kubectl get storageclasses</span><br></pre></td></tr></table></figure>
+
+<h4 id="Ingress和服务网格诊断："><a href="#Ingress和服务网格诊断：" class="headerlink" title="Ingress和服务网格诊断："></a>Ingress和服务网格诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的所有Ingress：kubectl get ingress -n &lt;namespace&gt;</span><br><span class="line">查看一个Ingress详情：kubectl describe ingress &lt;ingress-name&gt; -n &lt;namespace&gt;</span><br><span class="line">列出命名空间中的所有 VirtualServices (Istio)：kubectl get virtualservices -n &lt;namespace&gt;</span><br><span class="line">查看一个 VirtualService (Istio)详情：kubectl describe virtualservice &lt;virtualservice-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Pod-网络故障排除："><a href="#Pod-网络故障排除：" class="headerlink" title="Pod 网络故障排除："></a>Pod 网络故障排除：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">运行网络诊断 Pod（例如 busybox）进行调试：kubectl run -it --rm --restart=Never --image=busybox net-debug-pod -- /bin/sh</span><br><span class="line">测试从 Pod 到特定端点的连接：kubectl exec -it &lt;pod-name&gt; -n &lt;namespace&gt; -- curl &lt;endpoint-url&gt;</span><br><span class="line">跟踪从一个 Pod 到另一个 Pod 的网络路径：kubectl exec -it &lt;source-pod-name&gt; -n &lt;namespace&gt; -- traceroute &lt;destination-pod-ip&gt;</span><br><span class="line">检查 Pod 的 DNS 解析：kubectl exec -it &lt;pod-name&gt; -n &lt;namespace&gt; -- nslookup &lt;domain-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置和资源验证："><a href="#配置和资源验证：" class="headerlink" title="配置和资源验证："></a>配置和资源验证：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">验证 Kubernetes YAML 文件而不应用它：kubectl apply --dry-run=client -f &lt;yaml-file&gt;</span><br><span class="line">验证 pod 的安全上下文和功能：kubectl auth can-i list pods --as=system:serviceaccount:&lt;namespace&gt;:&lt;serviceaccount-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="RBAC-和安全性："><a href="#RBAC-和安全性：" class="headerlink" title="RBAC 和安全性："></a>RBAC 和安全性：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的角色和角色绑定：kubectl get roles,rolebindings -n &lt;namespace&gt;</span><br><span class="line">查看角色或角色绑定详情：kubectl describe role &lt;role-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="服务帐户诊断："><a href="#服务帐户诊断：" class="headerlink" title="服务帐户诊断："></a>服务帐户诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的服务帐户：kubectl get serviceaccounts -n &lt;namespace&gt;</span><br><span class="line">查看一个服务帐户详情：kubectl describe serviceaccount &lt;serviceaccount-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="清空节点和解除封锁："><a href="#清空节点和解除封锁：" class="headerlink" title="清空节点和解除封锁："></a>清空节点和解除封锁：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">清空节点以进行维护：kubectl drain &lt;node-name&gt; --ignore-daemonsets</span><br><span class="line">解除对节点的封锁：kubectl uncordon &lt;node-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="资源清理："><a href="#资源清理：" class="headerlink" title="资源清理："></a>资源清理：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">强制删除 pod（不推荐）：kubectl delete pod &lt;pod-name&gt; -n &lt;namespace&gt; --grace-period=0 --force</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Pod-亲和性和反亲和性："><a href="#Pod-亲和性和反亲和性：" class="headerlink" title="Pod 亲和性和反亲和性："></a>Pod 亲和性和反亲和性：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出 pod 的 pod 亲和性规则：kubectl get pod &lt;pod-name&gt; -n &lt;namespace&gt; -o=jsonpath=&#x27;&#123;.spec.affinity&#125;&#x27;</span><br><span class="line">列出 pod 的 pod 反亲和性规则：kubectl get pod &lt;pod-name&gt; -n &lt;namespace&gt; -o=jsonpath=&#x27;&#123;.spec.affinity.podAntiAffinity&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Pod-安全策略-PSP-："><a href="#Pod-安全策略-PSP-：" class="headerlink" title="Pod 安全策略 (PSP)："></a>Pod 安全策略 (PSP)：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出所有 Pod 安全策略（如果启用）：kubectl get psp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="事件："><a href="#事件：" class="headerlink" title="事件："></a>事件：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查看最近的集群事件：kubectl get events --sort-by=.metadata.creationTimestamp</span><br><span class="line">按特定命名空间过滤事件：kubectl get events -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="节点故障排除："><a href="#节点故障排除：" class="headerlink" title="节点故障排除："></a>节点故障排除：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">检查节点情况：kubectl describe node &lt;node-name&gt; | grep Conditions -A5</span><br><span class="line">列出节点容量和可分配资源：kubectl describe node &lt;node-name&gt; | grep -E &quot;Capacity|Allocatable&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="临时容器（Kubernetes-1-18-）："><a href="#临时容器（Kubernetes-1-18-）：" class="headerlink" title="临时容器（Kubernetes 1.18+）："></a>临时容器（Kubernetes 1.18+）：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">运行临时调试容器：kubectl debug -it &lt;pod-name&gt; -n &lt;namespace&gt; --image=&lt;debug-image&gt; -- /bin/sh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="资源指标（需要指标服务器）："><a href="#资源指标（需要指标服务器）：" class="headerlink" title="资源指标（需要指标服务器）："></a>资源指标（需要指标服务器）：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取 Pod 的 CPU 和内存使用情况：kubectl top pod -n &lt;namespace&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="kuelet诊断："><a href="#kuelet诊断：" class="headerlink" title="kuelet诊断："></a>kuelet诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查看节点上的kubelet日志：kubectl logs -n kube-system kubelet-&lt;node-name&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="使用Telepresence-进行高级调试："><a href="#使用Telepresence-进行高级调试：" class="headerlink" title="使用Telepresence 进行高级调试："></a>使用Telepresence 进行高级调试：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用 Telepresence 调试 pod：telepresence --namespace &lt;namespace&gt; --swap-deployment &lt;pod-name&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Kubeconfig-和上下文："><a href="#Kubeconfig-和上下文：" class="headerlink" title="Kubeconfig 和上下文："></a>Kubeconfig 和上下文：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出可用的上下文：kubectl config get-contexts</span><br><span class="line">切换到不同的上下文：kubectl config use-context &lt;context-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Pod-安全标准（PodSecurity-准入控制器）："><a href="#Pod-安全标准（PodSecurity-准入控制器）：" class="headerlink" title="Pod 安全标准（PodSecurity 准入控制器）："></a>Pod 安全标准（PodSecurity 准入控制器）：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出 PodSecurityPolicy (PSP) 违规行为：kubectl get psp -A | grep -vE &#x27;NAME|REVIEWED&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Pod-中断预算-PDB-诊断："><a href="#Pod-中断预算-PDB-诊断：" class="headerlink" title="Pod 中断预算 (PDB) 诊断："></a>Pod 中断预算 (PDB) 诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的所有 PDB：kubectl get pdb -n &lt;namespace&gt;</span><br><span class="line">查看一个PDB详情：kubectl describe pdb &lt;pdb-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="资源锁诊断（如果使用资源锁）："><a href="#资源锁诊断（如果使用资源锁）：" class="headerlink" title="资源锁诊断（如果使用资源锁）："></a>资源锁诊断（如果使用资源锁）：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的资源锁：kubectl get resourcelocks -n &lt;namespace&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="服务端点和-DNS："><a href="#服务端点和-DNS：" class="headerlink" title="服务端点和 DNS："></a>服务端点和 DNS：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出服务的服务端点：kubectl get endpoints &lt;service-name&gt; -n &lt;namespace&gt;</span><br><span class="line">检查 Pod 中的 DNS 配置：kubectl exec -it &lt;pod-name&gt; -n &lt;namespace&gt; -- cat /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义指标（Prometheus、Grafana）："><a href="#自定义指标（Prometheus、Grafana）：" class="headerlink" title="自定义指标（Prometheus、Grafana）："></a>自定义指标（Prometheus、Grafana）：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查询Prometheus指标：用于kubectl port-forward访问Prometheus和Grafana服务来查询自定义指标。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Pod-优先级和抢占："><a href="#Pod-优先级和抢占：" class="headerlink" title="Pod 优先级和抢占："></a>Pod 优先级和抢占：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出优先级：kubectl get priorityclasses</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Pod-开销（Kubernetes-1-18-）："><a href="#Pod-开销（Kubernetes-1-18-）：" class="headerlink" title="Pod 开销（Kubernetes 1.18+）："></a>Pod 开销（Kubernetes 1.18+）：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出 pod 中的开销：kubectl get pod &lt;pod-name&gt; -n &lt;namespace&gt; -o=jsonpath=&#x27;&#123;.spec.overhead&#125;&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="存储卷快照诊断（如果使用存储卷快照）："><a href="#存储卷快照诊断（如果使用存储卷快照）：" class="headerlink" title="存储卷快照诊断（如果使用存储卷快照）："></a>存储卷快照诊断（如果使用存储卷快照）：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出存储卷快照：kubectl get volumesnapshot -n &lt;namespace&gt;</span><br><span class="line">查看存储卷快照详情：kubectl describe volumesnapshot &lt;snapshot-name&gt; -n &lt;namespace&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="资源反序列化诊断："><a href="#资源反序列化诊断：" class="headerlink" title="资源反序列化诊断："></a>资源反序列化诊断：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">反序列化并打印 Kubernetes 资源：kubectl get &lt;resource-type&gt; &lt;resource-name&gt; -n &lt;namespace&gt; -o=json</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="节点污点："><a href="#节点污点：" class="headerlink" title="节点污点："></a>节点污点：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出节点污点：kubectl describe node &lt;node-name&gt; | grep Taints</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="更改和验证-Webhook-配置："><a href="#更改和验证-Webhook-配置：" class="headerlink" title="更改和验证 Webhook 配置："></a>更改和验证 Webhook 配置：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出变异 webhook 配置：kubectl get mutatingwebhookconfigurations</span><br><span class="line">列出验证 Webhook 配置：kubectl get validatingwebhookconfigurations</span><br></pre></td></tr></table></figure>
+
+<h4 id="Pod-网络策略："><a href="#Pod-网络策略：" class="headerlink" title="Pod 网络策略："></a>Pod 网络策略：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列出命名空间中的 pod 网络策略：kubectl get networkpolicies -n &lt;namespace&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="节点条件（Kubernetes-1-17-）："><a href="#节点条件（Kubernetes-1-17-）：" class="headerlink" title="节点条件（Kubernetes 1.17+）："></a>节点条件（Kubernetes 1.17+）：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">自定义查询输出：kubectl get nodes -o custom-columns=NODE:.metadata.name,READY:.status.conditions[?(@.type==&quot;Ready&quot;)].status -l &#x27;node-role.kubernetes.io/worker=&#x27;</span><br></pre></td></tr></table></figure>
+<h4 id="审核日志："><a href="#审核日志：" class="headerlink" title="审核日志："></a>审核日志：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">检索审核日志（如果启用）：检查 Kubernetes 审核日志配置以了解审核日志的位置。</span><br></pre></td></tr></table></figure>
+<h4 id="节点操作系统详细信息："><a href="#节点操作系统详细信息：" class="headerlink" title="节点操作系统详细信息："></a>节点操作系统详细信息：</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取节点的操作系统信息：kubectl get node &lt;node-name&gt; -o jsonpath=&#x27;&#123;.status.nodeInfo.osImage&#125;&#x27;</span><br><span class="line">这些命令应该涵盖 Kubernetes 中的各种诊断场景。确保将&lt;namespace&gt;、&lt;pod-name&gt;、&lt;deployment-name&gt;等占位符替换为你的集群和用例的实际值。</span><br></pre></td></tr></table></figure>
+
+        
+<!--          -->
+<!--           <blockquote id="copyright"> -->
+<!--               <p>原文链接: <a href="https://dbbruce.github.io/page/24/index.html">https://dbbruce.github.io/page/24/index.html</a></p> -->
+<!--               <p>版权声明: 转载请注明出处.</p> -->
+<!--           </blockquote> -->
+<!--          -->
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          <!--  -->
+<!--     <div class="social-share"> -->
+<!--       <span>分享到:</span> -->
+<!--     </div> -->
+<!--  -->
+<!--  -->
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基础/00-kubernetes简介" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E7%AE%80%E4%BB%8B/">00-kubernetes简介</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-04-30T16:00:52.000Z" itemprop="datePublished">2023年05月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E7%AE%80%E4%BB%8B/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Kubernetes简介"><a href="#Kubernetes简介" class="headerlink" title="Kubernetes简介"></a>Kubernetes简介</h1><h3 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h3><p>单词起源于希腊语, 是“舵手”或者“领航员、飞行员”的意思。</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/01/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/00-kubernetes%E7%AE%80%E4%BB%8B/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-运维/zabbix/5.0/00-zabbix5.0-报错集锦" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -492,176 +751,6 @@
 </article>
 
 
-  <article id="post-运维/java生态/04-tomcat日志管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/04/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/04-tomcat%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/">04-tomcat日志管理</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-04T03:00:52.000Z" itemprop="datePublished">2022年08月04日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a>
-  </div>
-
-      
-      
-<a href="/2022/08/04/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/04-tomcat%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="tomcat日志管理"><a href="#tomcat日志管理" class="headerlink" title="tomcat日志管理"></a>tomcat日志管理</h2><h4 id="1-日志"><a href="#1-日志" class="headerlink" title="1.日志"></a>1.日志</h4><p>&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;logs</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@master logs]# cd /usr/local/tomcat/logs</span><br><span class="line">[root@master logs]# ll</span><br><span class="line">总用量 76</span><br><span class="line">-rw-r-----. 1 root root  5919 9月   6 23:55 catalina.2023-09-06.log   # tomcat的日志，启动，关闭日志，自动切分，每天一个日志</span><br><span class="line">-rw-r-----. 1 root root 29261 9月   7 02:46 catalina.out           </span><br><span class="line">-rw-r-----. 1 root root     0 9月   6 23:55 host-manager.2023-09-06.log  # host-manager网站日志</span><br><span class="line">-rw-r-----. 1 root root   465 9月   6 23:55 localhost.2023-09-06.log</span><br><span class="line">-rw-r-----. 1 root root     0 9月   6 23:55 localhost_access_log.2023-09-06.txt # 访问日志</span><br><span class="line">-rw-r-----. 1 root root     0 9月   6 23:55 manager.2023-09-06.log   # manager网站 ,http://www.a.com:8080/manager/</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2022/08/04/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/04-tomcat%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/Git/03-Git分支操作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/03/%E8%BF%90%E7%BB%B4/Git/03-Git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/">03-Git分支操作</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-03T03:00:52.000Z" itemprop="datePublished">2022年08月03日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a>
-  </div>
-
-      
-      
-<a href="/2022/08/03/%E8%BF%90%E7%BB%B4/Git/03-Git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Git分支操作"><a href="#Git分支操作" class="headerlink" title="Git分支操作"></a>Git分支操作</h1><h4 id="1-常见的分支规范如下"><a href="#1-常见的分支规范如下" class="headerlink" title="1.常见的分支规范如下"></a>1.常见的分支规范如下</h4><p>MASTER分支(MASTER是主分支，是代码的核心<br>DEVELOP分支 (DEVELOP最新开发成果的分支)大功能<br>RELEASE分支 (为发布新产品设置的分支)<br>HOTFIX分支 (为了修复软件BUG缺陷的分支)<br>FEATURE分支 (为开发新功能设置的分支)小功能</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2022/08/03/%E8%BF%90%E7%BB%B4/Git/03-Git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/java生态/03-配置tomcat支持ssl加密网站" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/03/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/03-%E9%85%8D%E7%BD%AEtomcat%E6%94%AF%E6%8C%81ssl%E5%8A%A0%E5%AF%86%E7%BD%91%E7%AB%99/">03-配置tomcat支持SSL加密网站</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-08-03T03:00:52.000Z" itemprop="datePublished">2022年08月03日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a>
-  </div>
-
-      
-      
-<a href="/2022/08/03/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/03-%E9%85%8D%E7%BD%AEtomcat%E6%94%AF%E6%8C%81ssl%E5%8A%A0%E5%AF%86%E7%BD%91%E7%AB%99/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="配置Tomcat支持SSL加密网站"><a href="#配置Tomcat支持SSL加密网站" class="headerlink" title="配置Tomcat支持SSL加密网站"></a>配置Tomcat支持SSL加密网站</h2><h4 id="1-创建加密用的私钥和证书文件"><a href="#1-创建加密用的私钥和证书文件" class="headerlink" title="1.创建加密用的私钥和证书文件"></a>1.创建加密用的私钥和证书文件</h4><p>keytool :装JDK是自动装的工具</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkeypair -alias tomcat -keyalg RSA -keystore /usr/local/tomcat/keystore</span><br><span class="line">//-genkeypair   生成密钥对</span><br><span class="line">//-alias tomcat    密钥别名</span><br><span class="line">//-keyalg RSA  定义密钥算法为RSA算法</span><br><span class="line">//-keystore  定义密钥文件存储在:/usr/local/tomcat/keystore</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2022/08/03/%E8%BF%90%E7%BB%B4/java%E7%94%9F%E6%80%81/03-%E9%85%8D%E7%BD%AEtomcat%E6%94%AF%E6%8C%81ssl%E5%8A%A0%E5%AF%86%E7%BD%91%E7%AB%99/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
@@ -680,23 +769,23 @@
       <ul>
         
           <li>
+            <a href="/2025/08/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/093-%E5%AE%9E%E4%BE%8B:%E4%BA%BA%E5%91%98%E5%90%8C%E6%AD%A5/">093-实例:人员同步</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/091-%E5%AE%9E%E4%BE%8B:%E5%8D%95%E4%BD%8D-%E9%83%A8%E9%97%A8%E5%90%8C%E6%AD%A5/">091-实例:单位-部门同步</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/06/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/092-%E5%AE%9E%E4%BE%8B:%E5%B2%97%E4%BD%8D%E5%90%8C%E6%AD%A5/">092-实例:岗位同步</a>
+          </li>
+        
+          <li>
             <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/090-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E8%A1%8C%E8%B7%B3%E8%BD%AC-%E7%A9%BF%E9%80%8F/">090-实例:列表-行跳转-穿透</a>
           </li>
         
           <li>
             <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/089-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E5%AD%97%E6%AE%B5%E8%B7%B3%E8%BD%AC-%E7%A9%BF%E9%80%8F/">089-实例:列表-字段跳转-穿透</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/088-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E6%93%8D%E4%BD%9C%E5%AD%97%E6%AE%B5/">088-实例:列表-操作字段</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/087-%E5%AE%9E%E4%BE%8B:%E5%88%97%E8%A1%A8-%E5%A4%9A%E8%A1%A8%E5%A4%B4/">087-实例:列表-多表头</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/05/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/086-%E5%AE%9E%E4%BE%8B:%E5%86%85%E8%92%99%E5%8F%A4%E4%BA%A4%E6%8A%95-360%E8%80%83%E6%A0%B8%E8%AF%84%E5%88%86%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%B6%85%E5%87%BA%E9%99%90%E5%88%B6%E4%BA%BA%E6%95%B0%E5%AE%9E%E6%97%B6%E6%8F%90%E9%86%92/">086-实例:内蒙古交投-360考核评分过程中超出限制人数实时提醒</a>
           </li>
         
       </ul>
@@ -711,7 +800,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">116</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">91</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">119</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">94</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -721,7 +810,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">95</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">98</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
