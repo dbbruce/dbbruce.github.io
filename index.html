@@ -126,62 +126,7 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="hcm发送内部通知，待办，已办信息-message-send-message"><a href="#hcm发送内部通知，待办，已办信息-message-send-message" class="headerlink" title="hcm发送内部通知，待办，已办信息 - message.send.message"></a>hcm发送内部通知，待办，已办信息 - message.send.message</h4><h5 id="1、字段讲解"><a href="#1、字段讲解" class="headerlink" title="1、字段讲解"></a>1、字段讲解</h5><table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>is_task_done</td>
-<td>0：通知，1：待办，2：已办</td>
-</tr>
-<tr>
-<td>sender</td>
-<td>消息发送人的人员ID，如果要设置为系统消息，sender:0  ，非必传</td>
-</tr>
-<tr>
-<td>to</td>
-<td>消息接收人人员ID，必传</td>
-</tr>
-<tr>
-<td>content</td>
-<td>消息内容。必传</td>
-</tr>
-<tr>
-<td>state</td>
-<td>跳转页面，比如页面是：common_model_List?model&#x3D;ModelReport，state:common_model_list，必传</td>
-</tr>
-<tr>
-<td>param</td>
-<td>跳转页面的参数，比如页面是：common_model_List?model&#x3D;ModelReport&amp;meta_state&#x3D;test,param是‘?’号之后的参数:{“model”:”ModelReport”,”meta_state”:”test”} ，必传</td>
-</tr>
-<tr>
-<td>level</td>
-<td>消息等级，默认是0，大于1000是高级别消息，非必传</td>
-</tr>
-<tr>
-<td>url</td>
-<td>用于集成端点击消息跳转的地址，正常来说是有系统自动根据state,param两个参数自动构造出来的，可以根据需要自己构造传入，非必传</td>
-</tr>
-<tr>
-<td>extend_dict</td>
-<td>消息内扩展数据，用于一些特殊的设置，非必传</td>
-</tr>
-<tr>
-<td>msg_type</td>
-<td>消息类别，系统内的消息类别，自定义，长度限制在20个字符串，必传</td>
-</tr>
-<tr>
-<td>message_category</td>
-<td>外部消息类别，用于控制外部消息发送message_control.json里边的配置，最好和msg_type一致，如果是要发送系统已存在的系统类别，需要查看当前系统消息是什么类别，必传</td>
-</tr>
-<tr>
-<td>title_id</td>
-<td>消息标题，消息右上角展示的标签，传入MessagezTitle的数据ID，根据实际需要传入，必传</td>
-</tr>
-</tbody></table>
+        <h4 id="hcm发送内部通知，待办，已办信息-message-send-message"><a href="#hcm发送内部通知，待办，已办信息-message-send-message" class="headerlink" title="hcm发送内部通知，待办，已办信息 - message.send.message"></a>hcm发送内部通知，待办，已办信息 - message.send.message</h4><h5 id="1、字段讲解"><a href="#1、字段讲解" class="headerlink" title="1、字段讲解"></a>1、字段讲解</h5>
       
     </div>
     <footer class="article-footer">
