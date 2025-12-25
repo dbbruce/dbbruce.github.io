@@ -147,31 +147,31 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>dict</strong></td>
+<td>__dict__</td>
 <td>对象的属性字典</td>
 </tr>
 <tr>
-<td><strong>slots</strong></td>
+<td>__slots__</td>
 <td>限制对象可拥有的属性</td>
 </tr>
 <tr>
-<td><strong>getattr</strong>(self, name)</td>
+<td>__getattr__(self, name)</td>
 <td>获取不存在的属性时调用</td>
 </tr>
 <tr>
-<td><strong>setattr</strong>(self, name, value)</td>
+<td>__setattr__(self, name, value)</td>
 <td>设置属性时调用</td>
 </tr>
 <tr>
-<td><strong>delattr</strong>(self, name)</td>
+<td>__delattr__(self, name)</td>
 <td>删除属性时调用</td>
 </tr>
 <tr>
-<td><strong>getattribute</strong>(self, name)</td>
+<td>__getattribute__(self, name)</td>
 <td>获取任何属性时调用（优先</td>
 </tr>
 <tr>
-<td><strong>dir</strong>(self)</td>
+<td>__dir__(self)</td>
 <td>返回对象的属性列表</td>
 </tr>
 </tbody></table>
@@ -184,19 +184,19 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>get</strong>(self, instance, owner)</td>
+<td>__get__(self, instance, owner)</td>
 <td>获取属性值</td>
 </tr>
 <tr>
-<td><strong>set</strong>(self, instance, value)</td>
+<td>__set__(self, instance, value)</td>
 <td>设置属性值</td>
 </tr>
 <tr>
-<td><strong>delete</strong>(self, instance)</td>
+<td>__delete__(self, instance)</td>
 <td>删除属性</td>
 </tr>
 <tr>
-<td><strong>set_name</strong>(self, owner, name)</td>
+<td>__set_name__(self, owner, name)</td>
 <td>设置描述符名称</td>
 </tr>
 </tbody></table>
@@ -208,15 +208,15 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>init_subclass</strong>(cls)</td>
+<td>__init_subclass__(cls)</td>
 <td>类被继承时调用</td>
 </tr>
 <tr>
-<td><strong>class_getitem</strong>(cls, item)</td>
+<td>__class_getitem__(cls, item)</td>
 <td>支持泛型类型提示</td>
 </tr>
 <tr>
-<td><strong>mro_entries</strong>(self, bases)</td>
+<td>__mro_entries__(self, bases)</td>
 <td>自定义MRO条目</td>
 </tr>
 </tbody></table>
@@ -228,15 +228,15 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>new</strong>(cls[, …])</td>
+<td>__new__(cls[, …])</td>
 <td>创建实例（构造器）</td>
 </tr>
 <tr>
-<td><strong>init</strong>(self[, …])</td>
+<td>__init__(self[, …])</td>
 <td>初始化实例</td>
 </tr>
 <tr>
-<td><strong>del</strong>(self)</td>
+<td>__del__(self)</td>
 <td>析构函数</td>
 </tr>
 </tbody></table>
@@ -248,19 +248,19 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>str</strong>(self)</td>
+<td>__str__(self)</td>
 <td>str()和print()调用</td>
 </tr>
 <tr>
-<td><strong>repr</strong>(self)</td>
+<td>__repr__(self)</td>
 <td>repr()和交互式环境显示</td>
 </tr>
 <tr>
-<td><strong>format</strong>(self, format_spec)</td>
+<td>__format__(self, format_spec)</td>
 <td>format()函数调用</td>
 </tr>
 <tr>
-<td><strong>bytes</strong>(self)</td>
+<td>__bytes__(self)</td>
 <td>bytes()函数调用</td>
 </tr>
 </tbody></table>
@@ -272,27 +272,27 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>eq</strong>(self, other)</td>
+<td>__eq__(self, other)</td>
 <td>&#x3D;&#x3D;</td>
 </tr>
 <tr>
-<td><strong>ne</strong>(self, other)</td>
+<td>__ne__(self, other)</td>
 <td>!&#x3D;</td>
 </tr>
 <tr>
-<td><strong>lt</strong>(self, other)</td>
+<td>__lt__(self, other)</td>
 <td>&lt;</td>
 </tr>
 <tr>
-<td><strong>le</strong>(self, other)</td>
+<td>__le__(self, other)</td>
 <td>&lt;&#x3D;</td>
 </tr>
 <tr>
-<td><strong>gt</strong>(self, other)</td>
+<td>__gt__(self, other)</td>
 <td>&gt;</td>
 </tr>
 <tr>
-<td><strong>ge</strong>(self, other)</td>
+<td>__ge__(self, other)</td>
 <td>&gt;&#x3D;</td>
 </tr>
 </tbody></table>
@@ -304,35 +304,35 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>add</strong>(self, other)</td>
+<td>__add__(self, other)</td>
 <td>+</td>
 </tr>
 <tr>
-<td><strong>sub</strong>(self, other)</td>
+<td>__sub__(self, other)</td>
 <td>-</td>
 </tr>
 <tr>
-<td><strong>mul</strong>(self, other)</td>
+<td>__mul__(self, other)</td>
 <td>*</td>
 </tr>
 <tr>
-<td><strong>matmul</strong>(self, other)</td>
+<td>__matmul__(self, other)</td>
 <td>@ (Python 3.5+)</td>
 </tr>
 <tr>
-<td><strong>truediv</strong>(self, other)</td>
+<td>__truediv__(self, other)</td>
 <td>&#x2F;</td>
 </tr>
 <tr>
-<td><strong>floordiv</strong>(self, other)</td>
+<td>__floordiv__(self, other)</td>
 <td>&#x2F;&#x2F;</td>
 </tr>
 <tr>
-<td><strong>mod</strong>(self, other)</td>
+<td>__mod__(self, other)</td>
 <td>%</td>
 </tr>
 <tr>
-<td><strong>pow</strong>(self, other[, modulo])</td>
+<td>__pow__(self, other[, modulo])</td>
 <td>**</td>
 </tr>
 </tbody></table>
@@ -344,35 +344,35 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>len</strong>(self)</td>
+<td>__len__(self)</td>
 <td>len()</td>
 </tr>
 <tr>
-<td><strong>getitem</strong>(self, key)</td>
+<td>__getitem__(self, key)</td>
 <td>self[key]</td>
 </tr>
 <tr>
-<td><strong>setitem</strong>(self, key, value)</td>
+<td>__setitem__(self, key, value)</td>
 <td>self[key] &#x3D; value</td>
 </tr>
 <tr>
-<td><strong>delitem</strong>(self, key)</td>
+<td>__delitem__(self, key)</td>
 <td>del self[key]</td>
 </tr>
 <tr>
-<td><strong>contains</strong>(self, item)</td>
+<td>__contains__(self, item)</td>
 <td>in 操作符</td>
 </tr>
 <tr>
-<td><strong>iter</strong>(self)</td>
+<td>__iter__(self)</td>
 <td>返回迭代器</td>
 </tr>
 <tr>
-<td><strong>next</strong>(self)</td>
+<td>__next__(self)</td>
 <td>迭代器下一个值</td>
 </tr>
 <tr>
-<td><strong>reversed</strong>(self)</td>
+<td>__reversed__(self)</td>
 <td>reversed()</td>
 </tr>
 </tbody></table>
@@ -384,7 +384,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>call</strong>(self[, args…])</td>
+<td>__call__(self[, args…])</td>
 <td>让对象可调用</td>
 </tr>
 </tbody></table>
@@ -396,11 +396,11 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>enter</strong>(self)</td>
+<td>__enter__(self)</td>
 <td>with语句进入时调用</td>
 </tr>
 <tr>
-<td><strong>exit</strong>(self, exc_type, exc_val, exc_tb)</td>
+<td>__exit__(self, exc_type, exc_val, exc_tb)</td>
 <td>with语句退出时调用</td>
 </tr>
 </tbody></table>
@@ -412,19 +412,19 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>reduce</strong>(self)</td>
+<td>__reduce__(self)</td>
 <td>pickle序列化</td>
 </tr>
 <tr>
-<td><strong>reduce_ex</strong>(self, protocol)</td>
+<td>__reduce_ex__(self, protocol)</td>
 <td>支持协议的pickle</td>
 </tr>
 <tr>
-<td><strong>copy</strong>(self)</td>
+<td>__copy__(self)</td>
 <td>浅拷贝</td>
 </tr>
 <tr>
-<td><strong>deepcopy</strong>(self, memo)</td>
+<td>__deepcopy__(self, memo)</td>
 <td>深拷贝</td>
 </tr>
 </tbody></table>
@@ -436,23 +436,23 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>await</strong>(self)</td>
+<td>__await__(self)</td>
 <td>返回迭代器</td>
 </tr>
 <tr>
-<td><strong>aiter</strong>(self)</td>
+<td>__aiter__(self)</td>
 <td>异步迭代器</td>
 </tr>
 <tr>
-<td><strong>anext</strong>(self)</td>
+<td>__anext__(self)</td>
 <td>异步下一个</td>
 </tr>
 <tr>
-<td><strong>aenter</strong>(self)</td>
+<td>__aenter__(self)</td>
 <td>异步上下文管理器</td>
 </tr>
 <tr>
-<td><strong>aexit</strong>(self, …)</td>
+<td>__aexit__(self, …)</td>
 <td>异步上下文管理器退出</td>
 </tr>
 </tbody></table>
@@ -464,27 +464,27 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>class</strong></td>
+<td>__class__</td>
 <td>对象的类</td>
 </tr>
 <tr>
-<td><strong>bases</strong></td>
+<td>__bases__</td>
 <td>类的基类元组</td>
 </tr>
 <tr>
-<td><strong>name</strong></td>
+<td>__name__</td>
 <td>类名</td>
 </tr>
 <tr>
-<td><strong>qualname</strong></td>
+<td>__qualname__</td>
 <td>类的限定名</td>
 </tr>
 <tr>
-<td><strong>module</strong></td>
+<td>__module__</td>
 <td>类所在的模块名</td>
 </tr>
 <tr>
-<td><strong>doc</strong></td>
+<td>__doc__</td>
 <td>类的文档字符串</td>
 </tr>
 </tbody></table>
