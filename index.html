@@ -128,7 +128,8 @@
       
         <h4 id="103-实例-后端-通过上下文获取用户等信息"><a href="#103-实例-后端-通过上下文获取用户等信息" class="headerlink" title="103-实例:后端-通过上下文获取用户等信息"></a>103-实例:后端-通过上下文获取用户等信息</h4><ul>
 <li>重点：使用__dict__，常用于：显示对象属性与值<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">它用于存储对象的所有属性及其对应的值。无论是类属性还是实例属性，都是以字典的形式进行存储的，其中属性名作为键，而值作为该键对应的值</span><br></pre></td></tr></table></figure>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CustomerUtil.get_current_context() == &lt;util.Obj object at 0x7fb28a5c7370&gt;</span><br><span class="line">CustomerUtil.get_current_context().__dict__</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CustomerUtil.get_current_context() == &lt;util.Obj object at 0x7fb28a5c7370&gt;</span><br><span class="line">CustomerUtil.get_current_context().__dict__</span><br></pre></td></tr></table></figure></li>
+<li>使用__dir__()显示属性名列表<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CustomerUtil.get_current_context().__dir__()</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
