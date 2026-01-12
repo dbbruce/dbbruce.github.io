@@ -87,6 +87,235 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-项目/HCM教程/035-单点登录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/06/01/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/035-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/">035-单点登录</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2025-06-01T14:44:25.000Z" itemprop="datePublished">2025年06月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
+  </div>
+
+      
+      
+<a href="/2025/06/01/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/035-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h4><ul>
+<li>url: &#x2F;api&#x2F;auth&#x2F;login_by_sso?sso&#x3D;customer_sso&amp;next&#x3D;&#x2F;index</li>
+</ul>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2025/06/01/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/035-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-项目/HCM教程/034-hooks的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/06/01/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/034-hooks%E7%9A%84%E4%BD%BF%E7%94%A8/">034-hooks的使用</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2025-06-01T12:44:25.000Z" itemprop="datePublished">2025年06月01日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
+  </div>
+
+      
+      
+<a href="/2025/06/01/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/034-hooks%E7%9A%84%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="在元数据中定义-hooks的方法"><a href="#在元数据中定义-hooks的方法" class="headerlink" title="在元数据中定义 hooks的方法"></a>在元数据中定义 hooks的方法</h4><ul>
+<li>考勤月报功能为例<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&quot;hooks&quot;: &#123;</span><br><span class="line">    &quot;beforeFetchDataAsync&quot;: &quot;=async function fn()&#123;var range=await dataService.callHcmOpenApi(&#x27;time.parameters.setting.get.by.key&#x27;,&#123;&#x27;key&#x27;:&#x27;TIME_MONTH_RANGE&#x27;,depart_id:SCOPE.getAllFilterDict().depart_id.child_include&#125;);SCOPE.TIME_MONTH_RANGE=range?range:SCOPE.auth.company_setting.TIME_MONTH_RANGE;SCOPE.getMonthStartEnd(SCOPE.filter_year_month);&#125;&quot;,</span><br><span class="line">    &quot;getMonthStartEnd&quot;: &quot;=function(year_month)&#123;var mrs=SCOPE.TIME_MONTH_RANGE;if(/^-?[0-9]&#123;1,2&#125;~\\+?[0-9]&#123;1,2&#125;$/.test(mrs))&#123;var[mbs,mes]=mrs.split(&#x27;~&#x27;);var mbi=parseInt(mbs.replace(/-/g,&#x27;&#x27;));var mei=parseInt(mes.replace(/\\+/g,&#x27;&#x27;));if(mbs&lt;mes.replace(/\\+/g,&#x27;9&#x27;)&amp;&amp;(1&lt;mbi&amp;&amp;mbi&lt;=31)&amp;&amp;(1&lt;mei&amp;&amp;mei&lt;=31))&#123;var bm=mbs.startsWith(&#x27;-&#x27;)?MOMENT(year_month).subtract(1,&#x27;months&#x27;):MOMENT(year_month);var begin_date=(bm.endOf(&#x27;month&#x27;).date()&lt;mbi?bm.add(1,&#x27;months&#x27;).startOf(&#x27;month&#x27;):bm.date(mbi)).format(&#x27;YYYY-MM-DD&#x27;);var em=mes.startsWith(&#x27;+&#x27;)?MOMENT(year_month).add(1,&#x27;months&#x27;):MOMENT(year_month);var end_date=(em.endOf(&#x27;month&#x27;).date()&lt;mei?em.endOf(&#x27;month&#x27;):em.date(mei)).format(&#x27;YYYY-MM-DD&#x27;);SCOPE.begin_date=begin_date;SCOPE.end_date=end_date;return[SCOPE.begin_date,SCOPE.end_date]&#125;&#125;SCOPE.begin_date=MOMENT(year_month).startOf(&#x27;month&#x27;).format(&#x27;YYYY-MM-DD&#x27;);SCOPE.end_date=MOMENT(year_month).endOf(&#x27;month&#x27;).format(&#x27;YYYY-MM-DD&#x27;);return[SCOPE.begin_date,SCOPE.end_date]&#125;&quot;,</span><br><span class="line">    &quot;setColumn&quot;: &quot;=function()&#123;setTimeout(function()&#123;SCOPE.temp_columns=SCOPE.temp_columns&amp;&amp;SCOPE.temp_columns.length?SCOPE.temp_columns:SCOPE.list_model.columns;var weekday_map=[&#x27;一&#x27;,&#x27;二&#x27;,&#x27;三&#x27;,&#x27;四&#x27;,&#x27;五&#x27;,&#x27;六&#x27;,&#x27;日&#x27;];var _date=MOMENT(SCOPE.begin_date);var end_date_moment=MOMENT(SCOPE.end_date);var _i=1,index_date_map=&#123;&#125;;while(_date&lt;=end_date_moment)&#123;index_date_map[_i.toString()]=&#123;label:`$&#123;_date.date()&#125;\\n$&#123;weekday_map[_date.weekday()]&#125;`,date:_date.format(&#x27;YYYY-MM-DD&#x27;),hide:false&#125;;_date=_date.add(1,&#x27;days&#x27;);_i++&#125;var cols=SCOPE.temp_columns.map(function(_col)&#123;if(_col.key.startsWith(&#x27;month_data_&#x27;))&#123;var date_index=_col.key.substr(11);if(index_date_map.hasOwnProperty(date_index))&#123;$filter(&#x27;deepMerge&#x27;)(_col,index_date_map[date_index])&#125;else&#123;_col.hide=true&#125;&#125;return _col&#125;);SCOPE.list_model.$setColumns(cols,SCOPE.list_model.fix_count)&#125;,233)&#125;&quot;,</span><br><span class="line">    &quot;setMetaBeforeAsync&quot;: &quot;=async function()&#123;SCOPE.customEnvironmentParams.view_items=SCOPE.mlGetViewItems();&#125;&quot;,</span><br><span class="line">    &quot;getExtraFilterDict&quot;: &quot;=function()&#123;return &#123;date_:SCOPE.end_date&#125;&#125;&quot;,</span><br><span class="line">    &quot;mlDefaultViewItems&quot;: &quot;=function()&#123;return [&#x27;shift&#x27;,&#x27;result&#x27;]&#125;&quot;,</span><br><span class="line">    &quot;mlGetViewItems&quot;: &quot;=function()&#123;if(SCOPE.customEnvironmentParams.view_items)&#123;return SCOPE.customEnvironmentParams.view_items&#125;;var custom_params=JSON.parse(STATE.params.custom_params||&#x27;&#123;&#125;&#x27;);if($filter(&#x27;isValidValue&#x27;)(custom_params.view_items))&#123;SCOPE.customEnvironmentParams.view_items=custom_params.view_items&#125;else&#123;SCOPE.customEnvironmentParams.view_items=SCOPE.mlDefaultViewItems();&#125;return SCOPE.customEnvironmentParams.view_items&#125;&quot;,</span><br><span class="line">    &quot;getAlterStateParams&quot;: &quot;=function () &#123; return &#123;&#x27;custom_params&#x27;: &#123;&#x27;view_items&#x27;: SCOPE.mlGetViewItems()&#125;&#125; &#125;&quot;,</span><br><span class="line">    &quot;fieldShow&quot;: &quot;=function(_row,_col,value)&#123;var cell_template=&#x27;&lt;div&gt;&#x27;;var date_info=_row[_col[&#x27;field&#x27;][0]];if(date_info&amp;&amp;!date_info.click_enabled)&#123;cell_template+=`&lt;div class=\&quot;icon icon-hcm-minus-circle\&quot; style=\&quot;color:#bbb;\&quot; title=\&quot;无权限查看今日考勤结果明细\&quot;&gt;&lt;/div&gt;`;cell_template+=&#x27;&lt;/div&gt;&#x27;;return cell_template&#125; if(date_info&amp;&amp;date_info.date_status)&#123;if(date_info.date_status===\&quot;no_schedule\&quot;)&#123;cell_template+=`&lt;div class=\&quot;icon icon-hcm-minus-circle\&quot;style=\&quot;color:#bbb;\&quot; title=\&quot;未排班\&quot;&gt;&lt;/div&gt;`;cell_template+=&#x27;&lt;/div&gt;&#x27;;return cell_template&#125;&#125; if(!(date_info&amp;&amp;date_info.shift&amp;&amp;date_info.shift.id))&#123;return&#x27;&#x27;&#125;var view_items=SCOPE.mlGetViewItems();if(view_items.indexOf(&#x27;shift&#x27;)&gt;-1)&#123;var shift=date_info.shift?date_info.shift.name:&#x27;-&#x27;;var shift_style=&#x27;color:#333;display:block;white-space:nowrap;&#x27;;shift_style+=&#x27;font-size:&#x27;+(view_items.indexOf(&#x27;result&#x27;)&gt;-1?&#x27;10&#x27;:&#x27;14&#x27;)+&#x27;px;&#x27;;cell_template+=&#x27;&lt;div class=\&quot;cell-content ellipsis-text\&quot; style=\&quot;&#x27;+shift_style+&#x27;\&quot;&gt;&#x27;+shift+&#x27;&lt;/div&gt;&#x27;&#125;if(view_items.indexOf(&#x27;result&#x27;)&gt;-1)&#123;var result=date_info.result_item?date_info.result_item.desc:&#x27;-&#x27;;var result_class=[],_italic=false;if(date_info.status===-1)&#123;result_class.push(&#x27;color-gray&#x27;);_italic=true&#125;else if(result===&#x27;-&#x27;||(date_info.shift_id===-1&amp;&amp;date_info.result_item_id===&#x27;work_rest&#x27;))&#123;result_class.push(&#x27;color-gray&#x27;)&#125;else if(date_info.result_item&amp;&amp;date_info.result_item.priority&gt;=60)&#123;result_class.push(&#x27;color-red&#x27;);_italic=true&#125;else if(date_info.result_item&amp;&amp;date_info.result_item.priority&gt;=30&amp;&amp;date_info.result_item.priority&lt;60)&#123;result_class.push(&#x27;color-orange&#x27;)&#125;var result_style=&#x27;margin:2px 0;&#x27;;result_style+=_italic?&#x27;font-style:italic;&#x27;:&#x27;&#x27;;cell_template+=&#x27;&lt;div class=\&quot;cell-content &#x27;+result_class.join(&#x27; &#x27;)+&#x27;\&quot; style=\&quot;&#x27;+result_style+&#x27;\&quot;&gt;&#x27;+result+&#x27;&lt;/div&gt;&#x27;&#125;if(view_items.indexOf(&#x27;hours&#x27;)&gt;-1)&#123;var hours=date_info.attend_hours;hours=$filter(&#x27;isValidValue&#x27;)(hours)?hours:&#x27;-&#x27;;var hours_style=&#x27;color:#333;&#x27;;hours_style+=&#x27;font-size:&#x27;+(view_items.indexOf(&#x27;result&#x27;)&gt;-1?&#x27;10&#x27;:&#x27;14&#x27;)+&#x27;px;&#x27;;cell_template+=&#x27;&lt;div class=\&quot;cell-content\&quot; style=\&quot;&#x27;+hours_style+&#x27;\&quot;&gt;&#x27;+hours+&#x27;&lt;/div&gt;&#x27;&#125;var extra_items=view_items.filter(function(_i)&#123;return [&#x27;shift&#x27;,&#x27;result&#x27;,&#x27;hours&#x27;].indexOf(_i)===-1&#125;);extra_items.map(function(_item)&#123;var extra_value=$filter(&#x27;getValue&#x27;)(date_info,_item.split(&#x27;.&#x27;));extra_value=$filter(&#x27;isValidValue&#x27;)(extra_value)?extra_value:&#x27;-&#x27;;var extra_style=&#x27;color:#333;&#x27;;extra_style+=&#x27;font-size:&#x27;+(view_items.indexOf(&#x27;result&#x27;)&gt;-1?&#x27;10&#x27;:&#x27;14&#x27;)+&#x27;px;&#x27;;cell_template+=&#x27;&lt;div class=\&quot;cell-content\&quot; style=\&quot;&#x27;+extra_style+&#x27;\&quot;&gt;&#x27;+extra_value+&#x27;&lt;/div&gt;&#x27;&#125;);cell_template+=&#x27;&lt;/div&gt;&#x27;;return $filter(&#x27;toTrusted&#x27;)(cell_template)&#125;&quot;,</span><br><span class="line">    &quot;empDateClick&quot;: &quot;=function(_row,_col)&#123;var _r=_row[_col[&#x27;field&#x27;][0]];if(!_r?.click_enabled)return;console.log(_row,_r);SCOPE.viewAppointItem(_r,&#123;model:&#x27;AttendDataResult&#x27;,state:&#x27;office_resultMonth&#x27;,id:_r.id?_r.id:&#123;employee_id:_row.employee.id,date:_col.date,depart_id:_r.depart_id,profile_type:_row.profile_type || 1&#125;&#125;,&#123;options:&#123;alter:&#123;employee_id:_row.employee.id,employee_name:_row.employee.name,date:_col.date,depart_id:_r.depart_id,origin_id:_row.origin_id&#125;&#125;&#125;).then(function()&#123;SCOPE.fetchData()&#125;)&#125;&quot;,</span><br><span class="line">    &quot;empInfoClick&quot;: &quot;=function fn(_row)&#123;debugger;var profile_types=[];if(_row.profile_type)&#123;if(_row.profile_type==1)&#123;profile_types=[1,null]&#125;else&#123;profile_types=[2]&#125;&#125;else&#123;profile_types=[1,null]&#125;var depart_ids=[];for(let key in _row)&#123;if(key.startsWith(&#x27;month_data&#x27;))&#123;if(_row[key].depart_id&amp;&amp;!depart_ids.includes(_row[key].depart_id))&#123;depart_ids.push(_row[key].depart_id)&#125;&#125;&#125;filter_dict=&#123;&#x27;employee_id&#x27;:_row.employee.id,&#x27;date&#x27;:&#123;&#x27;gte&#x27;:SCOPE.begin_date,&#x27;lte&#x27;:SCOPE.end_date&#125;,&#x27;profile_type&#x27;:&#123;&#x27;in&#x27;:profile_types&#125;&#125;;if(depart_ids.length)&#123;filter_dict.depart_id=&#123;in:depart_ids&#125;&#125;if(_row?.employee?.id)&#123;SCOPE.super_commgo(&#x27;common_model_list&#x27;,&#123;&#x27;model&#x27;:&#x27;AttendDataResult&#x27;,&#x27;meta_state&#x27;:&#x27;emp_detail&#x27;,&#x27;filter_dict&#x27;:filter_dict,&#x27;custom_params&#x27;:&#123;&#x27;year_month&#x27;:SCOPE.filter_year_month&#125;,show_fields_key:null,&#125;,&#123;&#x27;inherit&#x27;:false&#125;)&#125;&#125;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2025/06/01/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/034-hooks%E7%9A%84%E4%BD%BF%E7%94%A8/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-项目/HCM教程/033-分析报表-合并单元格" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/05/31/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/033-%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8-%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC/">033-分析报表-合并单元格</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2025-05-31T14:44:25.000Z" itemprop="datePublished">2025年05月31日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
+  </div>
+
+      
+      
+<a href="/2025/05/31/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/033-%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8-%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="云函数编写注意点"><a href="#云函数编写注意点" class="headerlink" title="云函数编写注意点"></a>云函数编写注意点</h4><ul>
+<li>类型：报表公式</li>
+<li>相同的合并数据放在一起，例如：序号、员工工号、姓名 3个单元格上下都合并<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;rows&quot;: 1,</span><br><span class="line">    &quot;number&quot;: &quot;3452&quot;,</span><br><span class="line">    &quot;name&quot;: &quot;何华&quot;,</span><br><span class="line">    &quot;date&quot;: &quot;2025-05-07&quot;,</span><br><span class="line">    &quot;begin_time&quot;: &quot;2025-05-0718: 00: 00&quot;,</span><br><span class="line">    &quot;end_time&quot;: &quot;2025-05-0719: 26: 00&quot;,</span><br><span class="line">    &quot;overtime_normal&quot;: 1,</span><br><span class="line">    &quot;overtime_rest&quot;: 0,</span><br><span class="line">    &quot;overtime_holiday&quot;: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;rows&quot;: 1,</span><br><span class="line">    &quot;number&quot;: &quot;3452&quot;,</span><br><span class="line">    &quot;name&quot;: &quot;何华&quot;,</span><br><span class="line">    &quot;date&quot;: &quot;2025-05-08&quot;,</span><br><span class="line">    &quot;begin_time&quot;: &quot;2025-05-0818: 00: 00&quot;,</span><br><span class="line">    &quot;end_time&quot;: &quot;2025-05-0818: 55: 00&quot;,</span><br><span class="line">    &quot;overtime_normal&quot;: 0.5,</span><br><span class="line">    &quot;overtime_rest&quot;: 0,</span><br><span class="line">    &quot;overtime_holiday&quot;: 0</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2025/05/31/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/033-%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8-%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-项目/HCM教程/032-云函数-后台任务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/05/31/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/032-%E4%BA%91%E5%87%BD%E6%95%B0-%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1/">032-云函数-后台任务</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2025-05-31T12:44:25.000Z" itemprop="datePublished">2025年05月31日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
+  </div>
+
+      
+      
+<a href="/2025/05/31/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/032-%E4%BA%91%E5%87%BD%E6%95%B0-%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="后台任务代码示例"><a href="#后台任务代码示例" class="headerlink" title="后台任务代码示例"></a>后台任务代码示例</h4>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2025/05/31/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/032-%E4%BA%91%E5%87%BD%E6%95%B0-%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-项目/HCM教程/031-干审表-干审表取数配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -426,238 +655,6 @@
 </article>
 
 
-  <article id="post-项目/HCM教程/025-仪表盘-饼图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/05/25/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/025-%E4%BB%AA%E8%A1%A8%E7%9B%98-%E9%A5%BC%E5%9B%BE/">025-仪表盘-饼图</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2025-05-25T12:44:25.000Z" itemprop="datePublished">2025年05月25日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
-  </div>
-
-      
-      
-<a href="/2025/05/25/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/025-%E4%BB%AA%E8%A1%A8%E7%9B%98-%E9%A5%BC%E5%9B%BE/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="新建仪表盘"><a href="#新建仪表盘" class="headerlink" title="新建仪表盘"></a>新建仪表盘</h4><p>分析报表 - 新建报表 - 报表类别选择【仪表盘】</p>
-<p><img src="/../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B/1%E5%88%B063/025-%E4%BB%AA%E8%A1%A8%E7%9B%98-%E9%A5%BC%E5%9B%BE-1.png" alt="025-仪表盘-饼图-1.png"></p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2025/05/25/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/025-%E4%BB%AA%E8%A1%A8%E7%9B%98-%E9%A5%BC%E5%9B%BE/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-项目/HCM教程/024-穿透字段" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/05/21/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/024-%E7%A9%BF%E9%80%8F%E5%AD%97%E6%AE%B5/">024-穿透字段</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2025-05-21T12:44:25.000Z" itemprop="datePublished">2025年05月21日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
-  </div>
-
-      
-      
-<a href="/2025/05/21/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/024-%E7%A9%BF%E9%80%8F%E5%AD%97%E6%AE%B5/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="穿透字段-点击表格中的字段内容，跳转"><a href="#穿透字段-点击表格中的字段内容，跳转" class="headerlink" title="穿透字段-点击表格中的字段内容，跳转"></a>穿透字段-点击表格中的字段内容，跳转</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> &quot;fields&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;label&quot;: &quot;管理员人员差异(%)&quot;,</span><br><span class="line">        &quot;key&quot;: &quot;u_manager&quot;,</span><br><span class="line">        &quot;field&quot;: [</span><br><span class="line">            &quot;u_manager&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;data_type&quot;: &quot;integer&quot;,</span><br><span class="line">        &quot;object&quot;: null,</span><br><span class="line">        &quot;align&quot;: &quot;center&quot;,</span><br><span class="line">        &quot;width&quot;: 100,</span><br><span class="line">        &quot;sequence&quot;: 30,</span><br><span class="line">        &quot;fieldFunc&quot;: null,</span><br><span class="line">        &quot;format&quot;: null,</span><br><span class="line">        &quot;state&quot;: null,</span><br><span class="line">        &quot;is_blur&quot;: false,</span><br><span class="line">        &quot;color&quot;: &quot;35baf6&quot;,</span><br><span class="line">        &quot;func&quot;: &quot;=function(_row,col,value)&#123;return SCOPE.super_go(&#x27;common_model_tree_list&#x27;,&#123;&#x27;model&#x27;:&#x27;U_salary_cont&#x27;, &#x27;meta_state&#x27;: &#x27;manage&#x27;, &#x27;filter_dict&#x27;:&#123;&#x27;u_month&#x27;:SCOPE.advance_query.filter_dict.u_month.split(&#x27;&#x27;).join(&#x27;&#x27;)&#125;,&#x27;tree_id&#x27;:&#x27;18309808!&#x27;+_row.depart.id,&#x27;custom_params&#x27;:&#123;&#x27;u_month&#x27;:SCOPE.advance_query.filter_dict.u_month.split(&#x27;&#x27;).join(&#x27;&#x27;)&#125;&#125;)&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2025/05/21/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/024-%E7%A9%BF%E9%80%8F%E5%AD%97%E6%AE%B5/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-项目/HCM教程/023-function取值的方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/05/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/023-function%E5%8F%96%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95/">023-function取值的方法</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2025-05-20T15:44:25.000Z" itemprop="datePublished">2025年05月20日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
-  </div>
-
-      
-      
-<a href="/2025/05/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/023-function%E5%8F%96%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="function取值的方法"><a href="#function取值的方法" class="headerlink" title="function取值的方法"></a>function取值的方法</h4><ul>
-<li>表单：选中的数据 SCOPE.list_model.selected_items</li>
-<li>过滤条件： SCOPE.advance_query.filter_dict</li>
-<li>三元运算： 条件语句 ? true执行的逻辑 : false执行的逻辑<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">programid = SCOPE.advance_query.model.split(&#x27;.+&#x27;)[1]</span><br><span class="line">fmonth = SCOPE.advance_query.filter_dict.month</span><br><span class="line">femployee_ids = SCOPE.list_model.selected_items.length &gt; 0 ? SCOPE.list_model.selected_items.map(i =&gt; i.employee_id) : null;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2025/05/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/023-function%E5%8F%96%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-项目/HCM教程/022-super_go案例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/05/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/022-super_go%E6%A1%88%E4%BE%8B/">022-super_go案例</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2025-05-20T12:44:25.000Z" itemprop="datePublished">2025年05月20日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a>
-  </div>
-
-      
-      
-<a href="/2025/05/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/022-super_go%E6%A1%88%E4%BE%8B/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="表单字段，使用super-go跳转其他页面"><a href="#表单字段，使用super-go跳转其他页面" class="headerlink" title="表单字段，使用super_go跳转其他页面"></a>表单字段，使用super_go跳转其他页面</h4><ul>
-<li>_row 当前行的数据</li>
-<li>col  当前字段的信息，字段名，字段长度</li>
-<li>value 当前行中表格中的数据</li>
-</ul>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2025/05/20/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/022-super_go%E6%A1%88%E4%BE%8B/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
@@ -684,15 +681,15 @@
           </li>
         
           <li>
-            <a href="/2025/08/11/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/109-%E5%AE%9E%E4%BE%8B:%E6%89%8B%E5%8A%A8%E7%BB%93%E6%9D%9F%E6%B5%81%E7%A8%8B/">109-实例:手动结束流程</a>
+            <a href="/2025/08/12/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/113-%E5%AE%9E%E4%BE%8B:%E6%8C%89%E9%92%AE%E9%97%B4%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">113-实例:按钮间互相调用</a>
           </li>
         
           <li>
-            <a href="/2025/08/11/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/108-%E5%AE%9E%E4%BE%8B:%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E6%95%B0%E6%8D%AE/">108-实例:查看流程数据</a>
+            <a href="/2025/08/12/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/112-%E5%AE%9E%E4%BE%8B:%E7%82%B9%5B%E6%8C%89%E9%92%AE1%5D-%E5%BC%B9%5B%E6%98%BE%E7%A4%BA%E4%BF%A1%E6%81%AF1%5D/">112-实例:点[按钮1]-弹[显示信息1]</a>
           </li>
         
           <li>
-            <a href="/2025/08/11/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/107-%E5%AE%9E%E4%BE%8B:%E8%AF%B7%E4%BC%91%E5%81%87%E6%B5%81%E7%A8%8B%E5%9B%BE/">107-实例:请休假流程图</a>
+            <a href="/2025/08/12/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/111-%E5%AE%9E%E4%BE%8B:%5B%E5%9B%9E%E9%80%80%5D%E6%8C%89%E9%92%AE/">111-实例:[回退]按钮</a>
           </li>
         
       </ul>
@@ -707,7 +704,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">136</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">111</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">140</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">115</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -717,7 +714,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2035/">2035年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">115</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2035/">2035年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">119</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

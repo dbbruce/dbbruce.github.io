@@ -87,6 +87,231 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-运维/K8S/基础/32-k8s1.28新版本安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/16/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/32-k8s1.28%E6%96%B0%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85/">32-k8s1.28新版本安装</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-16T02:00:00.000Z" itemprop="datePublished">2023年05月16日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/16/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/32-k8s1.28%E6%96%B0%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="kubeadm安装k8s1-28集群"><a href="#kubeadm安装k8s1-28集群" class="headerlink" title="kubeadm安装k8s1.28集群"></a>kubeadm安装k8s1.28集群</h3><p>k8s环境规划：<br>  podSubnet（pod网段） 10.188.0.0&#x2F;16<br>  serviceSubnet（service网段）: 10.88.0.0&#x2F;12</p>
+<p>实验环境规划：<br>操作系统：centos7.9<br>配置： 4Gib内存&#x2F;4vCPU&#x2F;60G硬盘<br>网络：NAT模式</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/16/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/32-k8s1.28%E6%96%B0%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基础/31-Ingress实现业务灰度发布" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/15/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/31-Ingress%E5%AE%9E%E7%8E%B0%E4%B8%9A%E5%8A%A1%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/">31-Ingress实现业务灰度发布</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-15T12:00:00.000Z" itemprop="datePublished">2023年05月15日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/15/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/31-Ingress%E5%AE%9E%E7%8E%B0%E4%B8%9A%E5%8A%A1%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="通过Ingress-nginx实现灰度发布"><a href="#通过Ingress-nginx实现灰度发布" class="headerlink" title="通过Ingress-nginx实现灰度发布"></a>通过Ingress-nginx实现灰度发布</h3><h4 id="场景一-将新版本灰度给部分用户"><a href="#场景一-将新版本灰度给部分用户" class="headerlink" title="场景一: 将新版本灰度给部分用户"></a>场景一: 将新版本灰度给部分用户</h4><p>假设线上运行了一套对外提供 7 层服务的 Service A 服务，后来开发了个新版本 Service A’ 想要上线，但又不想直接替换掉原来的 Service A，希望先灰度一小部分用户，等运行一段时间足够稳定了再逐渐全量上线新版本，最后平滑下线旧版本。这个时候就可以利用 Nginx Ingress 基于 Header 或 Cookie 进行流量切分的策略来发布，业务使用 Header 或 Cookie 来标识不同类型的用户，我们通过配置 Ingress 来实现让带有指定 Header 或 Cookie 的请求被转发到新版本，其它的仍然转发到旧版本，从而实现将新版本灰度给部分用户:</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/15/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/31-Ingress%E5%AE%9E%E7%8E%B0%E4%B8%9A%E5%8A%A1%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基础/30-Ingress-Controller高可用方案及多租户场景" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/15/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/30-Ingress-Controller%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%8F%8A%E5%A4%9A%E7%A7%9F%E6%88%B7%E5%9C%BA%E6%99%AF/">30-Ingress-Controller高可用方案及多租户场景</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-15T02:00:00.000Z" itemprop="datePublished">2023年05月15日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/15/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/30-Ingress-Controller%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%8F%8A%E5%A4%9A%E7%A7%9F%E6%88%B7%E5%9C%BA%E6%99%AF/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Ingress和-Ingress-Controller概述"><a href="#Ingress和-Ingress-Controller概述" class="headerlink" title="Ingress和 Ingress Controller概述"></a>Ingress和 Ingress Controller概述</h3><h3 id="1-回顾下service四层负载"><a href="#1-回顾下service四层负载" class="headerlink" title="1. 回顾下service四层负载"></a>1. 回顾下service四层负载</h3><p><img src="/../../../../images/k8s/jc30/img.png" alt="img.png"></p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/15/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/30-Ingress-Controller%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%8F%8A%E5%A4%9A%E7%A7%9F%E6%88%B7%E5%9C%BA%E6%99%AF/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-运维/K8S/基础/29-K8S安全实战篇之RBAC认证授权" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/29-K8S%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E7%AF%87%E4%B9%8BRBAC%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83/">29-K8S安全实战篇之RBAC认证授权</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-05-14T12:00:00.000Z" itemprop="datePublished">2023年05月14日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
+  </div>
+
+      
+      
+<a href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/29-K8S%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E7%AF%87%E4%B9%8BRBAC%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-k8s安全管理：认证、授权、准入控制概述"><a href="#1-k8s安全管理：认证、授权、准入控制概述" class="headerlink" title="1 k8s安全管理：认证、授权、准入控制概述"></a>1 k8s安全管理：认证、授权、准入控制概述</h3><h4 id="1-1-认证"><a href="#1-1-认证" class="headerlink" title="1.1 认证"></a>1.1 认证</h4><p>认证基本介绍<br>kubernetes主要通过APIserver对外提供服务，那么就需要对访问apiserver的用户做认证，如果任何人都能访问apiserver，那么就可以随意在k8s集群部署资源，这是非常危险的，也容易被黑客攻击渗透，所以需要我们对访问k8s系统的apiserver的用户进行认证，确保是合法的符合要求的用户。</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2023/05/14/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/29-K8S%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E7%AF%87%E4%B9%8BRBAC%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-运维/K8S/基础/28-K8S配置管理中心Secret实现加密数据配置管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -428,234 +653,6 @@
 </article>
 
 
-  <article id="post-运维/K8S/基础/22-Service四层代理基本介绍" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/11/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/22-Service%E5%9B%9B%E5%B1%82%E4%BB%A3%E7%90%86%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">22-Service四层代理基本介绍</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-11T02:00:00.000Z" itemprop="datePublished">2023年05月11日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/05/11/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/22-Service%E5%9B%9B%E5%B1%82%E4%BB%A3%E7%90%86%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="一、四层负载均衡Service：概念、原理解读"><a href="#一、四层负载均衡Service：概念、原理解读" class="headerlink" title="一、四层负载均衡Service：概念、原理解读"></a>一、四层负载均衡Service：概念、原理解读</h3><h4 id="1-1-为什么要有Service？"><a href="#1-1-为什么要有Service？" class="headerlink" title="1.1.为什么要有Service？"></a>1.1.为什么要有Service？</h4><p>在kubernetes中，Pod是有生命周期的，如果Pod重启它的IP很有可能会发生变化。如果我们的服务都是将Pod的IP地址写死，Pod挂掉或者重启，和刚才重启的pod相关联的其他服务将会找不到它所关联的Pod，为了解决这个问题，在kubernetes中定义了service资源对象，Service 定义了一个服务访问的入口，客户端通过这个入口即可访问服务背后的应用集群实例，service是一组Pod的逻辑集合，这一组Pod能够被Service访问到，通常是通过Label Selector实现的。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/05/11/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/22-Service%E5%9B%9B%E5%B1%82%E4%BB%A3%E7%90%86%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/K8S/基础/21-Deployment资源基本介绍" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/21-Deployment%E8%B5%84%E6%BA%90%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">21-Deployment资源基本介绍</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-10T12:00:00.000Z" itemprop="datePublished">2023年05月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/21-Deployment%E8%B5%84%E6%BA%90%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="Deployment控制器：概念、原理解读"><a href="#Deployment控制器：概念、原理解读" class="headerlink" title="Deployment控制器：概念、原理解读"></a>Deployment控制器：概念、原理解读</h3><p>Deployment官方文档：<br><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">https://kubernetes.io/docs/concepts/workloads/controllers/deployment/</a></p>
-<h4 id="1、Deployment概述"><a href="#1、Deployment概述" class="headerlink" title="1、Deployment概述"></a>1、Deployment概述</h4><p>Deployment是kubernetes中最常用的资源对象，为ReplicaSet和Pod的创建提供了一种声明式的定义方法，在Deployment对象中描述一个期望的状态，Deployment控制器就会按照一定的控制速率把实际状态改成期望状态，通过定义一个Deployment控制器会创建一个新的ReplicaSet控制器，通过ReplicaSet创建pod，删除Deployment控制器，也会删除Deployment控制器下对应的ReplicaSet控制器和pod资源.<br>使用Deployment而不直接创建ReplicaSet是因为Deployment对象拥有许多ReplicaSet没有的特性，例如滚动升级、金丝雀发布、蓝绿部署和回滚。</p>
-<blockquote>
-<p>扩展：声明式定义是指直接修改资源清单yaml文件，然后通过kubectl apply -f 资源清单yaml文件，就可以更改资源</p>
-</blockquote>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/21-Deployment%E8%B5%84%E6%BA%90%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/K8S/基础/20-replicaset资源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/20-replicaset%E8%B5%84%E6%BA%90/">20-replicaset资源</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-10T02:00:00.000Z" itemprop="datePublished">2023年05月10日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/20-replicaset%E8%B5%84%E6%BA%90/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="K8s控制器Replicaset"><a href="#K8s控制器Replicaset" class="headerlink" title="K8s控制器Replicaset"></a>K8s控制器Replicaset</h3><p>前面我们学习了Pod，那我们在定义pod资源时，可以直接创建一个kind：Pod类型的自主式pod，但是这存在一个问题，假如pod被删除了，那这个pod就不能自我恢复，就会彻底被删除，线上这种情况非常危险，所以今天就给大家讲解下pod的控制器，所谓控制器就是能够管理pod，监测pod运行状况，当pod发生故障，可以自动恢复pod。也就是说能够代我们去管理pod中间层，并帮助我们确保每一个pod资源始终处于我们所定义或者我们所期望的目标状态，一旦pod资源出现故障，那么控制器会尝试重启pod或者里面的容器，如果一直重启有问题的话那么它可能会基于某种策略来进行重新布派或者重新编排；如果pod副本数量低于用户所定义的目标数量，它也会自动补全；如果多余，也会自动终止pod资源。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/05/10/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/20-replicaset%E8%B5%84%E6%BA%90/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
-  <article id="post-运维/K8S/基础/19-Pod容器健康探测" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/">19-Pod容器健康探测</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2023-05-09T12:00:00.000Z" itemprop="datePublished">2023年05月09日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a> > <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a>
-  </div>
-
-      
-      
-<a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="为什么要对容器做探测？"><a href="#为什么要对容器做探测？" class="headerlink" title="为什么要对容器做探测？"></a>为什么要对容器做探测？</h3><p>在 Kubernetes 中 Pod 是最小的计算单元，而一个 Pod 又由多个容器组成，相当于每个容器就是一个应用，应用在运行期间，可能因为某些意外情况致使程序挂掉。那么如何监控这些容器状态稳定性，保证服务在运行期间不会发生问题，发生问题后进行重启等机制，就成为了重中之重的事情，考虑到这点 kubernetes 推出了活性探针机制。有了存活性探针能保证程序在运行中如果挂掉能够自动重启，但是还有个经常遇到的问题，比如说，在Kubernetes 中启动Pod，显示明明Pod已经启动成功，且能访问里面的端口，但是却返回错误信息。还有就是在执行滚动更新时候，总会出现一段时间，Pod对外提供网络访问，但是访问却发生404，这两个原因，都是因为Pod已经成功启动，但是 Pod 的的容器中应用程序还在启动中导致，考虑到这点Kubernetes推出了就绪性探针机制</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2023/05/09/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/19-Pod%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E6%8E%A2%E6%B5%8B/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
@@ -682,15 +679,15 @@
           </li>
         
           <li>
-            <a href="/2025/08/11/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/109-%E5%AE%9E%E4%BE%8B:%E6%89%8B%E5%8A%A8%E7%BB%93%E6%9D%9F%E6%B5%81%E7%A8%8B/">109-实例:手动结束流程</a>
+            <a href="/2025/08/12/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/113-%E5%AE%9E%E4%BE%8B:%E6%8C%89%E9%92%AE%E9%97%B4%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8/">113-实例:按钮间互相调用</a>
           </li>
         
           <li>
-            <a href="/2025/08/11/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/108-%E5%AE%9E%E4%BE%8B:%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E6%95%B0%E6%8D%AE/">108-实例:查看流程数据</a>
+            <a href="/2025/08/12/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/112-%E5%AE%9E%E4%BE%8B:%E7%82%B9%5B%E6%8C%89%E9%92%AE1%5D-%E5%BC%B9%5B%E6%98%BE%E7%A4%BA%E4%BF%A1%E6%81%AF1%5D/">112-实例:点[按钮1]-弹[显示信息1]</a>
           </li>
         
           <li>
-            <a href="/2025/08/11/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/107-%E5%AE%9E%E4%BE%8B:%E8%AF%B7%E4%BC%91%E5%81%87%E6%B5%81%E7%A8%8B%E5%9B%BE/">107-实例:请休假流程图</a>
+            <a href="/2025/08/12/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/111-%E5%AE%9E%E4%BE%8B:%5B%E5%9B%9E%E9%80%80%5D%E6%8C%89%E9%92%AE/">111-实例:[回退]按钮</a>
           </li>
         
       </ul>
@@ -705,7 +702,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">136</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">111</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/">GO语言</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/GO%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/Django/">Django</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%8C%85%E6%96%B9%E6%B3%95/">包方法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a><span class="category-list-count">12</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/git/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/">odoo</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/odoo/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/">每月概要</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2023/">2023</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%9C%88%E6%A6%82%E8%A6%81/2025/">2025</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/">爬虫类</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%8F%8D%E7%88%AC/">反爬</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B1%BB/%E7%BC%96%E7%A0%81/">编码</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E5%B8%B8/">异常</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">197</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/Java%E7%94%9F%E6%80%81/">Java生态</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/">K8S</a><span class="category-list-count">48</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%94%99%E8%AF%AF/">错误</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/K8S/%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/">项目汇总</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/">docker</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/docker/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/">错误集锦</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/grafana/">grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/linux%E4%BA%91%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">linux云计算基础教程</a><span class="category-list-count">63</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/memcached/">memcached</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/nginx/">nginx</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/">zabbix</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/zabbix/5-0LTS/">5.0LTS</a><span class="category-list-count">19</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">抓包工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B8%B8%E8%AF%86/">运维一些技巧和常识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">问题处理</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/%E9%A2%98/">题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a><span class="category-list-count">140</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a><span class="category-list-count">115</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/">医药公司ERP</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E4%B8%9A%E5%8A%A1/">业务</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/%E5%8C%BB%E8%8D%AF%E5%85%AC%E5%8F%B8ERP/%E5%9F%BA%E7%A1%80/">基础</a><span class="category-list-count">3</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -715,7 +712,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2035/">2035年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">115</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2035/">2035年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">119</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
