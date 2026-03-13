@@ -148,10 +148,26 @@
 <span id="more"></span>
 </li>
 <li><p>人员子集创建方法</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过人员基础信息直接就可以创建</span><br><span class="line">parent_id:employee_id 是固定写法</span><br><span class="line">model：必须 employee_dynamic_subset.xxx开头</span><br><span class="line">view: 固定写法</span><br><span class="line">页面上部显示字段：description </span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过人员基础信息直接就可以创建</span><br><span class="line">parent_id:employee_id 是固定写法</span><br><span class="line">model：必须 employee_dynamic_subset.xxx开头</span><br><span class="line">view: 子集显示方式，multi 有多条子集信息；single 只有一条子集信息；</span><br><span class="line">页面上部显示字段：description </span><br></pre></td></tr></table></figure>
 <p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0004-%E7%AC%94%E8%AE%B0:Pass%E5%9F%B9%E8%AE%AD/00001000.png" alt="00001000.png"><br><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0004-%E7%AC%94%E8%AE%B0:Pass%E5%9F%B9%E8%AE%AD/00002000.png" alt="00002000.png"></p>
 </li>
+<li><p>弹性字段讲解<br><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0004-%E7%AC%94%E8%AE%B0:Pass%E5%9F%B9%E8%AE%AD/00003000.png" alt="00003000.png"></p>
+</li>
+<li><p>分组：groups<br><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0004-%E7%AC%94%E8%AE%B0:Pass%E5%9F%B9%E8%AE%AD/00004000.png" alt="00004000.png"></p>
+</li>
 </ul>
+<h5 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">会签：全部都要批</span><br><span class="line">或签：一个人批就行</span><br></pre></td></tr></table></figure>
+<p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0004-%E7%AC%94%E8%AE%B0:Pass%E5%9F%B9%E8%AE%AD/00005000.png" alt="00005000.png"></p>
+<ul>
+<li><p>管理团队 域名&#x2F;#&#x2F;business_type<br><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0004-%E7%AC%94%E8%AE%B0:Pass%E5%9F%B9%E8%AE%AD/00006000.png" alt="00006000.png"></p>
+</li>
+<li><p>流程发布后，可以通过链接访问：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">流程台账-workflow_detail:</span><br><span class="line">https://xxxx.com/#/workflow_detail?role=cm-org-emp&amp;business_id=7167&amp;version=3</span><br><span class="line">business_id 是流程业务ID</span><br></pre></td></tr></table></figure>
+<p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0004-%E7%AC%94%E8%AE%B0:Pass%E5%9F%B9%E8%AE%AD/00007000.png" alt="00007000.png"></p>
+</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">流程详情页：workflow_bill_v3</span><br><span class="line">https://tedatest.hcmcloud.cn/#/workflow_bill_v3?mode=new&amp;business_id=64390</span><br></pre></td></tr></table></figure>
+<p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0004-%E7%AC%94%E8%AE%B0:Pass%E5%9F%B9%E8%AE%AD/00008000.png" alt="00008000.png"></p>
 
         
             <div id="toc-article">
@@ -159,7 +175,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%B9%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="toc-text">弹性模型</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%B9%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="toc-text">弹性模型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-text">流程</span></a></li></ol>
     </div>
   </div>
 
