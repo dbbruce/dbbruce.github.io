@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="第 1 页" id="Tq8SuFVRW-88whwNUY6v">
+    <mxGraphModel dx="1038" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="YkR_X-X92D-I6foDBYEG-3" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#000000;strokeColor=#666666;" value="个税计算&lt;div&gt;个税累计数据&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-5" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" value="薪酬计算&lt;div&gt;应发计算&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-7" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" value="&lt;div&gt;薪酬计算&lt;/div&gt;锁定应发" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-9" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#000000;" value="个税计算&lt;div&gt;生成零工资记录&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-20" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-17" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;" value="个税计算&lt;div&gt;累计专项扣除&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-12" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" value="应发计算结果：&lt;div&gt;1、应发合计&lt;/div&gt;&lt;div&gt;2、成本合计&lt;/div&gt;&lt;div&gt;3、计税项目属性，个税本期数据&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="230" x="310" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-14" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#f5f5f5;fontColor=#000000;strokeColor=#666666;" value="1、1月开始，使用系统，不需要初始化；&lt;div&gt;2、非1月，需要导入数据&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="230" x="310" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-16" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#000000;" value="获取人员列表" vertex="1">
+          <mxGeometry height="60" width="230" x="310" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-28" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="YkR_X-X92D-I6foDBYEG-23" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#000000;" value="个税计算&lt;div&gt;个税计算&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-19" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;" value="&lt;span style=&quot;font-family: quote-cjk-patch, Inter, system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, Cantarell, &amp;quot;Open Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font&gt;累计专项附加扣除数据一般由财务人员定期从税局扣缴端采集并下载；点击“导入累计专项附加扣除”按钮，下载导入模板并导入数据。&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="330" x="310" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-22" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#000000;" value="&lt;span style=&quot;font-family: quote-cjk-patch, Inter, system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, Cantarell, &amp;quot;Open Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font&gt;点击“个税计算”，自动计算本期数据、累计数据（累计专项附加扣除数据除外）和税款数据。最终计算出来税额对应“累计应补（退）税额”&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="320" x="310" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-29" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="YkR_X-X92D-I6foDBYEG-25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#000000;strokeColor=#2D7600;" value="薪酬计算&lt;div&gt;实发计算&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-30" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="YkR_X-X92D-I6foDBYEG-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-24" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#000000;strokeColor=#2D7600;align=left;" value="&lt;ul style=&quot;margin: 16px 0px; padding-left: 18px; font-family: quote-cjk-patch, Inter, system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, Cantarell, &amp;quot;Open Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; background-color: rgb(255, 255, 255);&quot;&gt;&lt;li style=&quot;&quot;&gt;&lt;p class=&quot;ds-markdown-paragraph&quot; style=&quot;margin-right: 0px; margin-bottom: 0px; margin-left: 0px; margin-top: 0px !important;&quot;&gt;&lt;font&gt;点击“薪酬实发计算”的效果：&lt;br&gt;(1) 从【个税计算】中获取个税数据，赋值“本次扣税”。&lt;br&gt;(2) 计算系统预制项“实发合计”。&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="70" width="320" x="310" y="745" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#000000;strokeColor=#006EAF;" value="薪酬计算&lt;div&gt;封存&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-27" edge="1" parent="1" source="YkR_X-X92D-I6foDBYEG-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontColor=#000000;" target="YkR_X-X92D-I6foDBYEG-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YkR_X-X92D-I6foDBYEG-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#1ba1e2;fontColor=#000000;strokeColor=#006EAF;" value="&lt;span style=&quot;font-family: quote-cjk-patch, Inter, system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, Cantarell, &amp;quot;Open Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font&gt;“封存”涵义：代表本次薪酬数据整体核算完毕，可进行工资数据的后续运用，如工资条下发、工资数据报表查询等。&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: quote-cjk-patch, Inter, system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, Cantarell, &amp;quot;Open Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="310" x="315" y="850" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
