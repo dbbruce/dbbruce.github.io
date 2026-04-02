@@ -139,8 +139,11 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h5 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1、先创建 薪酬方案，薪酬档案；</span><br><span class="line">2、工资项目：薪酬方案下的薪酬项目；</span><br><span class="line">3、计算公式：薪酬方案下的计算公式；</span><br><span class="line">4、工资数据：通过计算或维护算出具体数据；</span><br><span class="line">5、特殊项-预制类薪酬项目-必须有的项：应发合计，本次扣税，实发合计，成本合计；</span><br><span class="line">6、扣缴义务人：扣缴义务人：个人所得税以所得人为纳税人，以支付所得的单位或者个人为扣缴义务人；在单位体系中，可以理解为员工的个税，在税务系统中，是由哪个单位代扣代缴</span><br><span class="line">白话： 谁给你发的这笔钱，谁就有义务在发钱的时候，先把税扣下来，然后替你把钱交给税务局</span><br><span class="line">白话： 在单位里，就是发你工资的那个单位负责代扣代缴。你不需要自己跑去税务局交税，单位在财务发工资的时候就帮你处理好了。你拿到手的工资，是税后工资（已经扣完税的钱</span><br><span class="line">7、薪酬方案：工资表通过薪酬方案</span><br><span class="line">8、薪酬档案：人员列表通过薪酬档案</span><br><span class="line">9、一个薪酬方案，就是一个核算主体，核算主体是指会计核算工作所服务的特定单位或对象，简单来说，就是会计为谁记账、算账、报账；不推荐共享薪酬方案；</span><br><span class="line">10、标准薪酬方案，</span><br></pre></td></tr></table></figure>
+        <h5 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h5><ul>
+<li>概念<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">假设你在<span class="number">3</span>月份（薪酬月份）辛苦工作了一个月，公司安排在<span class="number">4</span>月<span class="number">10</span>日（发薪月份）把这笔工资发给你。</span><br><span class="line">项目	对应时间	说明</span><br><span class="line">薪酬月份	<span class="number">3</span>月	这是你<span class="number">3</span>月份劳动的报酬</span><br><span class="line">发薪月份	<span class="number">4</span>月	你在<span class="number">4</span>月<span class="number">10</span>日实际收到钱</span><br><span class="line">税款所属月份	<span class="number">4</span>月	税务局认定这笔税属于<span class="number">4</span>月份</span><br><span class="line">公司申报缴纳	<span class="number">5</span>月<span class="number">15</span>日前	公司最晚在<span class="number">5</span>月<span class="number">15</span>日，把<span class="number">4</span>月扣的这笔税上缴</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1、先创建 薪酬方案，薪酬档案；</span><br><span class="line">2、工资项目：薪酬方案下的薪酬项目；</span><br><span class="line">3、计算公式：薪酬方案下的计算公式；</span><br><span class="line">4、工资数据：通过计算或维护算出具体数据；</span><br><span class="line">5、特殊项-预制类薪酬项目-必须有的项：应发合计，本次扣税，实发合计，成本合计；</span><br><span class="line">6、扣缴义务人：扣缴义务人：个人所得税以所得人为纳税人，以支付所得的单位或者个人为扣缴义务人；在单位体系中，可以理解为员工的个税，在税务系统中，是由哪个单位代扣代缴</span><br><span class="line">白话： 谁给你发的这笔钱，谁就有义务在发钱的时候，先把税扣下来，然后替你把钱交给税务局</span><br><span class="line">白话： 在单位里，就是发你工资的那个单位负责代扣代缴。你不需要自己跑去税务局交税，单位在财务发工资的时候就帮你处理好了。你拿到手的工资，是税后工资（已经扣完税的钱</span><br><span class="line">7、薪酬方案：工资表通过薪酬方案</span><br><span class="line">8、薪酬档案：人员列表通过薪酬档案</span><br><span class="line">9、一个薪酬方案，就是一个核算主体，核算主体是指会计核算工作所服务的特定单位或对象，简单来说，就是会计为谁记账、算账、报账；不推荐共享薪酬方案；</span><br><span class="line">10、标准薪酬方案，</span><br></pre></td></tr></table></figure></li>
+</ul>
 <h4 id="1-管控方案-–-非常重要，需要自己梳理"><a href="#1-管控方案-–-非常重要，需要自己梳理" class="headerlink" title="1.管控方案  – 非常重要，需要自己梳理"></a>1.管控方案  – 非常重要，需要自己梳理</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.一个集团只能建一个管控方案</span><br><span class="line">2.创建一级管控项，创建管控项</span><br></pre></td></tr></table></figure>
 <p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/127/00000500.png" alt="00000500.png"><br><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/127/00001000.png" alt="00001000.png"></p>
 <h4 id="2-薪酬方案"><a href="#2-薪酬方案" class="headerlink" title="2.薪酬方案"></a>2.薪酬方案</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.创建薪酬方案</span><br><span class="line">2.创建薪酬项目</span><br><span class="line">3.工资条设置，查看在【全员服务】-【工资条】</span><br></pre></td></tr></table></figure>
@@ -256,6 +259,191 @@
 <li><p>上报国资委<br><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/127/00018000.png" alt="00018000.png"></p>
 </li>
 </ul>
+<h4 id="11-本期应预扣预缴税额计算公式"><a href="#11-本期应预扣预缴税额计算公式" class="headerlink" title="11.本期应预扣预缴税额计算公式"></a>11.本期应预扣预缴税额计算公式</h4><ul>
+<li>注意（变更扣缴义务人，月份从1重新开始计算）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">概念</th>
+<th align="left">对应主体</th>
+<th align="left">变化场景</th>
+<th align="left">对个税累计的影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">本单位入职时间</td>
+<td align="left">行政单位（具体合同主体）</td>
+<td align="left">在集团内部从A公司调动到B公司</td>
+<td align="left">没有影响。只要A和B的扣缴义务人相同，个税继续累计。</td>
+</tr>
+<tr>
+<td align="left">任职受雇日期</td>
+<td align="left">扣缴义务人（报税法人）</td>
+<td align="left">换了一个不同的扣缴义务人（例如从甲公司跳槽到乙公司）</td>
+<td align="left">有影响。新公司会重新从0开始累计你的收入和税款。</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>公民：本期应预扣预缴税额＝（本月收入×月份-5000×月份-减免项×月份）×税率%－速算扣除数－累计已预扣预缴税额</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">税率：根据月份*本月收入变化的；比如月收入<span class="number">3</span>W，第一个月税率为<span class="number">3</span>%，第二个月税率为<span class="number">10</span>%（<span class="number">3</span>W*<span class="number">2</span>=<span class="number">6</span>W）</span><br><span class="line">累计已预扣预缴税额：前几个月的预扣预缴税额总和，每年<span class="number">1</span>月重新开始</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>公民税率表 - 【薪酬设置】 - 【计税方案】</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">级数</th>
+<th align="left">累计预扣预缴应纳税所得额</th>
+<th align="left">预扣率（%）</th>
+<th align="left">速算扣除数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">不超过36000元</td>
+<td align="left">3</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">超过36000元至144000元的部分</td>
+<td align="left">10</td>
+<td align="left">2520</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">超过144000元至300000元的部分</td>
+<td align="left">20</td>
+<td align="left">16920</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">超过300000元至420000元的部分</td>
+<td align="left">25</td>
+<td align="left">31920</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">超过420000元至660000元的部分</td>
+<td align="left">30</td>
+<td align="left">52920</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">超过660000元至960000元的部分</td>
+<td align="left">35</td>
+<td align="left">85920</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">超过960000元的部分</td>
+<td align="left">45</td>
+<td align="left">181920</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>非公民：应纳税额＝（本月收入－减除费用5000）×税率－速算扣除数</p>
+</li>
+<li><p>非公民税率表 - 【薪酬设置】 - 【计税方案】</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">级数</th>
+<th align="left">应纳税所得额</th>
+<th align="left">税率（%）</th>
+<th align="left">速算扣除数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">不超过3000元</td>
+<td align="left">3</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">超过3000元至12000元的部分</td>
+<td align="left">10</td>
+<td align="left">210</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">超过12000元至25000元的部分</td>
+<td align="left">20</td>
+<td align="left">1410</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">超过25000元至35000元的部分</td>
+<td align="left">25</td>
+<td align="left">2660</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">超过35000元至55000元的部分</td>
+<td align="left">30</td>
+<td align="left">4410</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">超过55000元至80000元的部分</td>
+<td align="left">35</td>
+<td align="left">7160</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">超过80000元的部分</td>
+<td align="left">45</td>
+<td align="left">15160</td>
+</tr>
+</tbody></table>
+<h4 id="12-工资表里的【薪酬项目】-和-个税申报时的【计税项目】-是两套不同的逻辑"><a href="#12-工资表里的【薪酬项目】-和-个税申报时的【计税项目】-是两套不同的逻辑" class="headerlink" title="12.工资表里的【薪酬项目】 和 个税申报时的【计税项目】 是两套不同的逻辑"></a>12.工资表里的【薪酬项目】 和 个税申报时的【计税项目】 是两套不同的逻辑</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">薪酬项目：是公司内部管理用的，项目名称可以很灵活，比如“基本工资”、“全勤奖”、“交通补贴”、“项目提成”、“保密费”、“高温补贴”等。这些项目主要服务于公司的薪酬制度和员工激励。</span><br><span class="line">计税项目：是税务局系统里法定的、固定的分类，比如“工资薪金”、“劳务报酬”、“年终一次性奖金”等。税务局只认这些法定分类，并按对应的规则计算税款。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>有些薪酬项目，在税务上有特殊的计算或免税规则，不能简单合并到“工资薪金”里。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">薪酬项目</th>
+<th align="left">可能的计税项目</th>
+<th align="left">特殊规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">年终奖</td>
+<td align="left">全年一次性奖金</td>
+<td align="left">可选择单独计税（除以12找税率）或并入综合所得</td>
+</tr>
+<tr>
+<td align="left">离职补偿金</td>
+<td align="left">离职一次性补偿</td>
+<td align="left">当地上年平均工资3倍以内免税，超出部分单独计税</td>
+</tr>
+<tr>
+<td align="left">高温补贴</td>
+<td align="left">工资薪金</td>
+<td align="left">一般需合并计税（没有全国统一的免税政策）</td>
+</tr>
+<tr>
+<td align="left">差旅补贴</td>
+<td align="left">工资薪金</td>
+<td align="left">合理标准内（需有制度）免税，超标部分合并计税</td>
+</tr>
+<tr>
+<td align="left">误餐补贴</td>
+<td align="left">工资薪金</td>
+<td align="left">按标准内实际误餐次数发放的免税，人人有份的需计税</td>
+</tr>
+<tr>
+<td align="left">股权激励</td>
+<td align="left">股权激励所得</td>
+<td align="left">可单独适用年度综合所得税率表，有特殊计算公式</td>
+</tr>
+</tbody></table>
 
         
             <div id="toc-article">
@@ -263,7 +451,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%94%E8%AE%B0"><span class="toc-text">笔记</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%AE%A1%E6%8E%A7%E6%96%B9%E6%A1%88-%E2%80%93-%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%8C%E9%9C%80%E8%A6%81%E8%87%AA%E5%B7%B1%E6%A2%B3%E7%90%86"><span class="toc-text">1.管控方案  – 非常重要，需要自己梳理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%96%AA%E9%85%AC%E6%96%B9%E6%A1%88"><span class="toc-text">2.薪酬方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%A0%87%E5%87%86%E8%96%AA%E9%85%AC%E6%96%B9%E6%A1%88%EF%BC%9A%E5%85%A8%E5%8D%95%E4%BD%8D%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%90%8C%E8%96%AA%E9%85%AC%E4%BD%93%E7%B3%BB-%E3%80%90%E8%96%AA%E9%85%AC%E7%A6%8F%E5%88%A9%E3%80%91-%E3%80%90%E6%A0%87%E5%87%86%E8%96%AA%E9%85%AC%E6%96%B9%E6%A1%88%E3%80%91"><span class="toc-text">3.标准薪酬方案：全单位使用相同薪酬体系 - 【薪酬福利】- 【标准薪酬方案】</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%96%AA%E9%85%AC%E6%96%B9%E6%A1%88%E6%8E%88%E6%9D%83"><span class="toc-text">4.薪酬方案授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E7%A6%8F%E5%88%A9-%E7%A4%BE%E4%BF%9D%E5%8C%BB%E7%96%97%EF%BC%8C%E4%BC%81%E4%B8%9A%E5%B9%B4%E9%87%91%E8%BF%99%E4%BA%9B%E5%9C%A8%E7%A6%8F%E5%88%A9%E9%87%8C"><span class="toc-text">5.福利 - 社保医疗，企业年金这些在福利里</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-text">名词解释</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1-%E7%A6%8F%E5%88%A9%E8%AE%BE%E7%BD%AE-%E8%AE%BE%E7%BD%AE%E5%90%84%E7%A7%8D%E9%99%A9%E7%A7%8D-%E3%80%90%E8%96%AA%E9%85%AC%E7%A6%8F%E5%88%A9%E3%80%91-%E3%80%90%E7%A6%8F%E5%88%A9%E8%AE%BE%E7%BD%AE%E3%80%91"><span class="toc-text">5.1 福利设置 - 设置各种险种 - 【薪酬福利】-【福利设置】</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-%E7%A6%8F%E5%88%A9%E6%96%B9%E6%A1%88-%E8%AE%BE%E7%BD%AE%E5%90%84%E7%A7%8D%E9%99%A9%E7%A7%8D-%E3%80%90%E8%96%AA%E9%85%AC%E7%A6%8F%E5%88%A9%E3%80%91-%E3%80%90%E7%A6%8F%E5%88%A9%E6%96%B9%E6%A1%88%E3%80%91"><span class="toc-text">5.2 福利方案 - 设置各种险种 - 【薪酬福利】-【福利方案】</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-%E7%A6%8F%E5%88%A9%E6%A1%A3%E6%A1%88-%E6%8E%A7%E5%88%B6%E4%BA%BA%E5%91%98"><span class="toc-text">5.3 福利档案 - 控制人员</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-4-%E7%A6%8F%E5%88%A9%E5%AE%9E%E7%BC%B4-%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">5.4 福利实缴 - 导入数据</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E4%B8%AA%E7%A8%8E%E7%AE%A1%E7%90%86"><span class="toc-text">6.个税管理 -</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E8%96%AA%E9%85%AC%E8%AE%A1%E7%AE%97"><span class="toc-text">7.薪酬计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE"><span class="toc-text">8.业务数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E8%96%AA%E9%85%AC%E8%AE%A1%E7%AE%97-%E4%B8%BB%E8%A6%81%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">9.薪酬计算 - 主要操作流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E8%96%AA%E9%85%AC%E9%A2%84%E7%AE%97-%E5%AF%B9%E8%96%AA%E8%B5%84%E8%BF%9B%E8%A1%8C%E7%AE%A1%E6%8E%A7"><span class="toc-text">10.薪酬预算 - 对薪资进行管控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E5%A5%96%E9%87%91%E5%8C%85-%E5%A5%96%E9%87%91%E5%8C%85%E4%BA%8C%E6%AC%A1%E5%88%86%E9%85%8D-%E7%BB%99%E5%A4%9A%E4%B8%AA%E9%83%A8%E9%97%A8%E5%88%86%E9%85%8D%E4%BA%BA%E5%91%98%E5%A5%96%E9%87%91"><span class="toc-text">11.奖金包 - 奖金包二次分配 - 给多个部门分配人员奖金</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E5%9B%BD%E8%B5%84%E5%A7%94%E4%B8%8A%E6%8A%A5"><span class="toc-text">10.国资委上报</span></a>
+      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%94%E8%AE%B0"><span class="toc-text">笔记</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%AE%A1%E6%8E%A7%E6%96%B9%E6%A1%88-%E2%80%93-%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%8C%E9%9C%80%E8%A6%81%E8%87%AA%E5%B7%B1%E6%A2%B3%E7%90%86"><span class="toc-text">1.管控方案  – 非常重要，需要自己梳理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%96%AA%E9%85%AC%E6%96%B9%E6%A1%88"><span class="toc-text">2.薪酬方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%A0%87%E5%87%86%E8%96%AA%E9%85%AC%E6%96%B9%E6%A1%88%EF%BC%9A%E5%85%A8%E5%8D%95%E4%BD%8D%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%90%8C%E8%96%AA%E9%85%AC%E4%BD%93%E7%B3%BB-%E3%80%90%E8%96%AA%E9%85%AC%E7%A6%8F%E5%88%A9%E3%80%91-%E3%80%90%E6%A0%87%E5%87%86%E8%96%AA%E9%85%AC%E6%96%B9%E6%A1%88%E3%80%91"><span class="toc-text">3.标准薪酬方案：全单位使用相同薪酬体系 - 【薪酬福利】- 【标准薪酬方案】</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%96%AA%E9%85%AC%E6%96%B9%E6%A1%88%E6%8E%88%E6%9D%83"><span class="toc-text">4.薪酬方案授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E7%A6%8F%E5%88%A9-%E7%A4%BE%E4%BF%9D%E5%8C%BB%E7%96%97%EF%BC%8C%E4%BC%81%E4%B8%9A%E5%B9%B4%E9%87%91%E8%BF%99%E4%BA%9B%E5%9C%A8%E7%A6%8F%E5%88%A9%E9%87%8C"><span class="toc-text">5.福利 - 社保医疗，企业年金这些在福利里</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-text">名词解释</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1-%E7%A6%8F%E5%88%A9%E8%AE%BE%E7%BD%AE-%E8%AE%BE%E7%BD%AE%E5%90%84%E7%A7%8D%E9%99%A9%E7%A7%8D-%E3%80%90%E8%96%AA%E9%85%AC%E7%A6%8F%E5%88%A9%E3%80%91-%E3%80%90%E7%A6%8F%E5%88%A9%E8%AE%BE%E7%BD%AE%E3%80%91"><span class="toc-text">5.1 福利设置 - 设置各种险种 - 【薪酬福利】-【福利设置】</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-%E7%A6%8F%E5%88%A9%E6%96%B9%E6%A1%88-%E8%AE%BE%E7%BD%AE%E5%90%84%E7%A7%8D%E9%99%A9%E7%A7%8D-%E3%80%90%E8%96%AA%E9%85%AC%E7%A6%8F%E5%88%A9%E3%80%91-%E3%80%90%E7%A6%8F%E5%88%A9%E6%96%B9%E6%A1%88%E3%80%91"><span class="toc-text">5.2 福利方案 - 设置各种险种 - 【薪酬福利】-【福利方案】</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-%E7%A6%8F%E5%88%A9%E6%A1%A3%E6%A1%88-%E6%8E%A7%E5%88%B6%E4%BA%BA%E5%91%98"><span class="toc-text">5.3 福利档案 - 控制人员</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-4-%E7%A6%8F%E5%88%A9%E5%AE%9E%E7%BC%B4-%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">5.4 福利实缴 - 导入数据</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E4%B8%AA%E7%A8%8E%E7%AE%A1%E7%90%86"><span class="toc-text">6.个税管理 -</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E8%96%AA%E9%85%AC%E8%AE%A1%E7%AE%97"><span class="toc-text">7.薪酬计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE"><span class="toc-text">8.业务数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E8%96%AA%E9%85%AC%E8%AE%A1%E7%AE%97-%E4%B8%BB%E8%A6%81%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">9.薪酬计算 - 主要操作流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E8%96%AA%E9%85%AC%E9%A2%84%E7%AE%97-%E5%AF%B9%E8%96%AA%E8%B5%84%E8%BF%9B%E8%A1%8C%E7%AE%A1%E6%8E%A7"><span class="toc-text">10.薪酬预算 - 对薪资进行管控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E5%A5%96%E9%87%91%E5%8C%85-%E5%A5%96%E9%87%91%E5%8C%85%E4%BA%8C%E6%AC%A1%E5%88%86%E9%85%8D-%E7%BB%99%E5%A4%9A%E4%B8%AA%E9%83%A8%E9%97%A8%E5%88%86%E9%85%8D%E4%BA%BA%E5%91%98%E5%A5%96%E9%87%91"><span class="toc-text">11.奖金包 - 奖金包二次分配 - 给多个部门分配人员奖金</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E5%9B%BD%E8%B5%84%E5%A7%94%E4%B8%8A%E6%8A%A5"><span class="toc-text">10.国资委上报</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E6%9C%AC%E6%9C%9F%E5%BA%94%E9%A2%84%E6%89%A3%E9%A2%84%E7%BC%B4%E7%A8%8E%E9%A2%9D%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="toc-text">11.本期应预扣预缴税额计算公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-%E5%B7%A5%E8%B5%84%E8%A1%A8%E9%87%8C%E7%9A%84%E3%80%90%E8%96%AA%E9%85%AC%E9%A1%B9%E7%9B%AE%E3%80%91-%E5%92%8C-%E4%B8%AA%E7%A8%8E%E7%94%B3%E6%8A%A5%E6%97%B6%E7%9A%84%E3%80%90%E8%AE%A1%E7%A8%8E%E9%A1%B9%E7%9B%AE%E3%80%91-%E6%98%AF%E4%B8%A4%E5%A5%97%E4%B8%8D%E5%90%8C%E7%9A%84%E9%80%BB%E8%BE%91"><span class="toc-text">12.工资表里的【薪酬项目】 和 个税申报时的【计税项目】 是两套不同的逻辑</span></a>
     </div>
   </div>
 
