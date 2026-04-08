@@ -590,17 +590,12 @@
 <td align="left">累计应扣缴税额 - 累计已预缴税额</td>
 </tr>
 </tbody></table>
-<h4 id="16-福利核算"><a href="#16-福利核算" class="headerlink" title="16.福利核算"></a>16.福利核算</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">计算规则：</span><br><span class="line">A. 个人缴纳/单位缴纳 = 基数 × 比例 + 个人/单位调整 + 入职个人/单位补缴 + 基数调整个人/单位补缴；</span><br><span class="line">B. 个人、单位调整字段，允许手动调整，其他不允许修改。</span><br></pre></td></tr></table></figure>
+<h4 id="16-福利核算"><a href="#16-福利核算" class="headerlink" title="16.福利核算"></a>16.福利核算</h4><p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/0002/0001000.png" alt="0001000.png"></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">计算规则：</span><br><span class="line">A. 个人缴纳/单位缴纳 = 基数 × 比例 + 个人/单位调整 + 入职个人/单位补缴 + 基数调整个人/单位补缴；</span><br><span class="line">B. 个人、单位调整字段，允许手动调整，其他不允许修改。</span><br></pre></td></tr></table></figure>
 <h4 id="17-福利补缴"><a href="#17-福利补缴" class="headerlink" title="17.福利补缴"></a>17.福利补缴</h4><ul>
-<li><p>功能定位：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">因基数调整滞后或入职下月补缴或险种比例调整等原因，引发的补缴业务处理；</span><br><span class="line">支持通过基数调整自动生成补缴数据、手工选人手动维护补缴数据、比例调整手工选人生成补缴数据三种方式；</span><br><span class="line">补缴数据支持回写到指定的福利核算期间，计入指定月份的福利缴纳数据中。</span><br></pre></td></tr></table></figure></li>
-<li><p>名词解释：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">缴纳月份：基数调整时的生效月份，默认在本月补缴；</span><br><span class="line">所属月份：补缴数据所属月份，即补缴哪月的福利数据；</span><br><span class="line">分摊月份：补缴数据具体在哪月进行补缴，默认等于缴纳月份，支持调整到未来月份补缴；</span><br><span class="line">补缴类型：系统默认，基数调整生成时，类型为基数调整补缴；手工选人生成时，类型为入职补缴；比例调整选人生成时，类型为比例调整补缴。</span><br></pre></td></tr></table></figure></li>
-<li><p>基数比例调整补缴  </p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">个人/单位缴纳 = 现基数 × 现比例 - 补缴月份福利核算数据</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>入职补缴</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>功能定位：<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">因基数调整滞后或入职下月补缴或险种比例调整等原因，引发的补缴业务处理；</span><br><span class="line">支持通过基数调整自动生成补缴数据、手工选人手动维护补缴数据、比例调整手工选人生成补缴数据三种方式；</span><br><span class="line">补缴数据支持回写到指定的福利核算期间，计入指定月份的福利缴纳数据中。</span><br></pre></td></tr></table></figure></li>
+<li>名词解释：<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">缴纳月份：基数调整时的生效月份，默认在本月补缴；</span><br><span class="line">所属月份：补缴数据所属月份，即补缴哪月的福利数据；</span><br><span class="line">分摊月份：补缴数据具体在哪月进行补缴，默认等于缴纳月份，支持调整到未来月份补缴；</span><br><span class="line">补缴类型：系统默认，基数调整生成时，类型为基数调整补缴；手工选人生成时，类型为入职补缴；比例调整选人生成时，类型为比例调整补缴。</span><br></pre></td></tr></table></figure></li>
+<li>基数比例调整补缴  <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">个人/单位缴纳 = 现基数 × 现比例 - 补缴月份福利核算数据</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 
         
