@@ -150,6 +150,51 @@
 <h4 id="会签、或签"><a href="#会签、或签" class="headerlink" title="会签、或签"></a>会签、或签</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 会签：所有审批人必须通过</span><br><span class="line">2. 或签：任一审批人通过</span><br></pre></td></tr></table></figure>
 
 <h4 id="任职模型是有时间轴的，一般有时间轴的都是主模型"><a href="#任职模型是有时间轴的，一般有时间轴的都是主模型" class="headerlink" title="任职模型是有时间轴的，一般有时间轴的都是主模型"></a>任职模型是有时间轴的，一般有时间轴的都是主模型</h4><p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/15/0002000.png" alt="0002000.png"></p>
+<h4 id="分析报表，随着部门id变化查层级表"><a href="#分析报表，随着部门id变化查层级表" class="headerlink" title="分析报表，随着部门id变化查层级表"></a>分析报表，随着部门id变化查层级表</h4><p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/15/0003000.png" alt="0003000.png"></p>
+<h4 id="弹性模型-弹性字段属性"><a href="#弹性模型-弹性字段属性" class="headerlink" title="弹性模型 - 弹性字段属性"></a>弹性模型 - 弹性字段属性</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否List</td>
+<td>是否在List列表展示该字段</td>
+</tr>
+<tr>
+<td>是否Info</td>
+<td>是否在弹出卡片Info层展示该字段</td>
+</tr>
+<tr>
+<td>是否模糊搜索</td>
+<td>是否支持List列表右上角的模糊搜索</td>
+</tr>
+<tr>
+<td>是否必录</td>
+<td>是否必填</td>
+</tr>
+<tr>
+<td>是否多选</td>
+<td>是否多选与字段类型多选相关联</td>
+</tr>
+<tr>
+<td>是否业务主键</td>
+<td>唯一值</td>
+</tr>
+<tr>
+<td>顺序</td>
+<td>List列表和info层字段显示的顺序</td>
+</tr>
+<tr>
+<td>MASK</td>
+<td>枚举列表</td>
+</tr>
+</tbody></table>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">关联对象的字段key值一定要以_id结尾并且3个字符以上，字段类型必须是整型</span><br><span class="line">多选字段字段类型选择多选的同时，是否多选选择是</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义应用-权限-系统管理员"><a href="#自定义应用-权限-系统管理员" class="headerlink" title="自定义应用 - 权限&#x3D;系统管理员"></a>自定义应用 - 权限&#x3D;系统管理员</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">角色 - 控制人员是否可以看见</span><br><span class="line">参数 - 最好配置场景，meta_state: xxxx</span><br><span class="line">场景 - common_model_tree_list（有左侧树） ，common_model_list（无左侧树）</span><br></pre></td></tr></table></figure>
+<p><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/15/0005000.png" alt="0005000.png"><br><img src="/../../../../images/%E9%A1%B9%E7%9B%AE/%E4%BD%B3%E4%B8%9A/HCM%E6%95%99%E7%A8%8B2/%E7%AC%94%E8%AE%B0/15/0004000.png" alt="0004000.png"></p>
 
         
             <div id="toc-article">
@@ -157,7 +202,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-text">流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%9A%E7%AD%BE%E3%80%81%E6%88%96%E7%AD%BE"><span class="toc-text">会签、或签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E8%81%8C%E6%A8%A1%E5%9E%8B%E6%98%AF%E6%9C%89%E6%97%B6%E9%97%B4%E8%BD%B4%E7%9A%84%EF%BC%8C%E4%B8%80%E8%88%AC%E6%9C%89%E6%97%B6%E9%97%B4%E8%BD%B4%E7%9A%84%E9%83%BD%E6%98%AF%E4%B8%BB%E6%A8%A1%E5%9E%8B"><span class="toc-text">任职模型是有时间轴的，一般有时间轴的都是主模型</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-text">流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%9A%E7%AD%BE%E3%80%81%E6%88%96%E7%AD%BE"><span class="toc-text">会签、或签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E8%81%8C%E6%A8%A1%E5%9E%8B%E6%98%AF%E6%9C%89%E6%97%B6%E9%97%B4%E8%BD%B4%E7%9A%84%EF%BC%8C%E4%B8%80%E8%88%AC%E6%9C%89%E6%97%B6%E9%97%B4%E8%BD%B4%E7%9A%84%E9%83%BD%E6%98%AF%E4%B8%BB%E6%A8%A1%E5%9E%8B"><span class="toc-text">任职模型是有时间轴的，一般有时间轴的都是主模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%EF%BC%8C%E9%9A%8F%E7%9D%80%E9%83%A8%E9%97%A8id%E5%8F%98%E5%8C%96%E6%9F%A5%E5%B1%82%E7%BA%A7%E8%A1%A8"><span class="toc-text">分析报表，随着部门id变化查层级表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%B9%E6%80%A7%E6%A8%A1%E5%9E%8B-%E5%BC%B9%E6%80%A7%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7"><span class="toc-text">弹性模型 - 弹性字段属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8-%E6%9D%83%E9%99%90-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98"><span class="toc-text">自定义应用 - 权限&#x3D;系统管理员</span></a></li></ol>
     </div>
   </div>
 
