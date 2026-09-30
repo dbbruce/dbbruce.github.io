@@ -87,6 +87,63 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-项目/HCM教程/笔记/0007-笔记:元数据体系" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/08/27/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E7%AC%94%E8%AE%B0/0007-%E7%AC%94%E8%AE%B0:%E5%85%83%E6%95%B0%E6%8D%AE%E4%BD%93%E7%B3%BB/">0007-笔记:元数据体系</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2025-08-27T14:45:00.000Z" itemprop="datePublished">2025年08月27日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+      
+      
+<a href="/2025/08/27/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E7%AC%94%E8%AE%B0/0007-%E7%AC%94%E8%AE%B0:%E5%85%83%E6%95%B0%E6%8D%AE%E4%BD%93%E7%B3%BB/#comments" class="article-comment-link">
+  
+<!--   <i class="fa fa-commt"></i> -->
+<!--   留言 -->
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h5 id="model元数据"><a href="#model元数据" class="headerlink" title="model元数据"></a>model元数据</h5><ul>
+<li>validators &#x3D;&#x3D; 附加校验器<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;validators&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;checker&quot;</span>: <span class="string">&quot;MobileFormat&quot;</span>,  <span class="comment">//内置校验器</span></span><br><span class="line">      <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;check_value&quot;</span>: <span class="string">&quot;:phone&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">&quot;tips&quot;</span>: <span class="string">&quot;电话号码格式不合法&quot;</span>,</span><br><span class="line">      <span class="string">&quot;key&quot;</span>: <span class="string">&quot;mobile_number_validator&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;checker&quot;</span>: <span class="string">&quot;DynamicChecker&quot;</span>,   <span class="comment">//动态云函数</span></span><br><span class="line">      <span class="string">&quot;name&quot;</span>: <span class="string">&quot;emailChecker&quot;</span>,    <span class="comment">//云函数：类型：校验器 ----- 函数名：DataChecker_emailChecker(命名规则:&#123;DataChecker_&#123;validatorName&#125;)</span></span><br><span class="line">      <span class="string">&quot;key&quot;</span>: <span class="string">&quot;name_validator&quot;</span>,</span><br><span class="line">      <span class="string">&quot;tips&quot;</span>: <span class="string">&quot;邮箱校验不合法&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+        <p class="article-more-link">
+          <a href="/2025/08/27/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E7%AC%94%E8%AE%B0/0007-%E7%AC%94%E8%AE%B0:%E5%85%83%E6%95%B0%E6%8D%AE%E4%BD%93%E7%B3%BB/#more">阅读全文</a>
+        </p>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-项目/HCM教程/笔记/0006-笔记:测评功能" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -601,62 +658,6 @@
 </article>
 
 
-  <article id="post-项目/HCM教程/实例/129-实例:同步企业微信打卡数据" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/08/25/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E5%AE%9E%E4%BE%8B/129-%E5%AE%9E%E4%BE%8B:%E5%90%8C%E6%AD%A5%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%89%93%E5%8D%A1%E6%95%B0%E6%8D%AE/">129-实例:同步企业微信打卡数据</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2025-08-25T13:35:00.000Z" itemprop="datePublished">2025年08月25日</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/">HCM教程</a> > <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E5%AE%9E%E4%BE%8B/">实例</a>
-  </div>
-
-      
-      
-<a href="/2025/08/25/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E5%AE%9E%E4%BE%8B/129-%E5%AE%9E%E4%BE%8B:%E5%90%8C%E6%AD%A5%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%89%93%E5%8D%A1%E6%95%B0%E6%8D%AE/#comments" class="article-comment-link">
-  
-<!--   <i class="fa fa-commt"></i> -->
-<!--   留言 -->
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h5 id="同步企业微信打卡数据"><a href="#同步企业微信打卡数据" class="headerlink" title="同步企业微信打卡数据"></a>同步企业微信打卡数据</h5>
-      
-    </div>
-    <footer class="article-footer">
-      
-        
-        <p class="article-more-link">
-          <a href="/2025/08/25/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E5%AE%9E%E4%BE%8B/129-%E5%AE%9E%E4%BE%8B:%E5%90%8C%E6%AD%A5%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%89%93%E5%8D%A1%E6%95%B0%E6%8D%AE/#more">阅读全文</a>
-        </p>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
@@ -679,6 +680,10 @@
           </li>
         
           <li>
+            <a href="/2026/09/30/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E7%AC%94%E8%AE%B0/0002-%E7%AC%94%E8%AE%B0:%E8%96%AA%E9%85%AC%E7%A6%8F%E5%88%A9/">0002-笔记:薪酬福利</a>
+          </li>
+        
+          <li>
             <a href="/2026/03/25/%E4%B9%A6%E7%B1%8D/03-%3C%3CPython%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E6%89%8B%E5%86%8C%3E%3E%E7%AC%94%E8%AE%B0/">03-&lt;&lt;Python数据科学手册&gt;&gt;笔记</a>
           </li>
         
@@ -688,10 +693,6 @@
         
           <li>
             <a href="/2025/11/12/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E5%AE%9E%E4%BE%8B/160-%E5%AE%9E%E4%BE%8B:%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E7%A9%BF%E9%80%8F%E8%AE%BE%E7%BD%AE/">160-实例:分析报表穿透设置</a>
-          </li>
-        
-          <li>
-            <a href="/2025/11/11/%E9%A1%B9%E7%9B%AE/HCM%E6%95%99%E7%A8%8B/%E5%AE%9E%E4%BE%8B/159-%E5%AE%9E%E4%BE%8B:%E6%B5%81%E7%A8%8B%E8%8A%82%E7%82%B9-%E4%BA%BA%E5%91%98%E9%80%89%E6%8B%A9%E6%A1%86%E6%8C%89%E9%83%A8%E9%97%A8%E6%9D%83%E9%99%90%E8%BF%87%E6%BB%A4%E4%BA%BA%E5%91%98%E9%80%89%E9%A1%B9/">159-实例:流程节点-人员选择框按部门权限过滤人员选项</a>
           </li>
         
       </ul>
@@ -716,7 +717,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2035/">2035年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">181</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2035/">2035年</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026年</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025年</a><span class="archive-list-count">180</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年</a><span class="archive-list-count">135</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年</a><span class="archive-list-count">107</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020年</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018年</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017年</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2000/">2000年</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
