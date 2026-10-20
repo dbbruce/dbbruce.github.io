@@ -146,14 +146,54 @@
 </blockquote>
 </blockquote>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;default_filter_dict&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;biz_type&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;talentPool&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;advance_query&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;remove_info_meta&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;default_meta_length&quot;</span><span class="punctuation">:</span> <span class="number">2</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h4>
+<h4 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h4><h4 id="2-盘点公式"><a href="#2-盘点公式" class="headerlink" title="2.盘点公式"></a>2.盘点公式</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>公式</th>
+<th>参数</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>获取绩效活动结果</td>
+<td>GET_ACT_RESULT(“绩效活动编号”, filter_position&#x3D;1)</td>
+<td>:param act_number: &lt;必填&gt; 绩效活动编号\n:param filter_position: &lt;选填&gt;默认过滤岗位  1(过滤)&#x2F;0(不过滤)<br>:return:</td>
+<td>指定绩效方案 GET_ACT_RESULT(“绩效活动编号”, filter_position&#x3D;1)<br>GET_ACT_RESULT(“绩效活动编号”, filter_position&#x3D;1)</td>
+</tr>
+<tr>
+<td>获取测评活动结果公式</td>
+<td>GET_360_DATA(“测评活动名称”, status&#x3D;’2’, group_name&#x3D;None)</td>
+<td>:param act_name: &lt;必填&gt; 测评活动名称<br>:param status: &lt;选填&gt; 活动状态 默认”2”使用已结束的活动(“0”未启动 “1”进行中 “2”已结束 “3”暂停)<br>:param group_name: &lt;选填&gt; 分组名称<br>:return:</td>
+<td>360活动名称 2020年测评活动<br>活动状态 已结束 (“0”未启动 “1”进行中 “2”已结束 “3”暂停)<br>公式为 GET_360_DATA(“2020年测评活动”,”2”)<br>GET_360_DATA(“测评活动名称”, status&#x3D;’2’, group_name&#x3D;None)</td>
+</tr>
+<tr>
+<td>获取新版测评活动结果公式</td>
+<td>GET_NEW_EVAL_DATA(“测评活动名称”,filter_position&#x3D;1)</td>
+<td>:param act_name: &lt;必填&gt; 测评活动名称<br>:param filter_position: &lt;选填&gt;默认过滤岗位  1(过滤)&#x2F;0(不过滤)<br>:return:</td>
+<td>活动名称 2020年测评活动<br>公式为 GET_NEW_EVAL_DATA(“2020年测评活动”,filter_position&#x3D;1)<br>GET_NEW_EVAL_DATA(“测评活动名称”,filter_position&#x3D;1)</td>
+</tr>
+<tr>
+<td>获取员工绩效考核结果</td>
+<td>GET_PERF_RESULT_DATA(filter_position&#x3D;1)</td>
+<td>:param filter_position: &lt;选填&gt;默认过滤岗位  1(过滤)&#x2F;0(不过滤)<br>:return:</td>
+<td>获取员工绩效考核结果 GET_PERF_RESULT_DATA(filter_position&#x3D;1)<br>GET_PERF_RESULT_DATA(filter_position&#x3D;1)</td>
+</tr>
+<tr>
+<td>获取业务数据公式</td>
+<td>GET_ASSIST_DATA(“业务数据名称”, “业务数据定义名称”,”年度”,”周期”, get_dept&#x3D;0, dept_number&#x3D;None, filter_dict&#x3D;None)</td>
+<td>:param assist_name: &lt;必填&gt; 业务数据名称<br>:param item_name: &lt;必填&gt; 业务数据定义名称<br>:param year: &lt;必填&gt; 年度<br>:param cycle_type: &lt;必填&gt; 周期  可选<br>年度:年度<br>半年度: 上半年度, 下半年度<br>季度: 一季度, 二季度, 三季度, 四季度<br>月度:一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月<br>:param get_dept: &lt;选填&gt; 获取人员所在部门的业务数据（1或0,默认不填为0）<br>:param dept_number: &lt;选填&gt; 获取指定部门的业务数据<br>使用部门编号,使用此参数前提为get_dept参数必须为1<br>:param filter_dict: &lt;选填&gt; 当业务数据【是否允许对象重复】属性为【是】时使用，增加过滤条件，{“业务数据定义名称”:”值”}  当业务数据定义为【选择】时值为关联对象id</td>
+<td>业务数据: 核心岗位人数<br>业务数据定义: 核心岗人员在职人员数量<br>业务数据定义: 核心岗人员离职人员数量<br>业务数据定义: 中心年度核心岗人员编制<br>获取2020年一月份的”核心岗人员在职人员数量”的业务数据:<br>GET_ASSIST_DATA(“核心岗位人数”, “核心岗人员在职人员数量”,’2020’,’一月’)<br>获取2020年一月份”核心岗人员离职人员数量”的业务数据:<br>GET_ASSIST_DATA(“核心岗位人数”, “核心岗人员离职人员数量”,’2020’,’一月’)<br>:return:<br>GET_ASSIST_DATA(“业务数据名称”, “业务数据定义名称”,”年度”,”周期”, get_dept&#x3D;0, dept_number&#x3D;None, filter_dict&#x3D;None)</td>
+</tr>
+</tbody></table>
+
         
             <div id="toc-article">
                 
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%87%E7%AD%BE%E4%BD%93%E7%B3%BB"><span class="toc-text">1.标签体系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%BA%E6%89%8D%E5%BA%93%E7%B1%BB%E5%88%AB%EF%BC%8C%E6%96%B0%E5%A2%9E%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%89%E9%BB%98%E8%AE%A4%E8%BF%87%E6%BB%A4%E6%9D%A1%E4%BB%B6%EF%BC%9B"><span class="toc-text">2.人才库类别，新增不显示问题，有默认过滤条件；</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3"><span class="toc-text">3.</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%87%E7%AD%BE%E4%BD%93%E7%B3%BB"><span class="toc-text">1.标签体系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%BA%E6%89%8D%E5%BA%93%E7%B1%BB%E5%88%AB%EF%BC%8C%E6%96%B0%E5%A2%9E%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%89%E9%BB%98%E8%AE%A4%E8%BF%87%E6%BB%A4%E6%9D%A1%E4%BB%B6%EF%BC%9B"><span class="toc-text">2.人才库类别，新增不显示问题，有默认过滤条件；</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3"><span class="toc-text">3.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%9B%98%E7%82%B9%E5%85%AC%E5%BC%8F"><span class="toc-text">2.盘点公式</span></a></li></ol>
     </div>
   </div>
 
